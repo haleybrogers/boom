@@ -65,15 +65,15 @@ export default function About() {
       {/* Founder Section */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Emilie's headshot — drop emilie-young.jpg into /public to display */}
-            <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-tan/30 via-blue/15 to-tan/20">
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-12 lg:gap-16 items-start">
+            {/* Emilie's headshot */}
+            <div className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden mx-auto lg:mx-0 lg:mt-4 shrink-0">
               <Image
                 src="/emilie-young.jpg"
                 alt="Emilie Young, founder of Boomerang Pilates"
                 fill
                 className="object-cover object-top"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="288px"
                 priority
               />
             </div>
