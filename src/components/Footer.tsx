@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,9 +8,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <h3 className="font-serif text-3xl font-semibold text-cream mb-4">
-              Boomerang
-            </h3>
+            <Image
+              src="/logo.svg"
+              alt="Boomerang Pilates"
+              width={220}
+              height={34}
+              className="h-8 w-auto brightness-0 invert mb-4"
+            />
             <p className="text-sm leading-relaxed text-cream/60 max-w-xs">
               Find your way back to you. Pilates classes designed to strengthen
               your body, calm your mind, and restore your balance.
@@ -46,8 +51,8 @@ export default function Footer() {
               Visit Us
             </h4>
             <div className="space-y-3 text-sm text-cream/60">
-              <p>123 Wellness Ave, Suite 100</p>
-              <p>Austin, TX 78701</p>
+              <p>123 Studio Lane, Suite 100</p>
+              <p>Durham, NC 27701</p>
               <p className="pt-2">
                 <a href="mailto:hello@boomerangpilates.com" className="hover:text-cream transition-colors">
                   hello@boomerangpilates.com

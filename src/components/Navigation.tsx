@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
@@ -18,8 +19,15 @@ export default function Navigation() {
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="font-serif text-2xl lg:text-3xl font-semibold tracking-tight text-charcoal">
-            Boomerang
+          <Link href="/" className="block">
+            <Image
+              src="/logo.svg"
+              alt="Boomerang Pilates"
+              width={220}
+              height={34}
+              className="h-7 lg:h-8 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}

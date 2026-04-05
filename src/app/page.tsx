@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "@/components/Button";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/Card";
@@ -6,8 +7,18 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center">
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-cream via-tan/20 to-blue/20" />
+        {/* Illustration accent */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.07] pointer-events-none hidden lg:block">
+          <Image
+            src="/illustration.svg"
+            alt=""
+            width={500}
+            height={500}
+            aria-hidden="true"
+          />
+        </div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-brown mb-6">
@@ -21,8 +32,9 @@ export default function Home() {
               <span className="italic">to You</span>
             </h1>
             <p className="text-lg text-brown max-w-lg mb-10 leading-relaxed">
-              Strengthen your body. Calm your mind. Restore your balance.
-              Pilates classes designed to meet you exactly where you are.
+              Classical Pilates in the Raleigh-Durham area. Strengthen your
+              body, calm your mind, and restore your balance with classes
+              designed to meet you exactly where you are.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button href="/classes#book">Book Your First Class</Button>

@@ -140,8 +140,8 @@ export default function Contact() {
                   <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-brown mb-3">
                     Location
                   </h3>
-                  <p className="text-charcoal">123 Wellness Ave, Suite 100</p>
-                  <p className="text-charcoal">Austin, TX 78701</p>
+                  <p className="text-charcoal">123 Studio Lane, Suite 100</p>
+                  <p className="text-charcoal">Durham, NC 27701</p>
                 </div>
 
                 {/* Hours */}
