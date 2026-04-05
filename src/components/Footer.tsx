@@ -8,13 +8,22 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <Image
-              src="/logo.svg"
-              alt="Boomerang Pilates"
-              width={220}
-              height={34}
-              className="h-8 w-auto brightness-0 invert mb-4"
-            />
+            <div className="flex items-center gap-2.5 mb-4">
+              <Image
+                src="/logo-icon.svg"
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-auto brightness-0 invert"
+              />
+              <Image
+                src="/logo.svg"
+                alt="Boomerang Pilates"
+                width={180}
+                height={28}
+                className="h-6 w-auto brightness-0 invert"
+              />
+            </div>
             <p className="text-sm leading-relaxed text-cream/60 max-w-xs">
               Find your way back to you. Pilates classes designed to strengthen
               your body, calm your mind, and restore your balance.

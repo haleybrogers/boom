@@ -19,13 +19,21 @@ export default function Navigation() {
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="block">
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image
+              src="/logo-icon.svg"
+              alt=""
+              width={40}
+              height={40}
+              className="h-9 lg:h-10 w-auto"
+              priority
+            />
             <Image
               src="/logo.svg"
               alt="Boomerang Pilates"
-              width={220}
-              height={34}
-              className="h-7 lg:h-8 w-auto"
+              width={200}
+              height={30}
+              className="h-6 lg:h-7 w-auto hidden sm:block"
               priority
             />
           </Link>
