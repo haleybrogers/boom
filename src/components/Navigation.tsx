@@ -47,7 +47,7 @@ export default function Navigation() {
           </div>
 
           {/* Desktop nav links — centered */}
-          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+          <div className={`hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2 transition-opacity duration-300 ${scrolled ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
