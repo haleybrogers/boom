@@ -82,11 +82,13 @@ export default function About() {
       </section>
 
       {/* Reformer photo */}
-      <section
-        className="relative bg-fixed bg-cover bg-center h-[40vh] lg:h-[50vh]"
-        style={{ backgroundImage: "url(/photo-reformer.jpg)" }}
-      >
-        <div className="absolute inset-0 bg-[#5c4a3a]/20 mix-blend-multiply" />
+      <section className="py-8 lg:py-12">
+        <div
+          className="relative bg-fixed bg-cover bg-center h-[40vh] lg:h-[50vh] mx-6 lg:mx-12 rounded-sm overflow-hidden"
+          style={{ backgroundImage: "url(/photo-reformer.jpg)" }}
+        >
+          <div className="absolute inset-0 bg-[#5c4a3a]/20 mix-blend-multiply" />
+        </div>
       </section>
 
       {/* Method */}
