@@ -1,34 +1,36 @@
 import Image from "next/image";
 import Button from "@/components/Button";
+import Parallax from "@/components/Parallax";
 
 export default function About() {
   return (
     <>
-      {/* Hero */}
-      <section className="py-24 lg:py-32">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-light text-charcoal mb-6">
-            Two Sisters. One Method.
-          </h1>
-          <p className="text-muted leading-relaxed">
-            Growing up in Greensboro, NC, Emilie and Annie Young didn&apos;t
-            know Pilates would become the thing that brought them even closer.
-            Emilie discovered the method first — walking into a mat class at
-            App State in 2012 and feeling something click. Years later, Annie
-            followed her to the same university, the same training program, and
-            the same love for the work. Boomerang is the studio they always
-            talked about building together — a place rooted in the Classical
-            method, taught with care, and open to everyone.
-          </p>
+      {/* Hero — parallax image with text overlay */}
+      <section
+        className="relative bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: "url(/hero-image.png)" }}
+      >
+        <div className="bg-charcoal/50 py-28 lg:py-36">
+          <div className="max-w-xl mx-auto px-6 text-center">
+            <h1 className="font-serif text-4xl md:text-5xl font-light text-white mb-6">
+              Two Sisters. One Method.
+            </h1>
+            <p className="text-white/70 leading-relaxed">
+              Raised in Greensboro, NC, both trained at Appalachian State.
+              Boomerang is the studio Emilie and Annie Young always talked about
+              building together — rooted in the Classical method, taught with
+              care, and open to everyone.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Founders */}
-      <section className="pb-24 lg:pb-32">
+      <section className="py-24 lg:py-32">
         <div className="max-w-4xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             {/* Emilie */}
-            <div className="text-center">
+            <Parallax speed={0.08} className="text-center">
               <div className="relative w-44 h-44 rounded-full overflow-hidden mx-auto mb-6">
                 <Image
                   src="/emilie-young.jpg"
@@ -41,22 +43,19 @@ export default function About() {
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
                 Emilie Young
               </h3>
-              <p className="text-xs tracking-widest uppercase text-muted mb-5">
+              <p className="text-xs tracking-widest uppercase text-muted mb-4">
                 Co-Founder
               </p>
               <p className="text-sm text-muted leading-relaxed">
-                Emilie is a 3rd Generation Classical Pilates instructor,
-                comprehensively certified in mat and apparatus. She completed
-                her training in 2015 at Appalachian State under 2nd Generation
-                instructors Rebecca Quinn and Marianne Adams. When she&apos;s
-                not in the studio, she&apos;s teaching elementary art for
-                Durham Public Schools — bringing the same warmth and creativity
-                to both classrooms.
+                3rd Generation Classical Pilates instructor, certified in mat
+                and apparatus. Trained at App State under Rebecca Quinn and
+                Marianne Adams. Also an elementary art teacher for Durham
+                Public Schools.
               </p>
-            </div>
+            </Parallax>
 
             {/* Annie */}
-            <div className="text-center">
+            <Parallax speed={0.12} className="text-center">
               <div className="relative w-44 h-44 rounded-full overflow-hidden mx-auto mb-6 bg-warm-white">
                 <Image
                   src="/annie-young.jpg"
@@ -69,38 +68,32 @@ export default function About() {
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
                 Annie Young
               </h3>
-              <p className="text-xs tracking-widest uppercase text-muted mb-5">
+              <p className="text-xs tracking-widest uppercase text-muted mb-4">
                 Co-Founder
               </p>
               <p className="text-sm text-muted leading-relaxed">
-                Annie earned her comprehensive Classical Pilates certification
-                from Appalachian State in 2023 — following in her big
-                sister&apos;s footsteps. She&apos;s passionate about making
-                Pilates accessible to every body, and when she&apos;s not in
-                the studio you can find her dancing or hanging out with her
-                dogs.
+                Classical Pilates certified from App State in 2023, following
+                in her big sister&apos;s footsteps. Passionate about making
+                Pilates accessible to every body.
               </p>
-            </div>
+            </Parallax>
           </div>
         </div>
       </section>
 
       {/* Method */}
-      <section className="py-24 lg:py-32 bg-warm-white">
+      <Parallax speed={0.1} className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-6">
             The Method
           </h2>
           <p className="text-muted leading-relaxed">
-            Classical Pilates is a system of exercises developed by Joseph
-            Pilates in the early 20th century. It emphasizes control, precision,
-            breath, and flow — building a strong, balanced body from the core
-            outward. At Boomerang, we teach the method as it was designed to be
-            practiced: with intention, with rigor, and with respect for each
-            individual body.
+            Control, precision, breath, and flow — building a strong, balanced
+            body from the core outward. We teach Classical Pilates as it was
+            designed to be practiced.
           </p>
         </div>
-      </section>
+      </Parallax>
 
       {/* CTA */}
       <section className="py-24 lg:py-32">
