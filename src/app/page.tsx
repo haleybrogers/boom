@@ -18,38 +18,35 @@ export default function Home() {
         />
       </section>
 
-      {/* Hero — image with text above the bodies */}
-      <section className="relative overflow-hidden">
-        {/* Text overlay area — color matched to image background */}
-        <div className="relative z-10 bg-gradient-to-b from-[#848078] via-[#848078] to-[#848078]/80 pt-12 pb-10 lg:pt-16 lg:pb-12">
+      {/* Hero — text overlaid on image's gray area, bodies below */}
+      <section className="relative">
+        <Image
+          src="/hero-image.png"
+          alt="Two figures in the Boomerang Pilates pose"
+          width={2000}
+          height={800}
+          className="w-full h-auto"
+          priority
+        />
+        {/* Text positioned in the gray area above the bodies */}
+        <div className="absolute inset-0 flex items-start justify-center pt-8 md:pt-12 lg:pt-16">
           <div className="max-w-2xl mx-auto px-6 text-center">
-            <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-6">
+            <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-4 md:mb-6">
               Two sisters. One method.
               <br />
               A studio built to share with you.
             </p>
-            <p className="text-white/70 text-sm leading-relaxed max-w-lg mx-auto">
+            <p className="text-white/70 text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
               Emilie and Annie Young founded Boomerang Pilates on a shared love
               of the Classical method — and a belief that what you put into this
               practice comes back to you.
             </p>
-            <div className="mt-8">
+            <div className="mt-5 md:mt-8">
               <Button href="/classes#book" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal">
                 Book a Class
               </Button>
             </div>
           </div>
-        </div>
-        {/* Image — bodies peek below text */}
-        <div className="relative w-full">
-          <Image
-            src="/hero-image.png"
-            alt="Two figures in the Boomerang Pilates pose"
-            width={2000}
-            height={800}
-            className="w-full h-auto"
-            priority
-          />
         </div>
       </section>
 
