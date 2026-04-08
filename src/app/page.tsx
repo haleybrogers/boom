@@ -22,7 +22,7 @@ export default function Home() {
 
       {/* Story intro — text over parallax image */}
       <section
-        className="relative bg-fixed bg-cover bg-center"
+        className="relative bg-fixed bg-cover bg-bottom"
         style={{ backgroundImage: "url(/hero-image.png)" }}
       >
         <div className="bg-charcoal/50 py-28 lg:py-36">
