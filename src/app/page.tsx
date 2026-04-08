@@ -31,7 +31,7 @@ export default function Home() {
         {/* Warm brown wash over image */}
         <div className="absolute inset-0 bg-[#5c4a3a]/25 mix-blend-multiply pointer-events-none" />
         {/* Text positioned in the gray area above the bodies */}
-        <div className="absolute inset-x-0 top-0 flex items-start justify-center pt-4 md:pt-6 lg:pt-8">
+        <div className="absolute inset-x-0 top-0 flex items-start justify-center pt-10 md:pt-16 lg:pt-20">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-snug text-white mb-3 md:mb-4">
               Two sisters. One method.
