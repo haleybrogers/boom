@@ -33,8 +33,6 @@ export default function Home() {
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-4 md:mb-6">
               Two sisters. One method.
-              <br />
-              A studio built to share with you.
             </p>
             <p className="text-white/70 text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
               Emilie and Annie Young founded Boomerang Pilates on a shared love
