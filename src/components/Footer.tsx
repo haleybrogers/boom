@@ -8,11 +8,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <Image
-              src="/logo-new.svg"
+              src="/logo-color.svg"
               alt="Boomerang Pilates"
-              width={140}
-              height={44}
-              className="h-10 w-auto mb-4"
+              width={120}
+              height={90}
+              className="h-16 w-auto mb-4"
             />
             <p className="text-sm text-muted leading-relaxed max-w-xs">
               Classical Pilates in Durham, NC.
@@ -31,7 +31,7 @@ export default function Footer() {
                 { href: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-muted hover:text-charcoal transition-colors">
+                  <Link href={link.href} className="text-sm text-muted hover:text-accent transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -46,7 +46,7 @@ export default function Footer() {
             <div className="space-y-2 text-sm text-muted">
               <p>Durham, NC</p>
               <p>
-                <a href="mailto:hello@boomerangpilates.com" className="hover:text-charcoal transition-colors">
+                <a href="mailto:hello@boomerangpilates.com" className="hover:text-accent transition-colors">
                   hello@boomerangpilates.com
                 </a>
               </p>

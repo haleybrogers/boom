@@ -8,22 +8,19 @@ export default function Home() {
       <section className="flex items-center justify-center min-h-[70vh]">
         <div className="text-center px-6">
           <Image
-            src="/logo-new.svg"
+            src="/logo-color.svg"
             alt="Boomerang Pilates"
             width={360}
             height={280}
             className="mx-auto mb-8 w-56 md:w-72 h-auto"
             priority
           />
-          <p className="text-muted text-sm tracking-wide mb-10">
-            Classical Pilates &middot; Durham, NC
-          </p>
           <Button href="/classes#book">Book a Class</Button>
         </div>
       </section>
 
       {/* Philosophy */}
-      <section className="py-28 lg:py-36 border-t border-charcoal/5">
+      <section className="py-28 lg:py-36">
         <div className="max-w-xl mx-auto px-6 text-center">
           <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-charcoal">
             The Classical Pilates method, taught the way it was meant to be.
@@ -31,16 +28,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What we offer — clean grid */}
+      {/* What we offer */}
       <section className="pb-28 lg:pb-36">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-charcoal/10 border border-charcoal/10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-charcoal/10 border border-charcoal/10 rounded-sm overflow-hidden">
             {[
               { title: "Mat Classes", desc: "Build core strength and flexibility through classical mat exercises. Perfect for every level." },
               { title: "Apparatus", desc: "Reformer, Cadillac, Chair, and Barrels. Spring-loaded resistance for full-body conditioning." },
               { title: "Private Sessions", desc: "One-on-one instruction tailored to your body, your goals, and your pace." },
             ].map((item) => (
-              <div key={item.title} className="bg-white p-10 lg:p-14">
+              <div key={item.title} className="bg-warm-white p-10 lg:p-14">
                 <h3 className="font-serif text-2xl font-light text-charcoal mb-3">
                   {item.title}
                 </h3>
@@ -51,13 +48,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quote */}
-      <section className="py-28 lg:py-36 bg-warm-white">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      {/* Illustration accent + quote */}
+      <section className="py-28 lg:py-36 bg-warm-white relative overflow-hidden">
+        <div className="absolute right-6 lg:right-16 top-1/2 -translate-y-1/2 opacity-[0.08] pointer-events-none hidden md:block">
+          <Image
+            src="/illustration-2.svg"
+            alt=""
+            width={300}
+            height={300}
+            aria-hidden="true"
+          />
+        </div>
+        <div className="max-w-2xl mx-auto px-6 text-center relative">
           <blockquote className="font-serif text-2xl md:text-3xl font-light leading-snug italic text-charcoal">
             &ldquo;Pilates is the complete coordination of body, mind, and spirit.&rdquo;
           </blockquote>
-          <cite className="block mt-6 text-xs tracking-widest uppercase text-muted not-italic">
+          <cite className="block mt-6 text-xs tracking-widest uppercase text-accent not-italic">
             Joseph Pilates
           </cite>
         </div>

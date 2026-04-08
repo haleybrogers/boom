@@ -138,7 +138,7 @@ export default function Classes() {
             ].map((plan) => (
               <div
                 key={plan.name}
-                className={`p-10 text-center ${plan.featured ? "bg-charcoal text-white" : "bg-white"}`}
+                className={`p-10 text-center rounded-sm ${plan.featured ? "bg-accent text-white" : "bg-warm-white"}`}
               >
                 <p className={`text-xs tracking-widest uppercase mb-4 ${plan.featured ? "text-white/60" : "text-muted"}`}>
                   {plan.name}

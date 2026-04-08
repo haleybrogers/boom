@@ -16,30 +16,29 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
 
   return (
     <>
-      {/* Splash overlay */}
       <div
-        className={`fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center transition-opacity duration-600 ${
+        className={`fixed inset-0 z-[100] bg-cream flex flex-col items-center justify-center transition-opacity duration-600 ${
           phase === "fading" ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
         <Image
-          src="/logo-new.svg"
+          src="/logo-color.svg"
           alt="Boomerang Pilates"
           width={320}
           height={250}
-          className="w-48 md:w-64 h-auto mb-10"
+          className="w-48 md:w-64 h-auto mb-12"
           priority
         />
-
-        {/* Loading dots animation */}
-        <div className="flex gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-charcoal/30 animate-[pulse_1.2s_ease-in-out_infinite]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-charcoal/30 animate-[pulse_1.2s_ease-in-out_0.2s_infinite]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-charcoal/30 animate-[pulse_1.2s_ease-in-out_0.4s_infinite]" />
-        </div>
+        <Image
+          src="/loading-icon.svg"
+          alt=""
+          width={32}
+          height={32}
+          className="w-8 h-8 animate-spin"
+          style={{ animationDuration: "2s" }}
+          aria-hidden="true"
+        />
       </div>
-
-      {/* Content hidden behind splash */}
       <div className={phase === "fading" ? "opacity-100" : "opacity-0"}>
         {children}
       </div>

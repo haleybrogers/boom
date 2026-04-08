@@ -13,11 +13,11 @@ export default function Button({
   variant = "primary",
   className = "",
 }: ButtonProps) {
-  const base = "inline-block px-7 py-3 text-sm tracking-wide transition-all duration-200";
+  const base = "inline-block px-7 py-3 text-sm tracking-wide transition-all duration-200 rounded-sm";
 
   const variants = {
-    primary: "bg-charcoal text-white hover:bg-charcoal/80",
-    outline: "border border-charcoal text-charcoal hover:bg-charcoal hover:text-white",
+    primary: "bg-accent text-white hover:bg-accent/85",
+    outline: "border border-charcoal/20 text-charcoal hover:border-accent hover:text-accent",
   };
 
   return (
