@@ -23,7 +23,7 @@ export default function Home() {
         className="relative bg-fixed bg-cover bg-bottom"
         style={{ backgroundImage: "url(/hero-image.png)" }}
       >
-        <div className="bg-charcoal/50 py-32 lg:py-44">
+        <div className="bg-charcoal/50 pt-16 pb-40 lg:pt-20 lg:pb-52">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-6">
               Two sisters. One method.
