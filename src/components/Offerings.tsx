@@ -56,7 +56,7 @@ export default function Offerings() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
       {offerings.map((item, i) => (
         <OfferCard
           key={item.title}
