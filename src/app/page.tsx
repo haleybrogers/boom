@@ -1,43 +1,55 @@
 import Image from "next/image";
 import Button from "@/components/Button";
+import Parallax from "@/components/Parallax";
 
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="flex items-center justify-center min-h-[70vh]">
+      <section className="py-20 lg:py-28 flex items-center justify-center">
         <div className="text-center px-6">
           <Image
             src="/logo-color.svg"
             alt="Boomerang Pilates"
             width={360}
             height={280}
-            className="mx-auto mb-8 w-56 md:w-72 h-auto"
+            className="mx-auto mb-10 w-56 md:w-72 h-auto animate-float-slow"
             priority
           />
           <Button href="/classes#book">Book a Class</Button>
         </div>
       </section>
 
-      {/* Philosophy */}
-      <section className="py-28 lg:py-36">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-charcoal">
-            The Classical Pilates method, taught the way it was meant to be.
+      {/* Story intro */}
+      <Parallax speed={0.12} className="py-24 lg:py-32">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-charcoal mb-6">
+            Two sisters. One method. A studio built to share it with you.
           </p>
+          <p className="text-muted text-sm leading-relaxed max-w-lg mx-auto">
+            Emilie and Annie Young founded Boomerang Pilates on a shared love
+            of the Classical method — and a belief that what you put into this
+            practice comes back to you.
+          </p>
+          <div className="mt-8">
+            <Button href="/about" variant="outline">Our Story</Button>
+          </div>
         </div>
-      </section>
+      </Parallax>
 
       {/* What we offer */}
-      <section className="pb-28 lg:pb-36">
+      <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-charcoal/10 border border-charcoal/10 rounded-sm overflow-hidden">
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-14 text-center">
+            What We Offer
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { title: "Mat Classes", desc: "Build core strength and flexibility through classical mat exercises. Perfect for every level." },
               { title: "Apparatus", desc: "Reformer, Cadillac, Chair, and Barrels. Spring-loaded resistance for full-body conditioning." },
               { title: "Private Sessions", desc: "One-on-one instruction tailored to your body, your goals, and your pace." },
             ].map((item) => (
-              <div key={item.title} className="bg-warm-white p-10 lg:p-14">
+              <div key={item.title} className="text-center">
                 <h3 className="font-serif text-2xl font-light text-charcoal mb-3">
                   {item.title}
                 </h3>
@@ -45,40 +57,38 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <div className="text-center mt-12">
+            <Button href="/classes" variant="outline">View Classes &amp; Schedule</Button>
+          </div>
         </div>
       </section>
 
-      {/* Illustration accent + quote */}
-      <section className="py-28 lg:py-36 bg-warm-white relative overflow-hidden">
-        <div className="absolute right-6 lg:right-16 top-1/2 -translate-y-1/2 opacity-[0.08] pointer-events-none hidden md:block">
-          <Image
-            src="/illustration-2.svg"
-            alt=""
-            width={300}
-            height={300}
-            aria-hidden="true"
-          />
-        </div>
-        <div className="max-w-2xl mx-auto px-6 text-center relative">
+      {/* Quote — parallax */}
+      <section className="py-28 lg:py-36">
+        <Parallax speed={0.1} className="max-w-2xl mx-auto px-6 text-center">
           <blockquote className="font-serif text-2xl md:text-3xl font-light leading-snug italic text-charcoal">
             &ldquo;Pilates is the complete coordination of body, mind, and spirit.&rdquo;
           </blockquote>
           <cite className="block mt-6 text-xs tracking-widest uppercase text-accent not-italic">
             Joseph Pilates
           </cite>
-        </div>
+        </Parallax>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 lg:py-32">
+      {/* First class CTA */}
+      <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-            New to Boomerang?
+            Your first class is on us.
           </h2>
           <p className="text-muted text-sm mb-8">
-            Your first class is on us. Come move with us.
+            Whether you&apos;re brand new to Pilates or coming back after time away —
+            we&apos;d love to move with you.
           </p>
-          <Button href="/classes#book">Book Your Free Class</Button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button href="/classes#book">Book Your Free Class</Button>
+            <Button href="/contact" variant="outline">Get in Touch</Button>
+          </div>
         </div>
       </section>
     </>
