@@ -28,6 +28,8 @@ export default function Home() {
           className="w-full h-auto"
           priority
         />
+        {/* Warm brown wash over image */}
+        <div className="absolute inset-0 bg-[#5c4a3a]/25 mix-blend-multiply pointer-events-none" />
         {/* Text positioned in the gray area above the bodies */}
         <div className="absolute inset-0 flex items-start justify-center pt-8 md:pt-12 lg:pt-16">
           <div className="max-w-2xl mx-auto px-6 text-center">
