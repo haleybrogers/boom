@@ -81,6 +81,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Chair photo break */}
+      <section className="relative">
+        <Image
+          src="/photo-chair.jpg"
+          alt="Pilates on the Wunda Chair"
+          width={800}
+          height={1000}
+          className="w-full h-[40vh] lg:h-[50vh] object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#5c4a3a]/15 mix-blend-multiply pointer-events-none" />
+      </section>
+
       {/* First class CTA */}
       <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">

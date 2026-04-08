@@ -81,6 +81,14 @@ export default function About() {
         </div>
       </section>
 
+      {/* Reformer photo */}
+      <section
+        className="relative bg-fixed bg-cover bg-center h-[40vh] lg:h-[50vh]"
+        style={{ backgroundImage: "url(/photo-reformer.jpg)" }}
+      >
+        <div className="absolute inset-0 bg-[#5c4a3a]/20 mix-blend-multiply" />
+      </section>
+
       {/* Method */}
       <Parallax speed={0.1} className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">

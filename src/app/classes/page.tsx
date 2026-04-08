@@ -51,16 +51,22 @@ const schedule = [
 export default function Classes() {
   return (
     <>
-      {/* Hero */}
-      <section className="py-24 lg:py-32">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-light text-charcoal mb-6">
-            Classes
-          </h1>
-          <p className="text-muted leading-relaxed">
-            From gentle mat work to advanced reformer sessions. Find the class
-            that meets you where you are.
-          </p>
+      {/* Hero with parallax image */}
+      <section
+        className="relative bg-fixed bg-cover bg-center h-[40vh] lg:h-[50vh]"
+        style={{ backgroundImage: "url(/photo-leg.jpg)" }}
+      >
+        <div className="absolute inset-0 bg-[#5c4a3a]/35" />
+        <div className="relative h-full flex items-center justify-center">
+          <div className="text-center px-6">
+            <h1 className="font-serif text-4xl md:text-5xl font-light text-white mb-4">
+              Classes
+            </h1>
+            <p className="text-white/70 text-sm leading-relaxed max-w-md mx-auto">
+              From gentle mat work to advanced reformer sessions. Find the class
+              that meets you where you are.
+            </p>
+          </div>
         </div>
       </section>
 
