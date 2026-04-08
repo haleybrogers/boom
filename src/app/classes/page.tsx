@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import ClassSchedule from "@/components/ClassSchedule";
 
 const classes = [
   {
@@ -39,14 +40,6 @@ const classes = [
   },
 ];
 
-const schedule = [
-  { time: "6:00 AM", mon: "Mat", tue: "Reformer", wed: "Mat", thu: "Power", fri: "Mat", sat: "Reformer" },
-  { time: "8:00 AM", mon: "Gentle", tue: "Mat", wed: "Reformer", thu: "Mat", fri: "Gentle", sat: "Mat" },
-  { time: "10:00 AM", mon: "Reformer", tue: "Prenatal", wed: "Mat", thu: "Reformer", fri: "Prenatal", sat: "Gentle" },
-  { time: "12:00 PM", mon: "Power", tue: "\u2014", wed: "Mat", thu: "\u2014", fri: "Power", sat: "\u2014" },
-  { time: "5:30 PM", mon: "Reformer", tue: "Power", wed: "Reformer", thu: "Mat", fri: "\u2014", sat: "\u2014" },
-  { time: "7:00 PM", mon: "Mat", tue: "Gentle", wed: "Mat", thu: "Mat", fri: "\u2014", sat: "\u2014" },
-];
 
 export default function Classes() {
   return (
@@ -97,38 +90,7 @@ export default function Classes() {
       </section>
 
       {/* Schedule */}
-      <section id="schedule" className="py-24 lg:py-32 bg-warm-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="font-serif text-3xl font-light text-charcoal mb-12 text-center">
-            Weekly Schedule
-          </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[600px]">
-              <thead>
-                <tr className="border-b border-charcoal/10">
-                  <th className="pb-3 text-left text-xs tracking-widest uppercase text-muted font-medium">Time</th>
-                  {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-                    <th key={day} className="pb-3 text-left text-xs tracking-widest uppercase text-muted font-medium">{day}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {schedule.map((row) => (
-                  <tr key={row.time} className="border-b border-charcoal/5">
-                    <td className="py-3 text-sm font-medium text-charcoal">{row.time}</td>
-                    <td className="py-3 text-sm text-muted">{row.mon}</td>
-                    <td className="py-3 text-sm text-muted">{row.tue}</td>
-                    <td className="py-3 text-sm text-muted">{row.wed}</td>
-                    <td className="py-3 text-sm text-muted">{row.thu}</td>
-                    <td className="py-3 text-sm text-muted">{row.fri}</td>
-                    <td className="py-3 text-sm text-muted">{row.sat}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+      <ClassSchedule />
 
       {/* Pricing */}
       <section className="py-24 lg:py-32">
