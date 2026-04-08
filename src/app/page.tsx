@@ -18,12 +18,10 @@ export default function Home() {
         />
       </section>
 
-      {/* Hero — parallax image with text, dominates the viewport */}
-      <section
-        className="relative bg-fixed bg-cover bg-bottom"
-        style={{ backgroundImage: "url(/hero-image.png)" }}
-      >
-        <div className="bg-charcoal/50 pt-16 pb-40 lg:pt-20 lg:pb-52">
+      {/* Hero — image with text above the bodies */}
+      <section className="relative overflow-hidden">
+        {/* Text overlay area — color matched to image background */}
+        <div className="relative z-10 bg-gradient-to-b from-[#848078] via-[#848078] to-[#848078]/80 pt-12 pb-10 lg:pt-16 lg:pb-12">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-6">
               Two sisters. One method.
@@ -41,6 +39,17 @@ export default function Home() {
               </Button>
             </div>
           </div>
+        </div>
+        {/* Image — bodies peek below text */}
+        <div className="relative w-full">
+          <Image
+            src="/hero-image.png"
+            alt="Two figures in the Boomerang Pilates pose"
+            width={2000}
+            height={800}
+            className="w-full h-auto"
+            priority
+          />
         </div>
       </section>
 
