@@ -54,7 +54,7 @@ export default function Classes() {
       {/* Hero with parallax image */}
       <section
         className="relative bg-fixed bg-cover bg-center h-[40vh] lg:h-[50vh]"
-        style={{ backgroundImage: "url(/photo-leg.jpg)" }}
+        style={{ backgroundImage: "url(/photo-chair.jpg)" }}
       >
         <div className="absolute inset-0 bg-[#5c4a3a]/35" />
         <div className="relative h-full flex items-center justify-center">
