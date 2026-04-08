@@ -37,6 +37,14 @@ export default function Home() {
         </div>
       </Parallax>
 
+      {/* Parallax hero image */}
+      <section
+        className="h-[50vh] lg:h-[60vh] bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: "url(/hero-image.png)" }}
+        role="img"
+        aria-label="Two figures in the Boomerang Pilates pose"
+      />
+
       {/* What we offer */}
       <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-6xl mx-auto px-6">
