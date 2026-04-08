@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -14,12 +15,18 @@ const navLinks = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
+    if (!isHome) {
+      setScrolled(true);
+      return;
+    }
     const onScroll = () => setScrolled(window.scrollY > 400);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   return (
     <header
@@ -29,7 +36,7 @@ export default function Navigation() {
     >
       <nav className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-14 relative">
-          {/* Logo — only visible on scroll */}
+          {/* Logo */}
           <div
             className={`transition-opacity duration-300 ${
               scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -59,7 +66,7 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* Book button — only visible on scroll */}
+          {/* Book button */}
           <Link
             href="/classes#book"
             className={`hidden md:block bg-accent text-white px-5 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-all duration-300 ${
