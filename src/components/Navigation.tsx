@@ -23,7 +23,7 @@ export default function Navigation() {
       setScrolled(true);
       return;
     }
-    const onScroll = () => setScrolled(window.scrollY > 400);
+    const onScroll = () => setScrolled(window.scrollY > 200);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);

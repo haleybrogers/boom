@@ -6,26 +6,24 @@ import Offerings from "@/components/Offerings";
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-6 pb-4 lg:pt-8 lg:pb-6 flex items-center justify-center">
-        <div className="text-center px-6">
-          <Image
-            src="/logo-color.svg"
-            alt="Boomerang Pilates"
-            width={360}
-            height={280}
-            className="mx-auto mb-6 w-48 md:w-60 h-auto animate-float-slow"
-            priority
-          />
-        </div>
+      {/* Logo — compact */}
+      <section className="pt-4 pb-2 flex items-center justify-center">
+        <Image
+          src="/logo-color.svg"
+          alt="Boomerang Pilates"
+          width={200}
+          height={150}
+          className="w-32 md:w-40 h-auto animate-float-slow"
+          priority
+        />
       </section>
 
-      {/* Story intro — text over parallax image */}
+      {/* Hero — parallax image with text, dominates the viewport */}
       <section
         className="relative bg-fixed bg-cover bg-bottom"
         style={{ backgroundImage: "url(/hero-image.png)" }}
       >
-        <div className="bg-charcoal/50 py-28 lg:py-36">
+        <div className="bg-charcoal/50 py-32 lg:py-44">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-6">
               Two sisters. One method.
