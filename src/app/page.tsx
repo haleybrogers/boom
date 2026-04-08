@@ -16,7 +16,6 @@ export default function Home() {
             className="mx-auto mb-6 w-48 md:w-60 h-auto animate-float-slow"
             priority
           />
-          <Button href="/classes#book">Book a Class</Button>
         </div>
       </section>
 
