@@ -49,3 +49,11 @@ html {
 .animate-float-slow {
   animation: float-slow 7s ease-in-out infinite;
 }
+
+/* iOS doesn't support background-attachment: fixed — fall back to scroll */
+@supports (-webkit-touch-callout: none) {
+  .bg-fixed {
+    background-attachment: scroll !important;
+    background-size: cover;
+  }
+}

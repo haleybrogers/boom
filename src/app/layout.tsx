@@ -20,9 +20,28 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Boomerang Pilates | Classical Pilates in Durham, NC",
+  title: {
+    default: "Boomerang Pilates | Classical Pilates in Durham, NC",
+    template: "%s | Boomerang Pilates",
+  },
   description:
-    "Classical Pilates mat and apparatus classes in the Raleigh-Durham area. Founded by sisters Emilie and Annie Young.",
+    "Classical Pilates mat and apparatus instruction in Durham, NC. Founded by sisters Emilie and Annie Young. Opening soon — join the waitlist.",
+  keywords: ["Pilates", "Classical Pilates", "Durham NC", "Pilates studio", "mat Pilates", "reformer", "Boomerang Pilates"],
+  authors: [{ name: "Boomerang Pilates" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Boomerang Pilates",
+    title: "Boomerang Pilates | Classical Pilates in Durham, NC",
+    description: "Put in the work. Feel it come back. Classical Pilates opening soon in Durham, NC.",
+    url: "https://boom-vert-mu.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Boomerang Pilates | Classical Pilates in Durham, NC",
+    description: "Put in the work. Feel it come back. Classical Pilates opening soon in Durham, NC.",
+  },
+  metadataBase: new URL("https://boom-vert-mu.vercel.app"),
 };
 
 export default function RootLayout({

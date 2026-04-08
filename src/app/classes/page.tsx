@@ -1,5 +1,11 @@
 import Button from "@/components/Button";
 import ClassSchedule from "@/components/ClassSchedule";
+import WaitlistForm from "@/components/WaitlistForm";
+
+export const metadata = {
+  title: "Classes",
+  description: "Mat Pilates, Reformer, private sessions, and more. View the full class schedule at Boomerang Pilates in Durham, NC.",
+};
 
 const classes = [
   {
@@ -124,17 +130,18 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* Book */}
+      {/* Waitlist */}
       <section id="book" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Coming Soon</p>
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
-            Book a Class
+            Get on the list.
           </h2>
-          <p className="text-muted text-sm mb-8">
-            Online booking coming soon. In the meantime, reach out to reserve
-            your spot.
+          <p className="text-muted text-sm mb-10">
+            We&apos;re opening soon. Sign up to be the first to know — and your
+            first class is on us.
           </p>
-          <Button href="/contact">Contact Us</Button>
+          <WaitlistForm />
         </div>
       </section>
     </>

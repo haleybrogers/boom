@@ -2,22 +2,11 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import Parallax from "@/components/Parallax";
 import Offerings from "@/components/Offerings";
+import WaitlistForm from "@/components/WaitlistForm";
 
 export default function Home() {
   return (
     <>
-      {/* Logo — compact */}
-      <section className="pt-10 pb-8 md:pt-14 md:pb-10 flex items-center justify-center">
-        <Image
-          src="/logo-color.svg"
-          alt="Boomerang Pilates"
-          width={200}
-          height={150}
-          className="w-36 md:w-44 h-auto animate-float-slow"
-          priority
-        />
-      </section>
-
       {/* Hero — text overlaid on image's gray area, bodies below */}
       <section className="relative overflow-hidden">
         <Image
@@ -25,27 +14,23 @@ export default function Home() {
           alt="Two figures in the Boomerang Pilates pose"
           width={2000}
           height={800}
-          className="w-full h-auto translate-x-4 md:translate-x-8"
+          className="w-full h-auto scale-[1.02] origin-center"
           priority
         />
         {/* Warm brown wash over image */}
         <div className="absolute inset-0 bg-[#5c4a3a]/25 mix-blend-multiply pointer-events-none" />
         {/* Text positioned in the gray area above the bodies */}
-        <div className="absolute inset-x-0 top-0 flex items-start justify-center pt-10 md:pt-16 lg:pt-20">
+        <div className="absolute inset-x-0 top-0 flex items-start justify-center pt-4 sm:pt-10 md:pt-16 lg:pt-20">
           <div className="max-w-2xl mx-auto px-6 text-center">
-            <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-snug text-white mb-5 md:mb-6">
-              Two sisters. One method.
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed text-white mb-1 tracking-wider uppercase">
+              Boomerang Pilates
+            </h1>
+            <p className="text-white/70 text-xs sm:text-sm md:text-base tracking-wide max-w-md mx-auto">
+              Put in the work. Feel it come back.
             </p>
-            <p className="text-white/70 text-[11px] md:text-xs leading-relaxed max-w-md mx-auto">
-              Emilie and Annie Young founded Boomerang Pilates on a shared love
-              of the Classical method — and a belief that what you put into this
-              practice comes back to you.
+            <p className="mt-2 sm:mt-4 md:mt-5 text-white/50 text-[10px] sm:text-[11px] md:text-xs tracking-widest uppercase">
+              Durham, NC
             </p>
-            <div className="mt-6 md:mt-8">
-              <a href="/classes#book" className="inline-block px-5 py-2 text-[11px] md:text-xs tracking-wide border border-white text-white rounded-sm hover:bg-white hover:text-charcoal transition-all">
-                Book a Class
-              </a>
-            </div>
           </div>
         </div>
       </section>
@@ -81,20 +66,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* First class CTA */}
-      <section className="py-24 lg:py-32 bg-warm-white">
+      {/* Founding member signup */}
+      <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Coming Soon</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-            Your first class is on us.
+            Be the first through the door.
           </h2>
-          <p className="text-muted text-sm mb-8">
-            Whether you&apos;re brand new to Pilates or coming back after time away —
-            we&apos;d love to move with you.
+          <p className="text-muted text-sm mb-10">
+            Boomerang Pilates is opening in Durham. Join as a founding member
+            and your first class is on us.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button href="/classes#book">Book Your Free Class</Button>
-            <Button href="/contact" variant="outline">Get in Touch</Button>
-          </div>
+          <WaitlistForm />
         </div>
       </section>
     </>

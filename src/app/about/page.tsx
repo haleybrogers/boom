@@ -2,6 +2,11 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import Parallax from "@/components/Parallax";
 
+export const metadata = {
+  title: "About",
+  description: "Meet Emilie and Annie Young, co-founders of Boomerang Pilates. Classical Pilates instruction rooted in integrity, taught with intention.",
+};
+
 export default function About() {
   return (
     <>
@@ -10,16 +15,16 @@ export default function About() {
         className="relative bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url(/hero-image.png)" }}
       >
-        <div className="bg-charcoal/50 py-28 lg:py-36">
+        <div className="bg-charcoal/50 py-16 sm:py-28 lg:py-36">
           <div className="max-w-xl mx-auto px-6 text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-light text-white mb-6">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-white mb-4 sm:mb-6">
               Two Sisters. One Method.
             </h1>
-            <p className="text-white/70 leading-relaxed">
-              Raised in Greensboro, NC, both trained at Appalachian State.
-              Boomerang is the studio Emilie and Annie Young always talked about
-              building together — rooted in the Classical method, taught with
-              care, and open to everyone.
+            <p className="text-white/70 text-sm sm:text-base leading-relaxed">
+              Emilie and Annie Young built Boomerang on the belief that Classical
+              Pilates works — when it&apos;s taught with integrity and practiced with
+              intention. No shortcuts. No trends. Just the method, the way it was
+              designed.
             </p>
           </div>
         </div>
@@ -81,29 +86,25 @@ export default function About() {
         </div>
       </section>
 
-      {/* Reformer photo */}
-      <section className="py-8 lg:py-12">
-        <div
-          className="relative bg-fixed bg-cover bg-center h-[40vh] lg:h-[50vh] mx-6 lg:mx-12 rounded-sm overflow-hidden"
-          style={{ backgroundImage: "url(/photo-reformer.jpg)" }}
-        >
-          <div className="absolute inset-0 bg-[#5c4a3a]/20 mix-blend-multiply" />
+      {/* The Method — overlaid on reformer photo */}
+      <section
+        className="relative bg-fixed bg-cover bg-center h-[50vh] lg:h-[60vh]"
+        style={{ backgroundImage: "url(/photo-reformer.jpg)" }}
+      >
+        <div className="absolute inset-0 bg-[#5c4a3a]/40" />
+        <div className="relative h-full flex items-center justify-center">
+          <div className="max-w-xl mx-auto px-6 text-center">
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-white mb-6">
+              The Method
+            </h2>
+            <p className="text-white/70 leading-relaxed">
+              Control, precision, breath, and flow — building a strong, balanced
+              body from the core outward. We teach Classical Pilates as it was
+              designed to be practiced.
+            </p>
+          </div>
         </div>
       </section>
-
-      {/* Method */}
-      <Parallax speed={0.1} className="py-24 lg:py-32 bg-warm-white">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-6">
-            The Method
-          </h2>
-          <p className="text-muted leading-relaxed">
-            Control, precision, breath, and flow — building a strong, balanced
-            body from the core outward. We teach Classical Pilates as it was
-            designed to be practiced.
-          </p>
-        </div>
-      </Parallax>
 
       {/* CTA */}
       <section className="py-24 lg:py-32">
@@ -112,9 +113,9 @@ export default function About() {
             Come meet us.
           </h2>
           <p className="text-muted text-sm mb-8">
-            Book a class or just stop by and say hello.
+            We&apos;re opening soon. Get on the list and be the first to know.
           </p>
-          <Button href="/contact">Get in Touch</Button>
+          <Button href="/#waitlist">Join the Waitlist</Button>
         </div>
       </section>
     </>

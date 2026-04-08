@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -14,47 +13,26 @@ const navLinks = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-
-  useEffect(() => {
-    if (!isHome) {
-      setScrolled(true);
-      return;
-    }
-    const onScroll = () => setScrolled(window.scrollY > 200);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 backdrop-blur-sm transition-all duration-300 ${
-        scrolled ? "bg-cream/95 border-b border-charcoal/5" : "bg-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-50 backdrop-blur-sm bg-cream/95 border-b border-charcoal/5">
       <nav className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-14 relative">
           {/* Logo */}
-          <div
-            className={`transition-opacity duration-300 ${
-              scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
-          >
+          <div>
             <Link href="/">
               <Image
-                src="/logo-color.svg"
+                src="/logo-icon.svg"
                 alt="Boomerang Pilates"
                 width={120}
                 height={90}
-                className="h-10 w-auto"
+                className="h-9 w-auto"
               />
             </Link>
           </div>
 
           {/* Desktop nav links — centered */}
-          <div className={`hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2 transition-opacity duration-300 ${scrolled ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -68,12 +46,10 @@ export default function Navigation() {
 
           {/* Book button */}
           <Link
-            href="/classes#book"
-            className={`hidden md:block bg-accent text-white px-5 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-all duration-300 ${
-              scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
+            href="#waitlist"
+            className="hidden md:block bg-accent text-white px-5 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-all duration-300"
           >
-            Book a Class
+            Join Waitlist
           </Link>
 
           {/* Mobile menu button */}
@@ -106,11 +82,11 @@ export default function Navigation() {
                 </Link>
               ))}
               <Link
-                href="/classes#book"
+                href="#waitlist"
                 onClick={() => setIsOpen(false)}
                 className="bg-accent text-white px-5 py-2.5 text-xs tracking-widest uppercase text-center rounded-sm"
               >
-                Book a Class
+                Join Waitlist
               </Link>
             </div>
           </div>

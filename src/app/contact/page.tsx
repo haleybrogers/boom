@@ -13,9 +13,9 @@ export default function Contact() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 lg:py-32">
+      <section className="py-12 sm:py-24 lg:py-32">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-light text-charcoal mb-6">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal mb-4 sm:mb-6">
             Contact
           </h1>
           <p className="text-muted leading-relaxed">
