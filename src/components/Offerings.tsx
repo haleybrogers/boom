@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import OfferCard from "./OfferCard";
 
 const offerings = [
@@ -7,6 +8,8 @@ const offerings = [
     title: "Mat Classes",
     desc: "Build core strength and flexibility through classical mat exercises. Perfect for every level.",
     detail: "Our mat classes follow the classical order of exercises, progressively building strength and control. Small class sizes ensure personal attention. All levels welcome — modifications provided.",
+    cta: "Book a Mat Class",
+    ctaHref: "/classes#book",
     icon: (
       <svg className="w-10 h-10 text-accent" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 40 40">
         <ellipse cx="8" cy="20" rx="4" ry="8" />
@@ -20,6 +23,8 @@ const offerings = [
     title: "Apparatus",
     desc: "Reformer, Cadillac, Chair, and Barrels. Spring-loaded resistance for full-body conditioning.",
     detail: "Work on the full suite of Classical Pilates apparatus. Springs provide resistance that supports and challenges you simultaneously. Sessions available in small groups or one-on-one.",
+    cta: "Book an Apparatus Session",
+    ctaHref: "/classes#book",
     icon: (
       <svg className="w-10 h-10 text-accent" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 40 40">
         <rect x="2" y="22" width="36" height="4" rx="1" />
@@ -37,6 +42,8 @@ const offerings = [
     title: "Private Sessions",
     desc: "One-on-one instruction tailored to your body, your goals, and your pace.",
     detail: "Private sessions are fully customized to you. Whether you're rehabbing an injury, training for something specific, or just prefer individual attention — we'll meet you where you are.",
+    cta: "Book a Private Session",
+    ctaHref: "/contact",
     icon: (
       <svg className="w-10 h-10 text-accent" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
@@ -46,10 +53,17 @@ const offerings = [
 ];
 
 export default function Offerings() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {offerings.map((item) => (
-        <OfferCard key={item.title} {...item} />
+      {offerings.map((item, i) => (
+        <OfferCard
+          key={item.title}
+          {...item}
+          isOpen={openIndex === i}
+          onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+        />
       ))}
     </div>
   );

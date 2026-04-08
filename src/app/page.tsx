@@ -58,7 +58,7 @@ export default function Home() {
           </h2>
           <Offerings />
           <div className="text-center mt-12">
-            <Button href="/classes" variant="outline">View Classes &amp; Schedule</Button>
+            <Button href="/classes" variant="outline">View Full Schedule</Button>
           </div>
         </div>
       </section>
