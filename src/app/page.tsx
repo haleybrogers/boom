@@ -19,29 +19,29 @@ export default function Home() {
       </section>
 
       {/* Hero — text overlaid on image's gray area, bodies below */}
-      <section className="relative">
+      <section className="relative overflow-hidden">
         <Image
           src="/hero-image.png"
           alt="Two figures in the Boomerang Pilates pose"
           width={2000}
           height={800}
-          className="w-full h-auto"
+          className="w-full h-auto translate-x-4 md:translate-x-8"
           priority
         />
         {/* Warm brown wash over image */}
         <div className="absolute inset-0 bg-[#5c4a3a]/25 mix-blend-multiply pointer-events-none" />
         {/* Text positioned in the gray area above the bodies */}
-        <div className="absolute inset-0 flex items-start justify-center pt-8 md:pt-12 lg:pt-16">
+        <div className="absolute inset-x-0 top-0 flex items-start justify-center pt-4 md:pt-6 lg:pt-8">
           <div className="max-w-2xl mx-auto px-6 text-center">
-            <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-4 md:mb-6">
+            <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-snug text-white mb-3 md:mb-4">
               Two sisters. One method.
             </p>
-            <p className="text-white/70 text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
+            <p className="text-white/70 text-[11px] md:text-xs leading-relaxed max-w-md mx-auto">
               Emilie and Annie Young founded Boomerang Pilates on a shared love
               of the Classical method — and a belief that what you put into this
               practice comes back to you.
             </p>
-            <div className="mt-5 md:mt-8">
+            <div className="mt-4 md:mt-6">
               <Button href="/classes#book" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal">
                 Book a Class
               </Button>
