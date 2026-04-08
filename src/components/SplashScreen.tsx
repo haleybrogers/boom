@@ -28,7 +28,7 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
             alt="Boomerang Pilates"
             width={280}
             height={220}
-            className="w-40 md:w-52 h-auto"
+            className="w-56 md:w-72 h-auto"
             priority
           />
           <div className="mt-8">
