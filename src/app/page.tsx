@@ -27,7 +27,9 @@ export default function Home() {
         <div className="bg-charcoal/50 py-28 lg:py-36">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-6">
-              Two sisters. One method. A studio built to share with you.
+              Two sisters. One method.
+              <br />
+              A studio built to share with you.
             </p>
             <p className="text-white/70 text-sm leading-relaxed max-w-lg mx-auto">
               Emilie and Annie Young founded Boomerang Pilates on a shared love
