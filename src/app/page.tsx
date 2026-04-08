@@ -63,28 +63,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quote — parallax */}
-      <section className="py-28 lg:py-36">
-        <Parallax speed={0.1} className="max-w-2xl mx-auto px-6 text-center">
-          <blockquote className="font-serif text-2xl md:text-3xl font-light leading-snug italic text-charcoal">
-            &ldquo;Pilates is the complete coordination of body, mind, and spirit.&rdquo;
-          </blockquote>
-          <cite className="block mt-6 text-xs tracking-widest uppercase text-accent not-italic">
-            Joseph Pilates
-          </cite>
-        </Parallax>
-      </section>
-
-      {/* Accent image */}
-      <section className="relative">
-        <Image
-          src="/accent-image.png"
-          alt="Pilates stretch pose"
-          width={1200}
-          height={900}
-          className="w-full h-auto"
-        />
-        <div className="absolute inset-0 bg-[#5c4a3a]/20 mix-blend-multiply pointer-events-none" />
+      {/* Quote over parallax accent image */}
+      <section
+        className="relative bg-fixed bg-cover bg-center h-[60vh] lg:h-[70vh]"
+        style={{ backgroundImage: "url(/accent-image.png)" }}
+      >
+        <div className="absolute inset-0 bg-[#5c4a3a]/35" />
+        <div className="relative h-full flex items-center justify-center">
+          <div className="max-w-2xl mx-auto px-6 text-center">
+            <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-snug italic text-white">
+              &ldquo;Pilates is the complete coordination of body, mind, and spirit.&rdquo;
+            </blockquote>
+            <cite className="block mt-6 text-xs tracking-widest uppercase text-white/60 not-italic">
+              Joseph Pilates
+            </cite>
+          </div>
+        </div>
       </section>
 
       {/* First class CTA */}
