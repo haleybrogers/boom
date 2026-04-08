@@ -42,9 +42,9 @@ export default function Home() {
               practice comes back to you.
             </p>
             <div className="mt-6 md:mt-8">
-              <Button href="/classes#book" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal">
+              <a href="/classes#book" className="inline-block px-5 py-2 text-[11px] md:text-xs tracking-wide border border-white text-white rounded-sm hover:bg-white hover:text-charcoal transition-all">
                 Book a Class
-              </Button>
+              </a>
             </div>
           </div>
         </div>
