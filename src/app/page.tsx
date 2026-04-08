@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="py-20 lg:py-28 flex items-center justify-center">
+      <section className="pt-10 pb-8 lg:pt-14 lg:pb-10 flex items-center justify-center">
         <div className="text-center px-6">
           <Image
             src="/logo-color.svg"
