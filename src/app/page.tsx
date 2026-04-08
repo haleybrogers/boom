@@ -57,7 +57,7 @@ export default function Home() {
                 title: "Mat Classes",
                 desc: "Build core strength and flexibility through classical mat exercises. Perfect for every level.",
                 icon: (
-                  <svg className="w-10 h-10 text-accent" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 40 40">
+                  <svg className="w-10 h-10 text-accent" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 40 40">
                     {/* Rolled up mat */}
                     <ellipse cx="8" cy="20" rx="4" ry="8" />
                     <line x1="8" y1="12" x2="36" y2="12" />
