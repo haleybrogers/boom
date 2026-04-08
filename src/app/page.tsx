@@ -43,13 +43,38 @@ export default function Home() {
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-14 text-center">
             What We Offer
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: "Mat Classes", desc: "Build core strength and flexibility through classical mat exercises. Perfect for every level." },
-              { title: "Apparatus", desc: "Reformer, Cadillac, Chair, and Barrels. Spring-loaded resistance for full-body conditioning." },
-              { title: "Private Sessions", desc: "One-on-one instruction tailored to your body, your goals, and your pace." },
+              {
+                title: "Mat Classes",
+                desc: "Build core strength and flexibility through classical mat exercises. Perfect for every level.",
+                icon: (
+                  <svg className="w-8 h-8 text-accent" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 20h16M4 20V10m16 10V10M4 10l8-6 8 6" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Apparatus",
+                desc: "Reformer, Cadillac, Chair, and Barrels. Spring-loaded resistance for full-body conditioning.",
+                icon: (
+                  <svg className="w-8 h-8 text-accent" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3v6.75m0 0H3m6.75 0L3 16.5M14.25 3v6.75m0 0H21m-6.75 0L21 16.5M9.75 21v-6.75m0 0H3m6.75 0L3 7.5M14.25 21v-6.75m0 0H21m-6.75 0L21 7.5" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Private Sessions",
+                desc: "One-on-one instruction tailored to your body, your goals, and your pace.",
+                icon: (
+                  <svg className="w-8 h-8 text-accent" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" />
+                  </svg>
+                ),
+              },
             ].map((item) => (
-              <div key={item.title} className="text-center">
+              <div key={item.title} className="bg-cream p-8 lg:p-10 rounded-sm border border-charcoal/5 text-center">
+                <div className="flex justify-center mb-5">{item.icon}</div>
                 <h3 className="font-serif text-2xl font-light text-charcoal mb-3">
                   {item.title}
                 </h3>
