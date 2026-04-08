@@ -75,6 +75,18 @@ export default function Home() {
         </Parallax>
       </section>
 
+      {/* Accent image */}
+      <section className="relative">
+        <Image
+          src="/accent-image.png"
+          alt="Pilates stretch pose"
+          width={1200}
+          height={900}
+          className="w-full h-auto"
+        />
+        <div className="absolute inset-0 bg-[#5c4a3a]/20 mix-blend-multiply pointer-events-none" />
+      </section>
+
       {/* First class CTA */}
       <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
