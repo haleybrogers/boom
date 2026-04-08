@@ -28,7 +28,7 @@ export default function Home() {
         <div className="bg-charcoal/50 py-28 lg:py-36">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-6">
-              Two sisters. One method. A studio built to share it with you.
+              Two sisters. One method. A studio built to share with you.
             </p>
             <p className="text-white/70 text-sm leading-relaxed max-w-lg mx-auto">
               Emilie and Annie Young founded Boomerang Pilates on a shared love
@@ -36,8 +36,8 @@ export default function Home() {
               practice comes back to you.
             </p>
             <div className="mt-8">
-              <Button href="/about" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal">
-                Our Story
+              <Button href="/classes#book" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal">
+                Book a Class
               </Button>
             </div>
           </div>

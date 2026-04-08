@@ -59,15 +59,8 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* Book button — only visible on scroll */}
-          <Link
-            href="/classes#book"
-            className={`hidden md:block bg-accent text-white px-5 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-all duration-300 ${
-              scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
-          >
-            Book a Class
-          </Link>
+          {/* Spacer to balance the layout */}
+          <div className="hidden md:block w-10" />
 
           {/* Mobile menu button */}
           <button
