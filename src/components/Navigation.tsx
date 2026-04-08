@@ -16,9 +16,8 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 300);
+    const onScroll = () => setScrolled(window.scrollY > 400);
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -29,7 +28,7 @@ export default function Navigation() {
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between h-14">
+        <div className="flex items-center justify-between h-14 relative">
           {/* Logo — only visible on scroll */}
           <div
             className={`transition-opacity duration-300 ${
@@ -47,8 +46,8 @@ export default function Navigation() {
             </Link>
           </div>
 
-          {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop nav links — centered */}
+          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -58,17 +57,17 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
-
-            {/* Book button — only visible on scroll */}
-            <Link
-              href="/classes#book"
-              className={`bg-accent text-white px-5 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-all duration-300 ${
-                scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
-              }`}
-            >
-              Book a Class
-            </Link>
           </div>
+
+          {/* Book button — only visible on scroll */}
+          <Link
+            href="/classes#book"
+            className={`hidden md:block bg-accent text-white px-5 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-all duration-300 ${
+              scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
+          >
+            Book a Class
+          </Link>
 
           {/* Mobile menu button */}
           <button
