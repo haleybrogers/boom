@@ -4,7 +4,6 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
-import Image from "next/image";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
@@ -38,17 +37,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-white text-charcoal">
         <SplashScreen>
-          {/* Persistent logo bar */}
-          <div className="bg-white py-5 flex justify-center">
-            <Image
-              src="/logo-new.svg"
-              alt="Boomerang Pilates"
-              width={200}
-              height={150}
-              className="w-36 md:w-44 h-auto"
-              priority
-            />
-          </div>
           <Navigation />
           <main className="flex-1">{children}</main>
           <Footer />

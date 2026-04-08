@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "@/components/Button";
 
 export default function Home() {
@@ -6,9 +7,14 @@ export default function Home() {
       {/* Hero */}
       <section className="flex items-center justify-center min-h-[70vh]">
         <div className="text-center px-6">
-          <p className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-charcoal mb-6">
-            Find your way back.
-          </p>
+          <Image
+            src="/logo-new.svg"
+            alt="Boomerang Pilates"
+            width={360}
+            height={280}
+            className="mx-auto mb-8 w-56 md:w-72 h-auto"
+            priority
+          />
           <p className="text-muted text-sm tracking-wide mb-10">
             Classical Pilates &middot; Durham, NC
           </p>
