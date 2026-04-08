@@ -1,4 +1,3 @@
-import SectionHeading from "@/components/SectionHeading";
 import Button from "@/components/Button";
 
 const classes = [
@@ -6,114 +5,85 @@ const classes = [
     title: "Mat Pilates",
     level: "All Levels",
     duration: "55 min",
-    description:
-      "A full-body mat class that builds core strength, improves posture, and increases flexibility. Using only your body weight, you'll flow through exercises that challenge and strengthen from the inside out.",
-    benefits: ["Core strength", "Flexibility", "Posture improvement"],
+    description: "A full-body mat class building core strength, posture, and flexibility using your own body weight.",
   },
   {
     title: "Reformer Flow",
     level: "Intermediate",
     duration: "50 min",
-    description:
-      "Experience the magic of the reformer — spring-loaded resistance that supports and challenges your body simultaneously. A dynamic class that sculpts lean muscle and improves full-body coordination.",
-    benefits: ["Full-body toning", "Balance", "Coordination"],
+    description: "Spring-loaded resistance training on the reformer. Sculpts lean muscle and improves coordination.",
   },
   {
     title: "Gentle Restore",
-    level: "Beginner Friendly",
+    level: "Beginner",
     duration: "45 min",
-    description:
-      "A slow, mindful class focused on mobility, breath, and gentle strengthening. Perfect for beginners, those recovering from injury, or anyone who needs a mindful reset.",
-    benefits: ["Mobility", "Stress relief", "Recovery"],
+    description: "Slow, mindful movement focused on mobility, breath, and gentle strengthening.",
   },
   {
     title: "Power Reformer",
     level: "Advanced",
     duration: "55 min",
-    description:
-      "Turn up the intensity. This high-energy reformer class pushes your strength and endurance to new heights. Expect to sweat, shake, and leave feeling empowered.",
-    benefits: ["Strength", "Endurance", "Athletic performance"],
+    description: "High-intensity reformer work pushing strength and endurance to new levels.",
   },
   {
     title: "Prenatal Pilates",
     level: "All Levels",
     duration: "45 min",
-    description:
-      "Specially designed for expectant mothers. Safe, supportive exercises that maintain strength, ease discomfort, and prepare your body for birth.",
-    benefits: ["Pelvic floor", "Back support", "Breath work"],
+    description: "Safe, supportive exercises for expectant mothers. Maintain strength and ease discomfort.",
   },
   {
-    title: "Pilates Barre",
+    title: "Private Session",
     level: "All Levels",
-    duration: "50 min",
-    description:
-      "The best of both worlds — Pilates principles meet barre technique. Small, precise movements that sculpt and strengthen while improving balance and grace.",
-    benefits: ["Sculpting", "Balance", "Endurance"],
+    duration: "55 min",
+    description: "One-on-one instruction on any apparatus, tailored entirely to you.",
   },
 ];
 
 const schedule = [
-  { time: "6:00 AM", mon: "Mat Pilates", tue: "Reformer Flow", wed: "Mat Pilates", thu: "Power Reformer", fri: "Mat Pilates", sat: "Reformer Flow" },
-  { time: "8:00 AM", mon: "Gentle Restore", tue: "Mat Pilates", wed: "Reformer Flow", thu: "Mat Pilates", fri: "Gentle Restore", sat: "Pilates Barre" },
-  { time: "10:00 AM", mon: "Reformer Flow", tue: "Prenatal", wed: "Pilates Barre", thu: "Reformer Flow", fri: "Prenatal", sat: "Gentle Restore" },
-  { time: "12:00 PM", mon: "Power Reformer", tue: "—", wed: "Mat Pilates", thu: "—", fri: "Power Reformer", sat: "—" },
-  { time: "5:30 PM", mon: "Reformer Flow", tue: "Power Reformer", wed: "Reformer Flow", thu: "Pilates Barre", fri: "—", sat: "—" },
-  { time: "7:00 PM", mon: "Mat Pilates", tue: "Gentle Restore", wed: "Mat Pilates", thu: "Mat Pilates", fri: "—", sat: "—" },
+  { time: "6:00 AM", mon: "Mat", tue: "Reformer", wed: "Mat", thu: "Power", fri: "Mat", sat: "Reformer" },
+  { time: "8:00 AM", mon: "Gentle", tue: "Mat", wed: "Reformer", thu: "Mat", fri: "Gentle", sat: "Mat" },
+  { time: "10:00 AM", mon: "Reformer", tue: "Prenatal", wed: "Mat", thu: "Reformer", fri: "Prenatal", sat: "Gentle" },
+  { time: "12:00 PM", mon: "Power", tue: "\u2014", wed: "Mat", thu: "\u2014", fri: "Power", sat: "\u2014" },
+  { time: "5:30 PM", mon: "Reformer", tue: "Power", wed: "Reformer", thu: "Mat", fri: "\u2014", sat: "\u2014" },
+  { time: "7:00 PM", mon: "Mat", tue: "Gentle", wed: "Mat", thu: "Mat", fri: "\u2014", sat: "\u2014" },
 ];
 
 export default function Classes() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-blue/15 to-cream">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-brown mb-4">
-              Our Classes
-            </p>
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light leading-[1] text-charcoal mb-8">
-              Move With Us
-            </h1>
-            <p className="text-lg text-brown leading-relaxed max-w-xl">
-              From restorative mat work to high-intensity reformer sessions,
-              we offer classes for every level and every goal. Find the one
-              that speaks to you.
-            </p>
-          </div>
+      <section className="py-24 lg:py-32">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl font-light text-charcoal mb-6">
+            Classes
+          </h1>
+          <p className="text-muted leading-relaxed">
+            From gentle mat work to advanced reformer sessions. Find the class
+            that meets you where you are.
+          </p>
         </div>
       </section>
 
-      {/* Class Cards */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Class list */}
+      <section className="pb-24 lg:pb-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="divide-y divide-charcoal/10 border-y border-charcoal/10">
             {classes.map((cls) => (
-              <div
-                key={cls.title}
-                className="bg-cream p-8 border border-tan/30 hover:border-tan transition-all duration-300 flex flex-col"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-semibold tracking-[0.15em] uppercase text-blue">
-                    {cls.level}
-                  </span>
-                  <span className="text-xs text-brown/50">{cls.duration}</span>
-                </div>
-                <h3 className="font-serif text-3xl font-light text-charcoal mb-3">
-                  {cls.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-brown mb-6 flex-1">
-                  {cls.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {cls.benefits.map((benefit) => (
-                    <span
-                      key={benefit}
-                      className="text-xs px-3 py-1 bg-tan/20 text-brown/70 tracking-wide"
-                    >
-                      {benefit}
+              <div key={cls.title} className="py-8 md:py-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-start">
+                <div>
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <h3 className="font-serif text-2xl font-light text-charcoal">
+                      {cls.title}
+                    </h3>
+                    <span className="text-xs tracking-widest uppercase text-muted">
+                      {cls.level}
                     </span>
-                  ))}
+                  </div>
+                  <p className="text-sm text-muted leading-relaxed max-w-lg">
+                    {cls.description}
+                  </p>
                 </div>
+                <span className="text-sm text-muted">{cls.duration}</span>
               </div>
             ))}
           </div>
@@ -121,47 +91,31 @@ export default function Classes() {
       </section>
 
       {/* Schedule */}
-      <section id="schedule" className="py-24 lg:py-32 bg-cream">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Weekly Schedule"
-            title="Find Your Time"
-            description="Classes run Monday through Saturday. All times are local."
-          />
+      <section id="schedule" className="py-24 lg:py-32 bg-warm-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="font-serif text-3xl font-light text-charcoal mb-12 text-center">
+            Weekly Schedule
+          </h2>
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[700px] bg-white border border-tan/30">
+            <table className="w-full min-w-[600px]">
               <thead>
-                <tr className="border-b border-tan/30">
-                  <th className="px-4 py-4 text-left text-xs font-semibold tracking-[0.15em] uppercase text-brown">
-                    Time
-                  </th>
+                <tr className="border-b border-charcoal/10">
+                  <th className="pb-3 text-left text-xs tracking-widest uppercase text-muted font-medium">Time</th>
                   {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-                    <th
-                      key={day}
-                      className="px-4 py-4 text-left text-xs font-semibold tracking-[0.15em] uppercase text-brown"
-                    >
-                      {day}
-                    </th>
+                    <th key={day} className="pb-3 text-left text-xs tracking-widest uppercase text-muted font-medium">{day}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {schedule.map((row, i) => (
-                  <tr
-                    key={row.time}
-                    className={
-                      i < schedule.length - 1 ? "border-b border-tan/20" : ""
-                    }
-                  >
-                    <td className="px-4 py-4 text-sm font-medium text-charcoal whitespace-nowrap">
-                      {row.time}
-                    </td>
-                    <td className="px-4 py-4 text-sm text-brown">{row.mon}</td>
-                    <td className="px-4 py-4 text-sm text-brown">{row.tue}</td>
-                    <td className="px-4 py-4 text-sm text-brown">{row.wed}</td>
-                    <td className="px-4 py-4 text-sm text-brown">{row.thu}</td>
-                    <td className="px-4 py-4 text-sm text-brown">{row.fri}</td>
-                    <td className="px-4 py-4 text-sm text-brown">{row.sat}</td>
+                {schedule.map((row) => (
+                  <tr key={row.time} className="border-b border-charcoal/5">
+                    <td className="py-3 text-sm font-medium text-charcoal">{row.time}</td>
+                    <td className="py-3 text-sm text-muted">{row.mon}</td>
+                    <td className="py-3 text-sm text-muted">{row.tue}</td>
+                    <td className="py-3 text-sm text-muted">{row.wed}</td>
+                    <td className="py-3 text-sm text-muted">{row.thu}</td>
+                    <td className="py-3 text-sm text-muted">{row.fri}</td>
+                    <td className="py-3 text-sm text-muted">{row.sat}</td>
                   </tr>
                 ))}
               </tbody>
@@ -171,99 +125,48 @@ export default function Classes() {
       </section>
 
       {/* Pricing */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Pricing"
-            title="Simple, Transparent Pricing"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <section className="py-24 lg:py-32">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="font-serif text-3xl font-light text-charcoal mb-12 text-center">
+            Pricing
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-charcoal/10 border border-charcoal/10">
             {[
-              {
-                name: "Drop-In",
-                price: "$30",
-                per: "per class",
-                features: ["Any single class", "No commitment", "Great for visitors"],
-              },
-              {
-                name: "10-Pack",
-                price: "$250",
-                per: "10 classes",
-                features: ["Save $50", "Use anytime", "Shareable with a friend"],
-                featured: true,
-              },
-              {
-                name: "Unlimited",
-                price: "$175",
-                per: "per month",
-                features: ["Unlimited classes", "Priority booking", "Guest passes"],
-              },
+              { name: "Drop-In", price: "$30", per: "per class", features: ["Any single class", "No commitment"] },
+              { name: "10-Pack", price: "$250", per: "10 classes", features: ["Save $50", "Use anytime"], featured: true },
+              { name: "Unlimited", price: "$175", per: "per month", features: ["Unlimited classes", "Priority booking"] },
             ].map((plan) => (
               <div
                 key={plan.name}
-                className={`p-8 lg:p-10 border text-center flex flex-col ${
-                  plan.featured
-                    ? "border-charcoal bg-charcoal text-cream"
-                    : "border-tan/30 bg-cream"
-                }`}
+                className={`p-10 text-center ${plan.featured ? "bg-charcoal text-white" : "bg-white"}`}
               >
-                <h3
-                  className={`text-xs font-semibold tracking-[0.2em] uppercase mb-4 ${
-                    plan.featured ? "text-cream/60" : "text-brown"
-                  }`}
-                >
+                <p className={`text-xs tracking-widest uppercase mb-4 ${plan.featured ? "text-white/60" : "text-muted"}`}>
                   {plan.name}
-                </h3>
-                <p className="font-serif text-5xl font-light mb-1">
-                  {plan.price}
                 </p>
-                <p
-                  className={`text-sm mb-8 ${
-                    plan.featured ? "text-cream/60" : "text-brown/60"
-                  }`}
-                >
-                  {plan.per}
-                </p>
-                <ul className="space-y-3 mb-8 flex-1">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className={`text-sm ${
-                        plan.featured ? "text-cream/80" : "text-brown"
-                      }`}
-                    >
-                      {feature}
-                    </li>
+                <p className="font-serif text-4xl font-light mb-1">{plan.price}</p>
+                <p className={`text-sm mb-6 ${plan.featured ? "text-white/60" : "text-muted"}`}>{plan.per}</p>
+                <ul className="space-y-2 mb-8">
+                  {plan.features.map((f) => (
+                    <li key={f} className={`text-sm ${plan.featured ? "text-white/80" : "text-muted"}`}>{f}</li>
                   ))}
                 </ul>
-                <Button
-                  href="#book"
-                  variant={plan.featured ? "secondary" : "primary"}
-                  className="w-full text-center"
-                >
-                  Get Started
-                </Button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Book CTA */}
-      <section id="book" className="py-24 lg:py-32 bg-tan/30">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <SectionHeading
-            eyebrow="Ready to Move"
-            title="Book Your Class"
-            description="Online booking coming soon! In the meantime, give us a call or send us a message to reserve your spot."
-          />
-          <div className="bg-white p-10 lg:p-14 border border-tan/30 mt-8">
-            <p className="text-brown mb-6">
-              Booking widget will go here once you&apos;ve chosen a platform
-              (Mindbody, Vagaro, Acuity, etc.)
-            </p>
-            <Button href="/contact">Contact Us to Book</Button>
-          </div>
+      {/* Book */}
+      <section id="book" className="py-24 lg:py-32 bg-warm-white">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
+            Book a Class
+          </h2>
+          <p className="text-muted text-sm mb-8">
+            Online booking coming soon. In the meantime, reach out to reserve
+            your spot.
+          </p>
+          <Button href="/contact">Contact Us</Button>
         </div>
       </section>
     </>
