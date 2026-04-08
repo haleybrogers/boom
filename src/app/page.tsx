@@ -20,30 +20,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Story intro */}
-      <Parallax speed={0.12} className="py-24 lg:py-32">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-charcoal mb-6">
-            Two sisters. One method. A studio built to share it with you.
-          </p>
-          <p className="text-muted text-sm leading-relaxed max-w-lg mx-auto">
-            Emilie and Annie Young founded Boomerang Pilates on a shared love
-            of the Classical method — and a belief that what you put into this
-            practice comes back to you.
-          </p>
-          <div className="mt-8">
-            <Button href="/about" variant="outline">Our Story</Button>
+      {/* Story intro — text over parallax image */}
+      <section
+        className="relative bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: "url(/hero-image.png)" }}
+      >
+        <div className="bg-charcoal/50 py-28 lg:py-36">
+          <div className="max-w-2xl mx-auto px-6 text-center">
+            <p className="font-serif text-3xl md:text-4xl font-light leading-snug text-white mb-6">
+              Two sisters. One method. A studio built to share it with you.
+            </p>
+            <p className="text-white/70 text-sm leading-relaxed max-w-lg mx-auto">
+              Emilie and Annie Young founded Boomerang Pilates on a shared love
+              of the Classical method — and a belief that what you put into this
+              practice comes back to you.
+            </p>
+            <div className="mt-8">
+              <Button href="/about" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal">
+                Our Story
+              </Button>
+            </div>
           </div>
         </div>
-      </Parallax>
-
-      {/* Parallax hero image */}
-      <section
-        className="h-[50vh] lg:h-[60vh] bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url(/hero-image.png)" }}
-        role="img"
-        aria-label="Two figures in the Boomerang Pilates pose"
-      />
+      </section>
 
       {/* What we offer */}
       <section className="py-24 lg:py-32 bg-warm-white">
