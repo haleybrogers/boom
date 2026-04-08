@@ -6,14 +6,14 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-10 pb-8 lg:pt-14 lg:pb-10 flex items-center justify-center">
+      <section className="pt-6 pb-4 lg:pt-8 lg:pb-6 flex items-center justify-center">
         <div className="text-center px-6">
           <Image
             src="/logo-color.svg"
             alt="Boomerang Pilates"
             width={360}
             height={280}
-            className="mx-auto mb-10 w-56 md:w-72 h-auto animate-float-slow"
+            className="mx-auto mb-6 w-48 md:w-60 h-auto animate-float-slow"
             priority
           />
           <Button href="/classes#book">Book a Class</Button>
