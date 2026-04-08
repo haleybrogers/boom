@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -12,11 +13,41 @@ const navLinks = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur-sm">
+    <header
+      className={`sticky top-0 z-50 backdrop-blur-sm transition-all duration-300 ${
+        scrolled ? "bg-cream/95 border-b border-charcoal/5" : "bg-transparent"
+      }`}
+    >
       <nav className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-14">
+          {/* Logo — only visible on scroll */}
+          <div
+            className={`transition-opacity duration-300 ${
+              scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
+          >
+            <Link href="/">
+              <Image
+                src="/logo-color.svg"
+                alt="Boomerang Pilates"
+                width={120}
+                height={90}
+                className="h-10 w-auto"
+              />
+            </Link>
+          </div>
+
+          {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
@@ -27,15 +58,19 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Book button — only visible on scroll */}
+            <Link
+              href="/classes#book"
+              className={`bg-accent text-white px-5 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-all duration-300 ${
+                scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            >
+              Book a Class
+            </Link>
           </div>
 
-          <Link
-            href="/classes#book"
-            className="hidden md:block bg-accent text-white px-5 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors"
-          >
-            Book Now
-          </Link>
-
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 text-charcoal"
@@ -69,7 +104,7 @@ export default function Navigation() {
                 onClick={() => setIsOpen(false)}
                 className="bg-accent text-white px-5 py-2.5 text-xs tracking-widest uppercase text-center rounded-sm"
               >
-                Book Now
+                Book a Class
               </Link>
             </div>
           </div>
