@@ -7,13 +7,13 @@ export default function Home() {
   return (
     <>
       {/* Logo — compact */}
-      <section className="pt-4 pb-2 flex items-center justify-center">
+      <section className="pt-10 pb-8 md:pt-14 md:pb-10 flex items-center justify-center">
         <Image
           src="/logo-color.svg"
           alt="Boomerang Pilates"
           width={200}
           height={150}
-          className="w-32 md:w-40 h-auto animate-float-slow"
+          className="w-36 md:w-44 h-auto animate-float-slow"
           priority
         />
       </section>
@@ -33,7 +33,7 @@ export default function Home() {
         {/* Text positioned in the gray area above the bodies */}
         <div className="absolute inset-x-0 top-0 flex items-start justify-center pt-10 md:pt-16 lg:pt-20">
           <div className="max-w-2xl mx-auto px-6 text-center">
-            <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-snug text-white mb-3 md:mb-4">
+            <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-snug text-white mb-5 md:mb-6">
               Two sisters. One method.
             </p>
             <p className="text-white/70 text-[11px] md:text-xs leading-relaxed max-w-md mx-auto">
@@ -41,7 +41,7 @@ export default function Home() {
               of the Classical method — and a belief that what you put into this
               practice comes back to you.
             </p>
-            <div className="mt-4 md:mt-6">
+            <div className="mt-6 md:mt-8">
               <Button href="/classes#book" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal">
                 Book a Class
               </Button>
