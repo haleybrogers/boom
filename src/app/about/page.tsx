@@ -11,11 +11,14 @@ export default function About() {
             Two Sisters. One Method.
           </h1>
           <p className="text-muted leading-relaxed">
-            Boomerang Pilates is a Classical Pilates studio in Durham, NC,
-            founded by sisters Emilie and Annie Young. Raised in Greensboro and
-            both trained at Appalachian State, they built Boomerang to share
-            the method that brought them together — and the one they believe can
-            change the way you move through life.
+            Growing up in Greensboro, NC, Emilie and Annie Young didn&apos;t
+            know Pilates would become the thing that brought them even closer.
+            Emilie discovered the method first — walking into a mat class at
+            App State in 2012 and feeling something click. Years later, Annie
+            followed her to the same university, the same training program, and
+            the same love for the work. Boomerang is the studio they always
+            talked about building together — a place rooted in the Classical
+            method, taught with care, and open to everyone.
           </p>
         </div>
       </section>
@@ -54,7 +57,7 @@ export default function About() {
 
             {/* Annie */}
             <div className="text-center">
-              <div className="relative w-44 h-44 rounded-full overflow-hidden mx-auto mb-6 bg-warm-white flex items-center justify-center">
+              <div className="relative w-44 h-44 rounded-full overflow-hidden mx-auto mb-6 bg-warm-white">
                 <Image
                   src="/annie-young.jpg"
                   alt="Annie Young"
@@ -82,28 +85,20 @@ export default function About() {
         </div>
       </section>
 
-      {/* Their story */}
+      {/* Method */}
       <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-6">
-            The Boomerang Story
+            The Method
           </h2>
-          <div className="space-y-4 text-muted leading-relaxed">
-            <p>
-              Growing up in Greensboro, Emilie and Annie didn&apos;t know that
-              Pilates would become the thing that brought them even closer.
-              Emilie discovered the method first — walking into a mat class at
-              App State in 2012 and feeling something click. Years later, Annie
-              followed her to the same university, the same training program,
-              and the same love for the work.
-            </p>
-            <p>
-              Boomerang is the studio they always talked about building
-              together. A place rooted in the Classical method, taught with
-              care, and open to everyone. The name says it all — what you put
-              into this practice comes back to you.
-            </p>
-          </div>
+          <p className="text-muted leading-relaxed">
+            Classical Pilates is a system of exercises developed by Joseph
+            Pilates in the early 20th century. It emphasizes control, precision,
+            breath, and flow — building a strong, balanced body from the core
+            outward. At Boomerang, we teach the method as it was designed to be
+            practiced: with intention, with rigor, and with respect for each
+            individual body.
+          </p>
         </div>
       </section>
 
