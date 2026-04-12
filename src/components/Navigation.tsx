@@ -32,9 +32,9 @@ export default function Navigation() {
             <Image
               src="/logo-pilat.svg"
               alt="Boomerang Pilates"
-              width={280}
-              height={60}
-              className={`h-7 w-auto ${isHome ? "brightness-0 invert" : ""}`}
+              width={400}
+              height={85}
+              className={`h-10 md:h-12 w-auto ${isHome ? "brightness-0 invert" : ""}`}
             />
           </Link>
 

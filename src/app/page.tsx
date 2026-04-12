@@ -6,8 +6,8 @@ import FoundingPopup from "@/components/FoundingPopup";
 export default function Home() {
   return (
     <>
-      {/* Hero — full viewport, image only, nav overlays */}
-      <section className="relative h-screen overflow-hidden">
+      {/* Hero — top third of image */}
+      <section className="relative h-[33vh] sm:h-[33vh] overflow-hidden">
         <Image
           src="/hero-image.png"
           alt="Two figures in the Boomerang Pilates pose"
