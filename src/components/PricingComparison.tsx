@@ -54,8 +54,7 @@ export default function PricingComparison() {
 
   return (
     <>
-      <section id="founding" className="py-24 lg:py-32 bg-warm-white">
-        <div className="max-w-4xl mx-auto px-6">
+      <div id="founding" className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-14">
             <span className="text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-3 py-1.5 rounded-sm">
               Limited to First 50 Members · 3-Month Minimum
@@ -169,8 +168,7 @@ export default function PricingComparison() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+      </div>
     </>
   );
 }
