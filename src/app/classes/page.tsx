@@ -1,4 +1,4 @@
-import ArketaBooking from "@/components/ArketaBooking";
+import LiveSchedule from "@/components/LiveSchedule";
 import WaitlistForm from "@/components/WaitlistForm";
 import ClassAccordions from "@/components/ClassAccordions";
 import PricingComparison from "@/components/PricingComparison";
@@ -25,8 +25,18 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* Schedule & Booking */}
-      <ArketaBooking />
+      {/* Live Schedule */}
+      <section className="py-16 lg:py-20">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3 text-center">
+            This Week
+          </h2>
+          <p className="text-muted text-sm text-center mb-8 max-w-md mx-auto">
+            Tap a class for details. Book directly through Arketa.
+          </p>
+          <LiveSchedule />
+        </div>
+      </section>
 
       {/* Class Details — Accordions */}
       <section className="py-24 lg:py-32">
