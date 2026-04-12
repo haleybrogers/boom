@@ -41,33 +41,18 @@ export default function SchedulePrivate() {
         </p>
       </div>
 
-      {/* Two-column detail */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 max-w-3xl mx-auto">
-        <div className="bg-white border border-charcoal/10 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-          <div className="flex items-baseline justify-between mb-3">
-            <h3 className="font-serif text-lg font-light text-charcoal">Private Session</h3>
-            <span className="font-serif text-2xl font-light text-charcoal">$110</span>
-          </div>
-          <p className="text-xs text-muted mb-3">50 minutes · 1 student · Full apparatus</p>
-          <p className="text-sm text-muted leading-relaxed">
-            One-on-one with your instructor on the Reformer, Cadillac, Chair,
-            and Barrels. Every session is tailored to you — whether you&apos;re
-            rehabbing an injury, training for something specific, deepening your
-            practice, or just getting started. This is the fastest path to results.
-          </p>
+      {/* Pricing row */}
+      <div className="flex justify-center gap-8 mb-10">
+        <div className="text-center">
+          <span className="font-serif text-3xl font-light text-charcoal">$110</span>
+          <p className="text-xs text-muted mt-1">Private · 50 min</p>
+          <p className="text-[11px] text-muted/60 mt-0.5">1 student · Full apparatus</p>
         </div>
-        <div className="bg-white border border-charcoal/10 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-          <div className="flex items-baseline justify-between mb-3">
-            <h3 className="font-serif text-lg font-light text-charcoal">Duet Session</h3>
-            <span className="font-serif text-2xl font-light text-charcoal">$60<span className="text-sm text-muted">/person</span></span>
-          </div>
-          <p className="text-xs text-muted mb-3">50 minutes · 2 students · Full apparatus</p>
-          <p className="text-sm text-muted leading-relaxed">
-            Semi-private instruction with a partner — bring a friend, a spouse,
-            or we&apos;ll pair you. Same full apparatus access and customized
-            programming as a private, with shared motivation and a more
-            accessible price point.
-          </p>
+        <div className="w-px bg-charcoal/10" />
+        <div className="text-center">
+          <span className="font-serif text-3xl font-light text-charcoal">$60</span>
+          <p className="text-xs text-muted mt-1">Duet · per person</p>
+          <p className="text-[11px] text-muted/60 mt-0.5">2 students · Full apparatus</p>
         </div>
       </div>
 
