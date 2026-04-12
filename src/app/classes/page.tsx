@@ -59,8 +59,8 @@ export default function Classes() {
             Get on the list.
           </h2>
           <p className="text-muted text-base mb-10">
-            We&apos;re opening soon. Sign up to be the first to know — and your
-            first class is on us.
+            We&apos;re opening soon. Founding members get exclusive invites to our
+            soft opening and celebratory events.
           </p>
           <WaitlistForm />
         </div>

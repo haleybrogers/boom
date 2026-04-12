@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       {/* Hero — top third of image */}
-      <section className="relative h-[33vh] sm:h-[33vh] overflow-hidden">
+      <section className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
         <Image
           src="/hero-image.png"
           alt="Two figures in the Boomerang Pilates pose"
@@ -43,7 +43,7 @@ export default function Home() {
             Be the first through the door.
           </h2>
           <p className="text-muted text-base mb-10">
-            Join as a founding member and your first class is on us.
+            Founding members get exclusive invites to our soft opening and celebratory events.
           </p>
           <WaitlistForm />
         </div>

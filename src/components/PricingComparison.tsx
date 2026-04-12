@@ -175,10 +175,10 @@ export default function PricingComparison() {
                 <div className="bg-accent/5 border border-accent/15 rounded-sm p-6 text-center">
                   <p className="text-[10px] tracking-widest uppercase text-accent mb-2">New Here?</p>
                   <p className="font-serif text-xl font-light text-charcoal mb-1">
-                    Your first mat class is free.
+                    Intro 3-Pack: $60
                   </p>
                   <p className="text-xs text-muted">
-                    No strings. Or grab an Intro 3-Pack for $60 ($20/class).
+                    Three mat classes for $20 each. No commitment.
                   </p>
                 </div>
               </div>

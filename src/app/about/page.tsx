@@ -125,7 +125,7 @@ export default function About() {
             Be a founding member.
           </h2>
           <p className="text-muted text-base mb-8">
-            Lock in your rate before we open — it never goes up. Your first class is free.
+            Lock in your rate before we open — it never goes up. Plus exclusive invites to our soft opening and celebratory events.
           </p>
           <Button href="/classes#founding">See Founding Pricing</Button>
         </div>

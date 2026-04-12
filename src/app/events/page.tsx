@@ -55,8 +55,8 @@ export default function Events() {
             Lock in your rate before we open.
           </h2>
           <p className="text-muted text-base mb-8">
-            Founding members get a locked-in monthly rate that never goes up — plus your
-            first class free. Once we open, these prices are gone.
+            Founding members get a locked-in monthly rate that never goes up — plus
+            exclusive invites to our soft opening and celebratory events.
           </p>
           <a
             href="/classes#founding"

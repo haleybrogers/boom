@@ -59,7 +59,7 @@ export default function FoundingPopup() {
         </p>
 
         <p className="text-muted/70 text-sm mb-8">
-          Your price never goes up. First class is on us.
+          Your price never goes up. Plus exclusive invites to our soft opening.
         </p>
 
         <div className="flex flex-col gap-3">
