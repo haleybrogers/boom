@@ -31,7 +31,7 @@ export default function Footer() {
             </a>
             {/* Email */}
             <a
-              href="mailto:hello@boomerangpilates.com"
+              href="mailto:info@boomerangpilatesnc.com"
               className="text-charcoal/40 hover:text-accent transition-colors"
               aria-label="Email"
             >
@@ -43,8 +43,8 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex items-center gap-6 text-xs text-muted">
-            <a href="mailto:hello@boomerangpilates.com" className="hover:text-accent transition-colors">
-              hello@boomerangpilates.com
+            <a href="mailto:info@boomerangpilatesnc.com" className="hover:text-accent transition-colors">
+              info@boomerangpilatesnc.com
             </a>
             <a
               href="https://g.page/r/boomerangpilates/review"

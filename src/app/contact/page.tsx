@@ -80,8 +80,8 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="text-xs tracking-widest uppercase text-muted mb-3">Email</h3>
-                <a href="mailto:hello@boomerangpilates.com" className="text-sm text-charcoal hover:text-muted transition-colors">
-                  hello@boomerangpilates.com
+                <a href="mailto:info@boomerangpilatesnc.com" className="text-sm text-charcoal hover:text-muted transition-colors">
+                  info@boomerangpilatesnc.com
                 </a>
               </div>
             </div>
