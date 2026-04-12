@@ -8,16 +8,20 @@ const instructors = [
     name: "Emilie Young",
     role: "Co-Founder",
     bio: "3rd Generation Classical Pilates instructor. Certified in mat and apparatus.",
+    // Arketa instructor ID for filtered appointments view
+    arketaId: "DQjbWncLh7aAIdyEcb9Mw1dnaiC3",
   },
   {
     name: "Annie Young",
     role: "Co-Founder",
     bio: "Classical Pilates certified. Passionate about making Pilates accessible to every body.",
+    arketaId: "", // TODO: Add Annie's Arketa instructor ID
   },
   {
     name: "Instructor TBD",
     role: "Instructor",
     bio: "More details coming soon.",
+    arketaId: "", // TODO: Add instructor ID
   },
 ];
 
@@ -107,8 +111,13 @@ export default function SchedulePrivate() {
               </button>
             </div>
             <iframe
+              key={selected}
               id="sutraWidgetIframe"
-              src="https://app.arketa.co/iframe/boomerangpilates/schedule"
+              src={
+                instructors[selected].arketaId
+                  ? `https://app.arketa.co/iframe/boomerangpilates/appointments?instructorIds=${instructors[selected].arketaId}`
+                  : "https://app.arketa.co/iframe/boomerangpilates/schedule"
+              }
               width="100%"
               frameBorder="0"
               allow="payment;fullscreen"
