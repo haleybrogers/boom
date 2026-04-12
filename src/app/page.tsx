@@ -12,7 +12,7 @@ export default function Home() {
           src="/hero-image.png"
           alt="Two figures in the Boomerang Pilates pose"
           fill
-          className="object-cover object-top"
+          className="object-cover object-bottom"
           priority
         />
       </section>
