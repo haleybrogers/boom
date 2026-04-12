@@ -64,7 +64,7 @@ export default function Contact() {
                   </div>
                   <button
                     type="submit"
-                    className="bg-accent text-white px-7 py-3 text-sm tracking-wide rounded-sm hover:bg-accent/85 transition-colors"
+                    className="btn-animated bg-accent text-white px-7 py-3 text-sm tracking-wide rounded-sm hover:bg-accent/85 transition-colors"
                   >
                     Send
                   </button>
@@ -77,23 +77,6 @@ export default function Contact() {
               <div>
                 <h3 className="text-xs tracking-widest uppercase text-muted mb-3">Location</h3>
                 <p className="text-sm text-charcoal">Durham, NC</p>
-              </div>
-              <div>
-                <h3 className="text-xs tracking-widest uppercase text-muted mb-3">Hours</h3>
-                <div className="space-y-1 text-sm">
-                  <div className="flex justify-between max-w-xs">
-                    <span className="text-muted">Monday &mdash; Friday</span>
-                    <span className="text-charcoal">6:00 AM &mdash; 8:00 PM</span>
-                  </div>
-                  <div className="flex justify-between max-w-xs">
-                    <span className="text-muted">Saturday</span>
-                    <span className="text-charcoal">6:00 AM &mdash; 12:00 PM</span>
-                  </div>
-                  <div className="flex justify-between max-w-xs">
-                    <span className="text-muted">Sunday</span>
-                    <span className="text-charcoal">Closed</span>
-                  </div>
-                </div>
               </div>
               <div>
                 <h3 className="text-xs tracking-widest uppercase text-muted mb-3">Email</h3>

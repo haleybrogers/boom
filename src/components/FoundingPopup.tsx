@@ -78,7 +78,7 @@ export default function FoundingPopup() {
           <Link
             href="/classes#founding"
             onClick={dismiss}
-            className="inline-block bg-accent text-white text-xs tracking-widest uppercase py-3.5 px-8 hover:bg-accent/90 transition-colors"
+            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase py-3.5 px-8 hover:bg-accent/90 transition-colors"
           >
             See All Founding Rates
           </Link>

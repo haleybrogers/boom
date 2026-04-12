@@ -23,18 +23,20 @@ export default function Home() {
       {/* Positioning statement + CTA */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">
+            Opening Soon
+          </p>
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug">
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
-          <p className="text-xs tracking-widest uppercase text-accent mt-4 mb-6">
-            Opening Soon
-          </p>
-          <Link
-            href="#waitlist"
-            className="inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-          >
-            Become a Founding Member
-          </Link>
+          <div className="mt-6">
+            <Link
+              href="#waitlist"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              Become a Founding Member
+            </Link>
+          </div>
         </div>
       </section>
 

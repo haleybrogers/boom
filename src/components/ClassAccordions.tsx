@@ -198,7 +198,7 @@ export default function ClassAccordions() {
         </p>
         <a
           href="#founding"
-          className="inline-block bg-accent text-white px-7 py-3 text-sm tracking-wide rounded-sm hover:bg-accent/85 transition-colors"
+          className="btn-animated inline-block bg-accent text-white px-7 py-3 text-sm tracking-wide rounded-sm hover:bg-accent/85 transition-colors"
         >
           See Founding Pricing
         </a>

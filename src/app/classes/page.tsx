@@ -2,6 +2,7 @@ import LiveSchedule from "@/components/LiveSchedule";
 import WaitlistForm from "@/components/WaitlistForm";
 import ClassesTabs from "@/components/ClassesTabs";
 import FoundingPricing from "@/components/FoundingPricing";
+import SchedulePrivate from "@/components/SchedulePrivate";
 
 export const metadata = {
   title: "Classes",
@@ -37,7 +38,7 @@ export default function Classes() {
                 </p>
                 <a
                   href="#book"
-                  className="inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+                  className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
                 >
                   Join the Waitlist
                 </a>
@@ -47,20 +48,25 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* 2. Classes / Pricing tabs */}
+      {/* 2. Founding Member Pricing — right below schedule */}
+      <section className="py-24 lg:py-32">
+        <FoundingPricing />
+      </section>
+
+      {/* 3. Schedule a Private */}
+      <section className="py-20 lg:py-28 bg-warm-white">
+        <SchedulePrivate />
+      </section>
+
+      {/* 4. Classes / Pricing tabs */}
       <section className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <ClassesTabs />
         </div>
       </section>
 
-      {/* 3. Founding Member Pricing — its own section */}
-      <section className="py-24 lg:py-32 bg-warm-white">
-        <FoundingPricing />
-      </section>
-
-      {/* 4. Waitlist */}
-      <section id="book" className="py-24 lg:py-32">
+      {/* 5. Waitlist */}
+      <section id="book" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">Opening Soon</p>
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">

@@ -40,9 +40,9 @@ export default function NewToPilates() {
               </p>
               <Link
                 href="/classes"
-                className="text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                className="link-arrow text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
               >
-                Learn More &rarr;
+                Learn More
               </Link>
             </div>
 
@@ -56,9 +56,9 @@ export default function NewToPilates() {
               </p>
               <Link
                 href="/classes"
-                className="text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                className="link-arrow text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
               >
-                Learn More &rarr;
+                Learn More
               </Link>
             </div>
 
@@ -72,9 +72,9 @@ export default function NewToPilates() {
               </p>
               <Link
                 href="/contact"
-                className="text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                className="link-arrow text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
               >
-                Get in Touch &rarr;
+                Get in Touch
               </Link>
             </div>
           </div>
