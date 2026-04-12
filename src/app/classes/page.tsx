@@ -1,6 +1,7 @@
 import LiveSchedule from "@/components/LiveSchedule";
 import WaitlistForm from "@/components/WaitlistForm";
 import ClassesTabs from "@/components/ClassesTabs";
+import FoundingPricing from "@/components/FoundingPricing";
 
 export const metadata = {
   title: "Classes",
@@ -10,7 +11,7 @@ export const metadata = {
 export default function Classes() {
   return (
     <>
-      {/* 1. Schedule — first thing, with "Opening Soon" overlay */}
+      {/* 1. Schedule at top — with Opening Soon overlay */}
       <section className="relative py-20 lg:py-28 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
           <h1 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3 text-center">
@@ -25,8 +26,6 @@ export default function Classes() {
             <div className="opacity-30 pointer-events-none select-none">
               <LiveSchedule />
             </div>
-
-            {/* Opening Soon overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="bg-white/95 backdrop-blur-sm border border-charcoal/10 px-10 py-10 text-center shadow-sm max-w-md">
                 <p className="text-xs tracking-widest uppercase text-accent mb-3">Opening Soon</p>
@@ -55,10 +54,15 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* 3. Waitlist */}
-      <section id="book" className="py-24 lg:py-32 bg-warm-white">
+      {/* 3. Founding Member Pricing — its own section */}
+      <section className="py-24 lg:py-32 bg-warm-white">
+        <FoundingPricing />
+      </section>
+
+      {/* 4. Waitlist */}
+      <section id="book" className="py-24 lg:py-32">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">Founding Members</p>
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Opening Soon</p>
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
             Get on the list.
           </h2>

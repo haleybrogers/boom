@@ -11,76 +11,67 @@ export const metadata = {
 export default function About() {
   return (
     <>
-      {/* Hero — parallax image with text overlay */}
-      <section
-        className="relative bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url(/hero-image.png)" }}
-      >
-        <div className="bg-charcoal/50 py-16 sm:py-28 lg:py-36">
-          <div className="max-w-xl mx-auto px-6 text-center">
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-white mb-4 sm:mb-6">
-              Two Sisters. One Method.
+      {/* Meet the Sisters — clean, no image overlay */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">Meet the Founders</p>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal mb-5">
+              Sister Act
             </h1>
-            <p className="text-white/70 text-sm sm:text-base leading-relaxed">
+            <p className="text-base text-muted leading-relaxed max-w-xl mx-auto">
               Emilie and Annie Young built Boomerang on the belief that Classical
               Pilates works — when it&apos;s taught with integrity and practiced with
-              intention. No shortcuts. No trends. Just the method, the way it was
-              designed.
+              intention. No shortcuts. No trends. Just the method.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Founders */}
-      <section className="py-24 lg:py-32">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             {/* Emilie */}
-            <Parallax speed={0.08} className="text-center">
-              <div className="relative w-44 h-44 rounded-full overflow-hidden mx-auto mb-6">
+            <Parallax speed={0.08}>
+              <div className="relative aspect-[3/4] overflow-hidden mb-6">
                 <Image
                   src="/emilie-young.jpg"
                   alt="Emilie Young"
                   fill
                   className="object-cover object-top"
-                  sizes="176px"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
                 Emilie Young
               </h3>
-              <p className="text-xs tracking-widest uppercase text-muted mb-4">
-                Co-Founder
+              <p className="text-xs tracking-widest uppercase text-accent mb-4">
+                Co-Founder · Big Sister
               </p>
               <p className="text-base text-muted leading-relaxed">
                 3rd Generation Classical Pilates instructor, certified in mat
                 and apparatus. Trained at App State under Rebecca Quinn and
                 Marianne Adams. Also an elementary art teacher for Durham
-                Public Schools.
+                Public Schools — so yes, she&apos;s used to keeping a room in line.
               </p>
             </Parallax>
 
             {/* Annie */}
-            <Parallax speed={0.12} className="text-center">
-              <div className="relative w-44 h-44 rounded-full overflow-hidden mx-auto mb-6 bg-warm-white">
+            <Parallax speed={0.12}>
+              <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-warm-white">
                 <Image
                   src="/annie-young.jpg"
                   alt="Annie Young"
                   fill
                   className="object-cover object-center"
-                  sizes="176px"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
                 Annie Young
               </h3>
-              <p className="text-xs tracking-widest uppercase text-muted mb-4">
-                Co-Founder
+              <p className="text-xs tracking-widest uppercase text-accent mb-4">
+                Co-Founder · Little Sister
               </p>
               <p className="text-base text-muted leading-relaxed">
                 Classical Pilates certified from App State in 2023, following
                 in her big sister&apos;s footsteps. Passionate about making
-                Pilates accessible to every body.
+                Pilates accessible to every body — and proving little sisters
+                can keep up.
               </p>
             </Parallax>
           </div>
@@ -103,7 +94,7 @@ export default function About() {
           </p>
           <p className="text-base text-muted leading-relaxed">
             We teach the method the way it was designed because we believe in it — and we welcome
-            every body through our door. No gatekeeping. No exceptions. Just the work.
+            every body through our door. No gatekeeping. Just the work.
           </p>
         </div>
         <SixPrinciples embedded />
