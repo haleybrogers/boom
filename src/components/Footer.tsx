@@ -7,7 +7,7 @@ export default function Footer() {
           <div className="flex items-center gap-5">
             {/* Instagram */}
             <a
-              href="https://instagram.com/boomerangpilates"
+              href="https://instagram.com/boomerangpilatesnc"
               target="_blank"
               rel="noopener noreferrer"
               className="text-charcoal/40 hover:text-accent transition-colors"

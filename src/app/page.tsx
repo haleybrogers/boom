@@ -33,7 +33,7 @@ export default function Home() {
             href="#waitlist"
             className="inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
           >
-            Join the Waitlist
+            Become a Founding Member
           </Link>
         </div>
       </section>
