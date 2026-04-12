@@ -3,7 +3,6 @@ import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
-import Link from "next/link";
 import NewToPilates from "@/components/NewToPilates";
 import StickyCTA from "@/components/StickyCTA";
 
