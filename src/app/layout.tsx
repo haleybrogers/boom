@@ -34,14 +34,14 @@ export const metadata: Metadata = {
     siteName: "Boomerang Pilates",
     title: "Boomerang Pilates | Classical Pilates in Durham, NC",
     description: "Put in the work. Feel it come back. Classical Pilates opening soon in Durham, NC.",
-    url: "https://boom-vert-mu.vercel.app",
+    url: "https://www.boomerangpilatesnc.com",
   },
   twitter: {
     card: "summary_large_image",
     title: "Boomerang Pilates | Classical Pilates in Durham, NC",
     description: "Put in the work. Feel it come back. Classical Pilates opening soon in Durham, NC.",
   },
-  metadataBase: new URL("https://boom-vert-mu.vercel.app"),
+  metadataBase: new URL("https://www.boomerangpilatesnc.com"),
 };
 
 export default function RootLayout({

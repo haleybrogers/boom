@@ -6,50 +6,56 @@ import Button from "./Button";
 type ClassInfo = {
   fullName: string;
   description: string;
-  level: string;
+  type: string;
   duration: string;
 };
 
 const classInfo: Record<string, ClassInfo> = {
-  Mat: {
-    fullName: "Mat Pilates",
-    description: "A full-body mat class building core strength, posture, and flexibility using your own body weight.",
-    level: "All Levels",
-    duration: "55 min",
-  },
-  Reformer: {
-    fullName: "Reformer Flow",
-    description: "Spring-loaded resistance training on the reformer. Sculpts lean muscle and improves coordination.",
-    level: "Intermediate",
+  "All Levels": {
+    fullName: "All Levels Mat",
+    description: "The classical mat sequence adapted for every body. Core strength, flow, and control — no equipment needed.",
+    type: "Mat · 15 spots",
     duration: "50 min",
   },
-  Gentle: {
-    fullName: "Gentle Restore",
-    description: "Slow, mindful movement focused on mobility, breath, and gentle strengthening.",
-    level: "Beginner",
-    duration: "45 min",
+  "RTL Full": {
+    fullName: "Return to Life Mat",
+    description: "The full 34-exercise sequence as Joseph Pilates designed it. A complete workout for experienced practitioners.",
+    type: "Mat · 15 spots",
+    duration: "50 min",
   },
-  Power: {
-    fullName: "Power Reformer",
-    description: "High-intensity reformer work pushing strength and endurance to new levels.",
-    level: "Advanced",
-    duration: "55 min",
+  "RTL I": {
+    fullName: "Return to Life Course I",
+    description: "Learn the first half of the classical mat order. Build the foundation — breath, control, and precision.",
+    type: "Mat · 15 spots",
+    duration: "50 min",
   },
-  Prenatal: {
-    fullName: "Prenatal Pilates",
-    description: "Safe, supportive exercises for expectant mothers. Maintain strength and ease discomfort.",
-    level: "All Levels",
-    duration: "45 min",
+  "RTL II": {
+    fullName: "Return to Life Course II",
+    description: "Continue through the full classical order. Deepen your practice with more advanced exercises and transitions.",
+    type: "Mat · 15 spots",
+    duration: "50 min",
+  },
+  Foundations: {
+    fullName: "Apparatus Foundations",
+    description: "An introduction to tower and small barrel work. Learn the basics of spring-loaded resistance in a small group.",
+    type: "Apparatus · 3 spots",
+    duration: "50 min",
+  },
+  "Int. Apparatus": {
+    fullName: "Intermediate Mixed Apparatus",
+    description: "Rotate through reformer, tower, and barrels in a single session. For students with apparatus experience.",
+    type: "Apparatus · 3 spots",
+    duration: "50 min",
   },
 };
 
 const schedule = [
-  { time: "6:00 AM", mon: "Mat", tue: "Reformer", wed: "Mat", thu: "Power", fri: "Mat", sat: "Reformer" },
-  { time: "8:00 AM", mon: "Gentle", tue: "Mat", wed: "Reformer", thu: "Mat", fri: "Gentle", sat: "Mat" },
-  { time: "10:00 AM", mon: "Reformer", tue: "Prenatal", wed: "Mat", thu: "Reformer", fri: "Prenatal", sat: "Gentle" },
-  { time: "12:00 PM", mon: "Power", tue: "\u2014", wed: "Mat", thu: "\u2014", fri: "Power", sat: "\u2014" },
-  { time: "5:30 PM", mon: "Reformer", tue: "Power", wed: "Reformer", thu: "Mat", fri: "\u2014", sat: "\u2014" },
-  { time: "7:00 PM", mon: "Mat", tue: "Gentle", wed: "Mat", thu: "Mat", fri: "\u2014", sat: "\u2014" },
+  { time: "6:00 AM", mon: "All Levels", tue: "Foundations", wed: "All Levels", thu: "RTL I", fri: "All Levels", sat: "Foundations" },
+  { time: "8:00 AM", mon: "RTL I", tue: "All Levels", wed: "Int. Apparatus", thu: "All Levels", fri: "RTL II", sat: "All Levels" },
+  { time: "10:00 AM", mon: "Foundations", tue: "RTL II", wed: "All Levels", thu: "Foundations", fri: "All Levels", sat: "RTL Full" },
+  { time: "12:00 PM", mon: "Int. Apparatus", tue: "\u2014", wed: "RTL Full", thu: "\u2014", fri: "Int. Apparatus", sat: "\u2014" },
+  { time: "5:30 PM", mon: "All Levels", tue: "Int. Apparatus", wed: "All Levels", thu: "RTL I", fri: "\u2014", sat: "\u2014" },
+  { time: "7:00 PM", mon: "RTL II", tue: "All Levels", wed: "RTL I", thu: "All Levels", fri: "\u2014", sat: "\u2014" },
 ];
 
 const days = ["mon", "tue", "wed", "thu", "fri", "sat"] as const;
@@ -149,7 +155,7 @@ export default function ClassSchedule() {
                     {selectedInfo.fullName}
                   </h3>
                   <span className="text-xs tracking-widest uppercase text-muted">
-                    {selectedInfo.level}
+                    {selectedInfo.type}
                   </span>
                 </div>
                 <p className="text-sm text-muted leading-relaxed mb-1">
@@ -165,7 +171,7 @@ export default function ClassSchedule() {
                 <p className="text-sm text-charcoal font-medium">
                   with {selectedInstructor}
                 </p>
-                <Button href="/#waitlist">Join Waitlist</Button>
+                <Button href="/classes#book">Book a Class</Button>
               </div>
             </div>
           )}

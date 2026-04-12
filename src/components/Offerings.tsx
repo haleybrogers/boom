@@ -5,9 +5,9 @@ import OfferCard from "./OfferCard";
 
 const offerings = [
   {
-    title: "Mat Classes",
-    desc: "Build core strength and flexibility through classical mat exercises. Perfect for every level.",
-    detail: "Our mat classes follow the classical order of exercises, progressively building strength and control. Small class sizes ensure personal attention. All levels welcome — modifications provided.",
+    title: "Classical Mat",
+    desc: "15 spots · $25 drop-in. Core strength, flow, and the classical mat sequence — accessible to every body.",
+    detail: "From All Levels to the full Return to Life 34-exercise sequence. Our mat classes follow Joseph Pilates' original order, progressively building strength and control. Small class sizes ensure personal attention.",
     cta: "Join Waitlist",
     ctaHref: "/#waitlist",
     icon: (
@@ -20,9 +20,9 @@ const offerings = [
     ),
   },
   {
-    title: "Apparatus",
-    desc: "Reformer, Cadillac, Chair, and Barrels. Spring-loaded resistance for full-body conditioning.",
-    detail: "Work on the full suite of Classical Pilates apparatus. Springs provide resistance that supports and challenges you simultaneously. Sessions available in small groups or one-on-one.",
+    title: "Group Apparatus",
+    desc: "3 spots · $45. Tower, reformer, and barrels — spring-loaded resistance in a small group.",
+    detail: "Work on the Classical Pilates apparatus with focused, hands-on instruction. Foundations classes for beginners, mixed apparatus for intermediate students. Intimate class sizes mean real attention.",
     cta: "Join Waitlist",
     ctaHref: "/#waitlist",
     icon: (
@@ -39,9 +39,9 @@ const offerings = [
     ),
   },
   {
-    title: "Private Sessions",
-    desc: "One-on-one instruction tailored to your body, your goals, and your pace.",
-    detail: "Private sessions are fully customized to you. Whether you're rehabbing an injury, training for something specific, or just prefer individual attention — we'll meet you where you are.",
+    title: "Privates & Duets",
+    desc: "Customized apparatus work — Reformer, Tower, Barrel, Chair. Privates $110 · Duets $60/person.",
+    detail: "Fully tailored to you. Whether you're rehabbing an injury, training for something specific, or just prefer individual attention — we'll meet you where you are. Bring a partner for duets.",
     cta: "Join Waitlist",
     ctaHref: "/#waitlist",
     icon: (

@@ -9,27 +9,38 @@ export default function Home() {
     <>
       {/* Hero — text overlaid on image's gray area, bodies below */}
       <section className="relative overflow-hidden">
+        {/* Mobile: tall hero with object-cover */}
+        <Image
+          src="/hero-image.png"
+          alt="Two figures in the Boomerang Pilates pose"
+          fill
+          className="object-cover scale-[1.02] origin-center sm:hidden"
+          priority
+        />
+        {/* Desktop: natural aspect ratio */}
         <Image
           src="/hero-image.png"
           alt="Two figures in the Boomerang Pilates pose"
           width={2000}
           height={800}
-          className="w-full h-auto scale-[1.02] origin-center"
-          priority
+          className="hidden sm:block w-full h-auto scale-[1.02] origin-center"
         />
+        <div className="h-[85vh] sm:hidden" />
         {/* Warm brown wash over image */}
         <div className="absolute inset-0 bg-[#5c4a3a]/25 mix-blend-multiply pointer-events-none" />
         {/* Text positioned in the gray area above the bodies */}
         <div className="absolute inset-x-0 top-0 flex items-start justify-center pt-4 sm:pt-10 md:pt-16 lg:pt-20">
           <div className="max-w-2xl mx-auto px-6 text-center">
-            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed text-white mb-1 tracking-wider uppercase">
-              Boomerang Pilates
+            <h1 className="font-serif text-[20vw] sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[0.85] sm:leading-relaxed text-white mb-2 sm:mb-1 sm:tracking-wider uppercase">
+              <span className="sm:hidden">Boom<br />erang<br />Pilates</span>
+              <span className="hidden sm:inline">Boomerang Pilates</span>
             </h1>
-            <p className="text-white/70 text-xs sm:text-sm md:text-base tracking-wide max-w-md mx-auto">
+            <p className="hidden sm:block text-white/70 text-sm md:text-base tracking-wide max-w-md mx-auto">
               Put in the work. Feel it come back.
             </p>
-            <p className="mt-2 sm:mt-4 md:mt-5 text-white/50 text-[10px] sm:text-[11px] md:text-xs tracking-widest uppercase">
-              Durham, NC
+            <p className="text-white/50 text-[10px] sm:text-[11px] md:text-xs tracking-widest uppercase mt-1 sm:mt-4 md:mt-5">
+              <span className="sm:hidden">Put in the work. Feel it come back.</span>
+              <span className="hidden sm:inline">Durham, NC</span>
             </p>
           </div>
         </div>
