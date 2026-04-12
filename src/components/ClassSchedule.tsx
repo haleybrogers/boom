@@ -171,7 +171,7 @@ export default function ClassSchedule() {
                 <p className="text-sm text-charcoal font-medium">
                   with {selectedInstructor}
                 </p>
-                <Button href="/classes#book">Book a Class</Button>
+                <Button href="https://app.arketa.co/boomerangpilates/schedule" target="_blank">Book a Class</Button>
               </div>
             </div>
           )}

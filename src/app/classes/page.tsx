@@ -1,4 +1,3 @@
-import ClassSchedule from "@/components/ClassSchedule";
 import ArketaBooking from "@/components/ArketaBooking";
 import WaitlistForm from "@/components/WaitlistForm";
 
@@ -12,25 +11,25 @@ const matClasses = [
     title: "All Levels Mat",
     capacity: "15 spots",
     duration: "50 min",
-    description: "The classical mat sequence adapted for every body. Core strength, flow, and control — no equipment needed.",
+    description: "Just you and the mat. The classical sequence adapted so anyone can show up — skip what doesn't work for your body, repeat what does. No props, no guessing.",
   },
   {
     title: "Return to Life Mat",
     capacity: "15 spots",
     duration: "50 min",
-    description: "The full 34-exercise sequence as Joseph Pilates designed it. A complete workout for experienced practitioners.",
+    description: "Joseph Pilates' original 34-exercise mat sequence, performed in full. You know the order — now let it flow.",
   },
   {
     title: "Return to Life Course I",
     capacity: "15 spots",
     duration: "50 min",
-    description: "Learn the first half of the classical mat order. Build the foundation — breath, control, and precision — one exercise at a time.",
+    description: "Learn the first half of Joseph Pilates' original mat sequence one exercise at a time. Breath, control, precision — at your own pace.",
   },
   {
     title: "Return to Life Course II",
     capacity: "15 spots",
     duration: "50 min",
-    description: "Continue through the full classical order. Deepen your practice with more advanced exercises and transitions.",
+    description: "Continue through the second half of the sequence. More advanced exercises and transitions — as your body is ready for them.",
   },
 ];
 
@@ -78,16 +77,17 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* What is Return to Life? */}
+      {/* Why Classical Works */}
       <section className="py-16 lg:py-20 bg-warm-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-4">
-            What is &ldquo;Return to Life&rdquo;?
+            The Method Adapts to You
           </h2>
           <p className="text-sm text-muted leading-relaxed">
-            <em>Return to Life Through Contrology</em> is Joseph Pilates&apos; original work — 34 mat exercises
-            performed in a specific order, each one building on the last. Our Return to Life courses teach this
-            sequence progressively, so you learn the method the way it was designed.
+            Classical Pilates — mat and apparatus — was designed for every body. The exercises come
+            in a set order, so you always know what&apos;s next. If something doesn&apos;t work for you
+            today, skip it or repeat what does. Nothing needs to be watered down to be accessible.
+            The work meets you where you are.
           </p>
         </div>
       </section>
@@ -98,7 +98,8 @@ export default function Classes() {
           <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-2">
             Mat Classes
           </h2>
-          <p className="text-xs tracking-widest uppercase text-muted mb-8">50 Minutes &middot; 15 Spots</p>
+          <p className="text-xs tracking-widest uppercase text-muted mb-1">50 Minutes &middot; 15 Spots</p>
+          <p className="text-sm text-muted mb-8">No equipment — just you and the mat.</p>
           <div className="divide-y divide-charcoal/10 border-y border-charcoal/10">
             {matClasses.map((cls) => (
               <div key={cls.title} className="py-8 md:py-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-start">
@@ -123,7 +124,8 @@ export default function Classes() {
           <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-2">
             Apparatus Classes
           </h2>
-          <p className="text-xs tracking-widest uppercase text-muted mb-8">50 Minutes &middot; 3 Spots</p>
+          <p className="text-xs tracking-widest uppercase text-muted mb-1">50 Minutes &middot; 3 Spots</p>
+          <p className="text-sm text-muted mb-8">Spring-loaded resistance on reformer, tower, and barrels — small groups so you get real attention.</p>
           <div className="divide-y divide-charcoal/10 border-y border-charcoal/10">
             {apparatusClasses.map((cls) => (
               <div key={cls.title} className="py-8 md:py-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-start">
@@ -142,10 +144,7 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* Schedule */}
-      <ClassSchedule />
-
-      {/* Arketa Booking */}
+      {/* Schedule & Booking (synced from Arketa) */}
       <ArketaBooking />
 
       {/* Pricing */}

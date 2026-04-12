@@ -6,8 +6,8 @@ import OfferCard from "./OfferCard";
 const offerings = [
   {
     title: "Classical Mat",
-    desc: "15 spots · $25 drop-in. Core strength, flow, and the classical mat sequence — accessible to every body.",
-    detail: "From All Levels to the full Return to Life 34-exercise sequence. Our mat classes follow Joseph Pilates' original order, progressively building strength and control. Small class sizes ensure personal attention.",
+    desc: "15 spots · $25 drop-in. Just you and the mat — no equipment, no guessing. The classical sequence works for every body.",
+    detail: "You always know what's next, and if something doesn't work for your body today, skip it or repeat what you already did. From All Levels to the full Return to Life 34-exercise sequence — at whatever pace feels right.",
     cta: "Join Waitlist",
     ctaHref: "/#waitlist",
     icon: (

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Button from "@/components/Button";
 import Parallax from "@/components/Parallax";
+import Principles from "@/components/Principles";
 
 export const metadata = {
   title: "About",
@@ -86,24 +87,34 @@ export default function About() {
         </div>
       </section>
 
-      {/* The Method — overlaid on reformer photo */}
+      {/* Our Values — combined Method + Principles */}
+      <section className="py-24 lg:py-32 bg-warm-white">
+        <div className="max-w-3xl mx-auto px-6 text-center mb-20">
+          <p className="text-xs tracking-widest uppercase text-accent mb-3">
+            Our Values
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-6">
+            Classical Pilates Is for Every Body
+          </h2>
+          <p className="text-sm text-muted leading-relaxed mb-4">
+            Joseph Pilates designed this method for everyone — not just athletes, not just dancers,
+            not just one kind of person. The original work doesn&apos;t need to be softened or
+            reimagined to be inclusive. It already is.
+          </p>
+          <p className="text-sm text-muted leading-relaxed">
+            We teach the method the way it was designed because we believe in it — and we welcome
+            every body through our door. No gatekeeping. No exceptions. Just the work.
+          </p>
+        </div>
+        <Principles />
+      </section>
+
+      {/* Reformer photo break */}
       <section
-        className="relative bg-fixed bg-cover bg-center h-[50vh] lg:h-[60vh]"
+        className="relative bg-fixed bg-cover bg-center h-[40vh] lg:h-[50vh]"
         style={{ backgroundImage: "url(/photo-reformer.jpg)" }}
       >
-        <div className="absolute inset-0 bg-[#5c4a3a]/40" />
-        <div className="relative h-full flex items-center justify-center">
-          <div className="max-w-xl mx-auto px-6 text-center">
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-white mb-6">
-              The Method
-            </h2>
-            <p className="text-white/70 leading-relaxed">
-              Control, precision, breath, and flow — building a strong, balanced
-              body from the core outward. We teach Classical Pilates as it was
-              designed to be practiced.
-            </p>
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-[#5c4a3a]/30" />
       </section>
 
       {/* CTA */}
