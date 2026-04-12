@@ -31,7 +31,7 @@ export default function Home() {
           </p>
           <div className="mt-6">
             <Link
-              href="#waitlist"
+              href="/classes#founding"
               className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
             >
               Become a Founding Member

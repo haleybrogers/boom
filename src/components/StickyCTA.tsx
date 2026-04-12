@@ -25,7 +25,7 @@ export default function StickyCTA() {
       }`}
     >
       <Link
-        href="/#waitlist"
+        href="/classes#founding"
         className="btn-animated flex items-center gap-2.5 bg-accent text-white text-xs tracking-widest uppercase px-5 py-3.5 shadow-lg hover:bg-accent/90 transition-colors"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
