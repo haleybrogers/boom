@@ -35,9 +35,9 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
             <Image
               src="/loading-icon.svg"
               alt=""
-              width={28}
-              height={28}
-              className="w-7 h-7 animate-spin"
+              width={44}
+              height={44}
+              className="w-11 h-11 animate-spin"
               style={{ animationDuration: "2s" }}
               aria-hidden="true"
             />
