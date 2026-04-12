@@ -17,15 +17,20 @@ export default function Home() {
         />
         <div className="h-[60vh] sm:h-[65vh]" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#5c4a3a]/30 via-transparent to-[#5c4a3a]/20 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 pt-24 sm:pt-28">
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <p className="text-white/90 text-lg sm:text-xl md:text-2xl font-light tracking-wide">
-              Put in the work. Feel it come back.
-            </p>
-            <p className="text-white/50 text-xs tracking-widest uppercase mt-3">
-              Classical Pilates · Downtown Durham
-            </p>
-          </div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
+          <Image
+            src="/logo-pilat.svg"
+            alt="Boomerang Pilates"
+            width={600}
+            height={128}
+            className="w-[70vw] max-w-2xl h-auto brightness-0 invert mb-6"
+          />
+          <p className="text-white/90 text-lg sm:text-xl md:text-2xl font-light tracking-wide">
+            Put in the work. Feel it come back.
+          </p>
+          <p className="text-white/50 text-xs tracking-widest uppercase mt-3">
+            Classical Pilates · Downtown Durham
+          </p>
         </div>
       </section>
 
