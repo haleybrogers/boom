@@ -5,42 +5,37 @@ import { useState } from "react";
 const sections = [
   {
     category: "Mat Classes",
-    subtitle: "50 min · 15 spots · $25 drop-in",
+    subtitle: "50 min · 15 spots",
     description:
       "Full-body workouts rooted in the original Return to Life matwork created by Joseph Pilates — layered, progressive, and built around all six principles of the method.",
     classes: [
       {
         title: "Open Level Classical Mat",
         level: "All levels",
-        price: "$25",
         description:
           "The class that started it all. Every session offers modifications for newer students and advancements for those deeper in their practice. This is classical Pilates the way it was designed: challenging, precise, and accessible to every body in the room.",
       },
       {
         title: "Return to Life Mat — Full 34",
         level: "Intermediate/Advanced",
-        price: "$25",
         description:
           "All 34 exercises. No shortcuts. A fast-paced, athletic class that takes you through the complete classical mat series as Joseph Pilates intended it. Strength, stamina, and fluidity in one unbroken sequence. Prior RTL Course or mat experience recommended.",
       },
       {
         title: "Return to Life Course I",
         level: "Beginner · 8-week series",
-        price: "$160",
         description:
           "Your foundation. An 8-week progressive series that builds your classical mat practice from the ground up — beginner and intermediate exercises with a focus on breath, center, and flow. This is where habits are built and the method starts to click. Enrollment by sign-up only.",
       },
       {
         title: "Return to Life Course II",
         level: "Intermediate · 8-week series",
-        price: "$160",
         description:
           "The next chapter. Picks up where Course I left off and takes you through the remainder of the 34-exercise classical mat. Focus shifts to concentration, fluidity, and precision — the principles that turn good movement into great movement. Enrollment by sign-up only.",
       },
       {
         title: "Lunch Power Hour",
         level: "All levels · 35 min",
-        price: "$25",
         description:
           "Classical matwork, compact format. Everything you love about the method in a focused 35-minute session built for people with somewhere to be. No filler, no fluff — just the work. Perfect for downtown professionals and mid-day movers.",
       },
@@ -48,42 +43,37 @@ const sections = [
   },
   {
     category: "Apparatus Classes",
-    subtitle: "50 min · 3 spots max · $45 per class",
+    subtitle: "50 min · 3 spots max",
     description:
       "Real classical equipment. Real hands-on instruction. Three students per class — reformer, tower, barrels, and chair.",
     classes: [
       {
         title: "Apparatus Foundations",
         level: "Beginner · No experience required",
-        price: "$45",
         description:
           "Your introduction to classical Pilates apparatus. In a group of just three, you'll learn to safely and effectively use the reformer, tower, and small barrels — the equipment that transforms how you feel and move in your body.",
       },
       {
         title: "Intermediate Mixed Apparatus",
         level: "Intermediate · Apparatus experience required",
-        price: "$45",
         description:
           "You know the equipment. Now let it challenge you. Rotates through the full range of apparatus — tower, reformer, barrels — with a strong focus on core strengthening and alignment. Each session uses a different combination so your practice never plateaus.",
       },
       {
         title: "Athletic Classical Reformer",
         level: "Intermediate/Advanced",
-        price: "$45",
         description:
           "Fast-paced. Precision-driven. A reformer class built for students who want to push — efficient transitions, demanding sequences, and the kind of focused intensity that only comes from working on real classical equipment with real instruction.",
       },
       {
         title: "Athletic Classical Tower",
         level: "Intermediate/Advanced",
-        price: "$45",
         description:
           "Everything you love about the tower, turned up. A fast-paced sequence incorporating classical mat exercises alongside full tower work — roll back bar, push-thru bar, leg springs, arm springs. More core burn, more flow, more demand.",
       },
       {
         title: "Lengthen & Strengthen Tower",
         level: "All levels · Restorative focus",
-        price: "$45",
         description:
           "The slowdown you didn't know you needed. A gentle, restorative class combining classical mat work with tower springs and bars to release tension, decompress the spine, and restore alignment. Slow, precise movement that leaves you feeling longer, stronger, and more energized.",
       },
@@ -113,10 +103,10 @@ export default function GroupClassesAndPricing() {
     <div>
       <div className="text-center mb-12">
         <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3">
-          Group Classes &amp; Pricing
+          Group Classes
         </h2>
         <p className="text-muted text-sm max-w-md mx-auto">
-          Everything you can book from the schedule above. Tap a category to explore classes and pricing.
+          Everything you can book from the schedule above. Tap a category to explore.
         </p>
       </div>
 
@@ -183,26 +173,21 @@ export default function GroupClassesAndPricing() {
                             {cls.level}
                           </span>
                         </div>
-                        <div className="flex items-center gap-3 shrink-0 ml-3">
-                          <span className="font-serif text-sm text-charcoal">
-                            {cls.price}
-                          </span>
-                          <svg
-                            className={`w-3.5 h-3.5 text-accent/40 transition-transform duration-300 ${
-                              openClass === cls.title ? "rotate-180" : ""
-                            }`}
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M19 9l-7 7-7-7"
-                            />
-                          </svg>
-                        </div>
+                        <svg
+                          className={`w-3.5 h-3.5 text-accent/40 shrink-0 ml-3 transition-transform duration-300 ${
+                            openClass === cls.title ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
                       </button>
                       <div
                         className={`overflow-hidden transition-all duration-300 ease-in-out ${

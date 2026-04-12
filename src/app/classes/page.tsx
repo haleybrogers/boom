@@ -3,6 +3,7 @@ import WaitlistForm from "@/components/WaitlistForm";
 import FoundingPricing from "@/components/FoundingPricing";
 import SchedulePrivate from "@/components/SchedulePrivate";
 import GroupClassesAndPricing from "@/components/GroupClassesAndPricing";
+import ClassPacks from "@/components/ClassPacks";
 
 export const metadata = {
   title: "Classes",
@@ -65,7 +66,14 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* 5. Waitlist */}
+      {/* 5. Class Packs & Drop-Ins */}
+      <section className="py-20 lg:py-28 bg-warm-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <ClassPacks />
+        </div>
+      </section>
+
+      {/* 6. Waitlist */}
       <section id="book" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">Opening Soon</p>
