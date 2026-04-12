@@ -135,11 +135,7 @@ export default function SchedulePrivate() {
             <iframe
               key={selected}
               id="sutraWidgetIframe"
-              src={
-                instructors[selected].arketaId
-                  ? `https://app.arketa.co/iframe/boomerangpilates/appointments?instructorIds=${instructors[selected].arketaId}`
-                  : "https://app.arketa.co/iframe/boomerangpilates/schedule"
-              }
+              src="https://app.arketa.co/iframe/boomerangpilates/privates/by-service/FwfO18S2CiqgdBkFHHCW"
               width="100%"
               frameBorder="0"
               allow="payment;fullscreen"
