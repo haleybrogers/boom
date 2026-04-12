@@ -1,8 +1,8 @@
 import LiveSchedule from "@/components/LiveSchedule";
 import WaitlistForm from "@/components/WaitlistForm";
-import ClassesTabs from "@/components/ClassesTabs";
 import FoundingPricing from "@/components/FoundingPricing";
 import SchedulePrivate from "@/components/SchedulePrivate";
+import GroupClassesAndPricing from "@/components/GroupClassesAndPricing";
 
 export const metadata = {
   title: "Classes",
@@ -58,10 +58,10 @@ export default function Classes() {
         <SchedulePrivate />
       </section>
 
-      {/* 4. Classes / Pricing tabs */}
+      {/* 4. Group Classes & Pricing — combined, no tabs */}
       <section className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
-          <ClassesTabs />
+          <GroupClassesAndPricing />
         </div>
       </section>
 

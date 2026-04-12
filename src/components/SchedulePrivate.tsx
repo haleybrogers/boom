@@ -37,24 +37,46 @@ export default function SchedulePrivate() {
         <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3">
           Schedule a Private
         </h2>
-        <p className="text-muted text-sm max-w-lg mx-auto">
-          One-on-one or duet sessions on the full apparatus — Reformer, Cadillac,
-          Chair, Barrels. Select an instructor to see availability and book.
+        <p className="text-muted text-sm max-w-lg mx-auto mb-6">
+          The most personalized Pilates experience we offer. Your instructor
+          builds every session around your body, your goals, and where you are
+          in your practice — using the full range of classical apparatus.
         </p>
       </div>
 
-      {/* Pricing row */}
-      <div className="flex justify-center gap-6 mb-10">
-        <div className="text-center">
-          <span className="font-serif text-2xl font-light text-charcoal">$110</span>
-          <p className="text-xs text-muted mt-0.5">Private · 50 min</p>
+      {/* Two-column detail */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-3xl mx-auto">
+        <div className="bg-white border border-charcoal/10 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+          <div className="flex items-baseline justify-between mb-3">
+            <h3 className="font-serif text-lg font-light text-charcoal">Private Session</h3>
+            <span className="font-serif text-2xl font-light text-charcoal">$110</span>
+          </div>
+          <p className="text-xs text-muted mb-3">50 minutes · 1 student · Full apparatus</p>
+          <p className="text-sm text-muted leading-relaxed">
+            One-on-one with your instructor on the Reformer, Cadillac, Chair,
+            and Barrels. Every session is tailored to you — whether you&apos;re
+            rehabbing an injury, training for something specific, deepening your
+            practice, or just getting started. This is the fastest path to results.
+          </p>
         </div>
-        <div className="w-px bg-charcoal/10" />
-        <div className="text-center">
-          <span className="font-serif text-2xl font-light text-charcoal">$60</span>
-          <p className="text-xs text-muted mt-0.5">Duet · per person</p>
+        <div className="bg-white border border-charcoal/10 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+          <div className="flex items-baseline justify-between mb-3">
+            <h3 className="font-serif text-lg font-light text-charcoal">Duet Session</h3>
+            <span className="font-serif text-2xl font-light text-charcoal">$60<span className="text-sm text-muted">/person</span></span>
+          </div>
+          <p className="text-xs text-muted mb-3">50 minutes · 2 students · Full apparatus</p>
+          <p className="text-sm text-muted leading-relaxed">
+            Semi-private instruction with a partner — bring a friend, a spouse,
+            or we&apos;ll pair you. Same full apparatus access and customized
+            programming as a private, with shared motivation and a more
+            accessible price point.
+          </p>
         </div>
       </div>
+
+      <p className="text-center text-sm text-muted mb-10 max-w-md mx-auto">
+        Select an instructor below to see their availability and book directly.
+      </p>
 
       {/* Instructor cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
