@@ -43,7 +43,7 @@ export default function Home() {
       <section className="py-16 lg:py-20">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <p className="font-serif text-2xl md:text-3xl font-light text-charcoal leading-relaxed">
-            Durham&apos;s only Classical Pilates studio — mat and apparatus,
+            Downtown Durham&apos;s only Classical Pilates studio — mat and apparatus,
             taught the way it was designed.
           </p>
         </div>
