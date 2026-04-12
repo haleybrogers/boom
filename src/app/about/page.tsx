@@ -17,7 +17,7 @@ export default function About() {
           <div className="text-center mb-16">
             <p className="text-xs tracking-widest uppercase text-accent mb-4">Meet the Founders</p>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal mb-5">
-              Sister Act
+              Built by Two Sisters
             </h1>
             <p className="text-base text-muted leading-relaxed max-w-xl mx-auto">
               Emilie and Annie Young built Boomerang on the belief that Classical
@@ -34,7 +34,7 @@ export default function About() {
                   src="/emilie-young.jpg"
                   alt="Emilie Young"
                   fill
-                  className="object-cover object-top"
+                  className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
@@ -58,7 +58,7 @@ export default function About() {
                   src="/annie-young.jpg"
                   alt="Annie Young"
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
