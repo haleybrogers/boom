@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
+import FoundingPopup from "@/components/FoundingPopup";
 
 export default function Home() {
   return (
     <>
-      {/* Hero — full-bleed image, minimal text */}
+      {/* Hero — shorter, editorial */}
       <section className="relative overflow-hidden">
         <Image
           src="/hero-image.png"
@@ -14,9 +15,9 @@ export default function Home() {
           className="object-cover object-top"
           priority
         />
-        <div className="h-[90vh]" />
+        <div className="h-[60vh] sm:h-[65vh]" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#5c4a3a]/30 via-transparent to-[#5c4a3a]/20 pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 pb-12 sm:pb-16 md:pb-20">
+        <div className="absolute inset-x-0 bottom-0 pb-10 sm:pb-14 md:pb-16">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <p className="text-white/90 text-lg sm:text-xl md:text-2xl font-light tracking-wide">
               Put in the work. Feel it come back.
@@ -29,7 +30,7 @@ export default function Home() {
       </section>
 
       {/* Positioning statement */}
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug">
             Downtown Durham&apos;s only Classical Pilates studio. Mat and apparatus — taught
@@ -38,12 +39,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Editorial grid — linked sections */}
+      {/* Editorial grid — 3 cards */}
       <section className="pb-20 lg:pb-28">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Classes */}
-            <Link href="/classes" className="group relative overflow-hidden aspect-[4/3]">
+            <Link href="/classes" className="group relative overflow-hidden aspect-[3/4]">
               <Image
                 src="/photo-chair.jpg"
                 alt="Pilates apparatus"
@@ -62,7 +63,7 @@ export default function Home() {
             </Link>
 
             {/* About */}
-            <Link href="/about" className="group relative overflow-hidden aspect-[4/3]">
+            <Link href="/about" className="group relative overflow-hidden aspect-[3/4]">
               <Image
                 src="/photo-reformer.jpg"
                 alt="Reformer"
@@ -81,7 +82,7 @@ export default function Home() {
             </Link>
 
             {/* Founding Member */}
-            <Link href="/classes#founding" className="group relative overflow-hidden aspect-[4/3]">
+            <Link href="/classes#founding" className="group relative overflow-hidden aspect-[3/4]">
               <Image
                 src="/photo-leg.jpg"
                 alt="Pilates practice"
@@ -96,26 +97,6 @@ export default function Home() {
                 </h2>
                 <p className="text-white/70 text-sm max-w-xs">
                   Lock in your rate before we open. It never goes up.
-                </p>
-              </div>
-            </Link>
-
-            {/* Events */}
-            <Link href="/events" className="group relative overflow-hidden aspect-[4/3]">
-              <Image
-                src="/accent-image.png"
-                alt="Studio"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-charcoal/30 group-hover:bg-charcoal/40 transition-colors duration-300" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                <p className="text-xs tracking-widest uppercase text-white/50 mb-3">Coming Soon</p>
-                <h2 className="font-serif text-3xl md:text-4xl font-light text-white mb-2">
-                  Grand Opening
-                </h2>
-                <p className="text-white/70 text-sm max-w-xs">
-                  Something special is coming. Get on the list.
                 </p>
               </div>
             </Link>
@@ -135,6 +116,9 @@ export default function Home() {
           <WaitlistForm />
         </div>
       </section>
+
+      {/* Founding member popup */}
+      <FoundingPopup />
     </>
   );
 }
