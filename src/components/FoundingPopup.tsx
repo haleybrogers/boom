@@ -3,15 +3,20 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+const rates = [
+  { name: "Unlimited Mat", price: "$199", perClass: "$12/class" },
+  { name: "2x/Week Mat", price: "$150", perClass: "$18.75/class" },
+  { name: "1x/Week Tower", price: "$120", perClass: "$30/class" },
+  { name: "Tower + Mat Combo", price: "$200", perClass: "$25/class" },
+];
+
 export default function FoundingPopup() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    // Check if user already dismissed it this session
     const dismissed = sessionStorage.getItem("founding-popup-dismissed");
     if (dismissed) return;
 
-    // Show after 4 seconds of browsing
     const timer = setTimeout(() => setShow(true), 4000);
     return () => clearTimeout(timer);
   }, []);
@@ -32,7 +37,7 @@ export default function FoundingPopup() {
       />
 
       {/* Modal */}
-      <div className="relative bg-cream rounded-sm max-w-md w-full p-10 text-center animate-slide-up shadow-2xl">
+      <div className="relative bg-cream rounded-sm max-w-lg w-full p-8 sm:p-10 animate-slide-up shadow-2xl">
         {/* Close button */}
         <button
           onClick={dismiss}
@@ -44,31 +49,38 @@ export default function FoundingPopup() {
           </svg>
         </button>
 
-        <p className="text-xs tracking-widest uppercase text-accent mb-4">Limited Time</p>
+        <div className="text-center mb-6">
+          <p className="text-xs tracking-widest uppercase text-accent mb-3">Limited to First 50 Members</p>
+          <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-2">
+            Founding Member Rates
+          </h2>
+          <p className="text-muted text-sm">
+            Lock in your rate before we open. It never goes up.
+          </p>
+        </div>
 
-        <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-3">
-          Become a Founding Member
-        </h2>
+        {/* Pricing grid */}
+        <div className="grid grid-cols-2 gap-3 mb-6">
+          {rates.map((rate) => (
+            <div key={rate.name} className="bg-white border border-charcoal/10 rounded-sm p-4 text-center">
+              <p className="text-xs text-muted mb-2">{rate.name}</p>
+              <p className="font-serif text-2xl font-light text-charcoal">{rate.price}<span className="text-sm text-muted">/mo</span></p>
+              <p className="text-[11px] text-accent mt-1">{rate.perClass}</p>
+            </div>
+          ))}
+        </div>
 
-        <p className="text-muted text-base mb-2">
-          Lock in your rate before we open —
+        <p className="text-center text-muted/70 text-xs mb-6">
+          Plus exclusive invites to our soft opening and celebratory events.
         </p>
 
-        <p className="text-charcoal font-serif text-xl mb-1">
-          Save up to <span className="text-accent font-medium">$50/month forever.</span>
-        </p>
-
-        <p className="text-muted/70 text-sm mb-8">
-          Your price never goes up. Plus exclusive invites to our soft opening.
-        </p>
-
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 text-center">
           <Link
             href="/classes#founding"
             onClick={dismiss}
             className="inline-block bg-accent text-white text-xs tracking-widest uppercase py-3.5 px-8 hover:bg-accent/90 transition-colors"
           >
-            See Founding Rates
+            See All Founding Rates
           </Link>
           <button
             onClick={dismiss}
