@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 import FoundingPopup from "@/components/FoundingPopup";
+import OfferingCards from "@/components/OfferingCards";
 
 export default function Home() {
   return (
@@ -26,68 +26,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Editorial grid — 3 cards */}
+      {/* What We Offer — expandable cards with photos */}
       <section className="pb-20 lg:pb-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Classes */}
-            <Link href="/classes" className="group relative overflow-hidden aspect-[3/4]">
-              <Image
-                src="/photo-chair.jpg"
-                alt="Pilates apparatus"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-charcoal/30 group-hover:bg-charcoal/40 transition-colors duration-300" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                <h2 className="font-serif text-3xl md:text-4xl font-light text-white mb-2">
-                  Classes
-                </h2>
-                <p className="text-white/70 text-sm max-w-xs">
-                  Mat, apparatus, privates, and duets. See the full schedule.
-                </p>
-              </div>
-            </Link>
-
-            {/* About */}
-            <Link href="/about" className="group relative overflow-hidden aspect-[3/4]">
-              <Image
-                src="/photo-reformer.jpg"
-                alt="Reformer"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-charcoal/30 group-hover:bg-charcoal/40 transition-colors duration-300" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                <h2 className="font-serif text-3xl md:text-4xl font-light text-white mb-2">
-                  About
-                </h2>
-                <p className="text-white/70 text-sm max-w-xs">
-                  Two sisters. One method. Meet Emilie and Annie.
-                </p>
-              </div>
-            </Link>
-
-            {/* Founding Member */}
-            <Link href="/classes#founding" className="group relative overflow-hidden aspect-[3/4]">
-              <Image
-                src="/photo-leg.jpg"
-                alt="Pilates practice"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-charcoal/30 group-hover:bg-charcoal/40 transition-colors duration-300" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                <p className="text-xs tracking-widest uppercase text-accent mb-3">Limited Time</p>
-                <h2 className="font-serif text-3xl md:text-4xl font-light text-white mb-2">
-                  Founding Member
-                </h2>
-                <p className="text-white/70 text-sm max-w-xs">
-                  Lock in your rate before we open. It never goes up.
-                </p>
-              </div>
-            </Link>
-          </div>
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-8 text-center">
+            What We Offer
+          </h2>
+          <OfferingCards />
         </div>
       </section>
 
