@@ -6,8 +6,8 @@ import FoundingPopup from "@/components/FoundingPopup";
 export default function Home() {
   return (
     <>
-      {/* Hero — shorter, editorial */}
-      <section className="relative overflow-hidden">
+      {/* Hero — full viewport, image only, nav overlays */}
+      <section className="relative h-screen overflow-hidden">
         <Image
           src="/hero-image.png"
           alt="Two figures in the Boomerang Pilates pose"
@@ -15,31 +15,13 @@ export default function Home() {
           className="object-cover object-top"
           priority
         />
-        <div className="h-[60vh] sm:h-[65vh]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#5c4a3a]/30 via-transparent to-[#5c4a3a]/20 pointer-events-none" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
-          <Image
-            src="/logo-pilat.svg"
-            alt="Boomerang Pilates"
-            width={600}
-            height={128}
-            className="w-[70vw] max-w-2xl h-auto brightness-0 invert mb-6"
-          />
-          <p className="text-white/90 text-lg sm:text-xl md:text-2xl font-light tracking-wide">
-            Put in the work. Feel it come back.
-          </p>
-          <p className="text-white/50 text-xs tracking-widest uppercase mt-3">
-            Classical Pilates · Downtown Durham
-          </p>
-        </div>
       </section>
 
       {/* Positioning statement */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug">
-            Downtown Durham&apos;s only Classical Pilates studio. Mat and apparatus — taught
-            the way Joseph Pilates designed it. For every body.
+            Downtown Durham&apos;s only Classical Pilates studio.
           </p>
         </div>
       </section>
