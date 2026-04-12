@@ -12,7 +12,7 @@
   --color-warm-white: #FDFCFA;
   --color-muted: #9b9590;
   --color-charcoal: #3f3936;
-  --color-accent: #bf5a13;
+  --color-accent: #b02d4a;
   --font-sans: var(--font-dm-sans);
   --font-serif: var(--font-cormorant);
 }
@@ -28,7 +28,7 @@ html {
 }
 
 ::selection {
-  background-color: #bf5a13;
+  background-color: #b02d4a;
   color: #ffffff;
 }
 

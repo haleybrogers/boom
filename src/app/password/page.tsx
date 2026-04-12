@@ -11,7 +11,7 @@ export default function PasswordPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === "boomerang2026") {
-      document.cookie = `site-auth=${password}; path=/; max-age=${60 * 60 * 24 * 30}`;
+      document.cookie = `site-auth=${password}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
       router.push("/");
     } else {
       setError(true);

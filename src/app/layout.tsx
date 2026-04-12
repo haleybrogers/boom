@@ -42,6 +42,7 @@ export const metadata: Metadata = {
     description: "Put in the work. Feel it come back. Classical Pilates opening soon in Durham, NC.",
   },
   metadataBase: new URL("https://www.boomerangpilatesnc.com"),
+  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({

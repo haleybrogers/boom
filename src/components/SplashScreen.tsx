@@ -24,7 +24,7 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
           }}
         >
           <Image
-            src="/logo-color.svg"
+            src="/logo-full.svg"
             alt="Boomerang Pilates"
             width={280}
             height={220}
