@@ -12,16 +12,16 @@ export default function ArketaBooking() {
         <p className="text-muted text-sm text-center mb-10 max-w-md mx-auto">
           Browse the week and reserve your spot.
         </p>
-        <div className="bg-white rounded-sm border border-charcoal/10 overflow-hidden">
+        <div className="bg-white rounded-sm border border-charcoal/10 overflow-hidden" style={{ height: "500px" }}>
           <iframe
             id="sutraWidgetIframe"
             src="https://app.arketa.co/iframe/boomerangpilates/schedule"
             width="100%"
+            height="100%"
             frameBorder="0"
             allow="payment;fullscreen"
             allowFullScreen
-            className="w-full border-0"
-            style={{ minHeight: "700px" }}
+            className="w-full h-full border-0"
           />
         </div>
         <Script src="https://app.arketa.co/scripts/embed.js" strategy="lazyOnload" />
