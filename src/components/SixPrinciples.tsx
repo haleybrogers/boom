@@ -7,9 +7,10 @@ const principles = [
     name: "Breath",
     description: "The foundation of every movement.",
     icon: (
-      <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
-        <path d="M16 28c0-6 6-8 6-14a6 6 0 10-12 0c0 6 6 8 6 14z" />
-        <path d="M13 16h6M13 19h6" strokeWidth={1} />
+      <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round">
+        <path d="M6 12h12a4 4 0 100-4" />
+        <path d="M6 18h16a3.5 3.5 0 100-3.5" />
+        <path d="M6 24h10a3 3 0 100-3" />
       </svg>
     ),
   },
