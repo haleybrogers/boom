@@ -2,11 +2,12 @@ import Image from "next/image";
 import WaitlistForm from "@/components/WaitlistForm";
 import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
+import SixPrinciples from "@/components/SixPrinciples";
 
 export default function Home() {
   return (
     <>
-      {/* Hero — top third of image */}
+      {/* Hero */}
       <section className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
         <Image
           src="/hero-image.png"
@@ -23,27 +24,39 @@ export default function Home() {
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug">
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
+          <p className="text-muted text-base mt-4">
+            Put in the work. Feel it come back.
+          </p>
         </div>
       </section>
 
-      {/* What We Offer — expandable cards with photos */}
-      <section className="pb-20 lg:pb-28">
+      {/* Six Principles */}
+      <SixPrinciples />
+
+      {/* What We Offer */}
+      <section className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-8 text-center">
-            What We Offer
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
+              What We Offer
+            </h2>
+            <p className="text-muted text-base max-w-md mx-auto">
+              Mat, apparatus, privates, and duets — classical Pilates the way it was designed.
+            </p>
+          </div>
           <OfferingCards />
         </div>
       </section>
 
-      {/* Waitlist — clean and quiet */}
+      {/* Waitlist */}
       <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Founding Members</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
             Be the first through the door.
           </h2>
           <p className="text-muted text-base mb-10">
-            Founding members get exclusive invites to our soft opening and celebratory events.
+            Lock in your rate forever. Get exclusive invites to our soft opening and celebratory events.
           </p>
           <WaitlistForm />
         </div>

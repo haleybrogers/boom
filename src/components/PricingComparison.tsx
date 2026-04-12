@@ -3,24 +3,30 @@
 import { useState } from "react";
 import Button from "./Button";
 
-const foundingTiers = [
+const memberships = [
   {
-    name: "Founding Mat",
-    founding: "$149",
-    regular: "$179",
-    savings: "$30",
-    yearly: "$360",
-    includes: ["Unlimited mat classes", "Locked-in rate for life", "First class free"],
-    popular: false,
+    name: "Unlimited Mat",
+    price: "$199",
+    perClass: "As low as $12/class",
+    highlight: true,
   },
   {
-    name: "Founding All-Access",
-    founding: "$249",
-    regular: "$299",
-    savings: "$50",
-    yearly: "$600",
-    includes: ["Unlimited mat classes", "Unlimited apparatus classes", "Locked-in rate for life", "First class free"],
-    popular: true,
+    name: "2x/Week Mat",
+    price: "$150",
+    perClass: "$18.75/class",
+    highlight: false,
+  },
+  {
+    name: "1x/Week Group Tower",
+    price: "$120",
+    perClass: "$30/class",
+    highlight: false,
+  },
+  {
+    name: "Tower + Mat Combo",
+    price: "$200",
+    perClass: "$25/class",
+    highlight: true,
   },
 ];
 
@@ -28,14 +34,19 @@ const singleClass = [
   { name: "Mat Class", price: "$25", detail: "Drop-in · 15 spots · 50 min" },
   { name: "Apparatus Class", price: "$45", detail: "Drop-in · 3 spots · 50 min" },
   { name: "Private Session", price: "$110", detail: "By appointment · 50 min" },
-  { name: "Duet Session", price: "$60", detail: "By appointment · Per person · 50 min" },
+  { name: "Duet Session", price: "$60", detail: "Per person · By appointment" },
 ];
 
 const packs = [
-  { name: "5-Class Mat", price: "$110", perClass: "$22" },
-  { name: "10-Class Mat", price: "$200", perClass: "$20" },
-  { name: "5-Class Apparatus", price: "$200", perClass: "$40" },
-  { name: "10-Class Apparatus", price: "$375", perClass: "$37.50" },
+  { name: "5-Pack Privates", price: "$500", perSession: "$100/session" },
+  { name: "10-Pack Privates", price: "$900", perSession: "$90/session" },
+  { name: "5-Pack Duets", price: "$275", perSession: "$55/person" },
+  { name: "10-Pack Duets", price: "$500", perSession: "$50/person" },
+];
+
+const courses = [
+  { name: "Return to Life Course I", price: "$160", detail: "8-week beginner series" },
+  { name: "Return to Life Course II", price: "$160", detail: "8-week intermediate series" },
 ];
 
 export default function PricingComparison() {
@@ -43,79 +54,49 @@ export default function PricingComparison() {
 
   return (
     <>
-      {/* Founding Member — the main event */}
       <section id="founding" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-14">
             <span className="text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-3 py-1.5 rounded-sm">
-              Limited Time — Founding Members Only
+              Limited to First 50 Members · 3-Month Minimum
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mt-5 mb-3">
-              Lock In Your Rate Forever
+              Founding Member Rates
             </h2>
             <p className="text-sm text-muted max-w-lg mx-auto">
-              Join before we open and your membership price never goes up. Ever.
-              These rates disappear once we launch.
+              Locked in forever. Your price never goes up — even after we open.
+              Plus exclusive invites to our soft opening and celebratory events.
             </p>
           </div>
 
-          {/* Side-by-side founding cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-            {foundingTiers.map((tier) => (
+          {/* Membership tiers */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
+            {memberships.map((tier) => (
               <div
                 key={tier.name}
-                className={`relative p-8 rounded-sm border text-center ${
-                  tier.popular
+                className={`relative p-7 rounded-sm border text-center ${
+                  tier.highlight
                     ? "border-accent/30 bg-white shadow-sm"
                     : "border-charcoal/10 bg-white"
                 }`}
               >
-                {tier.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="text-[10px] tracking-widest uppercase text-white bg-accent px-3 py-1 rounded-sm">
-                      Best Value
-                    </span>
-                  </div>
-                )}
-
-                <h3 className="font-serif text-2xl font-light text-charcoal mb-6">
+                <h3 className="font-serif text-lg font-light text-charcoal mb-4">
                   {tier.name}
                 </h3>
-
-                {/* Price comparison */}
-                <div className="mb-6">
-                  <div className="flex items-baseline justify-center gap-3">
-                    <span className="font-serif text-4xl font-light text-charcoal">
-                      {tier.founding}
-                    </span>
-                    <span className="text-sm text-muted">/mo</span>
-                  </div>
-                  <div className="mt-1.5 flex items-center justify-center gap-2">
-                    <span className="text-sm text-muted line-through">{tier.regular}/mo</span>
-                    <span className="text-xs font-medium text-accent">
-                      Save {tier.savings}/mo
-                    </span>
-                  </div>
-                  <p className="text-xs text-muted mt-1">
-                    That&apos;s {tier.yearly} saved per year
-                  </p>
+                <div className="flex items-baseline justify-center gap-2 mb-1">
+                  <span className="font-serif text-3xl font-light text-charcoal">
+                    {tier.price}
+                  </span>
+                  <span className="text-sm text-muted">/mo</span>
                 </div>
-
-                {/* What's included */}
-                <ul className="space-y-2.5 mb-8 text-left max-w-[220px] mx-auto">
-                  {tier.includes.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-charcoal">
-                      <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                <Button href="/#waitlist">Join as Founding Member</Button>
+                <p className="text-xs text-accent">{tier.perClass}</p>
               </div>
             ))}
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mb-20">
+            <Button href="/#waitlist">Join as Founding Member</Button>
           </div>
 
           {/* Single Class Pricing */}
@@ -134,13 +115,29 @@ export default function PricingComparison() {
             </div>
           </div>
 
+          {/* Courses */}
+          <div className="mb-12">
+            <h3 className="font-serif text-xl font-light text-charcoal mb-6 text-center">
+              Course Series
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {courses.map((course) => (
+                <div key={course.name} className="bg-white border border-charcoal/10 rounded-sm p-5 text-center">
+                  <p className="font-serif text-sm text-charcoal mb-1">{course.name}</p>
+                  <p className="font-serif text-2xl font-light text-charcoal mb-0.5">{course.price}</p>
+                  <p className="text-[11px] text-muted">{course.detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Class Packs — collapsible */}
           <div className="text-center">
             <button
               onClick={() => setShowPacks(!showPacks)}
               className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"
             >
-              Class Packs &amp; Intro Offers
+              Class Packs
               <svg
                 className={`w-4 h-4 transition-transform duration-300 ${showPacks ? "rotate-180" : ""}`}
                 fill="none"
@@ -158,28 +155,16 @@ export default function PricingComparison() {
               }`}
             >
               <div className="max-w-2xl mx-auto">
-                {/* Class packs */}
-                <div className="divide-y divide-charcoal/10 border-y border-charcoal/10 mb-8">
+                <div className="divide-y divide-charcoal/10 border-y border-charcoal/10">
                   {packs.map((pack) => (
                     <div key={pack.name} className="py-4 flex items-baseline justify-between">
                       <div>
                         <p className="font-serif text-base font-light text-charcoal">{pack.name}</p>
-                        <p className="text-xs text-muted">{pack.perClass}/class · Never expires</p>
+                        <p className="text-xs text-muted">{pack.perSession} · Expires in 12 months</p>
                       </div>
                       <span className="font-serif text-lg font-light text-charcoal">{pack.price}</span>
                     </div>
                   ))}
-                </div>
-
-                {/* Intro offer */}
-                <div className="bg-accent/5 border border-accent/15 rounded-sm p-6 text-center">
-                  <p className="text-[10px] tracking-widest uppercase text-accent mb-2">New Here?</p>
-                  <p className="font-serif text-xl font-light text-charcoal mb-1">
-                    Intro 3-Pack: $60
-                  </p>
-                  <p className="text-xs text-muted">
-                    Three mat classes for $20 each. No commitment.
-                  </p>
                 </div>
               </div>
             </div>
