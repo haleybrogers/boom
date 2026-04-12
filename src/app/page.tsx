@@ -1,8 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
 import SixPrinciples from "@/components/SixPrinciples";
+import NewToPilates from "@/components/NewToPilates";
+import StickyCTA from "@/components/StickyCTA";
 
 export default function Home() {
   return (
@@ -33,8 +36,23 @@ export default function Home() {
       {/* Six Principles */}
       <SixPrinciples />
 
+      {/* Mid-page CTA — catch warm traffic early */}
+      <section className="py-14 lg:py-16">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <p className="text-muted text-base mb-5">
+            Opening soon — founding member rates are limited to the first 50 people.
+          </p>
+          <Link
+            href="#waitlist"
+            className="inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+          >
+            Join the Waitlist
+          </Link>
+        </div>
+      </section>
+
       {/* What We Offer */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-28 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
@@ -47,6 +65,9 @@ export default function Home() {
           <OfferingCards />
         </div>
       </section>
+
+      {/* New to Pilates? */}
+      <NewToPilates />
 
       {/* Waitlist */}
       <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
@@ -62,7 +83,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Founding member popup */}
+      {/* Sticky CTA + Founding popup */}
+      <StickyCTA />
       <FoundingPopup />
     </>
   );
