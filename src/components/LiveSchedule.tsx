@@ -145,10 +145,10 @@ export default function LiveSchedule() {
                     isToday ? "bg-accent/10" : ""
                   }`}
                 >
-                  <p className="text-[10px] tracking-widest uppercase text-muted">
+                  <p className="text-xs tracking-widest uppercase text-muted">
                     {formatDayShort(day)}
                   </p>
-                  <p className={`font-serif text-lg font-light ${
+                  <p className={`font-serif text-xl font-light ${
                     isToday ? "text-accent" : hasClasses ? "text-charcoal" : "text-charcoal/30"
                   }`}>
                     {formatDayNum(day)}
@@ -159,9 +159,9 @@ export default function LiveSchedule() {
           </div>
 
           {/* Class cards by day */}
-          <div className="grid grid-cols-7 gap-1 items-start">
+          <div className="grid grid-cols-7 gap-2 items-start">
             {classesByDay.map((dayClasses, i) => (
-              <div key={i} className="space-y-1 min-h-[60px]">
+              <div key={i} className="space-y-2 min-h-[80px]">
                 {dayClasses.map((cls) => {
                   const spotsLeft = cls.max_capacity - cls.total_booked;
                   const isSelected = selectedClass?.id === cls.id;
@@ -169,20 +169,20 @@ export default function LiveSchedule() {
                     <button
                       key={cls.id}
                       onClick={() => setSelectedClass(isSelected ? null : cls)}
-                      className={`w-full text-left p-2 rounded-sm text-[11px] leading-tight transition-all duration-200 ${
+                      className={`w-full text-left p-3 rounded-sm text-sm leading-snug transition-all duration-200 ${
                         isSelected
-                          ? "bg-accent text-white"
-                          : "bg-cream hover:bg-accent/10 text-charcoal"
+                          ? "bg-accent text-white shadow-sm"
+                          : "bg-cream hover:bg-accent/10 text-charcoal border border-charcoal/5"
                       }`}
                     >
-                      <p className={`font-medium truncate ${isSelected ? "text-white" : "text-charcoal"}`}>
+                      <p className={`font-medium ${isSelected ? "text-white" : "text-charcoal"}`}>
                         {cls.name.replace("Open Level ", "").replace("Classical ", "")}
                       </p>
-                      <p className={`mt-0.5 ${isSelected ? "text-white/70" : "text-muted"}`}>
+                      <p className={`mt-1 ${isSelected ? "text-white/70" : "text-muted"}`}>
                         {formatTime(cls.start_time)}
                       </p>
-                      <p className={`${isSelected ? "text-white/60" : "text-muted/70"}`}>
-                        {spotsLeft} left
+                      <p className={`text-xs mt-0.5 ${isSelected ? "text-white/60" : "text-muted/70"}`}>
+                        {spotsLeft} spots left
                       </p>
                     </button>
                   );

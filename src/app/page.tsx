@@ -1,53 +1,82 @@
 import Image from "next/image";
 import Button from "@/components/Button";
-import Parallax from "@/components/Parallax";
 import Offerings from "@/components/Offerings";
 import WaitlistForm from "@/components/WaitlistForm";
 
 export default function Home() {
   return (
     <>
-      {/* Hero — text overlaid on image's gray area, bodies below */}
-      <section className="relative overflow-hidden">
-        {/* Mobile: tall hero with object-cover */}
+      {/* Hero — bold, confident, Durham's only */}
+      <section className="relative overflow-hidden bg-charcoal">
+        {/* Background image */}
         <Image
           src="/hero-image.png"
           alt="Two figures in the Boomerang Pilates pose"
           fill
-          className="object-cover scale-[1.02] origin-center sm:hidden"
+          className="object-cover object-top opacity-40"
           priority
         />
-        {/* Desktop: constrained height */}
-        <Image
-          src="/hero-image.png"
-          alt="Two figures in the Boomerang Pilates pose"
-          fill
-          className="hidden sm:block object-cover object-top scale-[1.02] origin-center"
-        />
-        <div className="hidden sm:block h-[70vh] lg:h-[75vh]" />
-        <div className="h-[85vh] sm:hidden" />
-        {/* Warm brown wash over image */}
-        <div className="absolute inset-0 bg-[#5c4a3a]/25 mix-blend-multiply pointer-events-none" />
-        {/* Text positioned in the gray area above the bodies */}
-        <div className="absolute inset-x-0 top-0 flex items-start justify-center pt-4 sm:pt-10 md:pt-16 lg:pt-20">
-          <div className="max-w-2xl mx-auto px-6 text-center">
-            <h1 className="font-serif text-[20vw] sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[0.85] sm:leading-relaxed text-white mb-2 sm:mb-1 sm:tracking-wider uppercase">
-              <span className="sm:hidden">Boom<br />erang<br />Pilates</span>
-              <span className="hidden sm:inline">Boomerang Pilates</span>
-            </h1>
-            <p className="hidden sm:block text-white/70 text-sm md:text-base tracking-wide max-w-md mx-auto">
-              Put in the work. Feel it come back.
-            </p>
-            <p className="text-white/50 text-[10px] sm:text-[11px] md:text-xs tracking-widest uppercase mt-1 sm:mt-4 md:mt-5">
-              <span className="sm:hidden">Put in the work. Feel it come back.</span>
-              <span className="hidden sm:inline">Durham, NC</span>
-            </p>
+        <div className="relative z-10 min-h-[90vh] sm:min-h-[85vh] flex flex-col items-center justify-center px-6 py-20">
+          {/* Girls logo */}
+          <Image
+            src="/logo-full.svg"
+            alt="Boomerang Pilates"
+            width={400}
+            height={300}
+            className="w-48 sm:w-56 md:w-64 h-auto mb-8 opacity-90 invert brightness-200"
+          />
+
+          {/* Tagline */}
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white text-center leading-[1.1] mb-6">
+            Put in the work.<br />
+            <span className="text-accent">Feel it come back.</span>
+          </h1>
+
+          {/* Positioning statement */}
+          <p className="text-white/70 text-base sm:text-lg text-center max-w-xl mb-3 leading-relaxed">
+            Durham&apos;s only Classical Pilates studio. Mat and apparatus — taught
+            the way Joseph Pilates designed it.
+          </p>
+          <p className="text-xs tracking-widest uppercase text-white/40 mb-10">
+            Opening Soon · Downtown Durham, NC
+          </p>
+
+          {/* Dual CTA */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <a
+              href="/classes#founding"
+              className="bg-accent text-white px-8 py-3.5 text-sm tracking-wide rounded-sm hover:bg-accent/85 transition-colors text-center"
+            >
+              Become a Founding Member
+            </a>
+            <a
+              href="/classes"
+              className="border border-white/30 text-white px-8 py-3.5 text-sm tracking-wide rounded-sm hover:border-white/60 hover:text-white transition-colors text-center"
+            >
+              View Classes
+            </a>
           </div>
         </div>
       </section>
 
+      {/* The pitch — why Boomerang */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Why Boomerang</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-6 leading-snug">
+            Classical Pilates is for every body.<br className="hidden sm:block" />
+            We&apos;re here to prove it.
+          </h2>
+          <p className="text-base text-muted leading-relaxed max-w-2xl mx-auto">
+            No trends. No gimmicks. Just the original method — mat and apparatus — taught with
+            precision and adapted to you. Whether you&apos;re brand new or deep in your practice,
+            the work meets you where you are.
+          </p>
+        </div>
+      </section>
+
       {/* What we offer */}
-      <section className="py-24 lg:py-32 bg-warm-white">
+      <section className="py-20 lg:py-28 bg-warm-white">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-14 text-center">
             What We Offer
@@ -64,12 +93,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quote over parallax accent image */}
+      {/* Social proof / quote */}
       <section
-        className="relative bg-fixed bg-cover bg-center h-[60vh] lg:h-[70vh]"
+        className="relative bg-fixed bg-cover bg-center h-[50vh] lg:h-[60vh]"
         style={{ backgroundImage: "url(/accent-image.png)" }}
       >
-        <div className="absolute inset-0 bg-[#5c4a3a]/35" />
+        <div className="absolute inset-0 bg-[#5c4a3a]/40" />
         <div className="relative h-full flex items-center justify-center">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-snug italic text-white">
@@ -82,16 +111,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Founding member signup */}
-      <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
+      {/* Founding member urgency */}
+      <section className="py-20 lg:py-28 bg-warm-white">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <span className="text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-3 py-1.5 rounded-sm">
+            Limited Time
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mt-5 mb-4">
+            Founding member rates won&apos;t last.
+          </h2>
+          <p className="text-base text-muted leading-relaxed mb-4">
+            Lock in unlimited classes at a rate that never goes up. Your first class is free.
+            Once we open, these prices are gone.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center my-8">
+            <div className="text-center">
+              <p className="font-serif text-3xl font-light text-charcoal">$149<span className="text-lg text-muted">/mo</span></p>
+              <p className="text-sm text-muted">Unlimited Mat</p>
+              <p className="text-xs text-accent mt-0.5">Save $30/mo vs regular</p>
+            </div>
+            <div className="hidden sm:block w-px h-16 bg-charcoal/10" />
+            <div className="text-center">
+              <p className="font-serif text-3xl font-light text-charcoal">$249<span className="text-lg text-muted">/mo</span></p>
+              <p className="text-sm text-muted">Unlimited All-Access</p>
+              <p className="text-xs text-accent mt-0.5">Save $50/mo vs regular</p>
+            </div>
+          </div>
+          <Button href="/classes#founding">See All Founding Pricing</Button>
+        </div>
+      </section>
+
+      {/* Waitlist signup */}
+      <section id="waitlist" className="py-24 lg:py-32">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">Coming Soon</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
             Be the first through the door.
           </h2>
           <p className="text-muted text-base mb-10">
-            Boomerang Pilates is opening in Durham. Join as a founding member
-            and your first class is on us.
+            Sign up and your first class is on us.
           </p>
           <WaitlistForm />
         </div>

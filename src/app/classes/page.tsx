@@ -26,13 +26,13 @@ export default function Classes() {
       </section>
 
       {/* Live Schedule */}
-      <section className="py-16 lg:py-20">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3 text-center">
-            This Week
+      <section className="py-20 lg:py-28">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3 text-center">
+            Book a Class
           </h2>
-          <p className="text-muted text-sm text-center mb-8 max-w-md mx-auto">
-            Tap a class for details. Book directly through Arketa.
+          <p className="text-muted text-base text-center mb-10 max-w-md mx-auto">
+            Tap a class to see details and book your spot.
           </p>
           <LiveSchedule />
         </div>

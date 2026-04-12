@@ -23,11 +23,11 @@ export default function Navigation() {
           <div>
             <Link href="/">
               <Image
-                src="/logo-boomerang.svg"
+                src="/logo-full.svg"
                 alt="Boomerang Pilates"
-                width={240}
-                height={46}
-                className="h-10 w-auto"
+                width={200}
+                height={150}
+                className="h-12 w-auto"
               />
             </Link>
           </div>
