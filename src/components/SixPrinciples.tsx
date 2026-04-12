@@ -73,7 +73,7 @@ const principles = [
   },
 ];
 
-export default function SixPrinciples() {
+export default function SixPrinciples({ embedded = false }: { embedded?: boolean }) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -92,35 +92,45 @@ export default function SixPrinciples() {
     return () => observer.disconnect();
   }, []);
 
-  return (
-    <section className="py-20 lg:py-28 bg-warm-white" ref={ref}>
-      <div className="max-w-5xl mx-auto px-6">
+  const content = (
+    <div ref={ref}>
+      {!embedded && (
         <div className="text-center mb-14">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">The Method</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
             Six Principles. Every Class.
           </h2>
         </div>
+      )}
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12">
-          {principles.map((p, i) => (
-            <div
-              key={p.name}
-              className="text-center transition-all duration-700 ease-out"
-              style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(24px)",
-                transitionDelay: `${i * 120}ms`,
-              }}
-            >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/8 text-accent mb-4">
-                {p.icon}
-              </div>
-              <h3 className="font-serif text-lg text-charcoal mb-1">{p.name}</h3>
-              <p className="text-sm text-muted">{p.description}</p>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12">
+        {principles.map((p, i) => (
+          <div
+            key={p.name}
+            className="text-center transition-all duration-700 ease-out"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(24px)",
+              transitionDelay: `${i * 120}ms`,
+            }}
+          >
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/8 text-accent mb-4">
+              {p.icon}
             </div>
-          ))}
-        </div>
+            <h3 className="font-serif text-lg text-charcoal mb-1">{p.name}</h3>
+            <p className="text-sm text-muted">{p.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  if (embedded) return content;
+
+  return (
+    <section className="py-20 lg:py-28 bg-warm-white">
+      <div className="max-w-5xl mx-auto px-6">
+        {content}
       </div>
     </section>
   );

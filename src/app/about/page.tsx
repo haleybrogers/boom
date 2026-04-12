@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Button from "@/components/Button";
 import Parallax from "@/components/Parallax";
-import Principles from "@/components/Principles";
+import SixPrinciples from "@/components/SixPrinciples";
 
 export const metadata = {
   title: "About",
@@ -106,7 +106,7 @@ export default function About() {
             every body through our door. No gatekeeping. No exceptions. Just the work.
           </p>
         </div>
-        <Principles />
+        <SixPrinciples embedded />
       </section>
 
       {/* Reformer photo break */}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
-import SixPrinciples from "@/components/SixPrinciples";
+import Link from "next/link";
 import NewToPilates from "@/components/NewToPilates";
 import StickyCTA from "@/components/StickyCTA";
 
@@ -21,26 +21,14 @@ export default function Home() {
         />
       </section>
 
-      {/* Positioning statement */}
+      {/* Positioning statement + CTA */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug">
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
-          <p className="text-muted text-base mt-4">
-            Put in the work. Feel it come back.
-          </p>
-        </div>
-      </section>
-
-      {/* Six Principles */}
-      <SixPrinciples />
-
-      {/* Mid-page CTA — catch warm traffic early */}
-      <section className="py-14 lg:py-16">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="text-muted text-base mb-5">
-            Opening soon — founding member rates are limited to the first 50 people.
+          <p className="text-xs tracking-widest uppercase text-accent mt-4 mb-6">
+            Opening Soon
           </p>
           <Link
             href="#waitlist"
