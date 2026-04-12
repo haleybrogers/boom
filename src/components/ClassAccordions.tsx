@@ -37,7 +37,7 @@ const sections = [
   },
   {
     category: "Apparatus Classes",
-    subtitle: "50 min · 3 spots max · $45 drop-in",
+    subtitle: "50 min · 3 spots max · $45 per class",
     description: "Real classical equipment. Real hands-on instruction. Three students per class — reformer, tower, barrels, and chair.",
     classes: [
       {

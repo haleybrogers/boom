@@ -18,7 +18,7 @@ const offerings = [
     description:
       "Reformer, tower, barrels, chair — the classical equipment that builds your practice and transforms how your body moves. Every class is capped at three so you get hands-on corrections, not just cues from across the room.",
     classes: ["Apparatus Foundations", "Intermediate Mixed Apparatus", "Athletic Reformer", "Athletic Tower", "Lengthen & Strengthen Tower"],
-    price: "$45 drop-in",
+    price: "$45 per class",
   },
   {
     title: "Privates & Duets",

@@ -32,7 +32,7 @@ const memberships = [
 
 const singleClass = [
   { name: "Mat Class", price: "$25", detail: "Drop-in · 15 spots · 50 min" },
-  { name: "Apparatus Class", price: "$45", detail: "Drop-in · 3 spots · 50 min" },
+  { name: "Apparatus Class", price: "$45", detail: "Per class · 3 spots · 50 min" },
   { name: "Private Session", price: "$110", detail: "By appointment · 50 min" },
   { name: "Duet Session", price: "$60", detail: "Per person · By appointment" },
 ];

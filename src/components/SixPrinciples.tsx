@@ -97,7 +97,7 @@ export default function SixPrinciples() {
         <div className="text-center mb-14">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">The Method</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
-            Six Principles. Every Class. No Exceptions.
+            Six Principles. Every Class.
           </h2>
         </div>
 
