@@ -47,10 +47,10 @@ export default function Navigation() {
 
           {/* Book button */}
           <Link
-            href="#waitlist"
+            href="/classes#founding"
             className="hidden md:block bg-accent text-white px-5 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-all duration-300"
           >
-            Join Waitlist
+            Founding Member
           </Link>
 
           {/* Mobile menu button */}
@@ -83,11 +83,11 @@ export default function Navigation() {
                 </Link>
               ))}
               <Link
-                href="#waitlist"
+                href="/classes#founding"
                 onClick={() => setIsOpen(false)}
                 className="bg-accent text-white px-5 py-2.5 text-xs tracking-widest uppercase text-center rounded-sm"
               >
-                Join Waitlist
+                Founding Member
               </Link>
             </div>
           </div>

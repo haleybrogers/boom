@@ -77,7 +77,8 @@ export default function ClassAccordions() {
   };
 
   return (
-    <div className="space-y-3">
+    <div>
+      <div className="space-y-3">
       {sections.map((section, i) => (
         <div
           key={section.category}
@@ -155,6 +156,20 @@ export default function ClassAccordions() {
           </div>
         </div>
       ))}
+      </div>
+
+      {/* Founding member CTA */}
+      <div className="mt-10 text-center">
+        <p className="text-base text-muted mb-4">
+          Ready to commit? Founding members save every month — forever.
+        </p>
+        <a
+          href="#founding"
+          className="inline-block bg-accent text-white px-7 py-3 text-sm tracking-wide rounded-sm hover:bg-accent/85 transition-colors"
+        >
+          See Founding Pricing
+        </a>
+      </div>
     </div>
   );
 }

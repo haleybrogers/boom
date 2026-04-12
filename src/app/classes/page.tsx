@@ -17,7 +17,7 @@ export default function Classes() {
           <h1 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-5">
             The Method Adapts to You
           </h1>
-          <p className="text-sm text-muted leading-relaxed">
+          <p className="text-base text-muted leading-relaxed">
             Classical Pilates — mat and apparatus — was designed for every body. The exercises come
             in a set order, so you always know what&apos;s next. If something doesn&apos;t work for you
             today, skip it or repeat what does. Nothing needs to be watered down to be accessible.
@@ -58,7 +58,7 @@ export default function Classes() {
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
             Get on the list.
           </h2>
-          <p className="text-muted text-sm mb-10">
+          <p className="text-muted text-base mb-10">
             We&apos;re opening soon. Sign up to be the first to know — and your
             first class is on us.
           </p>

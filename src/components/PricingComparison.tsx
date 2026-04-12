@@ -24,11 +24,11 @@ const foundingTiers = [
   },
 ];
 
-const dropIns = [
-  { name: "Mat Class", price: "$25", detail: "15 spots · 50 min" },
-  { name: "Apparatus Class", price: "$45", detail: "3 spots · 50 min" },
-  { name: "Private Session", price: "$110", detail: "1-on-1 · 50 min" },
-  { name: "Duet Session", price: "$60", detail: "Per person · 50 min" },
+const singleClass = [
+  { name: "Mat Class", price: "$25", detail: "Drop-in · 15 spots · 50 min" },
+  { name: "Apparatus Class", price: "$45", detail: "Drop-in · 3 spots · 50 min" },
+  { name: "Private Session", price: "$110", detail: "By appointment · 50 min" },
+  { name: "Duet Session", price: "$60", detail: "By appointment · Per person · 50 min" },
 ];
 
 const packs = [
@@ -44,7 +44,7 @@ export default function PricingComparison() {
   return (
     <>
       {/* Founding Member — the main event */}
-      <section className="py-24 lg:py-32 bg-warm-white">
+      <section id="founding" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-14">
             <span className="text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-3 py-1.5 rounded-sm">
@@ -118,24 +118,13 @@ export default function PricingComparison() {
             ))}
           </div>
 
-          {/* Quick math callout */}
-          <div className="bg-cream border border-charcoal/10 rounded-sm p-6 md:p-8 text-center max-w-2xl mx-auto mb-16">
-            <p className="font-serif text-lg font-light text-charcoal mb-2">
-              Do the math
-            </p>
-            <p className="text-sm text-muted leading-relaxed">
-              At 3 mat classes/week, a founding mat member pays <strong className="text-charcoal">~$12/class</strong> instead of $25 drop-in.
-              That&apos;s <strong className="text-accent">less than half price</strong> — and the rate is locked in for life.
-            </p>
-          </div>
-
-          {/* Drop-in Pricing */}
+          {/* Single Class Pricing */}
           <div className="mb-12">
             <h3 className="font-serif text-xl font-light text-charcoal mb-6 text-center">
-              Drop-In Rates
+              Single Class Rates
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {dropIns.map((item) => (
+              {singleClass.map((item) => (
                 <div key={item.name} className="bg-white border border-charcoal/10 rounded-sm p-5 text-center">
                   <p className="font-serif text-2xl font-light text-charcoal mb-1">{item.price}</p>
                   <p className="font-serif text-sm text-charcoal mb-0.5">{item.name}</p>

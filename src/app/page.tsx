@@ -17,14 +17,14 @@ export default function Home() {
           className="object-cover scale-[1.02] origin-center sm:hidden"
           priority
         />
-        {/* Desktop: natural aspect ratio */}
+        {/* Desktop: constrained height */}
         <Image
           src="/hero-image.png"
           alt="Two figures in the Boomerang Pilates pose"
-          width={2000}
-          height={800}
-          className="hidden sm:block w-full h-auto scale-[1.02] origin-center"
+          fill
+          className="hidden sm:block object-cover object-top scale-[1.02] origin-center"
         />
+        <div className="hidden sm:block h-[70vh] lg:h-[75vh]" />
         <div className="h-[85vh] sm:hidden" />
         {/* Warm brown wash over image */}
         <div className="absolute inset-0 bg-[#5c4a3a]/25 mix-blend-multiply pointer-events-none" />
@@ -53,8 +53,13 @@ export default function Home() {
             What We Offer
           </h2>
           <Offerings />
-          <div className="text-center mt-12">
-            <Button href="/classes" variant="outline">View Full Schedule</Button>
+          <div className="text-center mt-12 space-y-3">
+            <div>
+              <Button href="/classes#founding">Become a Founding Member</Button>
+            </div>
+            <div>
+              <Button href="/classes" variant="outline">View Classes &amp; Schedule</Button>
+            </div>
           </div>
         </div>
       </section>
@@ -84,7 +89,7 @@ export default function Home() {
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
             Be the first through the door.
           </h2>
-          <p className="text-muted text-sm mb-10">
+          <p className="text-muted text-base mb-10">
             Boomerang Pilates is opening in Durham. Join as a founding member
             and your first class is on us.
           </p>

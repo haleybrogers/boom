@@ -33,24 +33,47 @@ export default function Events() {
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
             Grand Opening
           </h2>
-          <p className="text-muted text-sm leading-relaxed mb-6 max-w-lg mx-auto">
+          <p className="text-muted text-base leading-relaxed mb-6 max-w-lg mx-auto">
             We&apos;re planning something special to kick things off. Details are coming —
             but if you want to be in the room when it happens, get on the list.
           </p>
-          <div className="inline-block border border-charcoal/10 rounded-sm px-8 py-6 bg-cream mb-10">
+          <div className="inline-block border border-charcoal/10 rounded-sm px-8 py-6 bg-cream mb-4">
             <p className="font-serif text-xl font-light text-charcoal mb-1">Date &amp; Details TBA</p>
             <p className="text-xs text-muted tracking-wide">Durham, NC</p>
           </div>
+          <p className="text-sm text-accent">
+            Founding member rates end when the doors open.
+          </p>
+        </div>
+      </section>
+
+      {/* Founding Member Push */}
+      <section className="py-20 lg:py-24">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Limited Time</p>
+          <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
+            Lock in your rate before we open.
+          </h2>
+          <p className="text-muted text-base mb-8">
+            Founding members get a locked-in monthly rate that never goes up — plus your
+            first class free. Once we open, these prices are gone.
+          </p>
+          <a
+            href="/classes#founding"
+            className="inline-block bg-accent text-white px-7 py-3 text-sm tracking-wide rounded-sm hover:bg-accent/85 transition-colors"
+          >
+            See Founding Pricing
+          </a>
         </div>
       </section>
 
       {/* Stay in the loop */}
-      <section className="py-24 lg:py-32">
+      <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
             Don&apos;t miss it.
           </h2>
-          <p className="text-muted text-sm mb-10">
+          <p className="text-muted text-base mb-10">
             Sign up and we&apos;ll let you know the moment we have a date.
           </p>
           <WaitlistForm />

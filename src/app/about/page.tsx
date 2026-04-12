@@ -52,7 +52,7 @@ export default function About() {
               <p className="text-xs tracking-widest uppercase text-muted mb-4">
                 Co-Founder
               </p>
-              <p className="text-sm text-muted leading-relaxed">
+              <p className="text-base text-muted leading-relaxed">
                 3rd Generation Classical Pilates instructor, certified in mat
                 and apparatus. Trained at App State under Rebecca Quinn and
                 Marianne Adams. Also an elementary art teacher for Durham
@@ -77,7 +77,7 @@ export default function About() {
               <p className="text-xs tracking-widest uppercase text-muted mb-4">
                 Co-Founder
               </p>
-              <p className="text-sm text-muted leading-relaxed">
+              <p className="text-base text-muted leading-relaxed">
                 Classical Pilates certified from App State in 2023, following
                 in her big sister&apos;s footsteps. Passionate about making
                 Pilates accessible to every body.
@@ -96,12 +96,12 @@ export default function About() {
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-6">
             Classical Pilates Is for Every Body
           </h2>
-          <p className="text-sm text-muted leading-relaxed mb-4">
+          <p className="text-base text-muted leading-relaxed mb-4">
             Joseph Pilates designed this method for everyone — not just athletes, not just dancers,
             not just one kind of person. The original work doesn&apos;t need to be softened or
             reimagined to be inclusive. It already is.
           </p>
-          <p className="text-sm text-muted leading-relaxed">
+          <p className="text-base text-muted leading-relaxed">
             We teach the method the way it was designed because we believe in it — and we welcome
             every body through our door. No gatekeeping. No exceptions. Just the work.
           </p>
@@ -120,13 +120,14 @@ export default function About() {
       {/* CTA */}
       <section className="py-24 lg:py-32">
         <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Limited Time</p>
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
-            Come meet us.
+            Be a founding member.
           </h2>
-          <p className="text-muted text-sm mb-8">
-            We&apos;re opening soon. Get on the list and be the first to know.
+          <p className="text-muted text-base mb-8">
+            Lock in your rate before we open — it never goes up. Your first class is free.
           </p>
-          <Button href="/#waitlist">Join the Waitlist</Button>
+          <Button href="/classes#founding">See Founding Pricing</Button>
         </div>
       </section>
     </>
