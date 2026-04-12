@@ -41,9 +41,12 @@ export default function Classes() {
       {/* Class Details — Accordions */}
       <section className="py-24 lg:py-32">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-10 text-center">
-            Our Classes
+          <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3 text-center">
+            What to Expect
           </h2>
+          <p className="text-muted text-base text-center mb-10 max-w-md mx-auto">
+            Every class format, what it&apos;s like, and who it&apos;s for.
+          </p>
           <ClassAccordions />
         </div>
       </section>
