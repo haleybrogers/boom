@@ -55,6 +55,43 @@ const pricing = [
   { name: "Duets", capacity: "2 people", price: "$60", focus: "Customized apparatus work with a partner." },
 ];
 
+const packages = [
+  {
+    category: "Founding Member",
+    tag: "Limited Time",
+    items: [
+      { name: "Founding Unlimited Mat", price: "$149/mo", note: "Unlimited mat classes. Locked in for life.", highlight: true },
+      { name: "Founding Unlimited All-Access", price: "$249/mo", note: "Unlimited mat + apparatus. Locked in for life.", highlight: true },
+    ],
+  },
+  {
+    category: "Class Packs",
+    tag: null,
+    items: [
+      { name: "5-Class Mat Pack", price: "$110", note: "$22/class · Never expires.", highlight: false },
+      { name: "10-Class Mat Pack", price: "$200", note: "$20/class · Never expires.", highlight: false },
+      { name: "5-Class Apparatus Pack", price: "$200", note: "$40/class · Never expires.", highlight: false },
+      { name: "10-Class Apparatus Pack", price: "$375", note: "$37.50/class · Never expires.", highlight: false },
+    ],
+  },
+  {
+    category: "Monthly Memberships",
+    tag: null,
+    items: [
+      { name: "Unlimited Mat", price: "$179/mo", note: "Unlimited mat classes each month.", highlight: false },
+      { name: "Unlimited All-Access", price: "$299/mo", note: "Unlimited mat + apparatus classes each month.", highlight: false },
+    ],
+  },
+  {
+    category: "New Here?",
+    tag: "Intro Offer",
+    items: [
+      { name: "First Class Free", price: "Free", note: "Your first mat class is on us. No strings.", highlight: true },
+      { name: "Intro 3-Pack", price: "$60", note: "$20/class · Try 3 mat classes in your first month.", highlight: false },
+    ],
+  },
+];
+
 
 export default function Classes() {
   return (
@@ -166,8 +203,53 @@ export default function Classes() {
         </div>
       </section>
 
+      {/* Packages */}
+      <section className="py-24 lg:py-32 bg-warm-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="font-serif text-3xl font-light text-charcoal mb-3 text-center">
+            Packages &amp; Memberships
+          </h2>
+          <p className="text-sm text-muted text-center mb-14 max-w-md mx-auto">
+            Drop in, commit to a pack, or lock in a founding rate before we open.
+          </p>
+
+          <div className="space-y-14">
+            {packages.map((group) => (
+              <div key={group.category}>
+                <div className="flex items-center gap-3 mb-6">
+                  <h3 className="font-serif text-xl font-light text-charcoal">
+                    {group.category}
+                  </h3>
+                  {group.tag && (
+                    <span className="text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-2.5 py-1 rounded-sm">
+                      {group.tag}
+                    </span>
+                  )}
+                </div>
+                <div className="divide-y divide-charcoal/10 border-y border-charcoal/10">
+                  {group.items.map((item) => (
+                    <div
+                      key={item.name}
+                      className={`py-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-6 ${
+                        item.highlight ? "bg-accent/[0.03] -mx-4 px-4 rounded-sm" : ""
+                      }`}
+                    >
+                      <div className="flex-1 min-w-0">
+                        <p className="font-serif text-lg font-light text-charcoal">{item.name}</p>
+                        <p className="text-xs text-muted mt-0.5">{item.note}</p>
+                      </div>
+                      <span className="font-serif text-xl font-light text-charcoal shrink-0">{item.price}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Waitlist */}
-      <section id="book" className="py-24 lg:py-32 bg-warm-white">
+      <section id="book" className="py-24 lg:py-32">
         <div className="max-w-xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">Coming Soon</p>
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
