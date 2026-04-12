@@ -29,68 +29,140 @@ const principles = [
   },
 ];
 
-/* Each icon uses stroke-dashoffset animation to "draw" itself in */
+/* Icon that draws in on scroll AND replays on hover */
 function AnimatedIcon({ name, animate, delay }: { name: string; animate: boolean; delay: number }) {
+  const [hovered, setHovered] = useState(false);
+  const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
+
+  // Track when the initial scroll animation completes
+  useEffect(() => {
+    if (animate) {
+      const timer = setTimeout(() => setHasAnimatedIn(true), delay + 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [animate, delay]);
+
+  // For initial scroll-in: use staggered delays
+  // For hover replay: reset then re-draw with no stagger delay
+  const isDrawn = hovered ? true : animate;
+  const isReset = hovered === false && hasAnimatedIn ? false : !animate;
+
+  // On hover: briefly reset to 0, then draw. We use a key trick to force re-render
+  const [animKey, setAnimKey] = useState(0);
+
+  const handleMouseEnter = () => {
+    setAnimKey((k) => k + 1); // force re-mount to replay
+    // Small delay so the reset frame renders before the draw
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setHovered(true);
+      });
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
+  // On re-mount (key change), start un-drawn then draw in
+  const [drawState, setDrawState] = useState<"idle" | "reset" | "drawing">("idle");
+
+  useEffect(() => {
+    if (animKey === 0) return; // skip initial mount
+    setDrawState("reset");
+    const raf = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setDrawState("drawing");
+      });
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [animKey]);
+
+  const shouldDraw = drawState === "drawing" || (drawState === "idle" && animate);
+  const activeDelay = drawState === "idle" ? delay : 0;
+
   const style = {
     strokeDasharray: 200,
-    strokeDashoffset: animate ? 0 : 200,
-    transition: `stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1) ${delay}ms`,
+    strokeDashoffset: shouldDraw ? 0 : 200,
+    transition: drawState === "reset"
+      ? "none"
+      : `stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${activeDelay}ms`,
   };
 
   const fillStyle = {
-    opacity: animate ? 1 : 0,
-    transition: `opacity 0.6s ease ${delay + 600}ms`,
+    opacity: shouldDraw ? 1 : 0,
+    transition: drawState === "reset"
+      ? "none"
+      : `opacity 0.4s ease ${activeDelay + 400}ms`,
   };
+
+  const stagger = (ms: number) => ({
+    ...style,
+    transitionDelay: drawState === "reset" ? "0ms" : `${activeDelay + ms}ms`,
+    transition: drawState === "reset"
+      ? "none"
+      : `stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${activeDelay + ms}ms`,
+  });
+
+  const wrapper = (children: React.ReactNode) => (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="cursor-pointer"
+    >
+      {children}
+    </div>
+  );
 
   switch (name) {
     case "Breath":
-      return (
-        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round">
+      return wrapper(
+        <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round">
           <path d="M6 12h12a4 4 0 100-4" style={style} />
-          <path d="M6 18h16a3.5 3.5 0 100-3.5" style={{ ...style, transitionDelay: `${delay + 200}ms` }} />
-          <path d="M6 24h10a3 3 0 100-3" style={{ ...style, transitionDelay: `${delay + 400}ms` }} />
+          <path d="M6 18h16a3.5 3.5 0 100-3.5" style={stagger(150)} />
+          <path d="M6 24h10a3 3 0 100-3" style={stagger(300)} />
         </svg>
       );
     case "Flow":
-      return (
-        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
+      return wrapper(
+        <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
           <path d="M4 16c4-8 8 8 12 0s8 8 12 0" strokeLinecap="round" style={style} />
-          <path d="M4 22c4-8 8 8 12 0s8 8 12 0" strokeLinecap="round" style={{ ...style, transitionDelay: `${delay + 300}ms`, opacity: animate ? 0.4 : 0 }} />
+          <path d="M4 22c4-8 8 8 12 0s8 8 12 0" strokeLinecap="round" style={{ ...stagger(200), opacity: shouldDraw ? 0.4 : 0 }} />
         </svg>
       );
     case "Concentration":
-      return (
-        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
+      return wrapper(
+        <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
           <circle cx="16" cy="16" r="10" style={style} />
-          <circle cx="16" cy="16" r="5" style={{ ...style, transitionDelay: `${delay + 300}ms` }} />
+          <circle cx="16" cy="16" r="5" style={stagger(200)} />
           <circle cx="16" cy="16" r="1.5" fill="currentColor" style={fillStyle} />
         </svg>
       );
     case "Control":
-      return (
-        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
+      return wrapper(
+        <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
           <rect x="6" y="10" width="20" height="12" rx="2" style={style} />
-          <line x1="16" y1="10" x2="16" y2="22" style={{ ...style, transitionDelay: `${delay + 300}ms` }} />
+          <line x1="16" y1="10" x2="16" y2="22" style={stagger(200)} />
           <circle cx="16" cy="16" r="3" fill="currentColor" opacity={0.15} stroke="currentColor" style={fillStyle} />
         </svg>
       );
     case "Center":
-      return (
-        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
-          <circle cx="16" cy="16" r="12" strokeDasharray="3 3" style={{ opacity: animate ? 1 : 0, transition: `opacity 0.8s ease ${delay}ms` }} />
+      return wrapper(
+        <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
+          <circle cx="16" cy="16" r="12" strokeDasharray="3 3" style={{ opacity: shouldDraw ? 1 : 0, transition: drawState === "reset" ? "none" : `opacity 0.6s ease ${activeDelay}ms` }} />
           <circle cx="16" cy="16" r="4" fill="currentColor" opacity={0.15} stroke="currentColor" style={fillStyle} />
-          <line x1="16" y1="4" x2="16" y2="12" style={{ ...style, transitionDelay: `${delay + 200}ms` }} />
-          <line x1="16" y1="20" x2="16" y2="28" style={{ ...style, transitionDelay: `${delay + 300}ms` }} />
-          <line x1="4" y1="16" x2="12" y2="16" style={{ ...style, transitionDelay: `${delay + 400}ms` }} />
-          <line x1="20" y1="16" x2="28" y2="16" style={{ ...style, transitionDelay: `${delay + 500}ms` }} />
+          <line x1="16" y1="4" x2="16" y2="12" style={stagger(150)} />
+          <line x1="16" y1="20" x2="16" y2="28" style={stagger(250)} />
+          <line x1="4" y1="16" x2="12" y2="16" style={stagger(350)} />
+          <line x1="20" y1="16" x2="28" y2="16" style={stagger(450)} />
         </svg>
       );
     case "Precision":
-      return (
-        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
+      return wrapper(
+        <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
           <path d="M6 26L26 6" strokeLinecap="round" style={style} />
-          <path d="M22 6h4v4" strokeLinecap="round" strokeLinejoin="round" style={{ ...style, transitionDelay: `${delay + 300}ms` }} />
-          <path d="M12 16l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" style={{ ...style, transitionDelay: `${delay + 500}ms` }} />
+          <path d="M22 6h4v4" strokeLinecap="round" strokeLinejoin="round" style={stagger(200)} />
+          <path d="M12 16l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" style={stagger(400)} />
         </svg>
       );
     default:
@@ -141,7 +213,7 @@ export default function SixPrinciples({ embedded = false }: { embedded?: boolean
                 transitionDelay: `${delay}ms`,
               }}
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/8 text-accent mb-4">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/8 text-accent mb-4 transition-transform duration-300 hover:scale-110">
                 <AnimatedIcon name={p.name} animate={visible} delay={delay} />
               </div>
               <h3 className="font-serif text-lg text-charcoal mb-1">{p.name}</h3>
