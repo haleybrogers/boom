@@ -5,7 +5,6 @@ import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import StickyCTA from "@/components/StickyCTA";
-import FoundingCountdown from "@/components/FoundingCountdown";
 
 export default function Home() {
   return (
@@ -33,32 +32,6 @@ export default function Home() {
           <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
             Two sisters. Third-generation classically trained, fully certified across the method. One belief: classical Pilates was made for every body — not just the front row. We built this studio to prove it.
           </p>
-        </div>
-      </section>
-
-      {/* Founding Member Tease */}
-      <section className="pb-16 lg:pb-24">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="bg-accent/5 border border-accent/15 rounded-sm px-8 md:px-14 py-10 md:py-12 text-center">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-5">
-              Founding Member Pricing · Ends June 15
-            </p>
-            <FoundingCountdown showLabel={false} />
-            <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mb-3 mt-2 leading-tight">
-              Become a founding member.
-            </h2>
-            <p className="text-sm text-muted mb-6 max-w-xl mx-auto leading-relaxed">
-              Lock in pre-opening rates for life, get first dibs on the schedule, and help shape
-              the studio from day one. Soft-opening classes, opening night invite, welcome kit, and
-              a seat in the community we&apos;re building before the doors even open.
-            </p>
-            <Link
-              href="/classes#founding"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-            >
-              Reserve Your Spot
-            </Link>
-          </div>
         </div>
       </section>
 
