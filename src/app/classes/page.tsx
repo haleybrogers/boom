@@ -55,7 +55,7 @@ export default function Classes() {
       </section>
 
       {/* 3. Schedule a Private */}
-      <section className="py-20 lg:py-28 bg-warm-white">
+      <section id="privates" className="py-20 lg:py-28 bg-warm-white">
         <SchedulePrivate />
       </section>
 

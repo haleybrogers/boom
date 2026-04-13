@@ -71,10 +71,10 @@ export default function NewToPilates() {
                 One-on-one. We&apos;ll find the best path for you.
               </p>
               <Link
-                href="/contact"
+                href="/classes#privates"
                 className="link-arrow text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
               >
-                Get in Touch
+                Book a Private
               </Link>
             </div>
           </div>

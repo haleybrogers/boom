@@ -16,6 +16,8 @@ const offerings = [
     ],
     startingPrice: "$25",
     priceNote: "drop-in · memberships from $150/mo",
+    link: "/classes",
+    linkLabel: "View Schedule",
   },
   {
     title: "Apparatus",
@@ -32,6 +34,8 @@ const offerings = [
     ],
     startingPrice: "$45",
     priceNote: "per class · memberships from $120/mo",
+    link: "/classes",
+    linkLabel: "View Schedule",
   },
   {
     title: "Privates & Duets",
@@ -45,6 +49,8 @@ const offerings = [
     ],
     startingPrice: "$60",
     priceNote: "duets per person · privates $110",
+    link: "/classes#privates",
+    linkLabel: "Book a Private",
   },
 ];
 
@@ -104,10 +110,10 @@ export default function OfferingCards() {
                 </div>
               </div>
               <Link
-                href="/classes"
+                href={offering.link}
                 className="link-arrow inline-block mt-4 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
               >
-                View Schedule
+                {offering.linkLabel}
               </Link>
             </div>
           </div>
