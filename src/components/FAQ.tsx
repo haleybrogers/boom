@@ -31,7 +31,7 @@ const faqs = [
   {
     question: "Where are you located?",
     answer:
-      "We're in Downtown Durham, NC. Exact address and parking details coming soon — sign up for our email list and we'll send everything before opening day.",
+      "343 W Main St in Downtown Durham, NC. Parking details coming soon — we'll send everything before opening day.",
   },
   {
     question: "What's a founding membership?",

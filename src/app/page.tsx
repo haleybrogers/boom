@@ -24,7 +24,7 @@ export default function Home() {
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">
-            Opening Soon · Durham, NC
+            Opening Soon
           </p>
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-3">
             Downtown Durham&apos;s only Classical Pilates studio.
@@ -66,16 +66,12 @@ export default function Home() {
       {/* Waitlist */}
       <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">Limited to 50 Members</p>
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Stay in the Loop</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-            Be part of it from the beginning.
+            Be the first to know.
           </h2>
-          <p className="text-muted text-base mb-4">
-            Founding members get a rate that never goes up, first access to the schedule,
-            and an invite to our opening night.
-          </p>
-          <p className="text-muted text-sm mb-10">
-            This is the crew that builds the culture. We want you in it.
+          <p className="text-muted text-base mb-10">
+            Grand opening details, new class drops, events, and the stuff we only share with our people.
           </p>
           <WaitlistForm />
         </div>

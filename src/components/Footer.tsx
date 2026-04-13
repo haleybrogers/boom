@@ -65,7 +65,7 @@ export default function Footer() {
             {eggHover ? (
               <span className="text-accent/80">Est. 2026. But the method? 1920.</span>
             ) : (
-              <>&copy; {new Date().getFullYear()} Boomerang Pilates · Durham, NC</>
+              <>&copy; {new Date().getFullYear()} Boomerang Pilates · 343 W Main St, Durham, NC</>
             )}
           </p>
         </div>

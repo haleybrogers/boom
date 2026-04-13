@@ -95,6 +95,18 @@ export default function Contact() {
               @boomerangpilatesnc
             </a>
           </div>
+          <div>
+            <a
+              href="https://maps.google.com/?q=343+W+Main+St+Durham+NC"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base text-charcoal hover:text-accent transition-colors leading-relaxed"
+            >
+              343 W Main St
+              <br />
+              Durham, NC
+            </a>
+          </div>
           <div className="pt-2">
             <a
               href="https://g.page/r/boomerangpilates/review"

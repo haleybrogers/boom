@@ -1,5 +1,7 @@
 "use client";
 
+import FoundingCountdown from "./FoundingCountdown";
+
 const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
 
 const memberships = [
@@ -47,9 +49,10 @@ export default function FoundingPricingOverlay() {
         <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mt-5 mb-3">
           Lock In Your Rate Forever
         </h2>
-        <p className="text-sm text-muted max-w-md mx-auto">
+        <p className="text-sm text-muted max-w-md mx-auto mb-8">
           The first 50 members set the tone for this studio. Your rate never goes up — and you&apos;re in from day one.
         </p>
+        <FoundingCountdown />
       </div>
 
       {/* 2x2 grid */}

@@ -45,22 +45,21 @@ export default function Events() {
             </svg>
           </div>
 
-          <p className="text-xs tracking-[0.3em] uppercase text-accent mb-6">
+          <p className="text-xs tracking-[0.3em] uppercase text-white mb-6">
             You&apos;re Invited
           </p>
           <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-white mb-6 leading-tight">
             Grand Opening
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mb-6" />
-          <p className="text-white/50 text-base leading-relaxed mb-10 max-w-md mx-auto">
-            We&apos;re planning something special to mark the moment.
-            Details are coming — get on the list to be in the room when it happens.
+          <p className="text-white/75 text-base leading-relaxed mb-10 max-w-md mx-auto">
+            We&apos;re opening the doors on June 15. Come throw the first class with us.
           </p>
 
-          <div className="inline-flex items-center gap-3 border border-white/10 rounded-sm px-8 py-5 bg-white/5 backdrop-blur-sm mb-8">
+          <div className="inline-flex items-center gap-3 border border-white/15 rounded-sm px-8 py-5 bg-white/5 backdrop-blur-sm mb-8">
             <div className="text-center">
-              <p className="font-serif text-lg text-white mb-0.5">Date &amp; Details TBA</p>
-              <p className="text-xs text-white/40 tracking-widest uppercase">Downtown Durham, NC</p>
+              <p className="font-serif text-2xl text-white mb-1">Monday, June 15, 2026</p>
+              <p className="text-xs text-white/60 tracking-widest uppercase">343 W Main St · Durham, NC</p>
             </div>
           </div>
 
