@@ -128,7 +128,10 @@ export default function LiveSchedule() {
       </div>
 
       {loading ? (
-        <div className="text-center py-12">
+        /* Reserve the full schedule height during fetch so hash-anchor
+           links (#founding, #privates, etc.) don't drift when the grid
+           materializes and shifts layout below. */
+        <div className="min-h-[520px] flex items-center justify-center">
           <div className="inline-block w-6 h-6 border-2 border-charcoal/20 border-t-accent rounded-full animate-spin" />
         </div>
       ) : (

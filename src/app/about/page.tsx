@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Button from "@/components/Button";
 import SixPrinciples from "@/components/SixPrinciples";
 
 export const metadata = {
@@ -199,19 +198,6 @@ export default function About() {
         <div className="absolute inset-0 bg-[#5c4a3a]/20" />
       </section>
 
-      {/* CTA */}
-      <section className="py-24 lg:py-32">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">Limited Time</p>
-          <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
-            Be a founding member.
-          </h2>
-          <p className="text-muted text-base mb-8">
-            Lock in your rate before we open — it never goes up. Plus exclusive invites to our soft opening and celebratory events.
-          </p>
-          <Button href="/classes#founding">See Founding Pricing</Button>
-        </div>
-      </section>
     </>
   );
 }
