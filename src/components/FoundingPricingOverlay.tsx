@@ -75,8 +75,8 @@ export default function FoundingPricingOverlay() {
         >
           <div className="flex items-center justify-between mb-3">
             <p className="text-[10px] tracking-widest uppercase text-accent">Membership</p>
-            <span className="text-[9px] tracking-widest uppercase text-accent bg-accent/15 px-2 py-0.5 rounded-sm">
-              Only 15 Spots Available
+            <span className="text-[9px] tracking-widest uppercase text-accent bg-accent/15 px-2 py-0.5 rounded-sm whitespace-nowrap">
+              Only 15 Spots
             </span>
           </div>
           <h4 className="font-serif text-lg font-light text-charcoal mb-1">Unlimited Mat</h4>

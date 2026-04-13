@@ -52,13 +52,16 @@ export default function PasswordPage() {
         <p className="text-[10px] tracking-[0.3em] uppercase text-accent mb-4">
           Boomerang Pilates
         </p>
-        <h1 className="font-serif text-3xl font-light text-charcoal mb-2">
+        <h1 className="font-serif text-3xl font-light text-charcoal mb-3">
           Almost <span className="text-accent italic">open</span>.
         </h1>
+        <p className="font-serif text-base italic text-accent mb-2">
+          Classical Pilates. For every body.
+        </p>
         {/* Red hairline divider */}
         <div className="w-8 h-px bg-accent mx-auto my-5" />
-        <p className="text-sm text-muted mb-8">
-          This site is under construction.
+        <p className="text-xs text-muted mb-8">
+          Durham, NC · Opening June 15
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
