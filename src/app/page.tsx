@@ -5,6 +5,7 @@ import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import StickyCTA from "@/components/StickyCTA";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   return (
@@ -38,7 +39,7 @@ export default function Home() {
       {/* What We Offer */}
       <section className="py-20 lg:py-28 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
+          <Reveal className="text-center mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
               What We Offer
             </h2>
@@ -46,7 +47,7 @@ export default function Home() {
             <p className="text-muted text-base max-w-md mx-auto">
               Mat, apparatus, privates, and duets — classical Pilates the way it was designed.
             </p>
-          </div>
+          </Reveal>
           <OfferingCards />
         </div>
       </section>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 const offerings = [
   {
@@ -66,17 +67,17 @@ export default function OfferingCards() {
             className={`flex flex-col ${reversed ? "md:flex-row-reverse" : "md:flex-row"} gap-8 md:gap-12 items-center`}
           >
             {/* Photo */}
-            <div className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden">
+            <Reveal className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden">
               <Image
                 src={offering.image}
                 alt={offering.title}
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
               />
-            </div>
+            </Reveal>
 
             {/* Text */}
-            <div className="w-full md:w-1/2">
+            <Reveal delay={150} className="w-full md:w-1/2">
               <h3 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-2">
                 {offering.title}
               </h3>
@@ -115,7 +116,7 @@ export default function OfferingCards() {
               >
                 {offering.linkLabel}
               </Link>
-            </div>
+            </Reveal>
           </div>
         );
       })}

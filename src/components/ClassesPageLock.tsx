@@ -3,41 +3,44 @@
 import { useEffect } from "react";
 
 /**
- * Prevents the /classes page from auto-jumping to a section after load.
- *
- * Root causes we're defending against:
- *  1. Browser scroll-anchoring / hash resolution firing while async content
- *     (LiveSchedule) is still hydrating.
- *  2. History scroll-restoration restoring a previous scroll position.
- *  3. Late layout shifts pushing the scroll position down.
- *
- * On mount we disable scroll restoration, strip any hash, and pin scrollY at
- * 0 across the first ~1.5s — long enough to outlast LiveSchedule's async
- * render and any other late layout shifts.
+ * /classes scroll behavior:
+ *   - On every load, force scroll to the very top first (overrides browser
+ *     scroll-restoration and any premature hash jump).
+ *   - If a hash like #founding is present in the URL, wait for the page to
+ *     settle (LiveSchedule hydrates async and changes layout), then
+ *     scroll smoothly to the target section.
+ *   - If no hash, stay pinned at the top.
  */
 export default function ClassesPageLock() {
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
-    if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname);
-    }
 
+    const hash = window.location.hash;
+
+    // Hard pin to top during the first ~1500ms while async content settles.
     let cancelled = false;
     const start = performance.now();
     const LOCK_MS = 1500;
-
     const pin = () => {
       if (cancelled) return;
       if (window.scrollY !== 0) window.scrollTo(0, 0);
       if (performance.now() - start < LOCK_MS) {
         requestAnimationFrame(pin);
+      } else if (hash) {
+        // After lock ends, smooth-scroll to the requested section (if any).
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       }
     };
     requestAnimationFrame(pin);
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return null;
