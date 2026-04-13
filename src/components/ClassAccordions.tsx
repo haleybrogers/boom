@@ -11,7 +11,7 @@ const sections = [
       {
         title: "Open Level Classical Mat",
         level: "All levels",
-        description: "The class that started it all. Every session offers modifications for newer students and advancements for those deeper in their practice. This is classical Pilates the way it was designed: challenging, precise, and accessible to every body in the room.",
+        description: "The foundation of everything we do. Every session offers modifications for newer students and advancements for those deeper in their practice. This is classical Pilates the way it was designed: challenging, precise, and accessible to every body in the room.",
       },
       {
         title: "Return to Life Mat — Full 34",

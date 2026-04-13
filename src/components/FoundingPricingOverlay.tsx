@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+// TODO: Replace with actual Arketa membership purchase URLs when available
+const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
 
 const memberships = [
   {
@@ -49,15 +50,18 @@ export default function FoundingPricingOverlay() {
           </p>
         </div>
 
-        {/* Compact 2x2 grid */}
+        {/* Clickable 2x2 grid */}
         <div className="grid grid-cols-2 gap-3 mb-6">
           {memberships.map((tier) => (
-            <div
+            <a
               key={tier.name}
-              className={`p-4 rounded-sm border text-center ${
+              href={MEMBERSHIP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group p-4 rounded-sm border text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer ${
                 tier.highlight
-                  ? "border-accent/20 bg-accent/3"
-                  : "border-charcoal/8 bg-white"
+                  ? "border-accent/20 bg-accent/3 hover:border-accent/40"
+                  : "border-charcoal/8 bg-white hover:border-accent/20"
               }`}
             >
               <p className="font-serif text-sm font-light text-charcoal mb-0.5">
@@ -71,20 +75,14 @@ export default function FoundingPricingOverlay() {
                 <span className="text-[11px] text-muted">/mo</span>
               </div>
               <p className="text-[10px] text-accent mt-0.5">{tier.perClass}</p>
-            </div>
+              <p className="text-[9px] tracking-widest uppercase text-charcoal/0 group-hover:text-accent mt-2 transition-colors duration-200">
+                Select →
+              </p>
+            </a>
           ))}
         </div>
 
-        <p className="text-[10px] text-muted/50 text-center mb-5">3-month minimum commitment</p>
-
-        <div className="text-center">
-          <Link
-            href="#book"
-            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
-          >
-            Become a Founding Member
-          </Link>
-        </div>
+        <p className="text-[10px] text-muted/50 text-center">3-month minimum commitment</p>
       </div>
     </div>
   );

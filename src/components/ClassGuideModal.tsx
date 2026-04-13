@@ -12,7 +12,7 @@ const sections = [
         title: "Open Level Classical Mat",
         level: "All levels",
         description:
-          "The class that started it all. Modifications for newer students, advancements for those deeper in their practice. Classical Pilates the way it was designed.",
+          "The foundation of everything we do. Modifications for newer students, advancements for those deeper in their practice. Classical Pilates the way it was designed.",
       },
       {
         title: "Return to Life Mat — Full 34",

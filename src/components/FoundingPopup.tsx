@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+
+// TODO: Replace with actual Arketa membership purchase URLs when available
+const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
 
 const rates = [
   { name: "Unlimited Mat", price: "$199", perClass: "$12/class" },
@@ -59,29 +61,32 @@ export default function FoundingPopup() {
           </p>
         </div>
 
-        {/* Pricing grid */}
+        {/* Clickable pricing grid */}
         <div className="grid grid-cols-2 gap-3 mb-6">
           {rates.map((rate) => (
-            <div key={rate.name} className="bg-white border border-charcoal/10 rounded-sm p-4 text-center">
+            <a
+              key={rate.name}
+              href={MEMBERSHIP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={dismiss}
+              className="group bg-white border border-charcoal/10 rounded-sm p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/20"
+            >
               <p className="text-xs text-muted mb-2">{rate.name}</p>
               <p className="font-serif text-2xl font-light text-charcoal">{rate.price}<span className="text-sm text-muted">/mo</span></p>
               <p className="text-[11px] text-accent mt-1">{rate.perClass}</p>
-            </div>
+              <p className="text-[9px] tracking-widest uppercase text-charcoal/0 group-hover:text-accent mt-2 transition-colors duration-200">
+                Select →
+              </p>
+            </a>
           ))}
         </div>
 
-        <p className="text-center text-muted/70 text-xs mb-6">
+        <p className="text-center text-muted/70 text-xs mb-4">
           Plus exclusive invites to our soft opening and celebratory events.
         </p>
 
-        <div className="flex flex-col gap-3 text-center">
-          <Link
-            href="/classes#founding"
-            onClick={dismiss}
-            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase py-3.5 px-8 hover:bg-accent/90 transition-colors"
-          >
-            See All Founding Rates
-          </Link>
+        <div className="text-center">
           <button
             onClick={dismiss}
             className="text-xs text-muted/60 hover:text-charcoal transition-colors"
