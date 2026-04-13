@@ -21,8 +21,8 @@ export default function About() {
             Classical Pilates is for every body.
           </h1>
           <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }} />
-          <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            The method was designed for everyone. We teach it that way — no gatekeeping, just the work.
+          <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-lg mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
+            Classical Pilates is the original method, kept whole. The only thing that&apos;s ever stood between people and this work is the right teachers — so that&apos;s what we are. Whoever you are, however you arrived, the door is open.
           </p>
         </div>
         <SixPrinciples embedded />

@@ -30,18 +30,6 @@ export default function FoundingPricingOverlay() {
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">Lifetime locked rate</strong> — your founding price never increases as long as your membership stays active.
-            </span>
-          </li>
-          <li className="flex gap-3">
-            <span className="text-accent shrink-0 mt-0.5">✓</span>
-            <span>
-              <strong className="font-medium">Free apparatus orientation</strong> ($45 value) — required for small-group apparatus, on us.
-            </span>
-          </li>
-          <li className="flex gap-3">
-            <span className="text-accent shrink-0 mt-0.5">✓</span>
-            <span>
               <strong className="font-medium">Bring-a-friend pass</strong> — one free guest class per month for your first three months.
             </span>
           </li>
@@ -54,13 +42,7 @@ export default function FoundingPricingOverlay() {
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">Welcome kit</strong> — branded tote, branded water bottle, a cute tee, grippy socks, and stickers.
-            </span>
-          </li>
-          <li className="flex gap-3">
-            <span className="text-accent shrink-0 mt-0.5">✓</span>
-            <span>
-              <strong className="font-medium">Schedule input in year one</strong> — vote on class times, formats, and what we add next.
+              <strong className="font-medium">Welcome kit</strong> — branded tote, branded water bottle, a cute tee, grippy socks, and a sticker.
             </span>
           </li>
         </ul>
