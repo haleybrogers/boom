@@ -135,96 +135,96 @@ export default function LiveSchedule() {
           <div className="inline-block w-6 h-6 border-2 border-charcoal/20 border-t-accent rounded-full animate-spin" />
         </div>
       ) : (
-        <>
-          {/* Day columns */}
-          <div className="grid grid-cols-7 gap-1 mb-2">
-            {days.map((day, i) => {
-              const isToday = formatDate(day) === formatDate(new Date());
-              const hasClasses = classesByDay[i].length > 0;
-              return (
-                <div
-                  key={i}
-                  className={`text-center py-2 rounded-sm ${
-                    isToday ? "bg-accent/10" : ""
-                  }`}
-                >
-                  <p className="text-xs tracking-widest uppercase text-charcoal/60">
-                    {formatDayShort(day)}
-                  </p>
-                  <p className={`font-serif text-xl font-light ${
-                    isToday ? "text-accent" : hasClasses ? "text-charcoal" : "text-charcoal/40"
-                  }`}>
-                    {formatDayNum(day)}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8 lg:items-start">
+          {/* LEFT: Schedule grid */}
+          <div className="min-w-0">
+            {/* Day columns */}
+            <div className="grid grid-cols-7 gap-1 mb-2">
+              {days.map((day, i) => {
+                const isToday = formatDate(day) === formatDate(new Date());
+                const hasClasses = classesByDay[i].length > 0;
+                return (
+                  <div
+                    key={i}
+                    className={`text-center py-2 rounded-sm ${
+                      isToday ? "bg-accent/10" : ""
+                    }`}
+                  >
+                    <p className="text-[10px] lg:text-xs tracking-widest uppercase text-charcoal/60">
+                      {formatDayShort(day)}
+                    </p>
+                    <p className={`font-serif text-lg lg:text-xl font-light ${
+                      isToday ? "text-accent" : hasClasses ? "text-charcoal" : "text-charcoal/40"
+                    }`}>
+                      {formatDayNum(day)}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
 
-          {/* Class cards by day — click expands detail below */}
-          <div className="grid grid-cols-7 gap-2 items-start">
-            {classesByDay.map((dayClasses, i) => (
-              <div key={i} className="space-y-2 min-h-[80px]">
-                {dayClasses.map((cls) => {
-                  const spotsLeft = cls.max_capacity - cls.total_booked;
-                  const isSelected = selectedClass?.id === cls.id;
-                  return (
-                    <button
-                      key={cls.id}
-                      type="button"
-                      onMouseDown={(e) => e.preventDefault()}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const y = window.scrollY;
-                        setSelectedClass(isSelected ? null : cls);
-                        // Lock scroll across layout/paint — hard-pin for 300ms so
-                        // nothing (focus, anchoring, smooth-scroll) can move us.
-                        const start = performance.now();
-                        const pin = () => {
-                          if (window.scrollY !== y) window.scrollTo(0, y);
-                          if (performance.now() - start < 300) requestAnimationFrame(pin);
-                        };
-                        requestAnimationFrame(pin);
-                        (e.currentTarget as HTMLButtonElement).blur();
-                      }}
-                      className={`w-full text-left p-3 rounded-sm text-sm leading-snug transition-all duration-200 cursor-pointer ${
-                        isSelected
-                          ? "bg-accent text-white shadow-md"
-                          : "bg-white hover:bg-accent/10 text-charcoal border border-charcoal/15 shadow-sm hover:shadow-md hover:-translate-y-0.5"
-                      }`}
-                    >
-                      <p className={`font-medium ${isSelected ? "text-white" : "text-charcoal"}`}>
-                        {cls.name.replace("Open Level ", "").replace("Classical ", "")}
-                      </p>
-                      <p className={`mt-1 text-sm ${isSelected ? "text-white/80" : "text-charcoal/70"}`}>
-                        {formatTime(cls.start_time)}
-                      </p>
-                      {spotsLeft < 5 && (
-                        <p className={`text-xs mt-0.5 font-medium ${isSelected ? "text-white/70" : "text-accent"}`}>
-                          {spotsLeft} {spotsLeft === 1 ? "spot" : "spots"} left
+            {/* Class cards by day */}
+            <div className="grid grid-cols-7 gap-1.5 items-start">
+              {classesByDay.map((dayClasses, i) => (
+                <div key={i} className="space-y-1.5 min-h-[80px]">
+                  {dayClasses.map((cls) => {
+                    const spotsLeft = cls.max_capacity - cls.total_booked;
+                    const isSelected = selectedClass?.id === cls.id;
+                    return (
+                      <button
+                        key={cls.id}
+                        type="button"
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const y = window.scrollY;
+                          setSelectedClass(isSelected ? null : cls);
+                          const start = performance.now();
+                          const pin = () => {
+                            if (window.scrollY !== y) window.scrollTo(0, y);
+                            if (performance.now() - start < 300) requestAnimationFrame(pin);
+                          };
+                          requestAnimationFrame(pin);
+                          (e.currentTarget as HTMLButtonElement).blur();
+                        }}
+                        className={`w-full text-left p-2 lg:p-2.5 rounded-sm text-xs lg:text-sm leading-snug transition-all duration-200 cursor-pointer ${
+                          isSelected
+                            ? "bg-accent text-white shadow-md"
+                            : "bg-white hover:bg-accent/10 text-charcoal border border-charcoal/15 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                        }`}
+                      >
+                        <p className={`font-medium leading-tight ${isSelected ? "text-white" : "text-charcoal"}`}>
+                          {cls.name.replace("Open Level ", "").replace("Classical ", "")}
                         </p>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            ))}
+                        <p className={`mt-1 text-[11px] lg:text-xs ${isSelected ? "text-white/80" : "text-charcoal/70"}`}>
+                          {formatTime(cls.start_time)}
+                        </p>
+                        {spotsLeft < 5 && (
+                          <p className={`text-[10px] mt-0.5 font-medium ${isSelected ? "text-white/70" : "text-accent"}`}>
+                            {spotsLeft} {spotsLeft === 1 ? "spot" : "spots"}
+                          </p>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+
+            {/* No classes message */}
+            {classes.length === 0 && (
+              <p className="text-center text-sm text-muted py-8">
+                No classes scheduled this week. Check back soon.
+              </p>
+            )}
           </div>
 
-          {/* No classes message */}
-          {classes.length === 0 && (
-            <p className="text-center text-sm text-muted py-8">
-              No classes scheduled this week. Check back soon.
-            </p>
-          )}
-
-          {/* Selected class detail — fixed reserved height so layout NEVER shifts.
-              Empty state shows a subtle hint instead of collapsing. */}
-          <div className="mt-6 min-h-[180px] relative">
+          {/* RIGHT: Detail panel (sticky on desktop, stacks below on mobile) */}
+          <aside className="mt-6 lg:mt-0 lg:sticky lg:top-24 min-h-[200px] relative">
             {!selectedClass && classes.length > 0 && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-xs italic font-serif text-muted/60">
-                  Tap a class above to see details and book →
+              <div className="absolute inset-0 flex items-center justify-center border border-dashed border-charcoal/15 rounded-sm bg-warm-white/40">
+                <p className="text-xs italic font-serif text-muted/60 text-center px-6">
+                  Tap a class to see<br />details and book →
                 </p>
               </div>
             )}
@@ -234,39 +234,37 @@ export default function LiveSchedule() {
               }`}
             >
               {selectedClass && (
-                <div className="bg-cream border border-charcoal/10 rounded-sm p-6">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                    <div className="flex-1">
-                      <h4 className="font-serif text-xl font-light text-charcoal mb-1">
-                        {selectedClass.name}
-                      </h4>
-                      <p className="text-xs text-muted mb-3">
-                        {formatTime(selectedClass.start_time)} · {selectedClass.duration} min · {selectedClass.instructor_name}
-                      </p>
-                      <p className="text-sm text-muted leading-relaxed">
-                        {selectedClass.description}
-                      </p>
-                    </div>
-                    <div className="text-center sm:text-right shrink-0">
-                      {selectedClass.max_capacity - selectedClass.total_booked < 5 && (
-                        <p className="text-xs text-accent font-medium mb-2">
-                          {selectedClass.max_capacity - selectedClass.total_booked} {selectedClass.max_capacity - selectedClass.total_booked === 1 ? "spot" : "spots"} left
-                        </p>
-                      )}
-                      <a
-                        href={`https://app.arketa.co/boomerangpilates/checkout/${selectedClass.id}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-accent text-white px-6 py-3 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors"
-                      >
-                        Book Now
-                      </a>
-                    </div>
-                  </div>
+                <div className="bg-cream border border-charcoal/10 rounded-sm p-5">
+                  <h4 className="font-serif text-lg font-light text-charcoal mb-1 leading-tight">
+                    {selectedClass.name}
+                  </h4>
+                  <p className="text-xs text-muted mb-1">
+                    {formatTime(selectedClass.start_time)} · {selectedClass.duration} min
+                  </p>
+                  <p className="text-xs text-muted/80 mb-4">
+                    with {selectedClass.instructor_name}
+                  </p>
+                  <p className="text-sm text-muted leading-relaxed mb-5">
+                    {selectedClass.description}
+                  </p>
+                  {selectedClass.max_capacity - selectedClass.total_booked < 5 && (
+                    <p className="text-xs text-accent font-medium mb-3">
+                      {selectedClass.max_capacity - selectedClass.total_booked} {selectedClass.max_capacity - selectedClass.total_booked === 1 ? "spot" : "spots"} left
+                    </p>
+                  )}
+                  <a
+                    href={`https://app.arketa.co/boomerangpilates/checkout/${selectedClass.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center bg-accent text-white px-6 py-3 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors"
+                  >
+                    Book Now
+                  </a>
                 </div>
               )}
             </div>
-          </div>
+          </aside>
+        </div>
         </>
       )}
     </div>

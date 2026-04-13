@@ -16,7 +16,7 @@ export default function Classes() {
     <>
       {/* 1. Schedule */}
       <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-24">
-        <div className="relative max-w-5xl mx-auto px-6">
+        <div className="relative max-w-6xl mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center mb-14">
             <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
               The Schedule
