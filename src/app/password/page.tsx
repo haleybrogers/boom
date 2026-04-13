@@ -128,7 +128,7 @@ export default function PasswordPage() {
             alt="Boomerang Pilates"
             width={500}
             height={400}
-            className="w-72 md:w-96 h-auto"
+            className="w-52 md:w-64 h-auto"
             priority
           />
         </div>
