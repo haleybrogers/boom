@@ -15,16 +15,7 @@ export default function NewToPilates() {
             </h2>
             <p className="text-muted text-base leading-relaxed mb-4">
               Classical Pilates was designed for every body — not just flexible ones.
-              The exercises come in a set order, so you always know what&apos;s next.
-              If something doesn&apos;t work for your body today, skip it or repeat what does.
-            </p>
-            <p className="text-muted text-base leading-relaxed mb-4">
-              There&apos;s no experience required and nothing to be intimidated by.
-              Our instructors meet you exactly where you are — whether that&apos;s
-              your first class or your five hundredth.
-            </p>
-            <p className="text-muted text-base leading-relaxed">
-              Not sure where to start? Here are two great entry points.
+              No experience required. Our instructors meet you exactly where you are.
             </p>
           </div>
 
