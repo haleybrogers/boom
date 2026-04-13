@@ -98,15 +98,15 @@ export default function Events() {
       <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
-            <p className="text-xs tracking-widest uppercase text-accent mb-4">Pay-What-You-Can · 3-Part Series</p>
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">Open to All · Pay-What-You-Can · 3-Part Series</p>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
               Help us bring classical Pilates to downtown Durham.
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-              Three soft-opening events leading up to the grand opening. Every dollar goes
-              straight into finishing the studio — the apparatus, the floors, the little
-              details that make a classical Pilates room feel like home. Come to one. Come
-              to all three.
+              Three soft-opening events leading up to the grand opening — open to anyone
+              who wants to come. Every dollar goes straight into finishing the studio:
+              the apparatus, the floors, the little details that make a classical Pilates
+              room feel like home. Come to one. Come to all three. Bring a friend.
             </p>
           </div>
 
@@ -116,7 +116,7 @@ export default function Events() {
               <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
                 Part One
               </span>
-              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Founders&apos; Mat Class</h3>
+              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Community Mat Class</h3>
               <p className="text-xs text-accent mb-3">All levels · Suggested $20+</p>
               <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
                 A 50-minute classical mat class taught by Emilie and Annie in the
@@ -183,7 +183,7 @@ export default function Events() {
             <div className="inline-flex items-center gap-3 border border-accent/30 bg-accent/5 rounded-sm px-6 py-3">
               <span className="text-[10px] tracking-[0.3em] uppercase text-accent">All Three</span>
               <span className="text-charcoal/30">·</span>
-              <span className="font-serif italic text-sm text-charcoal">Founders&apos; Series Pass — Suggested $60+</span>
+              <span className="font-serif italic text-sm text-charcoal">Series Pass — All Three Events — Suggested $60+</span>
             </div>
             <p className="text-xs italic font-serif text-muted/60 mt-5 max-w-md mx-auto">
               Not able to come but still want to help? Donations welcome — just reach out.

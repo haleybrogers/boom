@@ -30,25 +30,49 @@ export default function FoundingPricingOverlay() {
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">Access to soft-opening classes</strong> — donation-based test classes before grand opening. Help us shake out the kinks.
+              <strong className="font-medium">Lifetime locked rate</strong> — your founding price never increases as long as your membership stays active.
             </span>
           </li>
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">Opening Night invite</strong> — June 15, food &amp; drinks on us. Plus-one welcome.
+              <strong className="font-medium">24-hour priority booking</strong> — schedule opens to founders a full day before everyone else.
             </span>
           </li>
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">Welcome kit</strong> — handed out at opening night.
+              <strong className="font-medium">Free apparatus orientation</strong> ($45 value) — required for small-group apparatus, on us.
             </span>
           </li>
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">Founding pricing</strong> — choose your offer below. Lock it in before June 15.
+              <strong className="font-medium">Bring-a-friend pass</strong> — one free guest class per month for your first three months.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="text-accent shrink-0 mt-0.5">✓</span>
+            <span>
+              <strong className="font-medium">First dibs on workshops &amp; courses</strong> — register for Return to Life, retreats, and special workshops before public enrollment opens.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="text-accent shrink-0 mt-0.5">✓</span>
+            <span>
+              <strong className="font-medium">Founders&apos; Day every June</strong> — annual private class plus brunch, just for the original crew.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="text-accent shrink-0 mt-0.5">✓</span>
+            <span>
+              <strong className="font-medium">Welcome kit + name on the wall</strong> — branded tote, water bottle, grippy socks, and your name on the founders&apos; wall in the studio.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="text-accent shrink-0 mt-0.5">✓</span>
+            <span>
+              <strong className="font-medium">Schedule input in year one</strong> — vote on class times, formats, and what we add next.
             </span>
           </li>
         </ul>
