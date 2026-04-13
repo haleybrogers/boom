@@ -59,17 +59,15 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* 6. Grand Opening Email Capture */}
+      {/* 6. Generic email capture */}
       <section id="book" className="py-24 lg:py-32">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">
-            Grand Opening · Durham, NC
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal mb-4">
-            We&apos;re Almost Here
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Stay in the Loop</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
+            Be the first to know.
           </h2>
-          <p className="text-muted text-base leading-relaxed max-w-md mx-auto mb-10">
-            Get the inside scoop — grand opening details, new class drops, events, and the stuff we only share with our people.
+          <p className="text-muted text-base mb-10">
+            Grand opening details, new class drops, events, and the stuff we only share with our people.
           </p>
           <WaitlistForm />
         </div>

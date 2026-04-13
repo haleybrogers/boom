@@ -4,7 +4,7 @@ import Link from "next/link";
 const offerings = [
   {
     title: "Mat Classes",
-    image: "/photo-chair.jpg",
+    image: "/photo-mat-1.jpg",
     tagline: "The foundation of everything we do.",
     description:
       "Full-body workouts rooted in the original Return to Life matwork — layered, progressive, and built around all six principles of the method. Modifications for newer students, advancements for those deeper in their practice.",
@@ -39,7 +39,7 @@ const offerings = [
   },
   {
     title: "Privates & Duets",
-    image: "/photo-leg.jpg",
+    image: "/photo-private.jpg",
     tagline: "Fully customized. Your body, your goals, your pace.",
     description:
       "One-on-one or with a partner — full apparatus access tailored entirely to you. Whether you're rehabbing, training for something specific, or just prefer individual attention, this is the fastest path to results.",
@@ -71,7 +71,7 @@ export default function OfferingCards() {
                 src={offering.image}
                 alt={offering.title}
                 fill
-                className="object-cover"
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
               />
             </div>
 
