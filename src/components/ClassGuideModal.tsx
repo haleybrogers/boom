@@ -102,15 +102,15 @@ export default function ClassGuideModal() {
       {/* Backdrop + Modal — portaled to body to escape any transform/filter ancestors */}
       {open && mounted && createPortal(
         <div
-          className="fixed inset-0 z-[100]"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
           onClick={() => setOpen(false)}
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-charcoal/50 backdrop-blur-sm" />
 
-          {/* Slide-out panel */}
+          {/* Centered panel */}
           <div
-            className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-warm-white shadow-xl overflow-y-auto animate-slide-in"
+            className="relative w-full max-w-md max-h-[90vh] bg-warm-white shadow-xl overflow-y-auto rounded-sm animate-fade-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -148,17 +148,21 @@ export default function ClassGuideModal() {
                             </span>
                             <span className="text-xs text-muted/60 ml-2">{cls.level}</span>
                           </div>
-                          <svg
-                            className={`w-3 h-3 text-accent/40 shrink-0 ml-2 transition-transform duration-300 ${
+                          <span
+                            className={`shrink-0 ml-3 w-7 h-7 rounded-full bg-accent text-white flex items-center justify-center transition-transform duration-300 ${
                               openClass === cls.title ? "rotate-180" : ""
                             }`}
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            viewBox="0 0 24 24"
                           >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                          </svg>
+                            <svg
+                              className="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth={2.5}
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </span>
                         </button>
                         <div
                           className={`overflow-hidden transition-all duration-300 ease-in-out ${
