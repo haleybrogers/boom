@@ -28,26 +28,24 @@ export default function Classes() {
             <ClassGuideModal />
           </div>
 
-          {/* Schedule with founding pricing overlay */}
-          <div className="relative">
-            <div className="opacity-30 pointer-events-none select-none">
-              <LiveSchedule />
-            </div>
-            <FoundingPricingOverlay />
-          </div>
+          {/* Live schedule */}
+          <LiveSchedule />
+
+          {/* Founding pricing — collapsible below schedule */}
+          <FoundingPricingOverlay />
         </div>
       </section>
 
-      {/* 2. Class Packs & Drop-Ins */}
-      <section className="py-20 lg:py-28">
+      {/* 2. Schedule a Private */}
+      <section id="privates" className="py-20 lg:py-28">
+        <SchedulePrivate />
+      </section>
+
+      {/* 3. Class Packs & Drop-Ins */}
+      <section className="py-20 lg:py-28 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
           <ClassPacks />
         </div>
-      </section>
-
-      {/* 3. Schedule a Private */}
-      <section id="privates" className="py-20 lg:py-28 bg-warm-white">
-        <SchedulePrivate />
       </section>
 
       {/* 4. Grand Opening Email Capture */}
@@ -103,7 +101,7 @@ export default function Classes() {
             We&apos;re Almost Here
           </h2>
           <p className="text-muted text-base leading-relaxed max-w-md mx-auto mb-10">
-            Be the first to know about our grand opening, events, class drops, and studio news. No spam — just the good stuff.
+            Get the inside scoop — grand opening details, new class drops, events, and the stuff we only share with our people.
           </p>
           <WaitlistForm />
         </div>

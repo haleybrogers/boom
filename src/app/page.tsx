@@ -24,10 +24,13 @@ export default function Home() {
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">
-            Opening Soon
+            Opening Soon · Durham, NC
           </p>
-          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug">
+          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-3">
             Downtown Durham&apos;s only Classical Pilates studio.
+          </p>
+          <p className="text-muted text-sm max-w-md mx-auto">
+            We&apos;re building something from the ground up — and the first 50 members get to be part of it from day one.
           </p>
           <div className="mt-6">
             <a
@@ -36,7 +39,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
             >
-              Become a Founding Member
+              Join as a Founding Member
             </a>
           </div>
         </div>
@@ -63,12 +66,16 @@ export default function Home() {
       {/* Waitlist */}
       <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">Founding Members</p>
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">Limited to 50 Members</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-            Be the first through the door.
+            Be part of it from the beginning.
           </h2>
-          <p className="text-muted text-base mb-10">
-            Lock in your rate forever. Get exclusive invites to our soft opening and celebratory events.
+          <p className="text-muted text-base mb-4">
+            Founding members get a rate that never goes up, first access to the schedule,
+            and an invite to our opening night.
+          </p>
+          <p className="text-muted text-sm mb-10">
+            This is the crew that builds the culture. We want you in it.
           </p>
           <WaitlistForm />
         </div>

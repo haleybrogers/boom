@@ -57,7 +57,7 @@ export default function FoundingPopup() {
             Founding Member Rates
           </h2>
           <p className="text-muted text-sm">
-            Lock in your rate before we open. It never goes up.
+            Be one of the first 50. Your rate never goes up — and you help set the tone.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export default function FoundingPopup() {
         </div>
 
         <p className="text-center text-muted/70 text-xs mb-4">
-          Plus exclusive invites to our soft opening and celebratory events.
+          First access to the schedule + invite to opening night.
         </p>
 
         <div className="text-center">

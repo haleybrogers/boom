@@ -32,27 +32,23 @@ export default function SchedulePrivate() {
           By Appointment
         </p>
         <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3">
-          Schedule a Private
+          Schedule a Private or Duet
         </h2>
-        <p className="text-muted text-sm max-w-lg mx-auto">
+        <p className="text-muted text-sm max-w-lg mx-auto mb-6">
           The most personalized Pilates experience we offer. Your instructor
           builds every session around your body, your goals, and where you are
           in your practice — using the full range of classical apparatus.
         </p>
-      </div>
-
-      {/* Pricing row */}
-      <div className="flex justify-center gap-8 mb-10">
-        <div className="text-center">
-          <span className="font-serif text-3xl font-light text-charcoal">$110</span>
-          <p className="text-xs text-muted mt-1">Private · 50 min</p>
-          <p className="text-[11px] text-muted/60 mt-0.5">1 student · Full apparatus</p>
-        </div>
-        <div className="w-px bg-charcoal/10" />
-        <div className="text-center">
-          <span className="font-serif text-3xl font-light text-charcoal">$60</span>
-          <p className="text-xs text-muted mt-1">Duet · per person</p>
-          <p className="text-[11px] text-muted/60 mt-0.5">2 students · Full apparatus</p>
+        <div className="flex justify-center gap-8">
+          <div className="text-center">
+            <p className="text-xs text-muted">Private · 50 min</p>
+            <p className="text-[11px] text-muted/60 mt-0.5">1 student · Full apparatus</p>
+          </div>
+          <div className="w-px bg-charcoal/10" />
+          <div className="text-center">
+            <p className="text-xs text-muted">Duet · 50 min</p>
+            <p className="text-[11px] text-muted/60 mt-0.5">2 students · Full apparatus</p>
+          </div>
         </div>
       </div>
 

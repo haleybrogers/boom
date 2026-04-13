@@ -114,23 +114,23 @@ export default function ClassGuideModal() {
             <div className="px-6 py-6">
               {sections.map((section) => (
                 <div key={section.category} className="mb-8">
-                  <h3 className="font-serif text-lg font-light text-charcoal mb-1">
+                  <h3 className="font-serif text-xl font-light text-charcoal mb-1">
                     {section.category}
                   </h3>
-                  <p className="text-xs text-muted mb-4">{section.subtitle}</p>
+                  <p className="text-sm text-muted mb-4">{section.subtitle}</p>
 
                   <div className="space-y-1">
                     {section.classes.map((cls) => (
                       <div key={cls.title} className="border-b border-charcoal/5 last:border-0">
                         <button
                           onClick={() => setOpenClass(openClass === cls.title ? null : cls.title)}
-                          className="w-full py-3 flex items-center justify-between text-left"
+                          className="w-full py-4 flex items-center justify-between text-left"
                         >
                           <div>
-                            <span className="font-serif text-sm font-light text-charcoal">
+                            <span className="font-serif text-base text-charcoal">
                               {cls.title}
                             </span>
-                            <span className="text-[11px] text-muted/60 ml-2">{cls.level}</span>
+                            <span className="text-xs text-muted/60 ml-2">{cls.level}</span>
                           </div>
                           <svg
                             className={`w-3 h-3 text-accent/40 shrink-0 ml-2 transition-transform duration-300 ${
@@ -149,7 +149,7 @@ export default function ClassGuideModal() {
                             openClass === cls.title ? "max-h-32 opacity-100 pb-3" : "max-h-0 opacity-0"
                           }`}
                         >
-                          <p className="text-sm text-muted leading-relaxed">
+                          <p className="text-base text-muted leading-relaxed">
                             {cls.description}
                           </p>
                         </div>

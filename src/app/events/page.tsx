@@ -8,21 +8,74 @@ export const metadata = {
 export default function Events() {
   return (
     <>
-      {/* Hero */}
-      <section
-        className="relative bg-fixed bg-cover bg-center h-[40vh] lg:h-[50vh]"
-        style={{ backgroundImage: "url(/accent-image.png)" }}
-      >
-        <div className="absolute inset-0 bg-[#5c4a3a]/35" />
-        <div className="relative h-full flex items-center justify-center">
-          <div className="text-center px-6">
-            <h1 className="font-serif text-4xl md:text-5xl font-light text-white mb-4">
-              Events
-            </h1>
-            <p className="text-white/70 text-sm leading-relaxed max-w-md mx-auto">
-              Course series, workshops, and things worth showing up for.
-            </p>
+      {/* Hero + Grand Opening — one continuous section */}
+      <section className="relative overflow-hidden bg-charcoal">
+        {/* Background image — top portion */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: "url(/accent-image.png)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/20 via-charcoal/50 to-charcoal" />
+
+        {/* Decorative circles */}
+        <div className="absolute inset-0 opacity-[0.04]">
+          <div className="absolute top-12 left-[10%] w-64 h-64 border border-white rounded-full" />
+          <div className="absolute bottom-8 right-[8%] w-96 h-96 border border-white rounded-full" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white rounded-full" />
+        </div>
+
+        <div className="relative max-w-2xl mx-auto px-6 text-center pt-28 lg:pt-36 pb-24 lg:pb-32">
+          {/* Page title */}
+          <h1 className="font-serif text-4xl md:text-5xl font-light text-white mb-3">
+            Events
+          </h1>
+          <p className="text-white/60 text-sm leading-relaxed max-w-md mx-auto mb-20 lg:mb-28">
+            Course series, workshops, and things worth showing up for.
+          </p>
+
+          {/* Sparkle illustration */}
+          <div className="mb-10">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" className="mx-auto">
+              <path d="M40 10 L43 34 L60 20 L46 37 L70 40 L46 43 L60 60 L43 46 L40 70 L37 46 L20 60 L34 43 L10 40 L34 37 L20 20 L37 34 Z" fill="none" stroke="white" strokeWidth="0.8" opacity="0.6" />
+              <path d="M40 25 L45 40 L40 55 L35 40 Z" fill="none" stroke="white" strokeWidth="0.5" opacity="0.4" />
+              <circle cx="15" cy="15" r="1" fill="white" opacity="0.3" />
+              <circle cx="65" cy="12" r="1.5" fill="white" opacity="0.25" />
+              <circle cx="70" cy="65" r="1" fill="white" opacity="0.3" />
+              <circle cx="10" cy="60" r="1.5" fill="white" opacity="0.2" />
+            </svg>
           </div>
+
+          <p className="text-xs tracking-[0.3em] uppercase text-accent mb-6">
+            You&apos;re Invited
+          </p>
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-white mb-6 leading-tight">
+            Grand Opening
+          </h2>
+          <div className="w-12 h-px bg-accent mx-auto mb-6" />
+          <p className="text-white/50 text-base leading-relaxed mb-10 max-w-md mx-auto">
+            We&apos;re planning something special to mark the moment.
+            Details are coming — get on the list to be in the room when it happens.
+          </p>
+
+          <div className="inline-flex items-center gap-3 border border-white/10 rounded-sm px-8 py-5 bg-white/5 backdrop-blur-sm mb-8">
+            <div className="text-center">
+              <p className="font-serif text-lg text-white mb-0.5">Date &amp; Details TBA</p>
+              <p className="text-xs text-white/40 tracking-widest uppercase">Downtown Durham, NC</p>
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <a
+              href="/#waitlist"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-10 py-4 hover:bg-accent/90 transition-colors"
+            >
+              RSVP
+            </a>
+          </div>
+
+          <p className="text-sm text-white/40">
+            Founding member rates end when the doors open.
+          </p>
         </div>
       </section>
 
@@ -87,29 +140,8 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Grand Opening */}
-      <section className="py-24 lg:py-32 bg-warm-white">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">Coming Soon</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-            Grand Opening
-          </h2>
-          <p className="text-muted text-base leading-relaxed mb-6 max-w-lg mx-auto">
-            We&apos;re planning something special to kick things off. Details are coming —
-            but if you want to be in the room when it happens, get on the list.
-          </p>
-          <div className="inline-block border border-charcoal/10 rounded-sm px-8 py-6 bg-cream mb-4">
-            <p className="font-serif text-xl font-light text-charcoal mb-1">Date &amp; Details TBA</p>
-            <p className="text-xs text-muted tracking-wide">Durham, NC</p>
-          </div>
-          <p className="text-sm text-accent">
-            Founding member rates end when the doors open.
-          </p>
-        </div>
-      </section>
-
       {/* Stay in the loop */}
-      <section className="py-24 lg:py-32">
+      <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
             Don&apos;t miss it.

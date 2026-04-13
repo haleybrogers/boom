@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
+
 const packs = [
   {
     name: "Mat Drop-In",
@@ -99,7 +101,7 @@ export default function ClassPacks() {
           Class Packs &amp; Drop-Ins
         </h2>
         <p className="text-muted text-sm max-w-md mx-auto">
-          Not ready for a membership? Buy single classes or packs at a discount.
+          Buy single classes or packs at a discount.
         </p>
       </div>
 
@@ -133,13 +135,22 @@ export default function ClassPacks() {
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
                 expanded === pack.name
-                  ? "max-h-32 opacity-100 mt-3 pt-3 border-t border-charcoal/5"
+                  ? "max-h-40 opacity-100 mt-3 pt-3 border-t border-charcoal/5"
                   : "max-h-0 opacity-0"
               }`}
             >
-              <p className="text-sm text-muted leading-relaxed">
+              <p className="text-sm text-muted leading-relaxed mb-3">
                 {pack.description}
               </p>
+              <a
+                href={MEMBERSHIP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-block text-[10px] tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+              >
+                Buy Now →
+              </a>
             </div>
             <div className={`mt-3 text-[10px] tracking-widest uppercase transition-colors ${
               expanded === pack.name ? "text-accent" : "text-charcoal/30 group-hover:text-accent/60"
@@ -190,13 +201,22 @@ export default function ClassPacks() {
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
                 expanded === pack.name
-                  ? "max-h-32 opacity-100 mt-3 pt-3 border-t border-charcoal/5"
+                  ? "max-h-40 opacity-100 mt-3 pt-3 border-t border-charcoal/5"
                   : "max-h-0 opacity-0"
               }`}
             >
-              <p className="text-sm text-muted leading-relaxed">
+              <p className="text-sm text-muted leading-relaxed mb-3">
                 {pack.description}
               </p>
+              <a
+                href={MEMBERSHIP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-block text-[10px] tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+              >
+                Buy Now →
+              </a>
             </div>
             <div className={`mt-3 text-[10px] tracking-widest uppercase transition-colors ${
               expanded === pack.name ? "text-accent" : "text-charcoal/30 group-hover:text-accent/60"

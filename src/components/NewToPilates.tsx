@@ -10,10 +10,11 @@ export default function NewToPilates() {
             New to Pilates?
           </p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
-            Start here.
+            You belong here.
           </h2>
-          <p className="text-muted text-base">
-            Two ways in. Both are great.
+          <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
+            Classical Pilates was designed for every body — not just flexible ones.
+            No experience required. Our instructors meet you exactly where you are.
           </p>
         </div>
 
@@ -37,7 +38,7 @@ export default function NewToPilates() {
               Open Level Classical Mat
             </h3>
             <p className="text-sm text-muted leading-relaxed mb-4">
-              Group class. All levels welcome. Modifications built in — your instructor adjusts to you.
+              Group class. All levels. You don&apos;t need to know anything — we&apos;ll guide you through it.
             </p>
             <div className="flex items-baseline gap-2 mb-6">
               <span className="font-serif text-2xl font-light text-charcoal">$25</span>
