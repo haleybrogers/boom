@@ -227,7 +227,7 @@ export default function LiveSchedule() {
                       </p>
                     )}
                     <a
-                      href="https://app.arketa.co/boomerangpilates/schedule"
+                      href={`https://app.arketa.co/boomerangpilates/classes/${selectedClass.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block bg-accent text-white px-5 py-2.5 text-xs tracking-wide rounded-sm hover:bg-accent/85 transition-colors"
