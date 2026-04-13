@@ -117,7 +117,7 @@ function AnimatedIcon({ name, animate, delay }: { name: string; animate: boolean
   switch (name) {
     case "Breath":
       return wrapper(
-        <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round">
+        <svg key={animKey} className={`w-8 h-8 ${shouldDraw ? "icon-breathe" : ""}`} viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round">
           <path d="M6 12h12a4 4 0 100-4" style={style} />
           <path d="M6 18h16a3.5 3.5 0 100-3.5" style={stagger(150)} />
           <path d="M6 24h10a3 3 0 100-3" style={stagger(300)} />
@@ -125,14 +125,14 @@ function AnimatedIcon({ name, animate, delay }: { name: string; animate: boolean
       );
     case "Flow":
       return wrapper(
-        <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
+        <svg key={animKey} className={`w-8 h-8 ${shouldDraw ? "icon-wave" : ""}`} viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
           <path d="M4 16c4-8 8 8 12 0s8 8 12 0" strokeLinecap="round" style={style} />
           <path d="M4 22c4-8 8 8 12 0s8 8 12 0" strokeLinecap="round" style={{ ...stagger(200), opacity: shouldDraw ? 0.4 : 0 }} />
         </svg>
       );
     case "Concentration":
       return wrapper(
-        <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
+        <svg key={animKey} className={`w-8 h-8 ${shouldDraw ? "icon-pulse" : ""}`} viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
           <circle cx="16" cy="16" r="10" style={style} />
           <circle cx="16" cy="16" r="5" style={stagger(200)} />
           <circle cx="16" cy="16" r="1.5" fill="currentColor" style={fillStyle} />
@@ -143,13 +143,13 @@ function AnimatedIcon({ name, animate, delay }: { name: string; animate: boolean
         <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
           <rect x="6" y="10" width="20" height="12" rx="2" style={style} />
           <line x1="16" y1="10" x2="16" y2="22" style={stagger(200)} />
-          <circle cx="16" cy="16" r="3" fill="currentColor" opacity={0.15} stroke="currentColor" style={fillStyle} />
+          <circle cx="16" cy="16" r="3" fill="currentColor" opacity={0.15} stroke="currentColor" style={fillStyle} className={shouldDraw ? "icon-slide" : ""} />
         </svg>
       );
     case "Center":
       return wrapper(
         <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
-          <circle cx="16" cy="16" r="12" strokeDasharray="3 3" style={{ opacity: shouldDraw ? 1 : 0, transition: drawState === "reset" ? "none" : `opacity 0.6s ease ${activeDelay}ms` }} />
+          <circle cx="16" cy="16" r="12" strokeDasharray="3 3" className={shouldDraw ? "icon-spin" : ""} style={{ opacity: shouldDraw ? 1 : 0, transition: drawState === "reset" ? "none" : `opacity 0.6s ease ${activeDelay}ms`, transformOrigin: "center" }} />
           <circle cx="16" cy="16" r="4" fill="currentColor" opacity={0.15} stroke="currentColor" style={fillStyle} />
           <line x1="16" y1="4" x2="16" y2="12" style={stagger(150)} />
           <line x1="16" y1="20" x2="16" y2="28" style={stagger(250)} />
@@ -162,7 +162,7 @@ function AnimatedIcon({ name, animate, delay }: { name: string; animate: boolean
         <svg key={animKey} className="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.2}>
           <path d="M6 26L26 6" strokeLinecap="round" style={style} />
           <path d="M22 6h4v4" strokeLinecap="round" strokeLinejoin="round" style={stagger(200)} />
-          <path d="M12 16l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" style={stagger(400)} />
+          <path d="M12 16l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" style={stagger(400)} className={shouldDraw ? "icon-check" : ""} />
         </svg>
       );
     default:

@@ -103,6 +103,39 @@ html {
   gap: 0.5em;
 }
 
+/* Continuous icon animations for Six Principles */
+@keyframes breathe {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.12); }
+}
+@keyframes wave {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+}
+@keyframes slide-knob {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes draw-check {
+  0%, 45% { stroke-dashoffset: 12; }
+  55%, 100% { stroke-dashoffset: 0; }
+}
+
+.icon-breathe { animation: breathe 4s ease-in-out infinite; }
+.icon-wave { animation: wave 3s ease-in-out infinite; }
+.icon-pulse { animation: pulse-ring 3.5s ease-in-out infinite; }
+.icon-slide { animation: slide-knob 4s ease-in-out infinite; }
+.icon-spin { animation: spin-slow 20s linear infinite; }
+.icon-check { stroke-dasharray: 12; animation: draw-check 3s ease-in-out infinite; }
+
 /* Slide-in panel animation */
 @keyframes slide-in {
   from { transform: translateX(100%); }
