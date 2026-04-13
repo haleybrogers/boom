@@ -27,15 +27,15 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-3xl mx-auto items-start">
             {/* Emilie */}
-            <Parallax speed={0.08}>
-              <div className="relative aspect-[3/4] overflow-hidden mb-6">
+            <div>
+              <div className="relative aspect-[4/5] overflow-hidden mb-6">
                 <Image
                   src="/emilie-young.jpg"
                   alt="Emilie Young"
                   fill
-                  className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+                  className="object-cover object-[center_20%] grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
@@ -52,16 +52,16 @@ export default function About() {
                 a deep understanding of the original method and a commitment
                 to teaching it with precision, care, and without compromise.
               </p>
-            </Parallax>
+            </div>
 
             {/* Annie */}
-            <Parallax speed={0.12}>
-              <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-warm-white">
+            <div>
+              <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
                 <Image
                   src="/annie-young.jpg"
                   alt="Annie Young"
                   fill
-                  className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+                  className="object-cover object-[center_20%] grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
@@ -80,7 +80,7 @@ export default function About() {
                 for everyone while never compromising the integrity of the
                 original work.
               </p>
-            </Parallax>
+            </div>
           </div>
         </div>
       </section>

@@ -106,19 +106,19 @@ export default function LiveSchedule() {
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={prevWeek}
-          className="p-2 text-charcoal/50 hover:text-accent transition-colors"
+          className="p-2 text-charcoal/70 hover:text-accent transition-colors"
           aria-label="Previous week"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h3 className="font-serif text-lg font-light text-charcoal">
+        <h3 className="font-serif text-xl font-light text-charcoal">
           {formatMonthRange(weekStart, weekEnd)}
         </h3>
         <button
           onClick={nextWeek}
-          className="p-2 text-charcoal/50 hover:text-accent transition-colors"
+          className="p-2 text-charcoal/70 hover:text-accent transition-colors"
           aria-label="Next week"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
@@ -145,11 +145,11 @@ export default function LiveSchedule() {
                     isToday ? "bg-accent/10" : ""
                   }`}
                 >
-                  <p className="text-xs tracking-widest uppercase text-muted">
+                  <p className="text-xs tracking-widest uppercase text-charcoal/60">
                     {formatDayShort(day)}
                   </p>
                   <p className={`font-serif text-xl font-light ${
-                    isToday ? "text-accent" : hasClasses ? "text-charcoal" : "text-charcoal/30"
+                    isToday ? "text-accent" : hasClasses ? "text-charcoal" : "text-charcoal/40"
                   }`}>
                     {formatDayNum(day)}
                   </p>
@@ -169,21 +169,23 @@ export default function LiveSchedule() {
                     <button
                       key={cls.id}
                       onClick={() => setSelectedClass(isSelected ? null : cls)}
-                      className={`w-full text-left p-3 rounded-sm text-sm leading-snug transition-all duration-200 ${
+                      className={`w-full text-left p-3 rounded-sm text-sm leading-snug transition-all duration-200 cursor-pointer ${
                         isSelected
-                          ? "bg-accent text-white shadow-sm"
-                          : "bg-cream hover:bg-accent/10 text-charcoal border border-charcoal/5"
+                          ? "bg-accent text-white shadow-md"
+                          : "bg-white hover:bg-accent/10 text-charcoal border border-charcoal/15 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                       }`}
                     >
                       <p className={`font-medium ${isSelected ? "text-white" : "text-charcoal"}`}>
                         {cls.name.replace("Open Level ", "").replace("Classical ", "")}
                       </p>
-                      <p className={`mt-1 ${isSelected ? "text-white/70" : "text-muted"}`}>
+                      <p className={`mt-1 text-sm ${isSelected ? "text-white/80" : "text-charcoal/70"}`}>
                         {formatTime(cls.start_time)}
                       </p>
-                      <p className={`text-xs mt-0.5 ${isSelected ? "text-white/60" : "text-muted/70"}`}>
-                        {spotsLeft} spots left
-                      </p>
+                      {spotsLeft < 5 && (
+                        <p className={`text-xs mt-0.5 font-medium ${isSelected ? "text-white/70" : "text-accent"}`}>
+                          {spotsLeft} {spotsLeft === 1 ? "spot" : "spots"} left
+                        </p>
+                      )}
                     </button>
                   );
                 })}
@@ -219,9 +221,11 @@ export default function LiveSchedule() {
                     </p>
                   </div>
                   <div className="text-center sm:text-right shrink-0">
-                    <p className="text-xs text-muted mb-2">
-                      {selectedClass.max_capacity - selectedClass.total_booked} of {selectedClass.max_capacity} spots left
-                    </p>
+                    {selectedClass.max_capacity - selectedClass.total_booked < 5 && (
+                      <p className="text-xs text-accent font-medium mb-2">
+                        {selectedClass.max_capacity - selectedClass.total_booked} {selectedClass.max_capacity - selectedClass.total_booked === 1 ? "spot" : "spots"} left
+                      </p>
+                    )}
                     <a
                       href="https://app.arketa.co/boomerangpilates/schedule"
                       target="_blank"

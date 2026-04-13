@@ -5,12 +5,17 @@ import Link from "next/link";
 
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
+  const [isFridayEvening, setIsFridayEvening] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
       // Show after scrolling past the hero (~50vh)
       setVisible(window.scrollY > window.innerHeight * 0.5);
     };
+
+    // Friday after 5pm easter egg
+    const now = new Date();
+    setIsFridayEvening(now.getDay() === 5 && now.getHours() >= 17);
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -33,7 +38,7 @@ export default function StickyCTA() {
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
-        Join the First 50
+        {isFridayEvening ? "You survived. Come move." : "Join the First 50"}
       </Link>
     </div>
   );

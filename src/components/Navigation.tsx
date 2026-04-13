@@ -15,8 +15,23 @@ const navLinks = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [logoTaps, setLogoTaps] = useState(0);
+  const [boomerangFlying, setBoomerangFlying] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    const newCount = logoTaps + 1;
+    setLogoTaps(newCount);
+    if (newCount >= 3) {
+      e.preventDefault();
+      setBoomerangFlying(true);
+      setLogoTaps(0);
+      setTimeout(() => setBoomerangFlying(false), 2000);
+    }
+    // Reset tap count if no tap within 1s
+    setTimeout(() => setLogoTaps((c) => (c === newCount ? 0 : c)), 1000);
+  };
 
   useEffect(() => {
     if (!isHome) return;
@@ -40,15 +55,17 @@ export default function Navigation() {
           ? "fixed top-0 left-0 right-0"
           : "sticky top-0"
       } ${
-        isTransparent
+        isTransparent && !isOpen
           ? "bg-transparent"
+          : isTransparent && isOpen
+          ? "bg-charcoal/90 backdrop-blur-md"
           : "bg-cream/95 backdrop-blur-sm border-b border-charcoal/5"
       }`}
     >
       <nav className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="flex items-center justify-between h-20">
           {/* Logo — left */}
-          <Link href="/" className="shrink-0">
+          <Link href="/" className="shrink-0" onClick={handleLogoClick}>
             <Image
               src="/logo-pilat.svg"
               alt="Boomerang Pilates"
@@ -57,6 +74,16 @@ export default function Navigation() {
               className={`h-10 md:h-12 w-auto ${isTransparent ? "brightness-0 invert" : ""}`}
             />
           </Link>
+
+          {/* Easter egg: flying boomerang */}
+          {boomerangFlying && (
+            <div
+              aria-hidden
+              className="pointer-events-none fixed top-16 left-0 z-[200] text-4xl boomerang-fly"
+            >
+              🪃
+            </div>
+          )}
 
           {/* Desktop nav links — after logo */}
           <div className="hidden md:flex items-center gap-8 ml-12">

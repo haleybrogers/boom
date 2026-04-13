@@ -1,4 +1,9 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Footer() {
+  const [eggHover, setEggHover] = useState(false);
   return (
     <footer className="border-t border-charcoal/10">
       <div className="max-w-6xl mx-auto px-6 py-10">
@@ -52,8 +57,16 @@ export default function Footer() {
           </a>
 
           {/* Copyright */}
-          <p className="text-xs text-muted/60">
-            &copy; {new Date().getFullYear()} Boomerang Pilates · Durham, NC
+          <p
+            className="text-xs text-muted/60 cursor-default transition-all duration-300"
+            onMouseEnter={() => setEggHover(true)}
+            onMouseLeave={() => setEggHover(false)}
+          >
+            {eggHover ? (
+              <span className="text-accent/80">Est. 2026. But the method? 1920.</span>
+            ) : (
+              <>&copy; {new Date().getFullYear()} Boomerang Pilates · Durham, NC</>
+            )}
           </p>
         </div>
       </div>

@@ -101,6 +101,14 @@ export default function NewToPilates() {
           </a>
           {" "}— we&apos;re happy to help you find the right fit.
         </p>
+        <div className="text-center mt-4">
+          <Link
+            href="/classes#faq"
+            className="link-arrow text-xs tracking-widest uppercase text-accent/60 hover:text-accent transition-colors"
+          >
+            Read our FAQ
+          </Link>
+        </div>
       </div>
     </section>
   );

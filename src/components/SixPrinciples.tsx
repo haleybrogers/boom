@@ -170,9 +170,30 @@ function AnimatedIcon({ name, animate, delay }: { name: string; animate: boolean
   }
 }
 
+// Classical order: Centering → Concentration → Control → Precision → Breath → Flow
+const SECRET_ORDER = ["Center", "Concentration", "Control", "Precision", "Breath", "Flow"];
+
 export default function SixPrinciples({ embedded = false }: { embedded?: boolean }) {
   const [visible, setVisible] = useState(false);
+  const [sequence, setSequence] = useState<string[]>([]);
+  const [unlocked, setUnlocked] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  const handlePrincipleClick = (name: string) => {
+    if (unlocked) return;
+    const next = [...sequence, name];
+    // Check if still on the right path
+    const expected = SECRET_ORDER[next.length - 1];
+    if (name !== expected) {
+      setSequence([]);
+      return;
+    }
+    if (next.length === SECRET_ORDER.length) {
+      setUnlocked(true);
+    } else {
+      setSequence(next);
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -203,25 +224,52 @@ export default function SixPrinciples({ embedded = false }: { embedded?: boolean
       <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12">
         {principles.map((p, i) => {
           const delay = i * 150;
+          const isInSequence = sequence.includes(p.name);
           return (
-            <div
+            <button
               key={p.name}
-              className="text-center transition-all duration-700 ease-out"
+              onClick={() => handlePrincipleClick(p.name)}
+              className="text-center transition-all duration-700 ease-out cursor-pointer"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(24px)",
                 transitionDelay: `${delay}ms`,
               }}
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/8 text-accent mb-4 transition-transform duration-300 hover:scale-110">
+              <div className={`inline-flex items-center justify-center w-14 h-14 rounded-full text-accent mb-4 transition-all duration-300 hover:scale-110 ${
+                isInSequence ? "bg-accent/25 ring-2 ring-accent/40" : "bg-accent/8"
+              }`}>
                 <AnimatedIcon name={p.name} animate={visible} delay={delay} />
               </div>
               <h3 className="font-serif text-lg text-charcoal mb-1">{p.name}</h3>
               <p className="text-sm text-muted">{p.description}</p>
-            </div>
+            </button>
           );
         })}
       </div>
+
+      {/* Hidden 7th principle — unlocked by clicking in classical order */}
+      {unlocked && (
+        <div className="mt-16 text-center animate-fade-in">
+          <div className="inline-block border-t border-accent/30 pt-8 px-10">
+            <p className="text-[10px] tracking-widest uppercase text-accent mb-3">
+              The Seventh Principle
+            </p>
+            <h3 className="font-serif text-4xl font-light text-charcoal mb-3">
+              Show Up.
+            </h3>
+            <p className="text-sm text-muted mb-6 max-w-xs mx-auto">
+              The one Joe didn&apos;t write down. The only one that matters.
+            </p>
+            <a
+              href="/classes"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-6 py-3"
+            >
+              Book a Class
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   );
 

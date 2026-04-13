@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
+import EarlyBirdBanner from "@/components/EarlyBirdBanner";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
@@ -58,6 +59,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white text-charcoal">
         <SplashScreen>
           <Navigation />
+          <EarlyBirdBanner />
           <main className="flex-1">{children}</main>
           <Footer />
         </SplashScreen>
