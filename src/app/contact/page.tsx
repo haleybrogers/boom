@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -22,6 +23,26 @@ export default function Contact() {
             Questions about classes, pricing, or private sessions? We&apos;d
             love to hear from you.
           </p>
+        </div>
+      </section>
+
+      {/* Private instruction callout */}
+      <section className="pb-12 sm:pb-16">
+        <div className="max-w-xl mx-auto px-6">
+          <div className="border border-accent/20 bg-accent/5 rounded-sm p-6 text-center">
+            <p className="font-serif text-lg font-light text-charcoal mb-2">
+              Looking to schedule private instruction?
+            </p>
+            <p className="text-sm text-muted mb-4">
+              Book directly with one of our instructors — see availability and pay online.
+            </p>
+            <Link
+              href="/classes#privates"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-7 py-3 hover:bg-accent/90 transition-colors"
+            >
+              Book a Private
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -82,6 +103,33 @@ export default function Contact() {
                 <h3 className="text-xs tracking-widest uppercase text-muted mb-3">Email</h3>
                 <a href="mailto:info@boomerangpilatesnc.com" className="text-sm text-charcoal hover:text-muted transition-colors">
                   info@boomerangpilatesnc.com
+                </a>
+              </div>
+              <div>
+                <h3 className="text-xs tracking-widest uppercase text-muted mb-3">Follow Us</h3>
+                <a
+                  href="https://instagram.com/boomerangpilatesnc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-charcoal hover:text-accent transition-colors"
+                >
+                  @boomerangpilatesnc
+                </a>
+              </div>
+
+              {/* Review CTA */}
+              <div className="border-t border-charcoal/10 pt-8">
+                <h3 className="text-xs tracking-widest uppercase text-muted mb-3">Love Boomerang?</h3>
+                <a
+                  href="https://g.page/r/boomerangpilates/review"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-animated inline-flex items-center gap-2 bg-charcoal text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-charcoal/85 transition-colors"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                  Leave a Review
                 </a>
               </div>
             </div>
