@@ -91,6 +91,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
                 className={`text-[11px] tracking-[0.2em] uppercase transition-colors ${
                   isTransparent
                     ? "text-white/80 hover:text-white"
@@ -162,7 +163,10 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    window.scrollTo({ top: 0, behavior: "instant" });
+                  }}
                   className={`text-xs tracking-[0.2em] uppercase ${
                     isTransparent
                       ? "text-white/70 hover:text-white"
