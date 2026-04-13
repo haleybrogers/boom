@@ -56,7 +56,7 @@ export default function Home() {
               href="/classes#founding"
               className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
             >
-              Be One of the First
+              Reserve Your Spot
             </Link>
           </div>
         </div>
@@ -69,6 +69,7 @@ export default function Home() {
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
               What We Offer
             </h2>
+            <div className="w-12 h-px bg-accent mx-auto mt-5 mb-5" />
             <p className="text-muted text-base max-w-md mx-auto">
               Mat, apparatus, privates, and duets — classical Pilates the way it was designed.
             </p>

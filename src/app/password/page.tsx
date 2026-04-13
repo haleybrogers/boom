@@ -22,31 +22,37 @@ export default function PasswordPage() {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [cheekyIdx, setCheekyIdx] = useState(0);
   const [cheekyFading, setCheekyFading] = useState(false);
-  const [boomerangFlying, setBoomerangFlying] = useState(false);
   const router = useRouter();
 
-  // Auto-rotate cheeky messages with a soft fade
+  // Linger on "Site Under Construction" for a beat, THEN start cycling
+  // through the funny ones for users who stay on the page.
   useEffect(() => {
     const advance = (nextIdx: number) => {
       setCheekyFading(true);
       setTimeout(() => {
         setCheekyIdx(nextIdx);
-        if (nextIdx === CHEEKY_MESSAGES.length - 1) {
-          setBoomerangFlying(true);
-          setTimeout(() => setBoomerangFlying(false), 2000);
-        }
         setCheekyFading(false);
       }, 400);
     };
 
-    const interval = setInterval(() => {
-      setCheekyIdx((i) => {
-        const next = (i + 1) % CHEEKY_MESSAGES.length;
-        advance(next);
-        return i;
-      });
-    }, 5000);
-    return () => clearInterval(interval);
+    // Hold the construction message for ~10 seconds before rotating.
+    const initialHold = setTimeout(() => {
+      const interval = setInterval(() => {
+        setCheekyIdx((i) => {
+          const next = (i + 1) % CHEEKY_MESSAGES.length;
+          advance(next);
+          return i;
+        });
+      }, 5000);
+      // Stash interval for cleanup
+      (initialHold as unknown as { _i?: ReturnType<typeof setInterval> })._i = interval;
+    }, 10000);
+
+    return () => {
+      clearTimeout(initialHold);
+      const stash = (initialHold as unknown as { _i?: ReturnType<typeof setInterval> })._i;
+      if (stash) clearInterval(stash);
+    };
   }, []);
 
   const handleCheekyClick = () => {
@@ -54,10 +60,6 @@ export default function PasswordPage() {
     setCheekyFading(true);
     setTimeout(() => {
       setCheekyIdx(next);
-      if (next === CHEEKY_MESSAGES.length - 1) {
-        setBoomerangFlying(true);
-        setTimeout(() => setBoomerangFlying(false), 2000);
-      }
       setCheekyFading(false);
     }, 300);
   };
@@ -117,22 +119,6 @@ export default function PasswordPage() {
           {CHEEKY_MESSAGES[cheekyIdx]}
         </button>
       </div>
-
-      {/* Easter egg: flying boomerang (uses brand boomerang icon) */}
-      {boomerangFlying && (
-        <div
-          aria-hidden
-          className="pointer-events-none fixed top-24 left-0 z-[200] boomerang-fly"
-        >
-          <Image
-            src="/loading-icon.svg"
-            alt=""
-            width={44}
-            height={44}
-            className="w-11 h-11"
-          />
-        </div>
-      )}
 
       {/* Center: logo + spinner + email capture + password */}
       <div className="flex-1 flex flex-col items-center justify-center w-full">
