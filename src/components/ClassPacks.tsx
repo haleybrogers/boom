@@ -25,6 +25,13 @@ const packs = [
     description: "Ten mat classes at the best per-class rate outside of a membership. Use them at your own pace — valid for 6 months from purchase.",
   },
   {
+    name: "Unlimited Mat",
+    price: "$249",
+    savings: "Best Value",
+    detail: "Unlimited classes/mo",
+    description: "Unlimited mat classes every month. Come as often as you want — the more you show up, the less each class costs. Month-to-month, cancel anytime.",
+  },
+  {
     name: "Apparatus Drop-In",
     price: "$45",
     detail: "Single class · 3 spots",
@@ -44,6 +51,13 @@ const packs = [
     detail: "$37.50/class",
     description: "Ten apparatus classes — our best per-class value for apparatus outside of a membership. Valid for 6 months from purchase.",
   },
+  {
+    name: "Unlimited Apparatus",
+    price: "$349",
+    savings: "Best Value",
+    detail: "Unlimited classes/mo",
+    description: "Unlimited small-group apparatus classes every month. Three spots per class, hands-on instruction every time. Month-to-month, cancel anytime.",
+  },
 ];
 
 export default function ClassPacks() {
@@ -60,7 +74,7 @@ export default function ClassPacks() {
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {packs.map((pack) => (
           <button
             key={pack.name}
