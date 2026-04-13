@@ -3,27 +3,50 @@
 import Script from "next/script";
 import { useState } from "react";
 
-const instructors = [
+// Default booking URL shows availability across all instructors.
+// If/when Arketa gives us per-instructor booking links, swap them into `bookingUrl`.
+const ALL_INSTRUCTORS_URL =
+  "https://app.arketa.co/iframe/boomerangpilates/privates/by-service/FwfO18S2CiqgdBkFHHCW";
+
+type Instructor = {
+  name: string;
+  short: string;
+  role: string;
+  bio: string;
+  bookingUrl?: string;
+};
+
+const instructors: Instructor[] = [
   {
     name: "Emilie Young",
+    short: "Emilie",
     role: "Co-Founder",
     bio: "3rd Generation Classical Pilates. Comprehensively certified in mat and full apparatus.",
   },
   {
     name: "Annie Young",
+    short: "Annie",
     role: "Co-Founder",
     bio: "Classical Pilates certified in mat and apparatus. Trained in the direct lineage of Joseph Pilates. Passionate about making the method accessible to every body.",
   },
   {
     name: "Instructor TBD",
+    short: "Third Instructor",
     role: "Instructor",
     bio: "More details coming soon.",
   },
 ];
 
+// -1 = "All instructors" view
+type Selection = -1 | 0 | 1 | 2;
+
 export default function SchedulePrivate() {
-  const [showInstructors, setShowInstructors] = useState(false);
-  const [selected, setSelected] = useState<number | null>(null);
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<Selection>(-1);
+  const [showBio, setShowBio] = useState(false);
+
+  const current = selected === -1 ? null : instructors[selected];
+  const iframeSrc = current?.bookingUrl ?? ALL_INSTRUCTORS_URL;
 
   return (
     <div className="max-w-5xl mx-auto px-6">
@@ -52,15 +75,15 @@ export default function SchedulePrivate() {
         </div>
       </div>
 
-      {/* CTA to reveal instructors */}
+      {/* CTA — collapses once calendar is open */}
       <div
         className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          showInstructors ? "max-h-0 opacity-0" : "max-h-20 opacity-100"
+          open ? "max-h-0 opacity-0" : "max-h-20 opacity-100"
         }`}
       >
         <div className="text-center">
           <button
-            onClick={() => setShowInstructors(true)}
+            onClick={() => setOpen(true)}
             className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
           >
             Schedule a Private
@@ -68,81 +91,123 @@ export default function SchedulePrivate() {
         </div>
       </div>
 
-      {/* Instructor cards — revealed after clicking CTA */}
+      {/* Calendar + instructor filter — revealed after clicking Schedule */}
       <div
         className={`overflow-hidden transition-all duration-600 ease-in-out ${
-          showInstructors ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-[2400px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <p className="text-center text-sm text-muted mb-8">
-          Choose your instructor to see availability and book.
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          {instructors.map((inst, i) => (
+        {/* Instructor filter tabs */}
+        <div className="mb-6">
+          <p className="text-center text-xs tracking-widest uppercase text-muted mb-3">
+            Filter by Instructor
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
             <button
-              key={inst.name}
-              onClick={() => setSelected(selected === i ? null : i)}
-              className={`group relative text-left p-6 rounded-sm border transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
-                selected === i
-                  ? "border-accent bg-white shadow-md"
-                  : "border-charcoal/10 bg-white hover:border-accent/30"
+              onClick={() => {
+                setSelected(-1);
+                setShowBio(false);
+              }}
+              className={`text-xs tracking-widest uppercase px-4 py-2.5 rounded-sm border transition-colors ${
+                selected === -1
+                  ? "bg-accent text-white border-accent"
+                  : "bg-white text-charcoal border-charcoal/15 hover:border-accent/40"
               }`}
             >
-              <div className={`w-12 h-12 rounded-full mb-4 flex items-center justify-center text-lg font-serif transition-colors duration-300 ${
-                selected === i
-                  ? "bg-accent text-white"
-                  : "bg-accent/8 text-accent group-hover:bg-accent/15"
-              }`}>
-                {inst.name.split(" ").map(n => n[0]).join("")}
-              </div>
-              <h3 className="font-serif text-lg font-light text-charcoal mb-0.5">
-                {inst.name}
-              </h3>
-              <p className="text-xs text-accent mb-2">{inst.role}</p>
-              <p className="text-sm text-muted leading-relaxed">{inst.bio}</p>
-              <div className={`mt-4 text-xs tracking-widest uppercase transition-colors duration-200 ${
-                selected === i ? "text-accent" : "text-charcoal/40 group-hover:text-accent"
-              }`}>
-                {selected === i ? "Viewing Availability ↓" : "See Availability →"}
-              </div>
+              All Instructors
             </button>
-          ))}
+            {instructors.map((inst, i) => (
+              <button
+                key={inst.name}
+                onClick={() => {
+                  setSelected(i as Selection);
+                  setShowBio(false);
+                }}
+                className={`text-xs tracking-widest uppercase px-4 py-2.5 rounded-sm border transition-colors ${
+                  selected === i
+                    ? "bg-accent text-white border-accent"
+                    : "bg-white text-charcoal border-charcoal/15 hover:border-accent/40"
+                }`}
+              >
+                {inst.short}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Arketa booking embed — shows when instructor is selected */}
-        <div
-          className={`overflow-hidden transition-all duration-500 ease-in-out ${
-            selected !== null ? "max-h-[900px] opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          {selected !== null && (
-            <div className="bg-white rounded-sm border border-charcoal/10 overflow-hidden">
-              <div className="bg-cream/50 px-6 py-3 border-b border-charcoal/5 flex items-center justify-between">
-                <p className="text-sm text-charcoal">
-                  <span className="text-muted">Booking with</span>{" "}
-                  <span className="font-medium">{instructors[selected].name}</span>
-                </p>
-                <button
-                  onClick={() => setSelected(null)}
-                  className="text-xs text-muted hover:text-charcoal transition-colors"
-                >
-                  Close
-                </button>
+        {/* Selected instructor bio — expandable */}
+        {current && (
+          <div className="max-w-2xl mx-auto mb-6 bg-white border border-charcoal/10 rounded-sm overflow-hidden">
+            <button
+              onClick={() => setShowBio((v) => !v)}
+              className="w-full flex items-center gap-4 px-5 py-4 text-left hover:bg-cream/40 transition-colors"
+            >
+              <div className="w-11 h-11 rounded-full bg-accent/10 text-accent flex items-center justify-center font-serif">
+                {current.name.split(" ").map((n) => n[0]).join("")}
               </div>
-              <iframe
-                key={selected}
-                id="sutraWidgetIframe"
-                src="https://app.arketa.co/iframe/boomerangpilates/privates/by-service/FwfO18S2CiqgdBkFHHCW"
-                width="100%"
-                frameBorder="0"
-                allow="payment;fullscreen"
-                allowFullScreen
-                className="w-full border-0"
-                style={{ height: "700px" }}
-              />
+              <div className="flex-1">
+                <p className="font-serif text-base font-light text-charcoal leading-tight">
+                  {current.name}
+                </p>
+                <p className="text-[11px] tracking-widest uppercase text-accent mt-0.5">
+                  {current.role}
+                </p>
+              </div>
+              <span
+                className={`shrink-0 text-accent/60 transition-transform duration-300 ${
+                  showBio ? "rotate-45" : ""
+                }`}
+                aria-label={showBio ? "Hide bio" : "Show bio"}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </span>
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                showBio ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <p className="text-sm text-muted leading-relaxed px-5 pb-5">
+                {current.bio}
+              </p>
             </div>
-          )}
+          </div>
+        )}
+
+        {/* Availability iframe */}
+        <div className="bg-white rounded-sm border border-charcoal/10 overflow-hidden">
+          <div className="bg-cream/50 px-6 py-3 border-b border-charcoal/5 flex items-center justify-between">
+            <p className="text-sm text-charcoal">
+              <span className="text-muted">Viewing availability:</span>{" "}
+              <span className="font-medium">
+                {current ? current.name : "All instructors"}
+              </span>
+            </p>
+            {current && (
+              <button
+                onClick={() => {
+                  setSelected(-1);
+                  setShowBio(false);
+                }}
+                className="text-xs text-muted hover:text-charcoal transition-colors"
+              >
+                See all
+              </button>
+            )}
+          </div>
+          <iframe
+            key={selected}
+            id="sutraWidgetIframe"
+            src={iframeSrc}
+            width="100%"
+            frameBorder="0"
+            allow="payment;fullscreen"
+            allowFullScreen
+            className="w-full border-0"
+            style={{ height: "700px" }}
+          />
         </div>
       </div>
 

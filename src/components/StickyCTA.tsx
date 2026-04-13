@@ -30,15 +30,13 @@ export default function StickyCTA() {
       }`}
     >
       <Link
-        href="https://app.arketa.co/boomerangpilates/memberships"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/classes#founding"
         className="btn-animated flex items-center gap-2.5 bg-accent text-white text-xs tracking-widest uppercase px-5 py-3.5 shadow-lg hover:bg-accent/90 transition-colors"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
-        {isFridayEvening ? "You survived. Come move." : "Join the First 50"}
+        {isFridayEvening ? "You survived. Come move." : "Founding Pricing"}
       </Link>
     </div>
   );

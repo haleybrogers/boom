@@ -15,7 +15,7 @@ function calc() {
   return { days, hours, minutes, seconds };
 }
 
-export default function FoundingCountdown() {
+export default function FoundingCountdown({ showLabel = true }: { showLabel?: boolean }) {
   const [time, setTime] = useState<ReturnType<typeof calc>>(null);
 
   useEffect(() => {
@@ -26,30 +26,32 @@ export default function FoundingCountdown() {
 
   if (!time) return null;
 
-  const Box = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center">
-      <div className="bg-charcoal text-white font-serif text-2xl sm:text-3xl font-light tabular-nums w-14 sm:w-16 py-2 rounded-sm">
+  const Unit = ({ value, label }: { value: number; label: string }) => (
+    <span className="inline-flex items-baseline gap-1">
+      <span className="font-serif text-base text-accent tabular-nums font-medium">
         {value.toString().padStart(2, "0")}
-      </div>
-      <p className="text-[9px] tracking-widest uppercase text-muted mt-1.5">
+      </span>
+      <span className="text-[9px] tracking-widest uppercase text-accent/70">
         {label}
-      </p>
-    </div>
+      </span>
+    </span>
   );
 
   return (
-    <div className="flex flex-col items-center mb-8">
-      <p className="text-[10px] tracking-widest uppercase text-accent mb-3">
-        Founding Member Pricing Ends June 15
-      </p>
-      <div className="flex items-center gap-2 sm:gap-3">
-        <Box value={time.days} label="Days" />
-        <span className="font-serif text-2xl text-charcoal/30 -mt-4">:</span>
-        <Box value={time.hours} label="Hrs" />
-        <span className="font-serif text-2xl text-charcoal/30 -mt-4">:</span>
-        <Box value={time.minutes} label="Min" />
-        <span className="font-serif text-2xl text-charcoal/30 -mt-4">:</span>
-        <Box value={time.seconds} label="Sec" />
+    <div className="flex flex-col items-center mb-4">
+      {showLabel && (
+        <p className="text-[10px] tracking-widest uppercase text-accent mb-2">
+          Founding Member Pricing Ends June 15
+        </p>
+      )}
+      <div className="flex items-baseline gap-2.5">
+        <Unit value={time.days} label="d" />
+        <span className="text-accent/30 text-xs">·</span>
+        <Unit value={time.hours} label="h" />
+        <span className="text-accent/30 text-xs">·</span>
+        <Unit value={time.minutes} label="m" />
+        <span className="text-accent/30 text-xs">·</span>
+        <Unit value={time.seconds} label="s" />
       </div>
     </div>
   );

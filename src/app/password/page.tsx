@@ -6,15 +6,26 @@ import { useRouter } from "next/navigation";
 export default function PasswordPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === "boomerang2026") {
-      document.cookie = `site-auth=${password}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
+    setLoading(true);
+    setError(false);
+
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+
+    if (res.ok) {
       router.push("/");
+      router.refresh();
     } else {
       setError(true);
+      setLoading(false);
     }
   };
 
@@ -35,15 +46,17 @@ export default function PasswordPage() {
             placeholder="Enter password"
             className="w-full px-0 py-2 bg-transparent border-b border-charcoal/20 text-charcoal placeholder-charcoal/30 focus:outline-none focus:border-accent transition-colors text-sm text-center"
             autoFocus
+            disabled={loading}
           />
           {error && (
             <p className="text-xs text-red-500">Incorrect password.</p>
           )}
           <button
             type="submit"
-            className="bg-accent text-white px-7 py-2.5 text-xs tracking-wide rounded-sm hover:bg-accent/85 transition-colors"
+            disabled={loading}
+            className="bg-accent text-white px-7 py-2.5 text-xs tracking-wide rounded-sm hover:bg-accent/85 transition-colors disabled:opacity-50"
           >
-            Enter
+            {loading ? "..." : "Enter"}
           </button>
         </form>
       </div>

@@ -36,7 +36,7 @@ const faqs = [
   {
     question: "What's a founding membership?",
     answer:
-      "The first 50 members lock in a discounted rate that never goes up — no matter how long you stay. It's our way of rewarding the people who believe in this from the beginning. Once the 50 spots are filled, rates go to standard pricing.",
+      "Only 15 people lock in our $199/mo unlimited mat rate — and that rate never goes up as long as your membership stays active and continuous. If you cancel or pause, you lose the founding rate (rejoining later means standard pricing). Anyone who buys a 10-pack of privates or duets before opening day also gets one-time founding pricing on those packs — no per-person cap on those, just the June 15 deadline.",
   },
 ];
 

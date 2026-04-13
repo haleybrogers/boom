@@ -4,93 +4,160 @@ import FoundingCountdown from "./FoundingCountdown";
 
 const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
 
-const memberships = [
-  {
-    name: "Unlimited Mat",
-    price: "$199",
-    perClass: "As low as $12/class",
-    includes: "Unlimited mat classes per month",
-    savings: "Save $50/mo",
-    highlight: true,
-  },
-  {
-    name: "2x/Week Mat",
-    price: "$150",
-    perClass: "$18.75/class",
-    includes: "Up to 8 mat classes per month",
-    savings: "Save $50/mo",
-    highlight: false,
-  },
-  {
-    name: "1x/Week Group Tower",
-    price: "$120",
-    perClass: "$30/class",
-    includes: "4 small-group tower classes per month",
-    savings: "Save $60/mo",
-    highlight: false,
-  },
-  {
-    name: "Tower + Mat Combo",
-    price: "$200",
-    perClass: "$25/class",
-    includes: "1x tower + 1x mat per week",
-    savings: "Save $80/mo",
-    highlight: true,
-  },
-];
-
 export default function FoundingPricingOverlay() {
   return (
     <div>
-      <div className="text-center mb-8">
+      {/* Hero — Become a Founding Member */}
+      <div className="text-center mb-10">
         <span className="text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-3 py-1.5 rounded-sm">
-          Limited to First 50 Members
+          Founding Member · Ends June 15
         </span>
-        <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mt-5 mb-3">
-          Lock In Your Rate Forever
+        <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mt-5 mb-3">
+          Become a founding member.
         </h2>
-        <p className="text-sm text-muted max-w-md mx-auto mb-8">
-          The first 50 members set the tone for this studio. Your rate never goes up — and you&apos;re in from day one.
+        <p className="text-base text-muted max-w-lg mx-auto mb-6">
+          Get in before we open the doors. Founding members shape this studio — and walk away with perks no one else can buy.
         </p>
-        <FoundingCountdown />
+        <FoundingCountdown showLabel={false} />
       </div>
 
-      {/* 2x2 grid */}
-      <div className="max-w-3xl mx-auto grid grid-cols-2 gap-4 mb-6">
-        {memberships.map((tier) => (
-          <a
-            key={tier.name}
-            href={MEMBERSHIP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`group p-5 rounded-sm border text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer ${
-              tier.highlight
-                ? "border-accent/20 bg-accent/5 hover:border-accent/40"
-                : "border-charcoal/10 bg-white hover:border-accent/20"
-            }`}
-          >
-            <p className="font-serif text-base font-light text-charcoal mb-0.5">
-              {tier.name}
-            </p>
-            <p className="text-xs text-muted mb-3">{tier.includes}</p>
-            <div className="flex items-baseline justify-center gap-1">
-              <span className="font-serif text-2xl font-light text-charcoal">
-                {tier.price}
-              </span>
-              <span className="text-sm text-muted">/mo</span>
-            </div>
-            <p className="text-xs text-accent mt-1">{tier.perClass}</p>
-            <span className="inline-block text-[9px] tracking-wide uppercase text-accent bg-accent/10 px-2 py-0.5 rounded-sm mt-2">
-              {tier.savings}
+      {/* What you get as a founding member — the headline experience */}
+      <div className="max-w-2xl mx-auto bg-cream border border-accent/15 rounded-sm p-6 sm:p-8 mb-12">
+        <p className="text-[10px] tracking-widest uppercase text-accent mb-4 text-center">
+          What Every Founding Member Gets
+        </p>
+        <ul className="text-sm text-charcoal/85 space-y-3 max-w-md mx-auto">
+          <li className="flex gap-3">
+            <span className="text-accent shrink-0 mt-0.5">✓</span>
+            <span>
+              <strong className="font-medium">Access to soft-opening classes</strong> — donation-based test classes before grand opening. Help us shake out the kinks.
             </span>
-            <p className="text-[10px] tracking-widest uppercase text-charcoal/0 group-hover:text-accent mt-2 transition-colors duration-200">
-              Select →
-            </p>
-          </a>
-        ))}
+          </li>
+          <li className="flex gap-3">
+            <span className="text-accent shrink-0 mt-0.5">✓</span>
+            <span>
+              <strong className="font-medium">Opening Night invite</strong> — June 15, food &amp; drinks on us. Plus-one welcome.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="text-accent shrink-0 mt-0.5">✓</span>
+            <span>
+              <strong className="font-medium">Welcome kit</strong> — handed out at opening night.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="text-accent shrink-0 mt-0.5">✓</span>
+            <span>
+              <strong className="font-medium">Founding pricing</strong> — choose your offer below. Lock it in before June 15.
+            </span>
+          </li>
+        </ul>
       </div>
 
-      <p className="text-center text-xs text-muted/60">3-month minimum commitment</p>
+      {/* Founding offers — three equal options */}
+      <div className="text-center mb-6">
+        <p className="text-[10px] tracking-widest uppercase text-accent mb-2">Choose Your Founding Offer</p>
+        <h3 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-2">
+          Pick one. That&apos;s how you&apos;re in.
+        </h3>
+        <p className="text-sm text-muted max-w-md mx-auto">
+          Buy any of the three before opening day to lock in founding pricing and unlock every perk above.
+        </p>
+      </div>
+
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        {/* Unlimited Mat */}
+        <a
+          href={MEMBERSHIP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-col p-6 rounded-sm border-2 border-accent/30 bg-accent/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50 cursor-pointer"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-[10px] tracking-widest uppercase text-accent">Membership</p>
+            <span className="text-[9px] tracking-widest uppercase text-accent bg-accent/15 px-2 py-0.5 rounded-sm">
+              Only 15
+            </span>
+          </div>
+          <h4 className="font-serif text-lg font-light text-charcoal mb-1">Unlimited Mat</h4>
+          <p className="text-xs text-muted mb-4">Unlimited mat classes per month</p>
+          <div className="flex items-baseline gap-1 mb-1">
+            <span className="font-serif text-3xl font-light text-charcoal">$199</span>
+            <span className="text-sm text-muted">/mo</span>
+          </div>
+          <p className="text-[11px] text-accent mb-4">Rate never increases*</p>
+          <ul className="text-xs text-charcoal/70 space-y-1.5 mb-5 flex-1">
+            <li>· No billing until June 15</li>
+            <li>· 3-month minimum</li>
+            <li>· Locked while membership stays active</li>
+          </ul>
+          <span className="text-[10px] tracking-widest uppercase text-accent text-center pt-3 border-t border-accent/15">
+            Claim Spot →
+          </span>
+        </a>
+
+        {/* 10-Pack Privates */}
+        <a
+          href={MEMBERSHIP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-col p-6 rounded-sm border-2 border-accent/30 bg-accent/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50 cursor-pointer"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-[10px] tracking-widest uppercase text-accent">Class Pack</p>
+            <span className="text-[9px] tracking-widest uppercase text-accent bg-accent/15 px-2 py-0.5 rounded-sm">
+              Save $200
+            </span>
+          </div>
+          <h4 className="font-serif text-lg font-light text-charcoal mb-1">10-Pack Privates</h4>
+          <p className="text-xs text-muted mb-4">Ten 1-on-1 sessions, full apparatus</p>
+          <div className="flex items-baseline gap-1 mb-1">
+            <span className="font-serif text-3xl font-light text-charcoal">$900</span>
+          </div>
+          <p className="text-[11px] text-accent mb-4">$90/session</p>
+          <ul className="text-xs text-charcoal/70 space-y-1.5 mb-5 flex-1">
+            <li>· Billed at purchase</li>
+            <li>· Use within 12 months</li>
+            <li>· One-time founding discount</li>
+          </ul>
+          <span className="text-[10px] tracking-widest uppercase text-accent text-center pt-3 border-t border-accent/15">
+            Buy Pack →
+          </span>
+        </a>
+
+        {/* 10-Pack Duets */}
+        <a
+          href={MEMBERSHIP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-col p-6 rounded-sm border-2 border-accent/30 bg-accent/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50 cursor-pointer"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-[10px] tracking-widest uppercase text-accent">Class Pack</p>
+            <span className="text-[9px] tracking-widest uppercase text-accent bg-accent/15 px-2 py-0.5 rounded-sm">
+              Save $100
+            </span>
+          </div>
+          <h4 className="font-serif text-lg font-light text-charcoal mb-1">10-Pack Duets</h4>
+          <p className="text-xs text-muted mb-4">Ten duet sessions, bring a partner</p>
+          <div className="flex items-baseline gap-1 mb-1">
+            <span className="font-serif text-3xl font-light text-charcoal">$500</span>
+          </div>
+          <p className="text-[11px] text-accent mb-4">$50/person</p>
+          <ul className="text-xs text-charcoal/70 space-y-1.5 mb-5 flex-1">
+            <li>· Billed at purchase</li>
+            <li>· Use within 12 months</li>
+            <li>· One-time founding discount</li>
+          </ul>
+          <span className="text-[10px] tracking-widest uppercase text-accent text-center pt-3 border-t border-accent/15">
+            Buy Pack →
+          </span>
+        </a>
+      </div>
+
+      <p className="text-center text-[10px] text-muted/70 mt-6 max-w-xl mx-auto leading-relaxed">
+        *Mat rate locked as long as membership stays active and continuous. If you cancel or pause, you lose the founding rate — rejoining later means standard pricing.
+      </p>
     </div>
   );
 }

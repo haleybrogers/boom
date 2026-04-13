@@ -1,16 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
-// TODO: Replace with actual Arketa membership purchase URLs when available
-const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
-
-const rates = [
-  { name: "Unlimited Mat", price: "$199", perClass: "$12/class", savings: "Save $50/mo" },
-  { name: "2x/Week Mat", price: "$150", perClass: "$18.75/class", savings: "Save $50/mo" },
-  { name: "1x/Week Tower", price: "$120", perClass: "$30/class", savings: "Save $60/mo" },
-  { name: "Tower + Mat Combo", price: "$200", perClass: "$25/class", savings: "Save $80/mo" },
-];
+import Link from "next/link";
 
 export default function FoundingPopup() {
   const [show, setShow] = useState(false);
@@ -51,51 +42,32 @@ export default function FoundingPopup() {
           </svg>
         </button>
 
-        <div className="text-center mb-6">
-          <p className="text-xs tracking-widest uppercase text-accent mb-3">Limited to First 50 Members</p>
-          <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-2">
-            Founding Member Rates
+        <div className="text-center mb-7">
+          <p className="text-xs tracking-widest uppercase text-accent mb-3">Founding Member · Ends June 15</p>
+          <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-3">
+            Become a founding member.
           </h2>
-          <p className="text-muted text-sm">
-            Be one of the first 50. Your rate never goes up — and you help set the tone.
+          <p className="text-muted text-sm max-w-sm mx-auto leading-relaxed">
+            Get in before we open. Soft-opening access, opening night invite, and founding pricing on memberships and class packs.
           </p>
         </div>
 
-        {/* Clickable pricing grid */}
-        <div className="grid grid-cols-2 gap-3 mb-6">
-          {rates.map((rate) => (
-            <a
-              key={rate.name}
-              href={MEMBERSHIP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={dismiss}
-              className="group bg-white border border-charcoal/10 rounded-sm p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/20"
-            >
-              <p className="text-xs text-muted mb-2">{rate.name}</p>
-              <p className="font-serif text-2xl font-light text-charcoal">{rate.price}<span className="text-sm text-muted">/mo</span></p>
-              <p className="text-[11px] text-accent mt-1">{rate.perClass}</p>
-              <span className="inline-block text-[9px] tracking-wide uppercase text-accent bg-accent/10 px-2 py-0.5 rounded-sm mt-1.5">
-                {rate.savings}
-              </span>
-              <p className="text-[9px] tracking-widest uppercase text-charcoal/0 group-hover:text-accent mt-2 transition-colors duration-200">
-                Select →
-              </p>
-            </a>
-          ))}
-        </div>
-
-        <p className="text-center text-muted/70 text-xs mb-4">
-          First access to the schedule + invite to opening night.
-        </p>
-
         <div className="text-center">
-          <button
+          <Link
+            href="/classes#founding"
             onClick={dismiss}
-            className="text-xs text-muted/60 hover:text-charcoal transition-colors"
+            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors mb-3"
           >
-            Maybe later
-          </button>
+            Reserve Your Spot
+          </Link>
+          <div>
+            <button
+              onClick={dismiss}
+              className="text-xs text-muted/60 hover:text-charcoal transition-colors"
+            >
+              Maybe later
+            </button>
+          </div>
         </div>
       </div>
 

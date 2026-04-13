@@ -38,7 +38,7 @@ export default function FoundingPricing() {
     <div id="founding" className="max-w-4xl mx-auto px-6">
       <div className="text-center mb-12">
         <span className="text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-3 py-1.5 rounded-sm">
-          Limited to First 50 Members
+          Limited to First 25 Members
         </span>
         <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mt-5 mb-3">
           Lock In Your Rate Forever

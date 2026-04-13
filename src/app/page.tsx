@@ -5,6 +5,7 @@ import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import StickyCTA from "@/components/StickyCTA";
+import FoundingCountdown from "@/components/FoundingCountdown";
 
 export default function Home() {
   return (
@@ -20,27 +21,41 @@ export default function Home() {
         />
       </section>
 
-      {/* Positioning statement + CTA */}
+      {/* Positioning statement */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">
             Opening Soon
           </p>
-          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-3">
+          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-4">
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
-          <p className="text-muted text-sm max-w-md mx-auto">
-            We&apos;re building something from the ground up — and the first 50 members get to be part of it from day one.
+          <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed">
+            Two sisters. Third-generation classically trained, fully certified across the method. One belief: classical Pilates was made for every body — not just the front row. We built this studio to prove it.
           </p>
-          <div className="mt-6">
-            <a
-              href="https://app.arketa.co/boomerangpilates/memberships"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+        </div>
+      </section>
+
+      {/* Founding Member Tease */}
+      <section className="pb-16 lg:pb-24">
+        <div className="max-w-lg mx-auto px-6">
+          <div className="bg-accent/5 border border-accent/15 rounded-sm px-8 py-10 text-center">
+            <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-5">
+              Founding Member · Ends June 15
+            </p>
+            <FoundingCountdown showLabel={false} />
+            <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mb-3 mt-2 leading-tight">
+              Become a Founding Member.
+            </h2>
+            <p className="text-sm text-muted mb-6 max-w-sm mx-auto leading-relaxed">
+              Get access to pre-opening pricing, soft-opening classes, and a few perks no one else can buy.
+            </p>
+            <Link
+              href="/classes#founding"
+              className="link-arrow inline-block text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
             >
-              Join as a Founding Member
-            </a>
+              Learn More
+            </Link>
           </div>
         </div>
       </section>

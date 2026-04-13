@@ -99,16 +99,15 @@ export default function NewToPilates() {
           >
             Email us
           </a>
-          {" "}— we&apos;re happy to help you find the right fit.
-        </p>
-        <div className="text-center mt-4">
+          {" "}or{" "}
           <Link
             href="/classes#faq"
-            className="link-arrow text-xs tracking-widest uppercase text-accent/60 hover:text-accent transition-colors"
+            className="text-accent hover:text-accent/80 transition-colors underline underline-offset-2"
           >
-            Read our FAQ
+            read our FAQ
           </Link>
-        </div>
+          .
+        </p>
       </div>
     </section>
   );
