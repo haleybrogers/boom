@@ -89,15 +89,15 @@ export default function ClassGuideModal() {
       {/* Backdrop + Modal */}
       {open && (
         <div
-          className="fixed inset-0 z-[60] flex items-start justify-end"
+          className="fixed inset-0 z-[100]"
           onClick={() => setOpen(false)}
         >
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-charcoal/30 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-charcoal/50 backdrop-blur-sm" />
 
           {/* Slide-out panel */}
           <div
-            className="relative h-full w-full max-w-md bg-warm-white shadow-xl overflow-y-auto animate-slide-in"
+            className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-warm-white shadow-xl overflow-y-auto animate-slide-in"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}

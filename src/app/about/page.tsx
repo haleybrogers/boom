@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SixPrinciples from "@/components/SixPrinciples";
+import Parallax from "@/components/Parallax";
 
 export const metadata = {
   title: "About",
@@ -185,16 +186,19 @@ export default function About() {
         </div>
       </section>
 
-      {/* Reformer photo break */}
+      {/* Reformer photo break — parallax reveals more of the image as you scroll */}
       <section className="relative h-[50vh] lg:h-[65vh] overflow-hidden">
-        <Image
-          src="/photo-about-bottom.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-[center_30%]"
-          priority={false}
-        />
+        <Parallax speed={0.25} className="absolute inset-x-0 -top-[25%] h-[150%]">
+          <div className="relative w-full h-full">
+            <Image
+              src="/photo-about-bottom.jpg"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
+        </Parallax>
         <div className="absolute inset-0 bg-[#5c4a3a]/20" />
       </section>
 

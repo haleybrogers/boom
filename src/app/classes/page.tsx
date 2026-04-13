@@ -31,9 +31,6 @@ export default function Classes() {
             <div className="mt-6 flex items-center justify-center animate-fade-up" style={{ animationDelay: "0.55s" }}>
               <ClassGuideModal />
             </div>
-            <p className="text-xs text-muted/60 text-center mt-6 italic font-serif animate-fade-up" style={{ animationDelay: "0.7s" }}>
-              Group classes only. To book a private, keep scrolling →
-            </p>
           </div>
 
           <LiveSchedule />
