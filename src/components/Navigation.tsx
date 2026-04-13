@@ -79,9 +79,23 @@ export default function Navigation() {
           {boomerangFlying && (
             <div
               aria-hidden
-              className="pointer-events-none fixed top-16 left-0 z-[200] text-4xl boomerang-fly"
+              className="pointer-events-none fixed top-16 left-0 z-[200] boomerang-fly"
             >
-              🪃
+              <svg
+                width="44"
+                height="44"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 34 C 12 18, 24 8, 40 10 C 44 10.5, 48 12, 51 15 C 42 14, 32 17, 25 25 C 22 28, 19 33, 17 38 L 22 40 L 10 46 L 10 34 Z"
+                  fill="#b02d4a"
+                  stroke="#3f3936"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
           )}
 

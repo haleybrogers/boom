@@ -8,9 +8,15 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
+    // Disable browser scroll restoration + force top on first load
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, behavior: "instant" });
     const t1 = setTimeout(() => setFading(true), 2000);
     const t2 = setTimeout(() => setVisible(false), 3200);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const t3 = setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 3250);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
   return (
@@ -32,9 +38,13 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
             priority
           />
           <div className="mt-8">
-            <div
-              className="w-8 h-8 rounded-full border-2 border-accent/20 border-t-accent animate-spin"
-              style={{ animationDuration: "1.2s" }}
+            <Image
+              src="/loading-icon.svg"
+              alt=""
+              width={44}
+              height={44}
+              className="w-11 h-11 animate-spin"
+              style={{ animationDuration: "2s" }}
               aria-hidden="true"
             />
           </div>
