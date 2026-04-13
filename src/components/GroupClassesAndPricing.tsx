@@ -22,18 +22,6 @@ const sections = [
           "All 34 exercises. No shortcuts. A fast-paced, athletic class that takes you through the complete classical mat series as Joseph Pilates intended it. Strength, stamina, and fluidity in one unbroken sequence. Prior RTL Course or mat experience recommended.",
       },
       {
-        title: "Return to Life Course I",
-        level: "Beginner · 8-week series",
-        description:
-          "Your foundation. An 8-week progressive series that builds your classical mat practice from the ground up — beginner and intermediate exercises with a focus on breath, center, and flow. This is where habits are built and the method starts to click. Enrollment by sign-up only.",
-      },
-      {
-        title: "Return to Life Course II",
-        level: "Intermediate · 8-week series",
-        description:
-          "The next chapter. Picks up where Course I left off and takes you through the remainder of the 34-exercise classical mat. Focus shifts to concentration, fluidity, and precision — the principles that turn good movement into great movement. Enrollment by sign-up only.",
-      },
-      {
         title: "Lunch Power Hour",
         level: "All levels · 35 min",
         description:

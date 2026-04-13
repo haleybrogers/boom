@@ -24,7 +24,7 @@ export default function NewToPilates() {
               your first class or your five hundredth.
             </p>
             <p className="text-muted text-base leading-relaxed">
-              Not sure where to start? Here are three great entry points.
+              Not sure where to start? Here are two great entry points.
             </p>
           </div>
 
@@ -37,22 +37,6 @@ export default function NewToPilates() {
               </div>
               <p className="text-sm text-muted mb-2">
                 All levels. Modifications built in.
-              </p>
-              <Link
-                href="/classes"
-                className="link-arrow text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
-              >
-                Learn More
-              </Link>
-            </div>
-
-            <div className="border border-charcoal/10 p-5">
-              <div className="flex items-baseline justify-between mb-1">
-                <h3 className="font-serif text-base text-charcoal">Return to Life Course I</h3>
-                <span className="text-sm font-medium text-charcoal">$160</span>
-              </div>
-              <p className="text-sm text-muted mb-2">
-                8-week beginner series.
               </p>
               <Link
                 href="/classes"

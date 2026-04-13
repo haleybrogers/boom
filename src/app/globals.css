@@ -103,6 +103,16 @@ html {
   gap: 0.5em;
 }
 
+/* Slide-in panel animation */
+@keyframes slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* iOS doesn't support background-attachment: fixed — fall back to scroll */
 @supports (-webkit-touch-callout: none) {
   .bg-fixed {

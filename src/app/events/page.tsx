@@ -2,7 +2,7 @@ import WaitlistForm from "@/components/WaitlistForm";
 
 export const metadata = {
   title: "Events",
-  description: "Grand opening, workshops, and community events at Boomerang Pilates in Durham, NC.",
+  description: "Grand opening, course series, workshops, and community events at Boomerang Pilates in Durham, NC.",
 };
 
 export default function Events() {
@@ -20,8 +20,69 @@ export default function Events() {
               Events
             </h1>
             <p className="text-white/70 text-sm leading-relaxed max-w-md mx-auto">
-              Workshops, community gatherings, and things worth showing up for.
+              Course series, workshops, and things worth showing up for.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Return to Life Course Series */}
+      <section className="py-24 lg:py-32">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-14">
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">8-Week Course Series</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
+              Return to Life
+            </h2>
+            <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
+              A structured, progressive series that builds your classical mat practice
+              from the ground up. Runs once per quarter. You commit to the full eight weeks —
+              this is how the method was designed to be learned.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            {/* Course I */}
+            <div className="border border-charcoal/10 rounded-sm p-7 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="flex items-baseline justify-between mb-3">
+                <h3 className="font-serif text-xl font-light text-charcoal">Course I</h3>
+                <span className="font-serif text-2xl font-light text-charcoal">$160</span>
+              </div>
+              <p className="text-xs text-accent mb-3">Beginner · No experience required</p>
+              <p className="text-sm text-muted leading-relaxed mb-4">
+                Your foundation. An 8-week progressive series that builds your classical
+                mat practice from the ground up — beginner and intermediate exercises with
+                a focus on breath, center, and flow. This is where habits are built and the
+                method starts to click.
+              </p>
+              <div className="border-t border-charcoal/5 pt-3">
+                <p className="text-xs text-muted">8 weeks · 1x/week · 50 min per session</p>
+              </div>
+            </div>
+
+            {/* Course II */}
+            <div className="border border-charcoal/10 rounded-sm p-7 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="flex items-baseline justify-between mb-3">
+                <h3 className="font-serif text-xl font-light text-charcoal">Course II</h3>
+                <span className="font-serif text-2xl font-light text-charcoal">$160</span>
+              </div>
+              <p className="text-xs text-accent mb-3">Intermediate · Course I or equivalent required</p>
+              <p className="text-sm text-muted leading-relaxed mb-4">
+                The next chapter. Picks up where Course I left off and takes you through
+                the remainder of the 34-exercise classical mat. Focus shifts to concentration,
+                fluidity, and precision — the principles that turn good movement into great movement.
+              </p>
+              <div className="border-t border-charcoal/5 pt-3">
+                <p className="text-xs text-muted">8 weeks · 1x/week · 50 min per session</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <div className="inline-block border border-accent/20 bg-accent/5 rounded-sm px-6 py-4 mb-6">
+              <p className="text-sm text-charcoal mb-1">Next session dates coming soon.</p>
+              <p className="text-xs text-muted">Join the waitlist to be notified when enrollment opens.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -47,34 +108,14 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Founding Member Push */}
-      <section className="py-20 lg:py-24">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">Limited Time</p>
-          <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
-            Lock in your rate before we open.
-          </h2>
-          <p className="text-muted text-base mb-8">
-            Founding members get a locked-in monthly rate that never goes up — plus
-            exclusive invites to our soft opening and celebratory events.
-          </p>
-          <a
-            href="/classes#founding"
-            className="inline-block bg-accent text-white px-7 py-3 text-sm tracking-wide rounded-sm hover:bg-accent/85 transition-colors"
-          >
-            See Founding Pricing
-          </a>
-        </div>
-      </section>
-
       {/* Stay in the loop */}
-      <section className="py-24 lg:py-32 bg-warm-white">
+      <section className="py-24 lg:py-32">
         <div className="max-w-xl mx-auto px-6 text-center">
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
             Don&apos;t miss it.
           </h2>
           <p className="text-muted text-base mb-10">
-            Sign up and we&apos;ll let you know the moment we have a date.
+            Sign up and we&apos;ll let you know the moment we have dates.
           </p>
           <WaitlistForm />
         </div>
