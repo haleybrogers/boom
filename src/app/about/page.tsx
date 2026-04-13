@@ -28,15 +28,8 @@ export default function About() {
 
         {/* Lead-in to the six principles */}
         <div className="max-w-2xl mx-auto px-6 text-center mb-12">
-          <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5">
-            The Method
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight">
-            Six principles, every class.
-          </h2>
-          <div className="w-10 h-px bg-accent/50 mx-auto mt-6 mb-5" />
-          <p className="text-base text-muted leading-relaxed max-w-md mx-auto">
-            Joseph Pilates built the work on six ideas. They show up in every cue, every breath, every transition — and they&apos;re what makes Classical Pilates feel different from anything else.
+          <p className="font-serif italic text-base md:text-lg text-charcoal/70">
+            Built on six principles. Present in every class.
           </p>
         </div>
 
