@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
 const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
 
 const rates = [
-  { name: "Unlimited Mat", price: "$199", perClass: "$12/class" },
-  { name: "2x/Week Mat", price: "$150", perClass: "$18.75/class" },
-  { name: "1x/Week Tower", price: "$120", perClass: "$30/class" },
-  { name: "Tower + Mat Combo", price: "$200", perClass: "$25/class" },
+  { name: "Unlimited Mat", price: "$199", perClass: "$12/class", savings: "Save $50/mo" },
+  { name: "2x/Week Mat", price: "$150", perClass: "$18.75/class", savings: "Save $50/mo" },
+  { name: "1x/Week Tower", price: "$120", perClass: "$30/class", savings: "Save $60/mo" },
+  { name: "Tower + Mat Combo", price: "$200", perClass: "$25/class", savings: "Save $80/mo" },
 ];
 
 export default function FoundingPopup() {
@@ -75,6 +75,9 @@ export default function FoundingPopup() {
               <p className="text-xs text-muted mb-2">{rate.name}</p>
               <p className="font-serif text-2xl font-light text-charcoal">{rate.price}<span className="text-sm text-muted">/mo</span></p>
               <p className="text-[11px] text-accent mt-1">{rate.perClass}</p>
+              <span className="inline-block text-[9px] tracking-wide uppercase text-accent bg-accent/10 px-2 py-0.5 rounded-sm mt-1.5">
+                {rate.savings}
+              </span>
               <p className="text-[9px] tracking-widest uppercase text-charcoal/0 group-hover:text-accent mt-2 transition-colors duration-200">
                 Select →
               </p>

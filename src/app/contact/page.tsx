@@ -29,20 +29,28 @@ export default function Contact() {
       {/* Private instruction callout */}
       <section className="pb-12 sm:pb-16">
         <div className="max-w-xl mx-auto px-6">
-          <div className="border border-accent/20 bg-accent/5 rounded-sm p-6 text-center">
-            <p className="font-serif text-lg font-light text-charcoal mb-2">
-              Looking to schedule private instruction?
+          <Link
+            href="/classes#privates"
+            className="group block border border-charcoal/10 bg-white rounded-sm p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/20"
+          >
+            {/* Icon */}
+            <div className="w-14 h-14 rounded-full bg-accent/8 flex items-center justify-center mx-auto mb-5 group-hover:bg-accent/15 transition-colors">
+              <svg className="w-7 h-7 text-accent" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="3.5" />
+                <path strokeLinecap="round" d="M6.5 20c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" />
+                <path strokeLinecap="round" d="M16 4l2 2-2 2" opacity="0.5" />
+              </svg>
+            </div>
+            <p className="font-serif text-xl font-light text-charcoal mb-2">
+              Want one-on-one attention?
             </p>
-            <p className="text-sm text-muted mb-4">
-              Book directly with one of our instructors — see availability and pay online.
+            <p className="text-sm text-muted mb-5 max-w-sm mx-auto">
+              Choose your instructor, see their availability, and book a private or duet session — all online.
             </p>
-            <Link
-              href="/classes#privates"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-7 py-3 hover:bg-accent/90 transition-colors"
-            >
-              Book a Private
-            </Link>
-          </div>
+            <span className="inline-block text-xs tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+              Schedule a Private →
+            </span>
+          </Link>
         </div>
       </section>
 

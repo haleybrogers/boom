@@ -12,7 +12,7 @@ const instructors = [
   {
     name: "Annie Young",
     role: "Co-Founder",
-    bio: "Classical Pilates certified in mat and apparatus. Trained in the direct lineage of Joseph Pilates.",
+    bio: "Classical Pilates certified in mat and apparatus. Trained in the direct lineage of Joseph Pilates. Passionate about making the method accessible to every body.",
   },
   {
     name: "Instructor TBD",

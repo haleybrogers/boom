@@ -9,6 +9,7 @@ const memberships = [
     price: "$199",
     perClass: "As low as $12/class",
     includes: "Unlimited mat classes per month",
+    savings: "Save $50/mo",
     highlight: true,
   },
   {
@@ -16,6 +17,7 @@ const memberships = [
     price: "$150",
     perClass: "$18.75/class",
     includes: "Up to 8 mat classes per month",
+    savings: "Save $50/mo",
     highlight: false,
   },
   {
@@ -23,6 +25,7 @@ const memberships = [
     price: "$120",
     perClass: "$30/class",
     includes: "4 small-group tower classes per month",
+    savings: "Save $60/mo",
     highlight: false,
   },
   {
@@ -30,6 +33,7 @@ const memberships = [
     price: "$200",
     perClass: "$25/class",
     includes: "1x tower + 1x mat per week",
+    savings: "Save $80/mo",
     highlight: true,
   },
 ];
@@ -75,6 +79,9 @@ export default function FoundingPricingOverlay() {
                 <span className="text-[11px] text-muted">/mo</span>
               </div>
               <p className="text-[10px] text-accent mt-0.5">{tier.perClass}</p>
+              <span className="inline-block text-[9px] tracking-wide uppercase text-accent bg-accent/10 px-2 py-0.5 rounded-sm mt-1.5">
+                {tier.savings}
+              </span>
               <p className="text-[9px] tracking-widest uppercase text-charcoal/0 group-hover:text-accent mt-2 transition-colors duration-200">
                 Select →
               </p>

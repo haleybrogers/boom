@@ -16,7 +16,7 @@ export default function WaitlistForm({ variant = "default" }: { variant?: "defau
       await fetch("https://formspree.io/f/xpwrqkba", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, _subject: "New Founding Member Signup" }),
+        body: JSON.stringify({ name, email, _subject: "New Email Signup — Boomerang Pilates" }),
       });
       setSubmitted(true);
     } catch {
@@ -29,8 +29,8 @@ export default function WaitlistForm({ variant = "default" }: { variant?: "defau
   if (submitted) {
     return (
       <div className="text-center py-4">
-        <p className="font-serif text-xl text-charcoal mb-1">You&apos;re on the list.</p>
-        <p className="text-sm text-muted">We&apos;ll be in touch soon.</p>
+        <p className="font-serif text-xl text-charcoal mb-1">You&apos;re in.</p>
+        <p className="text-sm text-muted">We&apos;ll keep you posted on everything.</p>
       </div>
     );
   }
@@ -84,7 +84,7 @@ export default function WaitlistForm({ variant = "default" }: { variant?: "defau
         disabled={loading}
         className="bg-accent text-white px-5 py-2.5 sm:px-7 sm:py-3 text-xs sm:text-sm tracking-wide rounded-sm hover:bg-accent/85 transition-colors disabled:opacity-50"
       >
-        {loading ? "Joining..." : "Become a Founding Member"}
+        {loading ? "Signing up..." : "Keep Me Posted"}
       </button>
     </form>
   );

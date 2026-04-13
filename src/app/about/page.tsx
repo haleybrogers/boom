@@ -73,10 +73,12 @@ export default function About() {
               <p className="text-base text-muted leading-relaxed">
                 Classical Pilates certified through Appalachian State
                 University&apos;s comprehensive program, trained in mat and
-                apparatus under the same lineage. Annie is dedicated to
-                making the classical method accessible without diluting it —
-                meeting every client where they are while holding the
-                standard of the original work.
+                apparatus under the same lineage. Annie believes deeply that
+                Classical Pilates was designed for every body — and that
+                inclusivity isn&apos;t something you add to the method, it&apos;s
+                already built in. She is committed to holding the door open
+                for everyone while never compromising the integrity of the
+                original work.
               </p>
             </Parallax>
           </div>
