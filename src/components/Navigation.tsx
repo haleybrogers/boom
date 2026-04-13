@@ -28,6 +28,14 @@ export default function Navigation() {
       setBoomerangFlying(true);
       setLogoTaps(0);
       setTimeout(() => setBoomerangFlying(false), 2000);
+      return;
+    }
+    // Always scroll to top when navigating to home via logo
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // On other pages, let Link route to "/" then snap to top
+      setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 0);
     }
     // Reset tap count if no tap within 1s
     setTimeout(() => setLogoTaps((c) => (c === newCount ? 0 : c)), 1000);
@@ -65,37 +73,29 @@ export default function Navigation() {
       <nav className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="flex items-center justify-between h-20">
           {/* Logo — left */}
-          <Link href="/" className="shrink-0" onClick={handleLogoClick}>
+          <Link href="/" className="shrink-0 group" onClick={handleLogoClick}>
             <Image
               src="/logo-pilat.svg"
               alt="Boomerang Pilates"
               width={400}
               height={85}
-              className={`h-10 md:h-12 w-auto ${isTransparent ? "brightness-0 invert" : ""}`}
+              className={`h-10 md:h-12 w-auto transition-all duration-500 ease-out group-hover:-translate-y-0.5 group-hover:scale-[1.02] group-hover:opacity-80 ${isTransparent ? "brightness-0 invert" : ""}`}
             />
           </Link>
 
-          {/* Easter egg: flying boomerang */}
+          {/* Easter egg: flying boomerang (uses brand boomerang icon) */}
           {boomerangFlying && (
             <div
               aria-hidden
               className="pointer-events-none fixed top-16 left-0 z-[200] boomerang-fly"
             >
-              <svg
-                width="44"
-                height="44"
-                viewBox="0 0 64 64"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 34 C 12 18, 24 8, 40 10 C 44 10.5, 48 12, 51 15 C 42 14, 32 17, 25 25 C 22 28, 19 33, 17 38 L 22 40 L 10 46 L 10 34 Z"
-                  fill="#b02d4a"
-                  stroke="#3f3936"
-                  strokeWidth="1.5"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Image
+                src="/loading-icon.svg"
+                alt=""
+                width={44}
+                height={44}
+                className="w-11 h-11"
+              />
             </div>
           )}
 

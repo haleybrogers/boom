@@ -72,15 +72,18 @@ export default function ClassGuideModal() {
 
   return (
     <>
-      {/* Trigger button */}
+      {/* Trigger button — soft serif pill */}
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+        className="group inline-flex items-center gap-2.5 bg-cream border border-accent/25 pl-3 pr-4 py-2 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-accent/50 transition-all duration-300"
       >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-        </svg>
-        Class Guide
+        <span className="w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center text-[11px] font-serif italic group-hover:bg-accent/20 transition-colors">
+          i
+        </span>
+        <span className="font-serif italic text-sm text-charcoal group-hover:text-accent transition-colors">
+          Class descriptions
+        </span>
+        <span className="text-accent/50 group-hover:text-accent transition-colors text-xs">→</span>
       </button>
 
       {/* Backdrop + Modal */}

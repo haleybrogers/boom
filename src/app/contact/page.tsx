@@ -12,15 +12,19 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-16 sm:py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-28">
       <div className="max-w-lg mx-auto px-6">
         {/* Heading */}
         <div className="text-center mb-12">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal mb-4">
-            Get in Touch
+          <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+            Say Hi
+          </p>
+          <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
+            Get in touch.
           </h1>
-          <p className="text-muted text-base">
-            Questions, ideas, or just want to say hi? We&apos;d love to hear from you.
+          <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }} />
+          <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
+            Questions, ideas, or just want to say hi — we&apos;d love to hear from you.
           </p>
         </div>
 
@@ -105,19 +109,6 @@ export default function Contact() {
               343 W Main St
               <br />
               Durham, NC
-            </a>
-          </div>
-          <div className="pt-2">
-            <a
-              href="https://g.page/r/boomerangpilates/review"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-accent border border-accent/20 px-5 py-2.5 rounded-sm hover:bg-accent/5 transition-colors"
-            >
-              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg>
-              Leave a Review
             </a>
           </div>
         </div>

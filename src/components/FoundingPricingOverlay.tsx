@@ -81,9 +81,10 @@ export default function FoundingPricingOverlay() {
           </div>
           <h4 className="font-serif text-lg font-light text-charcoal mb-1">Unlimited Mat</h4>
           <p className="text-xs text-muted mb-4">Unlimited mat classes per month</p>
-          <div className="flex items-baseline gap-1 mb-1">
+          <div className="flex items-baseline gap-2 mb-1">
             <span className="font-serif text-3xl font-light text-charcoal">$199</span>
             <span className="text-sm text-muted">/mo</span>
+            <span className="text-sm text-muted/60 line-through decoration-accent/60">$259</span>
           </div>
           <p className="text-[11px] text-accent mb-4">Rate never increases*</p>
           <ul className="text-xs text-charcoal/70 space-y-1.5 mb-5 flex-1">
@@ -111,10 +112,11 @@ export default function FoundingPricingOverlay() {
           </div>
           <h4 className="font-serif text-lg font-light text-charcoal mb-1">10-Pack Privates</h4>
           <p className="text-xs text-muted mb-4">Ten 1-on-1 sessions, full apparatus</p>
-          <div className="flex items-baseline gap-1 mb-1">
+          <div className="flex items-baseline gap-2 mb-1">
             <span className="font-serif text-3xl font-light text-charcoal">$900</span>
+            <span className="text-sm text-muted/60 line-through decoration-accent/60">$1,100</span>
           </div>
-          <p className="text-[11px] text-accent mb-4">$90/session</p>
+          <p className="text-[11px] text-accent mb-4">$90/session · normally $110</p>
           <ul className="text-xs text-charcoal/70 space-y-1.5 mb-5 flex-1">
             <li>· Billed at purchase</li>
             <li>· Use within 12 months</li>
@@ -140,10 +142,11 @@ export default function FoundingPricingOverlay() {
           </div>
           <h4 className="font-serif text-lg font-light text-charcoal mb-1">10-Pack Duets</h4>
           <p className="text-xs text-muted mb-4">Ten duet sessions, bring a partner</p>
-          <div className="flex items-baseline gap-1 mb-1">
+          <div className="flex items-baseline gap-2 mb-1">
             <span className="font-serif text-3xl font-light text-charcoal">$500</span>
+            <span className="text-sm text-muted/60 line-through decoration-accent/60">$600</span>
           </div>
-          <p className="text-[11px] text-accent mb-4">$50/person</p>
+          <p className="text-[11px] text-accent mb-4">$50/person · normally $60</p>
           <ul className="text-xs text-charcoal/70 space-y-1.5 mb-5 flex-1">
             <li>· Billed at purchase</li>
             <li>· Use within 12 months</li>

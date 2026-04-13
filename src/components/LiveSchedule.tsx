@@ -158,7 +158,7 @@ export default function LiveSchedule() {
             })}
           </div>
 
-          {/* Class cards by day — click expands detail w/ Book Now */}
+          {/* Class cards by day — click expands detail below */}
           <div className="grid grid-cols-7 gap-2 items-start">
             {classesByDay.map((dayClasses, i) => (
               <div key={i} className="space-y-2 min-h-[80px]">
@@ -168,7 +168,22 @@ export default function LiveSchedule() {
                   return (
                     <button
                       key={cls.id}
-                      onClick={() => setSelectedClass(isSelected ? null : cls)}
+                      type="button"
+                      onMouseDown={(e) => e.preventDefault()}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const y = window.scrollY;
+                        setSelectedClass(isSelected ? null : cls);
+                        // Lock scroll across layout/paint — hard-pin for 300ms so
+                        // nothing (focus, anchoring, smooth-scroll) can move us.
+                        const start = performance.now();
+                        const pin = () => {
+                          if (window.scrollY !== y) window.scrollTo(0, y);
+                          if (performance.now() - start < 300) requestAnimationFrame(pin);
+                        };
+                        requestAnimationFrame(pin);
+                        (e.currentTarget as HTMLButtonElement).blur();
+                      }}
                       className={`w-full text-left p-3 rounded-sm text-sm leading-snug transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-accent text-white shadow-md"
@@ -200,44 +215,54 @@ export default function LiveSchedule() {
             </p>
           )}
 
-          {/* Selected class detail w/ Book Now */}
-          <div
-            className={`overflow-hidden transition-all duration-400 ease-in-out ${
-              selectedClass ? "max-h-80 opacity-100 mt-6" : "max-h-0 opacity-0 mt-0"
-            }`}
-          >
-            {selectedClass && (
-              <div className="bg-cream border border-charcoal/10 rounded-sm p-6">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                  <div className="flex-1">
-                    <h4 className="font-serif text-xl font-light text-charcoal mb-1">
-                      {selectedClass.name}
-                    </h4>
-                    <p className="text-xs text-muted mb-3">
-                      {formatTime(selectedClass.start_time)} · {selectedClass.duration} min · {selectedClass.instructor_name}
-                    </p>
-                    <p className="text-sm text-muted leading-relaxed">
-                      {selectedClass.description}
-                    </p>
-                  </div>
-                  <div className="text-center sm:text-right shrink-0">
-                    {selectedClass.max_capacity - selectedClass.total_booked < 5 && (
-                      <p className="text-xs text-accent font-medium mb-2">
-                        {selectedClass.max_capacity - selectedClass.total_booked} {selectedClass.max_capacity - selectedClass.total_booked === 1 ? "spot" : "spots"} left
-                      </p>
-                    )}
-                    <a
-                      href={`https://app.arketa.co/boomerangpilates/checkout/${selectedClass.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block bg-accent text-white px-6 py-3 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors"
-                    >
-                      Book Now
-                    </a>
-                  </div>
-                </div>
+          {/* Selected class detail — fixed reserved height so layout NEVER shifts.
+              Empty state shows a subtle hint instead of collapsing. */}
+          <div className="mt-6 min-h-[180px] relative">
+            {!selectedClass && classes.length > 0 && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-xs italic font-serif text-muted/60">
+                  Tap a class above to see details and book →
+                </p>
               </div>
             )}
+            <div
+              className={`transition-opacity duration-300 ${
+                selectedClass ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            >
+              {selectedClass && (
+                <div className="bg-cream border border-charcoal/10 rounded-sm p-6">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                    <div className="flex-1">
+                      <h4 className="font-serif text-xl font-light text-charcoal mb-1">
+                        {selectedClass.name}
+                      </h4>
+                      <p className="text-xs text-muted mb-3">
+                        {formatTime(selectedClass.start_time)} · {selectedClass.duration} min · {selectedClass.instructor_name}
+                      </p>
+                      <p className="text-sm text-muted leading-relaxed">
+                        {selectedClass.description}
+                      </p>
+                    </div>
+                    <div className="text-center sm:text-right shrink-0">
+                      {selectedClass.max_capacity - selectedClass.total_booked < 5 && (
+                        <p className="text-xs text-accent font-medium mb-2">
+                          {selectedClass.max_capacity - selectedClass.total_booked} {selectedClass.max_capacity - selectedClass.total_booked === 1 ? "spot" : "spots"} left
+                        </p>
+                      )}
+                      <a
+                        href={`https://app.arketa.co/boomerangpilates/checkout/${selectedClass.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-accent text-white px-6 py-3 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors"
+                      >
+                        Book Now
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </>
       )}

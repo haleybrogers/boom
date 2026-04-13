@@ -1,11 +1,36 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import PilatesWisdom from "./PilatesWisdom";
 
 export default function Footer() {
   const [eggHover, setEggHover] = useState(false);
   return (
     <footer className="border-t border-charcoal/10">
+      {/* Founding member CTA — small version of the about-page block */}
+      <div className="border-b border-charcoal/5 bg-cream/60">
+        <div className="max-w-xl mx-auto px-6 py-14 text-center">
+          <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-3">Limited Time</p>
+          <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3">
+            Be a founding member.
+          </h2>
+          <p className="text-sm text-muted leading-relaxed mb-6 max-w-md mx-auto">
+            Lock in your rate before we open — it never goes up. Plus invites to the soft opening and celebratory events.
+          </p>
+          <Link
+            href="/classes#founding"
+            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
+          >
+            See Founding Pricing
+          </Link>
+        </div>
+      </div>
+
+      {/* Weird Pilates fact of the day — small & playful */}
+      <div className="border-b border-charcoal/5 py-6">
+        <PilatesWisdom />
+      </div>
       <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="flex flex-col items-center gap-6">
           {/* Social icons */}
@@ -43,17 +68,24 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Review CTA */}
+          {/* Review CTA — soft serif pill to match Class Guide */}
           <a
             href="https://g.page/r/boomerangpilates/review"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-accent border border-accent/20 px-5 py-2.5 hover:bg-accent/5 transition-colors"
+            className="group inline-flex items-center gap-2.5 bg-cream border border-accent/20 pl-3 pr-4 py-2 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-accent/40 transition-all duration-300"
           >
-            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-            Leave a Review
+            <span className="flex items-center gap-0.5 text-accent/70 group-hover:text-accent transition-colors">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <svg key={i} className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              ))}
+            </span>
+            <span className="font-serif italic text-sm text-charcoal group-hover:text-accent transition-colors">
+              Leave us a little love
+            </span>
+            <span className="text-accent/50 group-hover:text-accent transition-colors text-xs">→</span>
           </a>
 
           {/* Copyright */}

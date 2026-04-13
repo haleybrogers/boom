@@ -25,8 +25,16 @@ body {
   line-height: 1.6;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Smooth scroll only for intentional anchor links — NOT globally.
+   Global smooth-scroll was causing the classes page to drift toward
+   the nearest section-id (founding/privates/faq) when LiveSchedule
+   re-rendered, and fighting our scroll-pin. Scope it. */
+html:focus-within {
+  scroll-behavior: auto;
+}
+
+html, body {
+  overflow-anchor: none;
 }
 
 ::selection {
@@ -215,6 +223,10 @@ html {
   opacity: 0;
   animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }
+.animate-fade-up-lux {
+  opacity: 0;
+  animation: fade-up 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
 
 /* Twinkling sparkle dots */
 @keyframes twinkle {
@@ -267,6 +279,16 @@ html {
   animation: sparkle-pulse 3.5s ease-in-out infinite;
 }
 
+/* Logo hover: subtle lift + faint scale */
+.logo-toss-wrap {
+  display: inline-block;
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.logo-toss-wrap:hover {
+  transform: translateY(-2px) scale(1.015);
+}
+
 /* Draw-on stroke for the sparkle path */
 @keyframes draw-path {
   from { stroke-dashoffset: 400; }
@@ -284,17 +306,12 @@ html {
   to   { opacity: 1; transform: translateY(0); }
 }
 .reveal {
-  opacity: 0;
-  animation: rise-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-timeline: view();
-  animation-range: entry 0% entry 60%;
-}
-@supports not (animation-timeline: view()) {
-  .reveal { opacity: 1; animation: none; }
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
+  .animate-fade-up-lux,
   .animate-twinkle,
   .animate-drift-slow,
   .animate-drift-slower,

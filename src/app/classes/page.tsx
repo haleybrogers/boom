@@ -15,18 +15,25 @@ export default function Classes() {
   return (
     <>
       {/* 1. Schedule */}
-      <section className="relative py-20 lg:py-28 bg-warm-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="flex items-center justify-center gap-4 mb-3">
-            <h1 className="font-serif text-3xl md:text-4xl font-light text-charcoal text-center">
-              Book a Class
+      <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-24">
+        <div className="relative max-w-5xl mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center mb-14">
+            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+              The Schedule
+            </p>
+            <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
+              Book a class.
             </h1>
-          </div>
-          <div className="flex items-center justify-center gap-4 mb-10">
-            <p className="text-muted text-base text-center max-w-md">
+            <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }} />
+            <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
               Tap a class to see details and book your spot.
             </p>
-            <ClassGuideModal />
+            <div className="mt-6 flex items-center justify-center animate-fade-up" style={{ animationDelay: "0.55s" }}>
+              <ClassGuideModal />
+            </div>
+            <p className="text-xs text-muted/60 text-center mt-6 italic font-serif animate-fade-up" style={{ animationDelay: "0.7s" }}>
+              Group classes only. To book a private, keep scrolling →
+            </p>
           </div>
 
           <LiveSchedule />
@@ -46,7 +53,7 @@ export default function Classes() {
       </section>
 
       {/* 4. Class Packs & Drop-Ins */}
-      <section className="py-20 lg:py-28">
+      <section id="packs" className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <ClassPacks />
         </div>
