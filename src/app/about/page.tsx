@@ -45,10 +45,12 @@ export default function About() {
                 Co-Founder
               </p>
               <p className="text-base text-muted leading-relaxed">
-                3rd Generation Classical Pilates instructor, certified in mat
-                and apparatus. Trained at App State under Rebecca Quinn and
-                Marianne Adams. Also an elementary art teacher for Durham
-                Public Schools — so yes, she&apos;s used to keeping a room in line.
+                3rd Generation Classical Pilates instructor, comprehensively
+                certified in mat and full apparatus. Trained at Appalachian
+                State University under Rebecca Quinn and Marianne Adams in
+                the direct lineage of Joseph and Clara Pilates. Emilie brings
+                a deep understanding of the original method and a commitment
+                to teaching it with precision, care, and without compromise.
               </p>
             </Parallax>
 
@@ -69,10 +71,12 @@ export default function About() {
                 Co-Founder
               </p>
               <p className="text-base text-muted leading-relaxed">
-                Classical Pilates certified from App State in 2023, following
-                in her big sister&apos;s footsteps. Passionate about making
-                Pilates accessible to every body — and proving little sisters
-                can keep up.
+                Classical Pilates certified through Appalachian State
+                University&apos;s comprehensive program, trained in mat and
+                apparatus under the same lineage. Annie is dedicated to
+                making the classical method accessible without diluting it —
+                meeting every client where they are while holding the
+                standard of the original work.
               </p>
             </Parallax>
           </div>

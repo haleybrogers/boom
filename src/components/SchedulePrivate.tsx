@@ -7,12 +7,12 @@ const instructors = [
   {
     name: "Emilie Young",
     role: "Co-Founder",
-    bio: "3rd Generation Classical Pilates instructor. Certified in mat and apparatus.",
+    bio: "3rd Generation Classical Pilates. Comprehensively certified in mat and full apparatus.",
   },
   {
     name: "Annie Young",
     role: "Co-Founder",
-    bio: "Classical Pilates certified. Passionate about making Pilates accessible to every body.",
+    bio: "Classical Pilates certified in mat and apparatus. Trained in the direct lineage of Joseph Pilates.",
   },
   {
     name: "Instructor TBD",
