@@ -219,20 +219,10 @@ export default function LiveSchedule() {
             )}
           </div>
 
-          {/* RIGHT: Detail panel (sticky on desktop, stacks below on mobile) */}
-          <aside className="mt-6 lg:mt-0 lg:sticky lg:top-24 min-h-[200px] relative">
-            {!selectedClass && classes.length > 0 && (
-              <div className="absolute inset-0 flex items-center justify-center border border-dashed border-charcoal/15 rounded-sm bg-warm-white/40">
-                <p className="text-xs italic font-serif text-muted/60 text-center px-6">
-                  Tap a class to see<br />details and book →
-                </p>
-              </div>
-            )}
-            <div
-              className={`transition-opacity duration-300 ${
-                selectedClass ? "opacity-100" : "opacity-0 pointer-events-none"
-              }`}
-            >
+          {/* RIGHT: Detail panel (sticky on desktop, stacks below on mobile).
+              No empty state — the card just appears when a class is selected. */}
+          <aside className="lg:sticky lg:top-24">
+            <div className={`transition-opacity duration-300 ${selectedClass ? "opacity-100 mt-6 lg:mt-0" : "opacity-0 pointer-events-none h-0 overflow-hidden"}`}>
               {selectedClass && (
                 <div className="bg-cream border border-charcoal/10 rounded-sm p-5">
                   <h4 className="font-serif text-lg font-light text-charcoal mb-1 leading-tight">
