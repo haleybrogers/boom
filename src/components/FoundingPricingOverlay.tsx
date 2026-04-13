@@ -36,12 +36,6 @@ export default function FoundingPricingOverlay() {
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">24-hour priority booking</strong> — schedule opens to founders a full day before everyone else.
-            </span>
-          </li>
-          <li className="flex gap-3">
-            <span className="text-accent shrink-0 mt-0.5">✓</span>
-            <span>
               <strong className="font-medium">Free apparatus orientation</strong> ($45 value) — required for small-group apparatus, on us.
             </span>
           </li>
@@ -60,13 +54,7 @@ export default function FoundingPricingOverlay() {
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">Founders&apos; Day every June</strong> — annual private class plus brunch, just for the original crew.
-            </span>
-          </li>
-          <li className="flex gap-3">
-            <span className="text-accent shrink-0 mt-0.5">✓</span>
-            <span>
-              <strong className="font-medium">Welcome kit + name on the wall</strong> — branded tote, branded water bottle, a cute tee, grippy socks, stickers, and your name on the founders&apos; wall in the studio.
+              <strong className="font-medium">Welcome kit</strong> — branded tote, branded water bottle, a cute tee, grippy socks, and stickers.
             </span>
           </li>
           <li className="flex gap-3">
