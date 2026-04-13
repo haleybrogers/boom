@@ -12,21 +12,9 @@ export const metadata = {
     "Classical Mat, Group Tower, Privates, and Duets. View offerings and pricing at Boomerang Pilates in Durham, NC.",
 };
 
-// Synchronous script injected at the top of the page so it executes during
-// HTML parse, BEFORE the browser scrolls to any #hash anchor. This is the
-// only way to prevent the brief land-on-section-then-snap-to-top flash.
-const KILL_HASH_SCROLL = `
-  try {
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-    window.scrollTo(0, 0);
-  } catch (e) {}
-`;
-
 export default function Classes() {
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: KILL_HASH_SCROLL }} />
       <ClassesPageLock />
 
       {/* 1. Schedule */}
