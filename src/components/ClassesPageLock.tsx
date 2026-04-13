@@ -1,30 +1,52 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 /**
- * One-shot scroll reset on /classes mount.
- *
- * The intermittent "jumps to a lower section" bug was the browser restoring
- * a previously-saved scroll position from a prior visit. We disable scroll
- * restoration, strip any URL hash so the browser can't anchor-jump, and
- * scrollTo(0,0) once. After that we get out of the way — no RAF loop, no
- * fighting the user's scroll.
+ * Forces /classes to start at the top on EVERY mount — including soft
+ * client-side navigations from <Link>, where the inline <script> tag in
+ * page.tsx doesn't re-execute. useLayoutEffect runs synchronously before
+ * paint, so the user never sees the jumped-to position. We also pin the
+ * scroll for ~500ms to defeat any late layout shifts (LiveSchedule data
+ * hydrating, font swap, etc.) that scroll-anchoring could ride.
  */
 export default function ClassesPageLock() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
     if (window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname);
     }
-    // Two scroll-to-top calls: one synchronously now, one after the browser's
-    // own scroll-restoration would have fired (next tick + after layout).
     window.scrollTo(0, 0);
-    requestAnimationFrame(() => window.scrollTo(0, 0));
-    const t = setTimeout(() => window.scrollTo(0, 0), 0);
-    return () => clearTimeout(t);
+
+    const start = performance.now();
+    let raf = 0;
+    const pin = () => {
+      if (window.scrollY !== 0) window.scrollTo(0, 0);
+      if (performance.now() - start < 500) {
+        raf = requestAnimationFrame(pin);
+      }
+    };
+    raf = requestAnimationFrame(pin);
+
+    // Stop pinning the moment the user actually tries to scroll.
+    const release = () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("wheel", release);
+      window.removeEventListener("touchstart", release);
+      window.removeEventListener("keydown", release);
+    };
+    window.addEventListener("wheel", release, { passive: true });
+    window.addEventListener("touchstart", release, { passive: true });
+    window.addEventListener("keydown", release);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("wheel", release);
+      window.removeEventListener("touchstart", release);
+      window.removeEventListener("keydown", release);
+    };
   }, []);
 
   return null;

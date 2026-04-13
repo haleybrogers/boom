@@ -1,10 +1,10 @@
 import LiveSchedule from "@/components/LiveSchedule";
-import WaitlistForm from "@/components/WaitlistForm";
 import FoundingPricingOverlay from "@/components/FoundingPricingOverlay";
 import SchedulePrivate from "@/components/SchedulePrivate";
 import ClassPacks from "@/components/ClassPacks";
 import ClassGuideModal from "@/components/ClassGuideModal";
 import FAQ from "@/components/FAQ";
+import ClassesPageLock from "@/components/ClassesPageLock";
 
 export const metadata = {
   title: "Classes",
@@ -27,6 +27,7 @@ export default function Classes() {
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: KILL_HASH_SCROLL }} />
+      <ClassesPageLock />
 
       {/* 1. Schedule */}
       <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-24">
@@ -92,22 +93,6 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* 6. Generic email capture */}
-      <section id="book" className="py-24 lg:py-32">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">
-            Stay in the Loop
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-            Be the first to know.
-          </h2>
-          <p className="text-muted text-base mb-10">
-            Grand opening details, new class drops, events, and the stuff we
-            only share with our people.
-          </p>
-          <WaitlistForm />
-        </div>
-      </section>
     </>
   );
 }
