@@ -4,7 +4,7 @@ import Link from "next/link";
 const offerings = [
   {
     title: "Mat Classes",
-    image: "/photo-mat-1.jpg",
+    image: "/photo-mat-2.jpg",
     tagline: "The foundation of everything we do.",
     description:
       "Full-body workouts rooted in the original Return to Life matwork — layered, progressive, and built around all six principles of the method. Modifications for newer students, advancements for those deeper in their practice.",
