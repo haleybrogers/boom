@@ -31,21 +31,40 @@ export default function PasswordPage() {
 
   return (
     <div className="fixed inset-0 z-[100] bg-cream flex items-center justify-center px-6 overflow-hidden">
-      {/* Red accent — top-left corner arc */}
+      {/* Top red band */}
+      <div className="absolute top-0 inset-x-0 h-1 bg-accent" aria-hidden="true" />
+      {/* Bottom red band */}
+      <div className="absolute bottom-0 inset-x-0 h-1 bg-accent" aria-hidden="true" />
+
+      {/* Concentric circles — top-left */}
       <div
-        className="absolute -top-32 -left-32 w-80 h-80 rounded-full border border-accent/30"
+        className="absolute -top-40 -left-40 w-[28rem] h-[28rem] rounded-full border-2 border-accent/40"
         aria-hidden="true"
       />
-      {/* Red accent — bottom-right corner arc */}
       <div
-        className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full border border-accent/25"
+        className="absolute -top-32 -left-32 w-80 h-80 rounded-full border border-accent/50"
         aria-hidden="true"
       />
-      {/* Red accent — small dot top-right */}
+
+      {/* Concentric circles — bottom-right */}
       <div
-        className="absolute top-12 right-12 w-1.5 h-1.5 rounded-full bg-accent"
+        className="absolute -bottom-52 -right-52 w-[32rem] h-[32rem] rounded-full border-2 border-accent/35"
         aria-hidden="true"
       />
+      <div
+        className="absolute -bottom-36 -right-36 w-80 h-80 rounded-full border border-accent/50"
+        aria-hidden="true"
+      />
+
+      {/* Floating dots */}
+      <div className="absolute top-12 right-14 w-2 h-2 rounded-full bg-accent" aria-hidden="true" />
+      <div className="absolute top-20 right-24 w-1 h-1 rounded-full bg-accent/60" aria-hidden="true" />
+      <div className="absolute bottom-16 left-16 w-1.5 h-1.5 rounded-full bg-accent/70" aria-hidden="true" />
+
+      {/* Diagonal red tick top-left */}
+      <div className="absolute top-20 left-16 w-10 h-px bg-accent rotate-45" aria-hidden="true" />
+      {/* Diagonal red tick bottom-right */}
+      <div className="absolute bottom-20 right-20 w-10 h-px bg-accent rotate-45" aria-hidden="true" />
 
       <div className="relative max-w-xs w-full text-center">
         {/* Red eyebrow */}
