@@ -54,7 +54,7 @@ export default function Home() {
               a seat in the community we&apos;re building before the doors even open.
             </p>
             <Link
-              href="/classes#founding"
+              href="/classes"
               className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
             >
               Reserve Your Spot

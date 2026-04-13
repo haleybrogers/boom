@@ -50,7 +50,7 @@ const offerings = [
     ],
     startingPrice: "$60",
     priceNote: "duets per person · privates $110",
-    link: "/classes#privates",
+    link: "/classes",
     linkLabel: "Book a Private",
   },
 ];

@@ -5,6 +5,7 @@ import SchedulePrivate from "@/components/SchedulePrivate";
 import ClassPacks from "@/components/ClassPacks";
 import ClassGuideModal from "@/components/ClassGuideModal";
 import FAQ from "@/components/FAQ";
+import ClassesPageLock from "@/components/ClassesPageLock";
 
 export const metadata = {
   title: "Classes",
@@ -15,6 +16,8 @@ export const metadata = {
 export default function Classes() {
   return (
     <>
+      <ClassesPageLock />
+
       {/* 1. Schedule */}
       <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-24">
         <div className="relative max-w-6xl mx-auto px-6">

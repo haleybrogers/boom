@@ -3,13 +3,13 @@
 import { useEffect } from "react";
 
 /**
- * /classes never auto-scrolls. Whether the URL has a hash or not, the page
- * loads at the top and stays there. The user can scroll wherever they want.
+ * One-shot scroll reset on /classes mount.
  *
- *   - Disable browser scroll restoration so it never lands on a previous y.
- *   - Strip any #hash from the URL on mount so the browser can't anchor-jump.
- *   - Pin scrollY at 0 across the first ~2s while LiveSchedule and other
- *     async content hydrate (otherwise late layout shifts can drift the page).
+ * The intermittent "jumps to a lower section" bug was the browser restoring
+ * a previously-saved scroll position from a prior visit. We disable scroll
+ * restoration, strip any URL hash so the browser can't anchor-jump, and
+ * scrollTo(0,0) once. After that we get out of the way — no RAF loop, no
+ * fighting the user's scroll.
  */
 export default function ClassesPageLock() {
   useEffect(() => {
@@ -19,24 +19,12 @@ export default function ClassesPageLock() {
     if (window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname);
     }
-
-    // Hard-pin to the top during the first ~2s of hydration.
-    let cancelled = false;
-    const start = performance.now();
-    const LOCK_MS = 2000;
-    const pin = () => {
-      if (cancelled) return;
-      if (window.scrollY !== 0) window.scrollTo(0, 0);
-      if (performance.now() - start < LOCK_MS) {
-        requestAnimationFrame(pin);
-      }
-    };
+    // Two scroll-to-top calls: one synchronously now, one after the browser's
+    // own scroll-restoration would have fired (next tick + after layout).
     window.scrollTo(0, 0);
-    requestAnimationFrame(pin);
-
-    return () => {
-      cancelled = true;
-    };
+    requestAnimationFrame(() => window.scrollTo(0, 0));
+    const t = setTimeout(() => window.scrollTo(0, 0), 0);
+    return () => clearTimeout(t);
   }, []);
 
   return null;

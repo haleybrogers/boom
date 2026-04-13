@@ -128,14 +128,21 @@ export default function LiveSchedule() {
       </div>
 
       {loading ? (
-        /* Reserve the full schedule height during fetch so hash-anchor
-           links (#founding, #privates, etc.) don't drift when the grid
-           materializes and shifts layout below. */
-        <div className="min-h-[520px] flex items-center justify-center">
+        /* Reserve a generous height that matches the typical loaded grid so
+           the page doesn't grow when classes hydrate. Browser
+           scroll-anchoring would otherwise shift the user's viewport down
+           the moment they started scrolling. */
+        <div
+          className="min-h-[700px] flex items-center justify-center"
+          style={{ overflowAnchor: "none" }}
+        >
           <div className="inline-block w-6 h-6 border-2 border-charcoal/20 border-t-accent rounded-full animate-spin" />
         </div>
       ) : (
-        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8 lg:items-start">
+        <div
+          className="lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8 lg:items-start"
+          style={{ overflowAnchor: "none" }}
+        >
           {/* LEFT: Schedule grid */}
           <div className="min-w-0">
             {/* Day columns */}

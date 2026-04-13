@@ -82,7 +82,7 @@ export default function NewToPilates() {
               <span className="text-xs text-muted">50 min · full apparatus</span>
             </div>
             <Link
-              href="/classes#privates"
+              href="/classes"
               className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors"
             >
               Book a Private
@@ -101,7 +101,7 @@ export default function NewToPilates() {
           </a>
           {" "}or{" "}
           <Link
-            href="/classes#faq"
+            href="/classes"
             className="text-accent hover:text-accent/80 transition-colors underline underline-offset-2"
           >
             read our FAQ
