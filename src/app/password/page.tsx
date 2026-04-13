@@ -51,13 +51,13 @@ export default function PasswordPage() {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] bg-cream flex flex-col items-center px-6 overflow-y-auto pt-8 pb-10">
+    <div className="fixed inset-0 z-[100] bg-cream flex flex-col items-center px-6 overflow-y-auto pt-24 md:pt-32 pb-10">
       {/* Top: Almost open + construction note */}
       <div className="text-center">
-        <h1 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
-          <span className="italic">Almost</span> <span className="italic text-accent">open</span>.
+        <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal">
+          <span className="italic text-accent">Almost</span> open.
         </h1>
-        <p className="text-[10px] tracking-[0.3em] uppercase text-charcoal/50 mt-2">
+        <p className="text-[10px] tracking-[0.3em] uppercase text-charcoal/50 mt-4">
           Site Under Construction · Coming Soon
         </p>
       </div>
@@ -73,25 +73,21 @@ export default function PasswordPage() {
           priority
         />
 
-        <div className="mt-8 mb-8">
-        <div
-          className="w-8 h-8 rounded-full border-2 border-accent/20 border-t-accent animate-spin"
-          style={{ animationDuration: "1.2s" }}
-          aria-hidden="true"
-        />
-      </div>
+        <div className="mt-8" />
 
       {/* Email capture */}
       <div className="w-full max-w-xs text-center">
         {emailSubmitted ? (
-          <p className="text-sm text-charcoal">
-            <span className="font-serif italic text-accent">Thanks.</span> We&apos;ll be in touch.
-          </p>
+          <div className="py-2">
+            <p className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-2">
+              You&apos;re <span className="italic text-accent">in</span>.
+            </p>
+            <p className="text-sm text-charcoal/60 italic font-serif">
+              Good things are coming. We&apos;ll see you soon.
+            </p>
+          </div>
         ) : (
           <>
-            <p className="font-serif text-base text-charcoal/70 mb-3 italic">
-              Stay in the know.
-            </p>
             <form onSubmit={handleEmailSubmit} className="flex gap-2">
               <input
                 type="email"
@@ -110,12 +106,15 @@ export default function PasswordPage() {
                 {emailSubmitting ? "..." : "Join"}
               </button>
             </form>
+            <p className="font-serif text-sm text-charcoal/60 mt-3 italic">
+              Stay in the know.
+            </p>
           </>
         )}
       </div>
 
       {/* Password — smaller, below email capture */}
-      <form onSubmit={handleSubmit} className="w-full max-w-[200px] mt-10">
+      <form onSubmit={handleSubmit} className="w-full max-w-[180px] mt-24 md:mt-32">
         <input
           type="password"
           value={password}
