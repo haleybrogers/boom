@@ -20,9 +20,10 @@ export default function About() {
               Built by Two Sisters
             </h1>
             <p className="text-base text-muted leading-relaxed max-w-xl mx-auto">
-              Emilie and Annie Young built Boomerang on the belief that Classical
-              Pilates works — when it&apos;s taught with integrity and practiced with
-              intention. No shortcuts. No trends. Just the method.
+              Emilie and Annie Young started Boomerang to bring Classical Pilates
+              to Durham the way it was meant to be — challenging, precise, and open
+              to everyone. The method doesn&apos;t need to be softened to be inclusive.
+              It already is. You just need the right teachers.
             </p>
           </div>
 
@@ -41,7 +42,7 @@ export default function About() {
                 Emilie Young
               </h3>
               <p className="text-xs tracking-widest uppercase text-accent mb-4">
-                Co-Founder · Big Sister
+                Co-Founder
               </p>
               <p className="text-base text-muted leading-relaxed">
                 3rd Generation Classical Pilates instructor, certified in mat
@@ -65,7 +66,7 @@ export default function About() {
                 Annie Young
               </h3>
               <p className="text-xs tracking-widest uppercase text-accent mb-4">
-                Co-Founder · Little Sister
+                Co-Founder
               </p>
               <p className="text-base text-muted leading-relaxed">
                 Classical Pilates certified from App State in 2023, following
