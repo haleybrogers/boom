@@ -4,7 +4,6 @@ import FoundingPricingOverlay from "@/components/FoundingPricingOverlay";
 import SchedulePrivate from "@/components/SchedulePrivate";
 import ClassPacks from "@/components/ClassPacks";
 import ClassGuideModal from "@/components/ClassGuideModal";
-import ClassesPageLock from "@/components/ClassesPageLock";
 import FAQ from "@/components/FAQ";
 
 export const metadata = {
@@ -16,10 +15,6 @@ export const metadata = {
 export default function Classes() {
   return (
     <>
-      {/* Hash-aware scroll lock: pins at top during async hydration, then
-          smooth-scrolls to the requested #section if the URL has a hash. */}
-      <ClassesPageLock />
-
       {/* 1. Schedule */}
       <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-24">
         <div className="relative max-w-6xl mx-auto px-6">
