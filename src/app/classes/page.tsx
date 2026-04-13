@@ -58,10 +58,10 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* 2. Class Packs & Drop-Ins — pricing people scan for first */}
-      <section id="packs" className="py-20 lg:py-28">
+      {/* 2. Founding Member Pricing */}
+      <section id="founding" className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
-          <ClassPacks />
+          <FoundingPricingOverlay />
         </div>
       </section>
 
@@ -70,17 +70,17 @@ export default function Classes() {
         <SchedulePrivate />
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq" className="py-20 lg:py-28">
+      {/* 4. Class Packs & Drop-Ins */}
+      <section id="packs" className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
-          <FAQ />
+          <ClassPacks />
         </div>
       </section>
 
-      {/* 5. Founding Member Pricing — large block, lives near the bottom */}
-      <section id="founding" className="py-20 lg:py-28 bg-warm-white">
+      {/* 5. FAQ */}
+      <section id="faq" className="py-20 lg:py-28 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
-          <FoundingPricingOverlay />
+          <FAQ />
         </div>
       </section>
 

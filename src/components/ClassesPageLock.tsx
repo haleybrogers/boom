@@ -3,39 +3,35 @@
 import { useEffect } from "react";
 
 /**
- * /classes scroll behavior:
- *   - On every load, force scroll to the very top first (overrides browser
- *     scroll-restoration and any premature hash jump).
- *   - If a hash like #founding is present in the URL, wait for the page to
- *     settle (LiveSchedule hydrates async and changes layout), then
- *     scroll smoothly to the target section.
- *   - If no hash, stay pinned at the top.
+ * /classes never auto-scrolls. Whether the URL has a hash or not, the page
+ * loads at the top and stays there. The user can scroll wherever they want.
+ *
+ *   - Disable browser scroll restoration so it never lands on a previous y.
+ *   - Strip any #hash from the URL on mount so the browser can't anchor-jump.
+ *   - Pin scrollY at 0 across the first ~2s while LiveSchedule and other
+ *     async content hydrate (otherwise late layout shifts can drift the page).
  */
 export default function ClassesPageLock() {
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
 
-    const hash = window.location.hash;
-
-    // Hard pin to top during the first ~1500ms while async content settles.
+    // Hard-pin to the top during the first ~2s of hydration.
     let cancelled = false;
     const start = performance.now();
-    const LOCK_MS = 1500;
+    const LOCK_MS = 2000;
     const pin = () => {
       if (cancelled) return;
       if (window.scrollY !== 0) window.scrollTo(0, 0);
       if (performance.now() - start < LOCK_MS) {
         requestAnimationFrame(pin);
-      } else if (hash) {
-        // After lock ends, smooth-scroll to the requested section (if any).
-        const el = document.querySelector(hash);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
       }
     };
+    window.scrollTo(0, 0);
     requestAnimationFrame(pin);
 
     return () => {
