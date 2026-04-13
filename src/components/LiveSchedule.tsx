@@ -265,7 +265,6 @@ export default function LiveSchedule() {
             </div>
           </aside>
         </div>
-        </>
       )}
     </div>
   );
