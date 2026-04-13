@@ -44,7 +44,9 @@ export default function Events() {
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mb-6 animate-fade-up" style={{ animationDelay: "0.8s" }} />
           <p className="text-white/75 text-base leading-relaxed mb-10 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.95s" }}>
-            We&apos;re opening the doors on June 15. Come throw the first class with us.
+            We&apos;re opening the doors on June 15. Food, drinks, mingle, and a peek at the
+            finished space. Suggested $10 donation at the door — the last bit of fundraising
+            before we open.
           </p>
 
           {/* Date card */}
@@ -60,15 +62,15 @@ export default function Events() {
           {/* Event details — placeholders, replace with real copy */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "1.2s" }}>
             <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
-              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-2">What to wear</p>
+              <p className="text-[10px] tracking-[0.25em] uppercase text-cream/90 mb-2">What to wear</p>
               <p className="text-sm text-white/80 leading-relaxed">[Dress code TBD — cute casual? Class-ready? Both?]</p>
             </div>
             <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
-              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-2">Food &amp; drink</p>
+              <p className="text-[10px] tracking-[0.25em] uppercase text-cream/90 mb-2">Food &amp; drink</p>
               <p className="text-sm text-white/80 leading-relaxed">[Caterer + drinks TBD — light bites? Coffee? Champagne?]</p>
             </div>
             <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
-              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-2">How long</p>
+              <p className="text-[10px] tracking-[0.25em] uppercase text-cream/90 mb-2">How long</p>
               <p className="text-sm text-white/80 leading-relaxed">[Duration + format TBD — demo class? Studio tours? Mingle?]</p>
             </div>
           </div>
@@ -92,47 +94,101 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Soft Opening — donation-based fundraiser mat class */}
+      {/* Founders' Series — 3-part pay-what-you-can fundraiser */}
       <section className="py-24 lg:py-32 bg-warm-white">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-10 reveal">
-            <p className="text-xs tracking-widest uppercase text-accent mb-4">Pay-What-You-Can Fundraiser</p>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-14 reveal">
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">Pay-What-You-Can · 3-Part Series</p>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
               Help us bring classical Pilates to downtown Durham.
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-              Before we officially open, we&apos;re hosting a donation-based mat class in the new space.
-              Every dollar goes straight into finishing the studio — the apparatus, the floors,
-              the little details that make a classical Pilates room feel like home. Come move with us,
-              meet the team, and be part of the story from day one.
+              Three soft-opening events leading up to the grand opening. Every dollar goes
+              straight into finishing the studio — the apparatus, the floors, the little
+              details that make a classical Pilates room feel like home. Come to one. Come
+              to all three.
             </p>
           </div>
 
-          <div className="reveal border border-accent/20 bg-white rounded-sm p-7 max-w-lg mx-auto shadow-sm">
-            <div className="flex items-baseline justify-between mb-3">
-              <h3 className="font-serif text-xl font-light text-charcoal">Founders&apos; Mat Class</h3>
-              <span className="font-serif text-xl font-light text-accent italic">Donate what you can</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+            {/* Part 1 */}
+            <div className="reveal relative border border-accent/20 bg-white rounded-sm p-6 shadow-sm flex flex-col">
+              <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
+                Part One
+              </span>
+              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Founders&apos; Mat Class</h3>
+              <p className="text-xs text-accent mb-3">All levels · Suggested $20+</p>
+              <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
+                A 50-minute classical mat class taught by Emilie and Annie in the
+                not-quite-finished studio. Stick around for [coffee / mimosas].
+              </p>
+              <div className="border-t border-charcoal/5 pt-3 flex items-center justify-between">
+                <p className="text-xs text-muted">[Date TBD] · 50 min</p>
+                <a
+                  href="/#waitlist"
+                  className="text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
+                >
+                  RSVP →
+                </a>
+              </div>
             </div>
-            <p className="text-xs text-accent mb-3">All levels welcome · Suggested $20+</p>
-            <p className="text-sm text-muted leading-relaxed mb-4">
-              [Date + time TBD.] A 50-minute classical mat class taught by Emilie and Annie,
-              in the not-quite-finished studio. All proceeds fund the final build-out.
-              Stick around for [coffee / mimosas / a peek at the apparatus room].
-            </p>
-            <div className="border-t border-charcoal/5 pt-4 flex items-center justify-between">
-              <p className="text-xs text-muted">50 min · [capacity TBD] spots</p>
-              <a
-                href="/#waitlist"
-                className="text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
-              >
-                Reserve a mat →
-              </a>
+
+            {/* Part 2 */}
+            <div className="reveal relative border border-accent/20 bg-white rounded-sm p-6 shadow-sm flex flex-col">
+              <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
+                Part Two
+              </span>
+              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">[Workshop / Tower Preview]</h3>
+              <p className="text-xs text-accent mb-3">All levels · Suggested $30+</p>
+              <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
+                [Placeholder — a small-group apparatus preview, breath workshop, or
+                themed class. Three of these in a row builds momentum.]
+              </p>
+              <div className="border-t border-charcoal/5 pt-3 flex items-center justify-between">
+                <p className="text-xs text-muted">[Date TBD] · [Format TBD]</p>
+                <a
+                  href="/#waitlist"
+                  className="text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
+                >
+                  RSVP →
+                </a>
+              </div>
+            </div>
+
+            {/* Part 3 */}
+            <div className="reveal relative border border-accent/20 bg-white rounded-sm p-6 shadow-sm flex flex-col">
+              <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
+                Part Three
+              </span>
+              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">[Studio Warming]</h3>
+              <p className="text-xs text-accent mb-3">Open house · Suggested $20+</p>
+              <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
+                [Placeholder — final fundraiser. A community gathering, light bites,
+                tour the finished space, meet the instructors before opening day.]
+              </p>
+              <div className="border-t border-charcoal/5 pt-3 flex items-center justify-between">
+                <p className="text-xs text-muted">[Date TBD] · 2 hr</p>
+                <a
+                  href="/#waitlist"
+                  className="text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
+                >
+                  RSVP →
+                </a>
+              </div>
             </div>
           </div>
 
-          <p className="text-center text-xs italic font-serif text-muted/60 mt-6 max-w-md mx-auto">
-            Not able to come but still want to help? Donations welcome — just reach out.
-          </p>
+          {/* All-three pass + altruism line */}
+          <div className="mt-10 text-center reveal">
+            <div className="inline-flex items-center gap-3 border border-accent/30 bg-accent/5 rounded-sm px-6 py-3">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-accent">All Three</span>
+              <span className="text-charcoal/30">·</span>
+              <span className="font-serif italic text-sm text-charcoal">Founders&apos; Series Pass — Suggested $60+</span>
+            </div>
+            <p className="text-xs italic font-serif text-muted/60 mt-5 max-w-md mx-auto">
+              Not able to come but still want to help? Donations welcome — just reach out.
+            </p>
+          </div>
         </div>
       </section>
 

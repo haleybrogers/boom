@@ -12,18 +12,21 @@ const sections = [
       {
         title: "Open Level Classical Mat",
         level: "All levels",
+        length: "50 min",
         description:
           "The foundation of everything we do. Modifications for newer students, advancements for those deeper in their practice. Classical Pilates the way it was designed.",
       },
       {
         title: "Return to Life Mat — Full 34",
         level: "Intermediate/Advanced",
+        length: "50 min",
         description:
           "All 34 exercises. No shortcuts. The complete classical mat series — strength, stamina, and fluidity in one unbroken sequence.",
       },
       {
         title: "Lunch Power Hour",
-        level: "All levels · 35 min",
+        level: "All levels",
+        length: "35 min",
         description:
           "Classical matwork, compact format. A focused 35-minute session built for people with somewhere to be.",
       },
@@ -31,35 +34,40 @@ const sections = [
   },
   {
     category: "Apparatus Classes",
-    subtitle: "50 min · 3 spots max",
+    subtitle: "3 spots max",
     classes: [
       {
         title: "Apparatus Foundations",
         level: "Beginner",
+        length: "50 min",
         description:
           "Your introduction to classical apparatus. In a group of just three, learn to safely use the reformer, tower, and small barrels.",
       },
       {
         title: "Intermediate Mixed Apparatus",
         level: "Intermediate",
+        length: "50 min",
         description:
           "Rotates through the full range of apparatus with a strong focus on core strengthening and alignment.",
       },
       {
         title: "Athletic Classical Reformer",
         level: "Intermediate/Advanced",
+        length: "50 min",
         description:
           "Fast-paced, precision-driven reformer work. Efficient transitions, demanding sequences, focused intensity.",
       },
       {
         title: "Athletic Classical Tower",
         level: "Intermediate/Advanced",
+        length: "50 min",
         description:
           "Full tower work turned up — roll back bar, push-thru bar, leg springs, arm springs. More core burn, more flow.",
       },
       {
         title: "Lengthen & Strengthen Tower",
         level: "All levels · Restorative",
+        length: "50 min",
         description:
           "A gentle class combining mat work with tower springs to release tension, decompress the spine, and restore alignment.",
       },
@@ -148,10 +156,12 @@ export default function ClassGuideModal() {
                           className="w-full py-4 flex items-center justify-between text-left"
                         >
                           <div>
-                            <span className="font-serif text-base text-charcoal">
+                            <span className="font-serif text-base text-charcoal block">
                               {cls.title}
                             </span>
-                            <span className="text-xs text-muted/60 ml-2">{cls.level}</span>
+                            <span className="text-xs text-muted/70 mt-0.5 inline-block">
+                              {cls.length} · {cls.level}
+                            </span>
                           </div>
                           <span
                             className={`shrink-0 ml-3 w-5 h-5 rounded-full bg-accent text-white flex items-center justify-center transition-transform duration-300 ${
