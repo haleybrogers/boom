@@ -7,7 +7,7 @@ import Image from "next/image";
 const CHEEKY_MESSAGES = [
   "Site Under Construction · Coming Soon",
   "No, really. Almost.",
-  "The reformers are in the truck.",
+  "The reformer is in the truck.",
   "The tower is taller in person.",
   "Hundred, rollup, rollover, repeat.",
   "Currently: finding a home for the cadillac.",
@@ -102,103 +102,102 @@ export default function PasswordPage() {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] bg-cream flex flex-col items-center px-6 overflow-y-auto pt-28 md:pt-40 pb-16 md:pb-24">
-      {/* Top: Almost open + construction note */}
-      <div className="text-center">
-        <h1 className="font-serif text-5xl md:text-6xl font-light">
-          <span className="italic text-accent">Almost</span> <span style={{ color: "#716055" }}>open.</span>
-        </h1>
-        <button
-          type="button"
-          onClick={handleCheekyClick}
-          className={`block mx-auto text-[10px] tracking-[0.3em] uppercase text-accent mt-8 cursor-pointer hover:text-accent/70 transition-all duration-400 ${
-            cheekyFading ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
-          }`}
-          aria-label="Tap to shuffle"
-        >
-          {CHEEKY_MESSAGES[cheekyIdx]}
-        </button>
-      </div>
-
-      {/* Center: logo + spinner + email capture + password */}
-      <div className="flex-1 flex flex-col items-center justify-center w-full">
-        <div className="logo-toss-wrap">
+    <div className="fixed inset-0 z-[100] bg-cream overflow-y-auto">
+      <div className="min-h-full flex flex-col items-center justify-center px-6 py-16">
+        {/* Logo */}
+        <div className="logo-toss-wrap mb-10 md:mb-14">
           <Image
             src="/logo-full.svg"
             alt="Boomerang Pilates"
             width={500}
             height={400}
-            className="w-52 md:w-64 h-auto"
+            className="w-48 md:w-60 h-auto"
             priority
           />
         </div>
 
-        <div className="mt-16 md:mt-20" />
-
-      {/* Email capture */}
-      <div className="w-full max-w-xs text-center">
-        {emailSubmitted ? (
-          <div className="py-2">
-            <p className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-2">
-              You&apos;re <span className="italic text-accent">in</span>.
-            </p>
-            <p className="text-sm text-charcoal/60 italic font-serif">
-              Good things are coming. We&apos;ll see you soon.
-            </p>
-          </div>
-        ) : (
-          <>
-            <form onSubmit={handleEmailSubmit} className="flex gap-2">
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@email.com"
-                disabled={emailSubmitting}
-                className="flex-1 px-3 py-2 bg-transparent border border-charcoal/20 rounded-sm text-sm text-charcoal placeholder-charcoal/30 focus:outline-none focus:border-accent transition-colors"
-              />
-              <button
-                type="submit"
-                disabled={emailSubmitting}
-                className="bg-accent text-white px-4 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors disabled:opacity-50"
-              >
-                {emailSubmitting ? "..." : "Join"}
-              </button>
-            </form>
-            <p className="font-serif text-sm text-charcoal/60 mt-5 italic">
-              Stay in the know.
-            </p>
-          </>
-        )}
-      </div>
-
-      {/* Password — smaller, below email capture */}
-      <form onSubmit={handleSubmit} className="w-full max-w-[200px] mt-24 md:mt-32">
-        <div className="flex items-center border-b border-charcoal/15 focus-within:border-accent transition-colors">
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => { setPassword(e.target.value); setError(false); }}
-            placeholder="Password"
-            className="flex-1 min-w-0 px-0 py-2 bg-transparent text-charcoal/70 placeholder-charcoal/25 focus:outline-none text-xs text-center"
-            disabled={loading}
-          />
+        {/* Headline + eyebrow */}
+        <div className="text-center mb-12 md:mb-16">
+          <h1 className="font-serif text-5xl md:text-6xl font-light leading-none">
+            <span className="italic text-accent">Almost</span>{" "}
+            <span style={{ color: "#716055" }}>open.</span>
+          </h1>
           <button
-            type="submit"
-            disabled={loading || !password}
-            aria-label="Enter site"
-            className="shrink-0 ml-2 text-charcoal/40 hover:text-accent transition-colors disabled:opacity-30 disabled:hover:text-charcoal/40"
+            type="button"
+            onClick={handleCheekyClick}
+            className={`block mx-auto text-[10px] tracking-[0.3em] uppercase text-accent mt-5 cursor-pointer hover:text-accent/70 transition-all duration-400 ${
+              cheekyFading ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
+            }`}
+            aria-label="Tap to shuffle"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            {CHEEKY_MESSAGES[cheekyIdx]}
           </button>
         </div>
-        {error && (
-          <p className="text-xs text-accent text-center mt-3">Incorrect password.</p>
-        )}
-      </form>
+
+        {/* Email capture */}
+        <div className="w-full max-w-xs text-center">
+          {emailSubmitted ? (
+            <div className="py-2">
+              <p className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-2">
+                You&apos;re <span className="italic text-accent">in</span>.
+              </p>
+              <p className="text-sm text-charcoal/60 italic font-serif">
+                Good things are coming. We&apos;ll see you soon.
+              </p>
+            </div>
+          ) : (
+            <>
+              <form onSubmit={handleEmailSubmit} className="flex gap-2">
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@email.com"
+                  disabled={emailSubmitting}
+                  className="flex-1 px-3 py-2 bg-transparent border border-charcoal/20 rounded-sm text-sm text-charcoal placeholder-charcoal/30 focus:outline-none focus:border-accent transition-colors"
+                />
+                <button
+                  type="submit"
+                  disabled={emailSubmitting}
+                  className="bg-accent text-white px-4 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors disabled:opacity-50"
+                >
+                  {emailSubmitting ? "..." : "Join"}
+                </button>
+              </form>
+              <p className="font-serif text-sm text-charcoal/60 mt-4 italic">
+                Stay in the know.
+              </p>
+            </>
+          )}
+        </div>
+
+        {/* Password — tiny, tucked at the bottom of the card */}
+        <form onSubmit={handleSubmit} className="w-full max-w-[200px] mt-20 md:mt-24">
+          <div className="flex items-center border-b border-charcoal/15 focus-within:border-accent transition-colors">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => { setPassword(e.target.value); setError(false); }}
+              placeholder="Password"
+              className="flex-1 min-w-0 px-0 py-2 bg-transparent text-charcoal/70 placeholder-charcoal/25 focus:outline-none text-xs text-center"
+              disabled={loading}
+            />
+            <button
+              type="submit"
+              disabled={loading || !password}
+              aria-label="Enter site"
+              className="shrink-0 ml-2 text-charcoal/40 hover:text-accent transition-colors disabled:opacity-30 disabled:hover:text-charcoal/40"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          {error && (
+            <p className="text-xs text-accent text-center mt-3">Incorrect password.</p>
+          )}
+        </form>
       </div>
     </div>
   );

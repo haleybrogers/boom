@@ -7,7 +7,7 @@ import Link from "next/link";
 const sections = [
   {
     category: "Mat Classes",
-    subtitle: "50 min · 15 spots",
+    subtitle: "15 spots",
     classes: [
       {
         title: "Open Level Classical Mat",

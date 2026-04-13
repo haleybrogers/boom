@@ -66,13 +66,6 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Links */}
-          <div className="flex items-center gap-6 text-xs text-muted">
-            <a href="mailto:info@boomerangpilatesnc.com" className="hover:text-accent transition-colors">
-              info@boomerangpilatesnc.com
-            </a>
-          </div>
-
           {/* Review CTA — soft serif pill to match Class Guide */}
           <a
             href="https://g.page/r/boomerangpilates/review"

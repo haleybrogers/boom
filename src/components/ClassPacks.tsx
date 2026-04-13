@@ -5,12 +5,22 @@ import Link from "next/link";
 
 const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
 
-const packs = [
+type Pack = {
+  name: string;
+  price: string;
+  savings?: string;
+  detail: string;
+  description: string;
+  group: "mat" | "apparatus";
+};
+
+const packs: Pack[] = [
   {
     name: "Mat Drop-In",
     price: "$25",
     detail: "Single class",
     description: "No commitment. Walk in, take a mat class, walk out. Good for trying us out or dropping in when your schedule allows.",
+    group: "mat",
   },
   {
     name: "5-Pack Mat",
@@ -18,6 +28,7 @@ const packs = [
     savings: "Save $15",
     detail: "$22/class",
     description: "Five mat classes to use on your schedule. Great if you come once a week or want to test the waters before committing to a membership.",
+    group: "mat",
   },
   {
     name: "10-Pack Mat",
@@ -25,6 +36,7 @@ const packs = [
     savings: "Save $50",
     detail: "$20/class",
     description: "Ten mat classes at the best per-class rate outside of a membership. Use them at your own pace — valid for 6 months from purchase.",
+    group: "mat",
   },
   {
     name: "Unlimited Mat",
@@ -32,12 +44,14 @@ const packs = [
     savings: "Best Value",
     detail: "Unlimited classes/mo",
     description: "Unlimited mat classes every month. Come as often as you want — the more you show up, the less each class costs. Month-to-month, cancel anytime.",
+    group: "mat",
   },
   {
     name: "Apparatus Drop-In",
     price: "$45",
     detail: "Single class · 3 spots",
     description: "One small-group apparatus class — reformer, tower, barrels, or chair. Three students max with hands-on instruction.",
+    group: "apparatus",
   },
   {
     name: "5-Pack Apparatus",
@@ -45,6 +59,7 @@ const packs = [
     savings: "Save $25",
     detail: "$40/class",
     description: "Five apparatus classes. Perfect for supplementing a mat membership or building a consistent apparatus practice without a monthly commitment.",
+    group: "apparatus",
   },
   {
     name: "10-Pack Apparatus",
@@ -52,6 +67,7 @@ const packs = [
     savings: "Save $75",
     detail: "$37.50/class",
     description: "Ten apparatus classes — our best per-class value for apparatus outside of a membership. Valid for 6 months from purchase.",
+    group: "apparatus",
   },
   {
     name: "Unlimited Apparatus",
@@ -59,6 +75,7 @@ const packs = [
     savings: "Best Value",
     detail: "Unlimited classes/mo",
     description: "Unlimited small-group apparatus classes every month. Three spots per class, hands-on instruction every time. Month-to-month, cancel anytime.",
+    group: "apparatus",
   },
 ];
 
@@ -110,10 +127,14 @@ export default function ClassPacks() {
           <button
             key={pack.name}
             onClick={() => setExpanded(expanded === pack.name ? null : pack.name)}
-            className={`group text-left bg-white border rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+            className={`group text-left border rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md border-l-[3px] ${
               expanded === pack.name
                 ? "border-accent/30 shadow-md"
                 : "border-charcoal/10"
+            } ${
+              pack.group === "mat"
+                ? "bg-white !border-l-charcoal/25"
+                : "bg-accent/[0.04] !border-l-accent"
             }`}
           >
             <div className="flex items-baseline justify-between mb-1">
