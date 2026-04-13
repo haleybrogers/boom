@@ -102,7 +102,7 @@ export default function PasswordPage() {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] bg-cream flex flex-col items-center px-6 overflow-y-auto pt-24 md:pt-32 pb-10">
+    <div className="fixed inset-0 z-[100] bg-cream flex flex-col items-center px-6 overflow-y-auto pt-28 md:pt-40 pb-16 md:pb-24">
       {/* Top: Almost open + construction note */}
       <div className="text-center">
         <h1 className="font-serif text-5xl md:text-6xl font-light">
@@ -111,7 +111,7 @@ export default function PasswordPage() {
         <button
           type="button"
           onClick={handleCheekyClick}
-          className={`block mx-auto text-[10px] tracking-[0.3em] uppercase text-accent mt-4 cursor-pointer hover:text-accent/70 transition-all duration-400 ${
+          className={`block mx-auto text-[10px] tracking-[0.3em] uppercase text-accent mt-8 cursor-pointer hover:text-accent/70 transition-all duration-400 ${
             cheekyFading ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
           }`}
           aria-label="Tap to shuffle"
@@ -133,7 +133,7 @@ export default function PasswordPage() {
           />
         </div>
 
-        <div className="mt-8" />
+        <div className="mt-16 md:mt-20" />
 
       {/* Email capture */}
       <div className="w-full max-w-xs text-center">
@@ -166,7 +166,7 @@ export default function PasswordPage() {
                 {emailSubmitting ? "..." : "Join"}
               </button>
             </form>
-            <p className="font-serif text-sm text-charcoal/60 mt-3 italic">
+            <p className="font-serif text-sm text-charcoal/60 mt-5 italic">
               Stay in the know.
             </p>
           </>

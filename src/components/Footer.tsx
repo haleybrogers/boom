@@ -2,30 +2,35 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import PilatesWisdom from "./PilatesWisdom";
 
 export default function Footer() {
   const [eggHover, setEggHover] = useState(false);
+  const pathname = usePathname();
+  const showFoundingCTA = pathname !== "/";
   return (
     <footer className="border-t border-charcoal/10">
-      {/* Founding member CTA — small version of the about-page block */}
-      <div className="border-b border-charcoal/5 bg-cream/60">
-        <div className="max-w-xl mx-auto px-6 py-14 text-center">
-          <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-3">Limited Time</p>
-          <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3">
-            Be a founding member.
-          </h2>
-          <p className="text-sm text-muted leading-relaxed mb-6 max-w-md mx-auto">
-            Lock in your rate before we open — it never goes up. Plus invites to the soft opening and celebratory events.
-          </p>
-          <Link
-            href="/classes#founding"
-            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
-          >
-            See Founding Pricing
-          </Link>
+      {/* Founding member CTA — hidden on home (hero + waitlist already convert there) */}
+      {showFoundingCTA && (
+        <div className="border-b border-charcoal/5 bg-cream/60">
+          <div className="max-w-xl mx-auto px-6 py-14 text-center">
+            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-3">Limited Time</p>
+            <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3">
+              Be a founding member.
+            </h2>
+            <p className="text-sm text-muted leading-relaxed mb-6 max-w-md mx-auto">
+              Lock in your rate before we open — it never goes up. Plus invites to the soft opening and celebratory events.
+            </p>
+            <Link
+              href="/classes#founding"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
+            >
+              See Founding Pricing
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Weird Pilates fact of the day — small & playful */}
       <div className="border-b border-charcoal/5 py-6">
