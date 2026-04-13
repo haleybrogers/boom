@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 
 const sections = [
@@ -69,6 +70,18 @@ const sections = [
 export default function ClassGuideModal() {
   const [open, setOpen] = useState(false);
   const [openClass, setOpenClass] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, [open]);
 
   return (
     <>
@@ -86,8 +99,8 @@ export default function ClassGuideModal() {
         <span className="text-accent/50 group-hover:text-accent transition-colors text-xs">→</span>
       </button>
 
-      {/* Backdrop + Modal */}
-      {open && (
+      {/* Backdrop + Modal — portaled to body to escape any transform/filter ancestors */}
+      {open && mounted && createPortal(
         <div
           className="fixed inset-0 z-[100]"
           onClick={() => setOpen(false)}
@@ -180,7 +193,8 @@ export default function ClassGuideModal() {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
