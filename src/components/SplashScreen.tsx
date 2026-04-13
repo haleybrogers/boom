@@ -32,13 +32,9 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
             priority
           />
           <div className="mt-8">
-            <Image
-              src="/loading-icon.svg"
-              alt=""
-              width={44}
-              height={44}
-              className="w-11 h-11 animate-spin"
-              style={{ animationDuration: "2s" }}
+            <div
+              className="w-8 h-8 rounded-full border-2 border-accent/20 border-t-accent animate-spin"
+              style={{ animationDuration: "1.2s" }}
               aria-hidden="true"
             />
           </div>

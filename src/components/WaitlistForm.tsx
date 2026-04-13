@@ -13,10 +13,10 @@ export default function WaitlistForm({ variant = "default" }: { variant?: "defau
     setLoading(true);
 
     try {
-      await fetch("https://formspree.io/f/xpwrqkba", {
+      await fetch("https://formspree.io/f/mzdybzlq", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, _subject: "New Email Signup — Boomerang Pilates" }),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name, email, source: "waitlist", _subject: "New Email Signup — Boomerang Pilates" }),
       });
       setSubmitted(true);
     } catch {

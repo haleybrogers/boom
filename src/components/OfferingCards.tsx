@@ -21,7 +21,7 @@ const offerings = [
   },
   {
     title: "Apparatus",
-    image: "/photo-reformer.jpg",
+    image: "/photo-apparatus.jpg",
     tagline: "Real equipment. Real instruction. Three students max.",
     description:
       "Reformer, tower, barrels, chair — the classical equipment that builds your practice and transforms how your body moves. Every class is capped at three so you get hands-on corrections, not just cues from across the room.",
