@@ -20,10 +20,9 @@ export default function About() {
               Built by Two Sisters
             </h1>
             <p className="text-base text-muted leading-relaxed max-w-xl mx-auto">
-              Emilie and Annie Young started Boomerang to bring Classical Pilates
-              to Durham the way it was meant to be — challenging, precise, and open
-              to everyone. The method doesn&apos;t need to be softened to be inclusive.
-              It already is. You just need the right teachers.
+              Emilie and Annie grew up in this method. They opened Boomerang
+              to bring it home to Durham — taught the way they were taught,
+              by teachers who still believe in the original work.
             </p>
           </div>
 
@@ -94,14 +93,10 @@ export default function About() {
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-6">
             Classical Pilates Is for Every Body
           </h2>
-          <p className="text-base text-muted leading-relaxed mb-4">
-            Joseph Pilates designed this method for everyone — not just athletes, not just dancers,
-            not just one kind of person. The original work doesn&apos;t need to be softened or
-            reimagined to be inclusive. It already is.
-          </p>
           <p className="text-base text-muted leading-relaxed">
-            We teach the method the way it was designed because we believe in it — and we welcome
-            every body through our door. No gatekeeping. Just the work.
+            Joseph Pilates designed this method for everyone — not just athletes, not just dancers,
+            not just one kind of person. We teach it the way it was designed, and we welcome every
+            body through our door. No gatekeeping. Just the work.
           </p>
         </div>
         <SixPrinciples embedded />

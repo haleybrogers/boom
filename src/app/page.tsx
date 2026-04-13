@@ -45,16 +45,16 @@ export default function Home() {
             </p>
             <FoundingCountdown showLabel={false} />
             <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mb-3 mt-2 leading-tight">
-              Become a Founding Member.
+              The best deal we&apos;ll ever run.
             </h2>
             <p className="text-sm text-muted mb-6 max-w-sm mx-auto leading-relaxed">
-              Get access to pre-opening pricing, soft-opening classes, and a few perks no one else can buy.
+              And it ends the day we open. Pre-opening pricing, soft-opening classes, opening night invite, welcome kit.
             </p>
             <Link
               href="/classes#founding"
-              className="link-arrow inline-block text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
             >
-              Learn More
+              Become a Founding Member
             </Link>
           </div>
         </div>
