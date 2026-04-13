@@ -85,11 +85,6 @@ export default function Contact() {
         {/* Info below */}
         <div className="border-t border-charcoal/10 pt-10 space-y-6 text-center">
           <div>
-            <a href="mailto:info@boomerangpilatesnc.com" className="text-base text-charcoal hover:text-accent transition-colors">
-              info@boomerangpilatesnc.com
-            </a>
-          </div>
-          <div>
             <a
               href="https://instagram.com/boomerangpilatesnc"
               target="_blank"

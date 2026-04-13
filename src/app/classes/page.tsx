@@ -5,7 +5,6 @@ import SchedulePrivate from "@/components/SchedulePrivate";
 import ClassPacks from "@/components/ClassPacks";
 import ClassGuideModal from "@/components/ClassGuideModal";
 import FAQ from "@/components/FAQ";
-import ClassesPageLock from "@/components/ClassesPageLock";
 
 export const metadata = {
   title: "Classes",
@@ -13,10 +12,21 @@ export const metadata = {
     "Classical Mat, Group Tower, Privates, and Duets. View offerings and pricing at Boomerang Pilates in Durham, NC.",
 };
 
+// Synchronous script injected at the top of the page so it executes during
+// HTML parse, BEFORE the browser scrolls to any #hash anchor. This is the
+// only way to prevent the brief land-on-section-then-snap-to-top flash.
+const KILL_HASH_SCROLL = `
+  try {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo(0, 0);
+  } catch (e) {}
+`;
+
 export default function Classes() {
   return (
     <>
-      <ClassesPageLock />
+      <script dangerouslySetInnerHTML={{ __html: KILL_HASH_SCROLL }} />
 
       {/* 1. Schedule */}
       <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-24">

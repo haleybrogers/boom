@@ -127,51 +127,47 @@ export default function LiveSchedule() {
         </button>
       </div>
 
-      {loading ? (
-        /* Reserve a generous height that matches the typical loaded grid so
-           the page doesn't grow when classes hydrate. Browser
-           scroll-anchoring would otherwise shift the user's viewport down
-           the moment they started scrolling. */
-        <div
-          className="min-h-[700px] flex items-center justify-center"
-          style={{ overflowAnchor: "none" }}
-        >
-          <div className="inline-block w-6 h-6 border-2 border-charcoal/20 border-t-accent rounded-full animate-spin" />
-        </div>
-      ) : (
-        <div
-          className="lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8 lg:items-start"
-          style={{ overflowAnchor: "none" }}
-        >
-          {/* LEFT: Schedule grid */}
-          <div className="min-w-0">
-            {/* Day columns */}
-            <div className="grid grid-cols-7 gap-1 mb-2">
-              {days.map((day, i) => {
-                const isToday = formatDate(day) === formatDate(new Date());
-                const hasClasses = classesByDay[i].length > 0;
-                return (
-                  <div
-                    key={i}
-                    className={`text-center py-2 rounded-sm ${
-                      isToday ? "bg-accent/10" : ""
-                    }`}
-                  >
-                    <p className="text-[10px] lg:text-xs tracking-widest uppercase text-charcoal/60">
-                      {formatDayShort(day)}
-                    </p>
-                    <p className={`font-serif text-lg lg:text-xl font-light ${
-                      isToday ? "text-accent" : hasClasses ? "text-charcoal" : "text-charcoal/40"
-                    }`}>
-                      {formatDayNum(day)}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+      <div
+        className="lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8 lg:items-start"
+        style={{ overflowAnchor: "none" }}
+      >
+        {/* LEFT: Schedule grid — day headers render immediately so layout
+            doesn't grow/shrink when class data hydrates. */}
+        <div className="min-w-0">
+          {/* Day columns header (always rendered) */}
+          <div className="grid grid-cols-7 gap-1 mb-2">
+            {days.map((day, i) => {
+              const isToday = formatDate(day) === formatDate(new Date());
+              const hasClasses = !loading && classesByDay[i].length > 0;
+              return (
+                <div
+                  key={i}
+                  className={`text-center py-2 rounded-sm ${
+                    isToday ? "bg-accent/10" : ""
+                  }`}
+                >
+                  <p className="text-[10px] lg:text-xs tracking-widest uppercase text-charcoal/60">
+                    {formatDayShort(day)}
+                  </p>
+                  <p className={`font-serif text-lg lg:text-xl font-light ${
+                    isToday ? "text-accent" : hasClasses ? "text-charcoal" : "text-charcoal/40"
+                  }`}>
+                    {formatDayNum(day)}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
 
-            {/* Class cards by day */}
-            <div className="grid grid-cols-7 gap-1.5 items-start">
+          {/* Class cards area — fixed min-height shell so the loading→loaded
+              transition doesn't reflow the page. */}
+          {loading && (
+            <div className="min-h-[260px] flex items-center justify-center">
+              <div className="inline-block w-6 h-6 border-2 border-charcoal/20 border-t-accent rounded-full animate-spin" />
+            </div>
+          )}
+          {!loading && (
+            <div className="grid grid-cols-7 gap-1.5 items-start min-h-[260px]">
               {classesByDay.map((dayClasses, i) => (
                 <div key={i} className="space-y-1.5 min-h-[80px]">
                   {dayClasses.map((cls) => {
@@ -217,18 +213,19 @@ export default function LiveSchedule() {
                 </div>
               ))}
             </div>
+          )}
 
-            {/* No classes message */}
-            {classes.length === 0 && (
-              <p className="text-center text-sm text-muted py-8">
-                No classes scheduled this week. Check back soon.
-              </p>
-            )}
-          </div>
+          {/* No classes message */}
+          {!loading && classes.length === 0 && (
+            <p className="text-center text-sm text-muted py-8">
+              No classes scheduled this week. Check back soon.
+            </p>
+          )}
+        </div>
 
-          {/* RIGHT: Detail panel (sticky on desktop, stacks below on mobile).
-              No empty state — the card just appears when a class is selected. */}
-          <aside className="lg:sticky lg:top-24">
+        {/* RIGHT: Detail panel (sticky on desktop, stacks below on mobile).
+            No empty state — the card just appears when a class is selected. */}
+        <aside className="lg:sticky lg:top-24">
             <div className={`transition-opacity duration-300 ${selectedClass ? "opacity-100 mt-6 lg:mt-0" : "opacity-0 pointer-events-none h-0 overflow-hidden"}`}>
               {selectedClass && (
                 <div className="bg-cream border border-charcoal/10 rounded-sm p-5">
@@ -261,8 +258,7 @@ export default function LiveSchedule() {
               )}
             </div>
           </aside>
-        </div>
-      )}
+      </div>
     </div>
   );
 }

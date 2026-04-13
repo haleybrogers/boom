@@ -4,39 +4,54 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "Do I need Pilates experience?",
+    question: "I've never done Pilates. Will I be lost?",
     answer:
-      "Not at all. Our Open Level Classical Mat class is designed for all levels — your instructor builds in modifications so the work meets you where you are. If you'd prefer one-on-one guidance first, a private session is a great place to start.",
+      "No. Our Open Level Classical Mat is built for first-timers — your instructor cues every exercise from scratch and offers modifications throughout. If walking in cold still feels like a lot, book a single private first and we'll get you fluent before you join a group.",
   },
   {
-    question: "What should I wear?",
+    question: "I'm not flexible or in great shape. Is this for me?",
     answer:
-      "Comfortable, form-fitting clothes that let you move freely. Grippy socks are required for apparatus classes (we sell them if you forget). No shoes needed — you'll be barefoot or in socks for everything.",
+      "Yes, and especially yes. Pilates was designed to build flexibility and strength, not to require them. Every exercise has an entry point — we meet you where your body is today.",
   },
   {
-    question: "What's the difference between mat and apparatus?",
+    question: "I have a back / knee / shoulder issue. Can I still do Pilates?",
     answer:
-      "Mat classes use your body weight and small props on a mat — they're group classes with up to 15 students. Apparatus classes use equipment like the reformer, tower, barrel, and chair — small groups of 3 with hands-on instruction.",
+      "Most likely yes — Pilates was originally developed in part as a rehab method, and our instructors are trained to modify around common issues. For anything significant or post-surgical, start with a private so we can build a plan with you (and loop in your PT or doctor).",
+  },
+  {
+    question: "What should I wear and bring?",
+    answer:
+      "Form-fitting clothes you can move in (loose tops flip up in inversions). Grippy socks required for apparatus — we sell them if you forget. Bring water; we provide mats and props. No shoes inside the studio.",
+  },
+  {
+    question: "Mat vs. apparatus — what's the difference?",
+    answer:
+      "Mat uses your body weight and small props — group classes up to 15. Apparatus uses the reformer, tower, barrels, and chair — small groups of 3 with hands-on instruction. Most people who fall in love with Pilates do both.",
+  },
+  {
+    question: "How often should I come to see results?",
+    answer:
+      "Joseph Pilates said: \"In 10 sessions you'll feel the difference, in 20 you'll see the difference, and in 30 you'll have a whole new body.\" Twice a week is the sweet spot for most people.",
   },
   {
     question: "How do I book a class?",
     answer:
-      "Use the schedule at the top of this page — tap a class to see details and book your spot. You can pay with a drop-in, class pack, or membership. First time? Just grab a mat drop-in for $25.",
+      "Use the schedule at the top of this page — tap any class to book directly. New here? A $25 mat drop-in is the easiest place to start.",
   },
   {
-    question: "What's your cancellation policy?",
+    question: "Cancellation policy?",
     answer:
-      "We ask for at least 12 hours notice to cancel or reschedule. Late cancellations and no-shows will be charged for the class. We know things come up — just try to let us know when you can.",
+      "12 hours notice to cancel or reschedule without charge. Late cancellations and no-shows are charged the full rate (and burn a credit if you're on a pack).",
   },
   {
-    question: "Where are you located?",
+    question: "Where are you located? Where do I park?",
     answer:
-      "343 W Main St in Downtown Durham, NC. Parking details coming soon — we'll send everything before opening day.",
+      "343 W Main St in Downtown Durham, NC. Parking details coming soon — we'll send a full welcome guide before opening day.",
   },
   {
     question: "What's a founding membership?",
     answer:
-      "Only 15 people lock in our $199/mo unlimited mat rate — and that rate never goes up as long as your membership stays active and continuous. If you cancel or pause, you lose the founding rate (rejoining later means standard pricing). Anyone who buys a 10-pack of privates or duets before opening day also gets one-time founding pricing on those packs — no per-person cap on those, just the June 15 deadline.",
+      "Only 15 people lock in our $199/mo unlimited mat rate — and that rate never goes up as long as your membership stays active. Cancel or pause and you lose it. Founding-rate packs (privates and duets) are available to anyone who buys before June 15.",
   },
 ];
 
