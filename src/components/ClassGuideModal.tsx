@@ -154,12 +154,12 @@ export default function ClassGuideModal() {
                             <span className="text-xs text-muted/60 ml-2">{cls.level}</span>
                           </div>
                           <span
-                            className={`shrink-0 ml-3 w-7 h-7 rounded-full bg-accent text-white flex items-center justify-center transition-transform duration-300 ${
+                            className={`shrink-0 ml-3 w-5 h-5 rounded-full bg-accent text-white flex items-center justify-center transition-transform duration-300 ${
                               openClass === cls.title ? "rotate-180" : ""
                             }`}
                           >
                             <svg
-                              className="w-3.5 h-3.5"
+                              className="w-2.5 h-2.5"
                               fill="none"
                               stroke="currentColor"
                               strokeWidth={2.5}
