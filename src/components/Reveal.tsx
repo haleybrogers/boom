@@ -28,7 +28,7 @@ export default function Reveal({
   as = "div",
   from = "opacity-0 translate-y-5",
   to = "opacity-100 translate-y-0",
-  threshold = 0.15,
+  threshold = 0,
   style,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -37,6 +37,16 @@ export default function Reveal({
   useEffect(() => {
     if (!ref.current) return;
     const el = ref.current;
+
+    // If the element is already in or above the viewport on mount, reveal it
+    // immediately (no animation). Prevents content from staying invisible if
+    // the user scrolls past it before the IntersectionObserver fires.
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight) {
+      setVisible(true);
+      return;
+    }
+
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
