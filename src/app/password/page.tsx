@@ -51,25 +51,29 @@ export default function PasswordPage() {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] bg-cream flex flex-col items-center justify-center px-6 overflow-y-auto py-10">
-      <Image
-        src="/logo-full.svg"
-        alt="Boomerang Pilates"
-        width={500}
-        height={400}
-        className="w-72 md:w-96 h-auto"
-        priority
-      />
+    <div className="fixed inset-0 z-[100] bg-cream flex flex-col items-center px-6 overflow-y-auto pt-8 pb-10">
+      {/* Top: Almost open + construction note */}
+      <div className="text-center">
+        <h1 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
+          <span className="italic">Almost</span> <span className="italic text-accent">open</span>.
+        </h1>
+        <p className="text-[10px] tracking-[0.3em] uppercase text-charcoal/50 mt-2">
+          Site Under Construction · Coming Soon
+        </p>
+      </div>
 
-      <h1 className="font-serif text-3xl md:text-4xl font-light text-charcoal mt-6">
-        Almost <span className="italic text-accent">open</span>.
-      </h1>
+      {/* Center: logo + spinner + email capture + password */}
+      <div className="flex-1 flex flex-col items-center justify-center w-full">
+        <Image
+          src="/logo-full.svg"
+          alt="Boomerang Pilates"
+          width={500}
+          height={400}
+          className="w-72 md:w-96 h-auto"
+          priority
+        />
 
-      <p className="text-[10px] tracking-[0.3em] uppercase text-charcoal/50 mt-3 mb-6">
-        Site Under Construction · Coming Soon
-      </p>
-
-      <div className="mb-8">
+        <div className="mt-8 mb-8">
         <div
           className="w-8 h-8 rounded-full border-2 border-accent/20 border-t-accent animate-spin"
           style={{ animationDuration: "1.2s" }}
@@ -85,8 +89,8 @@ export default function PasswordPage() {
           </p>
         ) : (
           <>
-            <p className="text-xs text-charcoal/60 mb-3">
-              Sign up for updates.
+            <p className="font-serif text-base text-charcoal/70 mb-3 italic">
+              Stay in the know.
             </p>
             <form onSubmit={handleEmailSubmit} className="flex gap-2">
               <input
@@ -124,6 +128,7 @@ export default function PasswordPage() {
           <p className="text-xs text-accent text-center mt-3">Incorrect password.</p>
         )}
       </form>
+      </div>
     </div>
   );
 }
