@@ -114,8 +114,11 @@ export default function ClassGuideModal() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="sticky top-0 bg-warm-white/95 backdrop-blur-sm border-b border-charcoal/10 px-6 py-4 flex items-center justify-between z-10">
-              <h2 className="font-serif text-xl font-light text-charcoal">Class Guide</h2>
+            <div className="sticky top-0 bg-warm-white/95 backdrop-blur-sm border-b-2 border-accent px-6 py-5 flex items-center justify-between z-10">
+              <div>
+                <p className="text-[10px] tracking-[0.3em] uppercase text-accent mb-1">The Studio</p>
+                <h2 className="font-serif text-2xl font-light text-charcoal">Class Guide</h2>
+              </div>
               <button
                 onClick={() => setOpen(false)}
                 className="text-charcoal/40 hover:text-charcoal transition-colors"
@@ -128,12 +131,14 @@ export default function ClassGuideModal() {
 
             {/* Content */}
             <div className="px-6 py-6">
-              {sections.map((section) => (
-                <div key={section.category} className="mb-8">
-                  <h3 className="font-serif text-xl font-light text-charcoal mb-1">
-                    {section.category}
-                  </h3>
-                  <p className="text-sm text-muted mb-4">{section.subtitle}</p>
+              {sections.map((section, sIdx) => (
+                <div key={section.category} className={sIdx === 0 ? "mb-10" : "mb-10 pt-8 border-t border-charcoal/10"}>
+                  <div className="bg-accent/10 -mx-6 px-6 py-4 mb-5 border-l-4 border-accent">
+                    <h3 className="font-serif text-2xl font-light text-accent leading-tight">
+                      {section.category}
+                    </h3>
+                    <p className="text-xs text-charcoal/60 mt-1 italic font-serif">{section.subtitle}</p>
+                  </div>
 
                   <div className="space-y-1">
                     {section.classes.map((cls) => (
