@@ -68,7 +68,7 @@ export default function Footer() {
 
           {/* Review CTA — soft serif pill to match Class Guide */}
           <a
-            href="https://g.page/r/boomerangpilates/review"
+            href="https://g.page/r/CQWrXJSRt6FKEBM/review"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2.5 bg-cream border border-accent/20 pl-3 pr-4 py-2 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-accent/40 transition-all duration-300"
