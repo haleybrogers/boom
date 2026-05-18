@@ -27,7 +27,7 @@ const packs: Pack[] = [
     price: "$110",
     savings: "Save $15",
     detail: "$22/class",
-    description: "Five mat classes to use on your schedule. Great if you come once a week or want to test the waters before committing to a membership.",
+    description: "Five mat classes to use on your schedule. Great if you come once a week or want to test the waters before committing to a membership. Valid for 6 months from purchase.",
     group: "mat",
   },
   {
@@ -50,7 +50,7 @@ const packs: Pack[] = [
     name: "Apparatus Drop-In",
     price: "$45",
     detail: "Single class · 3 spots",
-    description: "One small-group apparatus class — reformer, tower, barrels, or chair. Three students max with hands-on instruction.",
+    description: "One small-group apparatus class — reformer, tower, barrels, or pedopole. Three students max with hands-on instruction.",
     group: "apparatus",
   },
   {

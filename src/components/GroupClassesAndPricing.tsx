@@ -33,7 +33,7 @@ const sections = [
     category: "Apparatus Classes",
     subtitle: "50 min · 3 spots max",
     description:
-      "Real classical equipment. Real hands-on instruction. Three students per class — reformer, tower, barrels, and chair.",
+      "Real classical equipment. Real hands-on instruction. Three students per class — reformer, tower, barrels, and pedopole.",
     classes: [
       {
         title: "Apparatus Foundations",

@@ -10,7 +10,7 @@ export default function FoundingPricingOverlay() {
       {/* Hero — Become a Founding Member */}
       <div className="text-center mb-10">
         <span className="text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-3 py-1.5 rounded-sm">
-          Founding Member · Ends June 15
+          Founding Member · Ends July 15
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mt-5 mb-3">
           Become a founding member.
@@ -30,7 +30,7 @@ export default function FoundingPricingOverlay() {
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">Bring-a-friend pass</strong> — one free guest class per month for your first three months.
+              <strong className="font-medium">Bring-a-friend pass</strong> — bring a friend to any mat class, free, for the first three months after opening.
             </span>
           </li>
           <li className="flex gap-3">
@@ -42,7 +42,7 @@ export default function FoundingPricingOverlay() {
           <li className="flex gap-3">
             <span className="text-accent shrink-0 mt-0.5">✓</span>
             <span>
-              <strong className="font-medium">Welcome kit</strong> — branded tote, branded water bottle, a cute tee, grippy socks, and a sticker.
+              <strong className="font-medium">Welcome kit</strong> — branded tote, baseball cap, sticky socks, and a sticker.
             </span>
           </li>
         </ul>
@@ -82,7 +82,7 @@ export default function FoundingPricingOverlay() {
           </div>
           <p className="text-[11px] text-accent mb-4">Rate never increases*</p>
           <ul className="text-xs text-charcoal/70 space-y-1.5 mb-5 flex-1">
-            <li>· No billing until June 15</li>
+            <li>· No billing until July 15</li>
             <li>· 3-month minimum</li>
             <li>· Locked while membership stays active</li>
           </ul>

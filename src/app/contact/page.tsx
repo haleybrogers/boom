@@ -101,7 +101,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="text-base text-charcoal hover:text-accent transition-colors leading-relaxed"
             >
-              343 W Main St
+              343 W Main St, Unit 2 (upstairs)
               <br />
               Durham, NC
             </a>

@@ -40,38 +40,37 @@ export default function Events() {
             You&apos;re Invited
           </p>
           <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-white mb-6 leading-tight animate-fade-up" style={{ animationDelay: "0.65s" }}>
-            Grand Opening
+            Opening Party
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mb-6 animate-fade-up" style={{ animationDelay: "0.8s" }} />
           <p className="text-white/75 text-base leading-relaxed mb-10 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.95s" }}>
-            We&apos;re opening the doors on June 15. Food, drinks, mingle, and a peek at the
-            finished space. Suggested $10 donation at the door — the last bit of fundraising
-            before we open.
+            Two nights after we open, we&apos;re throwing a party. Studio tours, equipment demos,
+            and a chance to meet the Boomerang community before the schedule fills up.
           </p>
 
           {/* Date card */}
           <div className="relative inline-block mb-8 animate-fade-up" style={{ animationDelay: "1.1s" }}>
             <div className="inline-flex items-center gap-3 border border-white/15 rounded-sm px-8 py-5 bg-white/5 backdrop-blur-sm animate-float-slow">
               <div className="text-center">
-                <p className="font-serif text-2xl text-white mb-1">Monday, June 15, 2026</p>
-                <p className="text-xs text-white/60 tracking-widest uppercase">[TIME TBD] · 343 W Main St · Durham, NC</p>
+                <p className="font-serif text-2xl text-white mb-1">Friday, July 17, 2026</p>
+                <p className="text-xs text-white/60 tracking-widest uppercase">[TIME TBD] · 343 W Main St, Unit 2 (upstairs) · Durham, NC</p>
               </div>
             </div>
           </div>
 
-          {/* Event details — placeholders, replace with real copy */}
+          {/* Event details */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "1.2s" }}>
             <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
               <p className="text-[10px] tracking-[0.25em] uppercase text-cream/90 mb-2">What to wear</p>
-              <p className="text-sm text-white/80 leading-relaxed">[Dress code TBD — cute casual? Class-ready? Both?]</p>
+              <p className="text-sm text-white/80 leading-relaxed">Cocktail / cute casual</p>
             </div>
             <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
               <p className="text-[10px] tracking-[0.25em] uppercase text-cream/90 mb-2">Food &amp; drink</p>
-              <p className="text-sm text-white/80 leading-relaxed">[Caterer + drinks TBD — light bites? Coffee? Champagne?]</p>
+              <p className="text-sm text-white/80 leading-relaxed">Light bites, wine, beer, NA options</p>
             </div>
             <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
               <p className="text-[10px] tracking-[0.25em] uppercase text-cream/90 mb-2">How long</p>
-              <p className="text-sm text-white/80 leading-relaxed">[Duration + format TBD — demo class? Studio tours? Mingle?]</p>
+              <p className="text-sm text-white/80 leading-relaxed">Studio tours, equipment demos, mingle with the Boomerang community</p>
             </div>
           </div>
 
@@ -84,8 +83,8 @@ export default function Events() {
             </a>
           </div>
 
-          <p className="text-xs text-white/50 max-w-sm mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: "1.35s" }}>
-            [RSVP details TBD — capacity, ticketed vs. free, bring a friend?]
+          <p className="text-xs text-white/60 max-w-sm mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: "1.35s" }}>
+            The studio officially opens Wednesday, July 15.
           </p>
 
           <p className="text-sm text-white/40 mt-6 animate-fade-up" style={{ animationDelay: "1.4s" }}>
@@ -116,11 +115,11 @@ export default function Events() {
               <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
                 Part One
               </span>
-              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Community Mat Class</h3>
+              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Just the Mat</h3>
               <p className="text-xs text-accent mb-3">All levels · Suggested $20+</p>
               <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
-                A 50-minute classical mat class taught by Emilie and Annie in the
-                not-quite-finished studio. Stick around for [coffee / mimosas].
+                A classical mat class in the (almost) finished space. The full
+                method, no equipment, no frills.
               </p>
               <div className="border-t border-charcoal/5 pt-3 flex items-center justify-between">
                 <p className="text-xs text-muted">[Date TBD] · 50 min</p>
@@ -138,14 +137,15 @@ export default function Events() {
               <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
                 Part Two
               </span>
-              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">[Workshop / Tower Preview]</h3>
-              <p className="text-xs text-accent mb-3">All levels · Suggested $30+</p>
+              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Magic Mat</h3>
+              <p className="text-xs text-accent mb-3">All levels · Suggested $20+</p>
               <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
-                [Placeholder — a small-group apparatus preview, breath workshop, or
-                themed class. Three of these in a row builds momentum.]
+                Classical matwork meets the Magic Circle. A small prop, a big
+                difference — get a feel for resistance and precision before you
+                ever touch the apparatus.
               </p>
               <div className="border-t border-charcoal/5 pt-3 flex items-center justify-between">
-                <p className="text-xs text-muted">[Date TBD] · [Format TBD]</p>
+                <p className="text-xs text-muted">[Date TBD] · 50 min</p>
                 <a
                   href="/#waitlist"
                   className="text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
@@ -160,14 +160,14 @@ export default function Events() {
               <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
                 Part Three
               </span>
-              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">[Studio Warming]</h3>
-              <p className="text-xs text-accent mb-3">Open house · Suggested $20+</p>
+              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Reformer on the Mat</h3>
+              <p className="text-xs text-accent mb-3">All levels · Suggested $20+</p>
               <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
-                [Placeholder — final fundraiser. A community gathering, light bites,
-                tour the finished space, meet the instructors before opening day.]
+                The reformer moves you love, performed on the mat with no springs
+                attached. A teaser for what&apos;s coming when the equipment lands.
               </p>
               <div className="border-t border-charcoal/5 pt-3 flex items-center justify-between">
-                <p className="text-xs text-muted">[Date TBD] · 2 hr</p>
+                <p className="text-xs text-muted">[Date TBD] · 50 min</p>
                 <a
                   href="/#waitlist"
                   className="text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"

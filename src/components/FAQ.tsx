@@ -21,12 +21,12 @@ const faqs = [
   {
     question: "What should I wear and bring?",
     answer:
-      "Form-fitting clothes you can move in (loose tops flip up in inversions). Grippy socks required for apparatus — we sell them if you forget. Bring water; we provide mats and props. No shoes inside the studio.",
+      "Form-fitting clothes you can move in (loose tops flip up in inversions). Grippy socks or bare feet — your call. We sell socks if you want a pair. Bring water; we provide mats and props. No shoes inside the studio.",
   },
   {
     question: "Mat vs. apparatus — what's the difference?",
     answer:
-      "Mat uses your body weight and small props — group classes up to 15. Apparatus uses the reformer, tower, barrels, and chair — small groups of 3 with hands-on instruction. Most people who fall in love with Pilates do both.",
+      "Mat is the bread and butter of the Pilates method — your own body weight, your own resistance. The apparatus gives your body a frame of reference and adds the recoil and resistance of springs. Ours is all Gratz equipment, which differs from what you'll find at contemporary studios — the springs are uniform and heavy. Your instructor will cue you to change springs throughout, and contrary to what most people think, more springs is not always more challenging.",
   },
   {
     question: "How often should I come to see results?",
@@ -38,20 +38,26 @@ const faqs = [
     answer:
       "Use the schedule at the top of this page — tap any class to book directly. New here? A $25 mat drop-in is the easiest place to start.",
   },
+  // TODO: Confirm cancellation policy with Emilie — 24hr universal vs. 24/12 split.
   {
     question: "Cancellation policy?",
     answer:
       "12 hours notice to cancel or reschedule without charge. Late cancellations and no-shows are charged the full rate (and burn a credit if you're on a pack).",
   },
   {
+    question: "Can I bring a friend?",
+    answer:
+      "Yes — and if you're a founding member, your first three months come with a bring-a-friend pass: bring a friend to any mat class, free.",
+  },
+  {
     question: "Where are you located? Where do I park?",
     answer:
-      "343 W Main St in Downtown Durham, NC. Parking details coming soon — we'll send a full welcome guide before opening day.",
+      "343 W Main St, Unit 2 (upstairs) in Downtown Durham, NC. Parking details coming — we'll update this once we've mapped the closest options.",
   },
   {
     question: "What's a founding membership?",
     answer:
-      "Only 15 people lock in our $199/mo unlimited mat rate — and that rate never goes up as long as your membership stays active. Cancel or pause and you lose it. Founding-rate packs (privates and duets) are available to anyone who buys before June 15.",
+      "Only 15 people lock in our $199/mo unlimited mat rate — and that rate never goes up as long as your membership stays active. Cancel or pause and you lose it. Founding-rate packs (privates and duets) are available to anyone who buys before July 15.",
   },
 ];
 

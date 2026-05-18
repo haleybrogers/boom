@@ -42,7 +42,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto px-6">
           <Reveal className="bg-accent/5 border border-accent/15 rounded-sm px-8 md:px-14 py-10 md:py-12 text-center">
             <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-5">
-              Founding Member Pricing · Ends June 15
+              Founding Member Pricing · Ends July 15
             </p>
             <FoundingCountdown showLabel={false} />
             <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mb-3 mt-2 leading-tight">
