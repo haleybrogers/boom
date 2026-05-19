@@ -118,7 +118,7 @@ export default function ClassGuideModal() {
 
           {/* Centered panel */}
           <div
-            className="relative w-full max-w-md max-h-[90vh] bg-warm-white shadow-xl overflow-y-auto rounded-sm animate-fade-up"
+            className="relative w-full max-w-2xl max-h-[90vh] bg-warm-white shadow-xl overflow-y-auto rounded-sm animate-fade-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}

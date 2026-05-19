@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import MomenceScheduleInline from "@/components/MomenceScheduleInline";
 import FoundingPricingOverlay from "@/components/FoundingPricingOverlay";
 import ClassGuideModal from "@/components/ClassGuideModal";
@@ -16,8 +17,20 @@ export default function Schedule() {
     <>
       <ClassesPageLock />
 
-      {/* 1. Schedule — header + privates redirect, then widget */}
-      <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-24">
+      {/* Page banner */}
+      <div className="relative w-full aspect-[2/1] sm:aspect-[5/2] lg:aspect-[3/1] overflow-hidden">
+        <Image
+          src="/nav-schedule.jpg"
+          alt="Boomerang Pilates schedule"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
+
+      {/* 1. Schedule — header, then widget */}
+      <section className="relative overflow-hidden bg-warm-white pt-16 lg:pt-20 pb-20 lg:pb-24">
         <div className="relative max-w-5xl mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center mb-14">
             <p
@@ -49,23 +62,6 @@ export default function Schedule() {
               <ClassGuideModal />
             </div>
 
-            {/* Privates redirect — small but visible */}
-            <div
-              className="mt-8 inline-block animate-fade-up"
-              style={{ animationDelay: "0.7s" }}
-            >
-              <Link
-                href="/privates"
-                className="group inline-flex items-center gap-2 border border-accent/20 bg-accent/5 rounded-sm px-5 py-2.5 hover:border-accent/40 transition-colors"
-              >
-                <span className="text-sm text-charcoal">
-                  Looking to book a private?{" "}
-                  <span className="text-accent group-hover:text-accent/80 transition-colors">
-                    Go here →
-                  </span>
-                </span>
-              </Link>
-            </div>
           </div>
 
           <MomenceScheduleInline />

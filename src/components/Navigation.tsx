@@ -197,7 +197,7 @@ export default function Navigation() {
                         open ? "opacity-100" : "opacity-0 pointer-events-none"
                       }`}
                     >
-                      <div className="w-[380px] bg-cream border border-charcoal/10 rounded-sm shadow-xl overflow-hidden">
+                      <div className="w-[300px] bg-cream border border-charcoal/10 rounded-sm shadow-xl overflow-hidden">
                         {link.children.map((child) => (
                           <Link
                             key={child.href}
@@ -206,17 +206,8 @@ export default function Navigation() {
                               setOpenDropdown(null);
                               window.scrollTo({ top: 0, behavior: "instant" });
                             }}
-                            className="group flex items-center gap-4 px-4 py-3 border-b border-charcoal/5 last:border-b-0 hover:bg-accent/5 transition-colors"
+                            className="group flex items-center justify-between gap-3 px-5 py-3.5 border-b border-charcoal/5 last:border-b-0 hover:bg-accent/5 transition-colors"
                           >
-                            <div className="relative w-16 h-16 shrink-0 overflow-hidden">
-                              <Image
-                                src={child.image}
-                                alt=""
-                                fill
-                                sizes="64px"
-                                className="object-cover"
-                              />
-                            </div>
                             <div className="flex-1 min-w-0">
                               <p className="font-serif text-base font-light text-charcoal group-hover:text-accent transition-colors leading-tight">
                                 {child.label}
@@ -346,29 +337,18 @@ export default function Navigation() {
                                 setMobileExpanded(null);
                                 window.scrollTo({ top: 0, behavior: "instant" });
                               }}
-                              className="flex items-center gap-3"
+                              className="flex flex-col"
                             >
-                              <div className="relative w-10 h-10 shrink-0 overflow-hidden">
-                                <Image
-                                  src={child.image}
-                                  alt=""
-                                  fill
-                                  sizes="40px"
-                                  className="object-cover"
-                                />
-                              </div>
-                              <div>
-                                <p className={`text-xs tracking-[0.15em] uppercase ${
-                                  isTransparent ? "text-white/80" : "text-charcoal/70"
-                                }`}>
-                                  {child.label}
-                                </p>
-                                <p className={`text-[11px] mt-0.5 ${
-                                  isTransparent ? "text-white/40" : "text-muted/70"
-                                }`}>
-                                  {child.description}
-                                </p>
-                              </div>
+                              <p className={`text-xs tracking-[0.15em] uppercase ${
+                                isTransparent ? "text-white/80" : "text-charcoal/70"
+                              }`}>
+                                {child.label}
+                              </p>
+                              <p className={`text-[11px] mt-0.5 ${
+                                isTransparent ? "text-white/40" : "text-muted/70"
+                              }`}>
+                                {child.description}
+                              </p>
                             </Link>
                           ))}
                         </div>
