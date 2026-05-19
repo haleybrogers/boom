@@ -3,11 +3,22 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
+const SESSION_KEY = "boomerang-splash-shown";
+
 export default function SplashScreen({ children }: { children: React.ReactNode }) {
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
+    // Splash plays once per session. If the user has already seen it,
+    // hide immediately on subsequent hard-nav loads (e.g. clicking
+    // Schedule from the nav, which we force as full reloads).
+    if (sessionStorage.getItem(SESSION_KEY)) {
+      setVisible(false);
+      return;
+    }
+    sessionStorage.setItem(SESSION_KEY, "1");
+
     // Disable browser scroll restoration + force top on first load
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
