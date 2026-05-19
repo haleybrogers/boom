@@ -31,31 +31,6 @@ const matMemberships = [
   },
 ];
 
-// Apparatus pricing. All packs and apparatus purchases expire after 6 months.
-const apparatusPricing = [
-  {
-    label: "Privates",
-    note: "1 student · Full apparatus",
-    single: 110,
-    five: 525,
-    ten: 995,
-  },
-  {
-    label: "Duets",
-    note: "2 students · Full apparatus",
-    single: 65,
-    five: 300,
-    ten: 585,
-  },
-  {
-    label: "Trios",
-    note: "3 students · Full apparatus",
-    single: 45,
-    five: 200,
-    ten: 375,
-  },
-];
-
 export default function Packs() {
   return (
     <section className="pt-28 lg:pt-36 pb-20 lg:pb-28">
@@ -87,8 +62,9 @@ export default function Packs() {
               you come back.
             </p>
             <p className="text-base text-muted leading-relaxed">
-              Mat by drop-in or membership. Apparatus by single session or
-              pack. Founding rates lock in for life if you join before we open.
+              Mat by drop-in or membership. Founding rates lock in for life if
+              you join before we open. (Looking for privates, duets, or trios?
+              Pricing lives on the <a href="/privates" className="text-accent hover:text-accent/70 underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors">Privates page</a>.)
             </p>
           </div>
         </div>
@@ -188,55 +164,9 @@ export default function Packs() {
         </div>
       </div>
 
-      {/* Apparatus Pricing */}
-      <div className="bg-warm-white py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-xs tracking-widest uppercase text-accent mb-4">Apparatus · By Session or Pack</p>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-              Privates, duets, and trios.
-            </h2>
-            <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-              The most personalized side of the studio. Single sessions or packs of 5 or 10 — all packs expire 6 months after purchase.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {apparatusPricing.map((p) => (
-              <div
-                key={p.label}
-                className="flex flex-col bg-white border border-charcoal/10 rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                <h3 className="font-serif text-xl font-light text-charcoal mb-1">{p.label}</h3>
-                <p className="text-xs text-muted mb-5">{p.note}</p>
-
-                <div className="space-y-3 border-t border-charcoal/5 pt-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">Single</span>
-                    <span className="text-charcoal font-medium">${p.single}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">5-pack</span>
-                    <span className="text-charcoal font-medium">${p.five}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">10-pack</span>
-                    <span className="text-charcoal font-medium">${p.ten}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-center text-xs text-muted/80 italic mt-8">
-            Founding Members: 3-pack of introductory privates available for $180.
-          </p>
-        </div>
-      </div>
-
       {/* Live buy links — pulled from Momence so they always match what
           Emilie has published. Sits at the bottom as the actual buy path. */}
-      <div className="py-20 lg:py-24">
+      <div className="bg-warm-white py-20 lg:py-24">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">Ready when you are</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">

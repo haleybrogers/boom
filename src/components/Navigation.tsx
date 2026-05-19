@@ -41,14 +41,14 @@ const navLinks: NavItem[] = [
       },
       {
         href: "/privates",
-        label: "Privates & Duets",
-        description: "One-on-one or with a partner",
+        label: "Privates, Duets & Trios",
+        description: "One-on-one, with a partner, or as a trio",
         image: "/nav-privates.jpg",
       },
       {
         href: "/packs",
-        label: "Packs & Memberships",
-        description: "Class packs and monthly plans",
+        label: "Mat Memberships",
+        description: "Mat memberships and drop-ins",
         image: "/nav-packs.jpg",
       },
     ],
