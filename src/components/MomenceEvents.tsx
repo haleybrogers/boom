@@ -72,7 +72,9 @@ function formatTimeRange(iso: string, durationMin: number): string {
 }
 
 function priceLabel(p: number | null): string {
-  if (p === null || p === 0) return "Free";
+  // Pop-ups are free entry with a suggested donation — phrase it that way
+  // rather than just "Free" so attendees know support is welcome.
+  if (p === null || p === 0) return "Donation suggested";
   return `$${p}`;
 }
 
@@ -119,12 +121,9 @@ export default async function MomenceEvents() {
             {formatTimeRange(event.dateTime, event.duration)}
           </p>
           {event.location && (
-            <p className="text-sm text-charcoal/70 leading-snug mb-1 flex-1">
+            <p className="text-sm text-charcoal/70 leading-snug mb-3 flex-1">
               {event.location}
             </p>
-          )}
-          {event.teacher && (
-            <p className="text-xs text-muted/70 mb-3">with {event.teacher}</p>
           )}
           <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
             <span className="text-sm font-medium text-charcoal">

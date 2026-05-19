@@ -9,38 +9,39 @@ export const metadata = {
 
 export default function Packs() {
   return (
-    <>
-      {/* Page banner */}
-      <div className="relative w-full aspect-[2/1] sm:aspect-[5/2] lg:aspect-[3/1] overflow-hidden">
-        <Image
-          src="/nav-packs.jpg"
-          alt="Boomerang Pilates packs and memberships"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-      </div>
-
-      <section className="pt-16 lg:pt-20 pb-20 lg:pb-28">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+    <section className="pt-28 lg:pt-36 pb-20 lg:pb-28">
+      {/* Hero: portrait photo gets its own vertical space, content sits beside it */}
+      <div className="max-w-6xl mx-auto px-6 mb-16 lg:mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
+          <div className="relative w-full aspect-[3/4] overflow-hidden order-1">
+            <Image
+              src="/nav-packs.jpg"
+              alt="Class packs at Boomerang Pilates"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="order-2">
+            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5">
               Class Packs &amp; Memberships
             </p>
-            <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
+            <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight mb-6">
               Buy a pack.
             </h1>
-            <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }} />
-            <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
-              Class packs, memberships, and drop-in credits. Everything sold direct through Momence.
+            <div className="w-12 h-px bg-accent mb-6" />
+            <p className="font-serif italic text-base md:text-lg text-charcoal/70">
+              Class packs, memberships, and drop-in credits — everything sold
+              direct through Momence.
             </p>
           </div>
-          <div className="text-center">
-            <MomencePacks />
-          </div>
         </div>
-      </section>
-    </>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 text-center">
+        <MomencePacks />
+      </div>
+    </section>
   );
 }

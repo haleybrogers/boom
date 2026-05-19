@@ -46,12 +46,6 @@ export default function SchedulePrivate() {
   return (
     <div className="max-w-5xl mx-auto px-6">
       <div className="text-center mb-12">
-        <p className="text-xs tracking-widest uppercase text-accent mb-3">
-          By Appointment
-        </p>
-        <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3">
-          Schedule a Private or Duet
-        </h2>
         <p className="text-muted text-sm max-w-lg mx-auto mb-6">
           The most personalized Pilates experience we offer. Your instructor
           builds every session around your body, your goals, and where you are
