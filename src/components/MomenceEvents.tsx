@@ -100,36 +100,31 @@ export default async function MomenceEvents() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
       {events.map((event) => (
         <a
           key={event.id}
           href={event.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex flex-col bg-white border border-accent/20 rounded-sm p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/40"
+          className="group flex flex-col bg-white border border-accent/20 rounded-sm p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/40"
         >
           <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">
             {formatDate(event.dateTime)}
           </p>
-          <h3 className="font-serif text-lg font-light text-charcoal leading-snug mb-1">
+          <h3 className="font-serif text-base font-light text-charcoal leading-snug mb-1">
             {event.title.trim()}
           </h3>
           <p className="text-xs text-muted mb-3">
             {formatTimeRange(event.dateTime, event.duration)}
           </p>
           {event.location && (
-            <p className="text-sm text-charcoal/70 leading-snug mb-1">
+            <p className="text-sm text-charcoal/70 leading-snug mb-1 flex-1">
               {event.location}
             </p>
           )}
           {event.teacher && (
             <p className="text-xs text-muted/70 mb-3">with {event.teacher}</p>
-          )}
-          {event.description && (
-            <p className="text-sm text-muted leading-relaxed mb-4 flex-1 line-clamp-3">
-              {event.description}
-            </p>
           )}
           <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
             <span className="text-sm font-medium text-charcoal">
