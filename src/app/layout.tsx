@@ -3,7 +3,6 @@ import { Cormorant, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import SplashScreen from "@/components/SplashScreen";
 import EarlyBirdBanner from "@/components/EarlyBirdBanner";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -58,12 +57,10 @@ export default function RootLayout({
       className={`${cormorant.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-charcoal">
-        <SplashScreen>
-          <Navigation />
-          <EarlyBirdBanner />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </SplashScreen>
+        <Navigation />
+        <EarlyBirdBanner />
+        <main className="flex-1">{children}</main>
+        <Footer />
         <Analytics />
       </body>
     </html>

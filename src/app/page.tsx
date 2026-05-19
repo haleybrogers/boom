@@ -8,11 +8,14 @@ import StickyCTA from "@/components/StickyCTA";
 import Reveal from "@/components/Reveal";
 import FoundingCountdown from "@/components/FoundingCountdown";
 import PreOpeningPopup from "@/components/PreOpeningPopup";
+import SplashScreen from "@/components/SplashScreen";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
 export default function Home() {
   return (
     <>
+      <SplashScreen />
+
       {/* Hero */}
       <section className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
         <Image

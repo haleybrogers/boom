@@ -5,14 +5,15 @@ import { useState, useEffect } from "react";
 
 const SESSION_KEY = "boomerang-splash-shown";
 
-export default function SplashScreen({ children }: { children: React.ReactNode }) {
+// Splash overlay — home page only. Mounted from app/page.tsx, not from
+// layout.tsx, so direct landings on /schedule etc. skip it.
+export default function SplashScreen() {
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    // Splash plays once per session. If the user has already seen it,
-    // hide immediately on subsequent hard-nav loads (e.g. clicking
-    // Schedule from the nav, which we force as full reloads).
+    // Splash plays once per session. If the user has already seen it
+    // (e.g. came back to the home page in the same tab), hide immediately.
     if (sessionStorage.getItem(SESSION_KEY)) {
       setVisible(false);
       return;
@@ -30,10 +31,10 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
+  if (!visible) return null;
+
   return (
-    <>
-      {visible && (
-        <div
+    <div
           className="fixed inset-0 z-[100] bg-cream flex flex-col items-center justify-center"
           style={{
             opacity: fading ? 0 : 1,
@@ -86,10 +87,7 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
               0%, 100% { opacity: 0.3; }
               50% { opacity: 0.7; }
             }
-          `}</style>
-        </div>
-      )}
-      {children}
-    </>
+      `}</style>
+    </div>
   );
 }
