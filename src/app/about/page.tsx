@@ -84,7 +84,7 @@ export default function About() {
                 to teaching it with precision, care, and without compromise.
               </p>
               <Link
-                href="/classes#privates"
+                href="/privates"
                 className="inline-flex items-center gap-1 text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
               >
                 Book a Private with Emilie →
@@ -118,7 +118,7 @@ export default function About() {
                 original work.
               </p>
               <Link
-                href="/classes#privates"
+                href="/privates"
                 className="inline-flex items-center gap-1 text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
               >
                 Book a Private with Annie →

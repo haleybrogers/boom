@@ -47,7 +47,7 @@ export default function First() {
         </p>
 
         <Link
-          href="/classes"
+          href="/schedule"
           className="link-arrow text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
         >
           Book a class

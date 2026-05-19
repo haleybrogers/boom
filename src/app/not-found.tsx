@@ -22,7 +22,7 @@ export default function NotFound() {
             Back to the Mat
           </Link>
           <Link
-            href="/classes"
+            href="/schedule"
             className="link-arrow text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
           >
             Or just book a class

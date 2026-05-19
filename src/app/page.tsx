@@ -58,11 +58,23 @@ export default function Home() {
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
                 Precision, taught with intention.
               </h2>
-              <p className="text-muted text-base leading-relaxed">
+              <p className="text-muted text-base leading-relaxed mb-4">
                 Classical Pilates the way Joseph Pilates designed it — every
                 exercise progressive, every cue exact. We&apos;re trained in
                 the direct lineage and teach without shortcuts, because the
                 method works when you trust it.
+              </p>
+              <p className="text-muted text-base leading-relaxed mb-4">
+                That means classical mat in the order it was written. Apparatus
+                that gives your body honest feedback, not just a workout.
+                Springs that ask something specific of you. Instructors who&apos;d
+                rather cue one exercise well than rush you through ten.
+              </p>
+              <p className="text-muted text-base leading-relaxed">
+                Joseph said: in 10 sessions you&apos;ll feel the difference,
+                in 20 you&apos;ll see it, in 30 you&apos;ll have a whole new
+                body. We&apos;ve felt it. We&apos;ve seen it. And we built
+                this studio so you can too.
               </p>
             </div>
           </Reveal>
@@ -87,7 +99,7 @@ export default function Home() {
                 a seat in the community we&apos;re building before the doors even open.
               </p>
               <Link
-                href="/classes"
+                href="/schedule"
                 className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
               >
                 Reserve Your Spot

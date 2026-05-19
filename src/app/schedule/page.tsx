@@ -1,0 +1,93 @@
+import Link from "next/link";
+import MomenceScheduleInline from "@/components/MomenceScheduleInline";
+import FoundingPricingOverlay from "@/components/FoundingPricingOverlay";
+import ClassGuideModal from "@/components/ClassGuideModal";
+import FAQ from "@/components/FAQ";
+import ClassesPageLock from "@/components/ClassesPageLock";
+import { SHOW_FOUNDING } from "@/lib/flags";
+
+export const metadata = {
+  title: "Schedule",
+  description:
+    "Live class schedule for Boomerang Pilates in Durham, NC. Classical mat and apparatus classes — tap any class to book.",
+};
+
+export default function Schedule() {
+  return (
+    <>
+      <ClassesPageLock />
+
+      {/* 1. Schedule — header + privates redirect, then widget */}
+      <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-24">
+        <div className="relative max-w-5xl mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center mb-14">
+            <p
+              className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up"
+              style={{ animationDelay: "0.05s" }}
+            >
+              The Schedule
+            </p>
+            <h1
+              className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up"
+              style={{ animationDelay: "0.15s" }}
+            >
+              Book a class.
+            </h1>
+            <div
+              className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up"
+              style={{ animationDelay: "0.3s" }}
+            />
+            <p
+              className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up"
+              style={{ animationDelay: "0.4s" }}
+            >
+              Tap a class to see details and book your spot.
+            </p>
+            <div
+              className="mt-6 flex items-center justify-center animate-fade-up"
+              style={{ animationDelay: "0.55s" }}
+            >
+              <ClassGuideModal />
+            </div>
+
+            {/* Privates redirect — small but visible */}
+            <div
+              className="mt-8 inline-block animate-fade-up"
+              style={{ animationDelay: "0.7s" }}
+            >
+              <Link
+                href="/privates"
+                className="group inline-flex items-center gap-2 border border-accent/20 bg-accent/5 rounded-sm px-5 py-2.5 hover:border-accent/40 transition-colors"
+              >
+                <span className="text-sm text-charcoal">
+                  Looking to book a private?{" "}
+                  <span className="text-accent group-hover:text-accent/80 transition-colors">
+                    Go here →
+                  </span>
+                </span>
+              </Link>
+            </div>
+          </div>
+
+          <MomenceScheduleInline />
+        </div>
+      </section>
+
+      {/* 2. Founding Member Pricing — gated behind SHOW_FOUNDING flag */}
+      {SHOW_FOUNDING && (
+        <section id="founding" className="py-20 lg:py-28">
+          <div className="max-w-5xl mx-auto px-6">
+            <FoundingPricingOverlay />
+          </div>
+        </section>
+      )}
+
+      {/* 3. FAQ */}
+      <section id="faq" className="py-20 lg:py-28 bg-warm-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <FAQ />
+        </div>
+      </section>
+    </>
+  );
+}

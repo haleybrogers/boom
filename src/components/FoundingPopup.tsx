@@ -54,7 +54,7 @@ export default function FoundingPopup() {
 
         <div className="text-center">
           <Link
-            href="/classes"
+            href="/schedule"
             onClick={dismiss}
             className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors mb-3"
           >

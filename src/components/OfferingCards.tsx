@@ -17,7 +17,7 @@ const offerings = [
     ],
     startingPrice: "$25",
     priceNote: "drop-in · memberships from $150/mo",
-    link: "/classes",
+    link: "/schedule",
     linkLabel: "View Schedule",
   },
   {
@@ -35,7 +35,7 @@ const offerings = [
     ],
     startingPrice: "$45",
     priceNote: "per class · memberships from $120/mo",
-    link: "/classes",
+    link: "/schedule",
     linkLabel: "View Schedule",
   },
   {
@@ -50,7 +50,7 @@ const offerings = [
     ],
     startingPrice: "$60",
     priceNote: "duets per person · privates $110",
-    link: "/classes",
+    link: "/schedule",
     linkLabel: "Book a Private",
   },
 ];
@@ -93,7 +93,7 @@ export default function OfferingCards() {
                 {offering.classes.map((cls) => (
                   <Link
                     key={cls.name}
-                    href="/classes"
+                    href="/schedule"
                     className="text-xs tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
                   >
                     {cls.name}

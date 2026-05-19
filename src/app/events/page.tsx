@@ -2,8 +2,8 @@ import WaitlistForm from "@/components/WaitlistForm";
 import MomenceEvents from "@/components/MomenceEvents";
 
 export const metadata = {
-  title: "Events",
-  description: "Grand opening, course series, workshops, and community events at Boomerang Pilates in Durham, NC.",
+  title: "Workshops + Events",
+  description: "Workshops, course series, pop-up classes, and community events at Boomerang Pilates in Durham, NC.",
 };
 
 export default function Events() {
@@ -16,7 +16,7 @@ export default function Events() {
             What&apos;s Coming Up
           </p>
           <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            Events <span className="text-accent">&amp;</span> gatherings
+            Workshops <span className="text-accent">+</span> Events
           </h1>
           <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }} />
           <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>

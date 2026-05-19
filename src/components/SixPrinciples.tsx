@@ -262,7 +262,7 @@ export default function SixPrinciples({ embedded = false }: { embedded?: boolean
               The one Joe didn&apos;t write down. The only one that matters.
             </p>
             <a
-              href="/classes"
+              href="/schedule"
               className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-6 py-3"
             >
               Book a Class
