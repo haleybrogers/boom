@@ -25,7 +25,7 @@ const offerings = [
     image: "/photo-apparatus.jpg",
     tagline: "Real equipment. Real instruction. Three students max.",
     description:
-      "Reformer, tower, barrels, chair — the classical equipment that builds your practice and transforms how your body moves. Every class is capped at three so you get hands-on corrections, not just cues from across the room.",
+      "Reformer, tower, barrels, pedopole — the classical equipment that builds your practice and transforms how your body moves. Every class is capped at three so you get hands-on corrections, not just cues from across the room.",
     classes: [
       { name: "Apparatus Foundations", section: 1 },
       { name: "Intermediate Mixed Apparatus", section: 1 },

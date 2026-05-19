@@ -25,7 +25,7 @@ const sections = [
       },
       {
         title: "Return to Life Course II",
-        level: "Intermediate · 8-week series · $160",
+        level: "Intermediate · 8-week series · $160 · Course I required",
         description: "The next chapter. Picks up where Course I left off and takes you through the remainder of the 34-exercise classical mat. Focus shifts to concentration, fluidity, and precision — the principles that turn good movement into great movement.",
       },
       {
@@ -38,7 +38,7 @@ const sections = [
   {
     category: "Apparatus Classes",
     subtitle: "50 min · 3 spots max · $45 per class",
-    description: "Real classical equipment. Real hands-on instruction. Three students per class — reformer, tower, barrels, and chair.",
+    description: "Real classical equipment. Real hands-on instruction. Three students per class — reformer, tower, barrels, and pedopole.",
     classes: [
       {
         title: "Apparatus Foundations",
@@ -70,7 +70,7 @@ const sections = [
   {
     category: "Privates & Duets",
     subtitle: "50 min · By appointment",
-    description: "Fully customized apparatus work — Reformer, Tower, Barrel, Chair. Your body, your goals, your pace.",
+    description: "Fully customized apparatus work — Reformer, Tower, Barrel, Pedopole. Your body, your goals, your pace.",
     classes: [
       {
         title: "Private Session",

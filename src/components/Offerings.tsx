@@ -40,7 +40,7 @@ const offerings = [
   },
   {
     title: "Privates & Duets",
-    desc: "Customized apparatus work — Reformer, Tower, Barrel, Chair. Privates $110 · Duets $60/person.",
+    desc: "Customized apparatus work — Reformer, Tower, Barrel, Pedopole. Privates $110 · Duets $60/person.",
     detail: "Fully tailored to you. Whether you're rehabbing an injury, training for something specific, or just prefer individual attention — we'll meet you where you are. Bring a partner for duets.",
     cta: "Join Waitlist",
     ctaHref: "/#waitlist",

@@ -43,12 +43,12 @@ export default function FoundingPopup() {
         </button>
 
         <div className="text-center mb-7">
-          <p className="text-xs tracking-widest uppercase text-accent mb-3">Founding Member · Ends June 15</p>
+          <p className="text-xs tracking-widest uppercase text-accent mb-3">Founding Member · Ends July 15</p>
           <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-3">
             The best deal we&apos;ll ever run.
           </h2>
           <p className="text-muted text-sm max-w-sm mx-auto leading-relaxed">
-            And it ends the day we open. Pre-opening pricing, soft-opening classes, opening night invite, welcome kit.
+            And it ends the day we open. Pre-opening pricing, soft-opening classes, opening night invite, welcome kit, and bring a friend to mat class free for your first three months.
           </p>
         </div>
 

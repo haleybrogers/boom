@@ -7,8 +7,8 @@ import { useLayoutEffect } from "react";
  * client-side navigations from <Link>, where the inline <script> tag in
  * page.tsx doesn't re-execute. useLayoutEffect runs synchronously before
  * paint, so the user never sees the jumped-to position. We also pin the
- * scroll for ~500ms to defeat any late layout shifts (LiveSchedule data
- * hydrating, font swap, etc.) that scroll-anchoring could ride.
+ * scroll for ~500ms to defeat any late layout shifts (Momence schedule
+ * widget hydrating, font swap, etc.) that scroll-anchoring could ride.
  */
 export default function ClassesPageLock() {
   useLayoutEffect(() => {

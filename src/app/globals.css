@@ -27,8 +27,8 @@ body {
 
 /* Smooth scroll only for intentional anchor links — NOT globally.
    Global smooth-scroll was causing the classes page to drift toward
-   the nearest section-id (founding/privates/faq) when LiveSchedule
-   re-rendered, and fighting our scroll-pin. Scope it. */
+   the nearest section-id (founding/privates/faq) when the schedule
+   widget re-rendered, and fighting our scroll-pin. Scope it. */
 html:focus-within {
   scroll-behavior: auto;
 }
