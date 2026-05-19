@@ -86,10 +86,6 @@ export default function Events() {
           <p className="text-xs text-white/60 max-w-sm mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: "1.35s" }}>
             The studio officially opens Wednesday, July 15.
           </p>
-
-          <p className="text-sm text-white/40 mt-6 animate-fade-up" style={{ animationDelay: "1.4s" }}>
-            Founding member rates end when the doors open.
-          </p>
         </div>
       </section>
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { SHOW_FOUNDING } from "@/lib/flags";
 
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
@@ -36,7 +37,7 @@ export default function StickyCTA() {
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
-        {isFridayEvening ? "You survived. Come move." : "Become a Founding Member"}
+        {isFridayEvening ? "You survived. Come move." : SHOW_FOUNDING ? "Become a Founding Member" : "Book a Class"}
       </Link>
     </div>
   );

@@ -5,6 +5,7 @@ import ClassPacks from "@/components/ClassPacks";
 import ClassGuideModal from "@/components/ClassGuideModal";
 import FAQ from "@/components/FAQ";
 import ClassesPageLock from "@/components/ClassesPageLock";
+import { SHOW_FOUNDING } from "@/lib/flags";
 
 export const metadata = {
   title: "Classes",
@@ -55,12 +56,14 @@ export default function Classes() {
         </div>
       </section>
 
-      {/* 2. Founding Member Pricing */}
-      <section id="founding" className="py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6">
-          <FoundingPricingOverlay />
-        </div>
-      </section>
+      {/* 2. Founding Member Pricing — gated behind SHOW_FOUNDING flag */}
+      {SHOW_FOUNDING && (
+        <section id="founding" className="py-20 lg:py-28">
+          <div className="max-w-5xl mx-auto px-6">
+            <FoundingPricingOverlay />
+          </div>
+        </section>
+      )}
 
       {/* 3. Schedule a Private */}
       <section id="privates" className="py-20 lg:py-28 bg-warm-white">

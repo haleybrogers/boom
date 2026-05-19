@@ -7,6 +7,7 @@ import NewToPilates from "@/components/NewToPilates";
 import StickyCTA from "@/components/StickyCTA";
 import Reveal from "@/components/Reveal";
 import FoundingCountdown from "@/components/FoundingCountdown";
+import { SHOW_FOUNDING } from "@/lib/flags";
 
 export default function Home() {
   return (
@@ -68,31 +69,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Founding Member Tease */}
-      <section className="pb-16 lg:pb-24">
-        <div className="max-w-3xl mx-auto px-6">
-          <Reveal className="bg-accent/5 border border-accent/15 rounded-sm px-8 md:px-14 py-10 md:py-12 text-center">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-5">
-              Founding Member Pricing · Ends July 15
-            </p>
-            <FoundingCountdown showLabel={false} />
-            <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mb-3 mt-2 leading-tight">
-              Become a founding member.
-            </h2>
-            <p className="text-sm text-muted mb-6 max-w-xl mx-auto leading-relaxed">
-              Lock in pre-opening rates for life, get first dibs on the schedule, and help shape
-              the studio from day one. Soft-opening classes, opening night invite, welcome kit, and
-              a seat in the community we&apos;re building before the doors even open.
-            </p>
-            <Link
-              href="/classes"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-            >
-              Reserve Your Spot
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+      {/* Founding Member Tease — gated behind SHOW_FOUNDING flag */}
+      {SHOW_FOUNDING && (
+        <section className="pb-16 lg:pb-24">
+          <div className="max-w-3xl mx-auto px-6">
+            <Reveal className="bg-accent/5 border border-accent/15 rounded-sm px-8 md:px-14 py-10 md:py-12 text-center">
+              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-5">
+                Founding Member Pricing · Ends July 15
+              </p>
+              <FoundingCountdown showLabel={false} />
+              <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mb-3 mt-2 leading-tight">
+                Become a founding member.
+              </h2>
+              <p className="text-sm text-muted mb-6 max-w-xl mx-auto leading-relaxed">
+                Lock in pre-opening rates for life, get first dibs on the schedule, and help shape
+                the studio from day one. Soft-opening classes, opening night invite, welcome kit, and
+                a seat in the community we&apos;re building before the doors even open.
+              </p>
+              <Link
+                href="/classes"
+                className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+              >
+                Reserve Your Spot
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* What We Offer */}
       <section className="py-20 lg:py-28 bg-warm-white">
@@ -127,9 +130,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sticky CTA + Founding popup */}
+      {/* Sticky CTA + Founding popup (popup gated behind flag) */}
       <StickyCTA />
-      <FoundingPopup />
+      {SHOW_FOUNDING && <FoundingPopup />}
     </>
   );
 }

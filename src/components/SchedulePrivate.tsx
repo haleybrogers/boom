@@ -12,7 +12,11 @@
 // `<div>` + `<script>` pattern as host-schedule), drop it in here as a
 // MomenceAppointments component and replace the CTA with the embed.
 
-const MOMENCE_HOST_URL = `https://momence.com/host/${process.env.NEXT_PUBLIC_MOMENCE_HOST_ID || "270195"}`;
+// Momence has a per-host appointments URL — `momence.com/appointments/{id}`
+// 302-redirects to `momence.com/{slug}/appointment-reservation/{id}` which is
+// the actual reservation page. Using the redirect URL so we don't hard-code
+// the slug.
+const MOMENCE_APPOINTMENTS_URL = `https://momence.com/appointments/${process.env.NEXT_PUBLIC_MOMENCE_HOST_ID || "270195"}`;
 
 type Instructor = {
   name: string;
@@ -94,7 +98,7 @@ export default function SchedulePrivate() {
       {/* CTA */}
       <div className="text-center">
         <a
-          href={MOMENCE_HOST_URL}
+          href={MOMENCE_APPOINTMENTS_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
