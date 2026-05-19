@@ -44,7 +44,7 @@ const navLinks: NavItem[] = [
     ],
   },
   { href: "/events", label: "Workshops + Events" },
-  { href: "/faq", label: "FAQ + Visit" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
