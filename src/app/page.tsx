@@ -7,6 +7,7 @@ import NewToPilates from "@/components/NewToPilates";
 import StickyCTA from "@/components/StickyCTA";
 import Reveal from "@/components/Reveal";
 import FoundingCountdown from "@/components/FoundingCountdown";
+import MomenceScheduleInline from "@/components/MomenceScheduleInline";
 
 export default function Home() {
   return (
@@ -22,6 +23,21 @@ export default function Home() {
         />
       </section>
 
+      {/* Schedule — Momence widget, full inline */}
+      <section className="py-12 lg:py-16 bg-warm-white border-b border-charcoal/5">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <p className="text-xs tracking-widest uppercase text-accent mb-3">
+              Today at Boomerang
+            </p>
+            <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
+              What&apos;s on the schedule.
+            </h2>
+          </div>
+          <MomenceScheduleInline />
+        </div>
+      </section>
+
       {/* Positioning statement */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
@@ -34,6 +50,37 @@ export default function Home() {
           <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
             Two sisters. Third-generation classically trained, fully certified across the method. One belief: classical Pilates was made for every body — not just the front row. We built this studio to prove it.
           </p>
+        </div>
+      </section>
+
+      {/* Editorial photo moment — Emilie side plank, peach backdrop */}
+      <section className="pb-16 lg:pb-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <Reveal className="flex flex-col md:flex-row gap-8 md:gap-14 items-center">
+            <div className="relative w-full md:w-1/2 aspect-[2/3] overflow-hidden">
+              <Image
+                src="/photo-emilie-solo.jpg"
+                alt="Emilie Young in side plank with reaching arm"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="w-full md:w-1/2 md:pl-4">
+              <p className="text-xs tracking-widest uppercase text-accent mb-4">
+                The Method
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
+                Precision, taught with intention.
+              </h2>
+              <p className="text-muted text-base leading-relaxed">
+                Classical Pilates the way Joseph Pilates designed it — every
+                exercise progressive, every cue exact. We&apos;re trained in
+                the direct lineage and teach without shortcuts, because the
+                method works when you trust it.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
