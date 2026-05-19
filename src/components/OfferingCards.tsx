@@ -50,7 +50,7 @@ const offerings = [
     ],
     startingPrice: "$60",
     priceNote: "duets per person · privates $110",
-    link: "/schedule",
+    link: "/privates",
     linkLabel: "Book a Private",
   },
 ];
@@ -93,7 +93,7 @@ export default function OfferingCards() {
                 {offering.classes.map((cls) => (
                   <Link
                     key={cls.name}
-                    href="/schedule"
+                    href={offering.link}
                     className="text-xs tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
                   >
                     {cls.name}
