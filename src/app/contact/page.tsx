@@ -25,8 +25,8 @@ export default function Contact() {
             Get in touch.
           </h1>
           <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }} />
-          <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            Questions, ideas, or just want to say hi — we&apos;d love to hear from you.
+          <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto text-balance animate-fade-up" style={{ animationDelay: "0.4s" }}>
+            Questions, ideas, or just want to say hi — we&apos;d love to hear from{" "}you.
           </p>
         </div>
 

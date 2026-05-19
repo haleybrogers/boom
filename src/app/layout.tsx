@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
 import EarlyBirdBanner from "@/components/EarlyBirdBanner";
+import { Analytics } from "@vercel/analytics/next";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
@@ -63,6 +64,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </SplashScreen>
+        <Analytics />
       </body>
     </html>
   );

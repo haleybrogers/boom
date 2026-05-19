@@ -33,8 +33,32 @@ export default function Home() {
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
           <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
-            Two sisters. Third-generation classically trained, fully certified across the method. One belief: classical Pilates was made for every body — not just the front row. We built this studio to prove it.
+            Two sisters. Third-generation classically trained, fully certified across the method. We think classical Pilates was made for every body — not just the front row.
           </p>
+        </div>
+      </section>
+
+      {/* Pre-opening classes CTA */}
+      <section className="pb-16 lg:pb-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <Reveal className="bg-accent/5 border border-accent/15 rounded-sm px-8 md:px-14 py-10 md:py-12 text-center">
+            <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">
+              Before the Doors Open
+            </p>
+            <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mb-3 leading-tight">
+              Move with us before opening day.
+            </h2>
+            <p className="text-sm text-muted mb-6 max-w-xl mx-auto leading-relaxed">
+              Free and low-cost mat classes at favorite Durham spots leading
+              up to July 15. All levels welcome — tap any class to RSVP.
+            </p>
+            <Link
+              href="/events"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              See Pop-Up Classes
+            </Link>
+          </Reveal>
         </div>
       </section>
 
@@ -53,7 +77,7 @@ export default function Home() {
             </div>
             <div className="w-full md:w-1/2 md:pl-4">
               <p className="text-xs tracking-widest uppercase text-accent mb-4">
-                The Method
+                Our Approach
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
                 The method, intact.
@@ -61,13 +85,13 @@ export default function Home() {
               <p className="text-muted text-base leading-relaxed mb-4">
                 Classical Pilates is the original method — the full Return to
                 Life sequence and the apparatus work that came with it, every
-                exercise in the order Joe wrote them. Not a remix. Not a
+                exercise in the order it was written. Not a remix. Not a
                 workout class with a reformer in the corner.
               </p>
               <p className="text-muted text-base leading-relaxed mb-4">
                 What you&apos;ll feel: stronger from the inside out, more
                 aware of how your body actually moves, surprised by what your
-                spine can do. Hooked, probably — that part happens fast.
+                spine can do.
               </p>
               <p className="text-muted text-base leading-relaxed">
                 The work is precise but the room is warm. Show up however you
