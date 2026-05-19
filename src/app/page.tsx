@@ -56,7 +56,7 @@ export default function Home() {
                 The Method
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
-                Built to be felt.
+                The method, intact.
               </h2>
               <p className="text-muted text-base leading-relaxed mb-4">
                 Classical Pilates is the original method — the full Return to
