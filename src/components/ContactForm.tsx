@@ -13,8 +13,15 @@ const MOMENCE_LEAD_URL = `https://api.momence.com/integrations/customer-leads/${
 const MOMENCE_LEAD_TOKEN = "BZ8lpMEm8R";
 
 type ContactFormProps = {
-  // Tagged in the message body so we can tell signup sources apart in
-  // Momence (waitlist vs. rsvp-party vs. contact).
+  // Momence lead source ID — created in dashboard at Marketing > Lead
+  // Sources. Passing it as `sourceId` in the POST attaches the lead to
+  // that source. Per Haley's setup:
+  //   204573 — Contact Us
+  //   204606 — RSVP to the Opening Party
+  //   204540 — Website Footer (used for the general waitlist for now)
+  sourceId?: number;
+  // Backup human-readable tag — also goes into the message body so the
+  // source is visible at a glance when scanning the lead.
   source?: string;
   // When false, hide the multiline "Message" field (e.g. simple email capture).
   showMessage?: boolean;
@@ -41,6 +48,7 @@ function normalizePhone(input: string): string {
 }
 
 export default function ContactForm({
+  sourceId,
   source = "contact",
   showMessage = true,
   showPhone = false,
@@ -78,6 +86,7 @@ export default function ContactForm({
           email,
           ...(phoneNumber ? { phoneNumber } : {}),
           message: note,
+          ...(sourceId ? { sourceId } : {}),
           token: MOMENCE_LEAD_TOKEN,
           countryCode: "us",
         }),

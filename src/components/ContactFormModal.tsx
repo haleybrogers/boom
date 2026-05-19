@@ -16,6 +16,7 @@ type ContactFormModalProps = {
   heading?: string;
   subhead?: string;
   source?: string;
+  sourceId?: number;
   showMessage?: boolean;
   showPhone?: boolean;
   showGuests?: boolean;
@@ -27,6 +28,7 @@ export default function ContactFormModal({
   heading = "Stay in the loop.",
   subhead = "Grand opening details, new class drops, events, and the stuff we only share with our people.",
   source = "waitlist",
+  sourceId,
   showMessage = false,
   showPhone = false,
   showGuests = false,
@@ -93,7 +95,7 @@ export default function ContactFormModal({
                   {subhead}
                 </p>
               </div>
-              <ContactForm source={source} showMessage={showMessage} showPhone={showPhone} showGuests={showGuests} />
+              <ContactForm source={source} sourceId={sourceId} showMessage={showMessage} showPhone={showPhone} showGuests={showGuests} />
             </div>
           </div>
         </div>,

@@ -169,21 +169,26 @@ export default function Events() {
         </div>
       </section>
 
-      {/* RSVP — button opens contact form modal */}
+      {/* RSVP — styled to mirror the home "Stay in the Loop" section. */}
       <section id="rsvp" className="py-24 lg:py-32 bg-warm-white scroll-mt-24">
-        <div className="max-w-xl mx-auto px-6 text-center reveal">
-          <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
-            Don&apos;t miss it.
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">
+            Opening Party
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
+            Save your spot.
           </h2>
           <p className="text-muted text-base mb-10">
-            RSVP for the opening party + stay in the loop on workshops,
-            pop-ups, and everything else.
+            We&apos;re opening the doors with a party on Friday, July 17.
+            Drop your info so we know to expect you — we&apos;ll send a
+            reminder + the address as it gets closer.
           </p>
           <ContactFormModal
             buttonLabel="RSVP to the Opening Party"
             heading="See you July 17."
             subhead="Drop your info so we know to expect you. We'll send a reminder + the address as the party gets closer."
             source="rsvp-party"
+            sourceId={204606}
             showMessage={false}
             showGuests={true}
           />
