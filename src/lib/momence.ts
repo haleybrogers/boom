@@ -5,13 +5,14 @@
 //   MOMENCE_HOST_ID=270195
 //   MOMENCE_API_TOKEN=da1030e20e
 //
-// API base discovered May 2026 — Ribbon was acquired by Momence; the old
-// api.withribbon.com endpoint still answers, but the canonical one is now
-// momence.com/_api/primary. Both accept the same hostId+token.
+// API base per the boilerplate Momence ships from the dashboard (May 2026).
+// Ribbon was acquired by Momence; momence.com/_api/primary returns the same
+// data but is an internal path — api.withribbon.com is the documented one,
+// so we use it for forward compatibility.
 
 const MOMENCE_HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
 const MOMENCE_API_TOKEN = process.env.MOMENCE_API_TOKEN || "da1030e20e";
-const MOMENCE_API_BASE = "https://momence.com/_api/primary/api/v1";
+const MOMENCE_API_BASE = "https://api.withribbon.com/api/v1";
 
 // Canonical public-facing URLs. Per-session bookings use /s/<id>; the host
 // storefront lives at /host/<hostId>. If/when Momence gives Emilie a slugged
