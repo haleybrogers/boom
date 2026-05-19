@@ -96,22 +96,22 @@ export default function Home() {
           <div className="max-w-3xl mx-auto px-6">
             <Reveal className="bg-accent/5 border border-accent/15 rounded-sm px-8 md:px-14 py-10 md:py-12 text-center">
               <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-5">
-                Founding Member Pricing · Ends July 15
+                Founding Member Pricing · Ends July 13
               </p>
               <FoundingCountdown showLabel={false} />
               <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mb-3 mt-2 leading-tight">
                 Become a founding member.
               </h2>
               <p className="text-sm text-muted mb-6 max-w-xl mx-auto leading-relaxed">
-                Lock in pre-opening rates for life, get first dibs on the schedule, and help shape
-                the studio from day one. Soft-opening classes, opening night invite, welcome kit, and
-                a seat in the community we&apos;re building before the doors even open.
+                25% off your mat membership — for life, as long as it stays active. Plus the
+                opening night invite, welcome kit, intro privates bundle, and bring-a-friend
+                pass. 15 founding spots at each tier.
               </p>
               <Link
-                href="/schedule"
+                href="/packs"
                 className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
               >
-                Reserve Your Spot
+                See Founding Pricing
               </Link>
             </Reveal>
           </div>

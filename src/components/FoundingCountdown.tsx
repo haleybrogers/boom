@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 // Founding member offer ends at end of day (local) on this date
-const DEADLINE = new Date("2026-07-15T23:59:59");
+const DEADLINE = new Date("2026-07-13T23:59:59");
 
 function calc() {
   const diff = DEADLINE.getTime() - Date.now();
@@ -41,7 +41,7 @@ export default function FoundingCountdown({ showLabel = true }: { showLabel?: bo
     <div className="flex flex-col items-center mb-4">
       {showLabel && (
         <p className="text-[10px] tracking-widest uppercase text-accent mb-2">
-          Founding Member Pricing Ends July 15
+          Founding Member Pricing Ends July 13
         </p>
       )}
       <div className="flex items-baseline gap-2.5">

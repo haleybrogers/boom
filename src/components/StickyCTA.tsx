@@ -30,9 +30,10 @@ export default function StickyCTA() {
           : "opacity-0 translate-y-4 pointer-events-none"
       }`}
     >
-      {/* Hard nav: /schedule needs full reload — Momence plugin state survives soft nav */}
+      {/* Hard nav: /schedule needs full reload — Momence plugin state survives soft nav.
+          When founding is live, the CTA points to /packs (where the pricing actually is). */}
       <a
-        href="/schedule"
+        href={SHOW_FOUNDING && !isFridayEvening ? "/packs" : "/schedule"}
         className="btn-animated flex items-center gap-2.5 bg-accent text-white text-xs tracking-widest uppercase px-5 py-3.5 shadow-lg hover:bg-accent/90 transition-colors"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
