@@ -28,9 +28,26 @@ const PLUGIN_ATTRS: Record<string, string> = {
   location_ids: "[]",
   tag_ids: "[]",
   lite_mode: "true",
-  default_filter: "today",
+  default_filter: "show-all",
   locale: "en",
 };
+
+// Momence's plugin appends its rendered UI as a direct child of <body> under
+// id="momence-plugin-host-schedule", ignoring our #ribbon-schedule placeholder.
+// We use a MutationObserver to watch for the widget node and relocate it into
+// the slot inside our modal.
+const WIDGET_ID = "momence-plugin-host-schedule";
+const SLOT_ID = "ribbon-schedule";
+
+function relocateWidget() {
+  const widget = document.getElementById(WIDGET_ID);
+  const slot = document.getElementById(SLOT_ID);
+  if (widget && slot && widget.parentElement !== slot) {
+    slot.appendChild(widget);
+    return true;
+  }
+  return false;
+}
 
 export default function MomenceSchedule() {
   const [open, setOpen] = useState(false);
@@ -47,7 +64,17 @@ export default function MomenceSchedule() {
       script.src = PLUGIN_SRC;
       Object.entries(PLUGIN_ATTRS).forEach(([k, v]) => script.setAttribute(k, v));
       document.body.appendChild(script);
+    } else {
+      relocateWidget();
     }
+
+    if (relocateWidget()) return;
+    const observer = new MutationObserver(() => {
+      if (relocateWidget()) observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true });
+
+    return () => observer.disconnect();
   }, []);
 
   // Lock body scroll while the modal is open
