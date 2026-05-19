@@ -3,21 +3,46 @@
 import { useLayoutEffect } from "react";
 
 /**
- * Forces /classes to start at the top on EVERY mount — including soft
- * client-side navigations from <Link>, where the inline <script> tag in
- * page.tsx doesn't re-execute. useLayoutEffect runs synchronously before
- * paint, so the user never sees the jumped-to position. We also pin the
- * scroll for ~500ms to defeat any late layout shifts (Momence schedule
- * widget hydrating, font swap, etc.) that scroll-anchoring could ride.
+ * Two-mode mount behavior for /classes:
+ *
+ *  1. NO hash in the URL  → force scroll to top and pin there for ~500ms so
+ *     late-hydrating UI (Momence schedule widget, font swap, etc.) can't
+ *     ride scroll-anchoring and drift the page partway into the founding /
+ *     privates / faq sections. Original purpose of this component.
+ *
+ *  2. Hash IS present  → DO NOT pin. Scroll to the anchored section
+ *     instead. The previous version stripped the hash and forced top,
+ *     which silently broke every "/classes#privates" deep-link coming
+ *     from /about and /contact.
+ *
+ * useLayoutEffect runs synchronously before paint so the user never sees
+ * the jumped-to position.
  */
 export default function ClassesPageLock() {
   useLayoutEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
-    if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname);
+
+    const hash = window.location.hash;
+
+    // Mode 2: anchor navigation — let it land at the right section
+    if (hash) {
+      const tryScroll = () => {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "auto", block: "start" });
+          return true;
+        }
+        return false;
+      };
+      // Try immediately, then once more after a frame in case the target
+      // hasn't rendered yet.
+      if (!tryScroll()) requestAnimationFrame(tryScroll);
+      return;
     }
+
+    // Mode 1: no hash — original pin-at-top defense
     window.scrollTo(0, 0);
 
     const start = performance.now();
