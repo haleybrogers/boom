@@ -7,7 +7,6 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
-import Image from "next/image";
 import type { EventItem, EventCategory } from "@/lib/eventTypes";
 import { CATEGORY_LABELS } from "@/lib/eventTypes";
 import ContactForm from "./ContactForm";
@@ -79,18 +78,6 @@ function FeaturedCard({
       onClick={onClick}
       className="group text-left flex flex-col bg-warm-white border-2 border-accent/25 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
     >
-      {/* Image strip — featured events only */}
-      {event.image && (
-        <div className="relative w-full aspect-[16/9] overflow-hidden">
-          <Image
-            src={event.image}
-            alt={event.title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </div>
-      )}
       <div className="flex flex-col p-7 md:p-9 flex-1">
         <div className="flex items-start mb-6">
           <div className="flex flex-col">
@@ -140,18 +127,6 @@ function EventCard({
       onClick={onClick}
       className="group text-left flex flex-col bg-white border border-charcoal/10 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
     >
-      {/* Optional small image strip */}
-      {event.image && (
-        <div className="relative w-full aspect-[16/9] overflow-hidden">
-          <Image
-            src={event.image}
-            alt={event.title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        </div>
-      )}
       <div className="flex flex-col p-6 flex-1">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-baseline gap-2">
@@ -229,20 +204,6 @@ function EventDetailModal({
             />
           </svg>
         </button>
-
-        {/* Hero image — only shown in details view, not in RSVP form view */}
-        {event.image && !showRsvp && (
-          <div className="relative w-full aspect-[16/9] overflow-hidden">
-            <Image
-              src={event.image}
-              alt={event.title}
-              fill
-              className="object-cover"
-              sizes="512px"
-              priority
-            />
-          </div>
-        )}
 
         <div className="px-7 sm:px-9 py-9">
           {/* If we're in RSVP mode, swap the body for the form. */}
