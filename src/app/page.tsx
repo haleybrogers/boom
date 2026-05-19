@@ -7,7 +7,6 @@ import NewToPilates from "@/components/NewToPilates";
 import StickyCTA from "@/components/StickyCTA";
 import Reveal from "@/components/Reveal";
 import FoundingCountdown from "@/components/FoundingCountdown";
-import MomenceScheduleInline from "@/components/MomenceScheduleInline";
 
 export default function Home() {
   return (
@@ -21,21 +20,6 @@ export default function Home() {
           className="object-cover object-bottom"
           priority
         />
-      </section>
-
-      {/* Schedule — Momence widget, full inline */}
-      <section className="py-12 lg:py-16 bg-warm-white border-b border-charcoal/5">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <p className="text-xs tracking-widest uppercase text-accent mb-3">
-              Today at Boomerang
-            </p>
-            <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
-              What&apos;s on the schedule.
-            </h2>
-          </div>
-          <MomenceScheduleInline />
-        </div>
       </section>
 
       {/* Positioning statement */}

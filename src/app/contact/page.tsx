@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Contact() {
@@ -26,6 +27,17 @@ export default function Contact() {
           <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
             Questions, ideas, or just want to say hi — we&apos;d love to hear from you.
           </p>
+        </div>
+
+        {/* Sisters photo */}
+        <div className="relative aspect-[4/5] mb-10 overflow-hidden">
+          <Image
+            src="/photo-sisters.jpg"
+            alt="Emilie and Annie Young"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 512px"
+          />
         </div>
 
         {/* Book a private bar */}

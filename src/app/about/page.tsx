@@ -115,39 +115,17 @@ export default function About() {
         </div>
       </section>
 
-      {/* Instructors */}
+      {/* Sisters photo — header re-added once we have a third instructor */}
       <section className="py-20 lg:py-28 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <p className="text-xs tracking-widest uppercase text-accent mb-3">
-              Our Team
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-              Instructors
-            </h2>
-            <p className="text-base text-muted leading-relaxed max-w-xl mx-auto">
-              Classically trained, rooted in the original work and the direct
-              lineage of Joseph Pilates.
-            </p>
-          </div>
-
           <div className="relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/2] max-w-3xl mx-auto overflow-hidden">
             <Image
-              src="/photo-instructors.jpg"
+              src="/photo-sisters.jpg"
               alt="Emilie and Annie Young, co-founders of Boomerang Pilates"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 768px"
             />
-          </div>
-
-          <div className="text-center mt-14">
-            <Link
-              href="/classes#privates"
-              className="inline-flex items-center gap-1 text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
-            >
-              See Availability →
-            </Link>
           </div>
         </div>
       </section>
