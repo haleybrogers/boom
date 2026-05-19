@@ -36,9 +36,20 @@ export default function Home() {
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-4 animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
-          <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
+          <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed mb-8 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
             Two sisters. Third-generation classically trained, fully certified across the method. We think classical Pilates was made for every body — not just the front row.
           </p>
+          <div className="animate-fade-up-lux" style={{ animationDelay: "1.1s" }}>
+            <Link
+              href="/events"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              Come move with us →
+            </Link>
+            <p className="text-xs text-muted/70 mt-3">
+              Free pop-up classes around Durham before opening day.
+            </p>
+          </div>
         </div>
       </section>
 
