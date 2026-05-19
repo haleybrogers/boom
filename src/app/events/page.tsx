@@ -1,4 +1,5 @@
 import WaitlistForm from "@/components/WaitlistForm";
+import MomenceEvents from "@/components/MomenceEvents";
 
 export const metadata = {
   title: "Events",
@@ -93,98 +94,18 @@ export default function Events() {
       <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
-            <p className="text-xs tracking-widest uppercase text-accent mb-4">Open to All · Pay-What-You-Can · 3-Part Series</p>
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">Pop-Up Classes · Around Town</p>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-              Help us bring classical Pilates to downtown Durham.
+              Come move with us before the doors open.
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-              Three soft-opening events leading up to the grand opening — open to anyone
-              who wants to come. Every dollar goes straight into finishing the studio:
-              the apparatus, the floors, the little details that make a classical Pilates
-              room feel like home. Come to one. Come to all three. Bring a friend.
+              Free and low-cost mat classes at favorite Durham spots leading up
+              to opening day. All levels welcome. Tap any class to RSVP through
+              Momence.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
-            {/* Part 1 */}
-            <div className="reveal relative border border-accent/20 bg-white rounded-sm p-6 shadow-sm flex flex-col">
-              <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
-                Part One
-              </span>
-              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Just the Mat</h3>
-              <p className="text-xs text-accent mb-3">All levels · Suggested $20+</p>
-              <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
-                A classical mat class in the (almost) finished space. The full
-                method, no equipment, no frills.
-              </p>
-              <div className="border-t border-charcoal/5 pt-3 flex items-center justify-between">
-                <p className="text-xs text-muted">[Date TBD] · 50 min</p>
-                <a
-                  href="/#waitlist"
-                  className="text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
-                >
-                  RSVP →
-                </a>
-              </div>
-            </div>
-
-            {/* Part 2 */}
-            <div className="reveal relative border border-accent/20 bg-white rounded-sm p-6 shadow-sm flex flex-col">
-              <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
-                Part Two
-              </span>
-              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Magic Mat</h3>
-              <p className="text-xs text-accent mb-3">All levels · Suggested $20+</p>
-              <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
-                Classical matwork meets the Magic Circle. A small prop, a big
-                difference — get a feel for resistance and precision before you
-                ever touch the apparatus.
-              </p>
-              <div className="border-t border-charcoal/5 pt-3 flex items-center justify-between">
-                <p className="text-xs text-muted">[Date TBD] · 50 min</p>
-                <a
-                  href="/#waitlist"
-                  className="text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
-                >
-                  RSVP →
-                </a>
-              </div>
-            </div>
-
-            {/* Part 3 */}
-            <div className="reveal relative border border-accent/20 bg-white rounded-sm p-6 shadow-sm flex flex-col">
-              <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm">
-                Part Three
-              </span>
-              <h3 className="font-serif text-xl font-light text-charcoal mt-2 mb-1">Reformer on the Mat</h3>
-              <p className="text-xs text-accent mb-3">All levels · Suggested $20+</p>
-              <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
-                The reformer moves you love, performed on the mat with no springs
-                attached. A teaser for what&apos;s coming when the equipment lands.
-              </p>
-              <div className="border-t border-charcoal/5 pt-3 flex items-center justify-between">
-                <p className="text-xs text-muted">[Date TBD] · 50 min</p>
-                <a
-                  href="/#waitlist"
-                  className="text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
-                >
-                  RSVP →
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* All-three pass + altruism line */}
-          <div className="mt-10 text-center reveal">
-            <div className="inline-flex items-center gap-3 border border-accent/30 bg-accent/5 rounded-sm px-6 py-3">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-accent">All Three</span>
-              <span className="text-charcoal/30">·</span>
-              <span className="font-serif italic text-sm text-charcoal">Series Pass — All Three Events — Suggested $60+</span>
-            </div>
-            <p className="text-xs italic font-serif text-muted/60 mt-5 max-w-md mx-auto">
-              Not able to come but still want to help? Donations welcome — just reach out.
-            </p>
-          </div>
+          <MomenceEvents />
         </div>
       </section>
 
