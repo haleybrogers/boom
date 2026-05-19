@@ -30,19 +30,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Editorial photo break — both sisters, landscape */}
-      <section>
-        <div className="relative w-full aspect-[3/2] sm:aspect-[16/9] lg:aspect-[2/1] overflow-hidden">
-          <Image
-            src="/photo-sisters-wide.jpg"
-            alt="Emilie and Annie Young in mat practice"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-      </section>
-
       {/* Meet the Sisters */}
       <section className="py-20 lg:py-28">
         <div className="max-w-4xl mx-auto px-6">

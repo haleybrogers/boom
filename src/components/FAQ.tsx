@@ -66,15 +66,6 @@ export default function FAQ() {
 
   return (
     <div>
-      <div className="text-center mb-10">
-        <p className="text-xs tracking-widest uppercase text-accent mb-3">
-          Common Questions
-        </p>
-        <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
-          FAQ
-        </h2>
-      </div>
-
       <div className="max-w-2xl mx-auto divide-y divide-charcoal/10">
         {faqs.map((faq, i) => (
           <button

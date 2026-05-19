@@ -2,7 +2,6 @@ import Link from "next/link";
 import MomenceScheduleInline from "@/components/MomenceScheduleInline";
 import FoundingPricingOverlay from "@/components/FoundingPricingOverlay";
 import ClassGuideModal from "@/components/ClassGuideModal";
-import FAQ from "@/components/FAQ";
 import ClassesPageLock from "@/components/ClassesPageLock";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
@@ -82,10 +81,16 @@ export default function Schedule() {
         </section>
       )}
 
-      {/* 3. FAQ */}
-      <section id="faq" className="py-20 lg:py-28 bg-warm-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <FAQ />
+      {/* 3. Questions? FAQ tab is its own page */}
+      <section className="py-14 lg:py-16 bg-warm-white border-t border-charcoal/5">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-sm text-charcoal mb-3">Have a question first?</p>
+          <Link
+            href="/faq"
+            className="inline-flex items-center gap-1 text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
+          >
+            See FAQ →
+          </Link>
         </div>
       </section>
     </>
