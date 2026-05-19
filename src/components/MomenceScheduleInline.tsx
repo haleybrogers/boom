@@ -77,7 +77,12 @@ export default function MomenceScheduleInline() {
           --momenceColorBlack: 176, 45, 74;
         }
       `}</style>
-      <div id={SLOT_ID} />
+      {/* min-height pre-allocates roughly the widget's rendered space so
+          when Momence hydrates the schedule, the surrounding page doesn't
+          jump. Widget settles into ~1700px on a desktop screen — 80vh
+          covers most viewports without leaving an absurd gap if it loads
+          smaller. */}
+      <div id={SLOT_ID} className="min-h-[80vh]" />
     </>
   );
 }

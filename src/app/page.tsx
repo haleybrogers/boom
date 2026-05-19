@@ -56,25 +56,22 @@ export default function Home() {
                 The Method
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
-                Precision, taught with intention.
+                Built to be felt.
               </h2>
               <p className="text-muted text-base leading-relaxed mb-4">
-                Classical Pilates the way Joseph Pilates designed it — every
-                exercise progressive, every cue exact. We&apos;re trained in
-                the direct lineage and teach without shortcuts, because the
-                method works when you trust it.
+                Classical Pilates is the original method — the full Return to
+                Life sequence and the apparatus work that came with it, every
+                exercise in the order Joe wrote them. Not a remix. Not a
+                workout class with a reformer in the corner.
               </p>
               <p className="text-muted text-base leading-relaxed mb-4">
-                That means classical mat in the order it was written. Apparatus
-                that gives your body honest feedback, not just a workout.
-                Springs that ask something specific of you. Instructors who&apos;d
-                rather cue one exercise well than rush you through ten.
+                What you&apos;ll feel: stronger from the inside out, more
+                aware of how your body actually moves, surprised by what your
+                spine can do. Hooked, probably — that part happens fast.
               </p>
               <p className="text-muted text-base leading-relaxed">
-                Joseph said: in 10 sessions you&apos;ll feel the difference,
-                in 20 you&apos;ll see it, in 30 you&apos;ll have a whole new
-                body. We&apos;ve felt it. We&apos;ve seen it. And we built
-                this studio so you can too.
+                The work is precise but the room is warm. Show up however you
+                arrived. We&apos;ll meet you there.
               </p>
             </div>
           </Reveal>

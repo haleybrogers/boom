@@ -26,11 +26,8 @@ export default function Schedule() {
           <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight">
             Book a class.
           </h1>
-          <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6" />
-          <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto">
-            Tap a class to see details and book your spot.
-          </p>
-          <div className="mt-6 flex items-center justify-center">
+          <div className="w-12 h-px bg-accent mx-auto mt-8 mb-8" />
+          <div className="flex items-center justify-center">
             <ClassGuideModal />
           </div>
         </div>
