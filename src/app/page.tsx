@@ -44,11 +44,8 @@ export default function Home() {
               href="/events"
               className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
             >
-              Come move with us →
+              Free pre-opening classes →
             </Link>
-            <p className="text-xs text-muted/70 mt-3">
-              Free pop-up classes around Durham before opening day.
-            </p>
           </div>
         </div>
       </section>

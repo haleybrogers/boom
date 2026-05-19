@@ -180,11 +180,12 @@ export default function Events() {
             pop-ups, and everything else.
           </p>
           <ContactFormModal
-            buttonLabel="RSVP + Stay in the Loop"
-            heading="RSVP."
-            subhead="Drop your info — we'll add you to the list for the opening party and let you know about pop-ups, workshops, and class drops."
-            source="rsvp"
+            buttonLabel="RSVP to the Opening Party"
+            heading="See you July 17."
+            subhead="Drop your info so we know to expect you. We'll send a reminder + the address as the party gets closer."
+            source="rsvp-party"
             showMessage={false}
+            showGuests={true}
           />
         </div>
       </section>

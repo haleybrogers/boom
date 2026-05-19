@@ -18,6 +18,7 @@ type ContactFormModalProps = {
   source?: string;
   showMessage?: boolean;
   showPhone?: boolean;
+  showGuests?: boolean;
 };
 
 export default function ContactFormModal({
@@ -28,6 +29,7 @@ export default function ContactFormModal({
   source = "waitlist",
   showMessage = false,
   showPhone = false,
+  showGuests = false,
 }: ContactFormModalProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -91,7 +93,7 @@ export default function ContactFormModal({
                   {subhead}
                 </p>
               </div>
-              <ContactForm source={source} showMessage={showMessage} showPhone={showPhone} />
+              <ContactForm source={source} showMessage={showMessage} showPhone={showPhone} showGuests={showGuests} />
             </div>
           </div>
         </div>,

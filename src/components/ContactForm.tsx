@@ -14,13 +14,17 @@ const MOMENCE_LEAD_TOKEN = "BZ8lpMEm8R";
 
 type ContactFormProps = {
   // Tagged in the message body so we can tell signup sources apart in
-  // Momence (waitlist vs. rsvp vs. contact).
+  // Momence (waitlist vs. rsvp-party vs. contact).
   source?: string;
   // When false, hide the multiline "Message" field (e.g. simple email capture).
   showMessage?: boolean;
   // When true, show an optional Phone number field. Used on "Stay in the
   // Loop" so we can text people about openings, classes, etc.
   showPhone?: boolean;
+  // When true, show a "How many guests?" number input. Used on the
+  // opening-party RSVP so we know headcount. Stored in the message body
+  // since Momence doesn't have a dedicated guest-count field.
+  showGuests?: boolean;
   // Callback after a successful submit — modal wrapper uses this.
   onSuccess?: () => void;
 };
@@ -40,12 +44,14 @@ export default function ContactForm({
   source = "contact",
   showMessage = true,
   showPhone = false,
+  showGuests = false,
   onSuccess,
 }: ContactFormProps) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [guests, setGuests] = useState("1");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -54,11 +60,12 @@ export default function ContactForm({
     e.preventDefault();
     setLoading(true);
 
-    // Prefix message with [source] so we can tell where it came from
-    // when scanning leads in Momence.
-    const note = message
-      ? `[${source}] ${message}`
-      : `[${source}]`;
+    // Build a message that carries source + optional structured fields
+    // (guest count) so we can scan it in Momence later.
+    const parts: string[] = [`[${source}]`];
+    if (showGuests) parts.push(`Guests: ${guests || "1"}`);
+    if (message) parts.push(message);
+    const note = parts.join(" | ");
 
     try {
       const phoneNumber = normalizePhone(phone);
@@ -146,6 +153,26 @@ export default function ContactForm({
           placeholder="you@email.com"
         />
       </div>
+      {showGuests && (
+        <div>
+          <label htmlFor="cf-guests" className="block text-xs tracking-widest uppercase text-muted mb-2">
+            How many in your party?
+          </label>
+          <input
+            type="number"
+            id="cf-guests"
+            name="guests"
+            min={1}
+            max={20}
+            required
+            value={guests}
+            onChange={(e) => setGuests(e.target.value)}
+            disabled={loading}
+            className="w-full px-0 py-2 bg-transparent border-b border-charcoal/20 text-charcoal text-base placeholder-charcoal/30 focus:outline-none focus:border-accent transition-colors"
+            placeholder="1"
+          />
+        </div>
+      )}
       {showPhone && (
         <div>
           <label htmlFor="cf-phone" className="block text-xs tracking-widest uppercase text-muted mb-2">
