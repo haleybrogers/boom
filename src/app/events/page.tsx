@@ -1,4 +1,4 @@
-import WaitlistForm from "@/components/WaitlistForm";
+import MomenceLeadForm from "@/components/MomenceLeadForm";
 import MomenceEvents from "@/components/MomenceEvents";
 
 export const metadata = {
@@ -77,7 +77,7 @@ export default function Events() {
 
           <div className="mb-4 animate-fade-up" style={{ animationDelay: "1.25s" }}>
             <a
-              href="/#waitlist"
+              href="#rsvp"
               className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-10 py-4 hover:bg-accent/90 transition-colors"
             >
               RSVP
@@ -169,16 +169,18 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Stay in the loop */}
-      <section className="py-24 lg:py-32 bg-warm-white">
+      {/* RSVP / stay-in-the-loop — Momence lead form, same #rsvp anchor
+          the Opening Party RSVP button scrolls to */}
+      <section id="rsvp" className="py-24 lg:py-32 bg-warm-white scroll-mt-24">
         <div className="max-w-xl mx-auto px-6 text-center reveal">
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
             Don&apos;t miss it.
           </h2>
           <p className="text-muted text-base mb-10">
-            Sign up and we&apos;ll let you know the moment we have dates.
+            RSVP for the opening party + stay in the loop on workshops, pop-ups,
+            and everything else.
           </p>
-          <WaitlistForm />
+          <MomenceLeadForm />
         </div>
       </section>
     </>

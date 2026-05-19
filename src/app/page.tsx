@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import WaitlistForm from "@/components/WaitlistForm";
+import MomenceLeadForm from "@/components/MomenceLeadForm";
 import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
@@ -136,7 +136,7 @@ export default function Home() {
           <p className="text-muted text-base mb-10">
             Grand opening details, new class drops, events, and the stuff we only share with our people.
           </p>
-          <WaitlistForm />
+          <MomenceLeadForm />
         </div>
       </section>
 
