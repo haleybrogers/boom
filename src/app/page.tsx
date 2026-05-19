@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import MomenceLeadForm from "@/components/MomenceLeadForm";
+import ContactFormModal from "@/components/ContactFormModal";
 import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
@@ -129,7 +129,7 @@ export default function Home() {
       {/* New to Pilates? */}
       <NewToPilates />
 
-      {/* Waitlist */}
+      {/* Waitlist — button opens a modal with the contact form */}
       <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">Stay in the Loop</p>
@@ -139,7 +139,13 @@ export default function Home() {
           <p className="text-muted text-base mb-10">
             Grand opening details, new class drops, events, and the stuff we only share with our people.
           </p>
-          <MomenceLeadForm />
+          <ContactFormModal
+            buttonLabel="Stay in the Loop"
+            heading="Stay in the loop."
+            subhead="Grand opening details, new class drops, events, and the stuff we only share with our people."
+            source="waitlist"
+            showMessage={false}
+          />
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-import MomenceLeadForm from "@/components/MomenceLeadForm";
+import ContactFormModal from "@/components/ContactFormModal";
 import MomenceEvents from "@/components/MomenceEvents";
 
 export const metadata = {
@@ -169,18 +169,23 @@ export default function Events() {
         </div>
       </section>
 
-      {/* RSVP / stay-in-the-loop — Momence lead form, same #rsvp anchor
-          the Opening Party RSVP button scrolls to */}
+      {/* RSVP — button opens contact form modal */}
       <section id="rsvp" className="py-24 lg:py-32 bg-warm-white scroll-mt-24">
         <div className="max-w-xl mx-auto px-6 text-center reveal">
           <h2 className="font-serif text-3xl font-light text-charcoal mb-4">
             Don&apos;t miss it.
           </h2>
           <p className="text-muted text-base mb-10">
-            RSVP for the opening party + stay in the loop on workshops, pop-ups,
-            and everything else.
+            RSVP for the opening party + stay in the loop on workshops,
+            pop-ups, and everything else.
           </p>
-          <MomenceLeadForm />
+          <ContactFormModal
+            buttonLabel="RSVP + Stay in the Loop"
+            heading="RSVP."
+            subhead="Drop your info — we'll add you to the list for the opening party and let you know about pop-ups, workshops, and class drops."
+            source="rsvp"
+            showMessage={false}
+          />
         </div>
       </section>
     </>

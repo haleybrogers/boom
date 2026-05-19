@@ -1,5 +1,5 @@
 import Image from "next/image";
-import MomenceLeadForm from "@/components/MomenceLeadForm";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata = {
   title: "Contact",
@@ -44,20 +44,7 @@ export default function Contact() {
         {/* Lead form + photo */}
         <div className="grid md:grid-cols-[1fr_auto] gap-10 md:gap-14 items-start mb-20">
           <div className="max-w-lg w-full mx-auto md:mx-0 md:w-[420px]">
-            <p className="text-xs tracking-widest uppercase text-muted mb-5 text-center md:text-left">
-              Drop your info — we&apos;ll be in touch.
-            </p>
-            <MomenceLeadForm />
-            <p className="text-xs text-muted/70 mt-6 text-center md:text-left">
-              Got a longer question?{" "}
-              <a
-                href="mailto:info@boomerangpilatesnc.com"
-                className="text-accent hover:text-accent/70 transition-colors"
-              >
-                Email us
-              </a>{" "}
-              and we&apos;ll write back.
-            </p>
+            <ContactForm source="contact" showMessage={true} />
           </div>
 
           <div className="relative w-full max-w-sm md:w-80 lg:w-96 aspect-[3/4] mx-auto md:mx-0 overflow-hidden order-first md:order-last">
