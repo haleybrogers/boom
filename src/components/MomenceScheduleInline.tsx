@@ -72,9 +72,10 @@ export default function MomenceScheduleInline() {
     <>
       <style>{`
         :root {
-          --momenceColorBackground: #FDFCFA;
-          --momenceColorPrimary: 244, 240, 235;
-          --momenceColorBlack: 176, 45, 74;
+          /* Darker / more elegant palette */
+          --momenceColorBackground: #2a2724;       /* warm dark charcoal */
+          --momenceColorPrimary: 244, 240, 235;    /* cream — Momence uses this in rgba() for surfaces / hovers */
+          --momenceColorBlack: 158, 38, 64;        /* deeper brand accent — still readable on dark bg */
         }
       `}</style>
       {/* min-height pre-allocates roughly the widget's rendered space so
