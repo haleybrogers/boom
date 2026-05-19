@@ -1,4 +1,4 @@
-import LiveSchedule from "@/components/LiveSchedule";
+import MomenceSchedule from "@/components/MomenceSchedule";
 import FoundingPricingOverlay from "@/components/FoundingPricingOverlay";
 import SchedulePrivate from "@/components/SchedulePrivate";
 import ClassPacks from "@/components/ClassPacks";
@@ -51,7 +51,7 @@ export default function Classes() {
             </div>
           </div>
 
-          <LiveSchedule />
+          <MomenceSchedule />
         </div>
       </section>
 
