@@ -14,7 +14,7 @@ export default function Home() {
       {/* Hero */}
       <section className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
         <Image
-          src="/hero-image.png"
+          src="/hero-image.jpg"
           alt="Two figures in the Boomerang Pilates pose"
           fill
           className="object-cover object-bottom"
