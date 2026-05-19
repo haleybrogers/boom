@@ -88,6 +88,73 @@ export default function Events() {
         </div>
       </section>
 
+      {/* Boomerang Craft Night — second hero, warmer/lighter than Opening Party */}
+      <section className="relative overflow-hidden bg-cream border-t border-charcoal/5">
+        <div className="relative max-w-2xl mx-auto px-6 text-center pt-20 lg:pt-28 pb-24 lg:pb-32">
+          <p className="text-xs tracking-[0.3em] uppercase text-accent mb-6 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+            Special Event · Pop-Up Workshop
+          </p>
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-charcoal mb-6 leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
+            Boomerang Craft Night
+          </h2>
+          <div className="w-12 h-px bg-accent mx-auto mb-6 animate-fade-up" style={{ animationDelay: "0.25s" }} />
+          <p className="font-serif italic text-base md:text-lg text-charcoal/75 max-w-md mx-auto mb-8 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+            Like wine &amp; design, but make it Pilates.
+          </p>
+          <p className="text-muted text-base leading-relaxed mb-10 max-w-lg mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
+            We&apos;ll kick off with a 30-minute mat class — then settle in to paint your own
+            hand-shaped Baltic birch boomerang, primed and ready by NC artist
+            {" "}
+            <a
+              href="https://www.yallcomebackboomerangs.com/boomerangs/p/paint-your-own"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:text-accent/70 underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+            >
+              Kirk Fry
+            </a>
+            . Paint, brushes, light refreshments, and the boomerang itself — all included.
+          </p>
+
+          {/* Date card */}
+          <div className="flex justify-center mb-10 animate-fade-up" style={{ animationDelay: "0.5s" }}>
+            <div className="border border-accent/20 rounded-sm px-8 py-5 bg-white/60 backdrop-blur-sm text-center">
+              <p className="font-serif text-2xl text-charcoal mb-1">Wednesday, June 24, 2026</p>
+              <p className="text-xs text-muted tracking-widest uppercase">5:30 PM · $40 · 345 W Main St, Durham</p>
+            </div>
+          </div>
+
+          {/* Detail blocks — what to bring / what's included / who it's for */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.6s" }}>
+            <div className="border border-charcoal/10 bg-white/60 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
+              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-2">The mat</p>
+              <p className="text-sm text-charcoal/75 leading-relaxed">30-minute open-level class to start. All experience levels welcome.</p>
+            </div>
+            <div className="border border-charcoal/10 bg-white/60 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
+              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-2">The craft</p>
+              <p className="text-sm text-charcoal/75 leading-relaxed">A hand-shaped, gesso-primed Baltic birch boomerang to paint &amp; take home.</p>
+            </div>
+            <div className="border border-charcoal/10 bg-white/60 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
+              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-2">What to bring</p>
+              <p className="text-sm text-charcoal/75 leading-relaxed">Yourself, a mat if you have one, and maybe a friend. Paint &amp; refreshments on us.</p>
+            </div>
+          </div>
+
+          <div className="animate-fade-up" style={{ animationDelay: "0.7s" }}>
+            <a
+              href="#pop-ups"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-10 py-4 hover:bg-accent/90 transition-colors"
+            >
+              Reserve a Spot
+            </a>
+            <p className="text-xs text-muted/70 mt-4 max-w-sm mx-auto leading-relaxed">
+              Space is limited — once tickets are live, find Craft Night in the pop-up
+              classes section below.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 3-Part Soft Launch Mat Series — June series, pay-what-you-can suggestions */}
       <section className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-4xl mx-auto px-6">
@@ -131,8 +198,8 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Pop-Up Classes — dynamic Momence event grid */}
-      <section className="py-24 lg:py-32">
+      {/* Pop-Up Classes — dynamic Momence event grid. Craft Night CTA jumps here. */}
+      <section id="pop-ups" className="py-24 lg:py-32 scroll-mt-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
             <p className="text-xs tracking-widest uppercase text-accent mb-4">Pop-Up Classes · Around Town</p>
@@ -211,9 +278,10 @@ export default function Events() {
             <ContactFormModal
               buttonLabel="Interest Form"
               heading="Return to Life Interest Form"
-              subhead="Which series are you interested in (Course I or Course II)? Where are you in your Pilates practice? Drop a quick note and we'll be in touch when enrollment opens."
+              subhead="Tell us what you're eyeing — we'll be in touch when enrollment opens."
               source="rtl-interest"
               sourceId={204672}
+              showRtlFields={true}
               showMessage={true}
             />
           </div>
@@ -230,13 +298,13 @@ export default function Events() {
             Save your spot.
           </h2>
           <p className="text-muted text-base mb-10">
-            We&apos;re opening the doors with a party on Friday, July 17.
+            We&apos;re opening the doors with a party on Saturday, July 18.
             Drop your info so we know to expect you — we&apos;ll send a
             reminder + the address as it gets closer.
           </p>
           <ContactFormModal
             buttonLabel="RSVP to the Opening Party"
-            heading="See you July 17."
+            heading="See you July 18."
             subhead="Drop your info so we know to expect you. We'll send a reminder + the address as the party gets closer."
             source="rsvp-party"
             sourceId={204606}

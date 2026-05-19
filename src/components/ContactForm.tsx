@@ -32,6 +32,11 @@ type ContactFormProps = {
   // opening-party RSVP so we know headcount. Stored in the message body
   // since Momence doesn't have a dedicated guest-count field.
   showGuests?: boolean;
+  // When true, show structured "Return to Life" fields — which series
+  // (Course I / Course II checkboxes) + experience level select. Values
+  // are appended into the message body so Emilie can see them at a glance
+  // in Momence (no first-class custom-field support on the lead API).
+  showRtlFields?: boolean;
   // Callback after a successful submit — modal wrapper uses this.
   onSuccess?: () => void;
 };
@@ -53,6 +58,7 @@ export default function ContactForm({
   showMessage = true,
   showPhone = false,
   showGuests = false,
+  showRtlFields = false,
   onSuccess,
 }: ContactFormProps) {
   const [firstName, setFirstName] = useState("");
@@ -61,6 +67,10 @@ export default function ContactForm({
   const [phone, setPhone] = useState("");
   const [guests, setGuests] = useState("1");
   const [message, setMessage] = useState("");
+  // RTL interest form state — checkboxes for which course + experience select.
+  const [interestedCourseI, setInterestedCourseI] = useState(false);
+  const [interestedCourseII, setInterestedCourseII] = useState(false);
+  const [experience, setExperience] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -69,9 +79,16 @@ export default function ContactForm({
     setLoading(true);
 
     // Build a message that carries source + optional structured fields
-    // (guest count) so we can scan it in Momence later.
+    // (guest count, RTL interest) so we can scan it in Momence later.
     const parts: string[] = [`[${source}]`];
     if (showGuests) parts.push(`Guests: ${guests || "1"}`);
+    if (showRtlFields) {
+      const courses: string[] = [];
+      if (interestedCourseI) courses.push("Course I");
+      if (interestedCourseII) courses.push("Course II");
+      if (courses.length) parts.push(`Interested in: ${courses.join(", ")}`);
+      if (experience) parts.push(`Experience: ${experience}`);
+    }
     if (message) parts.push(message);
     const note = parts.join(" | ");
 
@@ -201,10 +218,71 @@ export default function ContactForm({
           />
         </div>
       )}
+      {showRtlFields && (
+        <>
+          <div>
+            <p className="block text-xs tracking-widest uppercase text-muted mb-3">
+              Which series? <span className="text-charcoal/30 normal-case tracking-normal">(pick one or both)</span>
+            </p>
+            <div className="space-y-2.5">
+              <label className="flex items-start gap-3 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={interestedCourseI}
+                  onChange={(e) => setInterestedCourseI(e.target.checked)}
+                  disabled={loading}
+                  className="mt-1 h-4 w-4 rounded-sm border-charcoal/30 text-accent focus:ring-accent/50 cursor-pointer"
+                />
+                <span className="text-sm text-charcoal leading-snug">
+                  <span className="font-medium">Course I</span>
+                  <span className="text-muted"> · Beginner · No experience required</span>
+                </span>
+              </label>
+              <label className="flex items-start gap-3 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={interestedCourseII}
+                  onChange={(e) => setInterestedCourseII(e.target.checked)}
+                  disabled={loading}
+                  className="mt-1 h-4 w-4 rounded-sm border-charcoal/30 text-accent focus:ring-accent/50 cursor-pointer"
+                />
+                <span className="text-sm text-charcoal leading-snug">
+                  <span className="font-medium">Course II</span>
+                  <span className="text-muted"> · Intermediate · Course I or equivalent</span>
+                </span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="cf-experience" className="block text-xs tracking-widest uppercase text-muted mb-2">
+              Pilates experience
+            </label>
+            <select
+              id="cf-experience"
+              name="experience"
+              value={experience}
+              onChange={(e) => setExperience(e.target.value)}
+              disabled={loading}
+              required
+              className="w-full px-0 py-2 bg-transparent border-b border-charcoal/20 text-charcoal text-base focus:outline-none focus:border-accent transition-colors appearance-none"
+            >
+              <option value="">Select one…</option>
+              <option value="Brand new">Brand new to Pilates</option>
+              <option value="A few classes">A few classes here and there</option>
+              <option value="Regular practice">Regular practice (weekly-ish)</option>
+              <option value="Long-time practitioner">Long-time practitioner</option>
+            </select>
+          </div>
+        </>
+      )}
       {showMessage && (
         <div>
           <label htmlFor="cf-message" className="block text-xs tracking-widest uppercase text-muted mb-2">
-            Message
+            {showRtlFields ? (
+              <>Anything else? <span className="text-charcoal/30 normal-case tracking-normal">(optional)</span></>
+            ) : (
+              "Message"
+            )}
           </label>
           <textarea
             id="cf-message"
@@ -214,7 +292,7 @@ export default function ContactForm({
             onChange={(e) => setMessage(e.target.value)}
             disabled={loading}
             className="w-full px-0 py-2 bg-transparent border-b border-charcoal/20 text-charcoal text-base placeholder-charcoal/30 focus:outline-none focus:border-accent transition-colors resize-none"
-            placeholder="How can we help?"
+            placeholder={showRtlFields ? "Goals, injuries, scheduling preferences…" : "How can we help?"}
           />
         </div>
       )}

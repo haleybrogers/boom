@@ -20,6 +20,7 @@ type ContactFormModalProps = {
   showMessage?: boolean;
   showPhone?: boolean;
   showGuests?: boolean;
+  showRtlFields?: boolean;
 };
 
 export default function ContactFormModal({
@@ -32,6 +33,7 @@ export default function ContactFormModal({
   showMessage = false,
   showPhone = false,
   showGuests = false,
+  showRtlFields = false,
 }: ContactFormModalProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -95,7 +97,7 @@ export default function ContactFormModal({
                   {subhead}
                 </p>
               </div>
-              <ContactForm source={source} sourceId={sourceId} showMessage={showMessage} showPhone={showPhone} showGuests={showGuests} />
+              <ContactForm source={source} sourceId={sourceId} showMessage={showMessage} showPhone={showPhone} showGuests={showGuests} showRtlFields={showRtlFields} />
             </div>
           </div>
         </div>,
