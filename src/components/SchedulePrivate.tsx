@@ -3,8 +3,11 @@
 import Script from "next/script";
 import { useState } from "react";
 
-// Default booking URL shows availability across all instructors.
-// If/when Arketa gives us per-instructor booking links, swap them into `bookingUrl`.
+// TODO: Replace with Momence private-session booking URL or appointments
+// plugin snippet. Grab from Momence dashboard → Studio Setup → Appointments
+// (and per-instructor URLs if Momence supports per-staff filtering — set them
+// in the `bookingUrl` field of each Instructor below). Still Arketa during the
+// migration so privates remain bookable.
 const ALL_INSTRUCTORS_URL =
   "https://app.arketa.co/iframe/boomerangpilates/privates/by-service/FwfO18S2CiqgdBkFHHCW";
 

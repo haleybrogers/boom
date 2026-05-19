@@ -247,7 +247,7 @@ export default function LiveSchedule() {
                     </p>
                   )}
                   <a
-                    href={`https://app.arketa.co/boomerangpilates/checkout/${selectedClass.id}`}
+                    href={`https://momence.com/s/${selectedClass.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full text-center bg-accent text-white px-6 py-3 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors"

@@ -3,6 +3,13 @@
 import Script from "next/script";
 import { useEffect } from "react";
 
+// TODO: Replace Arketa iframe + embed.js with the Momence Class Schedule plugin
+// snippet. Grab it from Momence dashboard → Studio Setup → Plugins → Class
+// Schedule → Embed. Until that lands, this component still points at Arketa so
+// the booking flow keeps working during the migration. The new LiveSchedule
+// below already pulls from Momence's Events API — this iframe is the redundant
+// path that needs the embed code from the dashboard.
+
 export default function ArketaBooking() {
   useEffect(() => {
     // Listen for Arketa's postMessage resize events
