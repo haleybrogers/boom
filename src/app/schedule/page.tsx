@@ -1,4 +1,3 @@
-import Image from "next/image";
 import MomenceScheduleInline from "@/components/MomenceScheduleInline";
 import ClassGuideModal from "@/components/ClassGuideModal";
 
@@ -18,20 +17,8 @@ export const metadata = {
 export default function Schedule() {
   return (
     <>
-      {/* Hero banner — DSC_4087 is landscape so this aspect works */}
-      <div className="relative w-full aspect-[3/2] sm:aspect-[5/2] lg:aspect-[3/1] overflow-hidden">
-        <Image
-          src="/nav-schedule.jpg"
-          alt="Boomerang Pilates schedule"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-      </div>
-
-      {/* Header */}
-      <section className="bg-warm-white pt-16 lg:pt-20 pb-10 lg:pb-14">
+      {/* Header — no banner photo; heading does the work */}
+      <section className="bg-warm-white pt-28 lg:pt-36 pb-10 lg:pb-14">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5">
             The Schedule

@@ -2,11 +2,10 @@
 
 import FoundingCountdown from "./FoundingCountdown";
 
-// Momence host memberships page. As of 2026-05-18 the Momence Memberships
-// API returns [] — Emilie hasn't published plans yet — but landing on
-// Momence's empty memberships page is correct (and consistent with the rest
-// of the booking flow) rather than sending people to the abandoned Arketa
-// system. The page hydrates client-side with whatever plans exist.
+// Host memberships page. As of 2026-05-18 the Memberships API returns []
+// — no founding plans published yet — but landing on the empty memberships
+// page is correct, consistent with the rest of the booking flow, and
+// hydrates client-side with whatever plans exist once Emilie configures them.
 const MEMBERSHIP_URL = "https://momence.com/host/270195/memberships";
 
 export default function FoundingPricingOverlay() {

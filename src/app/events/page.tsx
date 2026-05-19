@@ -100,8 +100,7 @@ export default function Events() {
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
               Free and low-cost mat classes at favorite Durham spots leading up
-              to opening day. All levels welcome. Tap any class to RSVP through
-              Momence.
+              to opening day. All levels welcome. Tap any class to RSVP.
             </p>
           </div>
 

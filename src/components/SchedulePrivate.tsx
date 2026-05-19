@@ -1,13 +1,6 @@
-// Privates booking — Momence-native.
-//
-// Previously had a reveal-the-iframe flow with per-instructor filtering
-// against Arketa's embed. Momence doesn't ship an equivalent appointments
-// plugin (Studio Setup → Plugins doesn't expose one for direct embed at
-// time of writing), so this is the simpler honest version: instructor
-// cards as context, "Book a Private" sends the booking flow out to Momence.
-//
-// If/when an appointments embed snippet appears in the dashboard, drop it
-// in here as a MomenceAppointments component and replace the CTA.
+// Privates booking — instructor cards + "Book a Private" CTA that opens
+// the booking site in a new tab. If/when an appointments embed snippet
+// becomes available, drop it in here and replace the CTA.
 
 // Momence has a per-host appointments URL — `momence.com/appointments/{id}`
 // 302-redirects to `momence.com/{slug}/appointment-reservation/{id}` which is

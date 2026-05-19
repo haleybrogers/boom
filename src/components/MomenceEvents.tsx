@@ -85,7 +85,7 @@ export default async function MomenceEvents() {
     return (
       <div className="text-center">
         <p className="text-sm text-muted mb-5">
-          New events drop regularly — check Momence for the latest.
+          New pop-ups drop regularly — check back soon.
         </p>
         <a
           href={FALLBACK_URL}
@@ -93,7 +93,7 @@ export default async function MomenceEvents() {
           rel="noopener noreferrer"
           className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
         >
-          View on Momence
+          See What&apos;s Coming Up
         </a>
       </div>
     );

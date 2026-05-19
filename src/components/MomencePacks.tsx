@@ -50,7 +50,7 @@ export default async function MomencePacks() {
         rel="noopener noreferrer"
         className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
       >
-        View on Momence
+        Browse Packs
       </a>
     );
   }
