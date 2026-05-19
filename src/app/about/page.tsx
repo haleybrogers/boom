@@ -131,50 +131,14 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                name: "Instructor Name",
-                role: "Classical Mat & Apparatus",
-                bio: "A short bio goes here — lineage, training, and what she brings to the room. Two or three sentences is perfect.",
-              },
-              {
-                name: "Instructor Name",
-                role: "Mat & Reformer",
-                bio: "A short bio goes here — lineage, training, and what she brings to the room. Two or three sentences is perfect.",
-              },
-              {
-                name: "Instructor Name",
-                role: "Classical Mat",
-                bio: "A short bio goes here — lineage, training, and what she brings to the room. Two or three sentences is perfect.",
-              },
-            ].map((inst, i) => (
-              <div key={i} className="text-center md:text-left">
-                {/* Image placeholder */}
-                <div className="relative aspect-[4/5] overflow-hidden mb-5 bg-charcoal/5 border border-charcoal/10 flex items-center justify-center">
-                  <svg
-                    className="w-10 h-10 text-charcoal/20"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1}
-                    viewBox="0 0 24 24"
-                    aria-hidden
-                  >
-                    <circle cx="12" cy="8" r="4" />
-                    <path strokeLinecap="round" d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" />
-                  </svg>
-                </div>
-                <h3 className="font-serif text-xl font-light text-charcoal mb-1">
-                  {inst.name}
-                </h3>
-                <p className="text-xs tracking-widest uppercase text-accent mb-3">
-                  {inst.role}
-                </p>
-                <p className="text-sm text-muted leading-relaxed">
-                  {inst.bio}
-                </p>
-              </div>
-            ))}
+          <div className="relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/2] max-w-3xl mx-auto overflow-hidden">
+            <Image
+              src="/photo-instructors.jpg"
+              alt="Emilie and Annie Young, co-founders of Boomerang Pilates"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 768px"
+            />
           </div>
 
           <div className="text-center mt-14">
