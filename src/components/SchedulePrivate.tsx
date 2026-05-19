@@ -1,16 +1,13 @@
-"use client";
-
 // Privates booking — Momence-native.
 //
 // Previously had a reveal-the-iframe flow with per-instructor filtering
 // against Arketa's embed. Momence doesn't ship an equivalent appointments
 // plugin (Studio Setup → Plugins doesn't expose one for direct embed at
-// time of writing), so this is the simpler honest version: keep the
-// instructor cards as context, send the booking flow out to Momence.
+// time of writing), so this is the simpler honest version: instructor
+// cards as context, "Book a Private" sends the booking flow out to Momence.
 //
-// If/when an appointments embed snippet appears in the dashboard (same
-// `<div>` + `<script>` pattern as host-schedule), drop it in here as a
-// MomenceAppointments component and replace the CTA with the embed.
+// If/when an appointments embed snippet appears in the dashboard, drop it
+// in here as a MomenceAppointments component and replace the CTA.
 
 // Momence has a per-host appointments URL — `momence.com/appointments/{id}`
 // 302-redirects to `momence.com/{slug}/appointment-reservation/{id}` which is
@@ -24,6 +21,10 @@ type Instructor = {
   bio: string;
 };
 
+// Just the two of them for now — placeholder "Instructor TBD" card removed
+// per Haley. Add a third entry here when a new instructor signs on (the
+// grid below auto-balances if you do — md:grid-cols-3 is already commented
+// in case 3 is the right count again).
 const instructors: Instructor[] = [
   {
     name: "Emilie Young",
@@ -35,41 +36,17 @@ const instructors: Instructor[] = [
     role: "Co-Founder",
     bio: "Classical Pilates certified in mat and apparatus. Trained in the direct lineage of Joseph Pilates. Passionate about making the method accessible to every body.",
   },
-  {
-    name: "Instructor TBD",
-    role: "Instructor",
-    bio: "More details coming soon.",
-  },
 ];
 
 export default function SchedulePrivate() {
   return (
     <div className="max-w-5xl mx-auto px-6">
-      <div className="text-center mb-12">
-        <p className="text-muted text-sm max-w-lg mx-auto mb-6">
-          The most personalized Pilates experience we offer. Your instructor
-          builds every session around your body, your goals, and where you are
-          in your practice — using the full range of classical apparatus.
-        </p>
-        <div className="flex justify-center gap-8">
-          <div className="text-center">
-            <p className="text-xs text-muted">Private · 50 min</p>
-            <p className="text-[11px] text-muted/60 mt-0.5">1 student · Full apparatus</p>
-          </div>
-          <div className="w-px bg-charcoal/10" />
-          <div className="text-center">
-            <p className="text-xs text-muted">Duet · 50 min</p>
-            <p className="text-[11px] text-muted/60 mt-0.5">2 students · Full apparatus</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Instructor cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-4xl mx-auto">
+      {/* Instructor cards — at the top now */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12 max-w-3xl mx-auto">
         {instructors.map((inst) => (
           <div
             key={inst.name}
-            className="bg-white border border-charcoal/10 rounded-sm p-5 flex flex-col"
+            className="bg-white border border-charcoal/10 rounded-sm p-6 flex flex-col"
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-11 h-11 rounded-full bg-accent/10 text-accent flex items-center justify-center font-serif">
@@ -87,6 +64,26 @@ export default function SchedulePrivate() {
             <p className="text-sm text-muted leading-relaxed">{inst.bio}</p>
           </div>
         ))}
+      </div>
+
+      {/* Description + duration callouts */}
+      <div className="text-center mb-12">
+        <p className="text-muted text-sm max-w-lg mx-auto mb-6">
+          The most personalized Pilates experience we offer. Your instructor
+          builds every session around your body, your goals, and where you are
+          in your practice — using the full range of classical apparatus.
+        </p>
+        <div className="flex justify-center gap-8">
+          <div className="text-center">
+            <p className="text-xs text-muted">Private · 50 min</p>
+            <p className="text-[11px] text-muted/60 mt-0.5">1 student · Full apparatus</p>
+          </div>
+          <div className="w-px bg-charcoal/10" />
+          <div className="text-center">
+            <p className="text-xs text-muted">Duet · 50 min</p>
+            <p className="text-[11px] text-muted/60 mt-0.5">2 students · Full apparatus</p>
+          </div>
+        </div>
       </div>
 
       {/* CTA */}
