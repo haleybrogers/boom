@@ -6,7 +6,7 @@
 export type EventCategory = "soft-opening" | "around-town";
 
 export const CATEGORY_LABELS: Record<EventCategory, string> = {
-  "soft-opening": "Soft Opening · In the new space",
+  "soft-opening": "Soft Opening",
   "around-town": "Around Town",
 };
 
@@ -37,4 +37,6 @@ export type EventItem = {
   featured?: boolean;    // bumps it into the top featured row
   heroNote?: string;     // italic tagline shown on featured cards + modal
   details?: EventDetail[]; // detail tiles in the modal
+  partLabel?: string;    // "Part 1 of 3" — shown on cards + modal for series classes
+  image?: string;        // /public path — shown as hero strip in modal (and card if featured)
 };

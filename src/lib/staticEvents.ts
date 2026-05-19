@@ -23,6 +23,7 @@ export const staticEvents: EventItem[] = [
     action: { type: "rsvp-party" },
     featured: true,
     heroNote: "You're invited.",
+    image: "/photo-sisters.jpg",
     details: [
       { label: "What to wear", value: "Cocktail / party" },
       { label: "Food & drink", value: "Light bites and spritzes" },
@@ -46,6 +47,7 @@ export const staticEvents: EventItem[] = [
     },
     featured: true,
     heroNote: "Workshop · Pop-up event.",
+    image: "/photo-leg.jpg",
     details: [
       { label: "The mat", value: "30-minute open-level class to start" },
       { label: "The craft", value: "Hand-shaped, gesso-primed Baltic birch boomerang to paint & take home" },
@@ -60,9 +62,11 @@ export const staticEvents: EventItem[] = [
     category: "soft-opening",
     description:
       "The original 34-exercise mat sequence — breath, center, and flow, exactly as written. First class in the 3-Part Mat Series: no straps, no springs, no limits.",
-    shortDescription: "3-Part Mat Series · No straps. No springs. No limits.",
+    shortDescription: "No straps. No springs. No limits.",
     location: "345 W Main St, Durham, NC",
     price: "Suggested $20",
+    partLabel: "Part 1 of 3 · Mat Series",
+    image: "/photo-mat-2.jpg",
     action: {
       type: "info-only",
       note: "Suggested $20 per class or $55 for all three. Booking opens in Momence soon.",
@@ -76,9 +80,11 @@ export const staticEvents: EventItem[] = [
     category: "soft-opening",
     description:
       "Classical mat with the Magic Circle — a small ring that turns every cue into a felt sensation. Second class in the 3-Part Mat Series.",
-    shortDescription: "3-Part Mat Series · The Magic Circle entry point.",
+    shortDescription: "The Magic Circle entry point.",
     location: "345 W Main St, Durham, NC",
     price: "Suggested $20",
+    partLabel: "Part 2 of 3 · Mat Series",
+    image: "/photo-mat-2.jpg",
     action: {
       type: "info-only",
       note: "Suggested $20 per class or $55 for all three. Booking opens in Momence soon.",
@@ -92,9 +98,11 @@ export const staticEvents: EventItem[] = [
     category: "soft-opening",
     description:
       "Reformer exercises adapted to the mat — a preview of the apparatus work, no equipment required. Final class in the 3-Part Mat Series.",
-    shortDescription: "3-Part Mat Series · Reformer work, no equipment required.",
+    shortDescription: "Reformer work, no equipment required.",
     location: "345 W Main St, Durham, NC",
     price: "Suggested $20",
+    partLabel: "Part 3 of 3 · Mat Series",
+    image: "/photo-reformer.jpg",
     action: {
       type: "info-only",
       note: "Suggested $20 per class or $55 for all three. Booking opens in Momence soon.",
@@ -111,6 +119,7 @@ export const staticEvents: EventItem[] = [
     shortDescription: "Mat class, matcha, and a peek at the Gratz apparatus.",
     location: "345 W Main St, Durham, NC",
     price: "Free",
+    image: "/photo-apparatus.jpg",
     action: {
       type: "info-only",
       note: "15 apparatus demo slots — booking opens in Momence soon.",

@@ -7,6 +7,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import type { EventItem, EventCategory } from "@/lib/eventTypes";
 import { CATEGORY_LABELS } from "@/lib/eventTypes";
 import ContactForm from "./ContactForm";
@@ -76,37 +77,51 @@ function FeaturedCard({
     <button
       type="button"
       onClick={onClick}
-      className="group text-left flex flex-col bg-warm-white border-2 border-accent/25 rounded-sm overflow-hidden p-7 md:p-9 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
+      className="group text-left flex flex-col bg-warm-white border-2 border-accent/25 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
     >
-      <div className="flex items-start justify-between mb-6">
-        <div className="flex flex-col">
-          <span className="text-[10px] tracking-[0.3em] text-accent uppercase">
-            {date.weekday}
+      {/* Image strip — featured events only */}
+      {event.image && (
+        <div className="relative w-full aspect-[16/9] overflow-hidden">
+          <Image
+            src={event.image}
+            alt={event.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      )}
+      <div className="flex flex-col p-7 md:p-9 flex-1">
+        <div className="flex items-start justify-between mb-6">
+          <div className="flex flex-col">
+            <span className="text-[10px] tracking-[0.3em] text-accent uppercase">
+              {date.weekday}
+            </span>
+            <span className="font-serif text-4xl md:text-5xl text-charcoal leading-none mt-1">
+              {date.month} {date.day}
+            </span>
+          </div>
+          <CategoryPill category={event.category} />
+        </div>
+        <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal leading-tight mb-2">
+          {event.title}
+        </h3>
+        {event.heroNote && (
+          <p className="font-serif italic text-sm text-charcoal/60 mb-4">
+            {event.heroNote}
+          </p>
+        )}
+        <p className="text-sm text-muted leading-relaxed mb-6 flex-1">
+          {event.shortDescription || event.description}
+        </p>
+        <div className="flex items-center justify-between pt-4 border-t border-charcoal/10">
+          <span className="text-xs text-muted">
+            {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
           </span>
-          <span className="font-serif text-4xl md:text-5xl text-charcoal leading-none mt-1">
-            {date.month} {date.day}
+          <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+            Details →
           </span>
         </div>
-        <CategoryPill category={event.category} />
-      </div>
-      <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal leading-tight mb-2">
-        {event.title}
-      </h3>
-      {event.heroNote && (
-        <p className="font-serif italic text-sm text-charcoal/60 mb-4">
-          {event.heroNote}
-        </p>
-      )}
-      <p className="text-sm text-muted leading-relaxed mb-6 flex-1">
-        {event.shortDescription || event.description}
-      </p>
-      <div className="flex items-center justify-between pt-4 border-t border-charcoal/10">
-        <span className="text-xs text-muted">
-          {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
-        </span>
-        <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-          Details →
-        </span>
       </div>
     </button>
   );
@@ -124,35 +139,54 @@ function EventCard({
     <button
       type="button"
       onClick={onClick}
-      className="group text-left flex flex-col bg-white border border-charcoal/10 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
+      className="group text-left flex flex-col bg-white border border-charcoal/10 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-baseline gap-2">
-          <span className="text-[10px] tracking-[0.25em] text-accent uppercase">
-            {date.weekday}
+      {/* Optional small image strip */}
+      {event.image && (
+        <div className="relative w-full aspect-[16/9] overflow-hidden">
+          <Image
+            src={event.image}
+            alt={event.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        </div>
+      )}
+      <div className="flex flex-col p-6 flex-1">
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex items-baseline gap-2">
+            <span className="text-[10px] tracking-[0.25em] text-accent uppercase">
+              {date.weekday}
+            </span>
+            <span className="font-serif text-lg text-charcoal">
+              {date.month} {date.day}
+            </span>
+          </div>
+          <CategoryPill category={event.category} />
+        </div>
+        {event.partLabel && (
+          <p className="text-[10px] tracking-[0.2em] uppercase text-accent/80 mb-2">
+            {event.partLabel}
+          </p>
+        )}
+        <h3 className="font-serif text-lg font-light text-charcoal leading-snug mb-2">
+          {event.title}
+        </h3>
+        {event.shortDescription && (
+          <p className="text-xs text-muted leading-relaxed mb-4 flex-1">
+            {event.shortDescription}
+          </p>
+        )}
+        {!event.shortDescription && <div className="flex-1" />}
+        <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
+          <span className="text-xs text-muted">
+            {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
           </span>
-          <span className="font-serif text-lg text-charcoal">
-            {date.month} {date.day}
+          <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+            Details →
           </span>
         </div>
-        <CategoryPill category={event.category} />
-      </div>
-      <h3 className="font-serif text-lg font-light text-charcoal leading-snug mb-2">
-        {event.title}
-      </h3>
-      {event.shortDescription && (
-        <p className="text-xs text-muted leading-relaxed mb-4 flex-1">
-          {event.shortDescription}
-        </p>
-      )}
-      {!event.shortDescription && <div className="flex-1" />}
-      <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
-        <span className="text-xs text-muted">
-          {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
-        </span>
-        <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-          Details →
-        </span>
       </div>
     </button>
   );
@@ -179,7 +213,7 @@ function EventDetailModal({
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-charcoal/40 hover:text-charcoal transition-colors z-10"
+          className="absolute top-4 right-4 text-charcoal/40 hover:text-charcoal transition-colors z-20 bg-white/80 backdrop-blur-sm rounded-full p-1.5"
           aria-label="Close"
         >
           <svg
@@ -196,6 +230,20 @@ function EventDetailModal({
             />
           </svg>
         </button>
+
+        {/* Hero image — only shown in details view, not in RSVP form view */}
+        {event.image && !showRsvp && (
+          <div className="relative w-full aspect-[16/9] overflow-hidden">
+            <Image
+              src={event.image}
+              alt={event.title}
+              fill
+              className="object-cover"
+              sizes="512px"
+              priority
+            />
+          </div>
+        )}
 
         <div className="px-7 sm:px-9 py-9">
           {/* If we're in RSVP mode, swap the body for the form. */}
@@ -224,8 +272,13 @@ function EventDetailModal({
             </>
           ) : (
             <>
-              <div className="mb-5">
+              <div className="mb-5 flex flex-wrap items-center gap-2">
                 <CategoryPill category={event.category} />
+                {event.partLabel && (
+                  <span className="text-[9px] tracking-[0.25em] uppercase border border-charcoal/15 text-charcoal/60 bg-white rounded-full px-2.5 py-1">
+                    {event.partLabel}
+                  </span>
+                )}
               </div>
               <p className="text-xs tracking-widest uppercase text-accent mb-3">
                 {formatFullDate(event.dateTime)}

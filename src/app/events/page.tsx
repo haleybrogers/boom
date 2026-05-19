@@ -1,3 +1,4 @@
+import Image from "next/image";
 import EventsCalendar from "@/components/EventsCalendar";
 import ContactFormModal from "@/components/ContactFormModal";
 
@@ -41,6 +42,22 @@ export default function Events() {
           >
             Tap any event for full details and to RSVP or book.
           </p>
+        </div>
+      </section>
+
+      {/* Wide hero image — cinematic break between header + calendar */}
+      <section className="pb-16 lg:pb-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm">
+            <Image
+              src="/photo-events-bg.jpg"
+              alt="Boomerang Pilates studio space"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1152px"
+            />
+          </div>
         </div>
       </section>
 
