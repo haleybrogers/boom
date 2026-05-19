@@ -72,9 +72,7 @@ function formatTimeRange(iso: string, durationMin: number): string {
 }
 
 function priceLabel(p: number | null): string {
-  // Pop-ups are free entry with a suggested donation — phrase it that way
-  // rather than just "Free" so attendees know support is welcome.
-  if (p === null || p === 0) return "Donation suggested";
+  if (p === null || p === 0) return "Free";
   return `$${p}`;
 }
 
