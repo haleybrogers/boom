@@ -4,26 +4,18 @@ import { useEffect } from "react";
 
 // Inline variant of the Momence host-schedule plugin.
 //
-// History of pain:
-//  - Momence's plugin renders its widget into <div id="momence-plugin-host-schedule">
-//    which it appends to <body>, NOT into our <div id="ribbon-schedule"> placeholder.
-//  - The plugin script (an ES module) only initialises once per module load.
-//  - On Next.js soft-nav between pages, React removes the slot div (and the widget
-//    inside it) — but the module stays loaded, so the next mount finds nothing
-//    and the schedule renders empty.
+// Lessons learned the hard way:
+//  - Cache-busting the script URL (?t=Date.now()) breaks the Momence plugin:
+//    it ends up reading host_id as NaN and hits a 404 on the API. So we
+//    load the canonical URL only.
+//  - Cleanup-on-unmount (removing the widget + script) was causing the
+//    schedule to never load on re-entry. Dropped.
 //
-// The earlier "stash widget back to <body> on unmount" approach was fragile —
-// race conditions between React DOM removal and useEffect cleanup meant the
-// widget was sometimes already gone by the time cleanup ran, leaving the user
-// with a blank schedule.
-//
-// This version is the brute-force-reliable approach:
-//   on every mount: nuke any leftover widget+script, then inject a fresh
-//   cache-busted module URL so the plugin re-initialises from scratch.
-//   on unmount: remove widget+script so the next mount starts clean.
-//
-// Costs a few ms re-fetch per visit (Momence's script is small) in exchange
-// for the schedule actually being there every single time.
+// Every link to /schedule is now a hard <a> nav (see Navigation,
+// StickyCTA, OfferingCards, NewToPilates), which means every visit is a
+// fresh page load — fresh DOM, fresh script load, fresh widget. The
+// component below just needs to be simple: inject the script once,
+// relocate the widget into the slot when it appears, done.
 
 const SCRIPT_ID = "momence-host-schedule";
 const PLUGIN_SRC = "https://momence.com/plugin/host-schedule/host-schedule.js";
@@ -50,38 +42,30 @@ function relocateWidget(): boolean {
   return false;
 }
 
-function cleanup() {
-  document.getElementById(WIDGET_ID)?.remove();
-  document.getElementById(SCRIPT_ID)?.remove();
-}
-
 export default function MomenceScheduleInline() {
   useEffect(() => {
-    // Nuke any stale widget + script from a prior mount.
-    cleanup();
+    // Widget already exists in DOM (e.g., the rare soft-nav case)? Just move it.
+    if (relocateWidget()) return;
 
-    // Set up the relocator FIRST so it catches the widget the instant
-    // the plugin creates it.
+    // Watch for the widget element to appear so we can pull it into the slot.
     const observer = new MutationObserver(() => {
       if (relocateWidget()) observer.disconnect();
     });
     observer.observe(document.body, { childList: true });
 
-    // Inject a fresh script with a cache-busted URL so the ES module
-    // re-executes (browsers cache modules by URL, so the same URL won't
-    // re-run on subsequent loads).
-    const script = document.createElement("script");
-    script.id = SCRIPT_ID;
-    script.async = true;
-    script.type = "module";
-    script.src = `${PLUGIN_SRC}?t=${Date.now()}`;
-    Object.entries(PLUGIN_ATTRS).forEach(([k, v]) => script.setAttribute(k, v));
-    document.body.appendChild(script);
+    // Inject the plugin script ONCE per page load. Don't cache-bust — the
+    // plugin doesn't tolerate it (reads host_id as NaN with a query param).
+    if (!document.getElementById(SCRIPT_ID)) {
+      const script = document.createElement("script");
+      script.id = SCRIPT_ID;
+      script.async = true;
+      script.type = "module";
+      script.src = PLUGIN_SRC;
+      Object.entries(PLUGIN_ATTRS).forEach(([k, v]) => script.setAttribute(k, v));
+      document.body.appendChild(script);
+    }
 
-    return () => {
-      observer.disconnect();
-      cleanup();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
