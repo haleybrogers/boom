@@ -50,11 +50,6 @@ const faqs = [
       "Yes — and if you're a founding member, your first three months come with a bring-a-friend pass: bring a friend to any mat class, free.",
   },
   {
-    question: "Where are you located? Where do I park?",
-    answer:
-      "343 W Main St, Unit 2 (upstairs) in Downtown Durham, NC. Parking details coming — we'll update this once we've mapped the closest options.",
-  },
-  {
     question: "What's a founding membership?",
     answer:
       "Only 15 people lock in our $199/mo unlimited mat rate — and that rate never goes up as long as your membership stays active. Cancel or pause and you lose it. Founding-rate packs (privates and duets) are available to anyone who buys before July 15.",

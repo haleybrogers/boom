@@ -30,7 +30,8 @@ export default function StickyCTA() {
           : "opacity-0 translate-y-4 pointer-events-none"
       }`}
     >
-      <Link
+      {/* Hard nav: /schedule needs full reload — Momence plugin state survives soft nav */}
+      <a
         href="/schedule"
         className="btn-animated flex items-center gap-2.5 bg-accent text-white text-xs tracking-widest uppercase px-5 py-3.5 shadow-lg hover:bg-accent/90 transition-colors"
       >
@@ -38,7 +39,7 @@ export default function StickyCTA() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
         {isFridayEvening ? "You survived. Come move." : SHOW_FOUNDING ? "Become a Founding Member" : "Book a Class"}
-      </Link>
+      </a>
     </div>
   );
 }

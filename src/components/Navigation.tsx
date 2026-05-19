@@ -10,11 +10,20 @@ type NavChild = {
   label: string;
   description: string;
   image: string;
+  /**
+   * If true, navigate by hard reload (regular <a>) instead of <Link>.
+   * Used for /schedule because Momence's host-schedule plugin keeps
+   * internal state that doesn't reset on soft-nav — even re-injecting
+   * a cache-busted script — so the only reliable fix is a full page
+   * load every time you land on the schedule.
+   */
+  hardNav?: boolean;
 };
 
 type NavItem = {
   label: string;
   href?: string;
+  hardNav?: boolean;
   children?: NavChild[];
 };
 
@@ -28,6 +37,7 @@ const navLinks: NavItem[] = [
         label: "Schedule",
         description: "Group mat + apparatus classes",
         image: "/nav-schedule.jpg",
+        hardNav: true,
       },
       {
         href: "/privates",
@@ -44,8 +54,8 @@ const navLinks: NavItem[] = [
     ],
   },
   { href: "/events", label: "Workshops + Events" },
-  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
+  { href: "/faq", label: "FAQ" },
 ];
 
 export default function Navigation() {
@@ -198,29 +208,51 @@ export default function Navigation() {
                       }`}
                     >
                       <div className="w-[300px] bg-cream border border-charcoal/10 rounded-sm shadow-xl overflow-hidden">
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={() => {
-                              setOpenDropdown(null);
-                              window.scrollTo({ top: 0, behavior: "instant" });
-                            }}
-                            className="group flex items-center justify-between gap-3 px-5 py-3.5 border-b border-charcoal/5 last:border-b-0 hover:bg-accent/5 transition-colors"
-                          >
-                            <div className="flex-1 min-w-0">
-                              <p className="font-serif text-base font-light text-charcoal group-hover:text-accent transition-colors leading-tight">
-                                {child.label}
-                              </p>
-                              <p className="text-xs text-muted mt-0.5">
-                                {child.description}
-                              </p>
-                            </div>
-                            <span className="text-accent/40 group-hover:text-accent transition-colors text-xs">
-                              →
-                            </span>
-                          </Link>
-                        ))}
+                        {link.children.map((child) => {
+                          const childClass =
+                            "group flex items-center justify-between gap-3 px-5 py-3.5 border-b border-charcoal/5 last:border-b-0 hover:bg-accent/5 transition-colors";
+                          const inner = (
+                            <>
+                              <div className="flex-1 min-w-0">
+                                <p className="font-serif text-base font-light text-charcoal group-hover:text-accent transition-colors leading-tight">
+                                  {child.label}
+                                </p>
+                                <p className="text-xs text-muted mt-0.5">
+                                  {child.description}
+                                </p>
+                              </div>
+                              <span className="text-accent/40 group-hover:text-accent transition-colors text-xs">
+                                →
+                              </span>
+                            </>
+                          );
+                          // hardNav child uses plain <a> so the browser does
+                          // a full page load — required for /schedule because
+                          // the Momence plugin's internal state survives
+                          // Next.js soft-nav and leaves an empty widget.
+                          return child.hardNav ? (
+                            <a
+                              key={child.href}
+                              href={child.href}
+                              className={childClass}
+                              onClick={() => setOpenDropdown(null)}
+                            >
+                              {inner}
+                            </a>
+                          ) : (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => {
+                                setOpenDropdown(null);
+                                window.scrollTo({ top: 0, behavior: "instant" });
+                              }}
+                              className={childClass}
+                            >
+                              {inner}
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -328,29 +360,48 @@ export default function Navigation() {
                       </button>
                       {expanded && (
                         <div className="flex flex-col gap-3 pl-4 border-l border-charcoal/10">
-                          {link.children.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              onClick={() => {
-                                setIsOpen(false);
-                                setMobileExpanded(null);
-                                window.scrollTo({ top: 0, behavior: "instant" });
-                              }}
-                              className="flex flex-col"
-                            >
-                              <p className={`text-xs tracking-[0.15em] uppercase ${
-                                isTransparent ? "text-white/80" : "text-charcoal/70"
-                              }`}>
-                                {child.label}
-                              </p>
-                              <p className={`text-[11px] mt-0.5 ${
-                                isTransparent ? "text-white/40" : "text-muted/70"
-                              }`}>
-                                {child.description}
-                              </p>
-                            </Link>
-                          ))}
+                          {link.children.map((child) => {
+                            const inner = (
+                              <>
+                                <p className={`text-xs tracking-[0.15em] uppercase ${
+                                  isTransparent ? "text-white/80" : "text-charcoal/70"
+                                }`}>
+                                  {child.label}
+                                </p>
+                                <p className={`text-[11px] mt-0.5 ${
+                                  isTransparent ? "text-white/40" : "text-muted/70"
+                                }`}>
+                                  {child.description}
+                                </p>
+                              </>
+                            );
+                            return child.hardNav ? (
+                              <a
+                                key={child.href}
+                                href={child.href}
+                                className="flex flex-col"
+                                onClick={() => {
+                                  setIsOpen(false);
+                                  setMobileExpanded(null);
+                                }}
+                              >
+                                {inner}
+                              </a>
+                            ) : (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                onClick={() => {
+                                  setIsOpen(false);
+                                  setMobileExpanded(null);
+                                  window.scrollTo({ top: 0, behavior: "instant" });
+                                }}
+                                className="flex flex-col"
+                              >
+                                {inner}
+                              </Link>
+                            );
+                          })}
                         </div>
                       )}
                     </div>

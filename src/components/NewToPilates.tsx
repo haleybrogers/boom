@@ -44,12 +44,13 @@ export default function NewToPilates() {
               <span className="font-serif text-2xl font-light text-charcoal">$25</span>
               <span className="text-xs text-muted">drop-in</span>
             </div>
-            <Link
+            {/* Hard nav: /schedule needs full reload — Momence plugin state */}
+            <a
               href="/schedule"
               className="btn-animated inline-block bg-charcoal text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-charcoal/85 transition-colors"
             >
               Book a Mat Class
-            </Link>
+            </a>
           </div>
 
           {/* Path 2 — Get personalized guidance */}

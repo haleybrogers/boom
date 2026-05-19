@@ -103,7 +103,7 @@ export default function SchedulePrivate() {
           rel="noopener noreferrer"
           className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
         >
-          Book on Momence
+          Book a Private
         </a>
         <p className="text-[11px] text-muted/70 mt-3">
           Opens in a new tab.

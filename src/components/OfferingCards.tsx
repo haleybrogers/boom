@@ -88,16 +88,28 @@ export default function OfferingCards() {
                 {offering.description}
               </p>
 
-              {/* Clickable class tags */}
+              {/* Clickable class tags. Mat/Apparatus targets hard-nav to
+                  /schedule because Momence plugin state survives soft nav;
+                  Privates is fine as a Next Link. */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {offering.classes.map((cls) => (
-                  <Link
-                    key={cls.name}
-                    href={offering.link}
-                    className="text-xs tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
-                  >
-                    {cls.name}
-                  </Link>
+                  offering.link === "/schedule" ? (
+                    <a
+                      key={cls.name}
+                      href={offering.link}
+                      className="text-xs tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
+                    >
+                      {cls.name}
+                    </a>
+                  ) : (
+                    <Link
+                      key={cls.name}
+                      href={offering.link}
+                      className="text-xs tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
+                    >
+                      {cls.name}
+                    </Link>
+                  )
                 ))}
               </div>
 
@@ -110,12 +122,21 @@ export default function OfferingCards() {
                   <span className="text-xs text-muted ml-2">{offering.priceNote}</span>
                 </div>
               </div>
-              <Link
-                href={offering.link}
-                className="link-arrow inline-block mt-4 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
-              >
-                {offering.linkLabel}
-              </Link>
+              {offering.link === "/schedule" ? (
+                <a
+                  href={offering.link}
+                  className="link-arrow inline-block mt-4 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                >
+                  {offering.linkLabel}
+                </a>
+              ) : (
+                <Link
+                  href={offering.link}
+                  className="link-arrow inline-block mt-4 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                >
+                  {offering.linkLabel}
+                </Link>
+              )}
             </Reveal>
           </div>
         );
