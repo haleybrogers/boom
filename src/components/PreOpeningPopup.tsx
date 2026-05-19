@@ -55,7 +55,7 @@ export default function PreOpeningPopup() {
           </h2>
           <p className="text-muted text-sm max-w-sm mx-auto leading-relaxed">
             Free and low-cost mat classes at favorite Durham spots leading up
-            to July 15. All levels welcome.
+            to July 13. All levels welcome.
           </p>
         </div>
 

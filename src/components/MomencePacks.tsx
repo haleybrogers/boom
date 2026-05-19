@@ -27,7 +27,9 @@ async function fetchMemberships(): Promise<Membership[]> {
   try {
     const res = await fetch(
       `https://api.withribbon.com/api/v1/Memberships?hostId=${HOST_ID}&token=${TOKEN}`,
-      { next: { revalidate: 300 } }
+      // 60s revalidate — when Emilie adds a new pack in Momence, it shows
+      // up on the site within a minute instead of waiting on a longer cache.
+      { next: { revalidate: 60 } }
     );
     if (!res.ok) return [];
     const data = (await res.json()) as unknown;

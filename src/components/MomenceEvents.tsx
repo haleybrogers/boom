@@ -1,6 +1,6 @@
 // Server component — live event cards from the Momence /Events endpoint.
 // Same pattern as MomencePacks: fetch on the server so the token stays out
-// of the browser, 5-min revalidate.
+// of the browser, 60s revalidate so new events show up fast.
 //
 // Each card links to the event's individual Momence page (the API returns
 // `link` = `https://momence.com/s/{id}` which resolves to the slug-based
@@ -30,7 +30,9 @@ async function fetchEvents(): Promise<MomenceEvent[]> {
   try {
     const res = await fetch(
       `https://api.withribbon.com/api/v1/Events?hostId=${HOST_ID}&token=${TOKEN}`,
-      { next: { revalidate: 300 } }
+      // 60s revalidate — matches MomencePacks so new events appear within
+      // a minute of Emilie adding them in Momence.
+      { next: { revalidate: 60 } }
     );
     if (!res.ok) return [];
     const data = (await res.json()) as unknown;

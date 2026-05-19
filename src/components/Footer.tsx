@@ -69,7 +69,7 @@ export default function Footer() {
 
           {/* Review CTA — soft serif pill to match Class Guide */}
           <a
-            href="https://g.page/r/CQWrXJSRt6FKEBM/review"
+            href="https://g.page/r/CQWrXJSRt6FKEAE/review"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2.5 bg-cream border border-accent/20 pl-3 pr-4 py-2 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-accent/40 transition-all duration-300"
@@ -96,7 +96,7 @@ export default function Footer() {
             {eggHover ? (
               <span className="text-accent/80">Est. 2026. But the method? 1920.</span>
             ) : (
-              <>&copy; {new Date().getFullYear()} Boomerang Pilates · 343 W Main St, Unit 2 (upstairs), Durham, NC</>
+              <>&copy; {new Date().getFullYear()} Boomerang Pilates · 345 W Main St, Unit 2 (upstairs), Durham, NC</>
             )}
           </p>
         </div>

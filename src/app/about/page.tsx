@@ -53,7 +53,7 @@ export default function About() {
                   src="/emilie-young.jpg"
                   alt="Emilie Young"
                   fill
-                  className="object-cover object-[center_20%] grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+                  className="object-cover object-[center_20%]"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
@@ -85,7 +85,7 @@ export default function About() {
                   src="/annie-young.jpg"
                   alt="Annie Young"
                   fill
-                  className="object-cover object-[center_20%] grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+                  className="object-cover object-[center_20%]"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
@@ -141,7 +141,7 @@ export default function About() {
           </h2>
           <p className="text-muted text-base leading-relaxed mb-8 max-w-md mx-auto">
             We&apos;re hosting free pop-up classes at favorite Durham spots
-            until the doors open July 15. Bring a mat. Bring a friend.
+            until the doors open July 13. Bring a mat. Bring a friend.
           </p>
           <Link
             href="/events"

@@ -44,12 +44,12 @@ export default function FaqPage() {
               The Studio
             </p>
             <a
-              href="https://maps.google.com/?q=343+W+Main+St+Durham+NC"
+              href="https://maps.google.com/?q=345+W+Main+St+Durham+NC"
               target="_blank"
               rel="noopener noreferrer"
               className="font-serif text-xl md:text-2xl font-light text-charcoal hover:text-accent transition-colors leading-snug"
             >
-              343 W Main St, Unit 2 (upstairs)
+              345 W Main St, Unit 2 (upstairs)
               <br />
               Durham, NC 27701
             </a>
@@ -63,9 +63,9 @@ export default function FaqPage() {
                 Where to park
               </h3>
               <p className="text-base text-muted leading-relaxed">
-                Parking details coming soon. We&apos;ll update this section
-                with the closest paid lots, free street parking windows, and
-                the spots within easy walking distance once we have them mapped.
+                Free street parking along Ramseur St. Paid parking in the lot
+                directly behind the studio and in the Five Points parking
+                deck. Paid spots on W. Main St too.
               </p>
             </div>
 
@@ -85,9 +85,10 @@ export default function FaqPage() {
                 When you arrive
               </h3>
               <p className="text-base text-muted leading-relaxed">
-                Look for Unit 2 — we&apos;re on the second floor. Arrive 5–10
-                minutes before your first class so we can show you around, get
-                you set up with props, and answer anything before we start.
+                We&apos;re upstairs — top of the stairs, door on the left.
+                Arrive 10–15 minutes before your first class so you have time
+                to park, get settled, get set up with props, and meet your
+                instructor before we start.
               </p>
             </div>
           </div>

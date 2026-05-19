@@ -45,17 +45,15 @@ export default function Events() {
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mb-6 animate-fade-up" style={{ animationDelay: "0.8s" }} />
           <p className="text-white/75 text-base leading-relaxed mb-10 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.95s" }}>
-            Two nights after we open, we&apos;re throwing a party. Studio tours, equipment demos,
+            Five nights after we open, we&apos;re throwing a party. Studio tours, equipment demos,
             and a chance to meet the Boomerang community before the schedule fills up.
           </p>
 
-          {/* Date card */}
-          <div className="relative inline-block mb-8 animate-fade-up" style={{ animationDelay: "1.1s" }}>
-            <div className="inline-flex items-center gap-3 border border-white/15 rounded-sm px-8 py-5 bg-white/5 backdrop-blur-sm animate-float-slow">
-              <div className="text-center">
-                <p className="font-serif text-2xl text-white mb-1">Friday, July 17, 2026</p>
-                <p className="text-xs text-white/60 tracking-widest uppercase">[TIME TBD] · 343 W Main St, Unit 2 (upstairs) · Durham, NC</p>
-              </div>
+          {/* Date card — centered, no float animation (was visually uneven before) */}
+          <div className="flex justify-center mb-8 animate-fade-up" style={{ animationDelay: "1.1s" }}>
+            <div className="border border-white/15 rounded-sm px-8 py-5 bg-white/5 backdrop-blur-sm text-center">
+              <p className="font-serif text-2xl text-white mb-1">Saturday, July 18, 2026</p>
+              <p className="text-xs text-white/60 tracking-widest uppercase">5–8 PM · 345 W Main St, Unit 2 (upstairs) · Durham, NC</p>
             </div>
           </div>
 
@@ -63,15 +61,15 @@ export default function Events() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "1.2s" }}>
             <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
               <p className="text-[10px] tracking-[0.25em] uppercase text-cream/90 mb-2">What to wear</p>
-              <p className="text-sm text-white/80 leading-relaxed">Cocktail / cute casual</p>
+              <p className="text-sm text-white/80 leading-relaxed">Cocktail / party</p>
             </div>
             <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
               <p className="text-[10px] tracking-[0.25em] uppercase text-cream/90 mb-2">Food &amp; drink</p>
-              <p className="text-sm text-white/80 leading-relaxed">Light bites, wine, beer, NA options</p>
+              <p className="text-sm text-white/80 leading-relaxed">Light bites and spritzes</p>
             </div>
             <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-sm px-4 py-5 text-left">
               <p className="text-[10px] tracking-[0.25em] uppercase text-cream/90 mb-2">How long</p>
-              <p className="text-sm text-white/80 leading-relaxed">Studio tours, equipment demos, mingle with the Boomerang community</p>
+              <p className="text-sm text-white/80 leading-relaxed">3 hours · studio tours, demos, meet the team. Limited tote bags printed on site by Inkfinity Printing — first come, first served.</p>
             </div>
           </div>
 
@@ -85,13 +83,56 @@ export default function Events() {
           </div>
 
           <p className="text-xs text-white/60 max-w-sm mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: "1.35s" }}>
-            The studio officially opens Wednesday, July 15.
+            The studio officially opens Monday, July 13.
           </p>
         </div>
       </section>
 
-      {/* Founders' Series — 3-part pay-what-you-can fundraiser */}
+      {/* 3-Part Soft Launch Mat Series — June series, pay-what-you-can suggestions */}
       <section className="py-24 lg:py-32 bg-warm-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12 reveal">
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">3-Part Mat Series · June</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
+              No straps. No springs. No limits.
+            </h2>
+            <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
+              Three Saturday mornings in June — one method, three doors in. Take
+              one or take all three. Suggested $20 each, or $55 for the full series.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div className="reveal border border-charcoal/10 rounded-sm p-6 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">Sat · Jun 13 · 10:30 AM</p>
+              <h3 className="font-serif text-lg font-light text-charcoal mb-2">Classic Mat</h3>
+              <p className="text-sm text-muted leading-relaxed mb-4">The original 34-exercise mat sequence — breath, center, and flow, exactly as written.</p>
+              <p className="text-xs text-muted border-t border-charcoal/5 pt-3">Suggested $20</p>
+            </div>
+            <div className="reveal border border-charcoal/10 rounded-sm p-6 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-md" style={{ animationDelay: "0.1s" }}>
+              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">Sat · Jun 20 · 10:30 AM</p>
+              <h3 className="font-serif text-lg font-light text-charcoal mb-2">Magic Mat</h3>
+              <p className="text-sm text-muted leading-relaxed mb-4">Classical mat with the Magic Circle — a small ring that turns every cue into a felt sensation.</p>
+              <p className="text-xs text-muted border-t border-charcoal/5 pt-3">Suggested $20</p>
+            </div>
+            <div className="reveal border border-charcoal/10 rounded-sm p-6 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-md" style={{ animationDelay: "0.2s" }}>
+              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">Sat · Jun 27 · 10:30 AM</p>
+              <h3 className="font-serif text-lg font-light text-charcoal mb-2">Reformer on the Mat</h3>
+              <p className="text-sm text-muted leading-relaxed mb-4">Reformer exercises adapted to the mat — a preview of the apparatus work, no equipment required.</p>
+              <p className="text-xs text-muted border-t border-charcoal/5 pt-3">Suggested $20</p>
+            </div>
+          </div>
+
+          <div className="text-center reveal">
+            <div className="inline-block border border-accent/20 bg-accent/5 rounded-sm px-6 py-4">
+              <p className="text-sm text-charcoal">All three · suggested <span className="font-medium">$55</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pop-Up Classes — dynamic Momence event grid */}
+      <section className="py-24 lg:py-32">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
             <p className="text-xs tracking-widest uppercase text-accent mb-4">Pop-Up Classes · Around Town</p>
@@ -101,6 +142,10 @@ export default function Events() {
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
               Free and low-cost mat classes at favorite Durham spots leading up
               to opening day. All levels welcome. Tap any class to RSVP.
+            </p>
+            <p className="text-xs text-muted/80 italic mt-4 max-w-md mx-auto">
+              Note: Pilates in the Courtyard (at Cortland) and Pilates by the Pool
+              are open to residents of those apartment complexes only.
             </p>
           </div>
 
@@ -161,10 +206,16 @@ export default function Events() {
           </div>
 
           <div className="text-center reveal">
-            <div className="inline-block border border-accent/20 bg-accent/5 rounded-sm px-6 py-4 mb-6">
-              <p className="text-sm text-charcoal mb-1">Next session dates coming soon.</p>
-              <p className="text-xs text-muted">Join the waitlist to be notified when enrollment opens.</p>
-            </div>
+            <p className="text-sm text-charcoal mb-2">Next session dates coming soon.</p>
+            <p className="text-xs text-muted mb-6">Tell us which series you&apos;re eyeing — we&apos;ll be in touch when dates land.</p>
+            <ContactFormModal
+              buttonLabel="Interest Form"
+              heading="Return to Life Interest Form"
+              subhead="Which series are you interested in (Course I or Course II)? Where are you in your Pilates practice? Drop a quick note and we'll be in touch when enrollment opens."
+              source="rtl-interest"
+              sourceId={204672}
+              showMessage={true}
+            />
           </div>
         </div>
       </section>

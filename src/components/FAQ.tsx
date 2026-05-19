@@ -38,11 +38,10 @@ const faqs = [
     answer:
       "Use the schedule at the top of this page — tap any class to book directly. New here? A $25 mat drop-in is the easiest place to start.",
   },
-  // TODO: Confirm cancellation policy with Emilie — 24hr universal vs. 24/12 split.
   {
     question: "Cancellation policy?",
     answer:
-      "12 hours notice to cancel or reschedule without charge. Late cancellations and no-shows are charged the full rate (and burn a credit if you're on a pack).",
+      "24 hours notice to cancel or reschedule any lesson or class. Late cancellations and no-shows: mat members are charged the full $25 drop-in rate; if you're on a class pack, it's a $15 fee plus a burned credit.",
   },
   {
     question: "Can I bring a friend?",
@@ -52,7 +51,7 @@ const faqs = [
   {
     question: "What's a founding membership?",
     answer:
-      "Only 15 people lock in our $199/mo unlimited mat rate — and that rate never goes up as long as your membership stays active. Cancel or pause and you lose it. Founding-rate packs (privates and duets) are available to anyone who buys before July 15.",
+      "Three tiers — 4x/month, 8x/month, and Unlimited — with 15 founding spots at each tier. Founding rate is 25% off the regular membership and applies to mat classes only (can't be subbed into apparatus). Lock it in before we open and your rate never goes up as long as your membership stays active. Cancel or pause and you lose it.",
   },
 ];
 

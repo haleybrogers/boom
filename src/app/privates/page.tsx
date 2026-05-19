@@ -56,14 +56,24 @@ export default function Privates() {
               </div>
             </div>
 
-            <a
-              href={MOMENCE_APPOINTMENTS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-            >
-              Book a Private
-            </a>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={MOMENCE_APPOINTMENTS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+              >
+                Book a Private
+              </a>
+              <a
+                href={MOMENCE_APPOINTMENTS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-animated inline-block bg-warm-white border border-accent text-accent text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/5 transition-colors"
+              >
+                Book a Duet
+              </a>
+            </div>
             <p className="text-[11px] text-muted/70 mt-3">
               Opens in a new tab.
             </p>
