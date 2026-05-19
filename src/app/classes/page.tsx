@@ -1,11 +1,12 @@
 import MomenceScheduleInline from "@/components/MomenceScheduleInline";
 import FoundingPricingOverlay from "@/components/FoundingPricingOverlay";
 import SchedulePrivate from "@/components/SchedulePrivate";
-import ClassPacks from "@/components/ClassPacks";
 import ClassGuideModal from "@/components/ClassGuideModal";
 import FAQ from "@/components/FAQ";
 import ClassesPageLock from "@/components/ClassesPageLock";
 import { SHOW_FOUNDING } from "@/lib/flags";
+
+const MOMENCE_PACKS_URL = `https://momence.com/host/${process.env.NEXT_PUBLIC_MOMENCE_HOST_ID || "270195"}/memberships`;
 
 export const metadata = {
   title: "Classes",
@@ -70,10 +71,24 @@ export default function Classes() {
         <SchedulePrivate />
       </section>
 
-      {/* 4. Class Packs & Drop-Ins */}
-      <section id="packs" className="py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6">
-          <ClassPacks />
+      {/* 4. Class Packs — link out to Momence (full grid retired until
+          Emilie configures packs there; ClassPacks.tsx kept for later) */}
+      <section id="packs" className="py-16 lg:py-20">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-3">
+            Class Packs &amp; Memberships
+          </p>
+          <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-5">
+            Buy a pack or membership.
+          </h2>
+          <a
+            href={MOMENCE_PACKS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+          >
+            View on Momence
+          </a>
         </div>
       </section>
 
