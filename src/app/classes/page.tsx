@@ -17,24 +17,22 @@ export default function Classes() {
     <>
       <ClassesPageLock />
 
-      {/* 1. Schedule — widget first, header below. */}
+      {/* 1. Schedule — header on top, then widget. */}
       <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-20 lg:pb-24">
         <div className="relative max-w-5xl mx-auto px-6">
-          <MomenceScheduleInline />
-
-          <div className="max-w-2xl mx-auto text-center mt-14">
+          <div className="max-w-2xl mx-auto text-center mb-14">
             <p
               className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up"
               style={{ animationDelay: "0.05s" }}
             >
               The Schedule
             </p>
-            <h2
+            <h1
               className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up"
               style={{ animationDelay: "0.15s" }}
             >
               Book a class.
-            </h2>
+            </h1>
             <div
               className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up"
               style={{ animationDelay: "0.3s" }}
@@ -52,6 +50,8 @@ export default function Classes() {
               <ClassGuideModal />
             </div>
           </div>
+
+          <MomenceScheduleInline />
         </div>
       </section>
 
