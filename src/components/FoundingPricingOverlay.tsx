@@ -2,13 +2,12 @@
 
 import FoundingCountdown from "./FoundingCountdown";
 
-// TODO: Switch to Momence once Emilie publishes membership plans there.
-// As of 2026-05-18 the Momence Memberships API (hostId=270195) returns [] —
-// no plans configured yet — so the Arketa URL stays live to avoid sending
-// founding-member signups to an empty page. Replace with:
-//   https://momence.com/host/270195   (or the canonical membership-plan URL
-//   Momence assigns once plans are published).
-const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
+// Momence host memberships page. As of 2026-05-18 the Momence Memberships
+// API returns [] — Emilie hasn't published plans yet — but landing on
+// Momence's empty memberships page is correct (and consistent with the rest
+// of the booking flow) rather than sending people to the abandoned Arketa
+// system. The page hydrates client-side with whatever plans exist.
+const MEMBERSHIP_URL = "https://momence.com/host/270195/memberships";
 
 export default function FoundingPricingOverlay() {
   return (

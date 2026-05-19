@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 
-// TODO: Switch to Momence once class packs are published in Momence. As of
-// 2026-05-18 the Momence Products API (hostId=270195) returns [] — no packs
-// configured yet — so the Arketa URL stays live during the migration.
-const MEMBERSHIP_URL = "https://app.arketa.co/boomerangpilates/memberships";
+// Momence host memberships page — same destination as the Founding Pricing
+// CTAs. The Products API returns [] for now (no packs configured), but Momence
+// is the right place for the buttons to land.
+const MEMBERSHIP_URL = "https://momence.com/host/270195/memberships";
 
 type Pack = {
   name: string;
