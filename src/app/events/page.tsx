@@ -45,18 +45,22 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Wide hero image — cinematic break between header + calendar */}
+      {/* Wide hero image — cinematic break between header + calendar.
+          Subtle ken-burns adds life without being noisy. The fade-up
+          overlay sweeps across once on mount. */}
       <section className="pb-16 lg:pb-20">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm">
+          <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm group">
             <Image
               src="/photo-events-bg.jpg"
               alt="Boomerang Pilates studio space"
               fill
               priority
-              className="object-cover"
+              className="object-cover animate-ken-burns"
               sizes="(max-width: 768px) 100vw, 1152px"
             />
+            {/* Soft cream gradient overlay — keeps it sitting in the page palette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-warm-white/40 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
       </section>

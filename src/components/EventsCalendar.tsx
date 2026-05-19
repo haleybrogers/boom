@@ -49,7 +49,7 @@ async function fetchMomenceEvents(): Promise<EventItem[]> {
         description: e.description?.trim() || "",
         location: e.location?.trim() || "Durham, NC",
         price: e.fixedPrice && e.fixedPrice > 0 ? `$${e.fixedPrice}` : "Free",
-        action: { type: "external" as const, href: e.link, label: "Book on Momence" },
+        action: { type: "external" as const, href: e.link, label: "Reserve a Spot" },
       }));
   } catch {
     return [];

@@ -309,6 +309,36 @@ html, body {
   opacity: 1;
 }
 
+/* Ken Burns — slow ambient zoom on hero images (e.g. /events hero) */
+@keyframes ken-burns {
+  0%   { transform: scale(1)    translate(0,    0); }
+  100% { transform: scale(1.08) translate(-1%, -1%); }
+}
+.animate-ken-burns {
+  animation: ken-burns 18s ease-in-out infinite alternate;
+}
+
+/* Stagger fade-in for grid items — usage: parent gets .stagger-children,
+   children fade up sequentially based on order. Lightweight alternative
+   to wiring up IntersectionObserver per card. */
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.stagger-children > * {
+  opacity: 0;
+  animation: card-rise 0.6s ease-out forwards;
+}
+.stagger-children > *:nth-child(1)  { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2)  { animation-delay: 0.12s; }
+.stagger-children > *:nth-child(3)  { animation-delay: 0.19s; }
+.stagger-children > *:nth-child(4)  { animation-delay: 0.26s; }
+.stagger-children > *:nth-child(5)  { animation-delay: 0.33s; }
+.stagger-children > *:nth-child(6)  { animation-delay: 0.40s; }
+.stagger-children > *:nth-child(7)  { animation-delay: 0.47s; }
+.stagger-children > *:nth-child(8)  { animation-delay: 0.54s; }
+.stagger-children > *:nth-child(n+9){ animation-delay: 0.60s; }
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .animate-fade-up-lux,
@@ -316,5 +346,7 @@ html, body {
   .animate-drift-slow,
   .animate-drift-slower,
   .animate-spin-slow-60,
-  .reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .animate-ken-burns,
+  .reveal,
+  .stagger-children > * { animation: none !important; opacity: 1 !important; transform: none !important; }
 }

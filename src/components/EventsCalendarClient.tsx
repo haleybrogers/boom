@@ -92,7 +92,7 @@ function FeaturedCard({
         </div>
       )}
       <div className="flex flex-col p-7 md:p-9 flex-1">
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex items-start mb-6">
           <div className="flex flex-col">
             <span className="text-[10px] tracking-[0.3em] text-accent uppercase">
               {date.weekday}
@@ -101,7 +101,6 @@ function FeaturedCard({
               {date.month} {date.day}
             </span>
           </div>
-          <CategoryPill category={event.category} />
         </div>
         <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal leading-tight mb-2">
           {event.title}
@@ -414,13 +413,17 @@ export default function EventsCalendarClient({
     };
   }, [activeEvent]);
 
-  const visible = useMemo(
-    () => events.filter((e) => filter === "all" || e.category === filter),
+  // Featured cards (Opening Party, Craft Night) stay visible regardless
+  // of the active filter — they're the page's anchors. The filter only
+  // applies to the agenda grid below.
+  const featured = useMemo(() => events.filter((e) => e.featured), [events]);
+  const rest = useMemo(
+    () =>
+      events.filter(
+        (e) => !e.featured && (filter === "all" || e.category === filter)
+      ),
     [events, filter]
   );
-
-  const featured = visible.filter((e) => e.featured);
-  const rest = visible.filter((e) => !e.featured);
 
   if (events.length === 0) {
     return (
@@ -449,9 +452,9 @@ export default function EventsCalendarClient({
         />
       </div>
 
-      {/* Featured row — Opening Party + Craft Night get the spotlight */}
+      {/* Featured row — Opening Party + Craft Night, always visible. */}
       {featured.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 stagger-children">
           {featured.map((event) => (
             <FeaturedCard
               key={event.id}
@@ -462,9 +465,12 @@ export default function EventsCalendarClient({
         </div>
       )}
 
-      {/* Agenda — everything else, chronological */}
+      {/* Agenda — everything else, chronological, filterable */}
       {rest.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div
+          key={filter}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children"
+        >
           {rest.map((event) => (
             <EventCard
               key={event.id}
@@ -474,11 +480,9 @@ export default function EventsCalendarClient({
           ))}
         </div>
       ) : (
-        featured.length === 0 && (
-          <p className="text-center text-sm text-muted">
-            Nothing in this category yet — check back soon.
-          </p>
-        )
+        <p className="text-center text-sm text-muted py-8">
+          Nothing else in this category yet — check back soon.
+        </p>
       )}
 
       {/* Active modal — only set via client-side onClick, so we can safely
