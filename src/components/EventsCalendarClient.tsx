@@ -76,32 +76,32 @@ function FeaturedCard({
     <button
       type="button"
       onClick={onClick}
-      className="group text-left flex flex-col bg-charcoal text-white rounded-sm overflow-hidden p-7 md:p-9 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+      className="group text-left flex flex-col bg-warm-white border-2 border-accent/25 rounded-sm overflow-hidden p-7 md:p-9 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
     >
       <div className="flex items-start justify-between mb-6">
         <div className="flex flex-col">
-          <span className="text-[10px] tracking-[0.3em] text-accent/90 uppercase">
+          <span className="text-[10px] tracking-[0.3em] text-accent uppercase">
             {date.weekday}
           </span>
-          <span className="font-serif text-4xl md:text-5xl text-white leading-none mt-1">
+          <span className="font-serif text-4xl md:text-5xl text-charcoal leading-none mt-1">
             {date.month} {date.day}
           </span>
         </div>
         <CategoryPill category={event.category} />
       </div>
-      <h3 className="font-serif text-2xl md:text-3xl font-light leading-tight mb-2">
+      <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal leading-tight mb-2">
         {event.title}
       </h3>
       {event.heroNote && (
-        <p className="font-serif italic text-sm text-white/70 mb-4">
+        <p className="font-serif italic text-sm text-charcoal/60 mb-4">
           {event.heroNote}
         </p>
       )}
-      <p className="text-sm text-white/70 leading-relaxed mb-6 flex-1">
+      <p className="text-sm text-muted leading-relaxed mb-6 flex-1">
         {event.shortDescription || event.description}
       </p>
-      <div className="flex items-center justify-between pt-4 border-t border-white/10">
-        <span className="text-xs text-white/60">
+      <div className="flex items-center justify-between pt-4 border-t border-charcoal/10">
+        <span className="text-xs text-muted">
           {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
         </span>
         <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
