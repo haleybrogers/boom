@@ -1,3 +1,4 @@
+import Link from "next/link";
 import FAQ from "@/components/FAQ";
 
 export const metadata = {
@@ -89,6 +90,20 @@ export default function FaqPage() {
                 you set up with props, and answer anything before we start.
               </p>
             </div>
+          </div>
+
+          {/* Pre-opening CTA */}
+          <div className="mt-16 pt-12 border-t border-charcoal/10 text-center">
+            <p className="text-muted text-sm leading-relaxed mb-6 max-w-md mx-auto">
+              Don&apos;t want to wait until July? We&apos;re running pop-up
+              classes around town until then.
+            </p>
+            <Link
+              href="/events"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              Find a pop-up class →
+            </Link>
           </div>
         </div>
       </div>

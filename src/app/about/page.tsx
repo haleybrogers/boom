@@ -130,6 +130,28 @@ export default function About() {
         </div>
       </section>
 
+      {/* Pre-opening CTA — matches the home page energy */}
+      <section className="py-20 lg:py-24 bg-warm-white border-t border-charcoal/5">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <p className="text-xs tracking-widest uppercase text-accent mb-4">
+            Before We Open
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-6">
+            Come meet us in person.
+          </h2>
+          <p className="text-muted text-base leading-relaxed mb-8 max-w-md mx-auto">
+            We&apos;re hosting free pop-up classes at favorite Durham spots
+            until the doors open July 15. Bring a mat. Bring a friend.
+          </p>
+          <Link
+            href="/events"
+            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+          >
+            See where we&apos;re popping up →
+          </Link>
+        </div>
+      </section>
+
     </>
   );
 }
