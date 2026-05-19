@@ -35,9 +35,25 @@ function relocateWidget() {
   const slot = document.getElementById(SLOT_ID);
   if (widget && slot && widget.parentElement !== slot) {
     slot.appendChild(widget);
+    // Un-hide in case we previously stashed and hid it.
+    widget.style.display = "";
     return true;
   }
   return false;
+}
+
+// When /classes unmounts (soft nav away), the slot div gets destroyed and
+// takes the widget with it — and Momence's plugin only initialises once per
+// script load, so on next mount the slot is empty. Stash the widget back in
+// <body> while we're still attached so it survives. Hidden via display:none
+// to keep it from flashing at the bottom of other pages; relocateWidget()
+// un-hides it on the next mount.
+function stashWidget() {
+  const widget = document.getElementById(WIDGET_ID);
+  if (widget && widget.parentElement?.id === SLOT_ID) {
+    document.body.appendChild(widget);
+    widget.style.display = "none";
+  }
 }
 
 export default function MomenceScheduleInline() {
@@ -58,13 +74,18 @@ export default function MomenceScheduleInline() {
 
     // 2) Watch <body> for the widget node so we can move it into the slot
     //    the moment Momence inserts it. Once moved, disconnect.
-    if (relocateWidget()) return;
+    if (relocateWidget()) {
+      return () => stashWidget();
+    }
     const observer = new MutationObserver(() => {
       if (relocateWidget()) observer.disconnect();
     });
     observer.observe(document.body, { childList: true });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      stashWidget();
+    };
   }, []);
 
   return (

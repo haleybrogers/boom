@@ -113,6 +113,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Editorial photo moment #2 — Emilie profile, image-right, text-left */}
+      <section className="py-16 lg:py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <Reveal className="flex flex-col md:flex-row gap-8 md:gap-14 items-center">
+            <div className="w-full md:w-1/2 md:pr-4 order-2 md:order-1">
+              <p className="text-xs tracking-widest uppercase text-accent mb-4">
+                Built by Sisters
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
+                Two teachers. One method.
+              </h2>
+              <p className="text-muted text-base leading-relaxed">
+                Emilie and Annie grew up in classical Pilates and trained in
+                the direct lineage. They opened Boomerang to bring it home to
+                Durham — taught the way they were taught, by teachers who
+                still believe in the original work.
+              </p>
+            </div>
+            <div className="relative w-full md:w-1/2 aspect-[2/3] overflow-hidden order-1 md:order-2">
+              <Image
+                src="/photo-emilie-profile.jpg"
+                alt="Emilie Young, profile portrait"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* New to Pilates? */}
       <NewToPilates />
 
