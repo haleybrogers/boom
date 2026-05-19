@@ -18,18 +18,34 @@ type ContactFormProps = {
   source?: string;
   // When false, hide the multiline "Message" field (e.g. simple email capture).
   showMessage?: boolean;
+  // When true, show an optional Phone number field. Used on "Stay in the
+  // Loop" so we can text people about openings, classes, etc.
+  showPhone?: boolean;
   // Callback after a successful submit — modal wrapper uses this.
   onSuccess?: () => void;
 };
 
+// Normalize a user-typed phone to E.164. Momence's API rejects loose
+// formats; the lead-form widget uses libphonenumber internally. We're
+// simpler: strip non-digits, prefix +1 for US numbers, send.
+function normalizePhone(input: string): string {
+  const digits = input.replace(/\D/g, "");
+  if (!digits) return "";
+  if (digits.startsWith("1") && digits.length === 11) return `+${digits}`;
+  if (digits.length === 10) return `+1${digits}`;
+  return `+${digits}`;
+}
+
 export default function ContactForm({
   source = "contact",
   showMessage = true,
+  showPhone = false,
   onSuccess,
 }: ContactFormProps) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,6 +61,7 @@ export default function ContactForm({
       : `[${source}]`;
 
     try {
+      const phoneNumber = normalizePhone(phone);
       await fetch(MOMENCE_LEAD_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -52,6 +69,7 @@ export default function ContactForm({
           firstName,
           lastName,
           email,
+          ...(phoneNumber ? { phoneNumber } : {}),
           message: note,
           token: MOMENCE_LEAD_TOKEN,
           countryCode: "us",
@@ -128,6 +146,25 @@ export default function ContactForm({
           placeholder="you@email.com"
         />
       </div>
+      {showPhone && (
+        <div>
+          <label htmlFor="cf-phone" className="block text-xs tracking-widest uppercase text-muted mb-2">
+            Phone <span className="text-charcoal/30 normal-case tracking-normal">(optional)</span>
+          </label>
+          <input
+            type="tel"
+            id="cf-phone"
+            name="phone"
+            inputMode="tel"
+            autoComplete="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            disabled={loading}
+            className="w-full px-0 py-2 bg-transparent border-b border-charcoal/20 text-charcoal text-base placeholder-charcoal/30 focus:outline-none focus:border-accent transition-colors"
+            placeholder="(555) 555-5555"
+          />
+        </div>
+      )}
       {showMessage && (
         <div>
           <label htmlFor="cf-message" className="block text-xs tracking-widest uppercase text-muted mb-2">

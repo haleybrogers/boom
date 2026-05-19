@@ -156,6 +156,7 @@ export default function Home() {
             subhead="Grand opening details, new class drops, events, and the stuff we only share with our people."
             source="waitlist"
             showMessage={false}
+            showPhone={true}
           />
         </div>
       </section>
