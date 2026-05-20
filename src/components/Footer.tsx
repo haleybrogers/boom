@@ -24,10 +24,10 @@ export default function Footer() {
               Lock in your rate before we open — it never goes up. Plus invites to the soft opening and celebratory events.
             </p>
             <Link
-              href="/packs"
+              href="/founding"
               className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
             >
-              See Founding Pricing
+              See Founding Details
             </Link>
           </div>
         </div>

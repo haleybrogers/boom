@@ -108,10 +108,10 @@ export default function Home() {
                 pass. 15 founding spots at each tier.
               </p>
               <Link
-                href="/packs"
+                href="/founding"
                 className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
               >
-                See Founding Pricing
+                See Founding Details
               </Link>
             </Reveal>
           </div>

@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
   const [isFridayEvening, setIsFridayEvening] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
@@ -22,6 +23,12 @@ export default function StickyCTA() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Hard nav: /schedule needs full reload — Momence plugin state survives soft nav.
+  // On /founding itself the founding CTA would be a no-op, so push to /packs (the buy path).
+  const onFoundingPage = pathname === "/founding";
+  const foundingHref = onFoundingPage ? "/packs" : "/founding";
+  const foundingLabel = onFoundingPage ? "Lock in Founding Rate" : "Become a Founding Member";
+
   return (
     <div
       className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ${
@@ -30,16 +37,14 @@ export default function StickyCTA() {
           : "opacity-0 translate-y-4 pointer-events-none"
       }`}
     >
-      {/* Hard nav: /schedule needs full reload — Momence plugin state survives soft nav.
-          When founding is live, the CTA points to /packs (where the pricing actually is). */}
       <a
-        href={SHOW_FOUNDING && !isFridayEvening ? "/packs" : "/schedule"}
+        href={SHOW_FOUNDING && !isFridayEvening ? foundingHref : "/schedule"}
         className="btn-animated flex items-center gap-2.5 bg-accent text-white text-xs tracking-widest uppercase px-5 py-3.5 shadow-lg hover:bg-accent/90 transition-colors"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
-        {isFridayEvening ? "You survived. Come move." : SHOW_FOUNDING ? "Become a Founding Member" : "Book a Class"}
+        {isFridayEvening ? "You survived. Come move." : SHOW_FOUNDING ? foundingLabel : "Book a Class"}
       </a>
     </div>
   );
