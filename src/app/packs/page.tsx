@@ -12,9 +12,9 @@ export const metadata = {
 // Single source of truth for membership pricing. Founding rate is 25% off
 // the regular and applies only while SHOW_FOUNDING is true (pre-opening).
 const memberships = [
-  { name: "4× / Month", tagline: "Twice a week-ish", founding: 60, regular: 80 },
-  { name: "8× / Month", tagline: "The sweet spot", founding: 110, regular: 150, featured: true },
-  { name: "Unlimited", tagline: "All the mat, all the time", founding: 149, regular: 199 },
+  { name: "4× Month Mat", tagline: "Twice a week-ish", founding: 60, regular: 80 },
+  { name: "8× Month Mat", tagline: "The sweet spot", founding: 110, regular: 150, featured: true },
+  { name: "Unlimited Mat", tagline: "All the mat, all the time", founding: 149, regular: 199 },
 ];
 
 // Apparatus pricing — packs expire 6 months after purchase. Same data the
@@ -162,10 +162,10 @@ export default function Packs() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
-              02 · Membership
+              By Membership or Drop-in
             </p>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-              Membership.
+              Mat Membership.
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
               Three-month commitment. Up to four unused classes roll over each
@@ -214,7 +214,7 @@ export default function Packs() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
-              03 · By Appointment
+              By Appointment
             </p>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
               Privates, Duets &amp; Trios.
@@ -270,7 +270,7 @@ export default function Packs() {
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
-              04 · 8-Week Course Series
+              8-Week Course Series
             </p>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
               Return to Life.

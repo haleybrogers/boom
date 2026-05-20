@@ -47,8 +47,8 @@ const navLinks: NavItem[] = [
       },
       {
         href: "/packs",
-        label: "Mat Memberships",
-        description: "Mat memberships and drop-ins",
+        label: "Memberships",
+        description: "Memberships, packs, and drop-ins",
         image: "/nav-packs.jpg",
       },
     ],
