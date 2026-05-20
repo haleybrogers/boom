@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import ContactFormModal from "@/components/ContactFormModal";
-import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import Reveal from "@/components/Reveal";
@@ -145,8 +144,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Popups (founding gated behind flag). StickyCTA lives in the root layout. */}
-      {SHOW_FOUNDING && <FoundingPopup />}
+      {/* Popups — pre-opening only. FoundingPopup retired in favor of the
+          inline founding callout + the sitewide sticky CTA. */}
       <PreOpeningPopup />
     </>
   );
