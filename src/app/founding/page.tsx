@@ -29,7 +29,7 @@ const perks = [
   {
     title: "Intro Privates Bundle",
     detail:
-      "Three introductory privates for $180 — meet the apparatus with one of us before you bring it into class.",
+      "Three introductory privates for $220 — meet the apparatus with one of us before you bring it into class.",
   },
   {
     title: "Bring-a-Friend Pass",
