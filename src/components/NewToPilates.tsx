@@ -86,7 +86,7 @@ export default function NewToPilates() {
               href="/privates"
               className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors"
             >
-              Book a Private
+              Book a Session
             </Link>
           </div>
         </div>
