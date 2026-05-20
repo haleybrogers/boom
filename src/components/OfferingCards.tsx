@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import { MOMENCE_APPOINTMENTS_URL } from "@/lib/momence";
 
 const offerings = [
   {
@@ -50,8 +51,9 @@ const offerings = [
     ],
     startingPrice: "$60",
     priceNote: "duets per person · privates $110",
-    link: "/privates",
+    link: MOMENCE_APPOINTMENTS_URL,
     linkLabel: "Book a Private",
+    external: true,
   },
 ];
 
@@ -88,12 +90,22 @@ export default function OfferingCards() {
                 {offering.description}
               </p>
 
-              {/* Clickable class tags. Mat/Apparatus targets hard-nav to
-                  /schedule because Momence plugin state survives soft nav;
-                  Privates is fine as a Next Link. */}
+              {/* Clickable class tags. /schedule hard-navs (Momence plugin
+                  state survives soft nav); offerings marked `external` open
+                  Momence in a new tab; everything else is a Next Link. */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {offering.classes.map((cls) => (
-                  offering.link === "/schedule" ? (
+                  offering.external ? (
+                    <a
+                      key={cls.name}
+                      href={offering.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
+                    >
+                      {cls.name}
+                    </a>
+                  ) : offering.link === "/schedule" ? (
                     <a
                       key={cls.name}
                       href={offering.link}
@@ -122,7 +134,16 @@ export default function OfferingCards() {
                   <span className="text-xs text-muted ml-2">{offering.priceNote}</span>
                 </div>
               </div>
-              {offering.link === "/schedule" ? (
+              {offering.external ? (
+                <a
+                  href={offering.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-arrow inline-block mt-4 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                >
+                  {offering.linkLabel}
+                </a>
+              ) : offering.link === "/schedule" ? (
                 <a
                   href={offering.link}
                   className="link-arrow inline-block mt-4 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"

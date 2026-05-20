@@ -10,10 +10,10 @@
 export const MOMENCE_HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
 export const MOMENCE_API_TOKEN = process.env.MOMENCE_API_TOKEN || "da1030e20e";
 
-// Per-host appointments URL — used by /privates for single sessions. The
-// 302-redirects to the slug-based reservation page so we don't have to
-// hard-code the slug.
-export const MOMENCE_APPOINTMENTS_URL = `https://momence.com/appointments/${MOMENCE_HOST_ID}`;
+// Per-host appointment-reservation URL — direct slug form (vs the
+// `/appointments/{id}` 302-redirect, which lands on a less-functional
+// page). If the studio slug changes in Momence, update both halves below.
+export const MOMENCE_APPOINTMENTS_URL = `https://momence.com/Boomerang-Pilates/appointment-reservation/${MOMENCE_HOST_ID}`;
 
 export type Membership = {
   id: number;
