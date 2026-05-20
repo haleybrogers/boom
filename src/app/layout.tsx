@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import EarlyBirdBanner from "@/components/EarlyBirdBanner";
+import StickyCTA from "@/components/StickyCTA";
 import { Analytics } from "@vercel/analytics/next";
 
 const cormorant = Cormorant({
@@ -61,6 +62,7 @@ export default function RootLayout({
         <EarlyBirdBanner />
         <main className="flex-1">{children}</main>
         <Footer />
+        <StickyCTA />
         <Analytics />
       </body>
     </html>

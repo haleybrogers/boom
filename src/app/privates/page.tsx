@@ -143,6 +143,20 @@ export default function Privates() {
           <p className="text-center text-xs text-muted/80 italic mt-8">
             Founding Members: 3-pack of introductory privates available for $180.
           </p>
+
+          <div className="text-center mt-10">
+            <a
+              href={`https://momence.com/host/${process.env.NEXT_PUBLIC_MOMENCE_HOST_ID || "270195"}/memberships`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              Buy a Privates Pack
+            </a>
+            <p className="text-[11px] text-muted/70 mt-3">
+              Single sessions still book through Book a Session above. Opens in a new tab.
+            </p>
+          </div>
         </div>
       </section>
     </>

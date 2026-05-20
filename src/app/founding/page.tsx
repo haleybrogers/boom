@@ -1,7 +1,6 @@
 import Image from "next/image";
 import ContactFormModal from "@/components/ContactFormModal";
 import FoundingCountdown from "@/components/FoundingCountdown";
-import MomencePacks from "@/components/MomencePacks";
 import Reveal from "@/components/Reveal";
 
 export const metadata = {
@@ -10,15 +9,63 @@ export const metadata = {
     "Become a founding member at Boomerang Pilates — 25% off mat for life, opening night invite, welcome kit, and intro privates. 15 spots per tier. Ends July 13, 2026.",
 };
 
+const MOMENCE_HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
+const MOMENCE_API_TOKEN = process.env.MOMENCE_API_TOKEN || "da1030e20e";
+const FALLBACK_BUY_URL = `https://momence.com/host/${MOMENCE_HOST_ID}/memberships`;
+
+type Membership = {
+  id: number;
+  name: string;
+  link: string;
+  isDisabled: boolean;
+  isDeleted: boolean;
+};
+
+// Fetch published memberships at request time so each tier card can deep-link
+// straight to its specific Momence purchase page. 60s revalidate so changes
+// in Momence appear on the site within a minute.
+async function fetchMemberships(): Promise<Membership[]> {
+  try {
+    const res = await fetch(
+      `https://api.withribbon.com/api/v1/Memberships?hostId=${MOMENCE_HOST_ID}&token=${MOMENCE_API_TOKEN}`,
+      { next: { revalidate: 60 } }
+    );
+    if (!res.ok) return [];
+    const data = (await res.json()) as unknown;
+    if (!Array.isArray(data)) return [];
+    return (data as Membership[]).filter((m) => !m.isDeleted && !m.isDisabled);
+  } catch {
+    return [];
+  }
+}
+
+// Match a tier card to its Momence membership by keyword. We can't rely on
+// exact name strings since Emilie may rename things in Momence — keyword match
+// is forgiving. `excludes` keeps "4× Month Mat" from accidentally matching
+// "Unlimited Mat" (which also contains "mat").
+function matchMembership(
+  memberships: Membership[],
+  keywords: string[],
+  excludes: string[] = []
+): Membership | undefined {
+  return memberships.find((m) => {
+    const n = m.name.toLowerCase();
+    return (
+      keywords.every((k) => n.includes(k.toLowerCase())) &&
+      excludes.every((x) => !n.includes(x.toLowerCase()))
+    );
+  });
+}
+
 // Mat tiers, mirrored from /packs so the two pages stay in sync.
-// Founding rate is 25% off the regular price and locks in for life
-// as long as the membership stays active.
+// `match` is the keyword pattern used to find the Momence link at runtime.
 const matMemberships = [
   {
     name: "4× Month Mat",
     tagline: "Twice a week-ish",
     founding: 60,
     regular: 80,
+    match: { keywords: ["4"], excludes: ["unlimited"] },
   },
   {
     name: "8× Month Mat",
@@ -26,12 +73,14 @@ const matMemberships = [
     founding: 110,
     regular: 150,
     featured: true,
+    match: { keywords: ["8"], excludes: ["unlimited"] },
   },
   {
     name: "Unlimited Mat",
     tagline: "All the mat, all the time",
     founding: 149,
     regular: 199,
+    match: { keywords: ["unlimited"] },
   },
 ];
 
@@ -57,7 +106,8 @@ const perks = [
   },
 ];
 
-export default function Founding() {
+export default async function Founding() {
+  const memberships = await fetchMemberships();
   return (
     <>
       {/* Hero — full-bleed Pilates photo with overlaid kicker, headline, countdown */}
@@ -207,50 +257,70 @@ export default function Founding() {
         </div>
       </section>
 
-      {/* Pricing cards — same layout as /packs */}
+      {/* Pricing cards — each links to its specific Momence purchase page */}
       <section className="bg-warm-white py-16 lg:py-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-            {matMemberships.map((m) => (
-              <div
-                key={m.name}
-                className={`flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
-                  m.featured
-                    ? "border-2 border-accent/50 shadow-sm"
-                    : "border border-charcoal/10"
-                }`}
-              >
-                {m.featured && (
-                  <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">
-                    Most popular
-                  </p>
-                )}
-                <h3 className="font-serif text-xl font-light text-charcoal mb-1">
-                  {m.name}
-                </h3>
-                <p className="text-xs text-muted mb-5">{m.tagline}</p>
+            {matMemberships.map((m) => {
+              const match = matchMembership(
+                memberships,
+                m.match.keywords,
+                m.match.excludes || []
+              );
+              const href = match?.link || FALLBACK_BUY_URL;
+              return (
+                <a
+                  key={m.name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+                    m.featured
+                      ? "border-2 border-accent/50 shadow-sm"
+                      : "border border-charcoal/10 hover:border-accent/30"
+                  }`}
+                >
+                  {m.featured && (
+                    <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">
+                      Most popular
+                    </p>
+                  )}
+                  <h3 className="font-serif text-xl font-light text-charcoal mb-1">
+                    {m.name}
+                  </h3>
+                  <p className="text-xs text-muted mb-5">{m.tagline}</p>
 
-                <div className="border-t border-charcoal/5 pt-4 mb-3">
-                  <p className="text-[10px] tracking-widest uppercase text-accent mb-1">
-                    Founding
-                  </p>
-                  <p className="font-serif text-3xl font-light text-charcoal">
-                    ${m.founding}
-                    <span className="text-sm text-muted font-sans">/mo</span>
-                  </p>
-                </div>
+                  <div className="border-t border-charcoal/5 pt-4 mb-3">
+                    <p className="text-[10px] tracking-widest uppercase text-accent mb-1">
+                      Founding
+                    </p>
+                    <p className="font-serif text-3xl font-light text-charcoal">
+                      ${m.founding}
+                      <span className="text-sm text-muted font-sans">/mo</span>
+                    </p>
+                  </div>
 
-                <div className="pt-2">
-                  <p className="text-[10px] tracking-widest uppercase text-muted mb-1">
-                    Regular
-                  </p>
-                  <p className="font-serif text-lg font-light text-muted/70 line-through decoration-accent/50 decoration-1">
-                    ${m.regular}
-                    <span className="text-xs text-muted/70 font-sans">/mo</span>
-                  </p>
-                </div>
-              </div>
-            ))}
+                  <div className="pt-2 mb-5">
+                    <p className="text-[10px] tracking-widest uppercase text-muted mb-1">
+                      Regular
+                    </p>
+                    <p className="font-serif text-lg font-light text-muted/70 line-through decoration-accent/50 decoration-1">
+                      ${m.regular}
+                      <span className="text-xs text-muted/70 font-sans">/mo</span>
+                    </p>
+                  </div>
+
+                  <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
+                    <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                      Lock in this rate
+                    </span>
+                    <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                      →
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
 
           <p className="text-center text-sm text-muted">
@@ -322,28 +392,15 @@ export default function Founding() {
         </div>
       </section>
 
-      {/* Book directly — live Momence widget pulls published memberships + packs */}
-      <section className="bg-accent/5 border-t border-accent/15 py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6 text-center">
+      {/* Closing — waitlist fallback for the not-quite-ready */}
+      <section className="bg-accent/5 border-t border-accent/15 py-16 lg:py-20">
+        <div className="max-w-xl mx-auto px-6 text-center">
           <Reveal>
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
-              Ready
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-4">
-              Become a founding member.
-            </h2>
-            <p className="text-muted text-base leading-relaxed mb-10 max-w-md mx-auto">
-              Live pricing pulled from our booking system. Pick your tier and
-              lock in your rate — we&apos;ll see you on opening night.
-            </p>
-
-            <MomencePacks />
-
-            <div className="text-xs text-muted/80 mt-10">
+            <p className="text-sm text-muted/80">
               <span>Not ready yet? </span>
               <ContactFormModal
                 buttonLabel="Join the waitlist"
-                buttonClassName="text-xs text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+                buttonClassName="text-sm text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
                 heading="Stay in the loop."
                 subhead="Grand opening details, founding spot openings, and the stuff we only share with our people."
                 source="founding-page"
@@ -351,7 +408,7 @@ export default function Founding() {
                 showMessage={false}
                 showPhone={true}
               />
-            </div>
+            </p>
           </Reveal>
         </div>
       </section>

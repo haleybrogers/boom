@@ -4,7 +4,6 @@ import ContactFormModal from "@/components/ContactFormModal";
 import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
-import StickyCTA from "@/components/StickyCTA";
 import Reveal from "@/components/Reveal";
 import FoundingCountdown from "@/components/FoundingCountdown";
 import PreOpeningPopup from "@/components/PreOpeningPopup";
@@ -141,8 +140,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sticky CTA + popups (founding gated behind flag) */}
-      <StickyCTA />
+      {/* Popups (founding gated behind flag). StickyCTA lives in the root layout. */}
       {SHOW_FOUNDING && <FoundingPopup />}
       <PreOpeningPopup />
     </>
