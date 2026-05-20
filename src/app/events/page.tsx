@@ -33,7 +33,7 @@ export default function Events() {
             className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up"
             style={{ animationDelay: "0.4s" }}
           >
-            Pop-ups around town, opening-night chaos, and the things worth showing up for.
+            Pop-ups around town, opening-night plans, and the things worth showing up for.
           </p>
           <p
             className="text-sm text-muted/80 mt-6 max-w-md mx-auto animate-fade-up"
