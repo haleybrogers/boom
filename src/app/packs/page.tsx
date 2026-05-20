@@ -276,12 +276,10 @@ export default async function Packs() {
           <p className="text-center text-sm text-muted">
             Prefer to drop in?{" "}
             <a
-              href={MOMENCE_FALLBACK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/schedule"
               className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
             >
-              Single class · <span className="text-charcoal font-medium">$25</span>
+              See the schedule · <span className="text-charcoal font-medium">$25/class</span>
             </a>
           </p>
         </div>
