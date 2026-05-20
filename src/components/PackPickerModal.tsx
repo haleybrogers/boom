@@ -152,6 +152,11 @@ function Modal({
                           </div>
                         );
                       }
+                      const perClassDivisor = size === "five" ? 5 : size === "ten" ? 10 : null;
+                      const perClass =
+                        perClassDivisor && m.price !== undefined
+                          ? Math.ceil(m.price / perClassDivisor)
+                          : null;
                       return (
                         <a
                           key={size}
@@ -163,10 +168,15 @@ function Modal({
                           <p className="text-[10px] tracking-widest uppercase text-accent mb-1">
                             {SIZE_LABELS[size]}
                           </p>
-                          <p className="font-serif text-xl font-light text-charcoal mb-2">
+                          <p className="font-serif text-xl font-light text-charcoal">
                             ${m.price}
                           </p>
-                          <span className="mt-auto text-[10px] tracking-widest uppercase text-accent/70 group-hover:text-accent transition-colors flex items-center justify-between">
+                          {perClass !== null && (
+                            <p className="text-[11px] text-muted/70 mb-2">
+                              ~${perClass}/class
+                            </p>
+                          )}
+                          <span className="mt-auto pt-2 text-[10px] tracking-widest uppercase text-accent/70 group-hover:text-accent transition-colors flex items-center justify-between">
                             <span>Buy</span>
                             <span className="group-hover:translate-x-0.5 transition-transform">
                               →

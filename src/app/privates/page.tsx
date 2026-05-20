@@ -106,31 +106,21 @@ export default async function Privates() {
 
                   <div className="space-y-3 border-t border-charcoal/5 pt-4">
                     {g.single?.price !== undefined && (
-                      <div className="flex justify-between items-baseline text-sm">
+                      <div className="flex justify-between text-sm">
                         <span className="text-muted">Single</span>
                         <span className="text-charcoal font-medium">${g.single.price}</span>
                       </div>
                     )}
                     {g.five?.price !== undefined && (
-                      <div className="flex justify-between items-baseline text-sm">
+                      <div className="flex justify-between text-sm">
                         <span className="text-muted">5-pack</span>
-                        <span className="text-right">
-                          <span className="text-charcoal font-medium">${g.five.price}</span>
-                          <span className="block text-[11px] text-muted/70">
-                            ~${Math.ceil(g.five.price / 5)}/class
-                          </span>
-                        </span>
+                        <span className="text-charcoal font-medium">${g.five.price}</span>
                       </div>
                     )}
                     {g.ten?.price !== undefined && (
-                      <div className="flex justify-between items-baseline text-sm">
+                      <div className="flex justify-between text-sm">
                         <span className="text-muted">10-pack</span>
-                        <span className="text-right">
-                          <span className="text-charcoal font-medium">${g.ten.price}</span>
-                          <span className="block text-[11px] text-muted/70">
-                            ~${Math.ceil(g.ten.price / 10)}/class
-                          </span>
-                        </span>
+                        <span className="text-charcoal font-medium">${g.ten.price}</span>
                       </div>
                     )}
                   </div>

@@ -132,6 +132,14 @@ export function tierDisplayName(t: MatTier): string {
   }
 }
 
+/** Classes per month for a known tier key — null if no fixed class count
+ *  (unlimited tiers, unknown tiers). Used to compute per-class breakdowns. */
+export function classesPerMonth(key: string): number | null {
+  if (key === "unlimited") return null;
+  const match = key.match(/^(\d+)x$/);
+  return match ? parseInt(match[1], 10) : null;
+}
+
 // ---------- Apparatus packs (privates / duets / trios) ----------
 
 export type ApparatusCategory = "private" | "duet" | "trio";

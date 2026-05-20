@@ -7,6 +7,7 @@ import {
   pairMatTiers,
   tierTagline,
   tierDisplayName,
+  classesPerMonth,
 } from "@/lib/momence";
 
 export const metadata = {
@@ -201,9 +202,18 @@ export default async function Founding() {
                 {tiers.map((t) => {
                   const founding = t.founding!;
                   const regular = t.regular;
+                  const classes = classesPerMonth(t.key);
                   const savings =
                     regular && founding.price !== undefined && regular.price !== undefined
                       ? regular.price - founding.price
+                      : null;
+                  const foundingPerClass =
+                    classes && founding.price !== undefined
+                      ? Math.ceil(founding.price / classes)
+                      : null;
+                  const regularPerClass =
+                    classes && regular?.price !== undefined
+                      ? Math.ceil(regular.price / classes)
                       : null;
                   const isFeatured = t.key === featuredKey;
                   return (
@@ -241,6 +251,11 @@ export default async function Founding() {
                           ${founding.price}
                           <span className="text-sm text-muted font-sans">/month</span>
                         </p>
+                        {foundingPerClass !== null && (
+                          <p className="text-[11px] text-muted/70 mt-0.5">
+                            ~${foundingPerClass}/class
+                          </p>
+                        )}
                         {savings !== null && savings > 0 && (
                           <p className="text-xs text-accent font-medium mt-1">
                             Save ${savings}/month
@@ -259,6 +274,11 @@ export default async function Founding() {
                             </span>
                             <span className="text-xs text-muted/70 font-sans">/month</span>
                           </p>
+                          {regularPerClass !== null && (
+                            <p className="text-[11px] text-muted/60 mt-0.5">
+                              ~${regularPerClass}/class
+                            </p>
+                          )}
                         </div>
                       )}
 

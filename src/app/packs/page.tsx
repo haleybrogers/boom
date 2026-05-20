@@ -8,6 +8,7 @@ import {
   pairMatTiers,
   tierTagline,
   tierDisplayName,
+  classesPerMonth,
   groupApparatus,
   findDropIn,
   findRtlCourses,
@@ -95,9 +96,14 @@ export default async function Packs() {
                 .map((t) => {
                   const founding = t.founding!;
                   const regular = t.regular;
+                  const classes = classesPerMonth(t.key);
                   const savings = regular && founding.price !== undefined && regular.price !== undefined
                     ? regular.price - founding.price
                     : null;
+                  const foundingPerClass =
+                    classes && founding.price !== undefined ? Math.ceil(founding.price / classes) : null;
+                  const regularPerClass =
+                    classes && regular?.price !== undefined ? Math.ceil(regular.price / classes) : null;
                   const isFeatured = t.key === featuredKey;
                   return (
                     <a
@@ -134,6 +140,11 @@ export default async function Packs() {
                           ${founding.price}
                           <span className="text-sm text-muted font-sans">/month</span>
                         </p>
+                        {foundingPerClass !== null && (
+                          <p className="text-[11px] text-muted/70 mt-0.5">
+                            ~${foundingPerClass}/class
+                          </p>
+                        )}
                         {savings !== null && savings > 0 && (
                           <p className="text-xs text-accent font-medium mt-1">
                             Save ${savings}/month
@@ -152,6 +163,11 @@ export default async function Packs() {
                             </span>
                             <span className="text-xs text-muted/70 font-sans">/month</span>
                           </p>
+                          {regularPerClass !== null && (
+                            <p className="text-[11px] text-muted/60 mt-0.5">
+                              ~${regularPerClass}/class
+                            </p>
+                          )}
                         </div>
                       )}
 
@@ -202,6 +218,9 @@ export default async function Packs() {
                 .filter((t) => t.regular)
                 .map((t) => {
                   const regular = t.regular!;
+                  const classes = classesPerMonth(t.key);
+                  const perClass =
+                    classes && regular.price !== undefined ? Math.ceil(regular.price / classes) : null;
                   const isFeatured = t.key === featuredKey;
                   return (
                     <a
@@ -235,6 +254,11 @@ export default async function Packs() {
                           ${regular.price}
                           <span className="text-sm text-muted font-sans">/month</span>
                         </p>
+                        {perClass !== null && (
+                          <p className="text-[11px] text-muted/70 mt-0.5">
+                            ~${perClass}/class
+                          </p>
+                        )}
                       </div>
 
                       <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
@@ -307,31 +331,21 @@ export default async function Packs() {
 
                     <div className="space-y-2 border-t border-charcoal/5 pt-4 mb-5">
                       {g.single?.price !== undefined && (
-                        <div className="flex justify-between items-baseline text-sm">
+                        <div className="flex justify-between text-sm">
                           <span className="text-muted">Single</span>
                           <span className="text-charcoal font-medium">${g.single.price}</span>
                         </div>
                       )}
                       {g.five?.price !== undefined && (
-                        <div className="flex justify-between items-baseline text-sm">
+                        <div className="flex justify-between text-sm">
                           <span className="text-muted">5-pack</span>
-                          <span className="text-right">
-                            <span className="text-charcoal font-medium">${g.five.price}</span>
-                            <span className="block text-[11px] text-muted/70">
-                              ~${Math.ceil(g.five.price / 5)}/class
-                            </span>
-                          </span>
+                          <span className="text-charcoal font-medium">${g.five.price}</span>
                         </div>
                       )}
                       {g.ten?.price !== undefined && (
-                        <div className="flex justify-between items-baseline text-sm">
+                        <div className="flex justify-between text-sm">
                           <span className="text-muted">10-pack</span>
-                          <span className="text-right">
-                            <span className="text-charcoal font-medium">${g.ten.price}</span>
-                            <span className="block text-[11px] text-muted/70">
-                              ~${Math.ceil(g.ten.price / 10)}/class
-                            </span>
-                          </span>
+                          <span className="text-charcoal font-medium">${g.ten.price}</span>
                         </div>
                       )}
                     </div>
