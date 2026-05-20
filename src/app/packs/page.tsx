@@ -318,7 +318,7 @@ export default async function Packs() {
                           <span className="text-right">
                             <span className="text-charcoal font-medium">${g.five.price}</span>
                             <span className="block text-[11px] text-muted/70">
-                              ${Math.ceil(g.five.price / 5)}/class
+                              ~${Math.ceil(g.five.price / 5)}/class
                             </span>
                           </span>
                         </div>
@@ -329,7 +329,7 @@ export default async function Packs() {
                           <span className="text-right">
                             <span className="text-charcoal font-medium">${g.ten.price}</span>
                             <span className="block text-[11px] text-muted/70">
-                              ${Math.ceil(g.ten.price / 10)}/class
+                              ~${Math.ceil(g.ten.price / 10)}/class
                             </span>
                           </span>
                         </div>
