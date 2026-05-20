@@ -306,11 +306,8 @@ export default async function Founding() {
       <section className="py-20 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
           <Reveal>
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4 text-center">
-              The fine print
-            </p>
             <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal text-center mb-10">
-              The honest details.
+              The fine print.
             </h2>
 
             <dl className="divide-y divide-charcoal/10 border-y border-charcoal/10">
@@ -329,7 +326,7 @@ export default async function Founding() {
                 </dt>
                 <dd className="text-sm text-muted leading-relaxed">
                   15 founding members at each tier (4×, 8×, and Unlimited).
-                  45 total. First come, first locked.
+                  45 total.
                 </dd>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2 sm:gap-8 py-5">
