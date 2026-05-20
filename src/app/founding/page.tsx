@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import ContactFormModal from "@/components/ContactFormModal";
 import FoundingCountdown from "@/components/FoundingCountdown";
+import MomencePacks from "@/components/MomencePacks";
 import Reveal from "@/components/Reveal";
 
 export const metadata = {
@@ -60,11 +60,11 @@ const perks = [
 export default function Founding() {
   return (
     <>
-      {/* Hero — full-bleed founding photo with overlaid kicker, headline, countdown */}
+      {/* Hero — full-bleed Pilates photo with overlaid kicker, headline, countdown */}
       <section className="relative h-[80vh] min-h-[560px] overflow-hidden">
         <Image
-          src="/photo-founding-hero.jpg"
-          alt="Founding moments at Boomerang Pilates"
+          src="/photo-mat-2.jpg"
+          alt="Classical mat Pilates at Boomerang"
           fill
           priority
           className="object-cover"
@@ -322,29 +322,24 @@ export default function Founding() {
         </div>
       </section>
 
-      {/* Final CTA — primary lock-in via /packs, secondary waitlist */}
+      {/* Book directly — live Momence widget pulls published memberships + packs */}
       <section className="bg-accent/5 border-t border-accent/15 py-20 lg:py-28">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+        <div className="max-w-5xl mx-auto px-6 text-center">
           <Reveal>
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5">
+            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
               Ready
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-5">
-              Lock in your spot.
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-4">
+              Become a founding member.
             </h2>
-            <p className="text-muted text-base leading-relaxed mb-8 max-w-md mx-auto">
-              Live pricing pulled from our booking system. Pick a tier, lock
-              in your rate, and we&apos;ll see you on opening night.
+            <p className="text-muted text-base leading-relaxed mb-10 max-w-md mx-auto">
+              Live pricing pulled from our booking system. Pick your tier and
+              lock in your rate — we&apos;ll see you on opening night.
             </p>
 
-            <Link
-              href="/packs"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-10 py-4 hover:bg-accent/90 transition-colors mb-5"
-            >
-              See Founding Pricing
-            </Link>
+            <MomencePacks />
 
-            <div className="text-xs text-muted/80">
+            <div className="text-xs text-muted/80 mt-10">
               <span>Not ready yet? </span>
               <ContactFormModal
                 buttonLabel="Join the waitlist"

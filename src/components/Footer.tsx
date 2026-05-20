@@ -9,7 +9,7 @@ import { SHOW_FOUNDING } from "@/lib/flags";
 export default function Footer() {
   const [eggHover, setEggHover] = useState(false);
   const pathname = usePathname();
-  const showFoundingCTA = SHOW_FOUNDING && pathname !== "/";
+  const showFoundingCTA = SHOW_FOUNDING && pathname !== "/" && pathname !== "/founding";
   return (
     <footer className="border-t border-charcoal/10">
       {/* Founding member CTA — hidden on home (hero + waitlist already convert there) */}
