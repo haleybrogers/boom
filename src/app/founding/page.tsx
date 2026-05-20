@@ -371,7 +371,7 @@ export default async function Founding() {
               <ContactFormModal
                 buttonLabel="Join the waitlist"
                 buttonClassName="text-sm text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
-                heading="Stay in the loop."
+                heading="Get the scoop."
                 subhead="Grand opening details, founding spot openings, and the stuff we only share with our people."
                 source="founding-page"
                 sourceId={204540}

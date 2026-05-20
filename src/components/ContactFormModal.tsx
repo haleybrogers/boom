@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import ContactForm from "./ContactForm";
 
 // A trigger button + modal containing ContactForm. Used on the home page
-// for "Stay in the Loop" and on /events for the opening-party RSVP.
+// for "Get the Scoop" and on /events for the opening-party RSVP.
 //
 // Same pattern as ClassGuideModal — portaled to body, backdrop-click +
 // X + Esc all close, body scroll locked while open.
@@ -26,7 +26,7 @@ type ContactFormModalProps = {
 export default function ContactFormModal({
   buttonLabel,
   buttonClassName = "btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors",
-  heading = "Stay in the loop.",
+  heading = "Get the scoop.",
   subhead = "Grand opening details, new class drops, events, and the stuff we only share with our people.",
   source = "waitlist",
   sourceId,
