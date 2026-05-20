@@ -41,8 +41,8 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Lead form + photo */}
-        <div className="grid md:grid-cols-[1fr_auto] gap-10 md:gap-14 items-start mb-20">
+        {/* Lead form + photo. IG + address live in the footer — no need to repeat here. */}
+        <div className="grid md:grid-cols-[1fr_auto] gap-10 md:gap-14 items-start">
           <div className="max-w-lg w-full mx-auto md:mx-0 md:w-[420px]">
             <ContactForm source="contact" sourceId={204573} showMessage={true} />
           </div>
@@ -55,32 +55,6 @@ export default function Contact() {
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 384px"
             />
-          </div>
-        </div>
-
-        {/* Info */}
-        <div className="border-t border-charcoal/10 pt-10 space-y-6 text-center max-w-lg mx-auto">
-          <div>
-            <a
-              href="https://instagram.com/boomerangpilatesnc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-base text-charcoal hover:text-accent transition-colors"
-            >
-              @boomerangpilatesnc
-            </a>
-          </div>
-          <div>
-            <a
-              href="https://maps.google.com/?q=345+W+Main+St+Durham+NC"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-base text-charcoal hover:text-accent transition-colors leading-relaxed"
-            >
-              345 W Main St, Unit 2 (upstairs)
-              <br />
-              Durham, NC 27701
-            </a>
           </div>
         </div>
       </div>
