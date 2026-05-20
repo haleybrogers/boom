@@ -13,7 +13,7 @@ export default function About() {
       {/* Our Values — combined Method + Principles (now first) */}
       <section className="pt-24 pb-24 lg:pt-32 lg:pb-32 bg-warm-white">
         <div className="max-w-2xl mx-auto px-6 text-center mb-20">
-          <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+          <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
             Our Values
           </p>
           <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
@@ -34,7 +34,7 @@ export default function About() {
       <section className="py-20 lg:py-28">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-xs tracking-widest uppercase text-accent mb-4">Meet the Founders</p>
+            <p className="text-sm tracking-widest uppercase text-accent mb-4">Meet the Founders</p>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal mb-5">
               Built by Two Sisters
             </h2>
@@ -59,7 +59,7 @@ export default function About() {
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
                 Emilie Young
               </h3>
-              <p className="text-xs tracking-widest uppercase text-accent mb-4">
+              <p className="text-sm tracking-widest uppercase text-accent mb-4">
                 Co-Founder
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
@@ -72,7 +72,7 @@ export default function About() {
               </p>
               <Link
                 href="/privates"
-                className="inline-flex items-center gap-1 text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
+                className="inline-flex items-center gap-1 text-sm tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
               >
                 Book a Private with Emilie →
               </Link>
@@ -91,7 +91,7 @@ export default function About() {
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
                 Annie Young
               </h3>
-              <p className="text-xs tracking-widest uppercase text-accent mb-4">
+              <p className="text-sm tracking-widest uppercase text-accent mb-4">
                 Co-Founder
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
@@ -106,7 +106,7 @@ export default function About() {
               </p>
               <Link
                 href="/privates"
-                className="inline-flex items-center gap-1 text-xs tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
+                className="inline-flex items-center gap-1 text-sm tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
               >
                 Book a Private with Annie →
               </Link>
@@ -118,7 +118,7 @@ export default function About() {
       {/* Pre-opening CTA — sits above the sisters photo */}
       <section className="pt-20 lg:pt-28 pb-12 lg:pb-16 bg-warm-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">
+          <p className="text-sm tracking-widest uppercase text-accent mb-4">
             Before We Open
           </p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-6">
@@ -130,7 +130,7 @@ export default function About() {
           </p>
           <Link
             href="/events"
-            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
           >
             See where we&apos;re popping up →
           </Link>

@@ -125,7 +125,7 @@ export default function PasswordPage() {
           <button
             type="button"
             onClick={handleCheekyClick}
-            className={`block mx-auto text-[10px] tracking-[0.3em] uppercase text-accent mt-5 cursor-pointer hover:text-accent/70 transition-all duration-400 ${
+            className={`block mx-auto text-[11px] tracking-[0.3em] uppercase text-accent mt-5 cursor-pointer hover:text-accent/70 transition-all duration-400 ${
               cheekyFading ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
             }`}
             aria-label="Tap to shuffle"
@@ -160,7 +160,7 @@ export default function PasswordPage() {
                 <button
                   type="submit"
                   disabled={emailSubmitting}
-                  className="bg-accent text-white px-4 py-2 text-xs tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors disabled:opacity-50"
+                  className="bg-accent text-white px-4 py-2 text-sm tracking-widest uppercase rounded-sm hover:bg-accent/85 transition-colors disabled:opacity-50"
                 >
                   {emailSubmitting ? "..." : "Join"}
                 </button>
@@ -180,7 +180,7 @@ export default function PasswordPage() {
               value={password}
               onChange={(e) => { setPassword(e.target.value); setError(false); }}
               placeholder="Password"
-              className="flex-1 min-w-0 px-0 py-2 bg-transparent text-charcoal/70 placeholder-charcoal/25 focus:outline-none text-xs text-center"
+              className="flex-1 min-w-0 px-0 py-2 bg-transparent text-charcoal/70 placeholder-charcoal/25 focus:outline-none text-sm text-center"
               disabled={loading}
             />
             <button
@@ -195,7 +195,7 @@ export default function PasswordPage() {
             </button>
           </div>
           {error && (
-            <p className="text-xs text-accent text-center mt-3">Incorrect password.</p>
+            <p className="text-sm text-accent text-center mt-3">Incorrect password.</p>
           )}
         </form>
       </div>

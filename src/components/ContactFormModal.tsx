@@ -25,7 +25,7 @@ type ContactFormModalProps = {
 
 export default function ContactFormModal({
   buttonLabel,
-  buttonClassName = "btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors",
+  buttonClassName = "btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors",
   heading = "Get the scoop.",
   subhead = "Grand opening details, new class drops, events, and the stuff we only share with our people.",
   source = "waitlist",

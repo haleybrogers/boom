@@ -41,10 +41,10 @@ export default function EarlyBirdBanner() {
       </svg>
 
       <div className="flex-1 min-w-0">
-        <p className="text-[10px] tracking-[0.2em] uppercase text-accent mb-0.5">
+        <p className="text-[11px] tracking-[0.2em] uppercase text-accent mb-0.5">
           Up before the sun
         </p>
-        <p className="text-xs leading-snug text-charcoal/80">
+        <p className="text-sm leading-snug text-charcoal/80">
           Joseph Pilates rose at dawn for cold showers and disciplined work. You&apos;re in good company.
         </p>
       </div>

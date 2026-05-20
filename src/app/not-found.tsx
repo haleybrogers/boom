@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <section className="py-32 lg:py-40 min-h-[70vh]">
       <div className="max-w-xl mx-auto px-6 text-center">
-        <p className="text-xs tracking-widest uppercase text-accent mb-4">
+        <p className="text-sm tracking-widest uppercase text-accent mb-4">
           Error 404
         </p>
         <h1 className="font-serif text-5xl sm:text-6xl font-light text-charcoal mb-5">
@@ -17,19 +17,19 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
           <Link
             href="/"
-            className="btn-animated inline-block bg-charcoal text-white text-xs tracking-widest uppercase px-6 py-3.5 hover:bg-charcoal/85 transition-colors"
+            className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-6 py-3.5 hover:bg-charcoal/85 transition-colors"
           >
             Back to the Mat
           </Link>
           <Link
             href="/schedule"
-            className="link-arrow text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+            className="link-arrow text-sm tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
           >
             Or just book a class
           </Link>
         </div>
 
-        <p className="text-xs text-muted/50 mt-16 italic">
+        <p className="text-sm text-muted/50 mt-16 italic">
           &ldquo;In 10 sessions you&apos;ll feel the difference, in 20 you&apos;ll see the difference,
           in 30 you&apos;ll have a whole new body.&rdquo; — Joseph Pilates
           <br />

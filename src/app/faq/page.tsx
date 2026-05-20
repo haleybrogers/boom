@@ -13,7 +13,7 @@ export default function FaqPage() {
       <div className="max-w-5xl mx-auto px-6">
         {/* Heading */}
         <div className="text-center mb-12">
-          <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+          <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
             Common Questions
           </p>
           <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
@@ -30,7 +30,7 @@ export default function FaqPage() {
         {/* Visit — merged in so address/parking/getting-here lives in one place */}
         <div className="max-w-2xl mx-auto mt-20 pt-16 border-t border-charcoal/10">
           <div className="text-center mb-12">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
               Finding Us
             </p>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight">
@@ -40,7 +40,7 @@ export default function FaqPage() {
 
           {/* Address */}
           <div className="text-center mb-12 pb-12 border-b border-charcoal/10">
-            <p className="text-xs tracking-widest uppercase text-accent mb-3">
+            <p className="text-sm tracking-widest uppercase text-accent mb-3">
               The Studio
             </p>
             <a
@@ -53,7 +53,7 @@ export default function FaqPage() {
               <br />
               Durham, NC 27701
             </a>
-            <p className="text-xs text-muted mt-3">Tap the address for directions.</p>
+            <p className="text-sm text-muted mt-3">Tap the address for directions.</p>
           </div>
 
           {/* Detail blocks — placeholders Emilie can fill in */}
@@ -101,7 +101,7 @@ export default function FaqPage() {
             </p>
             <Link
               href="/events"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
             >
               Find a pop-up class →
             </Link>

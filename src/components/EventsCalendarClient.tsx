@@ -57,7 +57,7 @@ function CategoryPill({ category }: { category: EventCategory }) {
       : "border-charcoal/15 text-charcoal/60 bg-white";
   return (
     <span
-      className={`inline-block text-[9px] tracking-[0.25em] uppercase border ${color} rounded-full px-2.5 py-1`}
+      className={`inline-block text-[10px] tracking-[0.25em] uppercase border ${color} rounded-full px-2.5 py-1`}
     >
       {CATEGORY_LABELS[category]}
     </span>
@@ -81,7 +81,7 @@ function FeaturedCard({
       <div className="flex flex-col p-7 md:p-9 flex-1">
         <div className="flex items-start mb-6">
           <div className="flex flex-col">
-            <span className="text-[10px] tracking-[0.3em] text-accent uppercase">
+            <span className="text-[11px] tracking-[0.3em] text-accent uppercase">
               {date.weekday}
             </span>
             <span className="font-serif text-4xl md:text-5xl text-charcoal leading-none mt-1">
@@ -101,10 +101,10 @@ function FeaturedCard({
           {event.shortDescription || event.description}
         </p>
         <div className="flex items-center justify-between pt-4 border-t border-charcoal/10">
-          <span className="text-xs text-muted">
+          <span className="text-sm text-muted">
             {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
           </span>
-          <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+          <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
             Details →
           </span>
         </div>
@@ -130,7 +130,7 @@ function EventCard({
       <div className="flex flex-col p-6 flex-1">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-baseline gap-2">
-            <span className="text-[10px] tracking-[0.25em] text-accent uppercase">
+            <span className="text-[11px] tracking-[0.25em] text-accent uppercase">
               {date.weekday}
             </span>
             <span className="font-serif text-lg text-charcoal">
@@ -140,7 +140,7 @@ function EventCard({
           <CategoryPill category={event.category} />
         </div>
         {event.partLabel && (
-          <p className="text-[10px] tracking-[0.2em] uppercase text-accent/80 mb-2">
+          <p className="text-[11px] tracking-[0.2em] uppercase text-accent/80 mb-2">
             {event.partLabel}
           </p>
         )}
@@ -148,16 +148,16 @@ function EventCard({
           {event.title}
         </h3>
         {event.shortDescription && (
-          <p className="text-xs text-muted leading-relaxed mb-4 flex-1">
+          <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
             {event.shortDescription}
           </p>
         )}
         {!event.shortDescription && <div className="flex-1" />}
         <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
-          <span className="text-xs text-muted">
+          <span className="text-sm text-muted">
             {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
           </span>
-          <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+          <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
             Details →
           </span>
         </div>
@@ -212,7 +212,7 @@ function EventDetailModal({
               <button
                 type="button"
                 onClick={() => setShowRsvp(false)}
-                className="text-[10px] tracking-widest uppercase text-accent/70 hover:text-accent transition-colors mb-5"
+                className="text-[11px] tracking-widest uppercase text-accent/70 hover:text-accent transition-colors mb-5"
               >
                 ← Back to details
               </button>
@@ -235,12 +235,12 @@ function EventDetailModal({
               <div className="mb-5 flex flex-wrap items-center gap-2">
                 <CategoryPill category={event.category} />
                 {event.partLabel && (
-                  <span className="text-[9px] tracking-[0.25em] uppercase border border-charcoal/15 text-charcoal/60 bg-white rounded-full px-2.5 py-1">
+                  <span className="text-[10px] tracking-[0.25em] uppercase border border-charcoal/15 text-charcoal/60 bg-white rounded-full px-2.5 py-1">
                     {event.partLabel}
                   </span>
                 )}
               </div>
-              <p className="text-xs tracking-widest uppercase text-accent mb-3">
+              <p className="text-sm tracking-widest uppercase text-accent mb-3">
                 {formatFullDate(event.dateTime)}
               </p>
               <h3 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-2 leading-tight">
@@ -263,7 +263,7 @@ function EventDetailModal({
                       key={d.label}
                       className="border border-charcoal/10 bg-white rounded-sm px-4 py-3"
                     >
-                      <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-1">
+                      <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-1">
                         {d.label}
                       </p>
                       <p className="text-sm text-charcoal/80 leading-relaxed">
@@ -295,7 +295,7 @@ function EventDetailModal({
                 <button
                   type="button"
                   onClick={() => setShowRsvp(true)}
-                  className="btn-animated w-full block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+                  className="btn-animated w-full block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
                 >
                   RSVP to the Opening Party
                 </button>
@@ -305,13 +305,13 @@ function EventDetailModal({
                   href={event.action.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-animated w-full block text-center bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+                  className="btn-animated w-full block text-center bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
                 >
                   {event.action.label || "Book →"}
                 </a>
               )}
               {event.action.type === "info-only" && (
-                <p className="text-center text-xs text-muted/80 italic border-t border-charcoal/5 pt-5">
+                <p className="text-center text-sm text-muted/80 italic border-t border-charcoal/5 pt-5">
                   {event.action.note}
                 </p>
               )}
@@ -340,7 +340,7 @@ function FilterBtn({
     <button
       type="button"
       onClick={() => onClick(value)}
-      className={`text-[10px] tracking-[0.25em] uppercase border rounded-full px-3.5 py-1.5 transition-colors ${
+      className={`text-[11px] tracking-[0.25em] uppercase border rounded-full px-3.5 py-1.5 transition-colors ${
         active
           ? "border-accent text-white bg-accent"
           : "border-charcoal/15 text-charcoal/60 bg-white hover:border-accent/40 hover:text-accent"

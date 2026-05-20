@@ -23,7 +23,7 @@ export default function PricingComparison() {
             <div key={item.name} className="bg-white border border-charcoal/10 rounded-sm p-5 text-center">
               <p className="font-serif text-2xl font-light text-charcoal mb-1">{item.price}</p>
               <p className="font-serif text-sm text-charcoal mb-0.5">{item.name}</p>
-              <p className="text-[11px] text-muted">{item.detail}</p>
+              <p className="text-sm text-muted">{item.detail}</p>
             </div>
           ))}
         </div>
@@ -39,7 +39,7 @@ export default function PricingComparison() {
             <div key={course.name} className="bg-white border border-charcoal/10 rounded-sm p-5 text-center">
               <p className="font-serif text-sm text-charcoal mb-1">{course.name}</p>
               <p className="font-serif text-2xl font-light text-charcoal mb-0.5">{course.price}</p>
-              <p className="text-[11px] text-muted">{course.detail}</p>
+              <p className="text-sm text-muted">{course.detail}</p>
             </div>
           ))}
         </div>

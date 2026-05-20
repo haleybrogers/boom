@@ -89,13 +89,13 @@ export default function PilatesWisdom() {
 
   return (
     <div className="max-w-xl mx-auto px-6 text-center">
-      <p className="text-[9px] tracking-[0.3em] uppercase text-muted/50 mb-2">
+      <p className="text-[10px] tracking-[0.3em] uppercase text-muted/50 mb-2">
         Pilates Fact of the Day
       </p>
       <button
         type="button"
         onClick={shuffle}
-        className={`text-xs italic font-serif text-muted/70 hover:text-accent transition-all duration-200 cursor-pointer leading-relaxed ${
+        className={`text-sm italic font-serif text-muted/70 hover:text-accent transition-all duration-200 cursor-pointer leading-relaxed ${
           fading ? "opacity-0" : "opacity-100"
         }`}
         aria-label="Shuffle Pilates fact"

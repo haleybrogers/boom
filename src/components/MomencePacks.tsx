@@ -50,7 +50,7 @@ export default async function MomencePacks() {
         href={FALLBACK_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+        className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
       >
         Browse Packs
       </a>
@@ -90,7 +90,7 @@ export default async function MomencePacks() {
             <span className="font-serif text-2xl font-light text-charcoal">
               ${pack.price}
             </span>
-            <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+            <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
               Buy →
             </span>
           </div>

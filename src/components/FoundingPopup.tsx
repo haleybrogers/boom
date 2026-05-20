@@ -43,7 +43,7 @@ export default function FoundingPopup() {
         </button>
 
         <div className="text-center mb-7">
-          <p className="text-xs tracking-widest uppercase text-accent mb-3">Founding Member · Ends July 13</p>
+          <p className="text-sm tracking-widest uppercase text-accent mb-3">Founding Member · Ends July 13</p>
           <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-3">
             The best deal we&apos;ll ever run.
           </h2>
@@ -56,14 +56,14 @@ export default function FoundingPopup() {
           <Link
             href="/founding"
             onClick={dismiss}
-            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors mb-3"
+            className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors mb-3"
           >
             See Founding Details
           </Link>
           <div>
             <button
               onClick={dismiss}
-              className="text-xs text-muted/60 hover:text-charcoal transition-colors"
+              className="text-sm text-muted/60 hover:text-charcoal transition-colors"
             >
               Maybe later
             </button>

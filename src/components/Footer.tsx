@@ -16,7 +16,7 @@ export default function Footer() {
       {showFoundingCTA && (
         <div className="border-b border-charcoal/5 bg-cream/60">
           <div className="max-w-xl mx-auto px-6 py-14 text-center">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-3">Limited Time</p>
+            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">Limited Time</p>
             <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3">
               Be a founding member.
             </h2>
@@ -25,7 +25,7 @@ export default function Footer() {
             </p>
             <Link
               href="/founding"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
+              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
             >
               See Founding Details
             </Link>
@@ -84,12 +84,12 @@ export default function Footer() {
             <span className="font-serif italic text-sm text-charcoal group-hover:text-accent transition-colors">
               Leave us a little love
             </span>
-            <span className="text-accent/50 group-hover:text-accent transition-colors text-xs">→</span>
+            <span className="text-accent/50 group-hover:text-accent transition-colors text-sm">→</span>
           </a>
 
           {/* Copyright */}
           <p
-            className="text-xs text-muted/60 cursor-default transition-all duration-300"
+            className="text-sm text-muted/60 cursor-default transition-all duration-300"
             onMouseEnter={() => setEggHover(true)}
             onMouseLeave={() => setEggHover(false)}
           >

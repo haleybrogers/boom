@@ -214,7 +214,7 @@ export default function SixPrinciples({ embedded = false }: { embedded?: boolean
     <div ref={ref}>
       {!embedded && (
         <div className="text-center mb-14">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">The Method</p>
+          <p className="text-sm tracking-widest uppercase text-accent mb-4">The Method</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
             Six Principles. Every Class.
           </h2>
@@ -252,7 +252,7 @@ export default function SixPrinciples({ embedded = false }: { embedded?: boolean
       {unlocked && (
         <div className="mt-16 text-center animate-fade-in">
           <div className="inline-block border-t border-accent/30 pt-8 px-10">
-            <p className="text-[10px] tracking-widest uppercase text-accent mb-3">
+            <p className="text-[11px] tracking-widest uppercase text-accent mb-3">
               The Seventh Principle
             </p>
             <h3 className="font-serif text-4xl font-light text-charcoal mb-3">
@@ -263,7 +263,7 @@ export default function SixPrinciples({ embedded = false }: { embedded?: boolean
             </p>
             <a
               href="/schedule"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-6 py-3"
+              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-6 py-3"
             >
               Book a Class
             </a>

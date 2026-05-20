@@ -14,7 +14,7 @@ export default function Events() {
       <section className="relative overflow-hidden bg-warm-white pt-28 lg:pt-36 pb-16 lg:pb-20">
         <div className="relative max-w-2xl mx-auto px-6 text-center">
           <p
-            className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up"
+            className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up"
             style={{ animationDelay: "0.05s" }}
           >
             What&apos;s Coming Up
@@ -55,7 +55,7 @@ export default function Events() {
       <section className="py-24 lg:py-32 bg-warm-white border-t border-charcoal/10">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
-            <p className="text-xs tracking-widest uppercase text-accent mb-4">
+            <p className="text-sm tracking-widest uppercase text-accent mb-4">
               8-Week Course Series
             </p>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
@@ -75,7 +75,7 @@ export default function Events() {
                 <h3 className="font-serif text-xl font-light text-charcoal">Course I</h3>
                 <span className="font-serif text-2xl font-light text-charcoal">$160</span>
               </div>
-              <p className="text-xs text-accent mb-3">Beginner · No experience required</p>
+              <p className="text-sm text-accent mb-3">Beginner · No experience required</p>
               <p className="text-sm text-muted leading-relaxed mb-4">
                 Your foundation. An 8-week progressive series that builds your classical
                 mat practice from the ground up — beginner and intermediate exercises with
@@ -83,7 +83,7 @@ export default function Events() {
                 method starts to click.
               </p>
               <div className="border-t border-charcoal/5 pt-3">
-                <p className="text-xs text-muted">8 weeks · 1x/week · 50 min per session</p>
+                <p className="text-sm text-muted">8 weeks · 1x/week · 50 min per session</p>
               </div>
             </div>
 
@@ -96,21 +96,21 @@ export default function Events() {
                 <h3 className="font-serif text-xl font-light text-charcoal">Course II</h3>
                 <span className="font-serif text-2xl font-light text-charcoal">$160</span>
               </div>
-              <p className="text-xs text-accent mb-3">Intermediate · Course I or equivalent required</p>
+              <p className="text-sm text-accent mb-3">Intermediate · Course I or equivalent required</p>
               <p className="text-sm text-muted leading-relaxed mb-4">
                 The next chapter. Picks up where Course I left off and takes you through
                 the remainder of the 34-exercise classical mat. Focus shifts to concentration,
                 fluidity, and precision — the principles that turn good movement into great movement.
               </p>
               <div className="border-t border-charcoal/5 pt-3">
-                <p className="text-xs text-muted">8 weeks · 1x/week · 50 min per session</p>
+                <p className="text-sm text-muted">8 weeks · 1x/week · 50 min per session</p>
               </div>
             </div>
           </div>
 
           <div className="text-center reveal">
             <p className="text-sm text-charcoal mb-2">Next session dates coming soon.</p>
-            <p className="text-xs text-muted mb-6">
+            <p className="text-sm text-muted mb-6">
               Tell us what you&apos;re eyeing — we&apos;ll be in touch when dates land.
             </p>
             <ContactFormModal

@@ -25,7 +25,7 @@ const SIZE_LABELS: Record<"single" | "five" | "ten", string> = {
 
 export default function PackPickerModal({
   buttonLabel,
-  buttonClassName = "btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors",
+  buttonClassName = "btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors",
   groups,
 }: Props) {
   const [open, setOpen] = useState(false);
@@ -107,7 +107,7 @@ function Modal({
 
         <div className="p-8 sm:p-10">
           <div className="text-center mb-8">
-            <p className="text-xs tracking-widest uppercase text-accent mb-3">
+            <p className="text-sm tracking-widest uppercase text-accent mb-3">
               By Appointment
             </p>
             <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-2">
@@ -135,7 +135,7 @@ function Modal({
                     <h3 className="font-serif text-lg font-light text-charcoal">
                       {group.label}
                     </h3>
-                    <p className="text-xs text-muted">{group.note}</p>
+                    <p className="text-sm text-muted">{group.note}</p>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {cells.map(([size, m]) => {
@@ -145,7 +145,7 @@ function Modal({
                             key={size}
                             className="flex flex-col bg-white/50 border border-charcoal/5 rounded-sm p-4 opacity-60"
                           >
-                            <p className="text-[10px] tracking-widest uppercase text-muted/60 mb-1">
+                            <p className="text-[11px] tracking-widest uppercase text-muted/60 mb-1">
                               {SIZE_LABELS[size]}
                             </p>
                             <p className="text-sm text-muted/70">Not available</p>
@@ -165,18 +165,18 @@ function Modal({
                           rel="noopener noreferrer"
                           className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-accent/40"
                         >
-                          <p className="text-[10px] tracking-widest uppercase text-accent mb-1">
+                          <p className="text-[11px] tracking-widest uppercase text-accent mb-1">
                             {SIZE_LABELS[size]}
                           </p>
                           <p className="font-serif text-xl font-light text-charcoal">
                             ${m.price}
                           </p>
                           {perClass !== null && (
-                            <p className="text-[11px] text-muted/70 mb-2">
+                            <p className="text-sm text-muted/70 mb-2">
                               ~${perClass}/class
                             </p>
                           )}
-                          <span className="mt-auto pt-2 text-[10px] tracking-widest uppercase text-accent/70 group-hover:text-accent transition-colors flex items-center justify-between">
+                          <span className="mt-auto pt-2 text-[11px] tracking-widest uppercase text-accent/70 group-hover:text-accent transition-colors flex items-center justify-between">
                             <span>Buy</span>
                             <span className="group-hover:translate-x-0.5 transition-transform">
                               →
@@ -191,7 +191,7 @@ function Modal({
             })}
           </div>
 
-          <p className="text-center text-[11px] text-muted/70 mt-7">
+          <p className="text-center text-sm text-muted/70 mt-7">
             Buy opens Momence in a new tab.
           </p>
         </div>

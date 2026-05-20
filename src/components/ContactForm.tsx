@@ -131,7 +131,7 @@ export default function ContactForm({
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="cf-first" className="block text-xs tracking-widest uppercase text-muted mb-2">
+          <label htmlFor="cf-first" className="block text-sm tracking-widest uppercase text-muted mb-2">
             First name
           </label>
           <input
@@ -147,7 +147,7 @@ export default function ContactForm({
           />
         </div>
         <div>
-          <label htmlFor="cf-last" className="block text-xs tracking-widest uppercase text-muted mb-2">
+          <label htmlFor="cf-last" className="block text-sm tracking-widest uppercase text-muted mb-2">
             Last name
           </label>
           <input
@@ -164,7 +164,7 @@ export default function ContactForm({
         </div>
       </div>
       <div>
-        <label htmlFor="cf-email" className="block text-xs tracking-widest uppercase text-muted mb-2">
+        <label htmlFor="cf-email" className="block text-sm tracking-widest uppercase text-muted mb-2">
           Email
         </label>
         <input
@@ -181,7 +181,7 @@ export default function ContactForm({
       </div>
       {showGuests && (
         <div>
-          <label htmlFor="cf-guests" className="block text-xs tracking-widest uppercase text-muted mb-2">
+          <label htmlFor="cf-guests" className="block text-sm tracking-widest uppercase text-muted mb-2">
             How many in your party?
           </label>
           <input
@@ -201,7 +201,7 @@ export default function ContactForm({
       )}
       {showPhone && (
         <div>
-          <label htmlFor="cf-phone" className="block text-xs tracking-widest uppercase text-muted mb-2">
+          <label htmlFor="cf-phone" className="block text-sm tracking-widest uppercase text-muted mb-2">
             Phone <span className="text-charcoal/30 normal-case tracking-normal">(optional)</span>
           </label>
           <input
@@ -221,7 +221,7 @@ export default function ContactForm({
       {showRtlFields && (
         <>
           <div>
-            <p className="block text-xs tracking-widest uppercase text-muted mb-3">
+            <p className="block text-sm tracking-widest uppercase text-muted mb-3">
               Which series? <span className="text-charcoal/30 normal-case tracking-normal">(pick one or both)</span>
             </p>
             <div className="space-y-2.5">
@@ -254,7 +254,7 @@ export default function ContactForm({
             </div>
           </div>
           <div>
-            <label htmlFor="cf-experience" className="block text-xs tracking-widest uppercase text-muted mb-2">
+            <label htmlFor="cf-experience" className="block text-sm tracking-widest uppercase text-muted mb-2">
               Pilates experience
             </label>
             <select
@@ -277,7 +277,7 @@ export default function ContactForm({
       )}
       {showMessage && (
         <div>
-          <label htmlFor="cf-message" className="block text-xs tracking-widest uppercase text-muted mb-2">
+          <label htmlFor="cf-message" className="block text-sm tracking-widest uppercase text-muted mb-2">
             {showRtlFields ? (
               <>Anything else? <span className="text-charcoal/30 normal-case tracking-normal">(optional)</span></>
             ) : (
@@ -300,7 +300,7 @@ export default function ContactForm({
         <button
           type="submit"
           disabled={loading}
-          className="btn-animated bg-accent text-white px-8 py-3.5 text-xs tracking-widest uppercase hover:bg-accent/85 transition-colors disabled:opacity-50"
+          className="btn-animated bg-accent text-white px-8 py-3.5 text-sm tracking-widest uppercase hover:bg-accent/85 transition-colors disabled:opacity-50"
         >
           {loading ? "Sending..." : "Send"}
         </button>

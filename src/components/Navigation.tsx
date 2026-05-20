@@ -168,7 +168,7 @@ export default function Navigation() {
           {/* Desktop nav links — after logo */}
           <div className="hidden md:flex items-center gap-8 ml-12">
             {navLinks.map((link) => {
-              const linkClass = `text-[11px] tracking-[0.2em] uppercase transition-colors flex items-center gap-1 ${
+              const linkClass = `text-sm tracking-[0.2em] uppercase transition-colors flex items-center gap-1 ${
                 isTransparent
                   ? "text-white/80 hover:text-white"
                   : "text-charcoal/50 hover:text-charcoal"
@@ -217,11 +217,11 @@ export default function Navigation() {
                                 <p className="font-serif text-base font-light text-charcoal group-hover:text-accent transition-colors leading-tight">
                                   {child.label}
                                 </p>
-                                <p className="text-xs text-muted mt-0.5">
+                                <p className="text-sm text-muted mt-0.5">
                                   {child.description}
                                 </p>
                               </div>
-                              <span className="text-accent/40 group-hover:text-accent transition-colors text-xs">
+                              <span className="text-accent/40 group-hover:text-accent transition-colors text-sm">
                                 →
                               </span>
                             </>
@@ -329,7 +329,7 @@ export default function Navigation() {
           <div className="md:hidden pb-8 pt-2">
             <div className="flex flex-col gap-5">
               {navLinks.map((link) => {
-                const itemClass = `text-xs tracking-[0.2em] uppercase ${
+                const itemClass = `text-sm tracking-[0.2em] uppercase ${
                   isTransparent
                     ? "text-white/70 hover:text-white"
                     : "text-charcoal/50 hover:text-charcoal"
@@ -363,12 +363,12 @@ export default function Navigation() {
                           {link.children.map((child) => {
                             const inner = (
                               <>
-                                <p className={`text-xs tracking-[0.15em] uppercase ${
+                                <p className={`text-sm tracking-[0.15em] uppercase ${
                                   isTransparent ? "text-white/80" : "text-charcoal/70"
                                 }`}>
                                   {child.label}
                                 </p>
-                                <p className={`text-[11px] mt-0.5 ${
+                                <p className={`text-sm mt-0.5 ${
                                   isTransparent ? "text-white/40" : "text-muted/70"
                                 }`}>
                                   {child.description}

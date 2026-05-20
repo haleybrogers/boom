@@ -47,7 +47,7 @@ export default function PreOpeningPopup() {
         </button>
 
         <div className="text-center mb-7">
-          <p className="text-xs tracking-widest uppercase text-accent mb-3">
+          <p className="text-sm tracking-widest uppercase text-accent mb-3">
             Before the Doors Open
           </p>
           <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-3">
@@ -63,14 +63,14 @@ export default function PreOpeningPopup() {
           <Link
             href="/events"
             onClick={dismiss}
-            className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors mb-3"
+            className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors mb-3"
           >
             See Pop-Up Classes
           </Link>
           <div>
             <button
               onClick={dismiss}
-              className="text-xs text-muted/60 hover:text-charcoal transition-colors"
+              className="text-sm text-muted/60 hover:text-charcoal transition-colors"
             >
               Maybe later
             </button>

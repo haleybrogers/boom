@@ -27,7 +27,7 @@ export default function Home() {
       {/* Intro — one tight paragraph, then the two ways in */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
+          <p className="text-sm tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
             Opening Soon
           </p>
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-5 animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
@@ -40,19 +40,19 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
             <Link
               href="/events"
-              className="btn-animated inline-block bg-charcoal text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
+              className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
             >
               Pre-opening Classes →
             </Link>
 
             {SHOW_FOUNDING && (
               <div className="relative inline-block">
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cream text-accent text-[9px] tracking-[0.3em] uppercase px-2.5 py-0.5 border border-accent/30 rounded-full whitespace-nowrap z-10 shadow-sm">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cream text-accent text-[10px] tracking-[0.3em] uppercase px-2.5 py-0.5 border border-accent/30 rounded-full whitespace-nowrap z-10 shadow-sm">
                   Limited Time
                 </span>
                 <Link
                   href="/founding"
-                  className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+                  className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
                 >
                   Become a Founding Member →
                 </Link>
@@ -77,7 +77,7 @@ export default function Home() {
               />
             </div>
             <div className="w-full md:w-1/2 md:pl-4">
-              <p className="text-xs tracking-widest uppercase text-accent mb-4">
+              <p className="text-sm tracking-widest uppercase text-accent mb-4">
                 Our Approach
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
@@ -123,7 +123,7 @@ export default function Home() {
       {/* Waitlist — button opens a modal with the contact form */}
       <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">Get the Scoop</p>
+          <p className="text-sm tracking-widest uppercase text-accent mb-4">Get the Scoop</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
             Be the first to know.
           </h2>

@@ -6,7 +6,7 @@ export default function NewToPilates() {
       <div className="max-w-4xl mx-auto px-6">
         {/* Header — centered */}
         <div className="text-center mb-12">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4">
+          <p className="text-sm tracking-widest uppercase text-accent mb-4">
             New to Pilates?
           </p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
@@ -31,7 +31,7 @@ export default function NewToPilates() {
               </svg>
             </div>
 
-            <p className="text-[10px] tracking-widest uppercase text-accent mb-2">
+            <p className="text-[11px] tracking-widest uppercase text-accent mb-2">
               Jump Right In
             </p>
             <h3 className="font-serif text-xl font-light text-charcoal mb-3">
@@ -42,12 +42,12 @@ export default function NewToPilates() {
             </p>
             <div className="flex items-baseline gap-2 mb-6">
               <span className="font-serif text-2xl font-light text-charcoal">$25</span>
-              <span className="text-xs text-muted">drop-in</span>
+              <span className="text-sm text-muted">drop-in</span>
             </div>
             {/* Hard nav: /schedule needs full reload — Momence plugin state */}
             <a
               href="/schedule"
-              className="btn-animated inline-block bg-charcoal text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-charcoal/85 transition-colors"
+              className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-6 py-3 hover:bg-charcoal/85 transition-colors"
             >
               Book a Mat Class
             </a>
@@ -56,7 +56,7 @@ export default function NewToPilates() {
           {/* Path 2 — Get personalized guidance */}
           <div className="group relative border border-accent/20 bg-accent/3 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
             {/* Recommended badge */}
-            <span className="absolute top-4 right-4 text-[9px] tracking-widest uppercase text-accent bg-accent/10 px-2.5 py-1 rounded-sm">
+            <span className="absolute top-4 right-4 text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-2.5 py-1 rounded-sm">
               Recommended
             </span>
 
@@ -69,7 +69,7 @@ export default function NewToPilates() {
               </svg>
             </div>
 
-            <p className="text-[10px] tracking-widest uppercase text-accent mb-2">
+            <p className="text-[11px] tracking-widest uppercase text-accent mb-2">
               Get Personalized Guidance
             </p>
             <h3 className="font-serif text-xl font-light text-charcoal mb-3">
@@ -80,11 +80,11 @@ export default function NewToPilates() {
             </p>
             <div className="flex items-baseline gap-2 mb-6">
               <span className="font-serif text-2xl font-light text-charcoal">$110</span>
-              <span className="text-xs text-muted">50 min · full apparatus</span>
+              <span className="text-sm text-muted">50 min · full apparatus</span>
             </div>
             <Link
               href="/privates"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors"
+              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors"
             >
               Book a Private
             </Link>

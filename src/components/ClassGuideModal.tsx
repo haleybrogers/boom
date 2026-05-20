@@ -98,13 +98,13 @@ export default function ClassGuideModal() {
         onClick={() => setOpen(true)}
         className="group inline-flex items-center gap-2.5 bg-cream border border-accent/25 pl-3 pr-4 py-2 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-accent/50 transition-all duration-300"
       >
-        <span className="w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center text-[11px] font-serif italic group-hover:bg-accent/20 transition-colors">
+        <span className="w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center text-sm font-serif italic group-hover:bg-accent/20 transition-colors">
           i
         </span>
         <span className="font-serif italic text-sm text-charcoal group-hover:text-accent transition-colors">
           Class descriptions
         </span>
-        <span className="text-accent/50 group-hover:text-accent transition-colors text-xs">→</span>
+        <span className="text-accent/50 group-hover:text-accent transition-colors text-sm">→</span>
       </button>
 
       {/* Backdrop + Modal — portaled to body to escape any transform/filter ancestors */}
@@ -124,7 +124,7 @@ export default function ClassGuideModal() {
             {/* Header */}
             <div className="sticky top-0 bg-warm-white/95 backdrop-blur-sm border-b-2 border-accent px-6 py-5 flex items-center justify-between z-10">
               <div>
-                <p className="text-[10px] tracking-[0.3em] uppercase text-accent mb-1">The Studio</p>
+                <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-1">The Studio</p>
                 <h2 className="font-serif text-2xl font-light text-charcoal">Class Guide</h2>
               </div>
               <button
@@ -145,7 +145,7 @@ export default function ClassGuideModal() {
                     <h3 className="font-serif text-2xl font-light text-accent leading-tight">
                       {section.category}
                     </h3>
-                    <p className="text-xs text-charcoal/60 mt-1 italic font-serif">{section.subtitle}</p>
+                    <p className="text-sm text-charcoal/60 mt-1 italic font-serif">{section.subtitle}</p>
                   </div>
 
                   <div className="space-y-1">
@@ -159,7 +159,7 @@ export default function ClassGuideModal() {
                             <span className="font-serif text-base text-charcoal block">
                               {cls.title}
                             </span>
-                            <span className="text-xs text-muted/70 mt-0.5 inline-block">
+                            <span className="text-sm text-muted/70 mt-0.5 inline-block">
                               {cls.length} · {cls.level}
                             </span>
                           </div>
@@ -199,13 +199,13 @@ export default function ClassGuideModal() {
                 <p className="font-serif text-sm text-charcoal mb-1">
                   Looking for Return to Life Courses?
                 </p>
-                <p className="text-xs text-muted mb-3">
+                <p className="text-sm text-muted mb-3">
                   Our 8-week beginner and intermediate series run once per quarter.
                 </p>
                 <Link
                   href="/events"
                   onClick={() => setOpen(false)}
-                  className="link-arrow text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                  className="link-arrow text-sm tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
                 >
                   View Course Series
                 </Link>

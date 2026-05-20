@@ -31,7 +31,7 @@ export default function FoundingCountdown({ showLabel = true }: { showLabel?: bo
       <span className="font-serif text-base text-accent tabular-nums font-medium">
         {value.toString().padStart(2, "0")}
       </span>
-      <span className="text-[9px] tracking-widest uppercase text-accent/70">
+      <span className="text-[10px] tracking-widest uppercase text-accent/70">
         {label}
       </span>
     </span>
@@ -40,17 +40,17 @@ export default function FoundingCountdown({ showLabel = true }: { showLabel?: bo
   return (
     <div className="flex flex-col items-center mb-4">
       {showLabel && (
-        <p className="text-[10px] tracking-widest uppercase text-accent mb-2">
+        <p className="text-[11px] tracking-widest uppercase text-accent mb-2">
           Founding Member Pricing Ends July 13
         </p>
       )}
       <div className="flex items-baseline gap-2.5">
         <Unit value={time.days} label="d" />
-        <span className="text-accent/30 text-xs">·</span>
+        <span className="text-accent/30 text-sm">·</span>
         <Unit value={time.hours} label="h" />
-        <span className="text-accent/30 text-xs">·</span>
+        <span className="text-accent/30 text-sm">·</span>
         <Unit value={time.minutes} label="m" />
-        <span className="text-accent/30 text-xs">·</span>
+        <span className="text-accent/30 text-sm">·</span>
         <Unit value={time.seconds} label="s" />
       </div>
     </div>

@@ -101,7 +101,7 @@ export default function OfferingCards() {
                       href={offering.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
+                      className="text-sm tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
                     >
                       {cls.name}
                     </a>
@@ -109,7 +109,7 @@ export default function OfferingCards() {
                     <a
                       key={cls.name}
                       href={offering.link}
-                      className="text-xs tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
+                      className="text-sm tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
                     >
                       {cls.name}
                     </a>
@@ -117,7 +117,7 @@ export default function OfferingCards() {
                     <Link
                       key={cls.name}
                       href={offering.link}
-                      className="text-xs tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
+                      className="text-sm tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
                     >
                       {cls.name}
                     </Link>
@@ -131,7 +131,7 @@ export default function OfferingCards() {
                   <span className="font-serif text-2xl font-light text-charcoal">
                     {offering.startingPrice}
                   </span>
-                  <span className="text-xs text-muted ml-2">{offering.priceNote}</span>
+                  <span className="text-sm text-muted ml-2">{offering.priceNote}</span>
                 </div>
               </div>
               {offering.external ? (
@@ -139,21 +139,21 @@ export default function OfferingCards() {
                   href={offering.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="link-arrow inline-block mt-4 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                  className="link-arrow inline-block mt-4 text-sm tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
                 >
                   {offering.linkLabel}
                 </a>
               ) : offering.link === "/schedule" ? (
                 <a
                   href={offering.link}
-                  className="link-arrow inline-block mt-4 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                  className="link-arrow inline-block mt-4 text-sm tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
                 >
                   {offering.linkLabel}
                 </a>
               ) : (
                 <Link
                   href={offering.link}
-                  className="link-arrow inline-block mt-4 text-xs tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                  className="link-arrow inline-block mt-4 text-sm tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
                 >
                   {offering.linkLabel}
                 </Link>

@@ -20,7 +20,7 @@ export default function Schedule() {
       {/* Header — no banner photo; heading does the work */}
       <section className="bg-warm-white pt-28 lg:pt-36 pb-10 lg:pb-14">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5">
+          <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5">
             The Schedule
           </p>
           <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight">

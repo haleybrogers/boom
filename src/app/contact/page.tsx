@@ -14,7 +14,7 @@ export default function Contact() {
       <div className="max-w-5xl mx-auto px-6">
         {/* Heading */}
         <div className="text-center mb-10">
-          <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+          <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
             Say Hi
           </p>
           <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
@@ -28,7 +28,7 @@ export default function Contact() {
 
         {/* Tiny redirect for people who really just want to book a private */}
         <div className="text-center mb-14">
-          <p className="text-xs text-muted">
+          <p className="text-sm text-muted">
             <a
               href={MOMENCE_APPOINTMENTS_URL}
               target="_blank"

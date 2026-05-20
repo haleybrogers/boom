@@ -121,7 +121,7 @@ export default function ClassAccordions() {
               <h3 className="font-serif text-xl font-light text-charcoal">
                 {section.category}
               </h3>
-              <p className="text-xs text-muted mt-0.5">{section.subtitle}</p>
+              <p className="text-sm text-muted mt-0.5">{section.subtitle}</p>
             </div>
             <svg
               className={`w-5 h-5 text-accent/50 shrink-0 ml-4 transition-transform duration-300 ${
@@ -157,7 +157,7 @@ export default function ClassAccordions() {
                         <span className="font-serif text-base font-light text-charcoal">
                           {cls.title}
                         </span>
-                        <span className="text-xs text-muted/70 ml-3">
+                        <span className="text-sm text-muted/70 ml-3">
                           {cls.level}
                         </span>
                       </div>

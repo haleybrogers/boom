@@ -48,7 +48,7 @@ export default async function Packs() {
             />
           </div>
           <div className="order-2">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5">
+            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5">
               Memberships + Pricing
             </p>
             <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight mb-6">
@@ -76,7 +76,7 @@ export default async function Packs() {
         <div className="bg-accent/5 border-y border-accent/15 py-20 lg:py-24">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-12">
-              <span className="inline-block bg-white border border-accent/30 text-accent text-[10px] tracking-[0.3em] uppercase px-3 py-1 rounded-full mb-5">
+              <span className="inline-block bg-white border border-accent/30 text-accent text-[11px] tracking-[0.3em] uppercase px-3 py-1 rounded-full mb-5">
                 Limited Time
               </span>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
@@ -118,7 +118,7 @@ export default async function Packs() {
                       }`}
                     >
                       {isFeatured && (
-                        <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">
+                        <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-3">
                           Most popular
                         </p>
                       )}
@@ -126,14 +126,14 @@ export default async function Packs() {
                         {tierDisplayName(t)}
                       </h3>
                       {tierTagline(t.key) && (
-                        <p className="text-xs text-muted mb-1">{tierTagline(t.key)}</p>
+                        <p className="text-sm text-muted mb-1">{tierTagline(t.key)}</p>
                       )}
-                      <p className="text-[10px] tracking-widest uppercase text-muted/70 mb-5">
+                      <p className="text-[11px] tracking-widest uppercase text-muted/70 mb-5">
                         Monthly Membership
                       </p>
 
                       <div className="border-t border-charcoal/5 pt-4 mb-2">
-                        <p className="text-[10px] tracking-widest uppercase text-accent mb-1">
+                        <p className="text-[11px] tracking-widest uppercase text-accent mb-1">
                           Founding
                         </p>
                         <p className="font-serif text-3xl font-light text-charcoal">
@@ -141,12 +141,12 @@ export default async function Packs() {
                           <span className="text-sm text-muted font-sans">/month</span>
                         </p>
                         {foundingPerClass !== null && (
-                          <p className="text-[11px] text-muted/70 mt-0.5">
+                          <p className="text-sm text-muted/70 mt-0.5">
                             ~${foundingPerClass}/class
                           </p>
                         )}
                         {savings !== null && savings > 0 && (
-                          <p className="text-xs text-accent font-medium mt-1">
+                          <p className="text-sm text-accent font-medium mt-1">
                             Save ${savings}/month
                           </p>
                         )}
@@ -154,17 +154,17 @@ export default async function Packs() {
 
                       {regular && (
                         <div className="pt-3 mb-5">
-                          <p className="text-[10px] tracking-widest uppercase text-muted mb-1">
+                          <p className="text-[11px] tracking-widest uppercase text-muted mb-1">
                             Regular
                           </p>
                           <p className="font-serif text-lg font-light text-muted/70">
                             <span className="line-through decoration-accent/50 decoration-1">
                               ${regular.price}
                             </span>
-                            <span className="text-xs text-muted/70 font-sans">/month</span>
+                            <span className="text-sm text-muted/70 font-sans">/month</span>
                           </p>
                           {regularPerClass !== null && (
-                            <p className="text-[11px] text-muted/60 mt-0.5">
+                            <p className="text-sm text-muted/60 mt-0.5">
                               ~${regularPerClass}/class
                             </p>
                           )}
@@ -172,7 +172,7 @@ export default async function Packs() {
                       )}
 
                       <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                        <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                        <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
                           Lock in this rate
                         </span>
                         <span className="text-accent group-hover:translate-x-0.5 transition-transform">
@@ -187,7 +187,7 @@ export default async function Packs() {
             <div className="text-center">
               <Link
                 href="/founding"
-                className="text-xs tracking-widest uppercase text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+                className="text-sm tracking-widest uppercase text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
               >
                 See full founding details →
               </Link>
@@ -201,7 +201,7 @@ export default async function Packs() {
         <div className="py-20 lg:py-24">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-12">
-              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+              <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
                 By Membership or Drop-in
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
@@ -235,7 +235,7 @@ export default async function Packs() {
                       }`}
                     >
                       {isFeatured && (
-                        <p className="text-[10px] tracking-[0.25em] uppercase text-charcoal/60 mb-3">
+                        <p className="text-[11px] tracking-[0.25em] uppercase text-charcoal/60 mb-3">
                           Most popular
                         </p>
                       )}
@@ -243,9 +243,9 @@ export default async function Packs() {
                         {tierDisplayName(t)}
                       </h3>
                       {tierTagline(t.key) && (
-                        <p className="text-xs text-muted mb-1">{tierTagline(t.key)}</p>
+                        <p className="text-sm text-muted mb-1">{tierTagline(t.key)}</p>
                       )}
-                      <p className="text-[10px] tracking-widest uppercase text-muted/70 mb-5">
+                      <p className="text-[11px] tracking-widest uppercase text-muted/70 mb-5">
                         Monthly Membership
                       </p>
 
@@ -255,14 +255,14 @@ export default async function Packs() {
                           <span className="text-sm text-muted font-sans">/month</span>
                         </p>
                         {perClass !== null && (
-                          <p className="text-[11px] text-muted/70 mt-0.5">
+                          <p className="text-sm text-muted/70 mt-0.5">
                             ~${perClass}/class
                           </p>
                         )}
                       </div>
 
                       <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                        <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                        <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
                           Buy
                         </span>
                         <span className="text-accent group-hover:translate-x-0.5 transition-transform">
@@ -300,7 +300,7 @@ export default async function Packs() {
         <div className="bg-warm-white py-20 lg:py-24 border-t border-charcoal/5">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-12">
-              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+              <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
                 By Appointment
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
@@ -327,7 +327,7 @@ export default async function Packs() {
                     <h3 className="font-serif text-xl font-light text-charcoal mb-1">
                       {g.label}
                     </h3>
-                    <p className="text-xs text-muted mb-5">{g.note}</p>
+                    <p className="text-sm text-muted mb-5">{g.note}</p>
 
                     <div className="space-y-2 border-t border-charcoal/5 pt-4 mb-5">
                       {g.single?.price !== undefined && (
@@ -366,7 +366,7 @@ export default async function Packs() {
         <div className="py-20 lg:py-24 border-t border-charcoal/5">
           <div className="max-w-3xl mx-auto px-6">
             <div className="text-center mb-12">
-              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+              <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
                 8-Week Course Series
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
@@ -401,10 +401,10 @@ export default async function Packs() {
                     </span>
                   </div>
                   {c.level !== "Unknown" && (
-                    <p className="text-xs text-accent mb-3">{c.level}</p>
+                    <p className="text-sm text-accent mb-3">{c.level}</p>
                   )}
                   <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                    <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                    <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
                       Enroll
                     </span>
                     <span className="text-accent group-hover:translate-x-0.5 transition-transform">
@@ -434,7 +434,7 @@ export default async function Packs() {
         <div className="bg-warm-white py-16 lg:py-20 border-t border-charcoal/5">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-10">
-              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+              <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
                 Also Available
               </p>
               <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
@@ -458,7 +458,7 @@ export default async function Packs() {
                     <span className="font-serif text-xl font-light text-charcoal">
                       ${m.price}
                     </span>
-                    <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                    <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
                       Buy →
                     </span>
                   </div>
