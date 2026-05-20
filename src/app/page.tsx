@@ -91,12 +91,10 @@ export default function Home() {
               </p>
               <p className="text-muted text-base leading-relaxed mb-4">
                 What you&apos;ll feel: stronger from the inside out, more
-                aware of how your body actually moves, surprised by what your
-                spine can do.
+                aware of how your body actually moves.
               </p>
               <p className="text-muted text-base leading-relaxed">
-                The work is precise but the room is warm. Show up however you
-                arrived. We&apos;ll meet you there.
+                Show up however you arrived. We&apos;ll meet you there.
               </p>
             </div>
           </Reveal>
