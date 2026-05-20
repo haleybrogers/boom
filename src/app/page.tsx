@@ -26,46 +26,40 @@ export default function Home() {
         />
       </section>
 
-      {/* Positioning statement + class CTA + founding-member box */}
+      {/* Intro — one tight paragraph, then the two ways in */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-widest uppercase text-accent mb-4 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
-            Opening Soon
+          <p className="text-xs tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
+            Opening Soon · Downtown Durham
           </p>
-          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-4 animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
-            Downtown Durham&apos;s only Classical Pilates studio.
-          </p>
-          <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
-            Two sisters. Third-generation classically trained, fully certified across the method. We think classical Pilates was made for every body — not just the front row.
+          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-10 max-w-2xl mx-auto animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
+            Two sisters, third-generation classically trained, opening Durham&apos;s only Classical Pilates studio this summer — the full method, in the order it was written.
           </p>
 
-          <div className="animate-fade-up-lux mb-14" style={{ animationDelay: "1.1s" }}>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux" style={{ animationDelay: "0.95s" }}>
             <Link
               href="/events"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+              className="btn-animated inline-block bg-charcoal text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
             >
-              Come move with us →
+              Pre-opening Classes →
             </Link>
+
+            {SHOW_FOUNDING && (
+              <Link
+                href="/founding"
+                className="btn-animated relative inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+              >
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-white text-accent text-[9px] tracking-[0.3em] uppercase px-2 py-0.5 border border-accent/30 rounded-full whitespace-nowrap">
+                  Limited Time
+                </span>
+                Become a Founding Member →
+              </Link>
+            )}
           </div>
 
           {SHOW_FOUNDING && (
-            <div
-              className="animate-fade-up-lux bg-accent/5 border border-accent/15 rounded-sm px-8 md:px-14 py-10 md:py-12"
-              style={{ animationDelay: "1.3s" }}
-            >
-              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-3">
-                Founding Member · Ends July 13
-              </p>
-              <FoundingCountdown showLabel={false} />
-              <p className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-5 mt-1">
-                Become a founding member.
-              </p>
-              <Link
-                href="/founding"
-                className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-              >
-                See Founding Details
-              </Link>
+            <div className="mt-8 animate-fade-up-lux" style={{ animationDelay: "1.15s" }}>
+              <FoundingCountdown showLabel={true} />
             </div>
           )}
         </div>
