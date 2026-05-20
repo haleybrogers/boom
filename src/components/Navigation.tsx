@@ -34,7 +34,7 @@ const navLinks: NavItem[] = [
     children: [
       {
         href: "/schedule",
-        label: "Schedule",
+        label: "Class Schedule",
         description: "Group mat + apparatus classes",
         image: "/nav-schedule.jpg",
         hardNav: true,
@@ -47,7 +47,7 @@ const navLinks: NavItem[] = [
       },
       {
         href: "/packs",
-        label: "Membership + Pricing",
+        label: "Memberships + Pricing",
         description: "Memberships, packs, and drop-ins",
         image: "/nav-packs.jpg",
       },

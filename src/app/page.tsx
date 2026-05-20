@@ -29,9 +29,12 @@ export default function Home() {
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
-            Opening Soon · Downtown Durham
+            Opening Soon
           </p>
-          <p className="font-serif text-xl sm:text-2xl font-light text-charcoal leading-snug mb-10 max-w-xl mx-auto animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
+          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-5 animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
+            Downtown Durham&apos;s only Classical Pilates studio.
+          </p>
+          <p className="text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
             Two sisters, third-generation classically trained, opening Durham&apos;s only Classical Pilates studio this summer — the full method, in the order it was written.
           </p>
 

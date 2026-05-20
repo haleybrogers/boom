@@ -9,7 +9,7 @@ import {
 } from "@/lib/momence";
 
 export const metadata = {
-  title: "Membership + Pricing",
+  title: "Memberships + Pricing",
   description:
     "Memberships, privates, apparatus packs, and the Return to Life course series at Boomerang Pilates — Durham, NC.",
 };
@@ -97,7 +97,7 @@ export default async function Packs() {
           </div>
           <div className="order-2">
             <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-5">
-              Membership &amp; Pricing
+              Memberships + Pricing
             </p>
             <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight mb-6">
               Make it a habit.
