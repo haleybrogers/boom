@@ -48,12 +48,12 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-3xl mx-auto items-start">
             {/* Emilie */}
             <div>
-              <div className="relative aspect-[4/5] overflow-hidden mb-6">
+              <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
                 <Image
                   src="/emilie-young.jpg"
                   alt="Emilie Young"
                   fill
-                  className="object-cover object-[center_20%]"
+                  className="object-cover object-[center_30%] scale-[1.08] transition-transform duration-700 hover:scale-[1.12]"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
