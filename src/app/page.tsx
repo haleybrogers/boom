@@ -26,7 +26,7 @@ export default function Home() {
         />
       </section>
 
-      {/* Positioning statement + founding-member mini block */}
+      {/* Positioning statement + class CTA + founding-member box */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
@@ -39,13 +39,25 @@ export default function Home() {
             Two sisters. Third-generation classically trained, fully certified across the method. We think classical Pilates was made for every body — not just the front row.
           </p>
 
+          <div className="animate-fade-up-lux mb-14" style={{ animationDelay: "1.1s" }}>
+            <Link
+              href="/events"
+              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              Come move with us →
+            </Link>
+          </div>
+
           {SHOW_FOUNDING && (
-            <div className="animate-fade-up-lux" style={{ animationDelay: "1.1s" }}>
+            <div
+              className="animate-fade-up-lux bg-accent/5 border border-accent/15 rounded-sm px-8 md:px-14 py-10 md:py-12"
+              style={{ animationDelay: "1.3s" }}
+            >
               <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-3">
                 Founding Member · Ends July 13
               </p>
               <FoundingCountdown showLabel={false} />
-              <p className="font-serif text-xl sm:text-2xl font-light text-charcoal mb-5 mt-1">
+              <p className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-5 mt-1">
                 Become a founding member.
               </p>
               <Link
