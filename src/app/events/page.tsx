@@ -45,7 +45,7 @@ export default function Events() {
       </section>
 
       {/* Unified calendar — featured row + agenda + modal */}
-      <section className="pb-24 lg:pb-32">
+      <section className="pt-14 lg:pt-20 pb-24 lg:pb-32">
         <div className="max-w-6xl mx-auto px-6">
           <EventsCalendar />
         </div>

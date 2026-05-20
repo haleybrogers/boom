@@ -85,7 +85,7 @@ export default function About() {
                   src="/annie-young.jpg"
                   alt="Annie Young"
                   fill
-                  className="object-cover object-[center_28%] scale-125 transition-transform duration-700 hover:scale-[1.3]"
+                  className="object-cover object-[center_22%] scale-[1.55] transition-transform duration-700 hover:scale-[1.6]"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
@@ -115,23 +115,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Sisters photo — header re-added once we have a third instructor */}
-      <section className="py-20 lg:py-28 bg-warm-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/2] max-w-3xl mx-auto overflow-hidden">
-            <Image
-              src="/photo-sisters.jpg"
-              alt="Emilie and Annie Young, co-founders of Boomerang Pilates"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 768px"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Pre-opening CTA — matches the home page energy */}
-      <section className="py-20 lg:py-24 bg-warm-white border-t border-charcoal/5">
+      {/* Pre-opening CTA — sits above the sisters photo */}
+      <section className="pt-20 lg:pt-28 pb-12 lg:pb-16 bg-warm-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4">
             Before We Open
@@ -149,6 +134,21 @@ export default function About() {
           >
             See where we&apos;re popping up →
           </Link>
+        </div>
+      </section>
+
+      {/* Sisters photo — header re-added once we have a third instructor */}
+      <section className="pb-20 lg:pb-28 bg-warm-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/2] max-w-3xl mx-auto overflow-hidden">
+            <Image
+              src="/photo-sisters.jpg"
+              alt="Emilie and Annie Young, co-founders of Boomerang Pilates"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 768px"
+            />
+          </div>
         </div>
       </section>
 

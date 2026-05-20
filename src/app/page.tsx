@@ -27,7 +27,7 @@ export default function Home() {
         />
       </section>
 
-      {/* Positioning statement */}
+      {/* Positioning statement + founding-member mini block */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-xs tracking-widest uppercase text-accent mb-4 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
@@ -36,17 +36,27 @@ export default function Home() {
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-4 animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
-          <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed mb-8 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
+          <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
             Two sisters. Third-generation classically trained, fully certified across the method. We think classical Pilates was made for every body — not just the front row.
           </p>
-          <div className="animate-fade-up-lux" style={{ animationDelay: "1.1s" }}>
-            <Link
-              href="/events"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-            >
-              Free pre-opening classes →
-            </Link>
-          </div>
+
+          {SHOW_FOUNDING && (
+            <div className="animate-fade-up-lux" style={{ animationDelay: "1.1s" }}>
+              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-3">
+                Founding Member · Ends July 13
+              </p>
+              <FoundingCountdown showLabel={false} />
+              <p className="font-serif text-xl sm:text-2xl font-light text-charcoal mb-5 mt-1">
+                Become a founding member.
+              </p>
+              <Link
+                href="/founding"
+                className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+              >
+                See Founding Details
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
@@ -89,34 +99,6 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-
-      {/* Founding Member Tease — gated behind SHOW_FOUNDING flag */}
-      {SHOW_FOUNDING && (
-        <section className="pb-16 lg:pb-24">
-          <div className="max-w-3xl mx-auto px-6">
-            <Reveal className="bg-accent/5 border border-accent/15 rounded-sm px-8 md:px-14 py-10 md:py-12 text-center">
-              <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-5">
-                Founding Member Pricing · Ends July 13
-              </p>
-              <FoundingCountdown showLabel={false} />
-              <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal mb-3 mt-2 leading-tight">
-                Become a founding member.
-              </h2>
-              <p className="text-sm text-muted mb-6 max-w-xl mx-auto leading-relaxed">
-                25% off your mat membership — for life, as long as it stays active. Plus the
-                opening night invite, welcome kit, intro privates bundle, and bring-a-friend
-                pass. 15 founding spots at each tier.
-              </p>
-              <Link
-                href="/founding"
-                className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-              >
-                See Founding Details
-              </Link>
-            </Reveal>
-          </div>
-        </section>
-      )}
 
       {/* What We Offer */}
       <section className="py-20 lg:py-28 bg-warm-white">
