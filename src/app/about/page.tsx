@@ -53,7 +53,7 @@ export default function About() {
                   src="/emilie-young.jpg"
                   alt="Emilie Young"
                   fill
-                  className="object-cover object-center transition-transform duration-700 hover:scale-[1.04]"
+                  className="object-cover object-[center_22%] scale-[1.3] transition-transform duration-700 hover:scale-[1.35]"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
