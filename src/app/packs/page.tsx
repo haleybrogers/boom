@@ -1,11 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import FoundingCountdown from "@/components/FoundingCountdown";
+import PackPickerModal from "@/components/PackPickerModal";
 import { SHOW_FOUNDING } from "@/lib/flags";
 import {
   fetchMemberships,
-  matchMembership,
-  MOMENCE_FALLBACK_URL,
+  pairMatTiers,
+  tierTagline,
+  tierDisplayName,
+  groupApparatus,
+  findDropIn,
+  findRtlCourses,
+  findOtherOfferings,
 } from "@/lib/momence";
 
 export const metadata = {
@@ -14,71 +20,16 @@ export const metadata = {
     "Memberships, privates, apparatus packs, and the Return to Life course series at Boomerang Pilates — Durham, NC.",
 };
 
-// Single source of truth for membership pricing. Founding rate is 25% off
-// the regular and applies only while SHOW_FOUNDING is true (pre-opening).
-// `match` is the keyword pattern used to find the live Momence purchase URL.
-const memberships = [
-  {
-    name: "4× Month Mat",
-    tagline: "Twice a week-ish",
-    founding: 60,
-    regular: 80,
-    match: { keywords: ["4"], excludes: ["unlimited"] },
-  },
-  {
-    name: "8× Month Mat",
-    tagline: "The sweet spot",
-    founding: 110,
-    regular: 150,
-    featured: true,
-    match: { keywords: ["8"], excludes: ["unlimited"] },
-  },
-  {
-    name: "Unlimited Mat",
-    tagline: "All the mat, all the time",
-    founding: 149,
-    regular: 199,
-    match: { keywords: ["unlimited"] },
-  },
-];
-
-// Apparatus pricing — packs expire 6 months after purchase. Packs are sold via
-// Momence; the per-card link goes to the host memberships page where all
-// privates/duets/trios packs live.
-const apparatus = [
-  { label: "Privates", note: "1 student · Full apparatus", single: 110, five: 525, ten: 995 },
-  { label: "Duets", note: "2 students · Full apparatus", single: 65, five: 300, ten: 585 },
-  { label: "Trios", note: "3 students · Full apparatus", single: 45, five: 200, ten: 375 },
-];
-
-const rtlCourses = [
-  {
-    name: "Course I",
-    level: "Beginner · No experience required",
-    price: 160,
-    blurb:
-      "Your foundation. An 8-week progressive series that builds your classical mat practice from the ground up — beginner and intermediate exercises with a focus on breath, center, and flow.",
-    meta: "8 weeks · 1×/week · 50 min per session",
-  },
-  {
-    name: "Course II",
-    level: "Intermediate · Course I or equivalent required",
-    price: 160,
-    blurb:
-      "The next chapter. Picks up where Course I left off and takes you through the remainder of the 34-exercise classical mat. Focus shifts to concentration, fluidity, and precision.",
-    meta: "8 weeks · 1×/week · 50 min per session",
-  },
-];
-
 export default async function Packs() {
-  const memberships_live = await fetchMemberships();
+  const memberships = await fetchMemberships();
+  const tiers = pairMatTiers(memberships);
+  const apparatus = groupApparatus(memberships);
+  const dropIn = findDropIn(memberships);
+  const rtl = findRtlCourses(memberships);
+  const others = findOtherOfferings(memberships);
 
-  // Resolve each membership card to its specific Momence purchase URL.
-  // Falls back to the host memberships page if the keyword match fails.
-  const membershipLinks = memberships.map((m) => {
-    const match = matchMembership(memberships_live, m.match.keywords, m.match.excludes || []);
-    return match?.link || MOMENCE_FALLBACK_URL;
-  });
+  // Featured tier — middle-position by convention (8x), falls back to first.
+  const featuredKey = tiers.length >= 2 ? tiers[1].key : tiers[0]?.key;
 
   return (
     <section className="pt-28 lg:pt-36 pb-20 lg:pb-28">
@@ -118,8 +69,9 @@ export default async function Packs() {
         </div>
       </div>
 
-      {/* 1. Founding Member — only renders pre-opening */}
-      {SHOW_FOUNDING && (
+      {/* 1. Founding Member — only renders when SHOW_FOUNDING is on AND
+          there's at least one founding tier in Momence */}
+      {SHOW_FOUNDING && tiers.some((t) => t.founding) && (
         <div className="bg-accent/5 border-y border-accent/15 py-20 lg:py-24">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-12">
@@ -138,66 +90,82 @@ export default async function Packs() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-              {memberships.map((m, i) => (
-                <a
-                  key={m.name}
-                  href={membershipLinks[i]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
-                    m.featured
-                      ? "border-2 border-accent/50 shadow-sm"
-                      : "border border-charcoal/10 hover:border-accent/30"
-                  }`}
-                >
-                  {m.featured && (
-                    <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">
-                      Most popular
-                    </p>
-                  )}
-                  <h3 className="font-serif text-xl font-light text-charcoal mb-1">
-                    {m.name}
-                  </h3>
-                  <p className="text-xs text-muted mb-1">{m.tagline}</p>
-                  <p className="text-[10px] tracking-widest uppercase text-muted/70 mb-5">
-                    Monthly Membership
-                  </p>
+              {tiers
+                .filter((t) => t.founding)
+                .map((t) => {
+                  const founding = t.founding!;
+                  const regular = t.regular;
+                  const savings = regular && founding.price !== undefined && regular.price !== undefined
+                    ? regular.price - founding.price
+                    : null;
+                  const isFeatured = t.key === featuredKey;
+                  return (
+                    <a
+                      key={t.key}
+                      href={founding.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+                        isFeatured
+                          ? "border-2 border-accent/50 shadow-sm"
+                          : "border border-charcoal/10 hover:border-accent/30"
+                      }`}
+                    >
+                      {isFeatured && (
+                        <p className="text-[10px] tracking-[0.25em] uppercase text-accent mb-3">
+                          Most popular
+                        </p>
+                      )}
+                      <h3 className="font-serif text-xl font-light text-charcoal mb-1">
+                        {tierDisplayName(t)}
+                      </h3>
+                      {tierTagline(t.key) && (
+                        <p className="text-xs text-muted mb-1">{tierTagline(t.key)}</p>
+                      )}
+                      <p className="text-[10px] tracking-widest uppercase text-muted/70 mb-5">
+                        Monthly Membership
+                      </p>
 
-                  <div className="border-t border-charcoal/5 pt-4 mb-2">
-                    <p className="text-[10px] tracking-widest uppercase text-accent mb-1">
-                      Founding
-                    </p>
-                    <p className="font-serif text-3xl font-light text-charcoal">
-                      ${m.founding}
-                      <span className="text-sm text-muted font-sans">/month</span>
-                    </p>
-                    <p className="text-xs text-accent font-medium mt-1">
-                      Save ${m.regular - m.founding}/month
-                    </p>
-                  </div>
+                      <div className="border-t border-charcoal/5 pt-4 mb-2">
+                        <p className="text-[10px] tracking-widest uppercase text-accent mb-1">
+                          Founding
+                        </p>
+                        <p className="font-serif text-3xl font-light text-charcoal">
+                          ${founding.price}
+                          <span className="text-sm text-muted font-sans">/month</span>
+                        </p>
+                        {savings !== null && savings > 0 && (
+                          <p className="text-xs text-accent font-medium mt-1">
+                            Save ${savings}/month
+                          </p>
+                        )}
+                      </div>
 
-                  <div className="pt-3 mb-5">
-                    <p className="text-[10px] tracking-widest uppercase text-muted mb-1">
-                      Regular
-                    </p>
-                    <p className="font-serif text-lg font-light text-muted/70">
-                      <span className="line-through decoration-accent/50 decoration-1">
-                        ${m.regular}
-                      </span>
-                      <span className="text-xs text-muted/70 font-sans">/month</span>
-                    </p>
-                  </div>
+                      {regular && (
+                        <div className="pt-3 mb-5">
+                          <p className="text-[10px] tracking-widest uppercase text-muted mb-1">
+                            Regular
+                          </p>
+                          <p className="font-serif text-lg font-light text-muted/70">
+                            <span className="line-through decoration-accent/50 decoration-1">
+                              ${regular.price}
+                            </span>
+                            <span className="text-xs text-muted/70 font-sans">/month</span>
+                          </p>
+                        </div>
+                      )}
 
-                  <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                    <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                      Lock in this rate
-                    </span>
-                    <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                      →
-                    </span>
-                  </div>
-                </a>
-              ))}
+                      <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
+                        <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                          Lock in this rate
+                        </span>
+                        <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                          →
+                        </span>
+                      </div>
+                    </a>
+                  );
+                })}
             </div>
 
             <div className="text-center">
@@ -212,198 +180,270 @@ export default async function Packs() {
         </div>
       )}
 
-      {/* 2. Mat Membership — regular pricing */}
-      <div className="py-20 lg:py-24">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
-              By Membership or Drop-in
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-              Mat Classes.
-            </h2>
-            <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-              Three-month commitment. Up to four unused classes roll over each
-              month. Pause anytime after the first three.
-            </p>
-          </div>
+      {/* 2. Mat Classes — regular pricing */}
+      {tiers.some((t) => t.regular) && (
+        <div className="py-20 lg:py-24">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+                By Membership or Drop-in
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
+                Mat Classes.
+              </h2>
+              <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
+                Three-month commitment. Up to four unused classes roll over each
+                month. Pause anytime after the first three.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-            {memberships.map((m, i) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+              {tiers
+                .filter((t) => t.regular)
+                .map((t) => {
+                  const regular = t.regular!;
+                  const isFeatured = t.key === featuredKey;
+                  return (
+                    <a
+                      key={t.key}
+                      href={regular.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+                        isFeatured
+                          ? "border-2 border-charcoal/20"
+                          : "border border-charcoal/10 hover:border-accent/30"
+                      }`}
+                    >
+                      {isFeatured && (
+                        <p className="text-[10px] tracking-[0.25em] uppercase text-charcoal/60 mb-3">
+                          Most popular
+                        </p>
+                      )}
+                      <h3 className="font-serif text-xl font-light text-charcoal mb-1">
+                        {tierDisplayName(t)}
+                      </h3>
+                      {tierTagline(t.key) && (
+                        <p className="text-xs text-muted mb-1">{tierTagline(t.key)}</p>
+                      )}
+                      <p className="text-[10px] tracking-widest uppercase text-muted/70 mb-5">
+                        Monthly Membership
+                      </p>
+
+                      <div className="border-t border-charcoal/5 pt-4 mb-5">
+                        <p className="font-serif text-3xl font-light text-charcoal">
+                          ${regular.price}
+                          <span className="text-sm text-muted font-sans">/month</span>
+                        </p>
+                      </div>
+
+                      <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
+                        <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                          Buy
+                        </span>
+                        <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                          →
+                        </span>
+                      </div>
+                    </a>
+                  );
+                })}
+            </div>
+
+            <p className="text-center text-sm text-muted">
+              Prefer to drop in?{" "}
               <a
-                key={m.name}
-                href={membershipLinks[i]}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
-                  m.featured
-                    ? "border-2 border-charcoal/20"
-                    : "border border-charcoal/10 hover:border-accent/30"
-                }`}
+                href="/schedule"
+                className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
               >
-                {m.featured && (
-                  <p className="text-[10px] tracking-[0.25em] uppercase text-charcoal/60 mb-3">
-                    Most popular
-                  </p>
+                See the schedule
+                {dropIn?.price !== undefined && (
+                  <>
+                    {" · "}
+                    <span className="text-charcoal font-medium">
+                      ${dropIn.price}/class
+                    </span>
+                  </>
                 )}
-                <h3 className="font-serif text-xl font-light text-charcoal mb-1">
-                  {m.name}
-                </h3>
-                <p className="text-xs text-muted mb-1">{m.tagline}</p>
-                <p className="text-[10px] tracking-widest uppercase text-muted/70 mb-5">
-                  Monthly Membership
-                </p>
-
-                <div className="border-t border-charcoal/5 pt-4 mb-5">
-                  <p className="font-serif text-3xl font-light text-charcoal">
-                    ${m.regular}
-                    <span className="text-sm text-muted font-sans">/month</span>
-                  </p>
-                </div>
-
-                <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                  <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                    Buy
-                  </span>
-                  <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                    →
-                  </span>
-                </div>
               </a>
-            ))}
-          </div>
-
-          <p className="text-center text-sm text-muted">
-            Prefer to drop in?{" "}
-            <a
-              href="/schedule"
-              className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
-            >
-              See the schedule · <span className="text-charcoal font-medium">$25/class</span>
-            </a>
-          </p>
-        </div>
-      </div>
-
-      {/* 3. Privates, Duets & Trios */}
-      <div className="bg-warm-white py-20 lg:py-24 border-t border-charcoal/5">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
-              By Appointment
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-              Privates, Duets &amp; Trios.
-            </h2>
-            <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-              The full classical apparatus, built around you. Single sessions
-              or packs of 5 or 10 — all packs expire 6 months after purchase.
             </p>
           </div>
+        </div>
+      )}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-            {apparatus.map((a) => (
-              <a
-                key={a.label}
-                href={MOMENCE_FALLBACK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
-              >
-                <h3 className="font-serif text-xl font-light text-charcoal mb-1">
-                  {a.label}
-                </h3>
-                <p className="text-xs text-muted mb-5">{a.note}</p>
+      {/* 3. Privates, Duets & Trios — opens the modal */}
+      {apparatus.some((g) => g.single || g.five || g.ten) && (
+        <div className="bg-warm-white py-20 lg:py-24 border-t border-charcoal/5">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+                By Appointment
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
+                Privates, Duets &amp; Trios.
+              </h2>
+              <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
+                The full classical apparatus, built around you. Single sessions
+                or packs of 5 or 10 — all packs expire 6 months after purchase.
+              </p>
+            </div>
 
-                <div className="space-y-3 border-t border-charcoal/5 pt-4 mb-5">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">Single</span>
-                    <span className="text-charcoal font-medium">${a.single}</span>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+              {apparatus.map((g) => {
+                const allPrices = [g.single?.price, g.five?.price, g.ten?.price].filter(
+                  (p): p is number => p !== undefined
+                );
+                const fromPrice = allPrices.length ? Math.min(...allPrices) : null;
+                if (!fromPrice) return null;
+                return (
+                  <div
+                    key={g.category}
+                    className="flex flex-col bg-white border border-charcoal/10 rounded-sm p-7"
+                  >
+                    <h3 className="font-serif text-xl font-light text-charcoal mb-1">
+                      {g.label}
+                    </h3>
+                    <p className="text-xs text-muted mb-5">{g.note}</p>
+
+                    <div className="space-y-2 border-t border-charcoal/5 pt-4 mb-5">
+                      {g.single?.price !== undefined && (
+                        <div className="flex justify-between text-sm">
+                          <span className="text-muted">Single</span>
+                          <span className="text-charcoal font-medium">${g.single.price}</span>
+                        </div>
+                      )}
+                      {g.five?.price !== undefined && (
+                        <div className="flex justify-between text-sm">
+                          <span className="text-muted">5-pack</span>
+                          <span className="text-charcoal font-medium">${g.five.price}</span>
+                        </div>
+                      )}
+                      {g.ten?.price !== undefined && (
+                        <div className="flex justify-between text-sm">
+                          <span className="text-muted">10-pack</span>
+                          <span className="text-charcoal font-medium">${g.ten.price}</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">5-pack</span>
-                    <span className="text-charcoal font-medium">${a.five}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">10-pack</span>
-                    <span className="text-charcoal font-medium">${a.ten}</span>
-                  </div>
-                </div>
+                );
+              })}
+            </div>
 
-                <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                  <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                    Buy a pack
-                  </span>
-                  <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                    →
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link
-              href="/privates"
-              className="text-xs tracking-widest uppercase text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
-            >
-              About privates, duets &amp; trios →
-            </Link>
+            <div className="text-center">
+              <PackPickerModal buttonLabel="Buy a Pack" groups={apparatus} />
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* 4. Return to Life Series */}
-      <div className="py-20 lg:py-24 border-t border-charcoal/5">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
-              8-Week Course Series
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-              Return to Life.
-            </h2>
-            <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
-              A structured, progressive series that builds your classical mat
-              practice from the ground up. Runs once per quarter — eight weeks,
-              taught the way the method was designed to be learned.
-            </p>
-          </div>
+      {rtl.length > 0 && (
+        <div className="py-20 lg:py-24 border-t border-charcoal/5">
+          <div className="max-w-3xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+                8-Week Course Series
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
+                Return to Life.
+              </h2>
+              <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
+                A structured, progressive series that builds your classical mat
+                practice from the ground up. Runs once per quarter — eight weeks,
+                taught the way the method was designed to be learned.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-            {rtlCourses.map((c) => (
+            <div
+              className={`grid gap-5 mb-10 ${
+                rtl.length === 1 ? "grid-cols-1 max-w-md mx-auto" : "grid-cols-1 md:grid-cols-2"
+              }`}
+            >
+              {rtl.map((c) => (
+                <a
+                  key={c.membership.id}
+                  href={c.membership.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col border border-charcoal/10 rounded-sm p-7 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
+                >
+                  <div className="flex items-baseline justify-between mb-3">
+                    <h3 className="font-serif text-xl font-light text-charcoal">
+                      {c.membership.name}
+                    </h3>
+                    <span className="font-serif text-2xl font-light text-charcoal">
+                      ${c.membership.price}
+                    </span>
+                  </div>
+                  {c.level !== "Unknown" && (
+                    <p className="text-xs text-accent mb-3">{c.level}</p>
+                  )}
+                  <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
+                    <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                      Enroll
+                    </span>
+                    <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                      →
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            <p className="text-center text-sm text-muted">
+              Tap a course to enroll, or{" "}
               <Link
-                key={c.name}
                 href="/events"
-                className="group flex flex-col border border-charcoal/10 rounded-sm p-7 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
+                className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
               >
-                <div className="flex items-baseline justify-between mb-3">
-                  <h3 className="font-serif text-xl font-light text-charcoal">{c.name}</h3>
-                  <span className="font-serif text-2xl font-light text-charcoal">${c.price}</span>
-                </div>
-                <p className="text-xs text-accent mb-3">{c.level}</p>
-                <p className="text-sm text-muted leading-relaxed mb-4">{c.blurb}</p>
-                <div className="border-t border-charcoal/5 pt-3 mb-5">
-                  <p className="text-xs text-muted">{c.meta}</p>
-                </div>
-
-                <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                  <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                    See dates &amp; enroll
-                  </span>
-                  <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                    →
-                  </span>
-                </div>
+                see all workshops &amp; events
               </Link>
-            ))}
+              .
+            </p>
           </div>
-
-          <p className="text-center text-sm text-muted">
-            Next session dates coming soon — tap a course to enroll or join the interest list.
-          </p>
         </div>
-      </div>
+      )}
+
+      {/* 5. More options — anything in Momence that didn't fit the known buckets */}
+      {others.length > 0 && (
+        <div className="bg-warm-white py-16 lg:py-20 border-t border-charcoal/5">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center mb-10">
+              <p className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+                Also Available
+              </p>
+              <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
+                More options.
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {others.map((m) => (
+                <a
+                  key={m.id}
+                  href={m.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-accent/30"
+                >
+                  <h3 className="font-serif text-base font-light text-charcoal mb-2 leading-tight">
+                    {m.name}
+                  </h3>
+                  <div className="mt-auto flex items-baseline justify-between border-t border-charcoal/5 pt-3">
+                    <span className="font-serif text-xl font-light text-charcoal">
+                      ${m.price}
+                    </span>
+                    <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                      Buy →
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

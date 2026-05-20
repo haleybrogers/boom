@@ -1,4 +1,10 @@
 import Image from "next/image";
+import PackPickerModal from "@/components/PackPickerModal";
+import {
+  fetchMemberships,
+  groupApparatus,
+  MOMENCE_APPOINTMENTS_URL,
+} from "@/lib/momence";
 
 export const metadata = {
   title: "Privates, Duets & Trios",
@@ -6,37 +12,10 @@ export const metadata = {
     "One-on-one, duet, and trio classical Pilates sessions in Durham, NC. Fully customized apparatus work with Emilie and Annie Young.",
 };
 
-// Booking goes through Momence's per-host appointments URL —
-// momence.com/appointments/{id} 302-redirects to the slug-based
-// reservation page so we don't have to hard-code the slug.
-const MOMENCE_APPOINTMENTS_URL = `https://momence.com/appointments/${process.env.NEXT_PUBLIC_MOMENCE_HOST_ID || "270195"}`;
+export default async function Privates() {
+  const memberships = await fetchMemberships();
+  const apparatus = groupApparatus(memberships);
 
-// Apparatus pricing — all packs expire 6 months after purchase.
-const apparatusPricing = [
-  {
-    label: "Privates",
-    note: "1 student · Full apparatus",
-    single: 110,
-    five: 525,
-    ten: 995,
-  },
-  {
-    label: "Duets",
-    note: "2 students · Full apparatus",
-    single: 65,
-    five: 300,
-    ten: 585,
-  },
-  {
-    label: "Trios",
-    note: "3 students · Full apparatus",
-    single: 45,
-    five: 200,
-    ten: 375,
-  },
-];
-
-export default function Privates() {
   return (
     <>
       {/* Hero — photo left, intro + CTAs right */}
@@ -100,7 +79,7 @@ export default function Privates() {
         </div>
       </section>
 
-      {/* Apparatus pricing — Single / 5-pack / 10-pack for all three formats */}
+      {/* Apparatus pricing — Single / 5-pack / 10-pack, pulled live from Momence */}
       <section className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -114,30 +93,40 @@ export default function Privates() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {apparatusPricing.map((p) => (
-              <div
-                key={p.label}
-                className="flex flex-col bg-white border border-charcoal/10 rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                <h3 className="font-serif text-xl font-light text-charcoal mb-1">{p.label}</h3>
-                <p className="text-xs text-muted mb-5">{p.note}</p>
+            {apparatus.map((g) => {
+              const hasAny = g.single || g.five || g.ten;
+              if (!hasAny) return null;
+              return (
+                <div
+                  key={g.category}
+                  className="flex flex-col bg-white border border-charcoal/10 rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                >
+                  <h3 className="font-serif text-xl font-light text-charcoal mb-1">{g.label}</h3>
+                  <p className="text-xs text-muted mb-5">{g.note}</p>
 
-                <div className="space-y-3 border-t border-charcoal/5 pt-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">Single</span>
-                    <span className="text-charcoal font-medium">${p.single}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">5-pack</span>
-                    <span className="text-charcoal font-medium">${p.five}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">10-pack</span>
-                    <span className="text-charcoal font-medium">${p.ten}</span>
+                  <div className="space-y-3 border-t border-charcoal/5 pt-4">
+                    {g.single?.price !== undefined && (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted">Single</span>
+                        <span className="text-charcoal font-medium">${g.single.price}</span>
+                      </div>
+                    )}
+                    {g.five?.price !== undefined && (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted">5-pack</span>
+                        <span className="text-charcoal font-medium">${g.five.price}</span>
+                      </div>
+                    )}
+                    {g.ten?.price !== undefined && (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted">10-pack</span>
+                        <span className="text-charcoal font-medium">${g.ten.price}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <p className="text-center text-xs text-muted/80 italic mt-8">
@@ -145,16 +134,9 @@ export default function Privates() {
           </p>
 
           <div className="text-center mt-10">
-            <a
-              href={`https://momence.com/host/${process.env.NEXT_PUBLIC_MOMENCE_HOST_ID || "270195"}/memberships`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-            >
-              Buy a Privates Pack
-            </a>
+            <PackPickerModal buttonLabel="Buy a Pack" groups={apparatus} />
             <p className="text-[11px] text-muted/70 mt-3">
-              Single sessions still book through Book a Session above. Opens in a new tab.
+              Single sessions still book through Book a Session above.
             </p>
           </div>
         </div>
