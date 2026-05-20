@@ -108,9 +108,9 @@ export function pairMatTiers(memberships: Membership[]): MatTier[] {
 export function tierTagline(key: string): string {
   switch (key) {
     case "4x":
-      return "Twice a week-ish";
+      return "Once a week-ish";
     case "8x":
-      return "The sweet spot";
+      return "Twice a week-ish";
     case "unlimited":
       return "All the mat, all the time";
     default:
