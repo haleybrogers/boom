@@ -32,11 +32,11 @@ export default function Home() {
           <p className="text-xs tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
             Opening Soon · Downtown Durham
           </p>
-          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-10 max-w-2xl mx-auto animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
+          <p className="font-serif text-xl sm:text-2xl font-light text-charcoal leading-snug mb-10 max-w-xl mx-auto animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
             Two sisters, third-generation classically trained, opening Durham&apos;s only Classical Pilates studio this summer — the full method, in the order it was written.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux" style={{ animationDelay: "0.95s" }}>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
             <Link
               href="/events"
               className="btn-animated inline-block bg-charcoal text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
@@ -45,15 +45,17 @@ export default function Home() {
             </Link>
 
             {SHOW_FOUNDING && (
-              <Link
-                href="/founding"
-                className="btn-animated relative inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-              >
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-white text-accent text-[9px] tracking-[0.3em] uppercase px-2 py-0.5 border border-accent/30 rounded-full whitespace-nowrap">
+              <div className="relative inline-block">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cream text-accent text-[9px] tracking-[0.3em] uppercase px-2.5 py-0.5 border border-accent/30 rounded-full whitespace-nowrap z-10 shadow-sm">
                   Limited Time
                 </span>
-                Become a Founding Member →
-              </Link>
+                <Link
+                  href="/founding"
+                  className="btn-animated inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+                >
+                  Become a Founding Member →
+                </Link>
+              </div>
             )}
           </div>
 
