@@ -29,14 +29,13 @@ export default function Contact() {
         {/* Tiny redirect for people who really just want to book a private */}
         <div className="text-center mb-14">
           <p className="text-xs text-muted">
-            Looking to book a private?{" "}
             <a
               href={MOMENCE_APPOINTMENTS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent hover:text-accent/70 transition-colors underline underline-offset-4 decoration-accent/40 hover:decoration-accent"
             >
-              Skip the form and book directly →
+              Book a private directly →
             </a>
           </p>
         </div>
