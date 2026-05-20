@@ -245,25 +245,33 @@ export default async function Founding() {
                   <h3 className="font-serif text-xl font-light text-charcoal mb-1">
                     {m.name}
                   </h3>
-                  <p className="text-xs text-muted mb-5">{m.tagline}</p>
+                  <p className="text-xs text-muted mb-1">{m.tagline}</p>
+                  <p className="text-[10px] tracking-widest uppercase text-muted/70 mb-5">
+                    Monthly Membership
+                  </p>
 
-                  <div className="border-t border-charcoal/5 pt-4 mb-3">
+                  <div className="border-t border-charcoal/5 pt-4 mb-2">
                     <p className="text-[10px] tracking-widest uppercase text-accent mb-1">
                       Founding
                     </p>
                     <p className="font-serif text-3xl font-light text-charcoal">
                       ${m.founding}
-                      <span className="text-sm text-muted font-sans">/mo</span>
+                      <span className="text-sm text-muted font-sans">/month</span>
+                    </p>
+                    <p className="text-xs text-accent font-medium mt-1">
+                      Save ${m.regular - m.founding}/month
                     </p>
                   </div>
 
-                  <div className="pt-2 mb-5">
+                  <div className="pt-3 mb-5">
                     <p className="text-[10px] tracking-widest uppercase text-muted mb-1">
                       Regular
                     </p>
-                    <p className="font-serif text-lg font-light text-muted/70 line-through decoration-accent/50 decoration-1">
-                      ${m.regular}
-                      <span className="text-xs text-muted/70 font-sans">/mo</span>
+                    <p className="font-serif text-lg font-light text-muted/70">
+                      <span className="line-through decoration-accent/50 decoration-1">
+                        ${m.regular}
+                      </span>
+                      <span className="text-xs text-muted/70 font-sans">/month</span>
                     </p>
                   </div>
 
