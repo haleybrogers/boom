@@ -2,60 +2,17 @@ import Image from "next/image";
 import ContactFormModal from "@/components/ContactFormModal";
 import FoundingCountdown from "@/components/FoundingCountdown";
 import Reveal from "@/components/Reveal";
+import {
+  fetchMemberships,
+  matchMembership,
+  MOMENCE_FALLBACK_URL,
+} from "@/lib/momence";
 
 export const metadata = {
   title: "Founding Members",
   description:
     "Become a founding member at Boomerang Pilates — 25% off mat for life, opening night invite, welcome kit, and intro privates. 15 spots per tier. Ends July 13, 2026.",
 };
-
-const MOMENCE_HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
-const MOMENCE_API_TOKEN = process.env.MOMENCE_API_TOKEN || "da1030e20e";
-const FALLBACK_BUY_URL = `https://momence.com/host/${MOMENCE_HOST_ID}/memberships`;
-
-type Membership = {
-  id: number;
-  name: string;
-  link: string;
-  isDisabled: boolean;
-  isDeleted: boolean;
-};
-
-// Fetch published memberships at request time so each tier card can deep-link
-// straight to its specific Momence purchase page. 60s revalidate so changes
-// in Momence appear on the site within a minute.
-async function fetchMemberships(): Promise<Membership[]> {
-  try {
-    const res = await fetch(
-      `https://api.withribbon.com/api/v1/Memberships?hostId=${MOMENCE_HOST_ID}&token=${MOMENCE_API_TOKEN}`,
-      { next: { revalidate: 60 } }
-    );
-    if (!res.ok) return [];
-    const data = (await res.json()) as unknown;
-    if (!Array.isArray(data)) return [];
-    return (data as Membership[]).filter((m) => !m.isDeleted && !m.isDisabled);
-  } catch {
-    return [];
-  }
-}
-
-// Match a tier card to its Momence membership by keyword. We can't rely on
-// exact name strings since Emilie may rename things in Momence — keyword match
-// is forgiving. `excludes` keeps "4× Month Mat" from accidentally matching
-// "Unlimited Mat" (which also contains "mat").
-function matchMembership(
-  memberships: Membership[],
-  keywords: string[],
-  excludes: string[] = []
-): Membership | undefined {
-  return memberships.find((m) => {
-    const n = m.name.toLowerCase();
-    return (
-      keywords.every((k) => n.includes(k.toLowerCase())) &&
-      excludes.every((x) => !n.includes(x.toLowerCase()))
-    );
-  });
-}
 
 // Mat tiers, mirrored from /packs so the two pages stay in sync.
 // `match` is the keyword pattern used to find the Momence link at runtime.
@@ -267,7 +224,7 @@ export default async function Founding() {
                 m.match.keywords,
                 m.match.excludes || []
               );
-              const href = match?.link || FALLBACK_BUY_URL;
+              const href = match?.link || MOMENCE_FALLBACK_URL;
               return (
                 <a
                   key={m.name}

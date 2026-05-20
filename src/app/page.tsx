@@ -5,7 +5,6 @@ import FoundingPopup from "@/components/FoundingPopup";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import Reveal from "@/components/Reveal";
-import FoundingCountdown from "@/components/FoundingCountdown";
 import PreOpeningPopup from "@/components/PreOpeningPopup";
 import SplashScreen from "@/components/SplashScreen";
 import { SHOW_FOUNDING } from "@/lib/flags";
@@ -59,11 +58,6 @@ export default function Home() {
             )}
           </div>
 
-          {SHOW_FOUNDING && (
-            <div className="mt-8 animate-fade-up-lux" style={{ animationDelay: "1.15s" }}>
-              <FoundingCountdown showLabel={true} />
-            </div>
-          )}
         </div>
       </section>
 
