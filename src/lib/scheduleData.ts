@@ -76,6 +76,11 @@ const MAT_KEYWORDS = [
   "rtl",
   "return to life",
   "power hour",   // Lunch Power Hour is mat
+  // The 3-part Mat Series sessions live in Momence under their tagline
+  // "No straps. No springs. No limits." instead of "Mat" — so catch on
+  // the distinctive "no straps" / "no springs" substring.
+  "no straps",
+  "no springs",
 ];
 
 export function classifyClass(title: string): ClassType {
