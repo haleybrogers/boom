@@ -18,7 +18,7 @@ const offerings = [
     image: "/photo-mat-2.jpg",
     tagline: "The foundation of everything we do.",
     description:
-      "Full-body workouts rooted in the original Return to Life matwork — layered, progressive, and built around all six principles of the method. Modifications for newer students, advancements for those deeper in their practice.",
+      "Full-body workouts rooted in the original Return to Life matwork. Layered, progressive, and built around all six principles of the method. Modifications for newer students, advancements for those deeper in their practice.",
     classes: [
       { name: "Open Level Classical Mat", section: 0 },
       { name: "Return to Life Full 34", section: 0 },
@@ -35,25 +35,19 @@ const offerings = [
     image: "/photo-apparatus.jpg",
     tagline: "Real equipment. Real instruction. Three students max.",
     description:
-      "Reformer, tower, barrels, Wunda chair, and Ped-O-Pul — the classical equipment that builds your practice and transforms how your body moves. Every class is capped at three so you get hands-on corrections, not just cues from across the room.",
-    classes: [
-      { name: "Apparatus Foundations", section: 1 },
-      { name: "Intermediate Mixed Apparatus", section: 1 },
-      { name: "Intermediate Advanced Classical Reformer", section: 1 },
-      { name: "Intermediate Advanced Classical Tower", section: 1 },
-      { name: "Lengthen & Strengthen Tower", section: 1 },
-    ],
-    startingPrice: "$45",
-    priceNote: "per class · packs of 5 or 10",
-    link: "/schedule",
-    linkLabel: "View Schedule",
+      "Reformer, tower, barrels, Wunda chair, and Ped-O-Pul. The classical equipment that builds your practice and transforms how your body moves. Every class is capped at three so you get hands-on corrections, not just cues from across the room.",
+    classes: [],
+    startingPrice: "",
+    priceNote: "",
+    link: "/privates",
+    linkLabel: "Book a Session",
   },
   {
     title: "Privates & Duets",
     image: "/photo-private.jpg",
     tagline: "Fully customized. Your body, your goals, your pace.",
     description:
-      "One-on-one or with a partner — full apparatus access tailored entirely to you. Whether you're rehabbing, training for something specific, or just prefer individual attention, this is the fastest path to results.",
+      "One-on-one or with a partner. Full apparatus access tailored entirely to you. Whether you're rehabbing, training for something specific, or just prefer individual attention, this is the fastest path to results.",
     classes: [
       { name: "Private Sessions", section: 2 },
       { name: "Duet Sessions", section: 2 },
@@ -79,17 +73,11 @@ export default async function OfferingCards() {
     .filter((p): p is number => p !== undefined)
     .sort((a, b) => a - b)[0];
 
-  const apparatusSingles = apparatus
-    .map((g) => g.single?.price)
-    .filter((p): p is number => p !== undefined);
-  const lowestApparatusSingle = apparatusSingles.length
-    ? Math.min(...apparatusSingles)
-    : undefined;
-
   const duetSingle = apparatus.find((g) => g.category === "duet")?.single?.price;
   const privateSingle = apparatus.find((g) => g.category === "private")?.single?.price;
 
-  // Build the live-priced offerings array.
+  // Build the live-priced offerings array. Apparatus card intentionally
+  // hides pricing — its CTA is generic "Book a Session" → /privates.
   const live = offerings.map((o) => {
     if (o.title === "Mat Classes" && dropIn?.price !== undefined) {
       return {
@@ -98,13 +86,6 @@ export default async function OfferingCards() {
         priceNote: lowestMatTier
           ? `drop-in · memberships from $${lowestMatTier}/mo`
           : o.priceNote,
-      };
-    }
-    if (o.title === "Apparatus" && lowestApparatusSingle !== undefined) {
-      return {
-        ...o,
-        startingPrice: `$${lowestApparatusSingle}`,
-        priceNote: "per class · packs of 5 or 10",
       };
     }
     if (o.title === "Privates & Duets") {
@@ -153,47 +134,51 @@ export default async function OfferingCards() {
               {/* Clickable class tags. /schedule hard-navs (Momence plugin
                   state survives soft nav); offerings marked `external` open
                   Momence in a new tab; everything else is a Next Link. */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {offering.classes.map((cls) => (
-                  offering.external ? (
-                    <a
-                      key={cls.name}
-                      href={offering.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
-                    >
-                      {cls.name}
-                    </a>
-                  ) : offering.link === "/schedule" ? (
-                    <a
-                      key={cls.name}
-                      href={offering.link}
-                      className="text-sm tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
-                    >
-                      {cls.name}
-                    </a>
-                  ) : (
-                    <Link
-                      key={cls.name}
-                      href={offering.link}
-                      className="text-sm tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
-                    >
-                      {cls.name}
-                    </Link>
-                  )
-                ))}
-              </div>
-
-              {/* Price + CTA */}
-              <div className="flex items-center gap-6">
-                <div>
-                  <span className="font-serif text-2xl font-light text-charcoal">
-                    {offering.startingPrice}
-                  </span>
-                  <span className="text-sm text-muted ml-2">{offering.priceNote}</span>
+              {offering.classes.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {offering.classes.map((cls) => (
+                    offering.external ? (
+                      <a
+                        key={cls.name}
+                        href={offering.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
+                      >
+                        {cls.name}
+                      </a>
+                    ) : offering.link === "/schedule" ? (
+                      <a
+                        key={cls.name}
+                        href={offering.link}
+                        className="text-sm tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
+                      >
+                        {cls.name}
+                      </a>
+                    ) : (
+                      <Link
+                        key={cls.name}
+                        href={offering.link}
+                        className="text-sm tracking-wide text-charcoal/70 bg-cream px-3 py-1.5 hover:bg-accent/10 hover:text-accent transition-all duration-200 cursor-pointer"
+                      >
+                        {cls.name}
+                      </Link>
+                    )
+                  ))}
                 </div>
-              </div>
+              )}
+
+              {/* Price + CTA — skip price block when blank (Apparatus card) */}
+              {offering.startingPrice && (
+                <div className="flex items-center gap-6">
+                  <div>
+                    <span className="font-serif text-2xl font-light text-charcoal">
+                      {offering.startingPrice}
+                    </span>
+                    <span className="text-sm text-muted ml-2">{offering.priceNote}</span>
+                  </div>
+                </div>
+              )}
               {offering.external ? (
                 <a
                   href={offering.link}
