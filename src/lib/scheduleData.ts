@@ -14,22 +14,31 @@
 
 export type ClassType = "mat" | "apparatus" | "special";
 
+// "book" = standard Momence-hosted booking (default). "rsvp" = inline
+// ContactForm RSVP flow — used for the Opening Party, which has no
+// Momence checkout but does collect names + guest counts via Momence
+// lead form 204606.
+export type ScheduleAction =
+  | { type: "book"; bookUrl: string }
+  | { type: "rsvp"; sourceId: number; rsvpHeading?: string; rsvpSubhead?: string };
+
 export type ScheduleClass = {
-  id: number;
+  id: string;              // string so we can mix Momence (numeric) + static (slug) ids
   title: string;
   startISO: string;        // "2026-06-13T14:30:00.000Z"
   endISO: string;          // computed from duration
   durationMin: number;
   type: ClassType;
-  // Direct link to that session's Momence booking page. Clicking through
-  // pops the user out to Momence to log in / pay / hold a spot.
-  bookUrl: string;
+  action: ScheduleAction;
   // Free-text description Momence carries on the event. Surfaced in the
-  // detail modal alongside the time + book button.
+  // detail modal alongside the action.
   description: string;
   // "Free", "$25", etc. — empty string means no price posted.
   price: string;
   location: string;
+  // Optional italic tagline — used by the Opening Party for the
+  // "You're invited." line. Renders below the title in the modal.
+  heroNote?: string;
 };
 
 const HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
@@ -49,6 +58,8 @@ type MomenceEvent = {
   isDeleted: boolean;
   published: boolean;
 };
+
+import { staticEvents } from "./staticEvents";
 
 // Title keywords → class type. First match wins, so order matters:
 // apparatus-specific tokens before "mat" so "Mixed Apparatus" doesn't
@@ -74,18 +85,55 @@ export function classifyClass(title: string): ClassType {
   return "special";
 }
 
+// Custom non-Momence entries to fold into the schedule. Right now this
+// is just the Opening Party (RSVP, not a Momence booking). Anything
+// else with the same dual-source pattern would slot in here.
+function staticScheduleExtras(now: number): ScheduleClass[] {
+  const extras: ScheduleClass[] = [];
+
+  // Opening Party — pulled from staticEvents so a copy/date change
+  // there flows here too.
+  const party = staticEvents.find((e) => e.id === "opening-party");
+  if (party) {
+    const start = new Date(party.dateTime);
+    const end = new Date(start.getTime() + (party.durationMin || 180) * 60_000);
+    if (start.getTime() > now) {
+      extras.push({
+        id: "opening-party",
+        title: party.title,
+        startISO: start.toISOString(),
+        endISO: end.toISOString(),
+        durationMin: party.durationMin || 180,
+        type: "special",
+        action: {
+          type: "rsvp",
+          sourceId: 204606, // Momence lead form id, matches /events RSVP
+          rsvpHeading: "See you July 18.",
+          rsvpSubhead:
+            "Drop your info so we know to expect you. We'll send a reminder + the address as the party gets closer.",
+        },
+        description: party.description,
+        price: party.price,
+        location: party.location,
+        heroNote: party.heroNote,
+      });
+    }
+  }
+  return extras;
+}
+
 export async function fetchSchedule(): Promise<ScheduleClass[]> {
+  const now = Date.now();
   try {
     const res = await fetch(
       `https://api.withribbon.com/api/v1/Events?hostId=${HOST_ID}&token=${TOKEN}`,
       { next: { revalidate: 60 } }
     );
-    if (!res.ok) return [];
+    if (!res.ok) return staticScheduleExtras(now);
     const data = (await res.json()) as unknown;
-    if (!Array.isArray(data)) return [];
+    if (!Array.isArray(data)) return staticScheduleExtras(now);
 
-    const now = Date.now();
-    return (data as MomenceEvent[])
+    const momence = (data as MomenceEvent[])
       .filter((e) => !e.isCancelled && !e.isDeleted && e.published)
       // "semester" is Momence's type for course/bundle parents — they
       // have midnight placeholder times and aren't real sessions to
@@ -97,24 +145,25 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
         const start = new Date(e.dateTime);
         const end = new Date(start.getTime() + (e.duration || 50) * 60_000);
         return {
-          id: e.id,
+          id: `momence-${e.id}`,
           title: e.title.trim(),
           startISO: start.toISOString(),
           endISO: end.toISOString(),
           durationMin: e.duration || 50,
           type: classifyClass(e.title),
-          bookUrl: e.link,
+          action: { type: "book", bookUrl: e.link },
           description: e.description?.trim() || "",
           price:
             e.fixedPrice && e.fixedPrice > 0 ? `$${e.fixedPrice}` : "Free",
           location: e.location?.trim() || "345 W Main St, Durham, NC",
         };
-      })
-      .sort(
-        (a, b) =>
-          new Date(a.startISO).getTime() - new Date(b.startISO).getTime()
-      );
+      });
+
+    return [...momence, ...staticScheduleExtras(now)].sort(
+      (a, b) =>
+        new Date(a.startISO).getTime() - new Date(b.startISO).getTime()
+    );
   } catch {
-    return [];
+    return staticScheduleExtras(now);
   }
 }

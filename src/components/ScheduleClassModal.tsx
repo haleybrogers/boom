@@ -4,12 +4,16 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import type { ScheduleClass } from "@/lib/scheduleData";
 import { CLASS_TYPE_STYLES } from "@/lib/classStyles";
+import ContactForm from "./ContactForm";
 
-// Detail modal for a single class block. Mirrors the visual feel of the
-// /events EventDetailModal so the two surfaces feel like part of the
-// same family. Open-source booking is intentionally outsourced to
-// Momence — the Book button opens that session's Momence page in a new
-// tab where auth + payment happen.
+// Detail modal for a single class block. Two action shapes:
+//   - cls.action.type === "book"  → external Book button that opens
+//     Momence in a new tab. Auth + payment happen there.
+//   - cls.action.type === "rsvp"  → inline ContactForm that posts to
+//     Momence's lead form (sourceId). Used for the Opening Party,
+//     which doesn't have a Momence booking flow but does collect
+//     names + guest counts. Mirrors the RSVP flow on /events so the
+//     two surfaces feel like one product.
 
 const TZ = "America/New_York";
 
@@ -43,6 +47,8 @@ export default function ScheduleClassModal({
   onClose: () => void;
 }) {
   const [mounted, setMounted] = useState(false);
+  const [showRsvp, setShowRsvp] = useState(false);
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -58,6 +64,7 @@ export default function ScheduleClassModal({
   if (!mounted) return null;
 
   const style = CLASS_TYPE_STYLES[cls.type];
+  const isRsvp = cls.action.type === "rsvp";
 
   return createPortal(
     <div
@@ -90,59 +97,104 @@ export default function ScheduleClassModal({
         </button>
 
         <div className="px-7 sm:px-9 py-9">
-          {/* Type chip */}
-          <div className="mb-5">
-            <span
-              className="inline-block text-[10px] tracking-[0.25em] uppercase rounded-full px-2.5 py-1"
-              style={{
-                background: style.bgSoft,
-                color: style.text,
-                border: `1px solid ${style.border}`,
-              }}
-            >
-              {style.label}
-            </span>
-          </div>
+          {/* RSVP submission view (only reachable when action is rsvp) */}
+          {showRsvp && isRsvp && cls.action.type === "rsvp" ? (
+            <>
+              <button
+                type="button"
+                onClick={() => setShowRsvp(false)}
+                className="text-[11px] tracking-widest uppercase text-accent/70 hover:text-accent transition-colors mb-5"
+              >
+                ← Back to details
+              </button>
+              <h3 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-2">
+                {cls.action.rsvpHeading || "Save your spot."}
+              </h3>
+              {cls.action.rsvpSubhead && (
+                <p className="text-sm text-muted mb-7 leading-relaxed">
+                  {cls.action.rsvpSubhead}
+                </p>
+              )}
+              <ContactForm
+                source="rsvp-party"
+                sourceId={cls.action.sourceId}
+                showMessage={false}
+                showGuests={true}
+              />
+            </>
+          ) : (
+            <>
+              {/* Type chip */}
+              <div className="mb-5">
+                <span
+                  className="inline-block text-[10px] tracking-[0.25em] uppercase rounded-full px-2.5 py-1"
+                  style={{
+                    background: style.bgSoft,
+                    color: style.text,
+                    border: `1px solid ${style.border}`,
+                  }}
+                >
+                  {style.label}
+                </span>
+              </div>
 
-          <p className="text-sm tracking-widest uppercase text-accent mb-3">
-            {formatDate(cls.startISO)}
-          </p>
-          <h3 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-4 leading-tight">
-            {cls.title}
-          </h3>
-
-          {cls.description && (
-            <p className="text-sm text-muted leading-relaxed mb-6 whitespace-pre-line">
-              {cls.description}
-            </p>
-          )}
-
-          {/* Meta */}
-          <div className="space-y-2 text-sm text-muted border-t border-charcoal/10 pt-5 mb-7">
-            <p>
-              <span className="text-charcoal/50 inline-block w-20">Time</span>
-              {formatTimeRange(cls.startISO, cls.endISO)}
-            </p>
-            <p>
-              <span className="text-charcoal/50 inline-block w-20">Where</span>
-              {cls.location}
-            </p>
-            {cls.price && (
-              <p>
-                <span className="text-charcoal/50 inline-block w-20">Price</span>
-                {cls.price}
+              <p className="text-sm tracking-widest uppercase text-accent mb-3">
+                {formatDate(cls.startISO)}
               </p>
-            )}
-          </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-2 leading-tight">
+                {cls.title}
+              </h3>
+              {cls.heroNote && (
+                <p className="font-serif italic text-sm text-charcoal/60 mb-4">
+                  {cls.heroNote}
+                </p>
+              )}
 
-          <a
-            href={cls.bookUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-animated w-full block text-center bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-          >
-            Book →
-          </a>
+              {cls.description && (
+                <p className="text-sm text-muted leading-relaxed mb-6 whitespace-pre-line">
+                  {cls.description}
+                </p>
+              )}
+
+              {/* Meta */}
+              <div className="space-y-2 text-sm text-muted border-t border-charcoal/10 pt-5 mb-7">
+                <p>
+                  <span className="text-charcoal/50 inline-block w-20">Time</span>
+                  {formatTimeRange(cls.startISO, cls.endISO)}
+                </p>
+                <p>
+                  <span className="text-charcoal/50 inline-block w-20">Where</span>
+                  {cls.location}
+                </p>
+                {cls.price && (
+                  <p>
+                    <span className="text-charcoal/50 inline-block w-20">Price</span>
+                    {cls.price}
+                  </p>
+                )}
+              </div>
+
+              {cls.action.type === "book" && (
+                <a
+                  href={cls.action.bookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-animated w-full block text-center bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+                >
+                  Book →
+                </a>
+              )}
+              {cls.action.type === "rsvp" && (
+                <button
+                  type="button"
+                  onClick={() => setShowRsvp(true)}
+                  className="btn-animated w-full block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+                >
+                  RSVP →
+                </button>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>,
