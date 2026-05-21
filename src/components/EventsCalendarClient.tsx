@@ -72,17 +72,14 @@ function CategoryPill({ category }: { category: EventCategory }) {
 // Craft Night, coffee cup for Mat & Matcha).
 const EVENT_ICONS: Record<NonNullable<EventItem["iconKey"]>, React.ReactNode> = {
   boomerang: (
+    // Filled wishbone silhouette — outer curve up to an apex, inner curve
+    // back down. Reads as an actual returning boomerang, not a paper plane.
     <svg
       className="w-20 h-20"
       viewBox="0 0 64 64"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2.25}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="currentColor"
     >
-      <path d="M14 46 L 32 14 L 50 46 L 32 38 Z" />
-      <path d="M32 14 L 32 38" />
+      <path d="M11 51 Q 14 28 32 13 Q 50 28 53 51 L 44 51 Q 41 35 32 26 Q 23 35 20 51 Z" />
     </svg>
   ),
   coffee: (
@@ -190,33 +187,25 @@ function MatSeriesCard({
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {events.map((event) => {
+        {events.map((event, i) => {
           const date = formatDateBadge(event.dateTime);
-          const partOnly = event.partLabel?.split("·")[0]?.trim();
           return (
             <button
               key={event.id}
               type="button"
               onClick={() => onSelect(event)}
-              className="group text-left flex flex-col bg-white border border-accent/20 rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
+              className="group text-center flex flex-col items-center bg-white border border-accent/20 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
             >
-              <div className="flex items-baseline gap-2 mb-3">
-                <span className="text-[10px] tracking-[0.25em] text-accent uppercase">
-                  {date.weekday}
-                </span>
-                <span className="font-serif text-base text-charcoal">
-                  {date.month} {date.day}
-                </span>
+              <div className="flex items-center justify-center w-9 h-9 rounded-full border border-accent/40 text-accent font-serif text-base mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
+                {i + 1}
               </div>
-              {partOnly && (
-                <p className="text-[11px] tracking-[0.2em] uppercase text-accent/80 mb-1">
-                  {partOnly}
-                </p>
-              )}
-              <h4 className="font-serif text-lg font-light text-charcoal leading-snug mb-3 group-hover:text-accent transition-colors">
+              <p className="text-[11px] tracking-[0.25em] text-accent uppercase mb-2">
+                {date.weekday} · {date.month} {date.day}
+              </p>
+              <h4 className="font-serif text-lg font-light text-charcoal leading-snug mb-4 group-hover:text-accent transition-colors">
                 {event.title}
               </h4>
-              <span className="mt-auto text-[11px] tracking-widest uppercase text-accent text-right group-hover:text-accent/80 transition-colors">
+              <span className="mt-auto text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
                 Details →
               </span>
             </button>
