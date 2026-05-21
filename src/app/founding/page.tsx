@@ -56,10 +56,12 @@ export default async function Founding() {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/20 via-charcoal/10 to-charcoal/60" />
+        {/* Mobile: dark fade at the top behind the text. Desktop: dark
+            fade at the bottom (text sits at the bottom). */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/65 via-charcoal/25 to-charcoal/35 md:from-charcoal/20 md:via-charcoal/10 md:to-charcoal/60" />
 
-        <div className="relative h-full flex items-end">
-          <div className="max-w-6xl mx-auto px-6 pb-16 lg:pb-24 w-full">
+        <div className="relative h-full flex items-start md:items-end">
+          <div className="max-w-6xl mx-auto px-6 pt-28 pb-8 md:pt-0 md:pb-24 w-full">
             <div className="max-w-2xl text-white">
               <p className="text-[11px] tracking-[0.4em] uppercase text-white/90 mb-5 animate-fade-up-lux" style={{ animationDelay: "0.3s" }}>
                 Founding Member · Ends July 13, 2026
