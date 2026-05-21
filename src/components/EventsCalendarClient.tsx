@@ -75,7 +75,7 @@ const EVENT_ICONS: Record<NonNullable<EventItem["iconKey"]>, React.ReactNode> = 
     // Filled wishbone silhouette — outer curve up to an apex, inner curve
     // back down. Reads as an actual returning boomerang, not a paper plane.
     <svg
-      className="w-20 h-20"
+      className="w-7 h-7"
       viewBox="0 0 64 64"
       fill="currentColor"
     >
@@ -84,7 +84,7 @@ const EVENT_ICONS: Record<NonNullable<EventItem["iconKey"]>, React.ReactNode> = 
   ),
   coffee: (
     <svg
-      className="w-20 h-20"
+      className="w-7 h-7"
       viewBox="0 0 64 64"
       fill="none"
       stroke="currentColor"
@@ -99,9 +99,9 @@ const EVENT_ICONS: Record<NonNullable<EventItem["iconKey"]>, React.ReactNode> = 
   ),
 };
 
-// Bigger card with a hero image (or decorative icon). Used for standalone
-// "destination" events like Craft Night and Mat & Matcha that deserve more
-// visual weight than the regular agenda cards.
+// Compact horizontal card for the "destination" events (Craft Night,
+// Mat & Matcha). Icon-circle on the left, content stacked on the right.
+// Much smaller than the Mat Series card above so it doesn't dominate.
 function FeaturedEventCard({
   event,
   onClick,
@@ -114,49 +114,23 @@ function FeaturedEventCard({
     <button
       type="button"
       onClick={onClick}
-      className="group text-left flex flex-col bg-white border border-charcoal/10 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
+      className="group text-left flex items-center gap-4 bg-white border border-charcoal/10 rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
     >
-      {event.iconKey ? (
-        <div className="relative w-full aspect-[16/10] bg-cream flex items-center justify-center text-accent">
+      {event.iconKey && (
+        <div className="shrink-0 w-12 h-12 rounded-full bg-cream flex items-center justify-center text-accent">
           {EVENT_ICONS[event.iconKey]}
         </div>
-      ) : event.image ? (
-        <div className="relative w-full aspect-[16/10] overflow-hidden">
-          <Image
-            src={event.image}
-            alt={event.title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </div>
-      ) : null}
-      <div className="flex flex-col p-6 md:p-7 flex-1">
-        <div className="flex items-baseline gap-2 mb-3">
-          <span className="text-[11px] tracking-[0.25em] text-accent uppercase">
-            {date.weekday}
-          </span>
-          <span className="font-serif text-lg text-charcoal">
-            {date.month} {date.day}
-          </span>
-        </div>
-        <h3 className="font-serif text-xl md:text-2xl font-light text-charcoal leading-snug mb-2">
+      )}
+      <div className="flex-1 min-w-0">
+        <p className="text-[11px] tracking-[0.25em] text-accent uppercase mb-1">
+          {date.weekday} · {date.month} {date.day}
+        </p>
+        <h3 className="font-serif text-base font-light text-charcoal leading-snug mb-1 group-hover:text-accent transition-colors">
           {event.title}
         </h3>
-        {event.shortDescription && (
-          <p className="text-sm text-muted leading-relaxed mb-4">
-            {event.shortDescription}
-          </p>
-        )}
-        <div className="flex-1" />
-        <div className="border-t border-charcoal/5 pt-3 mt-auto">
-          <p className="text-sm text-muted mb-2">
-            {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
-          </p>
-          <p className="text-[11px] tracking-widest uppercase text-accent text-right group-hover:text-accent/80 transition-colors">
-            Details →
-          </p>
-        </div>
+        <p className="text-sm text-muted">
+          {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
+        </p>
       </div>
     </button>
   );

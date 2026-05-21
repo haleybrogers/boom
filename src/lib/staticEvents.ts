@@ -23,7 +23,7 @@ export const staticEvents: EventItem[] = [
     action: { type: "rsvp-party" },
     featured: true,
     heroNote: "You're invited.",
-    image: "/photo-sisters.jpg",
+    image: "/photo-opening-party.jpg",
     details: [
       { label: "What to wear", value: "Cocktail / party" },
       { label: "Food & drink", value: "Light bites and spritzes" },
