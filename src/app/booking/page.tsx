@@ -79,10 +79,7 @@ export default function Booking() {
               <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight mb-6">
                 Come move with us.
               </h1>
-              <div className="w-12 h-px bg-accent mb-6" />
-              <p className="text-base md:text-lg text-muted leading-relaxed mb-8">
-                Whatever you&apos;re after, we&apos;ve got a way in. Pick whichever fits.
-              </p>
+              <div className="w-12 h-px bg-accent mb-8" />
 
               {/* Stacked tiles. Icon left, label + hint middle, arrow right. */}
               <div className="divide-y divide-charcoal/10 border-y border-charcoal/10">
