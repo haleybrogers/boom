@@ -67,7 +67,10 @@ function CategoryPill({ category }: { category: EventCategory }) {
   );
 }
 
-function FeaturedCard({
+// Bigger card with a hero image. Used for standalone "destination" events
+// like Craft Night and Mat & Matcha that deserve more visual weight than
+// the regular agenda cards.
+function FeaturedEventCard({
   event,
   onClick,
 }: {
@@ -79,29 +82,38 @@ function FeaturedCard({
     <button
       type="button"
       onClick={onClick}
-      className="group text-left flex flex-col bg-warm-white border-2 border-accent/25 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
+      className="group text-left flex flex-col bg-white border border-charcoal/10 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
     >
-      <div className="flex flex-col p-7 md:p-9 flex-1">
-        <div className="flex items-start mb-6">
-          <div className="flex flex-col">
-            <span className="text-[11px] tracking-[0.3em] text-accent uppercase">
-              {date.weekday}
-            </span>
-            <span className="font-serif text-4xl md:text-5xl text-charcoal leading-none mt-1">
-              {date.month} {date.day}
-            </span>
-          </div>
+      {event.image && (
+        <div className="relative w-full aspect-[16/10] overflow-hidden">
+          <Image
+            src={event.image}
+            alt={event.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
         </div>
-        <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal leading-tight mb-2">
+      )}
+      <div className="flex flex-col p-6 md:p-7 flex-1">
+        <div className="flex items-baseline gap-2 mb-3">
+          <span className="text-[11px] tracking-[0.25em] text-accent uppercase">
+            {date.weekday}
+          </span>
+          <span className="font-serif text-lg text-charcoal">
+            {date.month} {date.day}
+          </span>
+        </div>
+        <h3 className="font-serif text-xl md:text-2xl font-light text-charcoal leading-snug mb-2">
           {event.title}
         </h3>
-        {event.heroNote && (
-          <p className="font-serif italic text-sm text-charcoal/60 mb-4">
-            {event.heroNote}
+        {event.shortDescription && (
+          <p className="text-sm text-muted leading-relaxed mb-4">
+            {event.shortDescription}
           </p>
         )}
         <div className="flex-1" />
-        <div className="border-t border-charcoal/10 pt-4 mt-auto">
+        <div className="border-t border-charcoal/5 pt-3 mt-auto">
           <p className="text-sm text-muted mb-2">
             {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
           </p>
@@ -111,6 +123,67 @@ function FeaturedCard({
         </div>
       </div>
     </button>
+  );
+}
+
+// Grouped card for the 3-part Mat Series. Reads as a single curated lineup
+// rather than three competing cards. Each row inside opens its own modal.
+function MatSeriesCard({
+  events,
+  onSelect,
+}: {
+  events: EventItem[];
+  onSelect: (e: EventItem) => void;
+}) {
+  return (
+    <div className="bg-accent/5 border border-accent/30 rounded-sm p-7 md:p-9">
+      <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">
+        3-Part Series
+      </p>
+      <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-2">
+        The Mat Series.
+      </h3>
+      <p className="font-serif italic text-base text-charcoal/70 mb-6">
+        No straps. No springs. No limits.
+      </p>
+      <div className="divide-y divide-accent/15 border-y border-accent/15">
+        {events.map((event) => {
+          const date = formatDateBadge(event.dateTime);
+          const partOnly = event.partLabel?.split("·")[0]?.trim();
+          return (
+            <button
+              key={event.id}
+              type="button"
+              onClick={() => onSelect(event)}
+              className="w-full text-left py-4 flex items-baseline gap-3 sm:gap-5 group"
+            >
+              <div className="shrink-0 flex items-baseline gap-1 w-20">
+                <span className="text-[10px] tracking-[0.25em] text-accent uppercase">
+                  {date.weekday}
+                </span>
+                <span className="font-serif text-base text-charcoal">
+                  {date.month} {date.day}
+                </span>
+              </div>
+              {partOnly && (
+                <span className="text-[11px] tracking-[0.2em] uppercase text-accent/80 shrink-0 hidden sm:inline">
+                  {partOnly}
+                </span>
+              )}
+              <span className="font-serif text-base sm:text-lg font-light text-charcoal flex-1 group-hover:text-accent transition-colors">
+                {event.title}
+              </span>
+              <span className="text-accent shrink-0 group-hover:translate-x-0.5 transition-transform">
+                →
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      <p className="text-sm text-muted mt-5">
+        Suggested $20 per class or $55 for all three.
+      </p>
+    </div>
   );
 }
 
@@ -471,6 +544,30 @@ export default function EventsCalendarClient({
       ),
     [events]
   );
+  // Sub-buckets inside Opening Week so the section can render the 3-part
+  // Mat Series as one grouped card and Craft Night / Mat & Matcha as
+  // featured photo cards. Anything else falls into a regular grid.
+  const matSeries = useMemo(
+    () => openingWeek.filter((e) => e.id.startsWith("mat-series-")),
+    [openingWeek]
+  );
+  const featuredOpeningWeek = useMemo(
+    () =>
+      openingWeek.filter(
+        (e) => e.id === "craft-night" || e.id === "mat-matcha"
+      ),
+    [openingWeek]
+  );
+  const otherOpeningWeek = useMemo(
+    () =>
+      openingWeek.filter(
+        (e) =>
+          !e.id.startsWith("mat-series-") &&
+          e.id !== "craft-night" &&
+          e.id !== "mat-matcha"
+      ),
+    [openingWeek]
+  );
   const popups = useMemo(
     () => events.filter((e) => e.category === "around-town"),
     [events]
@@ -486,19 +583,41 @@ export default function EventsCalendarClient({
 
   return (
     <>
-      {/* 1. Opening Week */}
+      {/* 1. Opening Week. Mat Series (grouped trio card) → featured pair
+          (Craft Night + Mat & Matcha) → any other soft-opening event. */}
       {openingWeek.length > 0 && (
         <section className="mb-16 lg:mb-24">
           <SectionHeader kicker="Soft Opening" title="Help us work out the kinks." />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
-            {openingWeek.map((event) => (
-              <EventCard
-                key={event.id}
-                event={event}
-                onClick={() => setActiveEvent(event)}
-              />
-            ))}
-          </div>
+
+          {matSeries.length > 0 && (
+            <div className="mb-5">
+              <MatSeriesCard events={matSeries} onSelect={setActiveEvent} />
+            </div>
+          )}
+
+          {featuredOpeningWeek.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5 stagger-children">
+              {featuredOpeningWeek.map((event) => (
+                <FeaturedEventCard
+                  key={event.id}
+                  event={event}
+                  onClick={() => setActiveEvent(event)}
+                />
+              ))}
+            </div>
+          )}
+
+          {otherOpeningWeek.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
+              {otherOpeningWeek.map((event) => (
+                <EventCard
+                  key={event.id}
+                  event={event}
+                  onClick={() => setActiveEvent(event)}
+                />
+              ))}
+            </div>
+          )}
         </section>
       )}
 

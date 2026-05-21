@@ -46,7 +46,7 @@ export const staticEvents: EventItem[] = [
       note: "Booking opens in Momence soon — we'll send a heads-up to anyone on the waitlist.",
     },
     heroNote: "Workshop · Pop-up event.",
-    image: "/photo-leg.jpg",
+    image: "/photo-mat-2.jpg",
     details: [
       { label: "The mat", value: "30-minute open-level class to start" },
       { label: "The craft", value: "Hand-shaped, gesso-primed Baltic birch boomerang to paint & take home" },
