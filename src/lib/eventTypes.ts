@@ -39,4 +39,7 @@ export type EventItem = {
   details?: EventDetail[]; // detail tiles in the modal
   partLabel?: string;    // "Part 1 of 3" — shown on cards + modal for series classes
   image?: string;        // /public path — shown as hero strip in modal (and card if featured)
+  residentsOnly?: {      // For pop-ups at private apartment complexes
+    building: string;    // Display name, e.g. "Cortland Bull City"
+  };
 };

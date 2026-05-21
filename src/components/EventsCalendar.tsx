@@ -29,6 +29,21 @@ type MomenceEvent = {
   published: boolean;
 };
 
+// Residents-only apartment buildings. If a pop-up's location contains one
+// of these keywords, we surface a "Residents Only" badge + disclaimer so
+// non-residents don't show up and find a locked gate. Add new buildings
+// here as they come online.
+const RESIDENTS_ONLY_BUILDINGS: Array<{ keyword: string; building: string }> = [
+  { keyword: "cortland", building: "Cortland Bull City" },
+  { keyword: "atlas", building: "Atlas Durham" },
+];
+
+function detectResidentsOnly(location: string): { building: string } | undefined {
+  const lower = location.toLowerCase();
+  const match = RESIDENTS_ONLY_BUILDINGS.find((b) => lower.includes(b.keyword));
+  return match ? { building: match.building } : undefined;
+}
+
 async function fetchMomenceEvents(): Promise<EventItem[]> {
   try {
     const res = await fetch(
@@ -40,17 +55,21 @@ async function fetchMomenceEvents(): Promise<EventItem[]> {
     if (!Array.isArray(data)) return [];
     return (data as MomenceEvent[])
       .filter((e) => !e.isCancelled && !e.isDeleted && e.published)
-      .map((e) => ({
-        id: `momence-${e.id}`,
-        title: e.title.trim(),
-        dateTime: e.dateTime,
-        durationMin: e.duration,
-        category: "around-town" as const,
-        description: e.description?.trim() || "",
-        location: e.location?.trim() || "Durham, NC",
-        price: e.fixedPrice && e.fixedPrice > 0 ? `$${e.fixedPrice}` : "Free",
-        action: { type: "external" as const, href: e.link, label: "Reserve a Spot" },
-      }));
+      .map((e) => {
+        const location = e.location?.trim() || "Durham, NC";
+        return {
+          id: `momence-${e.id}`,
+          title: e.title.trim(),
+          dateTime: e.dateTime,
+          durationMin: e.duration,
+          category: "around-town" as const,
+          description: e.description?.trim() || "",
+          location,
+          price: e.fixedPrice && e.fixedPrice > 0 ? `$${e.fixedPrice}` : "Free",
+          action: { type: "external" as const, href: e.link, label: "Reserve a Spot" },
+          residentsOnly: detectResidentsOnly(location),
+        };
+      });
   } catch {
     return [];
   }

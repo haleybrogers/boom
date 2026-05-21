@@ -148,6 +148,11 @@ function EventCard({
         <h3 className="font-serif text-lg font-light text-charcoal leading-snug mb-2">
           {event.title}
         </h3>
+        {event.residentsOnly && (
+          <span className="self-start text-[10px] tracking-[0.25em] uppercase border border-accent/30 text-accent bg-accent/5 rounded-full px-2.5 py-1 mb-2">
+            Residents Only
+          </span>
+        )}
         <div className="flex-1" />
         <div className="border-t border-charcoal/5 pt-3 mt-auto">
           <p className="text-sm text-muted mb-2">
@@ -285,6 +290,14 @@ function EventDetailModal({
                   {event.price}
                 </p>
               </div>
+
+              {/* Residents-only disclaimer (above the action) */}
+              {event.residentsOnly && (
+                <p className="text-sm text-accent text-center mb-3 border border-accent/20 bg-accent/5 rounded-sm px-4 py-3">
+                  Residents of <strong>{event.residentsOnly.building}</strong> only —
+                  check with your front desk.
+                </p>
+              )}
 
               {/* Action */}
               {event.action.type === "rsvp-party" && (
