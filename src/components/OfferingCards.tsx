@@ -53,11 +53,11 @@ const offerings: Offering[] = [
     photoScale: "scale-[1.35]",
   },
   {
-    title: "Privates & Duets",
+    title: "Privates, Duets & Trios",
     image: "/photo-private.jpg",
     tagline: "Fully customized. Your body, your goals, your pace.",
     description:
-      "One-on-one or with a partner. Full apparatus access tailored entirely to you. Whether you're rehabbing, training for something specific, or just prefer individual attention, this is the fastest path to results.",
+      "One-on-one, with a partner, or as a trio. Full apparatus access tailored entirely to you. Whether you're rehabbing, training for something specific, or just prefer individual attention, this is the fastest path to results.",
     classes: [],
     startingPrice: "$60",
     priceNote: "duets per person · privates $110",

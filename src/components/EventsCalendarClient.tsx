@@ -129,16 +129,13 @@ function EventCard({
       className="group text-left flex flex-col bg-white border border-charcoal/10 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
     >
       <div className="flex flex-col p-6 flex-1">
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex items-baseline gap-2">
-            <span className="text-[11px] tracking-[0.25em] text-accent uppercase">
-              {date.weekday}
-            </span>
-            <span className="font-serif text-lg text-charcoal">
-              {date.month} {date.day}
-            </span>
-          </div>
-          <CategoryPill category={event.category} />
+        <div className="flex items-baseline gap-2 mb-3">
+          <span className="text-[11px] tracking-[0.25em] text-accent uppercase">
+            {date.weekday}
+          </span>
+          <span className="font-serif text-lg text-charcoal">
+            {date.month} {date.day}
+          </span>
         </div>
         {event.partLabel && (
           <p className="text-[11px] tracking-[0.2em] uppercase text-accent/80 mb-2">
@@ -233,14 +230,13 @@ function EventDetailModal({
             </>
           ) : (
             <>
-              <div className="mb-5 flex flex-wrap items-center gap-2">
-                <CategoryPill category={event.category} />
-                {event.partLabel && (
+              {event.partLabel && (
+                <div className="mb-5">
                   <span className="text-[10px] tracking-[0.25em] uppercase border border-charcoal/15 text-charcoal/60 bg-white rounded-full px-2.5 py-1">
                     {event.partLabel}
                   </span>
-                )}
-              </div>
+                </div>
+              )}
               <p className="text-sm tracking-widest uppercase text-accent mb-3">
                 {formatFullDate(event.dateTime)}
               </p>
@@ -480,7 +476,7 @@ export default function EventsCalendarClient({
       {/* 1. Opening Week */}
       {openingWeek.length > 0 && (
         <section className="mb-16 lg:mb-24">
-          <SectionHeader kicker="The Lead-up" title="Opening Week." />
+          <SectionHeader kicker="Soft Opening" title="Help us work out the kinks." />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
             {openingWeek.map((event) => (
               <EventCard

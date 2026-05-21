@@ -16,10 +16,10 @@ export const staticEvents: EventItem[] = [
     durationMin: 180,
     category: "soft-opening",
     description:
-      "We're throwing a party. Studio tours, equipment demos, and a chance to meet the Boomerang community before the schedule fills up. Limited tote bags printed on site by Inkfinity Printing — first come, first served.",
+      "We're throwing a party. Studio tours, equipment demos, and a chance to meet the Boomerang community before the schedule fills up. $10 cover — free for founding members. Limited tote bags printed on site by Inkfinity Printing — first come, first served.",
     shortDescription: "Studio tours, demos, and the first time you meet the room.",
     location: "345 W Main St, Unit 2 (upstairs), Durham, NC",
-    price: "Free",
+    price: "$10 cover · Free for founding members",
     action: { type: "rsvp-party" },
     featured: true,
     heroNote: "You're invited.",

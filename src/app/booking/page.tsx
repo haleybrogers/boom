@@ -42,17 +42,11 @@ export default function Booking() {
       {/* Hero — header + one big photo */}
       <section className="pt-28 lg:pt-36 pb-12 lg:pb-16 bg-warm-white">
         <div className="max-w-3xl mx-auto px-6 text-center mb-12">
-          <p
-            className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up"
-            style={{ animationDelay: "0.05s" }}
-          >
-            How to Book
-          </p>
           <h1
             className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up"
             style={{ animationDelay: "0.15s" }}
           >
-            Three ways in.
+            How to book.
           </h1>
           <div
             className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up"
@@ -69,7 +63,7 @@ export default function Booking() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm">
             <Image
-              src="/photo-apparatus.jpg"
+              src="/photo-reformer.jpg"
               alt="Classical Pilates at Boomerang"
               fill
               priority
@@ -100,7 +94,7 @@ export default function Booking() {
                   href={opt.href}
                   className="link-arrow inline-block text-sm tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
                 >
-                  {opt.cta} →
+                  {opt.cta}
                 </Tag>
               </div>
             );
