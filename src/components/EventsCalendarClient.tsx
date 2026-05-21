@@ -130,7 +130,8 @@ function FeaturedEventCard({
           {event.title}
         </h3>
         <p className="text-sm text-muted">
-          {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
+          {formatTimeRange(event.dateTime, event.durationMin)}
+          {event.price && ` · ${event.price}`}
         </p>
       </div>
     </button>
@@ -244,7 +245,8 @@ function EventCard({
         <div className="flex-1" />
         <div className="border-t border-charcoal/5 pt-3 mt-auto">
           <p className="text-sm text-muted mb-2">
-            {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
+            {formatTimeRange(event.dateTime, event.durationMin)}
+            {event.price && ` · ${event.price}`}
           </p>
           <p className="text-[11px] tracking-widest uppercase text-accent text-right group-hover:text-accent/80 transition-colors">
             Details →
@@ -372,10 +374,12 @@ function EventDetailModal({
                   <span className="text-charcoal/50 inline-block w-20">Where</span>
                   {event.location}
                 </p>
-                <p>
-                  <span className="text-charcoal/50 inline-block w-20">Price</span>
-                  {event.price}
-                </p>
+                {event.price && (
+                  <p>
+                    <span className="text-charcoal/50 inline-block w-20">Price</span>
+                    {event.price}
+                  </p>
+                )}
               </div>
 
               {/* Residents-only disclaimer (above the action) */}
@@ -507,10 +511,12 @@ function OpeningNightHero({
                 <span className="text-charcoal/50 inline-block w-20">Where</span>
                 {event.location}
               </p>
-              <p>
-                <span className="text-charcoal/50 inline-block w-20">Price</span>
-                {event.price}
-              </p>
+              {event.price && (
+                <p>
+                  <span className="text-charcoal/50 inline-block w-20">Price</span>
+                  {event.price}
+                </p>
+              )}
             </div>
             <button
               type="button"

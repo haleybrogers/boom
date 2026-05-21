@@ -69,7 +69,7 @@ export const staticEvents: EventItem[] = [
       "The original 34-exercise mat sequence — breath, center, and flow, exactly as written. First class in the 3-Part Mat Series: no straps, no springs, no limits.",
     shortDescription: "No straps. No springs. No limits.",
     location: "345 W Main St, Durham, NC",
-    price: "Suggested $20",
+    price: "",
     partLabel: "Part 1 of 3 · Mat Series",
     image: "/photo-mat-2.jpg",
     action: {
@@ -87,7 +87,7 @@ export const staticEvents: EventItem[] = [
       "Classical mat with the Magic Circle — a small ring that turns every cue into a felt sensation. Second class in the 3-Part Mat Series.",
     shortDescription: "The Magic Circle entry point.",
     location: "345 W Main St, Durham, NC",
-    price: "Suggested $20",
+    price: "",
     partLabel: "Part 2 of 3 · Mat Series",
     image: "/photo-mat-2.jpg",
     action: {
@@ -105,7 +105,7 @@ export const staticEvents: EventItem[] = [
       "Reformer exercises adapted to the mat — a preview of the apparatus work, no equipment required. Final class in the 3-Part Mat Series.",
     shortDescription: "Reformer work, no equipment required.",
     location: "345 W Main St, Durham, NC",
-    price: "Suggested $20",
+    price: "",
     partLabel: "Part 3 of 3 · Mat Series",
     image: "/photo-reformer.jpg",
     action: {
