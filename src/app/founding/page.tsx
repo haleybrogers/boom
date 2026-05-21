@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import ContactFormModal from "@/components/ContactFormModal";
 import FoundingCountdown from "@/components/FoundingCountdown";
 import Reveal from "@/components/Reveal";
+import { SHOW_FOUNDING } from "@/lib/flags";
 import {
   fetchMemberships,
   pairMatTiers,
@@ -39,6 +41,8 @@ const perks = [
 ];
 
 export default async function Founding() {
+  // After the deadline (EOD July 13, 2026), this page disappears.
+  if (!SHOW_FOUNDING) notFound();
   const memberships = await fetchMemberships();
   return (
     <>

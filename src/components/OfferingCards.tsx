@@ -9,22 +9,31 @@ import {
   findDropIn,
 } from "@/lib/momence";
 
+type Offering = {
+  title: string;
+  image: string;
+  tagline: string;
+  description: string;
+  classes: Array<{ name: string; section: number }>;
+  startingPrice: string;
+  priceNote: string;
+  link: string;
+  linkLabel: string;
+  external?: boolean;
+  photoScale?: string;
+};
+
 // Offering definitions. `startingPrice` + `priceNote` are placeholders —
 // they get overridden at runtime with live Momence pricing so the home
 // page reflects whatever Emilie has set in the booking system.
-const offerings = [
+const offerings: Offering[] = [
   {
     title: "Mat Classes",
     image: "/photo-mat-2.jpg",
     tagline: "The foundation of everything we do.",
     description:
       "Full-body workouts rooted in the original Return to Life matwork. Layered, progressive, and built around all six principles of the method. Modifications for newer students, advancements for those deeper in their practice.",
-    classes: [
-      { name: "Open Level Classical Mat", section: 0 },
-      { name: "Return to Life Full 34", section: 0 },
-      { name: "RTL Course I & II", section: 0 },
-      { name: "Lunch Power Hour", section: 0 },
-    ],
+    classes: [],
     startingPrice: "$25",
     priceNote: "drop-in · memberships from $150/mo",
     link: "/schedule",
@@ -41,6 +50,7 @@ const offerings = [
     priceNote: "",
     link: "/privates",
     linkLabel: "Book a Session",
+    photoScale: "scale-[1.35]",
   },
   {
     title: "Privates & Duets",
@@ -48,10 +58,7 @@ const offerings = [
     tagline: "Fully customized. Your body, your goals, your pace.",
     description:
       "One-on-one or with a partner. Full apparatus access tailored entirely to you. Whether you're rehabbing, training for something specific, or just prefer individual attention, this is the fastest path to results.",
-    classes: [
-      { name: "Private Sessions", section: 2 },
-      { name: "Duet Sessions", section: 2 },
-    ],
+    classes: [],
     startingPrice: "$60",
     priceNote: "duets per person · privates $110",
     link: MOMENCE_APPOINTMENTS_URL,
@@ -115,7 +122,7 @@ export default async function OfferingCards() {
                 src={offering.image}
                 alt={offering.title}
                 fill
-                className="object-cover grayscale hover:grayscale-0 scale-[1.15] transition-all duration-700 ease-in-out"
+                className={`object-cover grayscale hover:grayscale-0 ${offering.photoScale || "scale-[1.15]"} transition-all duration-700 ease-in-out`}
               />
             </Reveal>
 

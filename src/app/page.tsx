@@ -8,6 +8,10 @@ import PreOpeningPopup from "@/components/PreOpeningPopup";
 import SplashScreen from "@/components/SplashScreen";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
+// Re-render hourly so SHOW_FOUNDING auto-flips off shortly after the
+// July 13 deadline without needing a redeploy.
+export const revalidate = 3600;
+
 export default function Home() {
   return (
     <>

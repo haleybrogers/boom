@@ -1,8 +1,21 @@
 // Feature flags — toggle UI surfaces without ripping out code.
 //
 // SHOW_FOUNDING: gates everything related to founding-member pricing —
-// the home-page tease + popup, the footer CTA, the sticky-CTA copy.
-// Founding pricing itself now lives on /packs (always visible), so the
-// flag only controls the "limited time" surfaces (countdown, popup,
-// teaser). Flip to false after July 13, 2026 (when the offer expires).
-export const SHOW_FOUNDING = true;
+// the home-page tease, the footer CTA, the sticky-CTA copy, the
+// Founding Member section + countdown on /packs, and access to the
+// /founding page itself (which 404s after the deadline).
+//
+// Auto-flips to false at end-of-day July 13, 2026 (FOUNDING_DEADLINE).
+// Server pages with revalidate will pick up the flip within their
+// revalidate window; client components recompute on each page load.
+
+export const FOUNDING_DEADLINE = new Date("2026-07-14T00:00:00-04:00");
+
+export function isFoundingActive(): boolean {
+  return Date.now() < FOUNDING_DEADLINE.getTime();
+}
+
+// Backward-compatible export. Evaluates at module load:
+//   - server: each render cycle / revalidate
+//   - client: each page load (when the JS bundle hydrates)
+export const SHOW_FOUNDING = isFoundingActive();

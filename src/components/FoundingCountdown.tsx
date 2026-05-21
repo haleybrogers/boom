@@ -1,12 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
-// Founding member offer ends at end of day (local) on this date
-const DEADLINE = new Date("2026-07-13T23:59:59");
+import { FOUNDING_DEADLINE } from "@/lib/flags";
 
 function calc() {
-  const diff = DEADLINE.getTime() - Date.now();
+  const diff = FOUNDING_DEADLINE.getTime() - Date.now();
   if (diff <= 0) return null;
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
