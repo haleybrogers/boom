@@ -17,13 +17,16 @@ export default function Home() {
     <>
       <SplashScreen />
 
-      {/* Hero */}
-      <section className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
+      {/* Hero. Source is 21:9 ultra-wide (sisters in boomerang pose with
+          feet + hands reaching to the edges). On mobile we match aspect so
+          the whole image fits; on desktop the container goes back to 70vh
+          and object-cover takes the wide crop. */}
+      <section className="relative aspect-[21/9] sm:aspect-auto sm:h-[70vh] overflow-hidden">
         <Image
           src="/hero-image.jpg"
           alt="Two figures in the Boomerang Pilates pose"
           fill
-          className="object-cover object-bottom"
+          className="object-cover sm:object-bottom"
           priority
         />
       </section>
