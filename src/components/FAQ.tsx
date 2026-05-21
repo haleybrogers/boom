@@ -2,7 +2,34 @@
 
 import { useState } from "react";
 
-const faqs = [
+// Logistics questions — visible at the top for existing clients who just
+// want quick answers about booking, cancellation, perks, founding.
+const logisticsFaqs = [
+  {
+    question: "How do I book a class?",
+    answer:
+      "Use the schedule at the top of this page — tap any class to book directly. New here? A $25 mat drop-in is the easiest place to start.",
+  },
+  {
+    question: "Cancellation policy?",
+    answer:
+      "24 hours notice to cancel or reschedule any lesson or class. Late cancellations and no-shows: mat members are charged the full $25 drop-in rate; if you're on a class pack, it's a $15 fee plus a burned credit.",
+  },
+  {
+    question: "Can I bring a friend?",
+    answer:
+      "Yes — and if you're a founding member, your first three months come with a bring-a-friend pass: bring a friend to any mat class, free.",
+  },
+  {
+    question: "What's a founding membership?",
+    answer:
+      "Three tiers — 4x/month, 8x/month, and Unlimited — with 15 founding spots at each tier. Founding rate is 25% off the regular membership and applies to mat classes only (can't be subbed into apparatus). Lock it in before we open and your rate never goes up as long as your membership stays active. Cancel or pause and you lose it.",
+  },
+];
+
+// Beginner questions — collapsed inside the "Never done Pilates before?"
+// dropdown so existing clients don't have to scroll past them.
+const beginnerFaqs = [
   {
     question: "I've never done Pilates. Will I be lost?",
     answer:
@@ -33,67 +60,114 @@ const faqs = [
     answer:
       "Joseph Pilates said: \"In 10 sessions you'll feel the difference, in 20 you'll see the difference, and in 30 you'll have a whole new body.\" Twice a week is the sweet spot for most people.",
   },
-  {
-    question: "How do I book a class?",
-    answer:
-      "Use the schedule at the top of this page — tap any class to book directly. New here? A $25 mat drop-in is the easiest place to start.",
-  },
-  {
-    question: "Cancellation policy?",
-    answer:
-      "24 hours notice to cancel or reschedule any lesson or class. Late cancellations and no-shows: mat members are charged the full $25 drop-in rate; if you're on a class pack, it's a $15 fee plus a burned credit.",
-  },
-  {
-    question: "Can I bring a friend?",
-    answer:
-      "Yes — and if you're a founding member, your first three months come with a bring-a-friend pass: bring a friend to any mat class, free.",
-  },
-  {
-    question: "What's a founding membership?",
-    answer:
-      "Three tiers — 4x/month, 8x/month, and Unlimited — with 15 founding spots at each tier. Founding rate is 25% off the regular membership and applies to mat classes only (can't be subbed into apparatus). Lock it in before we open and your rate never goes up as long as your membership stays active. Cancel or pause and you lose it.",
-  },
 ];
 
+function FaqRow({
+  faq,
+  isOpen,
+  onToggle,
+}: {
+  faq: { question: string; answer: string };
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      onClick={onToggle}
+      className="w-full text-left py-5 group"
+    >
+      <div className="flex items-center justify-between gap-4">
+        <h3 className="font-serif text-base font-light text-charcoal group-hover:text-accent transition-colors">
+          {faq.question}
+        </h3>
+        <span
+          className={`shrink-0 text-accent/50 transition-transform duration-300 ${
+            isOpen ? "rotate-45" : ""
+          }`}
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+        </span>
+      </div>
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? "max-h-64 opacity-100 mt-3" : "max-h-0 opacity-0"
+        }`}
+      >
+        <p className="text-sm text-muted leading-relaxed pr-8">
+          {faq.answer}
+        </p>
+      </div>
+    </button>
+  );
+}
+
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null);
+  // Use composite keys so logistics and beginner rows can each be open
+  // independently (and only one beginner row at a time, etc.). The
+  // "Never done Pilates before?" parent is its own toggle.
+  const [openLogistics, setOpenLogistics] = useState<number | null>(null);
+  const [openBeginner, setOpenBeginner] = useState<number | null>(null);
+  const [beginnerExpanded, setBeginnerExpanded] = useState(false);
 
   return (
-    <div>
-      <div className="max-w-2xl mx-auto divide-y divide-charcoal/10">
-        {faqs.map((faq, i) => (
-          <button
+    <div className="max-w-2xl mx-auto">
+      {/* Logistics — visible at the top */}
+      <div className="divide-y divide-charcoal/10">
+        {logisticsFaqs.map((faq, i) => (
+          <FaqRow
             key={i}
-            onClick={() => setOpen(open === i ? null : i)}
-            className="w-full text-left py-5 group"
-          >
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="font-serif text-base font-light text-charcoal group-hover:text-accent transition-colors">
-                {faq.question}
+            faq={faq}
+            isOpen={openLogistics === i}
+            onToggle={() => setOpenLogistics(openLogistics === i ? null : i)}
+          />
+        ))}
+      </div>
+
+      {/* New-to-Pilates — collapsed by default, expands into a nested accordion */}
+      <div className="mt-10 pt-10 border-t border-charcoal/10">
+        <button
+          onClick={() => setBeginnerExpanded((v) => !v)}
+          className="w-full text-left group"
+        >
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-1">
+                New here?
+              </p>
+              <h3 className="font-serif text-xl font-light text-charcoal group-hover:text-accent transition-colors">
+                Never done Pilates before?
               </h3>
-              <span
-                className={`shrink-0 text-accent/50 transition-transform duration-300 ${
-                  open === i ? "rotate-45" : ""
-                }`}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
-              </span>
             </div>
-            <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                open === i
-                  ? "max-h-48 opacity-100 mt-3"
-                  : "max-h-0 opacity-0"
+            <span
+              className={`shrink-0 text-accent/50 transition-transform duration-300 ${
+                beginnerExpanded ? "rotate-45" : ""
               }`}
             >
-              <p className="text-sm text-muted leading-relaxed pr-8">
-                {faq.answer}
-              </p>
-            </div>
-          </button>
-        ))}
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            beginnerExpanded ? "max-h-[2000px] opacity-100 mt-2" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="divide-y divide-charcoal/10">
+            {beginnerFaqs.map((faq, i) => (
+              <FaqRow
+                key={i}
+                faq={faq}
+                isOpen={openBeginner === i}
+                onToggle={() => setOpenBeginner(openBeginner === i ? null : i)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

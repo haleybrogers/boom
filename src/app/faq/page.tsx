@@ -2,9 +2,9 @@ import Link from "next/link";
 import FAQ from "@/components/FAQ";
 
 export const metadata = {
-  title: "FAQ + Visit",
+  title: "FAQ",
   description:
-    "Frequently asked questions about Boomerang Pilates in Durham, NC — what to wear, how to book, mat vs. apparatus, cancellation policy, plus how to find us.",
+    "Frequently asked questions about Boomerang Pilates in Durham, NC — how to book, cancellation, parking, what to wear, mat vs. apparatus, and more.",
 };
 
 export default function FaqPage() {
@@ -25,20 +25,8 @@ export default function FaqPage() {
           </p>
         </div>
 
-        <FAQ />
-
-        {/* Visit — merged in so address/parking/getting-here lives in one place */}
-        <div className="max-w-2xl mx-auto mt-20 pt-16 border-t border-charcoal/10">
-          <div className="text-center mb-12">
-            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
-              Finding Us
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight">
-              Visit.
-            </h2>
-          </div>
-
-          {/* Address */}
+        {/* Lead with the studio — address + arrival logistics first */}
+        <div className="max-w-2xl mx-auto mb-20">
           <div className="text-center mb-12 pb-12 border-b border-charcoal/10">
             <p className="text-sm tracking-widest uppercase text-accent mb-3">
               The Studio
@@ -92,20 +80,23 @@ export default function FaqPage() {
               </p>
             </div>
           </div>
+        </div>
 
-          {/* Pre-opening CTA */}
-          <div className="mt-16 pt-12 border-t border-charcoal/10 text-center">
-            <p className="text-muted text-sm leading-relaxed mb-6 max-w-md mx-auto">
-              Don&apos;t want to wait until July? We&apos;re running pop-up
-              classes around town until then.
-            </p>
-            <Link
-              href="/events"
-              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-            >
-              Find a pop-up class →
-            </Link>
-          </div>
+        {/* FAQs — logistics visible at the top; beginner Qs nested in a "Never done Pilates before?" dropdown */}
+        <FAQ />
+
+        {/* Pre-opening CTA */}
+        <div className="max-w-2xl mx-auto mt-16 pt-12 border-t border-charcoal/10 text-center">
+          <p className="text-muted text-sm leading-relaxed mb-6 max-w-md mx-auto">
+            Don&apos;t want to wait until July? We&apos;re running pop-up
+            classes around town until then.
+          </p>
+          <Link
+            href="/events"
+            className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+          >
+            Find a pop-up class →
+          </Link>
         </div>
       </div>
     </section>
