@@ -52,7 +52,7 @@ const offerings = [
     startingPrice: "$60",
     priceNote: "duets per person · privates $110",
     link: MOMENCE_APPOINTMENTS_URL,
-    linkLabel: "Book a Private",
+    linkLabel: "Book a Session",
     external: true,
   },
 ];
