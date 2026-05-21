@@ -53,6 +53,7 @@ export default function About() {
                   src="/emilie-young.jpg"
                   alt="Emilie Young"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-[center_22%] scale-[1.4] transition-transform duration-700 hover:scale-[1.45]"
                 />
               </div>
@@ -85,6 +86,7 @@ export default function About() {
                   src="/annie-young.jpg"
                   alt="Annie Young"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-[center_22%] scale-[1.55] transition-transform duration-700 hover:scale-[1.6]"
                 />
               </div>

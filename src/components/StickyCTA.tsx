@@ -31,11 +31,12 @@ export default function StickyCTA() {
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ${
+      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 transition-all duration-500 ${
         visible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-4 pointer-events-none"
       }`}
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <a
         href={SHOW_FOUNDING && !isFridayEvening ? foundingHref : "/schedule"}

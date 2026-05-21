@@ -47,7 +47,7 @@ export default async function Founding() {
   return (
     <>
       {/* Hero — full-bleed Pilates photo with overlaid kicker, headline, countdown */}
-      <section className="relative h-[80vh] min-h-[560px] overflow-hidden">
+      <section className="relative h-[70vh] min-h-[480px] md:h-[80vh] md:min-h-[560px] overflow-hidden">
         <Image
           src="/photo-mat-2.jpg"
           alt="Classical mat Pilates at Boomerang"

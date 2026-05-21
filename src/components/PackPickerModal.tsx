@@ -92,7 +92,7 @@ function Modal({
       <div className="relative bg-cream rounded-sm w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-slide-up shadow-2xl">
         <button
           onClick={close}
-          className="absolute top-4 right-4 text-charcoal/40 hover:text-charcoal transition-colors z-10"
+          className="absolute top-2 right-2 p-3 text-charcoal/40 hover:text-charcoal transition-colors z-10"
           aria-label="Close"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

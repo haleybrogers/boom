@@ -80,7 +80,7 @@ export default function ContactFormModal({
             {/* Close */}
             <button
               onClick={() => setOpen(false)}
-              className="absolute top-4 right-4 text-charcoal/40 hover:text-charcoal transition-colors"
+              className="absolute top-2 right-2 p-3 text-charcoal/40 hover:text-charcoal transition-colors"
               aria-label="Close"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">

@@ -185,7 +185,7 @@ function EventDetailModal({
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-charcoal/40 hover:text-charcoal transition-colors z-20 bg-white/80 backdrop-blur-sm rounded-full p-1.5"
+          className="absolute top-2 right-2 p-3 text-charcoal/40 hover:text-charcoal transition-colors z-20 bg-white/80 backdrop-blur-sm rounded-full"
           aria-label="Close"
         >
           <svg

@@ -61,7 +61,7 @@ export default function Booking() {
         </div>
 
         <div className="max-w-6xl mx-auto px-6">
-          <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm">
+          <div className="relative w-full aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-sm">
             <Image
               src="/photo-apparatus.jpg"
               alt="Classical Pilates at Boomerang"
