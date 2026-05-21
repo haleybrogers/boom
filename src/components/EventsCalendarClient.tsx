@@ -165,8 +165,9 @@ function FeaturedEventCard({
   );
 }
 
-// Grouped card for the 3-part Mat Series. Reads as a single curated lineup
-// rather than three competing cards. Each row inside opens its own modal.
+// Grouped card for the 3-part Mat Series. Outer accent-tinted container
+// keeps the trio visually linked; inside, the three parts render side by
+// side as their own clickable mini-cards (stack on mobile).
 function MatSeriesCard({
   events,
   onSelect,
@@ -176,16 +177,19 @@ function MatSeriesCard({
 }) {
   return (
     <div className="bg-accent/5 border border-accent/30 rounded-sm p-7 md:p-9">
-      <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">
-        3-Part Series
-      </p>
-      <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-2">
-        The Mat Series.
-      </h3>
-      <p className="font-serif italic text-base text-charcoal/70 mb-6">
-        No straps. No springs. No limits.
-      </p>
-      <div className="divide-y divide-accent/15 border-y border-accent/15">
+      <div className="text-center mb-7">
+        <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">
+          3-Part Series
+        </p>
+        <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-2">
+          The Mat Series.
+        </h3>
+        <p className="font-serif italic text-base text-charcoal/70">
+          No straps. No springs. No limits.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {events.map((event) => {
           const date = formatDateBadge(event.dateTime);
           const partOnly = event.partLabel?.split("·")[0]?.trim();
@@ -194,9 +198,9 @@ function MatSeriesCard({
               key={event.id}
               type="button"
               onClick={() => onSelect(event)}
-              className="w-full text-left py-4 flex items-baseline gap-3 sm:gap-5 group"
+              className="group text-left flex flex-col bg-white border border-accent/20 rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
             >
-              <div className="shrink-0 flex items-baseline gap-1 w-20">
+              <div className="flex items-baseline gap-2 mb-3">
                 <span className="text-[10px] tracking-[0.25em] text-accent uppercase">
                   {date.weekday}
                 </span>
@@ -205,21 +209,22 @@ function MatSeriesCard({
                 </span>
               </div>
               {partOnly && (
-                <span className="text-[11px] tracking-[0.2em] uppercase text-accent/80 shrink-0 hidden sm:inline">
+                <p className="text-[11px] tracking-[0.2em] uppercase text-accent/80 mb-1">
                   {partOnly}
-                </span>
+                </p>
               )}
-              <span className="font-serif text-base sm:text-lg font-light text-charcoal flex-1 group-hover:text-accent transition-colors">
+              <h4 className="font-serif text-lg font-light text-charcoal leading-snug mb-3 group-hover:text-accent transition-colors">
                 {event.title}
-              </span>
-              <span className="text-accent shrink-0 group-hover:translate-x-0.5 transition-transform">
-                →
+              </h4>
+              <span className="mt-auto text-[11px] tracking-widest uppercase text-accent text-right group-hover:text-accent/80 transition-colors">
+                Details →
               </span>
             </button>
           );
         })}
       </div>
-      <p className="text-sm text-muted mt-5">
+
+      <p className="text-sm text-muted mt-6 text-center">
         Suggested $20 per class or $55 for all three.
       </p>
     </div>
