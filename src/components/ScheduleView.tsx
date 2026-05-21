@@ -70,7 +70,7 @@ function fmtTime(d: Date) {
 
 // ----------------------- main view -----------------------
 
-type ViewMode = "week" | "list";
+type ViewMode = "week" | "agenda";
 
 export default function ScheduleView({
   classes,
@@ -178,7 +178,7 @@ export default function ScheduleView({
           (same week, sorted chronologically, no grid). */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div className="inline-flex bg-cream border border-charcoal/10 rounded-full p-0.5">
-          {(["week", "list"] as const).map((mode) => (
+          {(["week", "agenda"] as const).map((mode) => (
             <button
               key={mode}
               type="button"
