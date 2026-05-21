@@ -17,16 +17,9 @@ import ScheduleClassModal from "./ScheduleClassModal";
 
 const TZ = "America/New_York";
 
-// Hour height on desktop. A class hour gets enough vertical room for
-// titles to wrap to 2-3 lines without truncating, while still keeping
-// the overall grid short when the schedule is sparse.
-const HOUR_HEIGHT_PX = 64;
-// Empty-week fallback. Only used when the visible week has zero classes
-// (e.g., browsing 6 weeks out before Emilie has published). 9 AM – 3 PM
-// keeps the grid short — no point in renting 14 hours of vertical space
-// to show "nothing is happening."
-const EMPTY_RANGE_START_HOUR = 9;
-const EMPTY_RANGE_END_HOUR = 15;
+// (No time-axis constants — desktop week view is now a stacked-card
+// layout per day column, not a Google-Calendar-style time grid. Time
+// information lives on each card directly.)
 
 // ----------------------- date helpers -----------------------
 
@@ -72,13 +65,6 @@ function fmtTime(d: Date) {
     })
     .toLowerCase()
     .replace(" ", "");
-}
-
-function fmtHourLabel(hour: number) {
-  if (hour === 0) return "12 AM";
-  if (hour === 12) return "12 PM";
-  if (hour < 12) return `${hour} AM`;
-  return `${hour - 12} PM`;
 }
 
 // ----------------------- main view -----------------------
@@ -127,52 +113,6 @@ export default function ScheduleView({
 
   const dayKey = (d: Date) =>
     d.toLocaleDateString("en-CA", { timeZone: TZ });
-
-  // Compute the visible hour range from the week's actual classes. Tight
-  // by default: 1-hour pad above the earliest start, 2-hour pad below
-  // the latest end (so a class ending at 11:50 still has gridline space
-  // under it). If the week has no classes at all, fall back to a short
-  // 9 AM – 3 PM placeholder rather than renting a full 15-hour panel.
-  const { rangeStart, rangeEnd } = useMemo(() => {
-    const hours: number[] = [];
-    for (const d of days) {
-      const dayClasses = classesByDay.get(dayKey(d)) || [];
-      for (const c of dayClasses) {
-        const startD = new Date(c.startISO);
-        const endD = new Date(c.endISO);
-        const sHour = parseInt(
-          startD.toLocaleString("en-US", {
-            hour: "2-digit",
-            hour12: false,
-            timeZone: TZ,
-          }),
-          10
-        );
-        const eHour = parseInt(
-          endD.toLocaleString("en-US", {
-            hour: "2-digit",
-            hour12: false,
-            timeZone: TZ,
-          }),
-          10
-        );
-        hours.push(sHour, eHour);
-      }
-    }
-    if (hours.length === 0) {
-      return { rangeStart: EMPTY_RANGE_START_HOUR, rangeEnd: EMPTY_RANGE_END_HOUR };
-    }
-    const start = Math.max(0, Math.min(...hours) - 1);
-    const end = Math.min(24, Math.max(...hours) + 2);
-    return { rangeStart: start, rangeEnd: end };
-  }, [days, classesByDay]);
-
-  const totalHours = rangeEnd - rangeStart;
-  const gridHeight = totalHours * HOUR_HEIGHT_PX;
-  const hourLabels = Array.from(
-    { length: totalHours + 1 },
-    (_, i) => rangeStart + i
-  );
 
   const weekLabel = `${fmtMonthDay(days[0])} – ${fmtMonthDay(days[6])}`;
   const isThisWeek = sameYMD(weekStart, startOfWeek(today));
@@ -274,14 +214,11 @@ export default function ScheduleView({
 
       {viewMode === "week" ? (
         <>
-          {/* Desktop: time-block week grid */}
+          {/* Desktop: 7-column week, each column stacks its day's cards */}
           <div className="hidden md:block">
             <WeekGrid
               days={days}
               classesByDay={classesByDay}
-              rangeStart={rangeStart}
-              gridHeight={gridHeight}
-              hourLabels={hourLabels}
               today={today}
               onSelect={setActiveClass}
             />
@@ -323,20 +260,20 @@ export default function ScheduleView({
 
 // ----------------------- week grid (desktop) -----------------------
 
+// 7-column week layout. Each column is its own day — header on top
+// (weekday + date), then a vertical stack of cards for that day's
+// classes. No time gutter on the left, no hour gridlines — cards
+// just sort themselves chronologically inside each column. Each
+// card grows to fit its full title (no truncation) so reading what's
+// on never requires opening the modal.
 function WeekGrid({
   days,
   classesByDay,
-  rangeStart,
-  gridHeight,
-  hourLabels,
   today,
   onSelect,
 }: {
   days: Date[];
   classesByDay: Map<string, ScheduleClass[]>;
-  rangeStart: number;
-  gridHeight: number;
-  hourLabels: number[];
   today: Date;
   onSelect: (c: ScheduleClass) => void;
 }) {
@@ -344,17 +281,15 @@ function WeekGrid({
     d.toLocaleDateString("en-CA", { timeZone: TZ });
 
   return (
-    <div className="border border-charcoal/10 rounded-sm overflow-hidden bg-warm-white">
-      {/* Header row: blank corner + 7 day headers */}
-      <div className="grid grid-cols-[64px_repeat(7,1fr)] border-b border-charcoal/10">
-        <div className="border-r border-charcoal/10 bg-cream/40" />
-        {days.map((d) => {
-          const isToday = sameYMD(d, today);
-          return (
+    <div className="grid grid-cols-7 gap-3">
+      {days.map((d) => {
+        const dayClasses = classesByDay.get(dayKey(d)) || [];
+        const isToday = sameYMD(d, today);
+        return (
+          <div key={d.toISOString()} className="flex flex-col">
             <div
-              key={d.toISOString()}
-              className={`text-center py-4 border-r last:border-r-0 border-charcoal/10 ${
-                isToday ? "bg-accent/5" : "bg-cream/40"
+              className={`text-center pb-3 mb-3 border-b ${
+                isToday ? "border-accent" : "border-charcoal/10"
               }`}
             >
               <p
@@ -365,116 +300,63 @@ function WeekGrid({
                 {fmtWeekday(d)}
               </p>
               <p
-                className={`font-serif text-2xl font-light leading-tight mt-1 ${
+                className={`font-serif text-3xl font-light leading-tight mt-1 ${
                   isToday ? "text-accent" : "text-charcoal"
                 }`}
               >
                 {d.getDate()}
               </p>
             </div>
-          );
-        })}
-      </div>
-
-      {/* Body: time labels + 7 day columns */}
-      <div className="grid grid-cols-[64px_repeat(7,1fr)]">
-        {/* Time gutter */}
-        <div
-          className="relative border-r border-charcoal/10 bg-cream/40"
-          style={{ height: gridHeight }}
-        >
-          {hourLabels.slice(0, -1).map((h) => (
-            <div
-              key={h}
-              className="absolute right-2 -translate-y-1/2 text-[10px] tracking-[0.2em] uppercase text-muted"
-              style={{ top: (h - rangeStart) * HOUR_HEIGHT_PX }}
-            >
-              {fmtHourLabel(h)}
-            </div>
-          ))}
-        </div>
-
-        {/* Day columns */}
-        {days.map((d) => {
-          const dayClasses = classesByDay.get(dayKey(d)) || [];
-          const isToday = sameYMD(d, today);
-          return (
-            <div
-              key={d.toISOString()}
-              className={`relative border-r last:border-r-0 border-charcoal/10 ${
-                isToday ? "bg-accent/[0.03]" : ""
-              }`}
-              style={{ height: gridHeight }}
-            >
-              {/* Hour gridlines */}
-              {hourLabels.slice(0, -1).map((h) => (
-                <div
-                  key={h}
-                  className="absolute inset-x-0 border-t border-charcoal/5"
-                  style={{ top: (h - rangeStart) * HOUR_HEIGHT_PX }}
-                />
-              ))}
-              {/* Class blocks */}
-              {dayClasses.map((c) => (
-                <ClassBlock
-                  key={c.id}
-                  cls={c}
-                  rangeStart={rangeStart}
-                  onClick={() => onSelect(c)}
-                />
-              ))}
-            </div>
-          );
-        })}
-      </div>
+            {dayClasses.length === 0 ? (
+              <div className="text-center text-xs text-muted/60 italic mt-2">—</div>
+            ) : (
+              <div className="space-y-2.5">
+                {dayClasses.map((c) => (
+                  <ClassCard
+                    key={c.id}
+                    cls={c}
+                    onClick={() => onSelect(c)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-function ClassBlock({
+// Stacked card used inside each day column. Grows to fit its content —
+// no fixed height, no truncation, no positioning by start time. Heavy
+// left bar in the type color is the at-a-glance category cue.
+function ClassCard({
   cls,
-  rangeStart,
   onClick,
 }: {
   cls: ScheduleClass;
-  rangeStart: number;
   onClick: () => void;
 }) {
   const start = new Date(cls.startISO);
-  // Convert to TZ-aware hour + minute for accurate positioning
-  const hhmm = start.toLocaleString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    timeZone: TZ,
-  });
-  const [hStr, mStr] = hhmm.split(":");
-  const hour = parseInt(hStr, 10);
-  const minute = parseInt(mStr, 10);
-  const offsetMin = (hour - rangeStart) * 60 + minute;
-  const top = (offsetMin / 60) * HOUR_HEIGHT_PX;
-  const height = (cls.durationMin / 60) * HOUR_HEIGHT_PX;
   const style = CLASS_TYPE_STYLES[cls.type];
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className="absolute left-1 right-1 rounded-sm text-left px-2.5 py-2 overflow-hidden transition-all hover:shadow-md hover:z-10 group"
+      className="w-full text-left rounded-sm px-3 py-3 transition-shadow hover:shadow-md"
       style={{
-        top,
-        height: Math.max(height, 36),  // never collapse below readable
         background: style.bgSoft,
         borderLeft: `4px solid ${style.border}`,
       }}
     >
       <p
-        className="text-[10px] tracking-[0.15em] uppercase leading-tight font-semibold"
+        className="text-xs tracking-[0.2em] uppercase font-semibold leading-tight"
         style={{ color: style.text }}
       >
         {fmtTime(start)}
       </p>
-      <p className="font-serif text-[14px] text-charcoal leading-tight mt-1 line-clamp-3">
+      <p className="font-serif text-[15px] text-charcoal leading-snug mt-1.5">
         {cls.title}
       </p>
     </button>
