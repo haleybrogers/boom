@@ -1,12 +1,15 @@
 "use client";
 
-// Unified events calendar — featured cards row + agenda grid below,
-// with a click-to-expand detail modal. The modal hosts whatever action
-// the event needs: inline ContactForm (RSVP), external book link, or
-// just an "opens for booking soon" note.
+// /events calendar — three sections in order:
+//   1. Opening Week    — soft-opening events excluding Opening Party (grid)
+//   2. Opening Night   — Opening Party, full-width hero with photo + RSVP button
+//   3. Pop-ups         — around-town events (grid)
+// Every card opens the EventDetailModal where the full description, details
+// tiles, and the actual action (RSVP / book / info-only) live.
 
 import { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import type { EventItem, EventCategory } from "@/lib/eventTypes";
 import { CATEGORY_LABELS } from "@/lib/eventTypes";
 import ContactForm from "./ContactForm";
@@ -316,31 +319,97 @@ function EventDetailModal({
   );
 }
 
-type FilterValue = "all" | EventCategory;
+function SectionHeader({ kicker, title }: { kicker: string; title: string }) {
+  return (
+    <div className="text-center mb-10">
+      <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">
+        {kicker}
+      </p>
+      <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal">
+        {title}
+      </h2>
+    </div>
+  );
+}
 
-function FilterBtn({
-  value,
-  label,
-  active,
+function OpeningNightHero({
+  event,
   onClick,
 }: {
-  value: FilterValue;
-  label: string;
-  active: boolean;
-  onClick: (v: FilterValue) => void;
+  event: EventItem;
+  onClick: () => void;
 }) {
+  const date = formatDateBadge(event.dateTime);
+  const fullDate = formatFullDate(event.dateTime);
   return (
-    <button
-      type="button"
-      onClick={() => onClick(value)}
-      className={`text-[11px] tracking-[0.25em] uppercase border rounded-full px-3.5 py-1.5 transition-colors ${
-        active
-          ? "border-accent text-white bg-accent"
-          : "border-charcoal/15 text-charcoal/60 bg-white hover:border-accent/40 hover:text-accent"
-      }`}
-    >
-      {label}
-    </button>
+    <section className="bg-accent/5 border-y border-accent/15 py-16 lg:py-24">
+      <div className="max-w-6xl mx-auto px-6">
+        <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-8 text-center">
+          Opening Night
+        </p>
+        <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+          {/* Photo */}
+          {event.image && (
+            <div className="relative w-full aspect-[4/5] overflow-hidden">
+              <Image
+                src={event.image}
+                alt={event.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          )}
+          {/* Content */}
+          <div>
+            <div className="flex items-baseline gap-3 mb-5">
+              <span className="text-[11px] tracking-[0.3em] text-accent uppercase">
+                {date.weekday}
+              </span>
+              <span className="font-serif text-3xl md:text-4xl text-charcoal leading-none">
+                {date.month} {date.day}
+              </span>
+            </div>
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-3">
+              {event.title}.
+            </h2>
+            {event.heroNote && (
+              <p className="font-serif italic text-base md:text-lg text-charcoal/60 mb-5">
+                {event.heroNote}
+              </p>
+            )}
+            <p className="text-sm md:text-base text-muted leading-relaxed mb-7">
+              {event.description}
+            </p>
+            <div className="space-y-1.5 text-sm text-muted mb-7 border-t border-accent/15 pt-5">
+              <p>
+                <span className="text-charcoal/50 inline-block w-20">When</span>
+                {fullDate}
+              </p>
+              <p>
+                <span className="text-charcoal/50 inline-block w-20">Time</span>
+                {formatTimeRange(event.dateTime, event.durationMin)}
+              </p>
+              <p>
+                <span className="text-charcoal/50 inline-block w-20">Where</span>
+                {event.location}
+              </p>
+              <p>
+                <span className="text-charcoal/50 inline-block w-20">Price</span>
+                {event.price}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={onClick}
+              className="btn-animated inline-block bg-accent text-white text-[11px] tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              RSVP to the Opening Party
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -350,7 +419,6 @@ export default function EventsCalendarClient({
   events: EventItem[];
 }) {
   const [activeEvent, setActiveEvent] = useState<EventItem | null>(null);
-  const [filter, setFilter] = useState<FilterValue>("all");
 
   // Body scroll lock + Esc-to-close while modal is open
   useEffect(() => {
@@ -367,16 +435,23 @@ export default function EventsCalendarClient({
     };
   }, [activeEvent]);
 
-  // Featured cards (Opening Party, Craft Night) stay visible regardless
-  // of the active filter — they're the page's anchors. The filter only
-  // applies to the agenda grid below.
-  const featured = useMemo(() => events.filter((e) => e.featured), [events]);
-  const rest = useMemo(
+  // Bucket events into the three sections. Opening Night = the Opening Party
+  // (identified by id so it survives any future `featured` flag changes).
+  // Opening Week = everything else tagged soft-opening. Pop-ups = around-town.
+  const openingNight = useMemo(
+    () => events.find((e) => e.id === "opening-party"),
+    [events]
+  );
+  const openingWeek = useMemo(
     () =>
       events.filter(
-        (e) => !e.featured && (filter === "all" || e.category === filter)
+        (e) => e.category === "soft-opening" && e.id !== "opening-party"
       ),
-    [events, filter]
+    [events]
+  );
+  const popups = useMemo(
+    () => events.filter((e) => e.category === "around-town"),
+    [events]
   );
 
   if (events.length === 0) {
@@ -389,54 +464,47 @@ export default function EventsCalendarClient({
 
   return (
     <>
-      {/* Filter pills */}
-      <div className="flex flex-wrap justify-center gap-2 mb-10">
-        <FilterBtn value="all" label="All" active={filter === "all"} onClick={setFilter} />
-        <FilterBtn
-          value="soft-opening"
-          label="Soft Opening · In the new space"
-          active={filter === "soft-opening"}
-          onClick={setFilter}
-        />
-        <FilterBtn
-          value="around-town"
-          label="Around Town"
-          active={filter === "around-town"}
-          onClick={setFilter}
-        />
-      </div>
+      {/* 1. Opening Week */}
+      {openingWeek.length > 0 && (
+        <section className="mb-16 lg:mb-24">
+          <SectionHeader kicker="The Lead-up" title="Opening Week." />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
+            {openingWeek.map((event) => (
+              <EventCard
+                key={event.id}
+                event={event}
+                onClick={() => setActiveEvent(event)}
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
-      {/* Featured row — Opening Party + Craft Night, always visible. */}
-      {featured.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 stagger-children">
-          {featured.map((event) => (
-            <FeaturedCard
-              key={event.id}
-              event={event}
-              onClick={() => setActiveEvent(event)}
-            />
-          ))}
+      {/* 2. Opening Night — full-width hero, breaks out of the calendar's max-width
+          via negative-margin tricks so the section's accent background runs edge-to-edge. */}
+      {openingNight && (
+        <div className="mb-16 lg:mb-24 -mx-6">
+          <OpeningNightHero
+            event={openingNight}
+            onClick={() => setActiveEvent(openingNight)}
+          />
         </div>
       )}
 
-      {/* Agenda — everything else, chronological, filterable */}
-      {rest.length > 0 ? (
-        <div
-          key={filter}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children"
-        >
-          {rest.map((event) => (
-            <EventCard
-              key={event.id}
-              event={event}
-              onClick={() => setActiveEvent(event)}
-            />
-          ))}
-        </div>
-      ) : (
-        <p className="text-center text-sm text-muted py-8">
-          Nothing else in this category yet — check back soon.
-        </p>
+      {/* 3. Pop-ups */}
+      {popups.length > 0 && (
+        <section>
+          <SectionHeader kicker="Around Town" title="Pop-ups." />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
+            {popups.map((event) => (
+              <EventCard
+                key={event.id}
+                event={event}
+                onClick={() => setActiveEvent(event)}
+              />
+            ))}
+          </div>
+        </section>
       )}
 
       {/* Active modal — only set via client-side onClick, so we can safely
