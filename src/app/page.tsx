@@ -51,7 +51,7 @@ export default function Home() {
 
             {SHOW_FOUNDING && (
               <div className="relative inline-block">
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cream text-accent text-[10px] tracking-[0.3em] uppercase px-2.5 py-0.5 border border-accent/30 rounded-full whitespace-nowrap z-10 shadow-sm">
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-cream text-accent text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 border border-accent/30 rounded-full whitespace-nowrap z-10 shadow-sm">
                   Limited Time
                 </span>
                 <Link

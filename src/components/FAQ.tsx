@@ -33,7 +33,7 @@ const logisticsFaqs = [
   {
     question: "How do duets and trios work?",
     answer:
-      "Bring your people. Duets and trios are bring-your-own. Coming alone? Book the group apparatus class instead.",
+      "Bring your people for duets or trios. No one in mind? Reach out and we'll pair you up. Coming alone? Book the group apparatus class instead.",
   },
   {
     question: "Want to do a trio but don't have two friends?",
