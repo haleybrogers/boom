@@ -12,6 +12,7 @@
 
 import { useMemo, useState } from "react";
 import type { ScheduleClass } from "@/lib/scheduleData";
+import { displayLocation } from "@/lib/scheduleData";
 import { CLASS_TYPE_STYLES } from "@/lib/classStyles";
 import ScheduleClassModal from "./ScheduleClassModal";
 
@@ -371,6 +372,9 @@ function ClassCard({
       <p className="font-serif text-[15px] text-charcoal leading-snug mt-2">
         {cls.title}
       </p>
+      <p className="text-[11px] text-charcoal/55 leading-snug mt-1.5 italic">
+        {displayLocation(cls.location)}
+      </p>
     </button>
   );
 }
@@ -479,6 +483,9 @@ function DayList({
                     <p className="font-serif text-base text-charcoal leading-tight">
                       {c.title}
                     </p>
+                    <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
+                      {displayLocation(c.location)}
+                    </p>
                   </div>
                 </button>
               </li>
@@ -578,6 +585,9 @@ function ListView({
                       <div className="flex-1 min-w-0">
                         <p className="font-serif text-base text-charcoal leading-tight">
                           {c.title}
+                        </p>
+                        <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
+                          {displayLocation(c.location)}
                         </p>
                       </div>
                       <span

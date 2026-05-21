@@ -85,6 +85,21 @@ export function classifyClass(title: string): ClassType {
   return "special";
 }
 
+// Short location label for the schedule cards. Studio classes collapse
+// to "Studio" (the full address would dominate the card); pop-ups show
+// just the venue name (first comma-segment). Modal still renders the
+// full address.
+const STUDIO_LOCATION_KEYWORDS = ["345 w main", "boomerang pilates"];
+
+export function displayLocation(location: string): string {
+  if (!location) return "";
+  const lower = location.toLowerCase();
+  if (STUDIO_LOCATION_KEYWORDS.some((k) => lower.includes(k))) {
+    return "Studio";
+  }
+  return location.split(",")[0].trim();
+}
+
 // Custom non-Momence entries to fold into the schedule. Right now this
 // is just the Opening Party (RSVP, not a Momence booking). Anything
 // else with the same dual-source pattern would slot in here.
