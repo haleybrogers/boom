@@ -18,17 +18,17 @@ export type ClassStyle = {
 };
 
 export const CLASS_TYPE_STYLES: Record<ClassType, ClassStyle> = {
-  // Warm terracotta / clay. Distinctly orange-leaning so it doesn't read
-  // pink alongside Special.
+  // Brand accent red. Mat is the most common class type — gets the
+  // brand color so it's the visual default of the calendar.
   mat: {
     label: "Mat",
-    bgSoft: "#f5ddc5",
-    border: "#b86a3a",
-    text: "#7a3d1d",
-    bgChip: "rgba(184, 106, 58, 0.2)",
+    bgSoft: "#f8d5da",
+    border: "#b02d4a",
+    text: "#7a1d34",
+    bgChip: "rgba(176, 45, 74, 0.2)",
   },
-  // Sage green. Picked so it can't be mistaken for either the warm Mat
-  // tone or the accent-red Special tone — clearly its own category.
+  // Sage green. Clearly cool/earthy so it can't be mistaken for Mat's
+  // red or Special's gold — three categories, three distinct hues.
   apparatus: {
     label: "Apparatus",
     bgSoft: "#dbe5cf",
@@ -36,14 +36,14 @@ export const CLASS_TYPE_STYLES: Record<ClassType, ClassStyle> = {
     text: "#324523",
     bgChip: "rgba(94, 122, 62, 0.2)",
   },
-  // Brand accent red. Reserved for special / workshops / pop-ups so they
-  // pop visually on the grid the way they should. Pushed the tint a
-  // touch warmer + the border to full accent for stronger separation.
+  // Warm gold / ochre. Reserved for events, workshops, pop-ups. Feels
+  // celebratory (works for the Opening Party especially) without
+  // competing with the brand red. Cream-friendly warm tone.
   special: {
     label: "Special",
-    bgSoft: "#f8d5da",
-    border: "#b02d4a",
-    text: "#7a1d34",
-    bgChip: "rgba(176, 45, 74, 0.2)",
+    bgSoft: "#f3e5b8",
+    border: "#b8943a",
+    text: "#6e5418",
+    bgChip: "rgba(184, 148, 58, 0.2)",
   },
 };
