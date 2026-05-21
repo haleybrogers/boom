@@ -19,10 +19,7 @@ export default function FaqPage() {
           <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
             FAQ
           </h1>
-          <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }} />
-          <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            Everything we get asked most. Still curious? Drop us a note.
-          </p>
+          <div className="w-12 h-px bg-accent mx-auto mt-8 animate-fade-up" style={{ animationDelay: "0.3s" }} />
         </div>
 
         {/* Lead with the studio. Address + arrival logistics first */}
