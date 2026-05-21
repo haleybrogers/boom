@@ -65,7 +65,7 @@ export default function Booking() {
             className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up"
             style={{ animationDelay: "0.15s" }}
           >
-            Three ways to book.
+            Come move with us.
           </h1>
           <div
             className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up"
