@@ -97,16 +97,14 @@ function FeaturedCard({
             {event.heroNote}
           </p>
         )}
-        <p className="text-sm text-muted leading-relaxed mb-6 flex-1">
-          {event.shortDescription || event.description}
-        </p>
-        <div className="flex items-center justify-between pt-4 border-t border-charcoal/10">
-          <span className="text-sm text-muted">
+        <div className="flex-1" />
+        <div className="border-t border-charcoal/10 pt-4 mt-auto">
+          <p className="text-sm text-muted mb-2">
             {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
-          </span>
-          <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+          </p>
+          <p className="text-[11px] tracking-widest uppercase text-accent text-right group-hover:text-accent/80 transition-colors">
             Details →
-          </span>
+          </p>
         </div>
       </div>
     </button>
@@ -147,19 +145,14 @@ function EventCard({
         <h3 className="font-serif text-lg font-light text-charcoal leading-snug mb-2">
           {event.title}
         </h3>
-        {event.shortDescription && (
-          <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
-            {event.shortDescription}
-          </p>
-        )}
-        {!event.shortDescription && <div className="flex-1" />}
-        <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
-          <span className="text-sm text-muted">
+        <div className="flex-1" />
+        <div className="border-t border-charcoal/5 pt-3 mt-auto">
+          <p className="text-sm text-muted mb-2">
             {formatTimeRange(event.dateTime, event.durationMin)} · {event.price}
-          </span>
-          <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+          </p>
+          <p className="text-[11px] tracking-widest uppercase text-accent text-right group-hover:text-accent/80 transition-colors">
             Details →
-          </span>
+          </p>
         </div>
       </div>
     </button>
