@@ -35,6 +35,11 @@ const logisticsFaqs = [
     answer:
       "Bring your people. When you book a duet or trio, plan on filling those spots yourself — the studio has three reformers, so we can't randomly match strangers. Want cheaper Pilates? Recruit a friend or two. If you want apparatus without rounding up friends, our group apparatus class is open to anyone — book in solo.",
   },
+  {
+    question: "Want to do a trio but don't have two friends?",
+    answer:
+      "Definitely reach out first — we keep a list of folks looking for the same, and love matching people into standing trios. We'll connect you.",
+  },
 ];
 
 // Beginner questions — collapsed inside the "Never done Pilates before?"
