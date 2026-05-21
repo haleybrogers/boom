@@ -17,16 +17,16 @@ export default function Home() {
     <>
       <SplashScreen />
 
-      {/* Hero. Source is 21:9 ultra-wide. Mobile: keep a substantial
-          height but use object-contain so the whole image (sisters' feet
-          + hands reaching to the edges) fits — empty space above/below
-          blends with the warm-white body bg. Desktop: full-bleed cover. */}
-      <section className="relative h-[45vh] sm:h-[70vh] overflow-hidden bg-warm-white">
+      {/* Hero. Source is 21:9 ultra-wide. Mobile: aspect-[2/1] container
+          with object-cover — tight crop, no letterbox bars, only ~10% off
+          each side so sisters' reaching limbs stay in frame. Desktop:
+          full-bleed cover at 70vh. */}
+      <section className="relative aspect-[2/1] sm:aspect-auto sm:h-[70vh] overflow-hidden">
         <Image
           src="/hero-image.jpg"
           alt="Two figures in the Boomerang Pilates pose"
           fill
-          className="object-contain sm:object-cover sm:object-bottom"
+          className="object-cover sm:object-bottom"
           priority
         />
       </section>
