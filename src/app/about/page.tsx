@@ -54,7 +54,7 @@ export default function About() {
                   alt="Emilie Young"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-[center_22%] scale-[1.4] transition-transform duration-700 hover:scale-[1.45]"
+                  className="object-cover object-[center_22%] scale-100 sm:scale-[1.4] transition-transform duration-700 sm:hover:scale-[1.45]"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
@@ -87,7 +87,7 @@ export default function About() {
                   alt="Annie Young"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-[center_22%] scale-[1.55] transition-transform duration-700 hover:scale-[1.6]"
+                  className="object-cover object-[center_22%] scale-105 sm:scale-[1.55] transition-transform duration-700 sm:hover:scale-[1.6]"
                 />
               </div>
               <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
