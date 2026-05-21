@@ -10,8 +10,9 @@ import type { EventItem } from "./eventTypes";
 
 // Bundle link for the 3-Part Mat Series. Used by MatSeriesCard for the
 // "Book all three" CTA. Each individual class also has its own Momence
-// link on its EventItem.action above.
-export const MAT_SERIES_BUNDLE_URL = "https://momence.com/l/g7hlw5Lw";
+// link on its EventItem.action above. Verified against the Momence API
+// (id 136914732, type: "semester") on 2026-05-21.
+export const MAT_SERIES_BUNDLE_URL = "https://momence.com/l/oAh1qEjr";
 
 export const staticEvents: EventItem[] = [
   {
@@ -73,7 +74,7 @@ export const staticEvents: EventItem[] = [
     image: "/photo-mat-2.jpg",
     action: {
       type: "external",
-      href: "https://momence.com/l/oAh1qEjr",
+      href: "https://momence.com/l/P0h8MzqV",
     },
   },
   {
@@ -91,7 +92,7 @@ export const staticEvents: EventItem[] = [
     image: "/photo-mat-2.jpg",
     action: {
       type: "external",
-      href: "https://momence.com/l/P0h8MzqV",
+      href: "https://momence.com/l/b8h50j7x",
     },
   },
   {
@@ -109,7 +110,7 @@ export const staticEvents: EventItem[] = [
     image: "/photo-reformer.jpg",
     action: {
       type: "external",
-      href: "https://momence.com/l/b8h50j7x",
+      href: "https://momence.com/l/g7hlw5Lw",
     },
   },
   {
