@@ -70,7 +70,7 @@ function fmtTime(d: Date) {
 
 // ----------------------- main view -----------------------
 
-type ViewMode = "week" | "agenda";
+type ViewMode = "week" | "day";
 
 export default function ScheduleView({
   classes,
@@ -173,12 +173,13 @@ export default function ScheduleView({
         )}
       </div>
 
-      {/* View toggle + legend. Toggle determines whether we render the
-          time-block week (current week, hour grid) or a flat list view
-          (same week, sorted chronologically, no grid). */}
+      {/* View toggle + legend. Toggle is desktop-only — mobile is always
+          a single-day-at-a-time view since the 7-column week grid is
+          too cramped for a phone. On desktop: Week = overview grid,
+          Day = one day at a time with a day picker. */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <div className="inline-flex bg-cream border border-charcoal/10 rounded-full p-0.5">
-          {(["week", "agenda"] as const).map((mode) => (
+        <div className="hidden md:inline-flex bg-cream border border-charcoal/10 rounded-full p-0.5">
+          {(["week", "day"] as const).map((mode) => (
             <button
               key={mode}
               type="button"
@@ -213,41 +214,41 @@ export default function ScheduleView({
         </div>
       </div>
 
-      {viewMode === "week" ? (
-        <>
-          {/* Desktop: 7-column week, each column stacks its day's cards */}
-          <div className="hidden md:block">
-            <WeekGrid
-              days={days}
-              classesByDay={classesByDay}
-              today={today}
-              onSelect={setActiveClass}
-            />
-          </div>
+      {/* Desktop: respects the toggle. Week = 7-column grid, Day = one
+          day at a time with a day picker (reuses the DayList component). */}
+      <div className="hidden md:block">
+        {viewMode === "week" ? (
+          <WeekGrid
+            days={days}
+            classesByDay={classesByDay}
+            today={today}
+            onSelect={setActiveClass}
+          />
+        ) : (
+          <DayList
+            days={days}
+            activeDayIdx={activeDayIdx}
+            setActiveDayIdx={setActiveDayIdx}
+            classesByDay={classesByDay}
+            today={today}
+            onSelect={setActiveClass}
+          />
+        )}
+      </div>
 
-          {/* Mobile: day tabs + per-day list */}
-          <div className="md:hidden">
-            <DayList
-              days={days}
-              activeDayIdx={activeDayIdx}
-              setActiveDayIdx={setActiveDayIdx}
-              classesByDay={classesByDay}
-              today={today}
-              onSelect={setActiveClass}
-            />
-          </div>
-        </>
-      ) : (
-        // List view. Same week scope, but flat: all classes for the
-        // visible week as a clean chronological list, grouped by day
-        // header. Works the same on mobile and desktop — simpler scan.
-        <ListView
+      {/* Mobile: always day-tabbed. 7-column week grid is unusable on a
+          phone, so we collapse to the single-day view regardless of
+          which toggle position desktop happens to be on. */}
+      <div className="md:hidden">
+        <DayList
           days={days}
+          activeDayIdx={activeDayIdx}
+          setActiveDayIdx={setActiveDayIdx}
           classesByDay={classesByDay}
           today={today}
           onSelect={setActiveClass}
         />
-      )}
+      </div>
 
       {activeClass && (
         <ScheduleClassModal
@@ -507,121 +508,3 @@ function DayList({
   );
 }
 
-// ----------------------- list view (both viewports) -----------------------
-
-// Flat chronological list of the week's classes, grouped by day header.
-// Renders the same on mobile and desktop — no time-block positioning,
-// no day columns, no hour grid. The simplest possible "what's on this
-// week" surface for people who don't want to interpret a grid.
-function ListView({
-  days,
-  classesByDay,
-  today,
-  onSelect,
-}: {
-  days: Date[];
-  classesByDay: Map<string, ScheduleClass[]>;
-  today: Date;
-  onSelect: (c: ScheduleClass) => void;
-}) {
-  const dayKey = (d: Date) =>
-    d.toLocaleDateString("en-CA", { timeZone: TZ });
-  const daysWithClasses = days.filter(
-    (d) => (classesByDay.get(dayKey(d)) || []).length > 0
-  );
-
-  if (daysWithClasses.length === 0) {
-    return (
-      <div className="text-center py-16 text-muted border border-dashed border-charcoal/15 rounded-sm max-w-lg mx-auto">
-        <p className="font-serif text-lg text-charcoal mb-2">No classes this week.</p>
-        <p className="text-sm">
-          Try the arrow keys above to peek ahead.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="max-w-3xl mx-auto space-y-8">
-      {daysWithClasses.map((d) => {
-        const dayClasses = classesByDay.get(dayKey(d)) || [];
-        const isToday = sameYMD(d, today);
-        return (
-          <div key={d.toISOString()}>
-            <div className="flex items-baseline justify-between mb-3 pb-2 border-b border-charcoal/10">
-              <h3
-                className={`font-serif text-xl font-light ${
-                  isToday ? "text-accent" : "text-charcoal"
-                }`}
-              >
-                {fmtWeekday(d, "long")}
-              </h3>
-              <p
-                className={`text-[11px] tracking-[0.25em] uppercase ${
-                  isToday ? "text-accent" : "text-muted"
-                }`}
-              >
-                {fmtMonthDay(d)}
-                {isToday ? " · Today" : ""}
-              </p>
-            </div>
-            <ul className="space-y-2.5">
-              {dayClasses.map((c) => {
-                const start = new Date(c.startISO);
-                const end = new Date(c.endISO);
-                const style = CLASS_TYPE_STYLES[c.type];
-                return (
-                  <li key={c.id}>
-                    <button
-                      type="button"
-                      onClick={() => onSelect(c)}
-                      className="w-full text-left flex items-center gap-4 px-4 py-3.5 rounded-sm transition-shadow hover:shadow-md"
-                      style={{
-                        background: style.bgSoft,
-                        borderLeft: `4px solid ${style.border}`,
-                      }}
-                    >
-                      <div className="shrink-0 w-24">
-                        <p
-                          className="text-xs tracking-widest uppercase font-semibold"
-                          style={{ color: style.text }}
-                        >
-                          {fmtTime(start)}
-                        </p>
-                        <p className="text-[10px] tracking-widest uppercase text-muted">
-                          to {fmtTime(end)}
-                        </p>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-serif text-base text-charcoal leading-tight">
-                          {c.title}
-                        </p>
-                        <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
-                          {displayLocation(c.location)}
-                        </p>
-                        {c.residentsOnly && (
-                          <span className="inline-block mt-2 text-[10px] tracking-[0.25em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2 py-0.5">
-                            Residents Only
-                          </span>
-                        )}
-                      </div>
-                      <span
-                        className="hidden sm:inline-block text-[10px] tracking-[0.25em] uppercase px-2 py-0.5 rounded-full shrink-0"
-                        style={{
-                          background: style.bgChip,
-                          color: style.text,
-                        }}
-                      >
-                        {style.label}
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
