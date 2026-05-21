@@ -10,6 +10,7 @@
 import EventsCalendarClient from "./EventsCalendarClient";
 import { staticEvents } from "@/lib/staticEvents";
 import type { EventItem, EventCategory } from "@/lib/eventTypes";
+import { detectResidentsOnly } from "@/lib/locations";
 
 const HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
 const TOKEN = process.env.MOMENCE_API_TOKEN || "da1030e20e";
@@ -42,20 +43,8 @@ function categorizeByLocation(location: string): EventCategory {
     : "around-town";
 }
 
-// Residents-only apartment buildings. If a pop-up's location contains one
-// of these keywords, we surface a "Residents Only" badge + disclaimer so
-// non-residents don't show up and find a locked gate. Add new buildings
-// here as they come online.
-const RESIDENTS_ONLY_BUILDINGS: Array<{ keyword: string; building: string }> = [
-  { keyword: "cortland", building: "Cortland Bull City" },
-  { keyword: "atlas", building: "Atlas Durham" },
-];
-
-function detectResidentsOnly(location: string): { building: string } | undefined {
-  const lower = location.toLowerCase();
-  const match = RESIDENTS_ONLY_BUILDINGS.find((b) => lower.includes(b.keyword));
-  return match ? { building: match.building } : undefined;
-}
+// Residents-only detection lives in src/lib/locations.ts so /events and
+// /schedule share the same keyword list and badge behavior.
 
 // Mat Series sessions in Momence are all titled "No straps. No springs.
 // No limits." (the series tagline). We render them via the staticEvents

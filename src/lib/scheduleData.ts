@@ -39,6 +39,10 @@ export type ScheduleClass = {
   // Optional italic tagline — used by the Opening Party for the
   // "You're invited." line. Renders below the title in the modal.
   heroNote?: string;
+  // Residents-only pop-ups (apartment buildings, etc.). Surfaces a
+  // "Residents Only" badge on the card and a centered disclaimer in
+  // the modal so non-residents don't show up to a locked gate.
+  residentsOnly?: { building: string };
 };
 
 const HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
@@ -60,6 +64,11 @@ type MomenceEvent = {
 };
 
 import { staticEvents } from "./staticEvents";
+import { detectResidentsOnly } from "./locations";
+
+// Re-export so existing imports of `displayLocation` from this module
+// continue to resolve. New code should import directly from "./locations".
+export { displayLocation } from "./locations";
 
 // Title keywords → class type. First match wins, so order matters:
 // apparatus-specific tokens before "mat" so "Mixed Apparatus" doesn't
@@ -90,20 +99,8 @@ export function classifyClass(title: string): ClassType {
   return "special";
 }
 
-// Short location label for the schedule cards. Studio classes collapse
-// to "Studio" (the full address would dominate the card); pop-ups show
-// just the venue name (first comma-segment). Modal still renders the
-// full address.
-const STUDIO_LOCATION_KEYWORDS = ["345 w main", "boomerang pilates"];
-
-export function displayLocation(location: string): string {
-  if (!location) return "";
-  const lower = location.toLowerCase();
-  if (STUDIO_LOCATION_KEYWORDS.some((k) => lower.includes(k))) {
-    return "Studio";
-  }
-  return location.split(",")[0].trim();
-}
+// (Location helpers moved to ./locations.ts so /events and /schedule
+// share the same studio + residents-only detection.)
 
 // Custom non-Momence entries to fold into the schedule. Right now this
 // is just the Opening Party (RSVP, not a Momence booking). Anything
@@ -164,6 +161,7 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
       .map((e): ScheduleClass => {
         const start = new Date(e.dateTime);
         const end = new Date(start.getTime() + (e.duration || 50) * 60_000);
+        const location = e.location?.trim() || "345 W Main St, Durham, NC";
         return {
           id: `momence-${e.id}`,
           title: e.title.trim(),
@@ -175,7 +173,8 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
           description: e.description?.trim() || "",
           price:
             e.fixedPrice && e.fixedPrice > 0 ? `$${e.fixedPrice}` : "Free",
-          location: e.location?.trim() || "345 W Main St, Durham, NC",
+          location,
+          residentsOnly: detectResidentsOnly(location),
         };
       });
 

@@ -375,6 +375,11 @@ function ClassCard({
       <p className="text-[11px] text-charcoal/55 leading-snug mt-1.5 italic">
         {displayLocation(cls.location)}
       </p>
+      {cls.residentsOnly && (
+        <span className="self-start mt-2 text-[9px] tracking-[0.25em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2 py-0.5">
+          Residents Only
+        </span>
+      )}
     </button>
   );
 }
@@ -486,6 +491,11 @@ function DayList({
                     <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
                       {displayLocation(c.location)}
                     </p>
+                    {c.residentsOnly && (
+                      <span className="inline-block mt-2 text-[10px] tracking-[0.25em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2 py-0.5">
+                        Residents Only
+                      </span>
+                    )}
                   </div>
                 </button>
               </li>
@@ -589,6 +599,11 @@ function ListView({
                         <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
                           {displayLocation(c.location)}
                         </p>
+                        {c.residentsOnly && (
+                          <span className="inline-block mt-2 text-[10px] tracking-[0.25em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2 py-0.5">
+                            Residents Only
+                          </span>
+                        )}
                       </div>
                       <span
                         className="hidden sm:inline-block text-[10px] tracking-[0.25em] uppercase px-2 py-0.5 rounded-full shrink-0"

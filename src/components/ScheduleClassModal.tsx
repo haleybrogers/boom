@@ -174,6 +174,15 @@ export default function ScheduleClassModal({
                 )}
               </div>
 
+              {/* Residents-only disclaimer (above the action). Critical
+                  for apartment-building pop-ups — no one should book
+                  without seeing this and getting turned away at the gate. */}
+              {cls.residentsOnly && (
+                <p className="text-sm text-accent text-center mb-3 border border-accent/20 bg-accent/5 rounded-sm px-4 py-3">
+                  Residents of <strong>{cls.residentsOnly.building}</strong> only —
+                  check with your front desk.
+                </p>
+              )}
               {cls.action.type === "book" && (
                 <a
                   href={cls.action.bookUrl}
