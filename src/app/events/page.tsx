@@ -63,7 +63,7 @@ export default function Events() {
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
               A structured, progressive series that builds your classical mat practice
-              from the ground up. Runs once per quarter. You commit to the full eight weeks —
+              from the ground up. Runs as interest demands. You commit to the full eight weeks —
               this is how the method was designed to be learned.
             </p>
           </div>

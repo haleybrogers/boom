@@ -374,7 +374,7 @@ export default async function Packs() {
               </h2>
               <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
                 A structured, progressive series that builds your classical mat
-                practice from the ground up. Runs once per quarter — eight weeks,
+                practice from the ground up. Runs as interest demands — eight weeks,
                 taught the way the method was designed to be learned.
               </p>
             </div>
