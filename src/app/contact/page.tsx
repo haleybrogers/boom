@@ -26,7 +26,7 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Tiny redirect for people who really just want to book a private */}
+        {/* Tiny redirect for people who really just want to book a session */}
         <div className="text-center mb-14">
           <p className="text-sm text-muted">
             <a
@@ -35,7 +35,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="text-accent hover:text-accent/70 transition-colors underline underline-offset-4 decoration-accent/40 hover:decoration-accent"
             >
-              Book a private directly →
+              Book a session →
             </a>
           </p>
         </div>
