@@ -28,7 +28,7 @@ const logisticsFaqs = [
   {
     question: "Do you offer discounts?",
     answer:
-      "Yes — 10% off for first responders, students, teachers, and dancers. Just let us know when you sign up.",
+      "Yes — 10% off memberships and packs for first responders, students, teachers, and dancers. Doesn't stack with founding rates, and drop-ins are full price. Just let us know when you sign up.",
   },
   {
     question: "How do duets and trios work?",

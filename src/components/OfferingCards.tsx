@@ -1,8 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { MOMENCE_APPOINTMENTS_URL } from "@/lib/momence";
+import {
+  MOMENCE_APPOINTMENTS_URL,
+  fetchMemberships,
+  pairMatTiers,
+  groupApparatus,
+  findDropIn,
+} from "@/lib/momence";
 
+// Offering definitions. `startingPrice` + `priceNote` are placeholders —
+// they get overridden at runtime with live Momence pricing so the home
+// page reflects whatever Emilie has set in the booking system.
 const offerings = [
   {
     title: "Mat Classes",
@@ -26,16 +35,16 @@ const offerings = [
     image: "/photo-apparatus.jpg",
     tagline: "Real equipment. Real instruction. Three students max.",
     description:
-      "Reformer, tower, barrels, pedopole — the classical equipment that builds your practice and transforms how your body moves. Every class is capped at three so you get hands-on corrections, not just cues from across the room.",
+      "Reformer, tower, barrels, Wunda chair, and Ped-O-Pul — the classical equipment that builds your practice and transforms how your body moves. Every class is capped at three so you get hands-on corrections, not just cues from across the room.",
     classes: [
       { name: "Apparatus Foundations", section: 1 },
       { name: "Intermediate Mixed Apparatus", section: 1 },
-      { name: "Athletic Reformer", section: 1 },
-      { name: "Athletic Tower", section: 1 },
+      { name: "Intermediate Advanced Classical Reformer", section: 1 },
+      { name: "Intermediate Advanced Classical Tower", section: 1 },
       { name: "Lengthen & Strengthen Tower", section: 1 },
     ],
     startingPrice: "$45",
-    priceNote: "per class · memberships from $120/mo",
+    priceNote: "per class · packs of 5 or 10",
     link: "/schedule",
     linkLabel: "View Schedule",
   },
@@ -57,10 +66,61 @@ const offerings = [
   },
 ];
 
-export default function OfferingCards() {
+export default async function OfferingCards() {
+  // Pull live pricing once for the whole grid. Falls back to the hardcoded
+  // startingPrice/priceNote above if Momence is unreachable.
+  const memberships = await fetchMemberships();
+  const dropIn = findDropIn(memberships);
+  const tiers = pairMatTiers(memberships);
+  const apparatus = groupApparatus(memberships);
+
+  const lowestMatTier = tiers
+    .map((t) => t.regular?.price)
+    .filter((p): p is number => p !== undefined)
+    .sort((a, b) => a - b)[0];
+
+  const apparatusSingles = apparatus
+    .map((g) => g.single?.price)
+    .filter((p): p is number => p !== undefined);
+  const lowestApparatusSingle = apparatusSingles.length
+    ? Math.min(...apparatusSingles)
+    : undefined;
+
+  const duetSingle = apparatus.find((g) => g.category === "duet")?.single?.price;
+  const privateSingle = apparatus.find((g) => g.category === "private")?.single?.price;
+
+  // Build the live-priced offerings array.
+  const live = offerings.map((o) => {
+    if (o.title === "Mat Classes" && dropIn?.price !== undefined) {
+      return {
+        ...o,
+        startingPrice: `$${dropIn.price}`,
+        priceNote: lowestMatTier
+          ? `drop-in · memberships from $${lowestMatTier}/mo`
+          : o.priceNote,
+      };
+    }
+    if (o.title === "Apparatus" && lowestApparatusSingle !== undefined) {
+      return {
+        ...o,
+        startingPrice: `$${lowestApparatusSingle}`,
+        priceNote: "per class · packs of 5 or 10",
+      };
+    }
+    if (o.title === "Privates & Duets") {
+      const sp = duetSingle !== undefined ? `$${duetSingle}` : o.startingPrice;
+      const note =
+        duetSingle !== undefined && privateSingle !== undefined
+          ? `duets per person · privates $${privateSingle}`
+          : o.priceNote;
+      return { ...o, startingPrice: sp, priceNote: note };
+    }
+    return o;
+  });
+
   return (
     <div className="space-y-20 md:space-y-28">
-      {offerings.map((offering, i) => {
+      {live.map((offering, i) => {
         const reversed = i % 2 !== 0;
 
         return (
