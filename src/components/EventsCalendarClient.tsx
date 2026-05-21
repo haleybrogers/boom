@@ -582,12 +582,18 @@ export default function EventsCalendarClient({
 
   return (
     <>
-      {/* 1. Opening Week. Featured pair (Craft Night + Mat & Matcha) up
-          top as compact horizontal cards → Mat Series (grouped trio
-          card) → any other soft-opening event. */}
+      {/* 1. Opening Week. Mat Series (grouped trio card) up top → featured
+          pair (Craft Night + Mat & Matcha) as compact horizontal cards →
+          any other soft-opening event. */}
       {openingWeek.length > 0 && (
         <section className="mb-16 lg:mb-24">
           <SectionHeader kicker="Soft Opening" title="Help us work out the kinks." />
+
+          {matSeries.length > 0 && (
+            <div className="mb-5">
+              <MatSeriesCard events={matSeries} onSelect={setActiveEvent} />
+            </div>
+          )}
 
           {featuredOpeningWeek.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5 stagger-children">
@@ -598,12 +604,6 @@ export default function EventsCalendarClient({
                   onClick={() => setActiveEvent(event)}
                 />
               ))}
-            </div>
-          )}
-
-          {matSeries.length > 0 && (
-            <div className="mb-5">
-              <MatSeriesCard events={matSeries} onSelect={setActiveEvent} />
             </div>
           )}
 
