@@ -148,10 +148,6 @@ function MatSeriesCard({
 }) {
   return (
     <div className="bg-accent/5 border border-accent/30 rounded-sm p-7 md:p-9">
-      <h3 className="font-serif text-xl font-light text-charcoal mb-6 text-center">
-        3-Part Mat Series.
-      </h3>
-
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {events.map((event, i) => {
           const date = formatDateBadge(event.dateTime);
@@ -179,9 +175,14 @@ function MatSeriesCard({
         })}
       </div>
 
-      <p className="text-sm text-muted mt-6 text-center">
-        Suggested $20 per class or $55 for all three.
-      </p>
+      <div className="mt-6 text-center">
+        <h3 className="font-serif text-xl font-light text-charcoal mb-1">
+          3-Part Mat Series.
+        </h3>
+        <p className="text-sm text-muted">
+          Suggested $20 per class or $55 for all three.
+        </p>
+      </div>
     </div>
   );
 }
