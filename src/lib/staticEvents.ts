@@ -47,8 +47,8 @@ export const staticEvents: EventItem[] = [
     location: "345 W Main St, Durham, NC",
     price: "$40",
     action: {
-      type: "info-only",
-      note: "Booking opens in Momence soon — we'll send a heads-up to anyone on the waitlist.",
+      type: "external",
+      href: "https://momence.com/Boomerang-Pilates/Boomerang-Craft-Night/136915236",
     },
     heroNote: "Workshop · Pop-up event.",
     image: "/photo-mat-2.jpg",
