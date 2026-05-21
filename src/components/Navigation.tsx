@@ -31,6 +31,7 @@ const navLinks: NavItem[] = [
   { href: "/about", label: "About" },
   {
     label: "Booking",
+    href: "/booking",
     children: [
       {
         href: "/schedule",
@@ -183,23 +184,47 @@ export default function Navigation() {
                     onMouseEnter={() => openMenu(link.label)}
                     onMouseLeave={scheduleClose}
                   >
-                    <button
-                      type="button"
-                      className={linkClass}
-                      aria-expanded={open}
-                      aria-haspopup="true"
-                    >
-                      {link.label}
-                      <svg
-                        className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`}
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={1.5}
-                        viewBox="0 0 24 24"
+                    {/* Parent label: navigates to link.href if provided
+                        (e.g. /booking overview), otherwise behaves as a
+                        plain dropdown trigger. Hover still opens the
+                        dropdown either way. */}
+                    {link.href ? (
+                      <Link
+                        href={link.href}
+                        className={linkClass}
+                        aria-expanded={open}
+                        aria-haspopup="true"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
+                        {link.label}
+                        <svg
+                          className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={1.5}
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        className={linkClass}
+                        aria-expanded={open}
+                        aria-haspopup="true"
+                      >
+                        {link.label}
+                        <svg
+                          className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={1.5}
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    )}
 
                     {/* Dropdown panel */}
                     <div
@@ -360,6 +385,28 @@ export default function Navigation() {
                       </button>
                       {expanded && (
                         <div className="flex flex-col gap-3 pl-4 border-l border-charcoal/10">
+                          {/* Overview link — only when the parent itself has an href (e.g. /booking) */}
+                          {link.href && (
+                            <Link
+                              href={link.href}
+                              className="flex flex-col"
+                              onClick={() => {
+                                setIsOpen(false);
+                                setMobileExpanded(null);
+                              }}
+                            >
+                              <p className={`text-sm tracking-[0.15em] uppercase ${
+                                isTransparent ? "text-white/80" : "text-charcoal/70"
+                              }`}>
+                                Overview
+                              </p>
+                              <p className={`text-sm mt-0.5 ${
+                                isTransparent ? "text-white/40" : "text-muted/70"
+                              }`}>
+                                See all booking options
+                              </p>
+                            </Link>
+                          )}
                           {link.children.map((child) => {
                             const inner = (
                               <>
