@@ -328,7 +328,15 @@ function EventDetailModal({
   );
 }
 
-function SectionHeader({ kicker, title }: { kicker: string; title: string }) {
+function SectionHeader({
+  kicker,
+  title,
+  subtitle,
+}: {
+  kicker: string;
+  title: string;
+  subtitle?: string;
+}) {
   return (
     <div className="text-center mb-10">
       <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">
@@ -337,6 +345,11 @@ function SectionHeader({ kicker, title }: { kicker: string; title: string }) {
       <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal">
         {title}
       </h2>
+      {subtitle && (
+        <p className="text-muted text-base leading-relaxed max-w-md mx-auto mt-4">
+          {subtitle}
+        </p>
+      )}
     </div>
   );
 }
@@ -503,7 +516,11 @@ export default function EventsCalendarClient({
       {/* 3. Pop-ups */}
       {popups.length > 0 && (
         <section>
-          <SectionHeader kicker="Around Town" title="Pop-ups." />
+          <SectionHeader
+            kicker="Around Town"
+            title="Pop-up mat classes."
+            subtitle="Free and low-cost classes at favorite Durham spots."
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
             {popups.map((event) => (
               <EventCard
