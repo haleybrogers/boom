@@ -48,9 +48,9 @@ export default async function Privates() {
                 classical apparatus.
               </p>
               <p className="text-muted text-base leading-relaxed mb-8">
-                Privates too pricey? Bring a friend or two. Don&apos;t have
-                anyone in mind? Reach out before you book and we&apos;ll pair
-                you up with someone else looking.
+                Privates too pricey? Bring a friend or two for a duet or trio.
+                If you don&apos;t have anyone in mind, reach out first and
+                we&apos;ll pair you up with someone else looking.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-8">
