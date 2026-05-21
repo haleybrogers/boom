@@ -8,6 +8,11 @@ import type { EventItem } from "./eventTypes";
 //
 // All times are America/New_York (EDT in summer = UTC-4).
 
+// Bundle link for the 3-Part Mat Series. Used by MatSeriesCard for the
+// "Book all three" CTA. Each individual class also has its own Momence
+// link on its EventItem.action above.
+export const MAT_SERIES_BUNDLE_URL = "https://momence.com/l/g7hlw5Lw";
+
 export const staticEvents: EventItem[] = [
   {
     id: "opening-party",
@@ -67,8 +72,8 @@ export const staticEvents: EventItem[] = [
     partLabel: "Part 1 of 3 · Mat Series",
     image: "/photo-mat-2.jpg",
     action: {
-      type: "info-only",
-      note: "Suggested $20 per class or $55 for all three. Booking opens in Momence soon.",
+      type: "external",
+      href: "https://momence.com/l/oAh1qEjr",
     },
   },
   {
@@ -85,8 +90,8 @@ export const staticEvents: EventItem[] = [
     partLabel: "Part 2 of 3 · Mat Series",
     image: "/photo-mat-2.jpg",
     action: {
-      type: "info-only",
-      note: "Suggested $20 per class or $55 for all three. Booking opens in Momence soon.",
+      type: "external",
+      href: "https://momence.com/l/P0h8MzqV",
     },
   },
   {
@@ -103,8 +108,8 @@ export const staticEvents: EventItem[] = [
     partLabel: "Part 3 of 3 · Mat Series",
     image: "/photo-reformer.jpg",
     action: {
-      type: "info-only",
-      note: "Suggested $20 per class or $55 for all three. Booking opens in Momence soon.",
+      type: "external",
+      href: "https://momence.com/l/b8h50j7x",
     },
   },
   {

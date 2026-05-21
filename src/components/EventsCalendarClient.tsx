@@ -12,6 +12,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import type { EventItem, EventCategory } from "@/lib/eventTypes";
 import { CATEGORY_LABELS } from "@/lib/eventTypes";
+import { MAT_SERIES_BUNDLE_URL } from "@/lib/staticEvents";
 import ContactForm from "./ContactForm";
 
 const TZ = "America/New_York";
@@ -138,7 +139,12 @@ function FeaturedEventCard({
 
 // Grouped card for the 3-part Mat Series. Outer accent-tinted container
 // keeps the trio visually linked; inside, the three parts render side by
-// side as their own clickable mini-cards (stack on mobile).
+// side as their own mini-cards. Each mini-card has TWO interactive
+// regions:
+//   - body (number/date/title) opens the EventDetailModal (description,
+//     part label, full details)
+//   - footer "Book →" anchor goes directly to that class's Momence link
+// Below the trio, a primary "Book all three" CTA links to the bundle.
 function MatSeriesCard({
   events,
   onSelect,
@@ -151,40 +157,64 @@ function MatSeriesCard({
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {events.map((event, i) => {
           const date = formatDateBadge(event.dateTime);
+          const bookHref =
+            event.action.type === "external" ? event.action.href : undefined;
           return (
-            <button
+            <div
               key={event.id}
-              type="button"
-              onClick={() => onSelect(event)}
-              className="group text-center flex flex-col items-center bg-white border border-accent/20 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
+              className="group flex flex-col bg-white border border-accent/20 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
             >
-              <div className="flex items-center justify-center w-9 h-9 rounded-full border border-accent/40 text-accent font-serif text-base mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
-                {i + 1}
-              </div>
-              <p className="text-[11px] tracking-[0.25em] text-accent uppercase mb-2">
-                {date.weekday} · {date.month} {date.day}
-              </p>
-              <h4 className="font-serif text-lg font-light text-charcoal leading-snug mb-4 group-hover:text-accent transition-colors">
-                {event.title}
-              </h4>
-              <span className="mt-auto text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                Details →
-              </span>
-            </button>
+              <button
+                type="button"
+                onClick={() => onSelect(event)}
+                className="text-center flex flex-col items-center p-6 pb-4 flex-1"
+              >
+                <div className="flex items-center justify-center w-9 h-9 rounded-full border border-accent/40 text-accent font-serif text-base mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
+                  {i + 1}
+                </div>
+                <p className="text-[11px] tracking-[0.25em] text-accent uppercase mb-2">
+                  {date.weekday} · {date.month} {date.day}
+                </p>
+                <h4 className="font-serif text-lg font-light text-charcoal leading-snug mb-3 group-hover:text-accent transition-colors">
+                  {event.title}
+                </h4>
+                <span className="mt-auto text-[11px] tracking-widest uppercase text-charcoal/40 group-hover:text-accent transition-colors">
+                  Details →
+                </span>
+              </button>
+              {bookHref && (
+                <a
+                  href={bookHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center bg-accent text-white text-[11px] tracking-widest uppercase px-4 py-3 hover:bg-charcoal transition-colors"
+                >
+                  Book →
+                </a>
+              )}
+            </div>
           );
         })}
       </div>
 
-      <div className="mt-6 text-center">
+      <div className="mt-7 text-center">
         <h3 className="font-serif text-xl font-light text-charcoal mb-1">
           3-Part Mat Series.
         </h3>
         <p className="font-serif italic text-sm text-charcoal/70 mb-2">
           No straps. No springs. No limits.
         </p>
-        <p className="text-sm text-muted">
+        <p className="text-sm text-muted mb-5">
           Suggested $20 per class or $55 for all three.
         </p>
+        <a
+          href={MAT_SERIES_BUNDLE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
+        >
+          Book all three →
+        </a>
       </div>
     </div>
   );
