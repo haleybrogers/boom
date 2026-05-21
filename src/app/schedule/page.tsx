@@ -1,23 +1,30 @@
-import MomenceScheduleInline from "@/components/MomenceScheduleInline";
+import ScheduleView from "@/components/ScheduleView";
 import ClassGuideModal from "@/components/ClassGuideModal";
+import { fetchSchedule } from "@/lib/scheduleData";
 
 export const metadata = {
   title: "Schedule",
   description:
-    "Live class schedule for Boomerang Pilates in Durham, NC. Classical mat and apparatus classes. Tap any class to book.",
+    "Weekly class schedule for Boomerang Pilates in Durham, NC. Classical mat and apparatus classes, color-coded so you can see your week at a glance. Tap any class to book.",
 };
 
-// Intentionally simple. /schedule is the single most important page on the
-// site. It needs to render the Momence widget reliably and not be tied up
-// in scroll-pinning, modal logic, or stale gating. Rebuilt from scratch so
-// the only moving parts are: banner image + heading + ClassGuideModal pill
-// + the Momence widget (which forces hard-nav on entry to dodge the
-// plugin's sticky internal state. See MomenceScheduleInline).
+// Refresh hourly. Class schedule changes are infrequent and one-class-at-
+// a-time, so we don't need 60s revalidate — but ScheduleData itself
+// caches the API call with revalidate: 60, so the actual data freshness
+// matches /events. The page render is the cheap part.
+export const revalidate = 3600;
 
-export default function Schedule() {
+// Server component. Pulls schedule data from Momence and hands it to the
+// client ScheduleView for rendering + interactivity. Replaces the
+// previous Momence embedded widget (MomenceScheduleInline) — that was
+// hard to read, didn't show time blocks, and didn't color-code.
+
+export default async function Schedule() {
+  const classes = await fetchSchedule();
+
   return (
     <>
-      {/* Header. No banner photo; heading does the work */}
+      {/* Header */}
       <section className="bg-warm-white pt-28 lg:pt-36 pb-10 lg:pb-14">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5">
@@ -33,10 +40,30 @@ export default function Schedule() {
         </div>
       </section>
 
-      {/* Widget */}
+      {/* Schedule grid + day list */}
       <section className="bg-warm-white pb-20 lg:pb-28">
-        <div className="max-w-5xl mx-auto px-6">
-          <MomenceScheduleInline />
+        <div className="max-w-6xl mx-auto px-6">
+          {classes.length === 0 ? (
+            <div className="text-center py-16 text-muted border border-dashed border-charcoal/15 rounded-sm max-w-lg mx-auto">
+              <p className="font-serif text-lg text-charcoal mb-2">
+                Schedule loading.
+              </p>
+              <p className="text-sm">
+                The classes are coming. Check back in a moment, or{" "}
+                <a
+                  href="https://momence.com/Boomerang-Pilates/270195"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent underline underline-offset-4"
+                >
+                  view on Momence
+                </a>
+                .
+              </p>
+            </div>
+          ) : (
+            <ScheduleView classes={classes} />
+          )}
         </div>
       </section>
     </>
