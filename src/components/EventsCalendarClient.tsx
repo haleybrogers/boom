@@ -139,11 +139,10 @@ function FeaturedEventCard({
 
 // Grouped card for the 3-part Mat Series. Outer accent-tinted container
 // keeps the trio visually linked; inside, the three parts render side by
-// side as their own mini-cards. Each mini-card has TWO interactive
-// regions:
-//   - body (number/date/title) opens the EventDetailModal (description,
-//     part label, full details)
-//   - footer "Book →" anchor goes directly to that class's Momence link
+// side as their own clickable mini-cards. Each opens the EventDetailModal
+// where the live Momence Book → button lives. (We tried an inline Book
+// anchor in the card footer; the URLs were wrong / went to the wrong
+// classes, so we kept the modal as the single source of truth.)
 // Below the trio, a primary "Book all three" CTA links to the bundle.
 function MatSeriesCard({
   events,
@@ -157,42 +156,26 @@ function MatSeriesCard({
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {events.map((event, i) => {
           const date = formatDateBadge(event.dateTime);
-          const bookHref =
-            event.action.type === "external" ? event.action.href : undefined;
           return (
-            <div
+            <button
               key={event.id}
-              className="group flex flex-col bg-white border border-accent/20 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
+              type="button"
+              onClick={() => onSelect(event)}
+              className="group text-center flex flex-col items-center bg-white border border-accent/20 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
             >
-              <button
-                type="button"
-                onClick={() => onSelect(event)}
-                className="text-center flex flex-col items-center p-6 pb-4 flex-1"
-              >
-                <div className="flex items-center justify-center w-9 h-9 rounded-full border border-accent/40 text-accent font-serif text-base mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
-                  {i + 1}
-                </div>
-                <p className="text-[11px] tracking-[0.25em] text-accent uppercase mb-2">
-                  {date.weekday} · {date.month} {date.day}
-                </p>
-                <h4 className="font-serif text-lg font-light text-charcoal leading-snug mb-3 group-hover:text-accent transition-colors">
-                  {event.title}
-                </h4>
-                <span className="mt-auto text-[11px] tracking-widest uppercase text-charcoal/40 group-hover:text-accent transition-colors">
-                  Details →
-                </span>
-              </button>
-              {bookHref && (
-                <a
-                  href={bookHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-center bg-accent text-white text-[11px] tracking-widest uppercase px-4 py-3 hover:bg-charcoal transition-colors"
-                >
-                  Book →
-                </a>
-              )}
-            </div>
+              <div className="flex items-center justify-center w-9 h-9 rounded-full border border-accent/40 text-accent font-serif text-base mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
+                {i + 1}
+              </div>
+              <p className="text-[11px] tracking-[0.25em] text-accent uppercase mb-2">
+                {date.weekday} · {date.month} {date.day}
+              </p>
+              <h4 className="font-serif text-lg font-light text-charcoal leading-snug mb-4 group-hover:text-accent transition-colors">
+                {event.title}
+              </h4>
+              <span className="mt-auto text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/70 transition-colors">
+                Details →
+              </span>
+            </button>
           );
         })}
       </div>
