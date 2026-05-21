@@ -129,15 +129,8 @@ export default async function Privates() {
             })}
           </div>
 
-          <p className="text-center text-sm text-muted/80 italic mt-8">
-            Founding Members: 3-pack of introductory privates available for $220.
-          </p>
-
           <div className="text-center mt-10">
             <PackPickerModal buttonLabel="Buy a Pack" groups={apparatus} />
-            <p className="text-sm text-muted/70 mt-3">
-              Single sessions still book through Book a Session above.
-            </p>
           </div>
         </div>
       </section>

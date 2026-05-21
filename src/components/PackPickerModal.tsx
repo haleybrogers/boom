@@ -172,7 +172,7 @@ function Modal({
                             ${m.price}
                           </p>
                           {perClass !== null && (
-                            <p className="text-sm text-muted/70 mb-2">
+                            <p className="text-[11px] text-muted/60 mb-2">
                               ~${perClass}/class
                             </p>
                           )}
