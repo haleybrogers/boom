@@ -62,7 +62,7 @@ export default async function Packs() {
             <p className="text-base text-muted leading-relaxed">
               Everything we offer, organized below — founding pricing while
               it lasts, regular memberships, privates and small-group
-              apparatus, and the Return to Life series. Tap any card to buy.
+              apparatus, and the Return to Life series.
             </p>
           </div>
         </div>
