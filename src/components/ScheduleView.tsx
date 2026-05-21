@@ -17,12 +17,15 @@ import ScheduleClassModal from "./ScheduleClassModal";
 
 const TZ = "America/New_York";
 
-// Hour height on desktop. The grid spans 15 hours (6am–9pm by default)
-// at 64px each → ~960px tall, comfortable for a laptop viewport without
-// scrolling.
-const HOUR_HEIGHT_PX = 64;
-const DEFAULT_RANGE_START_HOUR = 6;   // 6 AM
-const DEFAULT_RANGE_END_HOUR = 21;    // 9 PM
+// Hour height on desktop. Kept tight so the grid doesn't feel like a
+// Google-Calendar marathon scroll when the schedule is sparse.
+const HOUR_HEIGHT_PX = 52;
+// Empty-week fallback. Only used when the visible week has zero classes
+// (e.g., browsing 6 weeks out before Emilie has published). 9 AM – 3 PM
+// keeps the grid short — no point in renting 14 hours of vertical space
+// to show "nothing is happening."
+const EMPTY_RANGE_START_HOUR = 9;
+const EMPTY_RANGE_END_HOUR = 15;
 
 // ----------------------- date helpers -----------------------
 
@@ -121,40 +124,42 @@ export default function ScheduleView({
   const dayKey = (d: Date) =>
     d.toLocaleDateString("en-CA", { timeZone: TZ });
 
-  // Compute the visible hour range from the week's actual classes — if
-  // anything bookends outside 6 AM – 9 PM, expand. Keeps the grid tight
-  // when classes cluster, but doesn't clip early-bird / late-night blocks.
+  // Compute the visible hour range from the week's actual classes. Tight
+  // by default: 1-hour pad above the earliest start, 2-hour pad below
+  // the latest end (so a class ending at 11:50 still has gridline space
+  // under it). If the week has no classes at all, fall back to a short
+  // 9 AM – 3 PM placeholder rather than renting a full 15-hour panel.
   const { rangeStart, rangeEnd } = useMemo(() => {
-    let start = DEFAULT_RANGE_START_HOUR;
-    let end = DEFAULT_RANGE_END_HOUR;
+    const hours: number[] = [];
     for (const d of days) {
       const dayClasses = classesByDay.get(dayKey(d)) || [];
       for (const c of dayClasses) {
         const startD = new Date(c.startISO);
         const endD = new Date(c.endISO);
-        // pull hours in the studio TZ
-        const sHour =
-          parseInt(
-            startD.toLocaleString("en-US", {
-              hour: "2-digit",
-              hour12: false,
-              timeZone: TZ,
-            }),
-            10
-          );
-        const eHour =
-          parseInt(
-            endD.toLocaleString("en-US", {
-              hour: "2-digit",
-              hour12: false,
-              timeZone: TZ,
-            }),
-            10
-          );
-        if (sHour < start) start = Math.max(0, sHour);
-        if (eHour + 1 > end) end = Math.min(24, eHour + 1);
+        const sHour = parseInt(
+          startD.toLocaleString("en-US", {
+            hour: "2-digit",
+            hour12: false,
+            timeZone: TZ,
+          }),
+          10
+        );
+        const eHour = parseInt(
+          endD.toLocaleString("en-US", {
+            hour: "2-digit",
+            hour12: false,
+            timeZone: TZ,
+          }),
+          10
+        );
+        hours.push(sHour, eHour);
       }
     }
+    if (hours.length === 0) {
+      return { rangeStart: EMPTY_RANGE_START_HOUR, rangeEnd: EMPTY_RANGE_END_HOUR };
+    }
+    const start = Math.max(0, Math.min(...hours) - 1);
+    const end = Math.min(24, Math.max(...hours) + 2);
     return { rangeStart: start, rangeEnd: end };
   }, [days, classesByDay]);
 
