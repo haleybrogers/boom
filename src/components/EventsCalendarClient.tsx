@@ -148,17 +148,9 @@ function MatSeriesCard({
 }) {
   return (
     <div className="bg-accent/5 border border-accent/30 rounded-sm p-7 md:p-9">
-      <div className="text-center mb-7">
-        <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">
-          3-Part Series
-        </p>
-        <h3 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-2">
-          The Mat Series.
-        </h3>
-        <p className="font-serif italic text-base text-charcoal/70">
-          No straps. No springs. No limits.
-        </p>
-      </div>
+      <h3 className="font-serif text-xl font-light text-charcoal mb-6 text-center">
+        3-Part Mat Series.
+      </h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {events.map((event, i) => {
