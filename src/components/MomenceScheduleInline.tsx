@@ -74,11 +74,16 @@ export default function MomenceScheduleInline() {
         :root {
           /* Blend with the warm-white page background */
           --momenceColorBackground: #FDFCFA;
-          --momenceColorPrimary: 244, 240, 235;     /* cream. Used by Momence for surfaces / hovers */
+          /* Brand accent (#b02d4a). Momence uses --momenceColorPrimary for
+             the primary action buttons ("Book now") and for selected /
+             hover surface states. It was previously cream, which made the
+             Book buttons disappear against the page (white-on-cream).
+             Accent red gives the buttons real contrast and matches the
+             rest of the site's CTA palette. */
+          --momenceColorPrimary: 176, 45, 74;
           /* Charcoal (#3f3936). Momence uses this var for body text and
              button copy; keeping it actually-dark gives us readable contrast
-             on the cream surfaces. Was previously the brand accent red,
-             which dropped contrast below comfortable on small text. */
+             on the cream surfaces. */
           --momenceColorBlack: 63, 57, 54;
         }
       `}</style>
