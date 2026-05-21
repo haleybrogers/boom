@@ -89,7 +89,7 @@ export default async function Founding() {
       {/* The story. Intimate photo + the why */}
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">
-          <Reveal className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
+          <Reveal className="flex flex-col-reverse md:flex-row gap-10 md:gap-16 items-center">
             <div className="relative w-full md:w-1/2 aspect-[4/5] overflow-hidden">
               <Image
                 src="/photo-founding-intimate.jpg"
