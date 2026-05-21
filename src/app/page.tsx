@@ -21,7 +21,7 @@ export default function Home() {
           with object-cover — tight crop, no letterbox bars, only ~10% off
           each side so sisters' reaching limbs stay in frame. Desktop:
           full-bleed cover at 70vh. */}
-      <section className="relative aspect-[2/1] sm:aspect-auto sm:h-[70vh] overflow-hidden">
+      <section className="relative aspect-[16/9] sm:aspect-auto sm:h-[70vh] overflow-hidden">
         <Image
           src="/hero-image.jpg"
           alt="Two figures in the Boomerang Pilates pose"
