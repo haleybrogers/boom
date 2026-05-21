@@ -57,6 +57,13 @@ function detectResidentsOnly(location: string): { building: string } | undefined
   return match ? { building: match.building } : undefined;
 }
 
+// Mat Series sessions in Momence are all titled "No straps. No springs.
+// No limits." (the series tagline). We render them via the staticEvents
+// mat-series-* entries + the grouped MatSeriesCard, with their real
+// Momence links wired in by hand — so we drop the Momence duplicates
+// here entirely (would otherwise render as four extra plain EventCards).
+const MAT_SERIES_TITLE_RE = /^no straps\.?\s+no springs\.?\s+no limits\.?$/i;
+
 async function fetchMomenceEvents(): Promise<EventItem[]> {
   try {
     const res = await fetch(
@@ -68,6 +75,14 @@ async function fetchMomenceEvents(): Promise<EventItem[]> {
     if (!Array.isArray(data)) return [];
     return (data as MomenceEvent[])
       .filter((e) => !e.isCancelled && !e.isDeleted && e.published)
+      // "semester" is Momence's type for a course/bundle (the parent of
+      // a multi-session series). It has a midnight placeholder dateTime
+      // and isn't a bookable session itself — purchase happens via its
+      // link on the relevant static entry / MatSeriesCard. Drop it from
+      // the calendar feed.
+      .filter((e) => e.type !== "semester")
+      // Drop the Mat Series session dupes (see comment above the regex).
+      .filter((e) => !MAT_SERIES_TITLE_RE.test(e.title.trim()))
       .map((e) => {
         const location = e.location?.trim() || "Durham, NC";
         return {
@@ -91,13 +106,19 @@ async function fetchMomenceEvents(): Promise<EventItem[]> {
 export default async function EventsCalendar() {
   const momenceEvents = await fetchMomenceEvents();
 
-  // De-dupe: if a Momence event has the same title as a static event,
-  // prefer the Momence one (real buy link) and drop the static stub.
-  const momenceTitles = new Set(
-    momenceEvents.map((e) => e.title.toLowerCase())
+  // De-dupe by title: PREFER STATIC over Momence when both exist.
+  // Rationale: static entries carry the rich extras (iconKey for the
+  // boomerang/coffee glyphs, hero image, partLabel, heroNote, details
+  // tiles) and we now wire the real Momence buy link directly into the
+  // static entry's action.external.href by hand. So static wins,
+  // Momence duplicate is dropped. Previously this was inverted, which
+  // is why Craft Night lost its boomerang icon the moment Emilie
+  // published it in Momence.
+  const staticTitles = new Set(
+    staticEvents.map((e) => e.title.toLowerCase())
   );
-  const filteredStatic = staticEvents.filter(
-    (e) => !momenceTitles.has(e.title.toLowerCase())
+  const filteredMomence = momenceEvents.filter(
+    (e) => !staticTitles.has(e.title.toLowerCase())
   );
 
   // Date.now() in a server component is fine. Runs at request/revalidate
@@ -105,7 +126,7 @@ export default async function EventsCalendar() {
   // know the difference.
   // eslint-disable-next-line react-hooks/purity
   const now = Date.now();
-  const allEvents = [...momenceEvents, ...filteredStatic]
+  const allEvents = [...filteredMomence, ...staticEvents]
     .filter((e) => new Date(e.dateTime).getTime() > now)
     .sort(
       (a, b) =>
