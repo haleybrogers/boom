@@ -17,11 +17,12 @@ export default function Home() {
     <>
       <SplashScreen />
 
-      {/* Hero. Source is 21:9 ultra-wide. Mobile: aspect-[2/1] container
-          with object-cover — tight crop, no letterbox bars, only ~10% off
-          each side so sisters' reaching limbs stay in frame. Desktop:
-          full-bleed cover at 70vh. */}
-      <section className="relative h-[70vh] overflow-hidden">
+      {/* Hero. Source is 21:9 ultra-wide. Mobile: aspect-[9/5] container
+          with object-cover. Slightly taller than the original aspect-[2/1]
+          so the crop reads as a proper hero rather than a flat band, but
+          not as zoomed as the full h-[70vh] treatment (which pushed too
+          much of the sisters out of frame). Desktop: full-bleed at 70vh. */}
+      <section className="relative aspect-[9/5] md:aspect-auto md:h-[70vh] overflow-hidden">
         <Image
           src="/hero-image.jpg"
           alt="Two figures in the Boomerang Pilates pose"
