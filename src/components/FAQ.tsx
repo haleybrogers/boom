@@ -25,6 +25,16 @@ const logisticsFaqs = [
     answer:
       "Three tiers — 4x/month, 8x/month, and Unlimited — with 15 founding spots at each tier. Founding rate is 25% off the regular membership and applies to mat classes only (can't be subbed into apparatus). Lock it in before we open and your rate never goes up as long as your membership stays active. Cancel or pause and you lose it.",
   },
+  {
+    question: "Do you offer discounts?",
+    answer:
+      "Yes — 10% off for first responders, students, teachers, and dancers. Just let us know when you sign up.",
+  },
+  {
+    question: "How do duets and trios work?",
+    answer:
+      "Bring your people. When you book a duet or trio, plan on filling those spots yourself — the studio has three reformers, so we can't randomly match strangers. Want cheaper Pilates? Recruit a friend or two. If you want apparatus without rounding up friends, our group apparatus class is open to anyone — book in solo.",
+  },
 ];
 
 // Beginner questions — collapsed inside the "Never done Pilates before?"

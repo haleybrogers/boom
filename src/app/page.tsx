@@ -86,15 +86,11 @@ export default function Home() {
               <p className="text-muted text-base leading-relaxed mb-4">
                 Classical Pilates is the original method — the full Return to
                 Life sequence and the apparatus work that came with it, every
-                exercise in the order it was written. Not a remix. Not a
-                workout class with a reformer in the corner.
-              </p>
-              <p className="text-muted text-base leading-relaxed mb-4">
-                What you&apos;ll feel: stronger from the inside out, more
-                aware of how your body actually moves.
+                exercise in the order it was written.
               </p>
               <p className="text-muted text-base leading-relaxed">
-                Show up however you arrived. We&apos;ll meet you there.
+                What you&apos;ll feel: stronger from the inside out, more
+                aware of how your body actually moves.
               </p>
             </div>
           </Reveal>

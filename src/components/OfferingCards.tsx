@@ -74,7 +74,7 @@ export default function OfferingCards() {
                 src={offering.image}
                 alt={offering.title}
                 fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+                className="object-cover grayscale hover:grayscale-0 scale-[1.15] transition-all duration-700 ease-in-out"
               />
             </Reveal>
 
