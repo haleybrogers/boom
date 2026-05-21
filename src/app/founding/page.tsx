@@ -331,7 +331,7 @@ export default async function Founding() {
                   Spots
                 </dt>
                 <dd className="text-sm text-muted leading-relaxed">
-                  15 spots per tier (4×, 8×, and Unlimited Mat). 45 total.
+                  15 spots per tier (4×, 8×, and Unlimited Mat).
                 </dd>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2 sm:gap-8 py-5">
