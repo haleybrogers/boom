@@ -67,9 +67,44 @@ function CategoryPill({ category }: { category: EventCategory }) {
   );
 }
 
-// Bigger card with a hero image. Used for standalone "destination" events
-// like Craft Night and Mat & Matcha that deserve more visual weight than
-// the regular agenda cards.
+// Decorative icons for the FeaturedEventCard. Used in place of a hero photo
+// for events that read better as a graphic flourish (e.g., boomerang for the
+// Craft Night, coffee cup for Mat & Matcha).
+const EVENT_ICONS: Record<NonNullable<EventItem["iconKey"]>, React.ReactNode> = {
+  boomerang: (
+    <svg
+      className="w-20 h-20"
+      viewBox="0 0 64 64"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.25}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M14 46 L 32 14 L 50 46 L 32 38 Z" />
+      <path d="M32 14 L 32 38" />
+    </svg>
+  ),
+  coffee: (
+    <svg
+      className="w-20 h-20"
+      viewBox="0 0 64 64"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.25}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M14 24 H 44 V 42 A 8 8 0 0 1 36 50 H 22 A 8 8 0 0 1 14 42 Z" />
+      <path d="M44 28 H 50 A 6 6 0 0 1 50 40 H 44" />
+      <path d="M22 10 V 18 M30 10 V 18 M38 10 V 18" />
+    </svg>
+  ),
+};
+
+// Bigger card with a hero image (or decorative icon). Used for standalone
+// "destination" events like Craft Night and Mat & Matcha that deserve more
+// visual weight than the regular agenda cards.
 function FeaturedEventCard({
   event,
   onClick,
@@ -84,7 +119,11 @@ function FeaturedEventCard({
       onClick={onClick}
       className="group text-left flex flex-col bg-white border border-charcoal/10 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
     >
-      {event.image && (
+      {event.iconKey ? (
+        <div className="relative w-full aspect-[16/10] bg-cream flex items-center justify-center text-accent">
+          {EVENT_ICONS[event.iconKey]}
+        </div>
+      ) : event.image ? (
         <div className="relative w-full aspect-[16/10] overflow-hidden">
           <Image
             src={event.image}
@@ -94,7 +133,7 @@ function FeaturedEventCard({
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
-      )}
+      ) : null}
       <div className="flex flex-col p-6 md:p-7 flex-1">
         <div className="flex items-baseline gap-2 mb-3">
           <span className="text-[11px] tracking-[0.25em] text-accent uppercase">

@@ -47,6 +47,7 @@ export const staticEvents: EventItem[] = [
     },
     heroNote: "Workshop · Pop-up event.",
     image: "/photo-mat-2.jpg",
+    iconKey: "boomerang",
     details: [
       { label: "The mat", value: "30-minute open-level class to start" },
       { label: "The craft", value: "Hand-shaped, gesso-primed Baltic birch boomerang to paint & take home" },
@@ -118,6 +119,7 @@ export const staticEvents: EventItem[] = [
     location: "345 W Main St, Durham, NC",
     price: "Free",
     image: "/photo-apparatus.jpg",
+    iconKey: "coffee",
     action: {
       type: "info-only",
       note: "15 apparatus demo slots — booking opens in Momence soon.",
