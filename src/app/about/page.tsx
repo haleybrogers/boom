@@ -60,7 +60,7 @@ export default function About() {
                 Emilie Young
               </h3>
               <p className="text-sm tracking-widest uppercase text-accent mb-4">
-                Co-Founder
+                Founder / Owner
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 3rd Generation Classical Pilates instructor, comprehensively
@@ -92,7 +92,7 @@ export default function About() {
                 Annie Young
               </h3>
               <p className="text-sm tracking-widest uppercase text-accent mb-4">
-                Co-Founder
+                Co-Founder / Studio Manager
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 Classical Pilates certified through Appalachian State
