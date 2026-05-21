@@ -184,11 +184,8 @@ function MatSeriesCard({
         <h3 className="font-serif text-xl font-light text-charcoal mb-1">
           3-Part Mat Series.
         </h3>
-        <p className="font-serif italic text-sm text-charcoal/70 mb-2">
+        <p className="font-serif italic text-sm text-charcoal/70 mb-5">
           No straps. No springs. No limits.
-        </p>
-        <p className="text-sm text-muted mb-5">
-          Suggested $20 per class or $55 for all three.
         </p>
         <a
           href={MAT_SERIES_BUNDLE_URL}
