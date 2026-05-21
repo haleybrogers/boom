@@ -33,7 +33,7 @@ const logisticsFaqs = [
   {
     question: "How do duets and trios work?",
     answer:
-      "Bring two for a duet or three for a trio. Same instructor, same room, full apparatus, semi-private rate. Coming alone? Book a group apparatus class instead.",
+      "Bring two for a duet or three for a trio. One instructor, full apparatus, semi-private rate. Coming alone? Book a group apparatus class instead.",
   },
   {
     question: "Want a trio but don't have two friends to bring?",
