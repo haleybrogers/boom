@@ -17,9 +17,10 @@ import ScheduleClassModal from "./ScheduleClassModal";
 
 const TZ = "America/New_York";
 
-// Hour height on desktop. Kept tight so the grid doesn't feel like a
-// Google-Calendar marathon scroll when the schedule is sparse.
-const HOUR_HEIGHT_PX = 52;
+// Hour height on desktop. A class hour gets enough vertical room for
+// titles to wrap to 2-3 lines without truncating, while still keeping
+// the overall grid short when the schedule is sparse.
+const HOUR_HEIGHT_PX = 64;
 // Empty-week fallback. Only used when the visible week has zero classes
 // (e.g., browsing 6 weeks out before Emilie has published). 9 AM – 3 PM
 // keeps the grid short — no point in renting 14 hours of vertical space
@@ -207,10 +208,10 @@ export default function ScheduleView({
             </svg>
           </button>
           <div className="ml-3">
-            <p className="font-serif text-xl font-light text-charcoal leading-tight">
+            <p className="font-serif text-2xl md:text-3xl font-light text-charcoal leading-tight">
               {weekLabel}
             </p>
-            <p className="text-[11px] tracking-[0.25em] uppercase text-muted">
+            <p className="text-xs tracking-[0.25em] uppercase text-muted mt-1">
               {isThisWeek ? "This week" : "Week of " + fmtMonthDay(days[0])}
               {" · "}
               {totalClassesThisWeek} {totalClassesThisWeek === 1 ? "class" : "classes"}
@@ -352,19 +353,19 @@ function WeekGrid({
           return (
             <div
               key={d.toISOString()}
-              className={`text-center py-3 border-r last:border-r-0 border-charcoal/10 ${
+              className={`text-center py-4 border-r last:border-r-0 border-charcoal/10 ${
                 isToday ? "bg-accent/5" : "bg-cream/40"
               }`}
             >
               <p
-                className={`text-[11px] tracking-[0.25em] uppercase ${
-                  isToday ? "text-accent" : "text-muted"
+                className={`text-xs tracking-[0.3em] uppercase font-medium ${
+                  isToday ? "text-accent" : "text-charcoal/70"
                 }`}
               >
                 {fmtWeekday(d)}
               </p>
               <p
-                className={`font-serif text-xl font-light leading-tight mt-0.5 ${
+                className={`font-serif text-2xl font-light leading-tight mt-1 ${
                   isToday ? "text-accent" : "text-charcoal"
                 }`}
               >
@@ -473,7 +474,7 @@ function ClassBlock({
       >
         {fmtTime(start)}
       </p>
-      <p className="font-serif text-[14px] text-charcoal leading-tight mt-1 line-clamp-2">
+      <p className="font-serif text-[14px] text-charcoal leading-tight mt-1 line-clamp-3">
         {cls.title}
       </p>
     </button>
@@ -515,7 +516,7 @@ function DayList({
               key={d.toISOString()}
               type="button"
               onClick={() => setActiveDayIdx(i)}
-              className={`flex flex-col items-center py-2 border-r last:border-r-0 border-charcoal/10 transition-colors ${
+              className={`flex flex-col items-center py-3 border-r last:border-r-0 border-charcoal/10 transition-colors ${
                 isActive
                   ? "bg-accent text-white"
                   : isToday
@@ -523,14 +524,14 @@ function DayList({
                     : "bg-warm-white text-charcoal hover:bg-cream/50"
               }`}
             >
-              <span className="text-[10px] tracking-[0.2em] uppercase opacity-80">
+              <span className="text-[11px] tracking-[0.25em] uppercase font-medium opacity-90">
                 {fmtWeekday(d).slice(0, 3)}
               </span>
-              <span className="font-serif text-lg font-light leading-tight">
+              <span className="font-serif text-xl font-light leading-tight mt-1">
                 {d.getDate()}
               </span>
               <span
-                className={`text-[9px] tracking-widest uppercase mt-0.5 ${
+                className={`text-[10px] tracking-widest uppercase mt-1 ${
                   isActive ? "text-white/70" : "text-muted"
                 }`}
               >

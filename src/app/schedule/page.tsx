@@ -40,9 +40,12 @@ export default async function Schedule() {
         </div>
       </section>
 
-      {/* Schedule grid + day list */}
+      {/* Schedule grid + day list. Wider container than the rest of the
+          site so the week grid has room to breathe (otherwise class
+          titles like "Intermediate Advanced Classical Reformer" truncate
+          inside a 7-column split). */}
       <section className="bg-warm-white pb-20 lg:pb-28">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           {classes.length === 0 ? (
             <div className="text-center py-16 text-muted border border-dashed border-charcoal/15 rounded-sm max-w-lg mx-auto">
               <p className="font-serif text-lg text-charcoal mb-2">
