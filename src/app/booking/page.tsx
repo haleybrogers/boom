@@ -4,37 +4,36 @@ import Link from "next/link";
 export const metadata = {
   title: "Booking",
   description:
-    "Book a class, a private session, or grab a membership at Boomerang Pilates — Durham, NC.",
+    "Three ways into Boomerang — book a class, book a private session, or grab a membership. Durham, NC.",
 };
 
 // Three ways to book — keep in sync with the Booking dropdown in Navigation.tsx.
-// /schedule needs a hard nav (Momence plugin state survives soft nav), so it
-// renders as a plain <a> instead of a Next <Link>.
+// /schedule needs a hard nav (Momence plugin state survives soft nav).
 const bookingOptions = [
   {
     href: "/schedule",
-    image: "/nav-schedule.jpg",
-    label: "Class Schedule",
-    description:
-      "Group mat and apparatus classes — drop in or book ahead. Live from our booking system.",
+    kicker: "Take a Class",
+    title: "Want to drop in or check the schedule?",
+    teaser:
+      "Group mat and apparatus classes — book any session live from our calendar. New here? A $25 mat drop-in is the easiest way in.",
     cta: "See the schedule",
     hardNav: true,
   },
   {
     href: "/privates",
-    image: "/nav-privates.jpg",
-    label: "Privates, Duets & Trios",
-    description:
-      "One-on-one, or with a partner or two. Full apparatus, fully customized to you.",
+    kicker: "One-on-One",
+    title: "Want to book a private?",
+    teaser:
+      "Privates, duets, or trios — fully customized to you on the full classical apparatus. Single sessions or packs of 5 or 10 (with packs cheaper per class).",
     cta: "Book a session",
     hardNav: false,
   },
   {
     href: "/packs",
-    image: "/nav-packs.jpg",
-    label: "Memberships + Pricing",
-    description:
-      "Monthly mat memberships, apparatus packs, and the Return to Life series — all in one place.",
+    kicker: "Memberships + Pricing",
+    title: "Questions about pricing?",
+    teaser:
+      "Founding rates while they last, regular monthly memberships, apparatus packs, and the Return to Life series — every number in one place.",
     cta: "See pricing",
     hardNav: false,
   },
@@ -42,10 +41,10 @@ const bookingOptions = [
 
 export default function Booking() {
   return (
-    <section className="pt-28 lg:pt-36 pb-20 lg:pb-28 bg-warm-white">
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Heading */}
-        <div className="text-center mb-14">
+    <>
+      {/* Hero — header + one big photo */}
+      <section className="pt-28 lg:pt-36 pb-12 lg:pb-16 bg-warm-white">
+        <div className="max-w-3xl mx-auto px-6 text-center mb-12">
           <p
             className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up"
             style={{ animationDelay: "0.05s" }}
@@ -56,7 +55,7 @@ export default function Booking() {
             className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up"
             style={{ animationDelay: "0.15s" }}
           >
-            Book a class.
+            Three ways in.
           </h1>
           <div
             className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up"
@@ -66,51 +65,56 @@ export default function Booking() {
             className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto animate-fade-up"
             style={{ animationDelay: "0.4s" }}
           >
-            Three ways in — pick what fits.
+            Pick what fits.
           </p>
         </div>
 
-        {/* Three cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm">
+            <Image
+              src="/photo-apparatus.jpg"
+              alt="Classical Pilates at Boomerang"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1152px"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Stacked sections — each a teaser leading to its page */}
+      <section className="py-20 lg:py-24">
+        <div className="max-w-3xl mx-auto px-6 divide-y divide-charcoal/10">
           {bookingOptions.map((opt) => {
             const Tag = opt.hardNav ? "a" : Link;
             return (
-              <Tag
-                key={opt.href}
-                href={opt.href}
-                className="group flex flex-col bg-white border border-charcoal/10 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
-              >
-                <div className="relative w-full aspect-[4/5] overflow-hidden">
-                  <Image
-                    src={opt.image}
-                    alt={opt.label}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="flex flex-col p-6 flex-1">
-                  <h2 className="font-serif text-xl font-light text-charcoal mb-2">
-                    {opt.label}
-                  </h2>
-                  <p className="text-sm text-muted leading-relaxed mb-5 flex-1">
-                    {opt.description}
-                  </p>
-                  <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors mt-auto flex items-center justify-between">
-                    <span>{opt.cta}</span>
-                    <span className="group-hover:translate-x-0.5 transition-transform">
-                      →
-                    </span>
-                  </span>
-                </div>
-              </Tag>
+              <div key={opt.href} className="py-12 first:pt-0 last:pb-0">
+                <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
+                  {opt.kicker}
+                </p>
+                <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-4">
+                  {opt.title}
+                </h2>
+                <p className="text-base text-muted leading-relaxed mb-6 max-w-xl">
+                  {opt.teaser}
+                </p>
+                <Tag
+                  href={opt.href}
+                  className="link-arrow inline-block text-sm tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                >
+                  {opt.cta} →
+                </Tag>
+              </div>
             );
           })}
         </div>
+      </section>
 
-        {/* Subtle footer note */}
-        <p className="text-center text-sm text-muted mt-12 max-w-md mx-auto">
-          New here? A $25 mat drop-in is the easiest place to start. See the{" "}
+      {/* Subtle footer note */}
+      <section className="pb-20 lg:pb-28">
+        <p className="text-center text-sm text-muted max-w-md mx-auto px-6">
+          See the{" "}
           <Link
             href="/faq"
             className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
@@ -119,7 +123,7 @@ export default function Booking() {
           </Link>{" "}
           for booking + cancellation details.
         </p>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
