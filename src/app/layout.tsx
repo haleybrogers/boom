@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
@@ -45,6 +45,14 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://www.boomerangpilatesnc.com"),
   icons: { icon: "/favicon.svg" },
+};
+
+// Without this, mobile browsers default to a ~980px virtual viewport and
+// render the page zoomed out. Sets the standard mobile-first viewport so
+// the layout renders at the device's actual pixel width on load.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
