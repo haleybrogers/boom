@@ -58,37 +58,29 @@ const bookingOptions: BookingOption[] = [
 export default function Booking() {
   return (
     <>
-      {/* Hero. Header + one big photo */}
-      <section className="pt-28 lg:pt-36 pb-12 lg:pb-16 bg-warm-white">
-        <div className="max-w-2xl mx-auto px-6 text-center mb-12">
-          <h1
-            className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up"
-            style={{ animationDelay: "0.15s" }}
-          >
-            Come move with us.
-          </h1>
-          <div
-            className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up"
-            style={{ animationDelay: "0.3s" }}
-          />
-          <p
-            className="text-base md:text-lg text-muted leading-relaxed max-w-md mx-auto animate-fade-up"
-            style={{ animationDelay: "0.4s" }}
-          >
-            Whatever you&apos;re after, we&apos;ve got a way in. Pick whichever fits.
-          </p>
-        </div>
-
+      {/* Split hero. Photo left (portrait-natural), copy right. */}
+      <section className="pt-28 lg:pt-36 pb-16 lg:pb-20 bg-warm-white">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="relative w-full aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-sm">
-            <Image
-              src="/photo-booking-hero.jpg"
-              alt="Classical Pilates at Boomerang"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 1152px"
-              className="object-cover"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
+            <div className="relative w-full aspect-[4/5] overflow-hidden">
+              <Image
+                src="/photo-booking-hero.jpg"
+                alt="Classical Pilates at Boomerang"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight mb-6">
+                Come move with us.
+              </h1>
+              <div className="w-12 h-px bg-accent mb-6" />
+              <p className="text-base md:text-lg text-muted leading-relaxed">
+                Whatever you&apos;re after, we&apos;ve got a way in. Pick whichever fits.
+              </p>
+            </div>
           </div>
         </div>
       </section>
