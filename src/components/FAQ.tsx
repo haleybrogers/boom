@@ -33,12 +33,12 @@ const logisticsFaqs = [
   {
     question: "How do duets and trios work?",
     answer:
-      "Bring your people for duets or trios. No one in mind? Reach out and we'll pair you up. Coming alone? Book the group apparatus class instead.",
+      "Bring two for a duet or three for a trio. Same instructor, same room, full apparatus, semi-private rate. Coming alone? Book a group apparatus class instead.",
   },
   {
-    question: "Want to do a trio but don't have two friends?",
+    question: "Want a trio but don't have two friends to bring?",
     answer:
-      "Definitely reach out first. We keep a list of folks looking for the same, and love matching people into standing trios. We'll connect you.",
+      "Reach out first. We keep a list of folks looking for the same, and love matching people into standing trios that meet on a regular cadence. We'll connect you.",
   },
 ];
 

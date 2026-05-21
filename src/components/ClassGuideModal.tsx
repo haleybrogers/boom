@@ -93,18 +93,21 @@ export default function ClassGuideModal() {
 
   return (
     <>
-      {/* Trigger button. Soft serif pill */}
+      {/* Trigger button. Sat too quietly against warm-white when it was a
+          soft italic-serif pill on cream. Bumped: solid accent "i" badge for
+          affordance, regular serif (no italic) for the label, slightly
+          stronger border. Reads as a real button now. */}
       <button
         onClick={() => setOpen(true)}
-        className="group inline-flex items-center gap-2.5 bg-cream border border-accent/25 pl-3 pr-4 py-2 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-accent/50 transition-all duration-300"
+        className="group inline-flex items-center gap-2.5 bg-cream border border-accent/40 pl-2.5 pr-4 py-2.5 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-accent transition-all duration-300"
       >
-        <span className="w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center text-sm font-serif italic group-hover:bg-accent/20 transition-colors">
+        <span className="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-sm font-serif group-hover:bg-charcoal transition-colors">
           i
         </span>
-        <span className="font-serif italic text-sm text-charcoal group-hover:text-accent transition-colors">
+        <span className="font-serif text-[15px] text-charcoal group-hover:text-accent transition-colors">
           Class descriptions
         </span>
-        <span className="text-accent/50 group-hover:text-accent transition-colors text-sm">→</span>
+        <span className="text-accent group-hover:translate-x-0.5 transition-transform text-sm">→</span>
       </button>
 
       {/* Backdrop + Modal. Portaled to body to escape any transform/filter ancestors */}
