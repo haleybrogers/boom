@@ -57,9 +57,7 @@ export default async function Packs() {
             <div className="w-12 h-px bg-accent mb-6" />
             <p className="text-base text-muted leading-relaxed mb-4">
               The people who get the most out of Pilates are the ones who keep
-              showing up. Memberships are how the regulars do it — lock in a
-              rhythm, save per class, and skip the checkout dance every time
-              you come back.
+              showing up. Memberships are how the regulars do it.
             </p>
             <p className="text-base text-muted leading-relaxed">
               Everything we offer, organized below — founding pricing while
