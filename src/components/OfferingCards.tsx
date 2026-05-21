@@ -50,7 +50,7 @@ const offerings: Offering[] = [
     priceNote: "",
     link: "/privates",
     linkLabel: "Book a Session",
-    photoScale: "scale-[1.35]",
+    photoScale: "scale-[1.55]",
   },
   {
     title: "Privates, Duets & Trios",

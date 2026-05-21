@@ -41,11 +41,16 @@ export default async function Privates() {
                 Privates, duets &amp; trios.
               </h1>
               <div className="w-12 h-px bg-accent mb-6" />
-              <p className="text-muted text-base leading-relaxed mb-8">
+              <p className="text-muted text-base leading-relaxed mb-5">
                 The most personalized Pilates experience we offer. Your
                 instructor builds every session around your body, your goals,
-                and where you are in your practice. Using the full range of
+                and where you are in your practice, using the full range of
                 classical apparatus.
+              </p>
+              <p className="text-muted text-base leading-relaxed mb-8">
+                Privates too pricey? Bring a friend or two. Don&apos;t have
+                anyone in mind? Reach out before you book and we&apos;ll pair
+                you up with someone else looking.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-8">
