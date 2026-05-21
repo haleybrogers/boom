@@ -13,28 +13,25 @@ const bookingOptions = [
   {
     href: "/schedule",
     kicker: "Take a Class",
-    title: "Want to drop in or check the schedule?",
-    teaser:
-      "Group mat and apparatus classes — book any session live from our calendar. New here? A $25 mat drop-in is the easiest way in.",
-    cta: "See the schedule",
+    title: "Want to drop in?",
+    teaser: "Group mat and apparatus — book live from the schedule.",
+    cta: "See the Schedule",
     hardNav: true,
   },
   {
     href: "/privates",
     kicker: "One-on-One",
     title: "Want to book a private?",
-    teaser:
-      "Privates, duets, or trios — fully customized to you on the full classical apparatus. Single sessions or packs of 5 or 10 (with packs cheaper per class).",
-    cta: "Book a session",
+    teaser: "Privates, duets, or trios on the full apparatus.",
+    cta: "Book a Session",
     hardNav: false,
   },
   {
     href: "/packs",
     kicker: "Memberships + Pricing",
     title: "Questions about pricing?",
-    teaser:
-      "Founding rates while they last, regular monthly memberships, apparatus packs, and the Return to Life series — every number in one place.",
-    cta: "See pricing",
+    teaser: "Founding rates, memberships, packs — all in one place.",
+    cta: "See Pricing",
     hardNav: false,
   },
 ];

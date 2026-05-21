@@ -51,14 +51,14 @@ const sections = [
           "Rotates through the full range of apparatus with a strong focus on core strengthening and alignment.",
       },
       {
-        title: "Athletic Classical Reformer",
+        title: "Intermediate Advanced Classical Reformer",
         level: "Intermediate/Advanced",
         length: "50 min",
         description:
           "Fast-paced, precision-driven reformer work. Efficient transitions, demanding sequences, focused intensity.",
       },
       {
-        title: "Athletic Classical Tower",
+        title: "Intermediate Advanced Classical Tower",
         level: "Intermediate/Advanced",
         length: "50 min",
         description:

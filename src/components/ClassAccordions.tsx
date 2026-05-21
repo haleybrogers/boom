@@ -51,12 +51,12 @@ const sections = [
         description: "You know the equipment. Now let it challenge you. Rotates through the full range of apparatus — tower, reformer, barrels — with a strong focus on core strengthening and alignment. Each session uses a different combination so your practice never plateaus.",
       },
       {
-        title: "Athletic Classical Reformer",
+        title: "Intermediate Advanced Classical Reformer",
         level: "Intermediate/Advanced",
         description: "Fast-paced. Precision-driven. A reformer class built for students who want to push — efficient transitions, demanding sequences, and the kind of focused intensity that only comes from working on real classical equipment with real instruction.",
       },
       {
-        title: "Athletic Classical Tower",
+        title: "Intermediate Advanced Classical Tower",
         level: "Intermediate/Advanced",
         description: "Everything you love about the tower, turned up. A fast-paced sequence incorporating classical mat exercises alongside full tower work — roll back bar, push-thru bar, leg springs, arm springs. More core burn, more flow, more demand.",
       },
