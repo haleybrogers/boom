@@ -333,8 +333,9 @@ function WeekGrid({
 // Card height scales with class duration so a 3-hour event reads as
 // visually heavier than a 50-minute class — even without the time grid,
 // you can see at a glance that an evening is committed vs. a quick
-// drop-in. min-height kicks in at 80px so short classes still feel
-// substantial; duration * 1.3 hits ~234px for a 3-hour block.
+// drop-in. min-height floor keeps short classes substantial; multiplier
+// keeps long events visually weighted. Current: 110px floor, 1.5×
+// multiplier → 50 min → 110px, 90 min → 135px, 180 min → 270px.
 function ClassCard({
   cls,
   onClick,
@@ -345,13 +346,13 @@ function ClassCard({
   const start = new Date(cls.startISO);
   const end = new Date(cls.endISO);
   const style = CLASS_TYPE_STYLES[cls.type];
-  const minHeight = Math.max(80, Math.round(cls.durationMin * 1.3));
+  const minHeight = Math.max(110, Math.round(cls.durationMin * 1.5));
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left rounded-sm px-3 py-3 transition-shadow hover:shadow-md flex flex-col"
+      className="w-full text-left rounded-sm px-4 py-4 transition-shadow hover:shadow-md flex flex-col"
       style={{
         background: style.bgSoft,
         borderLeft: `4px solid ${style.border}`,
