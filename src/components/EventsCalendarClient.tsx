@@ -214,9 +214,14 @@ function EventCard({
             {event.partLabel}
           </p>
         )}
-        <h3 className="font-serif text-lg font-light text-charcoal leading-snug mb-2">
+        <h3 className="font-serif text-lg font-light text-charcoal leading-snug mb-1">
           {event.title}
         </h3>
+        {event.location && (
+          <p className="text-sm text-muted leading-snug mb-2">
+            {event.location}
+          </p>
+        )}
         {event.residentsOnly && (
           <span className="self-start text-[10px] tracking-[0.25em] uppercase border border-accent/30 text-accent bg-accent/5 rounded-full px-2.5 py-1 mb-2">
             Residents Only
