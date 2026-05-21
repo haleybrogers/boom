@@ -127,8 +127,8 @@ export const staticEvents: EventItem[] = [
     image: "/photo-apparatus.jpg",
     iconKey: "coffee",
     action: {
-      type: "info-only",
-      note: "15 apparatus demo slots — booking opens in Momence soon.",
+      type: "external",
+      href: "https://momence.com/Boomerang-Pilates/Mat-and-Matcha-%2B-Apparatus-Demos/136916030",
     },
   },
 ];
