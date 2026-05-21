@@ -33,7 +33,7 @@ const bookingOptions: BookingOption[] = [
   {
     href: "/privates",
     label: "Privates, Duets & Trios",
-    hint: "One-on-one or with a friend",
+    hint: "One-on-one or with friends",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.25} viewBox="0 0 24 24">
         <circle cx="9" cy="8" r="3" />
