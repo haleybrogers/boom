@@ -75,7 +75,11 @@ export default function MomenceScheduleInline() {
           /* Blend with the warm-white page background */
           --momenceColorBackground: #FDFCFA;
           --momenceColorPrimary: 244, 240, 235;     /* cream. Used by Momence for surfaces / hovers */
-          --momenceColorBlack: 176, 45, 74;         /* brand accent (#b02d4a) */
+          /* Charcoal (#3f3936). Momence uses this var for body text and
+             button copy; keeping it actually-dark gives us readable contrast
+             on the cream surfaces. Was previously the brand accent red,
+             which dropped contrast below comfortable on small text. */
+          --momenceColorBlack: 63, 57, 54;
         }
       `}</style>
       {/* min-height pre-allocates roughly the widget's rendered space so
