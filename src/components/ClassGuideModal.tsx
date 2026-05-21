@@ -159,7 +159,7 @@ export default function ClassGuideModal() {
                             <span className="font-serif text-base text-charcoal block">
                               {cls.title}
                             </span>
-                            <span className="text-sm text-muted/70 mt-0.5 inline-block">
+                            <span className="text-sm text-muted mt-0.5 inline-block">
                               {cls.length} · {cls.level}
                             </span>
                           </div>

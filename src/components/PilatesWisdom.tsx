@@ -95,7 +95,7 @@ export default function PilatesWisdom() {
       <button
         type="button"
         onClick={shuffle}
-        className={`text-sm italic font-serif text-muted/70 hover:text-accent transition-all duration-200 cursor-pointer leading-relaxed ${
+        className={`text-sm italic font-serif text-muted hover:text-accent transition-all duration-200 cursor-pointer leading-relaxed ${
           fading ? "opacity-0" : "opacity-100"
         }`}
         aria-label="Shuffle Pilates fact"

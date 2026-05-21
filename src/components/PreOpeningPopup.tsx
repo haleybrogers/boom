@@ -70,7 +70,7 @@ export default function PreOpeningPopup() {
           <div>
             <button
               onClick={dismiss}
-              className="text-sm text-muted/60 hover:text-charcoal transition-colors"
+              className="text-sm text-muted/80 hover:text-charcoal transition-colors"
             >
               Maybe later
             </button>

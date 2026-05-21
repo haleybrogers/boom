@@ -42,7 +42,7 @@ export default function First() {
           </span>
         </button>
 
-        <p className="text-sm text-muted/60 mb-8">
+        <p className="text-sm text-muted/80 mb-8">
           Tell a friend. Or don&apos;t. That&apos;s the whole point of a secret.
         </p>
 

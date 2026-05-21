@@ -92,7 +92,7 @@ export default function NewToPilates() {
         </div>
 
         {/* Help line */}
-        <p className="text-center text-sm text-muted/70 mt-8">
+        <p className="text-center text-sm text-muted mt-8">
           Not sure?{" "}
           <a
             href="mailto:info@boomerangpilatesnc.com"

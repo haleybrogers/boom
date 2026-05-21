@@ -386,7 +386,7 @@ export default function Navigation() {
                                 Overview
                               </p>
                               <p className={`text-sm mt-0.5 ${
-                                isTransparent ? "text-white/40" : "text-muted/70"
+                                isTransparent ? "text-white/40" : "text-muted"
                               }`}>
                                 See all booking options
                               </p>
@@ -401,7 +401,7 @@ export default function Navigation() {
                                   {child.label}
                                 </p>
                                 <p className={`text-sm mt-0.5 ${
-                                  isTransparent ? "text-white/40" : "text-muted/70"
+                                  isTransparent ? "text-white/40" : "text-muted"
                                 }`}>
                                   {child.description}
                                 </p>

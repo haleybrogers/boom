@@ -242,7 +242,7 @@ export default async function Founding() {
                       {tierTagline(t.key) && (
                         <p className="text-sm text-muted mb-1">{tierTagline(t.key)}</p>
                       )}
-                      <p className="text-[11px] tracking-widest uppercase text-muted/70 mb-5">
+                      <p className="text-[11px] tracking-widest uppercase text-muted mb-5">
                         Monthly Membership
                       </p>
 
@@ -255,7 +255,7 @@ export default async function Founding() {
                           <span className="text-sm text-muted font-sans">/month</span>
                         </p>
                         {foundingPerClass !== null && (
-                          <p className="text-sm text-muted/70 mt-0.5">
+                          <p className="text-sm text-muted mt-0.5">
                             ~${foundingPerClass}/class
                           </p>
                         )}
@@ -271,14 +271,14 @@ export default async function Founding() {
                           <p className="text-[11px] tracking-widest uppercase text-muted mb-1">
                             Regular
                           </p>
-                          <p className="font-serif text-lg font-light text-muted/70">
+                          <p className="font-serif text-lg font-light text-muted">
                             <span className="line-through decoration-accent/50 decoration-1">
                               ${regular.price}
                             </span>
-                            <span className="text-sm text-muted/70 font-sans">/month</span>
+                            <span className="text-sm text-muted font-sans">/month</span>
                           </p>
                           {regularPerClass !== null && (
-                            <p className="text-sm text-muted/60 mt-0.5">
+                            <p className="text-sm text-muted/80 mt-0.5">
                               ~${regularPerClass}/class
                             </p>
                           )}

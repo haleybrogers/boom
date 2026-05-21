@@ -56,15 +56,15 @@ export default async function Privates() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-8">
                 <div>
                   <p className="text-sm text-charcoal font-medium">Private</p>
-                  <p className="text-sm text-muted/70 mt-0.5">1 student · 50 min</p>
+                  <p className="text-sm text-muted mt-0.5">1 student · 50 min</p>
                 </div>
                 <div className="sm:border-l sm:border-charcoal/10 sm:pl-4">
                   <p className="text-sm text-charcoal font-medium">Duet</p>
-                  <p className="text-sm text-muted/70 mt-0.5">2 students · 50 min</p>
+                  <p className="text-sm text-muted mt-0.5">2 students · 50 min</p>
                 </div>
                 <div className="sm:border-l sm:border-charcoal/10 sm:pl-4">
                   <p className="text-sm text-charcoal font-medium">Trio</p>
-                  <p className="text-sm text-muted/70 mt-0.5">3 students · 50 min</p>
+                  <p className="text-sm text-muted mt-0.5">3 students · 50 min</p>
                 </div>
               </div>
 
@@ -76,7 +76,7 @@ export default async function Privates() {
               >
                 Book a Session
               </a>
-              <p className="text-sm text-muted/70 mt-3">
+              <p className="text-sm text-muted mt-3">
                 Privates, duets, and trios all bookable here. Opens in a new tab.
               </p>
             </div>

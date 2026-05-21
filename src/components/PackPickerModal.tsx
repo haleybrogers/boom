@@ -145,10 +145,10 @@ function Modal({
                             key={size}
                             className="flex flex-col bg-white/50 border border-charcoal/5 rounded-sm p-4 opacity-60"
                           >
-                            <p className="text-[11px] tracking-widest uppercase text-muted/60 mb-1">
+                            <p className="text-[11px] tracking-widest uppercase text-muted/80 mb-1">
                               {SIZE_LABELS[size]}
                             </p>
-                            <p className="text-sm text-muted/70">Not available</p>
+                            <p className="text-sm text-muted">Not available</p>
                           </div>
                         );
                       }
@@ -191,7 +191,7 @@ function Modal({
             })}
           </div>
 
-          <p className="text-center text-sm text-muted/70 mt-7">
+          <p className="text-center text-sm text-muted mt-7">
             Buy opens Momence in a new tab.
           </p>
         </div>
