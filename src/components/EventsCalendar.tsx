@@ -1,4 +1,4 @@
-// Server component — fetches Momence events, merges them with the
+// Server component. Fetches Momence events, merges them with the
 // curated staticEvents list, sorts chronologically, dedupes by title,
 // and hands the result to <EventsCalendarClient/> which renders the
 // grid + modal.
@@ -100,7 +100,7 @@ export default async function EventsCalendar() {
     (e) => !momenceTitles.has(e.title.toLowerCase())
   );
 
-  // Date.now() in a server component is fine — runs at request/revalidate
+  // Date.now() in a server component is fine. Runs at request/revalidate
   // time, not during render of a long-lived component. Lint rule doesn't
   // know the difference.
   // eslint-disable-next-line react-hooks/purity

@@ -248,7 +248,7 @@ export default function SixPrinciples({ embedded = false }: { embedded?: boolean
         })}
       </div>
 
-      {/* Hidden 7th principle — unlocked by clicking in classical order */}
+      {/* Hidden 7th principle. Unlocked by clicking in classical order */}
       {unlocked && (
         <div className="mt-16 text-center animate-fade-in">
           <div className="inline-block border-t border-accent/30 pt-8 px-10">

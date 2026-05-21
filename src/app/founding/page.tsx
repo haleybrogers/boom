@@ -15,7 +15,7 @@ import {
 export const metadata = {
   title: "Founding Members",
   description:
-    "Become a founding member at Boomerang Pilates — 25% off mat for life, opening night invite, welcome kit, and intro privates. 15 spots per tier. Ends July 13, 2026.",
+    "Become a founding member at Boomerang Pilates. 25% off mat for life, opening night invite, welcome kit, and intro privates. 15 spots per tier. Ends July 13, 2026.",
 };
 
 const perks = [
@@ -31,7 +31,7 @@ const perks = [
   {
     title: "Intro Privates Bundle",
     detail:
-      "Three introductory privates for $220 — meet the apparatus with one of us before you bring it into class.",
+      "Three introductory privates for $220. Meet the apparatus with one of us before you bring it into class.",
   },
   {
     title: "Bring-a-Friend Pass",
@@ -46,7 +46,7 @@ export default async function Founding() {
   const memberships = await fetchMemberships();
   return (
     <>
-      {/* Hero — full-bleed Pilates photo with overlaid kicker, headline, countdown */}
+      {/* Hero. Full-bleed Pilates photo with overlaid kicker, headline, countdown */}
       <section className="relative h-[70vh] min-h-[480px] md:h-[80vh] md:min-h-[560px] overflow-hidden">
         <Image
           src="/photo-mat-2.jpg"
@@ -68,7 +68,7 @@ export default async function Founding() {
                 Be one of the first.
               </h1>
               <p className="text-white/85 text-base md:text-lg leading-relaxed max-w-xl animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
-                15 founding spots at each tier. 25% off your mat membership for
+                15 spots per tier. 25% off your mat membership for
                 life. The best deal we&apos;ll ever run, and the only chance to
                 be in the room on opening night.
               </p>
@@ -77,14 +77,14 @@ export default async function Founding() {
         </div>
       </section>
 
-      {/* Countdown band — small, urgent, sits just under the hero */}
+      {/* Countdown band. Small, urgent, sits just under the hero */}
       <section className="bg-cream/60 border-y border-accent/10 py-8">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <FoundingCountdown showLabel={true} />
         </div>
       </section>
 
-      {/* The story — intimate photo + the why */}
+      {/* The story. Intimate photo + the why */}
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
@@ -107,7 +107,7 @@ export default async function Founding() {
               <p className="text-muted text-base leading-relaxed mb-4">
                 A studio is only as good as the regulars who keep showing up
                 for it. We&apos;re looking for the people who&apos;ll set the
-                tone — the ones who&apos;ll know each other&apos;s names by
+                tone. The ones who&apos;ll know each other&apos;s names by
                 week three, who&apos;ll drag a friend along.
               </p>
               <p className="text-muted text-base leading-relaxed">
@@ -121,7 +121,7 @@ export default async function Founding() {
         </div>
       </section>
 
-      {/* The perks — 4-up grid on warm white */}
+      {/* The perks. 4-up grid on warm white */}
       <section className="bg-warm-white py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <Reveal className="text-center mb-14">
@@ -177,14 +177,14 @@ export default async function Founding() {
                 25% off mat. For life.
               </h2>
               <p className="text-muted text-base leading-relaxed mb-4">
-                Three tiers — pick the one that matches how often you&apos;ll
+                Three tiers. Pick the one that matches how often you&apos;ll
                 actually show up. Your founding rate locks in the moment you
                 join and never goes up, as long as your membership stays
                 active.
               </p>
               <p className="text-muted text-base leading-relaxed">
                 Three-month commitment to start. Up to four unused classes
-                roll over each month. Mat only — apparatus, privates, and
+                roll over each month. Mat only. Apparatus, privates, and
                 duets have their own pricing.
               </p>
             </div>
@@ -192,7 +192,7 @@ export default async function Founding() {
         </div>
       </section>
 
-      {/* Pricing cards — dynamic from Momence. Render only tiers that actually
+      {/* Pricing cards. Dynamic from Momence. Render only tiers that actually
           have a founding pair in Momence; featured = middle tier when present. */}
       {(() => {
         const tiers = pairMatTiers(memberships).filter((t) => t.founding);
@@ -299,14 +299,14 @@ export default async function Founding() {
               </div>
 
               <p className="text-center text-sm text-muted">
-                15 founding spots at each tier. Once they&apos;re gone, they&apos;re gone.
+                15 spots per tier. Once they&apos;re gone, they&apos;re gone.
               </p>
             </div>
           </section>
         );
       })()}
 
-      {/* The fine print — small, honest, easy to scan */}
+      {/* The fine print. Small, honest, easy to scan */}
       <section className="py-20 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
           <Reveal>
@@ -321,7 +321,7 @@ export default async function Founding() {
                 </dt>
                 <dd className="text-sm text-muted leading-relaxed">
                   Founding pricing is available until July 13, 2026, or the
-                  day we open — whichever comes first.
+                  day we open. Whichever comes first.
                 </dd>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2 sm:gap-8 py-5">
@@ -329,8 +329,7 @@ export default async function Founding() {
                   Spots
                 </dt>
                 <dd className="text-sm text-muted leading-relaxed">
-                  15 founding members at each tier (4×, 8×, and Unlimited).
-                  45 total.
+                  15 spots per tier (4×, 8×, and Unlimited Mat). 45 total.
                 </dd>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2 sm:gap-8 py-5">
@@ -357,7 +356,7 @@ export default async function Founding() {
                 </dt>
                 <dd className="text-sm text-muted leading-relaxed">
                   Your rate stays put as long as your membership stays
-                  active. Pause or cancel and the founding rate is gone — you
+                  active. Pause or cancel and the founding rate is gone. You
                   can re-join later at the regular price.
                 </dd>
               </div>
@@ -366,7 +365,7 @@ export default async function Founding() {
         </div>
       </section>
 
-      {/* Closing — waitlist fallback for the not-quite-ready */}
+      {/* Closing. Waitlist fallback for the not-quite-ready */}
       <section className="bg-accent/5 border-t border-accent/15 py-16 lg:py-20">
         <div className="max-w-xl mx-auto px-6 text-center">
           <Reveal>

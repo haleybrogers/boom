@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import type { ApparatusGroup, Membership } from "@/lib/momence";
 
-// Triggered from /privates and /packs. Shows the apparatus pack matrix —
-// 3 rows (Private / Duet / Trio) × 3 columns (Single / 5-Pack / 10-Pack) —
+// Triggered from /privates and /packs. Shows the apparatus pack matrix ,
+// 3 rows (Private / Duet / Trio) × 3 columns (Single / 5-Pack / 10-Pack) ,
 // pulled live from Momence. Each cell links straight to its Momence buy URL.
 //
-// Modeled after ContactFormModal / ClassGuideModal — backdrop click,
+// Modeled after ContactFormModal / ClassGuideModal. Backdrop click,
 // Esc to close, scroll lock on the body while open.
 
 type Props = {
@@ -49,7 +49,7 @@ export default function PackPickerModal({
     };
   }, [open]);
 
-  // Don't render if nothing is available — fall back to a disabled-style
+  // Don't render if nothing is available. Fall back to a disabled-style
   // button so the page doesn't look broken pre-launch.
   const hasAnyPack = groups.some((g) => g.single || g.five || g.ten);
 
@@ -114,7 +114,7 @@ function Modal({
               Pick your pack.
             </h2>
             <p className="text-muted text-sm max-w-md mx-auto">
-              Privates, duets &amp; trios — single sessions or packs of 5 or 10.
+              Privates, duets &amp; trios. Single sessions or packs of 5 or 10.
               Packs expire 6 months after purchase.
             </p>
           </div>

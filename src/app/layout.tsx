@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Boomerang Pilates",
   },
   description:
-    "Classical Pilates mat and apparatus instruction in Durham, NC. Founded by sisters Emilie and Annie Young. Opening soon — join the waitlist.",
+    "Classical Pilates mat and apparatus instruction in Durham, NC. Founded by sisters Emilie and Annie Young. Opening soon. Join the waitlist.",
   keywords: ["Pilates", "Classical Pilates", "Durham NC", "Pilates studio", "mat Pilates", "reformer", "Boomerang Pilates"],
   authors: [{ name: "Boomerang Pilates" }],
   openGraph: {

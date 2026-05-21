@@ -23,7 +23,7 @@ type Offering = {
   photoScale?: string;
 };
 
-// Offering definitions. `startingPrice` + `priceNote` are placeholders —
+// Offering definitions. `startingPrice` + `priceNote` are placeholders ,
 // they get overridden at runtime with live Momence pricing so the home
 // page reflects whatever Emilie has set in the booking system.
 const offerings: Offering[] = [
@@ -84,7 +84,7 @@ export default async function OfferingCards() {
   const privateSingle = apparatus.find((g) => g.category === "private")?.single?.price;
 
   // Build the live-priced offerings array. Apparatus card intentionally
-  // hides pricing — its CTA is generic "Book a Session" → /privates.
+  // hides pricing. Its CTA is generic "Book a Session" → /privates.
   const live = offerings.map((o) => {
     if (o.title === "Mat Classes" && dropIn?.price !== undefined) {
       return {
@@ -95,7 +95,7 @@ export default async function OfferingCards() {
           : o.priceNote,
       };
     }
-    if (o.title === "Privates & Duets") {
+    if (o.title === "Privates, Duets & Trios") {
       const sp = duetSingle !== undefined ? `$${duetSingle}` : o.startingPrice;
       const note =
         duetSingle !== undefined && privateSingle !== undefined
@@ -176,7 +176,7 @@ export default async function OfferingCards() {
                 </div>
               )}
 
-              {/* Price + CTA — skip price block when blank (Apparatus card) */}
+              {/* Price + CTA. Skip price block when blank (Apparatus card) */}
               {offering.startingPrice && (
                 <div className="flex items-center gap-6">
                   <div>

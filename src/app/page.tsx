@@ -28,7 +28,7 @@ export default function Home() {
         />
       </section>
 
-      {/* Intro — one tight paragraph, then the two ways in */}
+      {/* Intro. One tight paragraph, then the two ways in */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-sm tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
@@ -38,7 +38,7 @@ export default function Home() {
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
           <p className="text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
-            Two sisters, third-generation classically trained, opening Durham&apos;s only Classical Pilates studio this summer — the full method, in the order it was written.
+            Two sisters, third-generation classically trained, opening Durham&apos;s only Classical Pilates studio this summer. The full method, in the order it was written.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
@@ -67,7 +67,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Editorial photo moment — Emilie side plank, peach backdrop */}
+      {/* Editorial photo moment. Emilie side plank, peach backdrop */}
       <section className="pb-16 lg:pb-24">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="flex flex-col md:flex-row gap-8 md:gap-14 items-center">
@@ -88,7 +88,7 @@ export default function Home() {
                 The method, intact.
               </h2>
               <p className="text-muted text-base leading-relaxed mb-4">
-                Classical Pilates is the original method — the full Return to
+                Classical Pilates is the original method. The full Return to
                 Life sequence and the apparatus work that came with it, every
                 exercise in the order it was written.
               </p>
@@ -110,7 +110,7 @@ export default function Home() {
             </h2>
             <div className="w-12 h-px bg-accent mx-auto mt-5 mb-5" />
             <p className="text-muted text-base max-w-md mx-auto">
-              Mat, apparatus, privates, and duets — classical Pilates the way it was designed.
+              Mat, apparatus, privates, and duets. Classical Pilates the way it was designed.
             </p>
           </Reveal>
           <OfferingCards />
@@ -120,7 +120,7 @@ export default function Home() {
       {/* New to Pilates? */}
       <NewToPilates />
 
-      {/* Waitlist — button opens a modal with the contact form */}
+      {/* Waitlist. Button opens a modal with the contact form */}
       <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
           <p className="text-sm tracking-widest uppercase text-accent mb-4">Get the Scoop</p>
@@ -142,7 +142,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Popups — pre-opening only. FoundingPopup retired in favor of the
+      {/* Popups. Pre-opening only. FoundingPopup retired in favor of the
           inline founding callout + the sitewide sticky CTA. */}
       <PreOpeningPopup />
     </>

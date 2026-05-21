@@ -4,7 +4,7 @@ export default function NewToPilates() {
   return (
     <section className="py-20 lg:py-28 border-t border-charcoal/5">
       <div className="max-w-4xl mx-auto px-6">
-        {/* Header — centered */}
+        {/* Header. Centered */}
         <div className="text-center mb-12">
           <p className="text-sm tracking-widest uppercase text-accent mb-4">
             New to Pilates?
@@ -13,16 +13,16 @@ export default function NewToPilates() {
             You belong here.
           </h2>
           <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
-            Classical Pilates was designed for every body — not just flexible ones.
+            Classical Pilates was designed for every body. Not just flexible ones.
             No experience required. Our instructors meet you exactly where you are.
           </p>
         </div>
 
         {/* Two-path cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Path 1 — Jump right in */}
+          {/* Path 1. Jump right in */}
           <div className="group border border-charcoal/10 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-            {/* Icon — mat silhouette */}
+            {/* Icon. Mat silhouette */}
             <div className="w-12 h-12 rounded-full bg-accent/8 flex items-center justify-center mb-5">
               <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 20h16M4 20V10l8-6 8 6v10M4 20h16" />
@@ -38,13 +38,13 @@ export default function NewToPilates() {
               Open Level Classical Mat
             </h3>
             <p className="text-sm text-muted leading-relaxed mb-4">
-              Group class. All levels. You don&apos;t need to know anything — we&apos;ll guide you through it.
+              Group class. All levels. You don&apos;t need to know anything. We&apos;ll guide you through it.
             </p>
             <div className="flex items-baseline gap-2 mb-6">
               <span className="font-serif text-2xl font-light text-charcoal">$25</span>
               <span className="text-sm text-muted">drop-in</span>
             </div>
-            {/* Hard nav: /schedule needs full reload — Momence plugin state */}
+            {/* Hard nav: /schedule needs full reload. Momence plugin state */}
             <a
               href="/schedule"
               className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-6 py-3 hover:bg-charcoal/85 transition-colors"
@@ -53,14 +53,14 @@ export default function NewToPilates() {
             </a>
           </div>
 
-          {/* Path 2 — Get personalized guidance */}
+          {/* Path 2. Get personalized guidance */}
           <div className="group relative border border-accent/20 bg-accent/3 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
             {/* Recommended badge */}
             <span className="absolute top-4 right-4 text-[10px] tracking-widest uppercase text-accent bg-accent/10 px-2.5 py-1 rounded-sm">
               Recommended
             </span>
 
-            {/* Icon — one-on-one */}
+            {/* Icon. One-on-one */}
             <div className="w-12 h-12 rounded-full bg-accent/12 flex items-center justify-center mb-5">
               <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
                 <circle cx="12" cy="8" r="3.5" />

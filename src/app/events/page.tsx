@@ -44,14 +44,14 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Unified calendar — featured row + agenda + modal */}
+      {/* Unified calendar. Featured row + agenda + modal */}
       <section className="pt-14 lg:pt-20 pb-24 lg:pb-32">
         <div className="max-w-6xl mx-auto px-6">
           <EventsCalendar />
         </div>
       </section>
 
-      {/* Return to Life Course Series — keeps its own dedicated section at the bottom */}
+      {/* Return to Life Course Series. Keeps its own dedicated section at the bottom */}
       <section className="py-24 lg:py-32 bg-warm-white border-t border-charcoal/10">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
@@ -63,7 +63,7 @@ export default function Events() {
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
               A structured, progressive series that builds your classical mat practice
-              from the ground up. Runs as interest demands. You commit to the full eight weeks —
+              from the ground up. Runs as interest demands. You commit to the full eight weeks ,
               this is how the method was designed to be learned.
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function Events() {
               <p className="text-sm text-accent mb-3">Beginner · No experience required</p>
               <p className="text-sm text-muted leading-relaxed mb-4">
                 Your foundation. An 8-week progressive series that builds your classical
-                mat practice from the ground up — beginner and intermediate exercises with
+                mat practice from the ground up. Beginner and intermediate exercises with
                 a focus on breath, center, and flow. This is where habits are built and the
                 method starts to click.
               </p>
@@ -100,7 +100,7 @@ export default function Events() {
               <p className="text-sm text-muted leading-relaxed mb-4">
                 The next chapter. Picks up where Course I left off and takes you through
                 the remainder of the 34-exercise classical mat. Focus shifts to concentration,
-                fluidity, and precision — the principles that turn good movement into great movement.
+                fluidity, and precision. The principles that turn good movement into great movement.
               </p>
               <div className="border-t border-charcoal/5 pt-3">
                 <p className="text-sm text-muted">8 weeks · 1x/week · 50 min per session</p>
@@ -111,12 +111,12 @@ export default function Events() {
           <div className="text-center reveal">
             <p className="text-sm text-charcoal mb-2">Next session dates coming soon.</p>
             <p className="text-sm text-muted mb-6">
-              Tell us what you&apos;re eyeing — we&apos;ll be in touch when dates land.
+              Tell us what you&apos;re eyeing. We&apos;ll be in touch when dates land.
             </p>
             <ContactFormModal
               buttonLabel="Interest Form"
               heading="Return to Life Interest Form"
-              subhead="Tell us what you're eyeing — we'll be in touch when enrollment opens."
+              subhead="Tell us what you're eyeing. We'll be in touch when enrollment opens."
               source="rtl-interest"
               sourceId={204672}
               showRtlFields={true}

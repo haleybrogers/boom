@@ -17,11 +17,11 @@ const sections = [
           "The foundation of everything we do. Modifications for newer students, advancements for those deeper in their practice. Classical Pilates the way it was designed.",
       },
       {
-        title: "Return to Life Mat — Full 34",
+        title: "Return to Life Mat. Full 34",
         level: "Intermediate/Advanced",
         length: "50 min",
         description:
-          "All 34 exercises. No shortcuts. The complete classical mat series — strength, stamina, and fluidity in one unbroken sequence.",
+          "All 34 exercises. No shortcuts. The complete classical mat series. Strength, stamina, and fluidity in one unbroken sequence.",
       },
       {
         title: "Lunch Power Hour",
@@ -62,7 +62,7 @@ const sections = [
         level: "Intermediate/Advanced",
         length: "50 min",
         description:
-          "Full tower work turned up — roll back bar, push-thru bar, leg springs, arm springs. More core burn, more flow.",
+          "Full tower work turned up. Roll back bar, push-thru bar, leg springs, arm springs. More core burn, more flow.",
       },
       {
         title: "Lengthen & Strengthen Tower",
@@ -93,7 +93,7 @@ export default function ClassGuideModal() {
 
   return (
     <>
-      {/* Trigger button — soft serif pill */}
+      {/* Trigger button. Soft serif pill */}
       <button
         onClick={() => setOpen(true)}
         className="group inline-flex items-center gap-2.5 bg-cream border border-accent/25 pl-3 pr-4 py-2 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-accent/50 transition-all duration-300"
@@ -107,7 +107,7 @@ export default function ClassGuideModal() {
         <span className="text-accent/50 group-hover:text-accent transition-colors text-sm">→</span>
       </button>
 
-      {/* Backdrop + Modal — portaled to body to escape any transform/filter ancestors */}
+      {/* Backdrop + Modal. Portaled to body to escape any transform/filter ancestors */}
       {open && mounted && createPortal(
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"

@@ -5,15 +5,15 @@ import { useState, useEffect } from "react";
 
 const SESSION_KEY = "boomerang-splash-shown";
 
-// Splash overlay — home page only. Mounted from app/page.tsx, not from
-// layout.tsx, so direct landings on /schedule etc. skip it.
+// Splash overlay. Home page only. Mounted from app/page.tsx, not from
+// layout.tsx, so direct landings on /schedule etc. Skip it.
 export default function SplashScreen() {
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
     // Splash plays once per session. If the user has already seen it
-    // (e.g. came back to the home page in the same tab), hide immediately.
+    // (e.g. Came back to the home page in the same tab), hide immediately.
     if (sessionStorage.getItem(SESSION_KEY)) {
       setVisible(false);
       return;
@@ -41,7 +41,7 @@ export default function SplashScreen() {
             transition: "opacity 1.2s ease-in-out",
           }}
         >
-          {/* Logo — soft inhale/exhale breath pulse */}
+          {/* Logo. Soft inhale/exhale breath pulse */}
           <div className="splash-breathe">
             <Image
               src="/logo-full.svg"

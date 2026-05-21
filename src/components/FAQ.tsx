@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-// Logistics questions — visible at the top for existing clients who just
+// Logistics questions. Visible at the top for existing clients who just
 // want quick answers about booking, cancellation, perks, founding.
 const logisticsFaqs = [
   {
     question: "How do I book a class?",
     answer:
-      "Use the schedule at the top of this page — tap any class to book directly. New here? A $25 mat drop-in is the easiest place to start.",
+      "Use the schedule at the top of this page. Tap any class to book directly. New here? A $25 mat drop-in is the easiest place to start.",
   },
   {
     question: "Cancellation policy?",
@@ -18,57 +18,57 @@ const logisticsFaqs = [
   {
     question: "Can I bring a friend?",
     answer:
-      "Yes — and if you're a founding member, your first three months come with a bring-a-friend pass: bring a friend to any mat class, free.",
+      "Yes. And if you're a founding member, your first three months come with a bring-a-friend pass: bring a friend to any mat class, free.",
   },
   {
     question: "What's a founding membership?",
     answer:
-      "Three tiers — 4x/month, 8x/month, and Unlimited — with 15 founding spots at each tier. Founding rate is 25% off the regular membership and applies to mat classes only (can't be subbed into apparatus). Lock it in before we open and your rate never goes up as long as your membership stays active. Cancel or pause and you lose it.",
+      "Three tiers: 4× Month Mat, 8× Month Mat, and Unlimited Mat, with 15 spots per tier. Founding rate is 25% off the regular membership and applies to mat classes only (can't be subbed into apparatus). Lock it in before we open and your rate never goes up as long as your membership stays active. Cancel or pause and you lose it.",
   },
   {
     question: "Do you offer discounts?",
     answer:
-      "Yes — 10% off memberships and packs for first responders, students, teachers, and dancers. Doesn't stack with founding rates, and drop-ins are full price. Just let us know when you sign up.",
+      "Yes. 10% off memberships and packs for first responders, students, teachers, and dancers. Doesn't stack with founding rates, and drop-ins are full price. Just let us know when you sign up.",
   },
   {
     question: "How do duets and trios work?",
     answer:
-      "Bring your people. When you book a duet or trio, plan on filling those spots yourself — the studio has three reformers, so we can't randomly match strangers. Want cheaper Pilates? Recruit a friend or two. If you want apparatus without rounding up friends, our group apparatus class is open to anyone — book in solo.",
+      "Bring your people. When you book a duet or trio, plan on filling those spots yourself. The studio has three reformers, so we can't randomly match strangers. Want cheaper Pilates? Recruit a friend or two. If you want apparatus without rounding up friends, our group apparatus class is open to anyone. Book in solo.",
   },
   {
     question: "Want to do a trio but don't have two friends?",
     answer:
-      "Definitely reach out first — we keep a list of folks looking for the same, and love matching people into standing trios. We'll connect you.",
+      "Definitely reach out first. We keep a list of folks looking for the same, and love matching people into standing trios. We'll connect you.",
   },
 ];
 
-// Beginner questions — collapsed inside the "Never done Pilates before?"
+// Beginner questions. Collapsed inside the "Never done Pilates before?"
 // dropdown so existing clients don't have to scroll past them.
 const beginnerFaqs = [
   {
     question: "I've never done Pilates. Will I be lost?",
     answer:
-      "No. Our Open Level Classical Mat is built for first-timers — your instructor cues every exercise from scratch and offers modifications throughout. If walking in cold still feels like a lot, book a single private first and we'll get you fluent before you join a group.",
+      "No. Our Open Level Classical Mat is built for first-timers. Your instructor cues every exercise from scratch and offers modifications throughout. If walking in cold still feels like a lot, book a single private first and we'll get you fluent before you join a group.",
   },
   {
     question: "I'm not flexible or in great shape. Is this for me?",
     answer:
-      "Yes, and especially yes. Pilates was designed to build flexibility and strength, not to require them. Every exercise has an entry point — we meet you where your body is today.",
+      "Yes, and especially yes. Pilates was designed to build flexibility and strength, not to require them. Every exercise has an entry point. We meet you where your body is today.",
   },
   {
     question: "I have a back / knee / shoulder issue. Can I still do Pilates?",
     answer:
-      "Most likely yes — Pilates was originally developed in part as a rehab method, and our instructors are trained to modify around common issues. For anything significant or post-surgical, start with a private so we can build a plan with you (and loop in your PT or doctor).",
+      "Most likely yes. Pilates was originally developed in part as a rehab method, and our instructors are trained to modify around common issues. For anything significant or post-surgical, start with a private so we can build a plan with you (and loop in your PT or doctor).",
   },
   {
     question: "What should I wear and bring?",
     answer:
-      "Form-fitting clothes you can move in (loose tops flip up in inversions). Grippy socks or bare feet — your call. We sell socks if you want a pair. Bring water; we provide mats and props. No shoes inside the studio.",
+      "Form-fitting clothes you can move in (loose tops flip up in inversions). Grippy socks or bare feet. Your call. We sell socks if you want a pair. Bring water; we provide mats and props. No shoes inside the studio.",
   },
   {
-    question: "Mat vs. apparatus — what's the difference?",
+    question: "Mat vs. Apparatus. What's the difference?",
     answer:
-      "Mat is the bread and butter of the Pilates method — your own body weight, your own resistance. The apparatus gives your body a frame of reference and adds the recoil and resistance of springs. Ours is all Gratz equipment, which differs from what you'll find at contemporary studios — the springs are uniform and heavy. Your instructor will cue you to change springs throughout, and contrary to what most people think, more springs is not always more challenging.",
+      "Mat is the bread and butter of the Pilates method. Your own body weight, your own resistance. The apparatus gives your body a frame of reference and adds the recoil and resistance of springs. Ours is all Gratz equipment, which differs from what you'll find at contemporary studios. The springs are uniform and heavy. Your instructor will cue you to change springs throughout, and contrary to what most people think, more springs is not always more challenging.",
   },
   {
     question: "How often should I come to see results?",
@@ -128,7 +128,7 @@ export default function FAQ() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Logistics — visible at the top */}
+      {/* Logistics. Visible at the top */}
       <div className="divide-y divide-charcoal/10">
         {logisticsFaqs.map((faq, i) => (
           <FaqRow
@@ -140,7 +140,7 @@ export default function FAQ() {
         ))}
       </div>
 
-      {/* New-to-Pilates — collapsed by default, expands into a nested accordion */}
+      {/* New-to-Pilates. Collapsed by default, expands into a nested accordion */}
       <div className="mt-10 pt-10 border-t border-charcoal/10">
         <button
           onClick={() => setBeginnerExpanded((v) => !v)}

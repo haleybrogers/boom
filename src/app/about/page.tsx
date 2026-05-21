@@ -10,7 +10,7 @@ export const metadata = {
 export default function About() {
   return (
     <>
-      {/* Our Values — combined Method + Principles (now first) */}
+      {/* Our Values. Combined Method + Principles (now first) */}
       <section className="pt-24 pb-24 lg:pt-32 lg:pb-32 bg-warm-white">
         <div className="max-w-2xl mx-auto px-6 text-center mb-20">
           <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
@@ -21,7 +21,7 @@ export default function About() {
           </h1>
           <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }} />
           <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-lg mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            Classical Pilates is the original method, kept whole — six principles you&apos;ll feel in every class. The work has always been for every body. It just needed teachers who&apos;d keep it that way, and that&apos;s us. Whoever you are, you&apos;re welcome here.
+            Classical Pilates is the original method, kept whole. Six principles you&apos;ll feel in every class. The work has always been for every body. It just needed teachers who&apos;d keep it that way, and that&apos;s us. Whoever you are, you&apos;re welcome here.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export default function About() {
             </h2>
             <p className="text-base text-muted leading-relaxed max-w-xl mx-auto">
               Emilie and Annie grew up in this method. They opened Boomerang
-              to bring it home to Durham — taught the way they were taught,
+              to bring it home to Durham. Taught the way they were taught,
               by teachers who still believe in the original work.
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function About() {
                 href="/privates"
                 className="inline-flex items-center gap-1 text-sm tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
               >
-                Book a Private with Emilie →
+                Book a Session with Emilie →
               </Link>
             </div>
 
@@ -100,7 +100,7 @@ export default function About() {
                 Classical Pilates certified through Appalachian State
                 University&apos;s comprehensive program, trained in mat and
                 apparatus under the same lineage. Annie believes deeply that
-                Classical Pilates was designed for every body — and that
+                Classical Pilates was designed for every body. And that
                 inclusivity isn&apos;t something you add to the method, it&apos;s
                 already built in. She is committed to holding the door open
                 for everyone while never compromising the integrity of the
@@ -110,14 +110,14 @@ export default function About() {
                 href="/privates"
                 className="inline-flex items-center gap-1 text-sm tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
               >
-                Book a Private with Annie →
+                Book a Session with Annie →
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pre-opening CTA — sits above the sisters photo */}
+      {/* Pre-opening CTA. Sits above the sisters photo */}
       <section className="pt-20 lg:pt-28 pb-12 lg:pb-16 bg-warm-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <p className="text-sm tracking-widest uppercase text-accent mb-4">
@@ -139,7 +139,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Sisters photo — header re-added once we have a third instructor */}
+      {/* Sisters photo. Header re-added once we have a third instructor */}
       <section className="pb-20 lg:pb-28 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/2] max-w-3xl mx-auto overflow-hidden">

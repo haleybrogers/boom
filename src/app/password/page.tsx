@@ -91,7 +91,7 @@ export default function PasswordPage() {
       await fetch("https://formspree.io/f/mzdybzlq", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ email, source: "splash", _subject: "New Splash Signup — Boomerang Pilates" }),
+        body: JSON.stringify({ email, source: "splash", _subject: "New Splash Signup. Boomerang Pilates" }),
       });
       setEmailSubmitted(true);
     } catch {
@@ -172,7 +172,7 @@ export default function PasswordPage() {
           )}
         </div>
 
-        {/* Password — tiny, tucked at the bottom of the card */}
+        {/* Password. Tiny, tucked at the bottom of the card */}
         <form onSubmit={handleSubmit} className="w-full max-w-[200px] mt-20 md:mt-24">
           <div className="flex items-center border-b border-charcoal/15 focus-within:border-accent transition-colors">
             <input

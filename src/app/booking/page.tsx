@@ -4,17 +4,17 @@ import Link from "next/link";
 export const metadata = {
   title: "Booking",
   description:
-    "Three ways into Boomerang — book a class, book a private session, or grab a membership. Durham, NC.",
+    "Three ways into Boomerang. Book a class, book a private session, or grab a membership. Durham, NC.",
 };
 
-// Three ways to book — keep in sync with the Booking dropdown in Navigation.tsx.
+// Three ways to book. Keep in sync with the Booking dropdown in Navigation.tsx.
 // /schedule needs a hard nav (Momence plugin state survives soft nav).
 const bookingOptions = [
   {
     href: "/schedule",
     kicker: "Take a Class",
     title: "Want to drop in?",
-    teaser: "Group mat and apparatus — book live from the schedule.",
+    teaser: "Group mat and apparatus. Book live from the schedule.",
     cta: "See the Schedule",
     hardNav: true,
   },
@@ -30,7 +30,7 @@ const bookingOptions = [
     href: "/packs",
     kicker: "Memberships + Pricing",
     title: "Questions about pricing?",
-    teaser: "Founding rates, memberships, packs — all in one place.",
+    teaser: "Founding rates, memberships, packs. All in one place.",
     cta: "See Pricing",
     hardNav: false,
   },
@@ -39,7 +39,7 @@ const bookingOptions = [
 export default function Booking() {
   return (
     <>
-      {/* Hero — header + one big photo */}
+      {/* Hero. Header + one big photo */}
       <section className="pt-28 lg:pt-36 pb-12 lg:pb-16 bg-warm-white">
         <div className="max-w-3xl mx-auto px-6 text-center mb-12">
           <h1
@@ -74,7 +74,7 @@ export default function Booking() {
         </div>
       </section>
 
-      {/* Stacked sections — each a teaser leading to its page */}
+      {/* Stacked sections. Each a teaser leading to its page */}
       <section className="py-20 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 divide-y divide-charcoal/10">
           {bookingOptions.map((opt) => {

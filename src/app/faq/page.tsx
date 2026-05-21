@@ -4,7 +4,7 @@ import FAQ from "@/components/FAQ";
 export const metadata = {
   title: "FAQ",
   description:
-    "Frequently asked questions about Boomerang Pilates in Durham, NC — how to book, cancellation, parking, what to wear, mat vs. apparatus, and more.",
+    "Frequently asked questions about Boomerang Pilates in Durham, NC. How to book, cancellation, parking, what to wear, mat vs. Apparatus, and more.",
 };
 
 export default function FaqPage() {
@@ -25,7 +25,7 @@ export default function FaqPage() {
           </p>
         </div>
 
-        {/* Lead with the studio — address + arrival logistics first */}
+        {/* Lead with the studio. Address + arrival logistics first */}
         <div className="max-w-2xl mx-auto mb-20">
           <div className="text-center mb-12 pb-12 border-b border-charcoal/10">
             <p className="text-sm tracking-widest uppercase text-accent mb-3">
@@ -44,7 +44,7 @@ export default function FaqPage() {
             <p className="text-sm text-muted mt-3">Tap the address for directions.</p>
           </div>
 
-          {/* Detail blocks — placeholders Emilie can fill in */}
+          {/* Detail blocks. Placeholders Emilie can fill in */}
           <div className="space-y-10">
             <div>
               <h3 className="font-serif text-xl font-light text-charcoal mb-3">
@@ -62,7 +62,7 @@ export default function FaqPage() {
                 Getting here
               </h3>
               <p className="text-base text-muted leading-relaxed">
-                We&apos;re on West Main Street in the heart of downtown Durham —
+                We&apos;re on West Main Street in the heart of downtown Durham ,
                 walkable from Brightleaf, Five Points, and the American Tobacco
                 Campus. Specific transit + bike routes coming soon.
               </p>
@@ -73,7 +73,7 @@ export default function FaqPage() {
                 When you arrive
               </h3>
               <p className="text-base text-muted leading-relaxed">
-                We&apos;re upstairs — top of the stairs, door on the left.
+                We&apos;re upstairs. Top of the stairs, door on the left.
                 Arrive 10–15 minutes before your first class so you have time
                 to park, get settled, get set up with props, and meet your
                 instructor before we start.
@@ -82,7 +82,7 @@ export default function FaqPage() {
           </div>
         </div>
 
-        {/* FAQs — logistics visible at the top; beginner Qs nested in a "Never done Pilates before?" dropdown */}
+        {/* FAQs. Logistics visible at the top; beginner Qs nested in a "Never done Pilates before?" dropdown */}
         <FAQ />
 
         {/* Pre-opening CTA */}

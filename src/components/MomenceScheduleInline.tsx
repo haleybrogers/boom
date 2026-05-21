@@ -13,7 +13,7 @@ import { useEffect } from "react";
 //
 // Every link to /schedule is now a hard <a> nav (see Navigation,
 // StickyCTA, OfferingCards, NewToPilates), which means every visit is a
-// fresh page load — fresh DOM, fresh script load, fresh widget. The
+// fresh page load. Fresh DOM, fresh script load, fresh widget. The
 // component below just needs to be simple: inject the script once,
 // relocate the widget into the slot when it appears, done.
 
@@ -53,7 +53,7 @@ export default function MomenceScheduleInline() {
     });
     observer.observe(document.body, { childList: true });
 
-    // Inject the plugin script ONCE per page load. Don't cache-bust — the
+    // Inject the plugin script ONCE per page load. Don't cache-bust. The
     // plugin doesn't tolerate it (reads host_id as NaN with a query param).
     if (!document.getElementById(SCRIPT_ID)) {
       const script = document.createElement("script");
@@ -74,13 +74,13 @@ export default function MomenceScheduleInline() {
         :root {
           /* Blend with the warm-white page background */
           --momenceColorBackground: #FDFCFA;
-          --momenceColorPrimary: 244, 240, 235;     /* cream — used by Momence for surfaces / hovers */
+          --momenceColorPrimary: 244, 240, 235;     /* cream. Used by Momence for surfaces / hovers */
           --momenceColorBlack: 176, 45, 74;         /* brand accent (#b02d4a) */
         }
       `}</style>
       {/* min-height pre-allocates roughly the widget's rendered space so
           when Momence hydrates the schedule, the surrounding page doesn't
-          jump. Widget settles into ~1700px on a desktop screen — 80vh
+          jump. Widget settles into ~1700px on a desktop screen. 80vh
           covers most viewports without leaving an absurd gap if it loads
           smaller. */}
       <div id={SLOT_ID} className="min-h-[80vh]" />

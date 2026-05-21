@@ -18,7 +18,7 @@ export default async function Privates() {
 
   return (
     <>
-      {/* Hero — photo left, intro + CTAs right */}
+      {/* Hero. Photo left, intro + CTAs right */}
       <section className="pt-28 lg:pt-36 pb-20 lg:pb-24 bg-warm-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
@@ -44,7 +44,7 @@ export default async function Privates() {
               <p className="text-muted text-base leading-relaxed mb-8">
                 The most personalized Pilates experience we offer. Your
                 instructor builds every session around your body, your goals,
-                and where you are in your practice — using the full range of
+                and where you are in your practice. Using the full range of
                 classical apparatus.
               </p>
 
@@ -79,7 +79,7 @@ export default async function Privates() {
         </div>
       </section>
 
-      {/* Apparatus pricing — Single / 5-pack / 10-pack, pulled live from Momence */}
+      {/* Apparatus pricing. Single / 5-pack / 10-pack, pulled live from Momence */}
       <section className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -88,7 +88,7 @@ export default async function Privates() {
               Pricing.
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-              Single sessions or packs of 5 or 10 — all packs expire 6 months after purchase.
+              Single sessions or packs of 5 or 10. All packs expire 6 months after purchase.
             </p>
           </div>
 

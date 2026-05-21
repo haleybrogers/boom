@@ -12,7 +12,7 @@ export default function Footer() {
   const showFoundingCTA = SHOW_FOUNDING && pathname !== "/" && pathname !== "/founding";
   return (
     <footer className="border-t border-charcoal/10">
-      {/* Founding member CTA — hidden on home (hero + waitlist already convert there) */}
+      {/* Founding member CTA. Hidden on home (hero + waitlist already convert there) */}
       {showFoundingCTA && (
         <div className="border-b border-charcoal/5 bg-cream/60">
           <div className="max-w-xl mx-auto px-6 py-14 text-center">
@@ -21,7 +21,7 @@ export default function Footer() {
               Be a founding member.
             </h2>
             <p className="text-sm text-muted leading-relaxed mb-6 max-w-md mx-auto">
-              Lock in your rate before we open — it never goes up. Plus invites to the soft opening and celebratory events.
+              Lock in your rate before we open. It never goes up. Plus invites to the soft opening and celebratory events.
             </p>
             <Link
               href="/founding"
@@ -33,7 +33,7 @@ export default function Footer() {
         </div>
       )}
 
-      {/* Weird Pilates fact of the day — small & playful */}
+      {/* Weird Pilates fact of the day. Small & playful */}
       <div className="border-b border-charcoal/5 py-6">
         <PilatesWisdom />
       </div>
@@ -55,7 +55,7 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Review CTA — soft serif pill to match Class Guide */}
+          {/* Review CTA. Soft serif pill to match Class Guide */}
           <a
             href="https://g.page/r/CQWrXJSRt6FKEAE/review"
             target="_blank"

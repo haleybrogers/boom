@@ -18,7 +18,7 @@ import {
 export const metadata = {
   title: "Memberships + Pricing",
   description:
-    "Memberships, privates, apparatus packs, and the Return to Life course series at Boomerang Pilates — Durham, NC.",
+    "Memberships, privates, apparatus packs, and the Return to Life course series at Boomerang Pilates. Durham, NC.",
 };
 
 export default async function Packs() {
@@ -29,7 +29,7 @@ export default async function Packs() {
   const rtl = findRtlCourses(memberships);
   const others = findOtherOfferings(memberships);
 
-  // Featured tier — middle-position by convention (8x), falls back to first.
+  // Featured tier. Middle-position by convention (8x), falls back to first.
   const featuredKey = tiers.length >= 2 ? tiers[1].key : tiers[0]?.key;
 
   return (
@@ -60,7 +60,7 @@ export default async function Packs() {
               showing up. Memberships are how the regulars do it.
             </p>
             <p className="text-base text-muted leading-relaxed">
-              Everything we offer, organized below — founding pricing while
+              Everything we offer, organized below. Founding pricing while
               it lasts, regular memberships, privates and small-group
               apparatus, and the Return to Life series.
             </p>
@@ -68,7 +68,7 @@ export default async function Packs() {
         </div>
       </div>
 
-      {/* 1. Founding Member — only renders when SHOW_FOUNDING is on AND
+      {/* 1. Founding Member. Only renders when SHOW_FOUNDING is on AND
           there's at least one founding tier in Momence */}
       {SHOW_FOUNDING && tiers.some((t) => t.founding) && (
         <div className="bg-accent/5 border-y border-accent/15 py-20 lg:py-24">
@@ -194,7 +194,7 @@ export default async function Packs() {
         </div>
       )}
 
-      {/* 2. Mat Classes — regular pricing */}
+      {/* 2. Mat Classes. Regular pricing */}
       {tiers.some((t) => t.regular) && (
         <div className="py-20 lg:py-24">
           <div className="max-w-5xl mx-auto px-6">
@@ -293,7 +293,7 @@ export default async function Packs() {
         </div>
       )}
 
-      {/* 3. Privates, Duets & Trios — opens the modal */}
+      {/* 3. Privates, Duets & Trios. Opens the modal */}
       {apparatus.some((g) => g.single || g.five || g.ten) && (
         <div className="bg-warm-white py-20 lg:py-24 border-t border-charcoal/5">
           <div className="max-w-5xl mx-auto px-6">
@@ -306,7 +306,7 @@ export default async function Packs() {
               </h2>
               <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
                 The full classical apparatus, built around you. Single sessions
-                or packs of 5 or 10 — all packs expire 6 months after purchase.
+                or packs of 5 or 10. All packs expire 6 months after purchase.
               </p>
             </div>
 
@@ -372,7 +372,7 @@ export default async function Packs() {
               </h2>
               <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
                 A structured, progressive series that builds your classical mat
-                practice from the ground up. Runs as interest demands — eight weeks,
+                practice from the ground up. Runs as interest demands. Eight weeks,
                 taught the way the method was designed to be learned.
               </p>
             </div>
@@ -427,7 +427,7 @@ export default async function Packs() {
         </div>
       )}
 
-      {/* 5. More options — anything in Momence that didn't fit the known buckets */}
+      {/* 5. More options. Anything in Momence that didn't fit the known buckets */}
       {others.length > 0 && (
         <div className="bg-warm-white py-16 lg:py-20 border-t border-charcoal/5">
           <div className="max-w-5xl mx-auto px-6">

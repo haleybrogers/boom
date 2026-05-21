@@ -3,7 +3,7 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata = {
   title: "Contact",
-  description: "Get in touch with Boomerang Pilates — Durham, NC. Questions, ideas, or just want to say hi.",
+  description: "Get in touch with Boomerang Pilates. Durham, NC. Questions, ideas, or just want to say hi.",
 };
 
 const MOMENCE_APPOINTMENTS_URL = `https://momence.com/appointments/${process.env.NEXT_PUBLIC_MOMENCE_HOST_ID || "270195"}`;
@@ -22,7 +22,7 @@ export default function Contact() {
           </h1>
           <div className="w-12 h-px bg-accent mx-auto mt-8 mb-6 animate-fade-up" style={{ animationDelay: "0.3s" }} />
           <p className="font-serif italic text-base md:text-lg text-charcoal/70 max-w-md mx-auto text-balance animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            Questions, ideas, or just want to say hi — we&apos;d love to hear from{" "}you.
+            Questions, ideas, or just want to say hi. We&apos;d love to hear from{" "}you.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Lead form + photo. IG + address live in the footer — no need to repeat here. */}
+        {/* Lead form + photo. IG + address live in the footer. No need to repeat here. */}
         <div className="grid md:grid-cols-[1fr_auto] gap-10 md:gap-14 items-start">
           <div className="max-w-lg w-full mx-auto md:mx-0 md:w-[420px]">
             <ContactForm source="contact" sourceId={204573} showMessage={true} />

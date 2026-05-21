@@ -1,9 +1,9 @@
 "use client";
 
-// /events calendar — three sections in order:
-//   1. Opening Week    — soft-opening events excluding Opening Party (grid)
-//   2. Opening Night   — Opening Party, full-width hero with photo + RSVP button
-//   3. Pop-ups         — around-town events (grid)
+// /events calendar. Three sections in order:
+//   1. Opening Week   . Soft-opening events excluding Opening Party (grid)
+//   2. Opening Night  . Opening Party, full-width hero with photo + RSVP button
+//   3. Pop-ups        . Around-town events (grid)
 // Every card opens the EventDetailModal where the full description, details
 // tiles, and the actual action (RSVP / book / info-only) live.
 
@@ -271,7 +271,7 @@ function EventDetailModal({
                 </div>
               )}
 
-              {/* Meta — time, location, price */}
+              {/* Meta. Time, location, price */}
               <div className="space-y-2 text-sm text-muted border-t border-charcoal/10 pt-5 mb-7">
                 <p>
                   <span className="text-charcoal/50 inline-block w-20">Time</span>
@@ -290,7 +290,7 @@ function EventDetailModal({
               {/* Residents-only disclaimer (above the action) */}
               {event.residentsOnly && (
                 <p className="text-sm text-accent text-center mb-3 border border-accent/20 bg-accent/5 rounded-sm px-4 py-3">
-                  Residents of <strong>{event.residentsOnly.building}</strong> only —
+                  Residents of <strong>{event.residentsOnly.building}</strong> only ,
                   check with your front desk.
                 </p>
               )}
@@ -466,7 +466,7 @@ export default function EventsCalendarClient({
   if (events.length === 0) {
     return (
       <p className="text-center text-sm text-muted">
-        New events drop regularly — check back soon.
+        New events drop regularly. Check back soon.
       </p>
     );
   }
@@ -489,7 +489,7 @@ export default function EventsCalendarClient({
         </section>
       )}
 
-      {/* 2. Opening Night — full-width hero, breaks out of the calendar's max-width
+      {/* 2. Opening Night. Full-width hero, breaks out of the calendar's max-width
           via negative-margin tricks so the section's accent background runs edge-to-edge. */}
       {openingNight && (
         <div className="mb-16 lg:mb-24 -mx-6">
@@ -516,7 +516,7 @@ export default function EventsCalendarClient({
         </section>
       )}
 
-      {/* Active modal — only set via client-side onClick, so we can safely
+      {/* Active modal. Only set via client-side onClick, so we can safely
           reach document.body without a mounted guard (SSR never enters this branch). */}
       {activeEvent &&
         createPortal(

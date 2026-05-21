@@ -23,7 +23,7 @@ export default function StickyCTA() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Hard nav: /schedule needs full reload — Momence plugin state survives soft nav.
+  // Hard nav: /schedule needs full reload. Momence plugin state survives soft nav.
   // On /founding itself the founding CTA would be a no-op, so push to /packs (the buy path).
   const onFoundingPage = pathname === "/founding";
   const foundingHref = onFoundingPage ? "/packs" : "/founding";

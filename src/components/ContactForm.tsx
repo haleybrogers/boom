@@ -6,24 +6,24 @@ import { useState } from "react";
 // collection endpoint so submissions land in the same place as bookings.
 //
 // Reverse-engineered from the official Momence lead-form plugin
-// (momence.com/plugin/lead-form/lead-form.js) — the widget POSTs to this
+// (momence.com/plugin/lead-form/lead-form.js). The widget POSTs to this
 // URL with token + countryCode. We do the same from our own form so we
 // keep site styling AND end up in Momence contacts.
 const MOMENCE_LEAD_URL = `https://api.momence.com/integrations/customer-leads/${process.env.NEXT_PUBLIC_MOMENCE_HOST_ID || "270195"}/collect`;
 const MOMENCE_LEAD_TOKEN = "BZ8lpMEm8R";
 
 type ContactFormProps = {
-  // Momence lead source ID — created in dashboard at Marketing > Lead
+  // Momence lead source ID. Created in dashboard at Marketing > Lead
   // Sources. Passing it as `sourceId` in the POST attaches the lead to
   // that source. Per Haley's setup:
-  //   204573 — Contact Us
-  //   204606 — RSVP to the Opening Party
-  //   204540 — Website Footer (used for the general waitlist for now)
+  //   204573. Contact Us
+  //   204606. RSVP to the Opening Party
+  //   204540. Website Footer (used for the general waitlist for now)
   sourceId?: number;
-  // Backup human-readable tag — also goes into the message body so the
+  // Backup human-readable tag. Also goes into the message body so the
   // source is visible at a glance when scanning the lead.
   source?: string;
-  // When false, hide the multiline "Message" field (e.g. simple email capture).
+  // When false, hide the multiline "Message" field (e.g. Simple email capture).
   showMessage?: boolean;
   // When true, show an optional Phone number field. Used on "Stay in the
   // Loop" so we can text people about openings, classes, etc.
@@ -32,12 +32,12 @@ type ContactFormProps = {
   // opening-party RSVP so we know headcount. Stored in the message body
   // since Momence doesn't have a dedicated guest-count field.
   showGuests?: boolean;
-  // When true, show structured "Return to Life" fields — which series
+  // When true, show structured "Return to Life" fields. Which series
   // (Course I / Course II checkboxes) + experience level select. Values
   // are appended into the message body so Emilie can see them at a glance
   // in Momence (no first-class custom-field support on the lead API).
   showRtlFields?: boolean;
-  // Callback after a successful submit — modal wrapper uses this.
+  // Callback after a successful submit. Modal wrapper uses this.
   onSuccess?: () => void;
 };
 
@@ -67,7 +67,7 @@ export default function ContactForm({
   const [phone, setPhone] = useState("");
   const [guests, setGuests] = useState("1");
   const [message, setMessage] = useState("");
-  // RTL interest form state — checkboxes for which course + experience select.
+  // RTL interest form state. Checkboxes for which course + experience select.
   const [interestedCourseI, setInterestedCourseI] = useState(false);
   const [interestedCourseII, setInterestedCourseII] = useState(false);
   const [experience, setExperience] = useState("");
@@ -109,7 +109,7 @@ export default function ContactForm({
         }),
       });
     } catch {
-      // Surface as submitted regardless — Momence API is reliable enough,
+      // Surface as submitted regardless. Momence API is reliable enough,
       // and we don't want users guessing what went wrong.
     } finally {
       setLoading(false);

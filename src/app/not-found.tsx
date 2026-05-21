@@ -31,7 +31,7 @@ export default function NotFound() {
 
         <p className="text-sm text-muted/50 mt-16 italic">
           &ldquo;In 10 sessions you&apos;ll feel the difference, in 20 you&apos;ll see the difference,
-          in 30 you&apos;ll have a whole new body.&rdquo; — Joseph Pilates
+          in 30 you&apos;ll have a whole new body.&rdquo;. Joseph Pilates
           <br />
           <span className="not-italic">(He never said anything about 404 pages.)</span>
         </p>

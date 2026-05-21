@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-// Keep these weird, specific, and fun — no textbook facts.
+// Keep these weird, specific, and fun. No textbook facts.
 const WEIRD_FACTS: string[] = [
   // Method & apparatus
   "The method was originally called \"Contrology.\" We are, collectively, glad the rebrand happened.",
@@ -30,7 +30,7 @@ const WEIRD_FACTS: string[] = [
   "Eve Gentry had a radical mastectomy and rebuilt her own mobility using Pilates. The method is for bodies, plural.",
   "Clara ran the original NYC studio with Joe and taught most of the clients.",
   "Clara was the patient one. She's who you can thank for most of the teaching style that survived.",
-  "There are only a handful of living \"Elders\" left — people who trained directly with Joe. The number shrinks. The work keeps going.",
+  "There are only a handful of living \"Elders\" left. People who trained directly with Joe. The number shrinks. The work keeps going.",
 
   // Classical anecdotes
   "Classical Pilates predates the fitness industry, the core workout trend, and the sports bra. It's older than most of your assumptions.",
@@ -38,7 +38,7 @@ const WEIRD_FACTS: string[] = [
   "A Pilates session is choreography. Same shape every time. What changes is you.",
   "Before reformers were beautiful blonde wood, they were hospital cots. Never forget the cot era.",
   "Classical Pilates has no music on purpose. Your breath is the metronome.",
-  "The full mat order takes about 50 minutes. Designed to fit into a workday — respectfully ahead of its time.",
+  "The full mat order takes about 50 minutes. Designed to fit into a workday. Respectfully ahead of its time.",
   "\"Classical\" doesn't mean old-fashioned. It means the original choreography, kept intact.",
   "Pilates was almost exclusively taught to dancers until the 90s. Then Madonna happened. Then everyone else.",
 
@@ -46,7 +46,7 @@ const WEIRD_FACTS: string[] = [
   "Breathing is a core exercise. You are doing it right now.",
   "The diaphragm drops about an inch and a half on a full inhale. That is an astonishing amount of real estate.",
   "Your pelvic floor has 14+ muscles doing quiet, serious work under the hood. Classical Pilates is the one workout that actually notices.",
-  "Lateral breathing — expanding your ribs sideways — is a skill. Most adults forgot how. Pilates remembers.",
+  "Lateral breathing. Expanding your ribs sideways. Is a skill. Most adults forgot how. Pilates remembers.",
   "Your spine has 33 vertebrae. Classical Pilates has an exercise for basically all of them.",
   "\"Neutral pelvis\" is a vibe and also a measurable thing. Both are correct.",
   "The glutes are the largest muscle group in your body. Pilates is, quietly, a glute sport.",
@@ -63,7 +63,7 @@ const WEIRD_FACTS: string[] = [
   "Pilates instructors can spot a rounded shoulder from across a Whole Foods. It's a gift and a burden.",
 
   // Emilie & Annie
-  "The sisters trained under Rebecca Quinn and Marianne Adams at App State — direct lineage back to Joe and Clara.",
+  "The sisters trained under Rebecca Quinn and Marianne Adams at App State. Direct lineage back to Joe and Clara.",
 ];
 
 function pickOfDay(): number {

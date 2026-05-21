@@ -7,7 +7,7 @@ import ContactForm from "./ContactForm";
 // A trigger button + modal containing ContactForm. Used on the home page
 // for "Get the Scoop" and on /events for the opening-party RSVP.
 //
-// Same pattern as ClassGuideModal — portaled to body, backdrop-click +
+// Same pattern as ClassGuideModal. Portaled to body, backdrop-click +
 // X + Esc all close, body scroll locked while open.
 
 type ContactFormModalProps = {
