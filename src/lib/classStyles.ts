@@ -18,29 +18,32 @@ export type ClassStyle = {
 };
 
 export const CLASS_TYPE_STYLES: Record<ClassType, ClassStyle> = {
-  // Warm dusty rose. Most common class type, gets the friendliest tone.
+  // Warm terracotta / clay. Distinctly orange-leaning so it doesn't read
+  // pink alongside Special.
   mat: {
     label: "Mat",
-    bgSoft: "#f6e3df",
-    border: "#c47a6e",
-    text: "#8a3a30",
-    bgChip: "rgba(196, 122, 110, 0.18)",
+    bgSoft: "#f5ddc5",
+    border: "#b86a3a",
+    text: "#7a3d1d",
+    bgChip: "rgba(184, 106, 58, 0.2)",
   },
-  // Dusty teal-slate. Cooler tone keeps apparatus visually separated.
+  // Sage green. Picked so it can't be mistaken for either the warm Mat
+  // tone or the accent-red Special tone — clearly its own category.
   apparatus: {
     label: "Apparatus",
-    bgSoft: "#dfe7e6",
-    border: "#5e7c7a",
-    text: "#2e4644",
-    bgChip: "rgba(94, 124, 122, 0.18)",
+    bgSoft: "#dbe5cf",
+    border: "#5e7a3e",
+    text: "#324523",
+    bgChip: "rgba(94, 122, 62, 0.2)",
   },
   // Brand accent red. Reserved for special / workshops / pop-ups so they
-  // pop visually on the grid the way they should.
+  // pop visually on the grid the way they should. Pushed the tint a
+  // touch warmer + the border to full accent for stronger separation.
   special: {
     label: "Special",
-    bgSoft: "#fbe7ec",
+    bgSoft: "#f8d5da",
     border: "#b02d4a",
-    text: "#8e1f37",
-    bgChip: "rgba(176, 45, 74, 0.18)",
+    text: "#7a1d34",
+    bgChip: "rgba(176, 45, 74, 0.2)",
   },
 };
