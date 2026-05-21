@@ -63,7 +63,7 @@ export default function Booking() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm">
             <Image
-              src="/photo-reformer.jpg"
+              src="/photo-apparatus.jpg"
               alt="Classical Pilates at Boomerang"
               fill
               priority

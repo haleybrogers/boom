@@ -9,7 +9,7 @@
 
 import EventsCalendarClient from "./EventsCalendarClient";
 import { staticEvents } from "@/lib/staticEvents";
-import type { EventItem } from "@/lib/eventTypes";
+import type { EventItem, EventCategory } from "@/lib/eventTypes";
 
 const HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
 const TOKEN = process.env.MOMENCE_API_TOKEN || "da1030e20e";
@@ -28,6 +28,19 @@ type MomenceEvent = {
   isDeleted: boolean;
   published: boolean;
 };
+
+// Studio address keywords. If a Momence event's location contains any of
+// these, the event auto-categorizes as soft-opening (lives in the
+// "Soft Opening" section). Otherwise it's a pop-up around town.
+// Add more variants here if Emilie ever types the address differently.
+const STUDIO_LOCATION_KEYWORDS = ["345 w main", "boomerang pilates"];
+
+function categorizeByLocation(location: string): EventCategory {
+  const lower = location.toLowerCase();
+  return STUDIO_LOCATION_KEYWORDS.some((k) => lower.includes(k))
+    ? "soft-opening"
+    : "around-town";
+}
 
 // Residents-only apartment buildings. If a pop-up's location contains one
 // of these keywords, we surface a "Residents Only" badge + disclaimer so
@@ -62,7 +75,7 @@ async function fetchMomenceEvents(): Promise<EventItem[]> {
           title: e.title.trim(),
           dateTime: e.dateTime,
           durationMin: e.duration,
-          category: "around-town" as const,
+          category: categorizeByLocation(location),
           description: e.description?.trim() || "",
           location,
           price: e.fixedPrice && e.fixedPrice > 0 ? `$${e.fixedPrice}` : "Free",
