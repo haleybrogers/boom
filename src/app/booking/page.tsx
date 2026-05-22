@@ -65,7 +65,7 @@ export default function Booking() {
             {/* Photo */}
             <div className="relative w-full aspect-[4/5] overflow-hidden">
               <Image
-                src="/DSC_4607.jpg"
+                src="/photo-booking-hero.jpg"
                 alt="Classical Pilates at Boomerang"
                 fill
                 priority
