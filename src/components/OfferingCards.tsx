@@ -64,12 +64,12 @@ const offerings: Offering[] = [
     classes: [],
     startingPrice: "",
     priceNote: "",
-    link: "/privates",
-    // Apparatus shares the same booking flow as Privates / Duets / Trios
-    // (all appointment-reservation in Momence). While PRIVATES_BOOKABLE
-    // is false, mirror the Privates label so the CTA doesn't promise a
-    // booking that leads to a coming-soon page.
-    linkLabel: PRIVATES_BOOKABLE ? "Book a Session" : "Booking Opens Soon",
+    // Apparatus has scheduled group classes (Apparatus Foundations,
+    // Intermediate Mixed, Reformer, Tower, Lengthen & Strengthen). Send
+    // people to the live schedule to see what's on, not to /privates
+    // which is gated on PRIVATES_BOOKABLE.
+    link: "/schedule",
+    linkLabel: "View Schedule",
     photoScale: "scale-[2.4]",
     photoPosition: "object-right",
   },
