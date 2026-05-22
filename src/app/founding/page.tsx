@@ -94,10 +94,10 @@ export default async function Founding() {
             25% off mat. For life.
           </h2>
           <p className="text-muted text-base leading-relaxed">
-            Three tiers. Pick the one that matches how often you&apos;ll
-            actually show up. Your founding rate locks in the moment you
-            join and never goes up, as long as your membership stays
-            active.
+            Only 15 spots per tier, and they&apos;ll go fast. Pick the
+            membership that matches how often you&apos;ll show up. Your
+            rate locks in the moment you join and never moves as long as
+            it stays active.
           </p>
         </div>
       </section>
