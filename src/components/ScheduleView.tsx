@@ -191,7 +191,7 @@ export default function ScheduleView({
               }`}
               aria-pressed={viewMode === mode}
             >
-              {mode}
+              {mode === "week" ? "Calendar" : "List"}
             </button>
           ))}
         </div>

@@ -88,7 +88,7 @@ export default async function Founding() {
       <section className="pt-20 lg:pt-28 pb-8 lg:pb-10">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-sm tracking-widest uppercase text-accent mb-4">
-            The pricing
+            Limited Time
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-6">
             25% off mat. For life.
