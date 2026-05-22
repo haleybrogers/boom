@@ -365,8 +365,8 @@ export default async function Founding() {
                   Deadline
                 </dt>
                 <dd className="text-sm text-muted leading-relaxed">
-                  Founding pricing is available until July 13, 2026, or the
-                  day we open. Whichever comes first.
+                  Founding pricing is available until July 13, 2026, or
+                  when we&apos;re sold out. Whichever comes first.
                 </dd>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2 sm:gap-8 py-5">
