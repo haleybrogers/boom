@@ -21,6 +21,15 @@ type Offering = {
   linkLabel: string;
   external?: boolean;
   photoScale?: string;
+  // When set, renders a multi-price block (e.g. Trio $45 · Duet $65 ·
+  // Private $110) with all dollar figures at the same serif size, instead
+  // of the default "big startingPrice + small priceNote" pattern. Used on
+  // the Privates / Duets / Trios card where there are three distinct
+  // session formats that each have their own price.
+  priceUnits?: Array<{ label: string; price: string }>;
+  // Optional small clarifier line under a priceUnits block — e.g. "per
+  // person · single sessions". Falls back to nothing when omitted.
+  priceUnitsNote?: string;
 };
 
 // Offering definitions. `startingPrice` + `priceNote` are placeholders ,
@@ -85,6 +94,7 @@ export default async function OfferingCards() {
 
   const duetSingle = apparatus.find((g) => g.category === "duet")?.single?.price;
   const privateSingle = apparatus.find((g) => g.category === "private")?.single?.price;
+  const trioSingle = apparatus.find((g) => g.category === "trio")?.single?.price;
 
   // Build the live-priced offerings array. Apparatus card intentionally
   // hides pricing. Its CTA is generic "Book a Session" → /privates.
@@ -99,12 +109,25 @@ export default async function OfferingCards() {
       };
     }
     if (o.title === "Privates, Duets & Trios") {
-      const sp = duetSingle !== undefined ? `$${duetSingle}` : o.startingPrice;
-      const note =
-        duetSingle !== undefined && privateSingle !== undefined
-          ? `duets per person · privates $${privateSingle}`
-          : o.priceNote;
-      return { ...o, startingPrice: sp, priceNote: note };
+      // Three drop-in prices in one block, all at the same serif size.
+      // If any are missing from Momence, just skip that unit rather than
+      // showing a placeholder; we still fall back to old startingPrice /
+      // priceNote if NOTHING came through.
+      const units: Array<{ label: string; price: string }> = [];
+      if (trioSingle !== undefined) units.push({ label: "Trio", price: `$${trioSingle}` });
+      if (duetSingle !== undefined) units.push({ label: "Duet", price: `$${duetSingle}` });
+      if (privateSingle !== undefined) units.push({ label: "Private", price: `$${privateSingle}` });
+      if (units.length > 0) {
+        return {
+          ...o,
+          priceUnits: units,
+          priceUnitsNote: "per person · single sessions",
+          // Clear the legacy fields so the old render branch doesn't fire.
+          startingPrice: "",
+          priceNote: "",
+        };
+      }
+      return o;
     }
     return o;
   });
@@ -179,8 +202,30 @@ export default async function OfferingCards() {
                 </div>
               )}
 
-              {/* Price + CTA. Skip price block when blank (Apparatus card) */}
-              {offering.startingPrice && (
+              {/* Price block. Three modes:
+                  1. priceUnits set → render every dollar amount at the
+                     same serif size with its label inline (Privates card)
+                  2. startingPrice set → big startingPrice + small note
+                  3. neither → skip (Apparatus card) */}
+              {offering.priceUnits && offering.priceUnits.length > 0 ? (
+                <div>
+                  <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
+                    {offering.priceUnits.map((u) => (
+                      <div key={u.label}>
+                        <span className="font-serif text-2xl font-light text-charcoal">
+                          {u.price}
+                        </span>
+                        <span className="text-sm text-muted ml-1.5">{u.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {offering.priceUnitsNote && (
+                    <p className="text-xs text-muted mt-1.5">
+                      {offering.priceUnitsNote}
+                    </p>
+                  )}
+                </div>
+              ) : offering.startingPrice ? (
                 <div className="flex items-center gap-6">
                   <div>
                     <span className="font-serif text-2xl font-light text-charcoal">
@@ -189,7 +234,7 @@ export default async function OfferingCards() {
                     <span className="text-sm text-muted ml-2">{offering.priceNote}</span>
                   </div>
                 </div>
-              )}
+              ) : null}
               {offering.external ? (
                 <a
                   href={offering.link}
