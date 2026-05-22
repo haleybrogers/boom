@@ -174,7 +174,11 @@ function MatSeriesCard({
                 {event.title}
               </h4>
               <span className="mt-auto text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/70 transition-colors">
-                Details →
+                {event.isFull
+                  ? event.allowsWaitlist
+                    ? "Waitlist →"
+                    : "Sold Out"
+                  : "Book →"}
               </span>
             </button>
           );
@@ -244,7 +248,7 @@ function EventCard({
         )}
         {event.isFull && (
           <span className="self-start text-[10px] tracking-[0.1em] uppercase border border-charcoal/30 text-charcoal bg-cream rounded-full px-2.5 py-1 mb-2 leading-none">
-            {event.allowsWaitlist ? "Waitlist Only" : "Sold Out"}
+            Class Full
           </span>
         )}
         <div className="flex-1" />
@@ -254,7 +258,15 @@ function EventCard({
             {event.price && ` · ${event.price}`}
           </p>
           <p className="text-[11px] tracking-widest uppercase text-accent text-right group-hover:text-accent/80 transition-colors">
-            Details →
+            {event.isFull
+              ? event.allowsWaitlist
+                ? "Join the Waitlist →"
+                : "Sold Out"
+              : event.action.type === "rsvp-party"
+                ? "RSVP →"
+                : event.action.type === "info-only"
+                  ? "Details →"
+                  : "Book →"}
           </p>
         </div>
       </div>
