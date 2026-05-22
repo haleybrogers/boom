@@ -444,16 +444,23 @@ function ClassCard({
           Residents Only
         </span>
       )}
-      <span
-        className="mt-auto pt-3 text-[11px] tracking-[0.25em] uppercase font-semibold leading-tight"
-        style={{ color: style.text }}
-      >
-        {cls.isFull
-          ? cls.allowsWaitlist
-            ? "Class Full · Join Waitlist →"
-            : "Sold Out"
-          : "Book →"}
-      </span>
+      <div className="mt-auto pt-3 flex flex-col leading-tight">
+        {cls.isFull && (
+          <span className="text-[9px] tracking-[0.25em] uppercase text-charcoal/50 mb-0.5">
+            Class Full
+          </span>
+        )}
+        <span
+          className="text-[11px] tracking-[0.25em] uppercase font-semibold"
+          style={{ color: style.text }}
+        >
+          {cls.isFull
+            ? cls.allowsWaitlist
+              ? "Waitlist →"
+              : "Sold Out"
+            : "Book →"}
+        </span>
+      </div>
     </button>
   );
 }
@@ -564,16 +571,23 @@ function MonthList({
                           </span>
                         )}
                       </div>
-                      <span
-                        className="self-center shrink-0 text-[11px] tracking-[0.25em] uppercase font-semibold text-right leading-tight"
-                        style={{ color: style.text }}
-                      >
-                        {c.isFull
-                          ? c.allowsWaitlist
-                            ? "Class Full · Join Waitlist →"
-                            : "Sold Out"
-                          : "Book →"}
-                      </span>
+                      <div className="self-center shrink-0 flex flex-col items-end leading-tight">
+                        {c.isFull && (
+                          <span className="text-[9px] tracking-[0.25em] uppercase text-charcoal/50 mb-0.5">
+                            Class Full
+                          </span>
+                        )}
+                        <span
+                          className="text-[11px] tracking-[0.25em] uppercase font-semibold"
+                          style={{ color: style.text }}
+                        >
+                          {c.isFull
+                            ? c.allowsWaitlist
+                              ? "Waitlist →"
+                              : "Sold Out"
+                            : "Book →"}
+                        </span>
+                      </div>
                     </button>
                   </li>
                 );

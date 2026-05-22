@@ -390,8 +390,7 @@ function EventDetailModal({
               {/* Residents-only disclaimer (above the action) */}
               {event.residentsOnly && (
                 <p className="text-sm text-accent text-center mb-3 border border-accent/20 bg-accent/5 rounded-sm px-4 py-3">
-                  Residents of <strong>{event.residentsOnly.building}</strong> only ,
-                  check with your front desk.
+                  Residents of <strong>{event.residentsOnly.building}</strong> only.
                 </p>
               )}
 

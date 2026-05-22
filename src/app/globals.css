@@ -339,6 +339,19 @@ html, body {
 .stagger-children > *:nth-child(8)  { animation-delay: 0.54s; }
 .stagger-children > *:nth-child(n+9){ animation-delay: 0.60s; }
 
+/* Balance headlines so the last line doesn't strand a single word at the
+   end. Especially noticeable on narrow phone widths where a 4-word
+   headline becomes "3 words / 1 word" by default. */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+/* Same idea for short paragraph leads under hero copy — prevents orphans
+   without affecting longer body text which prefers normal wrapping. */
+.balance-text {
+  text-wrap: balance;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .animate-fade-up-lux,
