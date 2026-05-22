@@ -100,6 +100,8 @@ export default function ContactForm({
 
     try {
       const phoneNumber = normalizePhone(phone);
+      // 1. Primary: post to Momence so the lead lands in the existing
+      //    contact funnel (marketing broadcasts, filtering, etc).
       await fetch(MOMENCE_LEAD_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -113,6 +115,33 @@ export default function ContactForm({
           token: MOMENCE_LEAD_TOKEN,
           countryCode: "us",
         }),
+      });
+      // 2. Mirror to /api/notify so Emilie's inbox gets a real-time copy
+      //    of every submission. Fire-and-forget — the endpoint soft-fails
+      //    if the Resend API key isn't set, so the user flow never breaks.
+      const extras: Record<string, string> = {};
+      if (showGuests && guests) extras.Guests = guests;
+      if (showRtlFields) {
+        const courses: string[] = [];
+        if (interestedCourseI) courses.push("Course I");
+        if (interestedCourseII) courses.push("Course II");
+        if (courses.length) extras["Interested in"] = courses.join(", ");
+        if (experience) extras.Experience = experience;
+      }
+      fetch("/api/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source,
+          firstName,
+          lastName,
+          email,
+          phone: phoneNumber || phone,
+          message,
+          extras,
+        }),
+      }).catch(() => {
+        // Best-effort. Don't block the user flow if email fails.
       });
     } catch {
       // Surface as submitted regardless. Momence API is reliable enough,
