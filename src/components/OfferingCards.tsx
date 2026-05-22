@@ -65,7 +65,11 @@ const offerings: Offering[] = [
     startingPrice: "",
     priceNote: "",
     link: "/privates",
-    linkLabel: "Book a Session",
+    // Apparatus shares the same booking flow as Privates / Duets / Trios
+    // (all appointment-reservation in Momence). While PRIVATES_BOOKABLE
+    // is false, mirror the Privates label so the CTA doesn't promise a
+    // booking that leads to a coming-soon page.
+    linkLabel: PRIVATES_BOOKABLE ? "Book a Session" : "Booking Opens Soon",
     photoScale: "scale-[2.4]",
     photoPosition: "object-right",
   },
