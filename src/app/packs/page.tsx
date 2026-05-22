@@ -81,10 +81,11 @@ export default async function Packs() {
               Want 25% off mat. For life?
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto mb-8">
-              Check out our founding memberships. Just 45 spots total — 15
-              per tier. Locked-in rate as long as your membership stays
-              active, plus opening night, a welcome kit, an intro privates
-              bundle, and a bring-a-friend pass for your first three months.
+              Check out our founding memberships. Just 15 spots per tier
+              and they&apos;ll go fast. Locked-in rate as long as your
+              membership stays active, plus opening night, a welcome kit,
+              an intro privates bundle, and a bring-a-friend pass for your
+              first three months.
             </p>
             <Link
               href="/founding"

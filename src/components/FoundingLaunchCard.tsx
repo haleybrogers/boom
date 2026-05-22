@@ -100,10 +100,10 @@ export default function FoundingLaunchCard() {
           .
         </h2>
         <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
-          Only <strong className="text-charcoal">45 spots</strong> — 15 per
-          tier. Once they&apos;re claimed, they&apos;re gone. Get on the list
-          below and we&apos;ll send the link straight to your inbox at{" "}
-          {fmtLaunchTime(FOUNDING_LAUNCH)}, ahead of everyone else.
+          Just <strong className="text-charcoal">15 spots per tier</strong>.
+          These will go fast. Get on the list below and we&apos;ll send the
+          link straight to your inbox at {fmtLaunchTime(FOUNDING_LAUNCH)},
+          ahead of everyone else.
         </p>
       </div>
 
