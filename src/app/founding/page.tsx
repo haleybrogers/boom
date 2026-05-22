@@ -2,8 +2,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import ContactFormModal from "@/components/ContactFormModal";
 import FoundingCountdown from "@/components/FoundingCountdown";
+import FoundingLaunchCard from "@/components/FoundingLaunchCard";
 import Reveal from "@/components/Reveal";
-import { SHOW_FOUNDING } from "@/lib/flags";
+import { SHOW_FOUNDING, isFoundingLaunched, FOUNDING_LAUNCH } from "@/lib/flags";
 import {
   fetchMemberships,
   pairMatTiers,
@@ -11,6 +12,11 @@ import {
   tierDisplayName,
   classesPerMonth,
 } from "@/lib/momence";
+
+// Re-render hourly so the launch gate auto-flips from "countdown +
+// waitlist" to "live pricing cards" shortly after FOUNDING_LAUNCH
+// without needing a redeploy.
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Founding Members",
@@ -194,12 +200,30 @@ export default async function Founding() {
         </div>
       </section>
 
+      {/* Launch gate. Pre-launch: countdown + SMS opt-in instead of the
+          live pricing cards. Post-launch: pricing cards link to Momence. */}
+      {!isFoundingLaunched() && (
+        <section className="bg-warm-white py-16 lg:py-20">
+          <div className="max-w-6xl mx-auto px-6">
+            <FoundingLaunchCard />
+          </div>
+        </section>
+      )}
+
       {/* Pricing cards. Dynamic from Momence. Render only tiers that actually
-          have a founding pair in Momence; featured = middle tier when present. */}
+          have a founding pair in Momence; featured = middle tier when present.
+          When pre-launch, cards render in a disabled "preview" state — same
+          info, no link, "Launches [date]" instead of "Lock in this rate". */}
       {(() => {
         const tiers = pairMatTiers(memberships).filter((t) => t.founding);
         if (tiers.length === 0) return null;
         const featuredKey = tiers.length >= 2 ? tiers[1].key : tiers[0].key;
+        const launched = isFoundingLaunched();
+        const launchDateShort = FOUNDING_LAUNCH.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          timeZone: "America/New_York",
+        });
         return (
           <section className="bg-warm-white py-16 lg:py-20">
             <div className="max-w-5xl mx-auto px-6">
@@ -221,18 +245,9 @@ export default async function Founding() {
                       ? Math.ceil(regular.price / classes)
                       : null;
                   const isFeatured = t.key === featuredKey;
-                  return (
-                    <a
-                      key={t.key}
-                      href={founding.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
-                        isFeatured
-                          ? "border-2 border-accent/50 shadow-sm"
-                          : "border border-charcoal/10 hover:border-accent/30"
-                      }`}
-                    >
+                  // Shared inner content — same regardless of launched state.
+                  const cardInner = (
+                    <>
                       {isFeatured && (
                         <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-3">
                           Most popular
@@ -289,19 +304,53 @@ export default async function Founding() {
 
                       <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
                         <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                          Lock in this rate
+                          {launched ? "Lock in this rate" : `Launches ${launchDateShort}`}
                         </span>
                         <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                          →
+                          {launched ? "→" : ""}
                         </span>
                       </div>
+                    </>
+                  );
+                  // Launched: clickable card linking to Momence checkout.
+                  // Pre-launch: same content rendered as a div with a
+                  // subtle disabled treatment — no link, slightly muted.
+                  const baseClasses = `group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 ${
+                    isFeatured
+                      ? "border-2 border-accent/50 shadow-sm"
+                      : "border border-charcoal/10"
+                  } ${
+                    launched
+                      ? "hover:-translate-y-1 hover:shadow-md " +
+                        (isFeatured ? "" : "hover:border-accent/30")
+                      : "opacity-90"
+                  }`;
+                  return launched ? (
+                    <a
+                      key={t.key}
+                      href={founding.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={baseClasses}
+                    >
+                      {cardInner}
                     </a>
+                  ) : (
+                    <div
+                      key={t.key}
+                      className={baseClasses + " cursor-default select-none"}
+                      aria-disabled="true"
+                    >
+                      {cardInner}
+                    </div>
                   );
                 })}
               </div>
 
               <p className="text-center text-sm text-muted">
-                15 spots per tier. Once they&apos;re gone, they&apos;re gone.
+                {launched
+                  ? "15 spots per tier. Once they're gone, they're gone."
+                  : `15 spots per tier. Sign up above to be texted the moment they go live ${launchDateShort}.`}
               </p>
             </div>
           </section>

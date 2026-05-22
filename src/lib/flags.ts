@@ -19,3 +19,17 @@ export function isFoundingActive(): boolean {
 //   - server: each render cycle / revalidate
 //   - client: each page load (when the JS bundle hydrates)
 export const SHOW_FOUNDING = isFoundingActive();
+
+// FOUNDING_LAUNCH: when founding memberships actually become PURCHASABLE.
+// Before this moment, the pricing cards on /founding render disabled and
+// show a countdown + an SMS opt-in so people can be texted when it goes
+// live. After this moment, the pricing cards link to Momence checkout
+// like normal.
+//
+// PLACEHOLDER — set 2 weeks from website-launch date (Haley to confirm
+// the real value). To change, edit the ISO string below and redeploy.
+export const FOUNDING_LAUNCH = new Date("2026-06-04T09:00:00-04:00");
+
+export function isFoundingLaunched(): boolean {
+  return Date.now() >= FOUNDING_LAUNCH.getTime();
+}
