@@ -4,23 +4,23 @@ import { useEffect, useState } from "react";
 import ContactForm from "./ContactForm";
 import { FOUNDING_LAUNCH } from "@/lib/flags";
 
-// Countdown card + SMS opt-in. Renders above the founding pricing cards
-// on /founding while founding membership is still pre-launch. Two states:
+// Slim early-access strip. Lives ABOVE the founding pricing cards on
+// /founding. Three states:
 //
-//   pre-launch  → big "Founding launches in X days, Y hours" timer,
-//                 inline phone capture so Emilie can SMS-blast the
-//                 waitlist when it goes live. Form posts to Momence
-//                 lead form 204540 (same one the home "Get the Scoop"
-//                 uses); tagged "founding-sms-waitlist" so Emilie can
-//                 filter by source inside Momence and broadcast.
+//   collapsed   (default) → compact horizontal countdown + scarcity line
+//                           + "Get Early Access" button.
+//   expanded    (click)   → same countdown, but the line + button area
+//                           swaps to the email/phone signup form.
+//   submitted   (post)    → "You're in" confirmation in the same slot.
 //
-//   post-launch → component renders nothing. The /founding page's own
-//                 isFoundingLaunched() gate will swap to the live
-//                 pricing cards on the next render / revalidate.
+// Goal is to take up much less vertical space than the old big-card
+// version. The actual signup is one click away — the strip doesn't
+// dominate the page unless someone opts in. Form posts to Momence lead
+// 204540 tagged "founding-early-access" so Emilie can filter and
+// broadcast the link on launch morning.
 //
-// Separate from FoundingCountdown.tsx, which counts down to the
-// DEADLINE (when founding pricing ends, July 13). Two different
-// moments, two different components.
+// Separate from FoundingCountdown.tsx, which counts to the founding
+// DEADLINE (July 13). Different moment, different component.
 
 type Remaining = {
   days: number;
@@ -65,10 +65,11 @@ function fmtLaunchTime(d: Date): string {
 
 export default function FoundingLaunchCard() {
   const targetMs = FOUNDING_LAUNCH.getTime();
-  // Start null on first render to avoid SSR/CSR mismatch (Date.now() differs
-  // between server and hydration). useEffect populates immediately on mount.
+  // null on first render → avoid SSR/CSR mismatch; useEffect populates
+  // immediately on mount and ticks per second after.
   const [remaining, setRemaining] = useState<Remaining | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -82,83 +83,58 @@ export default function FoundingLaunchCard() {
     return () => clearInterval(id);
   }, [targetMs]);
 
-  // Pre-hydration: render the static frame so layout doesn't shift.
-  // Once mounted, we know whether we should be visible at all.
+  // Launch already passed → render nothing.
   if (mounted && remaining === null) return null;
 
   return (
-    <div className="bg-accent/5 border border-accent/30 rounded-sm p-8 sm:p-10 max-w-3xl mx-auto">
-      <div className="text-center mb-7">
-        <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
-          Early Access · Founding Drop
+    <div className="bg-accent/5 border border-accent/30 rounded-sm px-5 py-5 sm:px-7 sm:py-6 max-w-3xl mx-auto">
+      {/* Top row: tiny header + the compact countdown blocks. */}
+      <div className="text-center mb-4">
+        <p className="text-[10px] tracking-[0.35em] uppercase text-accent mb-3">
+          Founding drops {fmtLaunchDate(FOUNDING_LAUNCH).split(",")[0]} ·{" "}
+          {fmtLaunchTime(FOUNDING_LAUNCH)}
         </p>
-        <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal leading-tight mb-3">
-          Founding memberships drop{" "}
-          <span className="whitespace-nowrap">
-            {fmtLaunchDate(FOUNDING_LAUNCH)}
-          </span>
-          .
-        </h2>
-        <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
-          Just <strong className="text-charcoal">15 spots per tier</strong>.
-          These will go fast. Get on the list below and we&apos;ll send the
-          link straight to your inbox at {fmtLaunchTime(FOUNDING_LAUNCH)},
-          ahead of everyone else.
-        </p>
+        <div className="grid grid-cols-4 gap-2 sm:gap-3 max-w-md mx-auto">
+          {(
+            [
+              ["days", "Days"],
+              ["hours", "Hrs"],
+              ["minutes", "Min"],
+              ["seconds", "Sec"],
+            ] as const
+          ).map(([key, label]) => (
+            <div
+              key={key}
+              className="bg-white border border-accent/20 rounded-sm py-2"
+            >
+              <p className="font-serif text-2xl font-light text-charcoal leading-none tabular-nums">
+                {remaining ? String(remaining[key]).padStart(2, "0") : "——"}
+              </p>
+              <p className="text-[9px] tracking-[0.2em] uppercase text-muted mt-1">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Countdown blocks. d / h / m / s. Render frame even pre-mount so
-          the layout is stable; values stay blank until hydration ticks. */}
-      <div className="grid grid-cols-4 gap-3 sm:gap-5 max-w-xl mx-auto mb-9">
-        {(
-          [
-            ["days", "Days"],
-            ["hours", "Hours"],
-            ["minutes", "Min"],
-            ["seconds", "Sec"],
-          ] as const
-        ).map(([key, label]) => (
-          <div
-            key={key}
-            className="bg-white border border-accent/20 rounded-sm py-4 text-center"
-          >
-            <p className="font-serif text-3xl sm:text-4xl font-light text-charcoal leading-none tabular-nums">
-              {remaining
-                ? String(remaining[key]).padStart(2, "0")
-                : "——"}
-            </p>
-            <p className="text-[10px] tracking-[0.25em] uppercase text-muted mt-2">
-              {label}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {/* Early-access opt-in. Reuses ContactForm — email required, phone
-          optional (so Emilie can text the broadcast on launch morning if
-          she wants, too). Submissions tagged "founding-early-access" so
-          they're easy to filter inside Momence for the broadcast. */}
+      {/* Bottom region: scarcity line + CTA, OR the expanded form, OR the
+          submitted confirmation. The component takes the same horizontal
+          footprint in every state — only the contents change. */}
       {submitted ? (
-        <div className="text-center py-6 border-t border-accent/20">
-          <p className="font-serif text-xl font-light text-charcoal mb-2">
+        <div className="text-center pt-3">
+          <p className="font-serif text-lg font-light text-charcoal mb-1">
             You&apos;re in.
           </p>
           <p className="text-sm text-muted leading-relaxed max-w-sm mx-auto">
-            Watch your inbox {fmtLaunchDate(FOUNDING_LAUNCH).split(",")[0]} at{" "}
-            {fmtLaunchTime(FOUNDING_LAUNCH)} — your early-access link will be
-            waiting.
+            Watch your inbox 24 hours before founding opens to the public.
           </p>
         </div>
-      ) : (
-        <div className="border-t border-accent/20 pt-7">
-          <p className="text-center text-sm text-charcoal/80 mb-1 font-medium">
-            Want first dibs?
-          </p>
-          <p className="text-center text-xs text-muted mb-5 max-w-md mx-auto leading-relaxed">
-            Drop your info and we&apos;ll send the link the moment founding
-            opens. <strong className="text-charcoal">People on the list get
-            a 24-hour head start</strong> before we announce it anywhere
-            else.
+      ) : expanded ? (
+        <div className="pt-3">
+          <p className="text-center text-xs text-muted mb-4 leading-relaxed max-w-md mx-auto">
+            Drop your info and we&apos;ll send the link 24 hours before
+            founding goes public.
           </p>
           <ContactForm
             source="founding-early-access"
@@ -168,6 +144,27 @@ export default function FoundingLaunchCard() {
             requirePhone={true}
             onSuccess={() => setSubmitted(true)}
           />
+          <button
+            type="button"
+            onClick={() => setExpanded(false)}
+            className="block mx-auto mt-4 text-[11px] tracking-widest uppercase text-charcoal/50 hover:text-charcoal transition-colors"
+          >
+            ← Cancel
+          </button>
+        </div>
+      ) : (
+        <div className="text-center pt-3">
+          <p className="text-sm text-muted mb-4 leading-relaxed">
+            <strong className="text-charcoal">15 spots per tier.</strong>{" "}
+            Newsletter folks get 24-hour early access.
+          </p>
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-7 py-3 hover:bg-accent/90 transition-colors"
+          >
+            Get Early Access →
+          </button>
         </div>
       )}
     </div>

@@ -112,6 +112,18 @@ export default async function Founding() {
         </div>
       </section>
 
+      {/* Launch card. Slim early-access strip sits between the pricing
+          header and the tier cards pre-launch — countdown + a single CTA
+          that expands to the signup form on click. Returns null once
+          launch passes. */}
+      {!isFoundingLaunched() && (
+        <section className="pb-12 lg:pb-14">
+          <div className="max-w-5xl mx-auto px-6">
+            <FoundingLaunchCard />
+          </div>
+        </section>
+      )}
+
       {/* Pricing cards. Dynamic from Momence. Render only tiers that actually
           have a founding pair in Momence; featured = middle tier when present.
           When pre-launch, cards render in a disabled "preview" state — same
@@ -252,24 +264,12 @@ export default async function Founding() {
               <p className="text-center text-sm text-muted">
                 {launched
                   ? "15 spots per tier. Once they're gone, they're gone."
-                  : `15 spots per tier. Sign up below to get the link the moment they go live ${launchDateShort}.`}
+                  : `15 spots per tier. Newsletter folks get the link 24 hours before they go live ${launchDateShort}.`}
               </p>
             </div>
           </section>
         );
       })()}
-
-      {/* Launch card. Sits just under the hero pre-launch — countdown
-          to founding-drop day + early-access opt-in. Auto-disappears
-          once launch passes (component returns null). Replaced the old
-          "Founding Pricing Ends July 13" deadline band that lived here. */}
-      {!isFoundingLaunched() && (
-        <section className="bg-warm-white pt-12 pb-4 lg:pt-16">
-          <div className="max-w-5xl mx-auto px-6">
-            <FoundingLaunchCard />
-          </div>
-        </section>
-      )}
 
       {/* The story. Intimate photo + the why */}
       <section className="py-20 lg:py-28">
