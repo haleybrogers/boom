@@ -64,28 +64,28 @@ export default function About() {
                 Founder / Owner
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Emilie came to Pilates through chronic neck and back pain.
-                Never into fitness before. Then the method rewired her
-                relationship with her own body. The &ldquo;ah-ha&rdquo;
-                was being able to actually feel strong, supported, and
-                connected, for the first time. She founded Boomerang to
-                bring that feeling to as many people as she can.
+                Emilie came to Pilates with a body that hurt. Chronic
+                neck and back pain, and no fitness background to speak of.
+                Classical Pilates changed that. The method rewired her
+                connection to her own body and showed her what feeling
+                strong, supported, and connected was actually like. She
+                founded Boomerang to share that with everyone else.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                She completed her 600-hour comprehensive classical Pilates
-                certification at Appalachian State University in 2015,
-                training under Marianne Adams and Rebecca Quinn in the
-                direct lineage of Romana Kryzanowska. In the decade since,
-                she&apos;s taught everyone from professional athletes and
-                polo players to post-partum mothers and clients rehabbing
-                injuries.
+                She earned her 600-hour comprehensive classical Pilates
+                certification at Appalachian State in 2015, training under
+                Marianne Adams and Rebecca Quinn in the direct lineage of
+                Romana Kryzanowska. In the decade since, she&apos;s worked
+                with everyone from professional athletes and polo players
+                to post-partum mothers and clients rehabbing injuries.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                By day, Emilie teaches elementary art in Durham Public
-                Schools, an educator through and through. She brings
-                patience, openness, and a little playfulness to every
-                session, in the classroom or the studio. Boomerang has been
-                a long time coming. She can&apos;t wait to welcome you in.
+                When she&apos;s not in the studio, Emilie teaches elementary
+                art in Durham Public Schools. She&apos;s an educator
+                through and through, and she brings the same patience and
+                playfulness to a Pilates session as she does to a classroom
+                of kids. Boomerang has been a long time coming. She
+                can&apos;t wait to welcome you in.
               </p>
               <Link
                 href="/privates"
@@ -113,31 +113,30 @@ export default function About() {
                 Co-Founder / Studio Manager
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Annie grew up a dancer. The flexibility came easy. What
-                she didn&apos;t know was that it came from hypermobile
-                Ehlers-Danlos Syndrome. Living with hEDS meant a body she
-                could push past its limits without realizing she&apos;d
-                pushed too far, and she came up believing chronic pain was
-                the cost of doing the thing she loved.
+                Annie grew up a dancer with a body that bent further than
+                most. What she didn&apos;t know then was that the
+                flexibility came from hypermobile Ehlers-Danlos Syndrome.
+                hEDS means her joints don&apos;t always know where their
+                limits are, and Annie spent years believing chronic pain
+                was just part of doing the thing she loved.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Discovering classical Pilates in her early twenties at
-                Appalachian State changed that. The method gave her a way
-                to feel her body from the inside out, and the
-                &ldquo;ah-ha&rdquo; was simple: movement is meant to feel
-                good. Pilates has stayed with her since. It&apos;s a system
-                that lets her listen, trust, and rebuild through hEDS days
-                she can&apos;t predict.
+                Then she found classical Pilates at Appalachian State, and
+                one realization landed quickly: movement is meant to feel
+                good. The method gave her a way to feel her body from the
+                inside out and to actually trust her own joints. It&apos;s
+                been part of her practice every day since, especially on
+                hEDS days she can&apos;t predict.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 Annie earned a BA in Dance Studies and her 600-hour
                 comprehensive classical Pilates certification at Appalachian
                 State, trained in the same lineage as Emilie under Marianne
-                Adams and Rebecca Quinn. She&apos;s passionate about
-                keeping Joseph Pilates&apos; work intact while teaching it
-                through a modern lens of biomechanics and inclusivity,
-                anchored in the six classical principles: breath, control,
-                center, concentration, precision, and flow.
+                Adams and Rebecca Quinn. She teaches the work the way it
+                was written, with a modern attention to biomechanics and
+                an open door for every body, anchored in the six classical
+                principles: breath, control, center, concentration,
+                precision, and flow.
               </p>
               <Link
                 href="/privates"
