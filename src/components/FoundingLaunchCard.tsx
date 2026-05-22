@@ -91,7 +91,7 @@ export default function FoundingLaunchCard() {
       {/* Top row: tiny header + the compact countdown blocks. */}
       <div className="text-center mb-4">
         <p className="text-[10px] tracking-[0.35em] uppercase text-accent mb-3">
-          Founding drops {fmtLaunchDate(FOUNDING_LAUNCH).split(",")[0]} ·{" "}
+          Signups open {fmtLaunchDate(FOUNDING_LAUNCH).split(",")[0]} ·{" "}
           {fmtLaunchTime(FOUNDING_LAUNCH)}
         </p>
         <div className="grid grid-cols-4 gap-2 sm:gap-3 max-w-md mx-auto">

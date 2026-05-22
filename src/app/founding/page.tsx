@@ -250,12 +250,6 @@ export default async function Founding() {
                   );
                 })}
               </div>
-
-              <p className="text-center text-sm text-muted">
-                {launched
-                  ? "15 spots per tier. Once they're gone, they're gone."
-                  : `15 spots per tier. Sign up for alerts to get the link 24 hours before they go live ${launchDateShort}.`}
-              </p>
             </div>
           </section>
         );
