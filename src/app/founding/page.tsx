@@ -74,11 +74,6 @@ export default async function Founding() {
               <h1 className="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-6 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
                 Be one of the first.
               </h1>
-              <p className="text-white/85 text-base md:text-lg leading-relaxed max-w-xl animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
-                15 spots per tier. 25% off your mat membership for
-                life. The best deal we&apos;ll ever run, and the only chance to
-                be in the room on opening night.
-              </p>
             </div>
           </div>
         </div>
