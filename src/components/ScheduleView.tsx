@@ -382,6 +382,11 @@ function ClassCard({
           Residents Only
         </span>
       )}
+      {cls.action.type === "rsvp" && (
+        <span className="self-start mt-2 text-[9px] tracking-[0.1em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2.5 py-1 leading-none">
+          Limited Time
+        </span>
+      )}
       <div className="mt-auto pt-3 flex flex-col leading-tight">
         {cls.isFull && (
           <span className="text-[9px] tracking-[0.25em] uppercase text-charcoal/50 mb-0.5">
@@ -396,7 +401,9 @@ function ClassCard({
             ? cls.allowsWaitlist
               ? "Waitlist →"
               : "Sold Out"
-            : "Book →"}
+            : cls.action.type === "rsvp"
+              ? "RSVP →"
+              : "Book →"}
         </span>
       </div>
     </button>
@@ -509,6 +516,11 @@ function WeekList({
                             Residents Only
                           </span>
                         )}
+                        {c.action.type === "rsvp" && (
+                          <span className="inline-block mt-2 text-[10px] tracking-[0.1em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2.5 py-1 leading-none">
+                            Limited Time
+                          </span>
+                        )}
                       </div>
                       <div className="self-center shrink-0 flex flex-col items-end leading-tight">
                         {c.isFull && (
@@ -524,7 +536,9 @@ function WeekList({
                             ? c.allowsWaitlist
                               ? "Waitlist →"
                               : "Sold Out"
-                            : "Book →"}
+                            : c.action.type === "rsvp"
+                              ? "RSVP →"
+                              : "Book →"}
                         </span>
                       </div>
                     </button>

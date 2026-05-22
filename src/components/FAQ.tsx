@@ -142,11 +142,8 @@ export default function FAQ() {
           className="w-full text-left group flex items-center justify-between gap-4"
         >
           <div>
-            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-1.5">
-              New here?
-            </p>
             <h3 className="font-serif text-xl sm:text-2xl font-light text-charcoal group-hover:text-accent transition-colors leading-tight">
-              Never done Pilates before?
+              New to Pilates?
             </h3>
           </div>
           <span
