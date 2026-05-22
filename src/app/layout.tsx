@@ -44,7 +44,9 @@ export const metadata: Metadata = {
     description: "Put in the work. Feel it come back. Classical Pilates opening soon in Durham, NC.",
   },
   metadataBase: new URL("https://www.boomerangpilatesnc.com"),
-  icons: { icon: "/favicon.svg" },
+  // Favicon comes from src/app/icon.{svg,png} + apple-icon.png via the
+  // Next.js file convention — gives modern browsers the SVG and Safari
+  // a real PNG (Safari doesn't render SVG favicons reliably).
 };
 
 // Without this, mobile browsers default to a ~980px virtual viewport and
