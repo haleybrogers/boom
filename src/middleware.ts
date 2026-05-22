@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 const SESSION_TOKEN = process.env.SESSION_TOKEN || "auth-ok-91f3c2";
 const COOKIE_NAME = "site-auth";
 
-// Temporary kill-switch for the password gate. Set to true to require
-// the password again. Currently OFF for Stripe / Momence integration
-// setup — those services need to hit pages without being blocked.
-const PASSWORD_GATE_ENABLED = false;
+// Kill-switch for the password gate. Set to false to make the site
+// fully public (e.g., temporarily, for Stripe / Momence integration
+// setup that needs to hit pages without being blocked).
+const PASSWORD_GATE_ENABLED = true;
 
 export function middleware(request: NextRequest) {
   // Gate fully disabled — let everything through.
