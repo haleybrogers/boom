@@ -59,10 +59,7 @@ const offerings: Offering[] = [
     priceNote: "",
     link: "/privates",
     linkLabel: "Book a Session",
-    // Heavy zoom so the figure fills the frame instead of disappearing
-    // into wood-floor / wall negative space. scale-[2.2] crops in tight
-    // on the body + reformer, drops most of the floor.
-    photoScale: "scale-[2.2]",
+    photoScale: "scale-[1.85]",
   },
   {
     title: "Privates, Duets & Trios",
