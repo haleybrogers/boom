@@ -113,12 +113,12 @@ export default function About() {
                 Co-Founder / Studio Manager
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Annie grew up a dancer with a body that bent further than
-                most. What she didn&apos;t know then was that the
-                flexibility came from hypermobile Ehlers-Danlos Syndrome.
-                hEDS means her joints don&apos;t always know where their
-                limits are, and Annie spent years believing chronic pain
-                was just part of doing the thing she loved.
+                For a long time Annie thought her body just hurt because
+                of dance. She was half right. The hurting was real, but
+                it wasn&apos;t dance. It was hypermobile Ehlers-Danlos
+                Syndrome, the connective-tissue condition that gave her
+                the flexibility dance loved and the joint instability
+                that made everything else hurt.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 Then she found classical Pilates at Appalachian State, and
