@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import ContactFormModal from "@/components/ContactFormModal";
 import FoundingLaunchCard from "@/components/FoundingLaunchCard";
 import Reveal from "@/components/Reveal";
 import { SHOW_FOUNDING, isFoundingLaunched, FOUNDING_LAUNCH } from "@/lib/flags";
@@ -386,26 +385,6 @@ export default async function Founding() {
         </div>
       </section>
 
-      {/* Closing. Waitlist fallback for the not-quite-ready */}
-      <section className="bg-accent/5 border-t border-accent/15 py-16 lg:py-20">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <Reveal>
-            <p className="text-sm text-muted/80">
-              <span>Not ready yet? </span>
-              <ContactFormModal
-                buttonLabel="Join the waitlist"
-                buttonClassName="text-sm text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
-                heading="Get the scoop."
-                subhead="Grand opening details, founding spot openings, and the stuff we only share with our people."
-                source="founding-page"
-                sourceId={204540}
-                showMessage={false}
-                showPhone={true}
-              />
-            </p>
-          </Reveal>
-        </div>
-      </section>
     </>
   );
 }
