@@ -110,7 +110,7 @@ export default async function Founding() {
                 A studio is only as good as the regulars who keep showing up
                 for it. We&apos;re looking for the people who&apos;ll set the
                 tone. The ones who&apos;ll know each other&apos;s names by
-                week three, who&apos;ll drag a friend along.
+                week three and who&apos;ll drag a friend along.
               </p>
               <p className="text-muted text-base leading-relaxed">
                 Founding membership is how we say thank you for taking a

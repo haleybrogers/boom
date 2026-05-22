@@ -64,12 +64,31 @@ export default function About() {
                 Founder / Owner
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                3rd Generation Classical Pilates instructor, comprehensively
-                certified in mat and full apparatus. Trained at Appalachian
-                State University under Rebecca Quinn and Marianne Adams in
-                the direct lineage of Joseph and Clara Pilates. Emilie brings
-                a deep understanding of the original method and a commitment
-                to teaching it with precision, care, and without compromise.
+                Emilie is the vision behind Boomerang, built on the belief
+                that everyone should get to feel the benefits of classical
+                Pilates when it&apos;s practiced with intention and patience.
+                She found her own way into the method through chronic neck
+                and back pain &mdash; and the &ldquo;ah-ha&rdquo; moment of
+                feeling strong, supported, and connected for the first time.
+                Wherever you are in your practice, she wants you to have
+                that moment too.
+              </p>
+              <p className="text-base text-muted leading-relaxed mb-4">
+                Emilie completed her 600-hour comprehensive classical Pilates
+                certification at Appalachian State University in 2015,
+                training under Marianne Adams and Rebecca Quinn in the
+                direct lineage of Romana Kryzanowska. Over 10+ years of
+                teaching, she&apos;s worked with everyone from professional
+                athletes and polo players to post-partum mothers and clients
+                in rehab.
+              </p>
+              <p className="text-base text-muted leading-relaxed mb-4">
+                She&apos;s also an elementary art teacher in Durham Public
+                Schools &mdash; an educator through and through, bringing
+                patience, open-mindedness, and a little playfulness to every
+                session. Building Boomerang has been a long-time dream: a
+                community-oriented classical studio where everyone is
+                welcome.
               </p>
               <Link
                 href="/privates"
@@ -97,14 +116,30 @@ export default function About() {
                 Co-Founder / Studio Manager
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Classical Pilates certified through Appalachian State
-                University&apos;s comprehensive program, trained in mat and
-                apparatus under the same lineage. Annie believes deeply that
-                Classical Pilates was designed for every body. And that
-                inclusivity isn&apos;t something you add to the method, it&apos;s
-                already built in. She is committed to holding the door open
-                for everyone while never compromising the integrity of the
-                original work.
+                Annie grew up a dancer &mdash; pushing her body to limits
+                she didn&apos;t know were limits, because she was silently
+                navigating hypermobile Ehlers-Danlos Syndrome. Dance came
+                easily to her hypermobile body, but she felt disconnected
+                from it, and chronic pain became her version of normal.
+                Discovering classical Pilates in her early twenties at
+                Appalachian State was her &ldquo;ah-ha&rdquo; moment:
+                movement is meant to feel good.
+              </p>
+              <p className="text-base text-muted leading-relaxed mb-4">
+                Pilates has given Annie strength, stability, and a new way
+                of listening to her body. It taught her that pain isn&apos;t
+                an unavoidable partner of movement, but a signal something
+                needs more attention. Her practice continues to be a
+                supportive system for living with hEDS, day to day.
+              </p>
+              <p className="text-base text-muted leading-relaxed mb-4">
+                Annie earned a BA in Dance Studies and her 600-hour
+                comprehensive classical Pilates certification at Appalachian
+                State, in the same lineage as her sister &mdash; Romana
+                Kryzanowska through Marianne Adams and Rebecca Quinn.
+                She&apos;s passionate about preserving the integrity of
+                Joseph Pilates&apos; original work while integrating modern
+                biomechanics, holding the door open for every body.
               </p>
               <Link
                 href="/privates"

@@ -100,14 +100,22 @@ export default async function EventsCalendar() {
   // boomerang/coffee glyphs, hero image, partLabel, heroNote, details
   // tiles) and we now wire the real Momence buy link directly into the
   // static entry's action.external.href by hand. So static wins,
-  // Momence duplicate is dropped. Previously this was inverted, which
-  // is why Craft Night lost its boomerang icon the moment Emilie
-  // published it in Momence.
-  const staticTitles = new Set(
-    staticEvents.map((e) => e.title.toLowerCase())
-  );
+  // Momence duplicate is dropped.
+  //
+  // Title normalization is loose on purpose — Momence often uses "+"
+  // where static uses "and" (e.g., "Mat + Matcha + Apparatus Demos"
+  // vs "Mat and Matcha + Apparatus Demos"). Without this, the Mat &
+  // Matcha event renders twice — once as a featured card, once as a
+  // plain duplicate. Same idea applies to "&" vs "and".
+  const normalizeTitle = (t: string) =>
+    t
+      .toLowerCase()
+      .replace(/[+&]/g, "and")
+      .replace(/\s+/g, " ")
+      .trim();
+  const staticTitles = new Set(staticEvents.map((e) => normalizeTitle(e.title)));
   const filteredMomence = momenceEvents.filter(
-    (e) => !staticTitles.has(e.title.toLowerCase())
+    (e) => !staticTitles.has(normalizeTitle(e.title))
   );
 
   // Date.now() in a server component is fine. Runs at request/revalidate

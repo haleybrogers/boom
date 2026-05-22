@@ -36,7 +36,7 @@ const logisticsFaqs = [
       "Bring two for a duet or three for a trio. One instructor, full apparatus, semi-private rate. Coming alone? Book a group apparatus class instead.",
   },
   {
-    question: "Want a trio but don't have two friends to bring?",
+    question: "Want to do a trio but need help building your group?",
     answer:
       "Reach out first. We keep a list of folks looking for the same, and love matching people into standing trios that meet on a regular cadence. We'll connect you.",
   },

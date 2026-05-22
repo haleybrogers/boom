@@ -120,7 +120,7 @@ export const staticEvents: EventItem[] = [
     durationMin: 90,
     category: "soft-opening",
     description:
-      "Come for the Mat Class! Stay for matcha and a studio tour. Sign up for one of 15 slots to try out the new Gratz apparatus the day before we officially open.",
+      "Come for the Mat Class! Stay for matcha and a studio tour. Sign up for one of 10 spots to try out the new Gratz apparatus the day before we officially open.",
     shortDescription: "Mat class, matcha, and a peek at the Gratz apparatus.",
     location: "345 W Main St, Durham, NC",
     price: "Free",
@@ -131,4 +131,5 @@ export const staticEvents: EventItem[] = [
       href: "https://momence.com/Boomerang-Pilates/Mat-and-Matcha-%2B-Apparatus-Demos/136916030",
     },
   },
+  // (When more soft-opening events come, add them above.)
 ];
