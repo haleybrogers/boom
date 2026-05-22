@@ -28,7 +28,24 @@ type MomenceEvent = {
   isCancelled: boolean;
   isDeleted: boolean;
   published: boolean;
+  // Capacity-related fields (mirrors scheduleData.ts). null when the API
+  // doesn't compute or set them.
+  capacity?: number | null;
+  spotsRemaining?: number | null;
+  ticketsSold?: number | null;
+  allowWaitlist?: boolean;
 };
+
+// Conservative "is this event sold out right now?" check. Same logic
+// as scheduleData.ts isEventFull — only flag full when the API gives
+// us a hard signal, otherwise treat as open.
+function isMomenceEventFull(e: MomenceEvent): boolean {
+  if (typeof e.spotsRemaining === "number") return e.spotsRemaining <= 0;
+  if (typeof e.capacity === "number" && typeof e.ticketsSold === "number") {
+    return e.ticketsSold >= e.capacity;
+  }
+  return false;
+}
 
 // Studio address keywords. If a Momence event's location contains any of
 // these, the event auto-categorizes as soft-opening (lives in the
@@ -85,6 +102,8 @@ async function fetchMomenceEvents(): Promise<EventItem[]> {
           price: e.fixedPrice && e.fixedPrice > 0 ? `$${e.fixedPrice}` : "Free",
           action: { type: "external" as const, href: e.link, label: "Reserve a Spot" },
           residentsOnly: detectResidentsOnly(location),
+          isFull: isMomenceEventFull(e),
+          allowsWaitlist: e.allowWaitlist === true,
         };
       });
   } catch {

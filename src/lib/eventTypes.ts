@@ -43,4 +43,10 @@ export type EventItem = {
   residentsOnly?: {      // For pop-ups at private apartment complexes
     building: string;    // Display name, e.g. "Cortland Bull City"
   };
+  // Capacity state from Momence. When isFull is true, the modal Book
+  // button swaps to "Class Full · Join Waitlist →" (if allowsWaitlist)
+  // or a muted "Sold Out" chip otherwise. Static events leave these
+  // undefined and stay bookable as normal.
+  isFull?: boolean;
+  allowsWaitlist?: boolean;
 };

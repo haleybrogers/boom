@@ -242,6 +242,11 @@ function EventCard({
             Residents Only
           </span>
         )}
+        {event.isFull && (
+          <span className="self-start text-[10px] tracking-[0.1em] uppercase border border-charcoal/30 text-charcoal bg-cream rounded-full px-2.5 py-1 mb-2 leading-none">
+            {event.allowsWaitlist ? "Waitlist Only" : "Sold Out"}
+          </span>
+        )}
         <div className="flex-1" />
         <div className="border-t border-charcoal/5 pt-3 mt-auto">
           <p className="text-sm text-muted mb-2">
@@ -400,7 +405,25 @@ function EventDetailModal({
                   RSVP to the Opening Party
                 </button>
               )}
-              {event.action.type === "external" && (
+              {event.action.type === "external" && event.isFull && !event.allowsWaitlist && (
+                <span
+                  className="w-full block text-center bg-cream border border-accent/30 text-accent text-sm tracking-widest uppercase px-8 py-3.5 cursor-default select-none"
+                  aria-disabled="true"
+                >
+                  Sold Out
+                </span>
+              )}
+              {event.action.type === "external" && event.isFull && event.allowsWaitlist && (
+                <a
+                  href={event.action.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-animated w-full block text-center bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
+                >
+                  Class Full · Join the Waitlist →
+                </a>
+              )}
+              {event.action.type === "external" && !event.isFull && (
                 <a
                   href={event.action.href}
                   target="_blank"
