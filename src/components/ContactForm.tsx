@@ -28,6 +28,11 @@ type ContactFormProps = {
   // When true, show an optional Phone number field. Used on "Stay in the
   // Loop" so we can text people about openings, classes, etc.
   showPhone?: boolean;
+  // When true, the Phone field is required (HTML required + label drops
+  // the "(optional)" hint). Pairs with showPhone — has no effect on its
+  // own. Used on the founding early-access form where SMS is the whole
+  // point of signing up.
+  requirePhone?: boolean;
   // When true, show a "How many guests?" number input. Used on the
   // opening-party RSVP so we know headcount. Stored in the message body
   // since Momence doesn't have a dedicated guest-count field.
@@ -57,6 +62,7 @@ export default function ContactForm({
   source = "contact",
   showMessage = true,
   showPhone = false,
+  requirePhone = false,
   showGuests = false,
   showRtlFields = false,
   onSuccess,
@@ -202,7 +208,10 @@ export default function ContactForm({
       {showPhone && (
         <div>
           <label htmlFor="cf-phone" className="block text-sm tracking-widest uppercase text-muted mb-2">
-            Phone <span className="text-charcoal/30 normal-case tracking-normal">(optional)</span>
+            Phone
+            {!requirePhone && (
+              <span className="text-charcoal/30 normal-case tracking-normal"> (optional)</span>
+            )}
           </label>
           <input
             type="tel"
@@ -213,6 +222,7 @@ export default function ContactForm({
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             disabled={loading}
+            required={requirePhone}
             className="w-full px-0 py-2 bg-transparent border-b border-charcoal/20 text-charcoal text-base placeholder-charcoal/30 focus:outline-none focus:border-accent transition-colors"
             placeholder="(555) 555-5555"
           />

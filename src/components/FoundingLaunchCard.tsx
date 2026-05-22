@@ -163,6 +163,7 @@ export default function FoundingLaunchCard() {
             sourceId={204540}
             showMessage={false}
             showPhone={true}
+            requirePhone={true}
             onSuccess={() => setSubmitted(true)}
           />
         </div>
