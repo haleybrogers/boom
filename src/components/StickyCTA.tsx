@@ -23,11 +23,11 @@ export default function StickyCTA() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Hard nav: /schedule needs full reload. Momence plugin state survives soft nav.
-  // On /founding itself the founding CTA would be a no-op, so push to /packs (the buy path).
+  // Hide the sticky CTA on /founding itself — the page already has the
+  // slim early-access strip + the tier cards, so a "Lock in Founding
+  // Rate" overlay was just clutter.
   const onFoundingPage = pathname === "/founding";
-  const foundingHref = onFoundingPage ? "/packs" : "/founding";
-  const foundingLabel = onFoundingPage ? "Lock in Founding Rate" : "Become a Founding Member";
+  if (onFoundingPage) return null;
 
   return (
     <div
@@ -39,13 +39,13 @@ export default function StickyCTA() {
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <a
-        href={SHOW_FOUNDING && !isFridayEvening ? foundingHref : "/schedule"}
+        href={SHOW_FOUNDING && !isFridayEvening ? "/founding" : "/schedule"}
         className="btn-animated flex items-center gap-2.5 bg-accent text-white text-sm tracking-widest uppercase px-5 py-3.5 shadow-lg hover:bg-accent/90 transition-colors"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
-        {isFridayEvening ? "You survived. Come move." : SHOW_FOUNDING ? foundingLabel : "Book a Class"}
+        {isFridayEvening ? "You survived. Come move." : SHOW_FOUNDING ? "Become a Founding Member" : "Book a Class"}
       </a>
     </div>
   );

@@ -156,7 +156,7 @@ export default function FoundingLaunchCard() {
         <div className="text-center pt-3">
           <p className="text-sm text-muted mb-4 leading-relaxed">
             <strong className="text-charcoal">15 spots per tier.</strong>{" "}
-            Newsletter folks get 24-hour early access.
+            Sign up for alerts to get the link 24 hours early.
           </p>
           <button
             type="button"
