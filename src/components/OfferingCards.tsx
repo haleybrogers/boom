@@ -21,6 +21,12 @@ type Offering = {
   linkLabel: string;
   external?: boolean;
   photoScale?: string;
+  // Tailwind object-position class — used to shift the visible crop
+  // window inside the photo. E.g. "object-right" pushes the visible
+  // portion to the right side of the image, cropping content from the
+  // left. The apparatus photo uses this to drop the tower frame on the
+  // left edge out of view.
+  photoPosition?: string;
   // When set, renders a multi-price block (e.g. Trio $45 · Duet $65 ·
   // Private $110) with all dollar figures at the same serif size, instead
   // of the default "big startingPrice + small priceNote" pattern. Used on
@@ -60,6 +66,7 @@ const offerings: Offering[] = [
     link: "/privates",
     linkLabel: "Book a Session",
     photoScale: "scale-[1.85]",
+    photoPosition: "object-right",
   },
   {
     title: "Privates, Duets & Trios",
@@ -146,7 +153,7 @@ export default async function OfferingCards() {
                 alt={offering.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className={`object-cover grayscale hover:grayscale-0 ${offering.photoScale || "scale-[1.15]"} transition-all duration-700 ease-in-out`}
+                className={`object-cover grayscale hover:grayscale-0 ${offering.photoScale || "scale-[1.15]"} ${offering.photoPosition || ""} transition-all duration-700 ease-in-out`}
               />
             </Reveal>
 
