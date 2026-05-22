@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import FoundingCountdown from "@/components/FoundingCountdown";
 import PackPickerModal from "@/components/PackPickerModal";
 import { SHOW_FOUNDING } from "@/lib/flags";
 import {
@@ -80,12 +79,11 @@ export default async function Packs() {
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
                 Founding Member.
               </h2>
-              <p className="text-muted text-base leading-relaxed max-w-xl mx-auto mb-5">
+              <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
                 25% off membership for life, as long as it stays active. 15
                 spots per tier. Plus opening night, the welcome kit, intro
                 privates bundle, and a bring-a-friend pass.
               </p>
-              <FoundingCountdown showLabel={false} />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">

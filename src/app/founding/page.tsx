@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import ContactFormModal from "@/components/ContactFormModal";
-import FoundingCountdown from "@/components/FoundingCountdown";
 import FoundingLaunchCard from "@/components/FoundingLaunchCard";
 import Reveal from "@/components/Reveal";
 import { SHOW_FOUNDING, isFoundingLaunched, FOUNDING_LAUNCH } from "@/lib/flags";
@@ -85,12 +84,17 @@ export default async function Founding() {
         </div>
       </section>
 
-      {/* Countdown band. Small, urgent, sits just under the hero */}
-      <section className="bg-cream/60 border-y border-accent/10 py-8">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <FoundingCountdown showLabel={true} />
-        </div>
-      </section>
+      {/* Launch card. Sits just under the hero pre-launch — countdown
+          to founding-drop day + early-access opt-in. Auto-disappears
+          once launch passes (component returns null). Replaced the old
+          "Founding Pricing Ends July 13" deadline band that lived here. */}
+      {!isFoundingLaunched() && (
+        <section className="bg-warm-white pt-12 pb-4 lg:pt-16">
+          <div className="max-w-5xl mx-auto px-6">
+            <FoundingLaunchCard />
+          </div>
+        </section>
+      )}
 
       {/* The story. Intimate photo + the why */}
       <section className="py-20 lg:py-28">
@@ -199,16 +203,6 @@ export default async function Founding() {
           </Reveal>
         </div>
       </section>
-
-      {/* Launch gate. Pre-launch: countdown + SMS opt-in instead of the
-          live pricing cards. Post-launch: pricing cards link to Momence. */}
-      {!isFoundingLaunched() && (
-        <section className="bg-warm-white py-16 lg:py-20">
-          <div className="max-w-6xl mx-auto px-6">
-            <FoundingLaunchCard />
-          </div>
-        </section>
-      )}
 
       {/* Pricing cards. Dynamic from Momence. Render only tiers that actually
           have a founding pair in Momence; featured = middle tier when present.
