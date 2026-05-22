@@ -85,39 +85,30 @@ export default async function Founding() {
       </section>
 
 
-      {/* Mat photo + pricing intro */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal className="flex flex-col md:flex-row-reverse gap-10 md:gap-16 items-center">
-            <div className="relative w-full md:w-1/2 aspect-[4/5] overflow-hidden">
-              <Image
-                src="/photo-founding-mat.jpg"
-                alt="Mat class at Boomerang Pilates"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="w-full md:w-1/2">
-              <p className="text-sm tracking-widest uppercase text-accent mb-4">
-                The pricing
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
-                25% off mat. For life.
-              </h2>
-              <p className="text-muted text-base leading-relaxed mb-4">
-                Three tiers. Pick the one that matches how often you&apos;ll
-                actually show up. Your founding rate locks in the moment you
-                join and never goes up, as long as your membership stays
-                active.
-              </p>
-              <p className="text-muted text-base leading-relaxed">
-                Three-month commitment to start. Up to four unused classes
-                roll over each month. Mat only. Apparatus, privates, and
-                duets have their own pricing.
-              </p>
-            </div>
-          </Reveal>
+      {/* Pricing header. Photo block (was /photo-founding-mat.jpg + a
+          side-by-side intro) intentionally pulled. Headline now lives
+          here as the centered header for the tier-cards section below.
+          Kept the photo file on disk so it's a one-line swap to bring
+          back if we ever want it again. */}
+      <section className="pt-20 lg:pt-28 pb-8 lg:pb-10">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-sm tracking-widest uppercase text-accent mb-4">
+            The pricing
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-6">
+            25% off mat. For life.
+          </h2>
+          <p className="text-muted text-base leading-relaxed mb-3">
+            Three tiers. Pick the one that matches how often you&apos;ll
+            actually show up. Your founding rate locks in the moment you
+            join and never goes up, as long as your membership stays
+            active.
+          </p>
+          <p className="text-muted text-base leading-relaxed">
+            Three-month commitment to start. Up to four unused classes
+            roll over each month. Mat only. Apparatus, privates, and
+            duets have their own pricing.
+          </p>
         </div>
       </section>
 
