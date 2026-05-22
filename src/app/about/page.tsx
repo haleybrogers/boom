@@ -65,12 +65,11 @@ export default function About() {
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 Emilie came to Pilates through chronic neck and back pain.
-                Never into fitness before &mdash; and then the method
-                rewired her relationship with her own body. The
-                &ldquo;ah-ha&rdquo; was being able to actually feel strong,
-                supported, and connected, for the first time. She founded
-                Boomerang to bring that feeling to as many people as she
-                can.
+                Never into fitness before. Then the method rewired her
+                relationship with her own body. The &ldquo;ah-ha&rdquo;
+                was being able to actually feel strong, supported, and
+                connected, for the first time. She founded Boomerang to
+                bring that feeling to as many people as she can.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 She completed her 600-hour comprehensive classical Pilates
@@ -83,7 +82,7 @@ export default function About() {
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 By day, Emilie teaches elementary art in Durham Public
-                Schools &mdash; an educator through and through. She brings
+                Schools, an educator through and through. She brings
                 patience, openness, and a little playfulness to every
                 session, in the classroom or the studio. Boomerang has been
                 a long time coming. She can&apos;t wait to welcome you in.
@@ -114,8 +113,8 @@ export default function About() {
                 Co-Founder / Studio Manager
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Annie grew up a dancer. The flexibility came easy &mdash;
-                what she didn&apos;t know was that it came from hypermobile
+                Annie grew up a dancer. The flexibility came easy. What
+                she didn&apos;t know was that it came from hypermobile
                 Ehlers-Danlos Syndrome. Living with hEDS meant a body she
                 could push past its limits without realizing she&apos;d
                 pushed too far, and she came up believing chronic pain was
@@ -126,9 +125,9 @@ export default function About() {
                 Appalachian State changed that. The method gave her a way
                 to feel her body from the inside out, and the
                 &ldquo;ah-ha&rdquo; was simple: movement is meant to feel
-                good. Pilates has stayed with her since &mdash; through
-                hEDS days she can&apos;t predict, as a system that lets
-                her listen, trust, and rebuild.
+                good. Pilates has stayed with her since. It&apos;s a system
+                that lets her listen, trust, and rebuild through hEDS days
+                she can&apos;t predict.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 Annie earned a BA in Dance Studies and her 600-hour
@@ -136,9 +135,9 @@ export default function About() {
                 State, trained in the same lineage as Emilie under Marianne
                 Adams and Rebecca Quinn. She&apos;s passionate about
                 keeping Joseph Pilates&apos; work intact while teaching it
-                through a modern lens &mdash; biomechanics, inclusivity,
-                and the six principles at its core: breath, control, center,
-                concentration, precision, and flow.
+                through a modern lens of biomechanics and inclusivity,
+                anchored in the six classical principles: breath, control,
+                center, concentration, precision, and flow.
               </p>
               <Link
                 href="/privates"
