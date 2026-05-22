@@ -90,18 +90,20 @@ export default function FoundingLaunchCard() {
     <div className="bg-accent/5 border border-accent/30 rounded-sm p-8 sm:p-10 max-w-3xl mx-auto">
       <div className="text-center mb-7">
         <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
-          Almost open
+          Early Access · Founding Drop
         </p>
         <h2 className="font-serif text-3xl sm:text-4xl font-light text-charcoal leading-tight mb-3">
-          Founding memberships launch{" "}
+          Founding memberships drop{" "}
           <span className="whitespace-nowrap">
             {fmtLaunchDate(FOUNDING_LAUNCH)}
           </span>
           .
         </h2>
-        <p className="text-sm text-muted">
-          {fmtLaunchTime(FOUNDING_LAUNCH)} sharp. Get a text the moment they go
-          live — head start before we open to everyone.
+        <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
+          Only <strong className="text-charcoal">45 spots</strong> — 15 per
+          tier. Once they&apos;re claimed, they&apos;re gone. Get on the list
+          below and we&apos;ll send the link straight to your inbox at{" "}
+          {fmtLaunchTime(FOUNDING_LAUNCH)}, ahead of everyone else.
         </p>
       </div>
 
@@ -132,23 +134,32 @@ export default function FoundingLaunchCard() {
         ))}
       </div>
 
-      {/* SMS opt-in. Reuses ContactForm with showPhone, no message. */}
+      {/* Early-access opt-in. Reuses ContactForm — email required, phone
+          optional (so Emilie can text the broadcast on launch morning if
+          she wants, too). Submissions tagged "founding-early-access" so
+          they're easy to filter inside Momence for the broadcast. */}
       {submitted ? (
         <div className="text-center py-6 border-t border-accent/20">
           <p className="font-serif text-xl font-light text-charcoal mb-2">
-            You&apos;re on the list.
+            You&apos;re in.
           </p>
-          <p className="text-sm text-muted">
-            We&apos;ll text you the second founding memberships go live.
+          <p className="text-sm text-muted leading-relaxed max-w-sm mx-auto">
+            Watch your inbox {fmtLaunchDate(FOUNDING_LAUNCH).split(",")[0]} at{" "}
+            {fmtLaunchTime(FOUNDING_LAUNCH)} — your early-access link will be
+            waiting.
           </p>
         </div>
       ) : (
         <div className="border-t border-accent/20 pt-7">
-          <p className="text-center text-sm text-charcoal/70 mb-4 font-medium">
-            Get a text when founding goes live.
+          <p className="text-center text-sm text-charcoal/80 mb-1 font-medium">
+            Want first dibs?
+          </p>
+          <p className="text-center text-xs text-muted mb-5">
+            Drop your info and we&apos;ll send the link the moment founding
+            opens, before we announce it anywhere else.
           </p>
           <ContactForm
-            source="founding-sms-waitlist"
+            source="founding-early-access"
             sourceId={204540}
             showMessage={false}
             showPhone={true}
