@@ -3,7 +3,17 @@ import { NextRequest, NextResponse } from "next/server";
 const SESSION_TOKEN = process.env.SESSION_TOKEN || "auth-ok-91f3c2";
 const COOKIE_NAME = "site-auth";
 
+// Temporary kill-switch for the password gate. Set to true to require
+// the password again. Currently OFF for Stripe / Momence integration
+// setup — those services need to hit pages without being blocked.
+const PASSWORD_GATE_ENABLED = false;
+
 export function middleware(request: NextRequest) {
+  // Gate fully disabled — let everything through.
+  if (!PASSWORD_GATE_ENABLED) {
+    return NextResponse.next();
+  }
+
   const { pathname } = request.nextUrl;
 
   // Allow the password page, the auth API, static/_next assets, and any public file (images, fonts, etc.)
