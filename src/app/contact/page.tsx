@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
+import { PRIVATES_BOOKABLE } from "@/lib/flags";
 
 export const metadata = {
   title: "Contact",
@@ -28,16 +30,28 @@ export default function Contact() {
 
         {/* Tiny redirect for people who really just want to book a session */}
         <div className="text-center mb-14">
-          <p className="text-sm text-muted">
-            <a
-              href={MOMENCE_APPOINTMENTS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent hover:text-accent/70 transition-colors underline underline-offset-4 decoration-accent/40 hover:decoration-accent"
-            >
-              Book a session →
-            </a>
-          </p>
+          {PRIVATES_BOOKABLE ? (
+            <p className="text-sm text-muted">
+              <a
+                href={MOMENCE_APPOINTMENTS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/70 transition-colors underline underline-offset-4 decoration-accent/40 hover:decoration-accent"
+              >
+                Book a session →
+              </a>
+            </p>
+          ) : (
+            <p className="text-sm text-muted">
+              Private bookings open when the studio doors do.{" "}
+              <Link
+                href="/privates"
+                className="text-accent hover:text-accent/70 transition-colors underline underline-offset-4 decoration-accent/40 hover:decoration-accent"
+              >
+                See what&apos;s coming →
+              </Link>
+            </p>
+          )}
         </div>
 
         {/* Lead form + photo. IG + address live in the footer. No need to repeat here. */}

@@ -32,3 +32,10 @@ export const FOUNDING_LAUNCH = new Date("2026-05-27T09:00:00-04:00");
 export function isFoundingLaunched(): boolean {
   return Date.now() >= FOUNDING_LAUNCH.getTime();
 }
+
+// PRIVATES_BOOKABLE: gates direct-link bookings for privates, duets,
+// and trios. While false, every "Book a Session" / "Book a Private" CTA
+// renders as a disabled "Booking opens soon" state. Flip to true once
+// Emilie has appointment-reservation set up cleanly in Momence — every
+// CTA goes live in the same beat.
+export const PRIVATES_BOOKABLE = false;

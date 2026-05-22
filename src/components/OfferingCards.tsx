@@ -8,6 +8,7 @@ import {
   groupApparatus,
   findDropIn,
 } from "@/lib/momence";
+import { PRIVATES_BOOKABLE } from "@/lib/flags";
 
 type Offering = {
   title: string;
@@ -77,9 +78,12 @@ const offerings: Offering[] = [
     classes: [],
     startingPrice: "$60",
     priceNote: "duets per person · privates $110",
-    link: MOMENCE_APPOINTMENTS_URL,
-    linkLabel: "Book a Session",
-    external: true,
+    // Pre-launch: link out to /privates so the user sees the "Booking
+    // opens soon" treatment in context with the pricing + duet/trio
+    // explanation. Post-launch: switch to direct Momence link.
+    link: PRIVATES_BOOKABLE ? MOMENCE_APPOINTMENTS_URL : "/privates",
+    linkLabel: PRIVATES_BOOKABLE ? "Book a Session" : "Booking Opens Soon",
+    external: PRIVATES_BOOKABLE,
   },
 ];
 

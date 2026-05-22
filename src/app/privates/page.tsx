@@ -5,6 +5,7 @@ import {
   groupApparatus,
   MOMENCE_APPOINTMENTS_URL,
 } from "@/lib/momence";
+import { PRIVATES_BOOKABLE } from "@/lib/flags";
 
 export const metadata = {
   title: "Privates, Duets & Trios",
@@ -62,17 +63,41 @@ export default async function Privates() {
                 </div>
               </div>
 
-              <a
-                href={MOMENCE_APPOINTMENTS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-              >
-                Book a Session
-              </a>
-              <p className="text-sm text-muted mt-3">
-                Privates, duets, and trios all bookable here. Opens in a new tab.
-              </p>
+              {PRIVATES_BOOKABLE ? (
+                <>
+                  <a
+                    href={MOMENCE_APPOINTMENTS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+                  >
+                    Book a Session
+                  </a>
+                  <p className="text-sm text-muted mt-3">
+                    Privates, duets, and trios all bookable here. Opens in a new tab.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <span
+                    className="inline-block bg-cream border border-accent/30 text-accent text-sm tracking-widest uppercase px-8 py-3.5 cursor-default select-none"
+                    aria-disabled="true"
+                  >
+                    Booking Opens Soon
+                  </span>
+                  <p className="text-sm text-muted mt-3">
+                    Privates, duets, and trios open for booking when the
+                    studio doors do. Email{" "}
+                    <a
+                      href="mailto:hello@boomerangpilatesnc.com"
+                      className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+                    >
+                      hello@boomerangpilatesnc.com
+                    </a>{" "}
+                    if you want first dibs.
+                  </p>
+                </>
+              )}
             </div>
           </div>
         </div>
