@@ -59,10 +59,10 @@ const offerings: Offering[] = [
     priceNote: "",
     link: "/privates",
     linkLabel: "Book a Session",
-    // Was scale-[1.85] (aggressive zoom on the equipment); pulled back
-    // to scale-[1.0] so the full body is visible — matches the reference
-    // crop Haley flagged on 5/19.
-    photoScale: "scale-[1.0]",
+    // Heavy zoom so the figure fills the frame instead of disappearing
+    // into wood-floor / wall negative space. scale-[2.2] crops in tight
+    // on the body + reformer, drops most of the floor.
+    photoScale: "scale-[2.2]",
   },
   {
     title: "Privates, Duets & Trios",
