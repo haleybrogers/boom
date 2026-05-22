@@ -440,7 +440,7 @@ function ClassCard({
         {displayLocation(cls.location)}
       </p>
       {cls.residentsOnly && (
-        <span className="self-start mt-2 text-[9px] tracking-[0.25em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2 py-0.5">
+        <span className="self-start mt-2 text-[9px] tracking-[0.1em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2.5 py-1 leading-none">
           Residents Only
         </span>
       )}
@@ -555,7 +555,7 @@ function MonthList({
                           {displayLocation(c.location)}
                         </p>
                         {c.residentsOnly && (
-                          <span className="inline-block mt-2 text-[10px] tracking-[0.25em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2 py-0.5">
+                          <span className="inline-block mt-2 text-[10px] tracking-[0.1em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2.5 py-1 leading-none">
                             Residents Only
                           </span>
                         )}

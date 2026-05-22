@@ -238,7 +238,7 @@ function EventCard({
           </p>
         )}
         {event.residentsOnly && (
-          <span className="self-start text-[10px] tracking-[0.25em] uppercase border border-accent/30 text-accent bg-accent/5 rounded-full px-2.5 py-1 mb-2">
+          <span className="self-start text-[10px] tracking-[0.1em] uppercase border border-accent/30 text-accent bg-accent/5 rounded-full px-2.5 py-1 mb-2 leading-none">
             Residents Only
           </span>
         )}
