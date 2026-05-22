@@ -70,7 +70,7 @@ function fmtTime(d: Date) {
 
 // ----------------------- main view -----------------------
 
-type ViewMode = "week" | "day";
+type ViewMode = "week" | "month";
 
 export default function ScheduleView({
   classes,
@@ -90,6 +90,30 @@ export default function ScheduleView({
     () => Array.from({ length: 7 }, (_, i) => addDays(weekStart, i)),
     [weekStart]
   );
+
+  // Days in the month containing selectedDay. Used by the Month list
+  // view to know which days to look up + which to show as headers.
+  const monthDays = useMemo(() => {
+    const first = new Date(
+      selectedDay.getFullYear(),
+      selectedDay.getMonth(),
+      1
+    );
+    const last = new Date(
+      selectedDay.getFullYear(),
+      selectedDay.getMonth() + 1,
+      0
+    );
+    const arr: Date[] = [];
+    for (
+      let d = new Date(first);
+      d <= last;
+      d = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1)
+    ) {
+      arr.push(d);
+    }
+    return arr;
+  }, [selectedDay]);
 
   // Index classes by yyyy-mm-dd (in the studio's local timezone) so each
   // day column / day list can grab its own.
@@ -112,33 +136,41 @@ export default function ScheduleView({
   const dayKey = (d: Date) =>
     d.toLocaleDateString("en-CA", { timeZone: TZ });
 
-  // Step size for prev/next: a full week in desktop week mode, one day
-  // otherwise (desktop day mode + any mobile, since mobile only renders
-  // day view). We re-check the media query inside the handler so the
-  // toggle's UI state and the user's viewport stay in sync — the toggle
-  // is hidden on mobile, so viewMode there might be stale at "week".
+  // Step size for prev/next.
+  //   Desktop week mode → ±1 week
+  //   Desktop month mode / any mobile → ±1 month
+  // Mobile always renders the Month list (toggle is hidden there).
   const shiftBy = (n: number) => {
     const isMobile =
       typeof window !== "undefined" &&
       window.matchMedia("(max-width: 767px)").matches;
-    const step = viewMode === "week" && !isMobile ? n * 7 : n;
-    setSelectedDay(addDays(selectedDay, step));
+    if (viewMode === "week" && !isMobile) {
+      setSelectedDay(addDays(selectedDay, n * 7));
+    } else {
+      const next = new Date(selectedDay);
+      next.setMonth(next.getMonth() + n);
+      setSelectedDay(next);
+    }
   };
 
   const weekLabel = `${fmtMonthDay(days[0])} – ${fmtMonthDay(days[6])}`;
-  const dayLabel = selectedDay.toLocaleDateString("en-US", {
-    weekday: "long",
+  const monthLabel = selectedDay.toLocaleDateString("en-US", {
     month: "long",
-    day: "numeric",
+    year: "numeric",
     timeZone: TZ,
   });
-  const isToday = sameYMD(selectedDay, today);
   const isThisWeek = sameYMD(weekStart, startOfWeek(today));
+  const isThisMonth =
+    selectedDay.getFullYear() === today.getFullYear() &&
+    selectedDay.getMonth() === today.getMonth();
   const totalClassesThisWeek = days.reduce(
     (acc, d) => acc + (classesByDay.get(dayKey(d))?.length || 0),
     0
   );
-  const todayClasses = classesByDay.get(dayKey(selectedDay))?.length || 0;
+  const totalClassesThisMonth = monthDays.reduce(
+    (acc, d) => acc + (classesByDay.get(dayKey(d))?.length || 0),
+    0
+  );
 
   return (
     <div>
@@ -167,31 +199,31 @@ export default function ScheduleView({
             </svg>
           </button>
           <div className="ml-3">
-            {/* Label adapts: week range in week mode (and mobile renders
-                a day label via responsive class swap below), day name in
-                day mode. */}
+            {/* Label adapts: week range in desktop week mode, month label
+                in desktop month mode and on mobile (which always shows
+                the month list). */}
             <p className="hidden md:block font-serif text-2xl md:text-3xl font-light text-charcoal leading-tight">
-              {viewMode === "week" ? weekLabel : dayLabel}
+              {viewMode === "week" ? weekLabel : monthLabel}
             </p>
             <p className="md:hidden font-serif text-2xl font-light text-charcoal leading-tight">
-              {dayLabel}
+              {monthLabel}
             </p>
             <p className="text-xs tracking-[0.25em] uppercase text-muted mt-1">
               <span className="hidden md:inline">
                 {viewMode === "week"
                   ? `${isThisWeek ? "This week" : "Week of " + fmtMonthDay(days[0])} · ${totalClassesThisWeek} ${totalClassesThisWeek === 1 ? "class" : "classes"}`
-                  : `${isToday ? "Today" : fmtWeekday(selectedDay, "long")} · ${todayClasses} ${todayClasses === 1 ? "class" : "classes"}`}
+                  : `${isThisMonth ? "This month" : monthLabel} · ${totalClassesThisMonth} ${totalClassesThisMonth === 1 ? "class" : "classes"}`}
               </span>
               <span className="md:hidden">
-                {isToday ? "Today" : fmtMonthDay(selectedDay)}
+                {isThisMonth ? "This month" : monthLabel}
                 {" · "}
-                {todayClasses} {todayClasses === 1 ? "class" : "classes"}
+                {totalClassesThisMonth} {totalClassesThisMonth === 1 ? "class" : "classes"}
               </span>
             </p>
           </div>
         </div>
         {((viewMode === "week" && !isThisWeek) ||
-          (viewMode === "day" && !isToday)) && (
+          (viewMode === "month" && !isThisMonth)) && (
           <button
             type="button"
             onClick={() => setSelectedDay(today)}
@@ -208,7 +240,7 @@ export default function ScheduleView({
           Day = one day at a time with a day picker. */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div className="hidden md:inline-flex bg-cream border border-charcoal/10 rounded-full p-0.5">
-          {(["week", "day"] as const).map((mode) => (
+          {(["week", "month"] as const).map((mode) => (
             <button
               key={mode}
               type="button"
@@ -243,8 +275,8 @@ export default function ScheduleView({
         </div>
       </div>
 
-      {/* Desktop: respects the toggle. Week = 7-column grid, Day = a
-          single big day view (BigDay component). */}
+      {/* Desktop: respects the toggle. Week = 7-column grid, Month =
+          chronological list grouped by day header. */}
       <div className="hidden md:block">
         {viewMode === "week" ? (
           <WeekGrid
@@ -254,20 +286,23 @@ export default function ScheduleView({
             onSelect={setActiveClass}
           />
         ) : (
-          <BigDay
-            day={selectedDay}
-            classes={classesByDay.get(dayKey(selectedDay)) || []}
+          <MonthList
+            monthDays={monthDays}
+            classesByDay={classesByDay}
+            today={today}
             onSelect={setActiveClass}
           />
         )}
       </div>
 
-      {/* Mobile: 7-column week grid doesn't fit a phone, so always
-          render the single big day view regardless of toggle state. */}
+      {/* Mobile: always the month list. 7-column week grid is unusable
+          on a phone, so we collapse to the chronological list regardless
+          of toggle state. */}
       <div className="md:hidden">
-        <BigDay
-          day={selectedDay}
-          classes={classesByDay.get(dayKey(selectedDay)) || []}
+        <MonthList
+          monthDays={monthDays}
+          classesByDay={classesByDay}
+          today={today}
           onSelect={setActiveClass}
         />
       </div>
@@ -407,91 +442,121 @@ function ClassCard({
   );
 }
 
-// ----------------------- big day view -----------------------
+// ----------------------- month list -----------------------
 
-// Single-day rendering used by both desktop "Day" mode and the entire
-// mobile experience. No tabs, no day-pickers — just a generous
-// vertical list of that day's classes. Navigation comes from the
-// prev/next arrows in the top nav (which step by one day in this view).
-function BigDay({
-  day,
-  classes,
+// Chronological list of the visible month's classes, grouped by day
+// header. Empty days are skipped so the list stays focused on
+// "actually-scheduled stuff" rather than scrolling past blanks. Used on
+// both desktop (when Month is selected) and on every mobile viewport.
+function MonthList({
+  monthDays,
+  classesByDay,
+  today,
   onSelect,
 }: {
-  day: Date;
-  classes: ScheduleClass[];
+  monthDays: Date[];
+  classesByDay: Map<string, ScheduleClass[]>;
+  today: Date;
   onSelect: (c: ScheduleClass) => void;
 }) {
-  if (classes.length === 0) {
+  const dayKey = (d: Date) =>
+    d.toLocaleDateString("en-CA", { timeZone: TZ });
+  const daysWithClasses = monthDays.filter(
+    (d) => (classesByDay.get(dayKey(d)) || []).length > 0
+  );
+
+  if (daysWithClasses.length === 0) {
     return (
       <div className="text-center py-16 text-muted border border-dashed border-charcoal/15 rounded-sm max-w-2xl mx-auto">
         <p className="font-serif text-lg text-charcoal mb-2">
-          No classes scheduled.
+          No classes this month.
         </p>
         <p className="text-sm">
-          Try the arrows above to look ahead, or switch to Week view to see the
-          spread.
+          Try the arrows above to peek into next month.
         </p>
       </div>
     );
   }
 
-  // Use the day param for any "today/not-today" hinting on this surface.
-  // We hand it through but currently the empty-state copy doesn't need it.
-  void day;
-
   return (
-    <ul className="space-y-3 max-w-2xl mx-auto">
-      {classes.map((c) => {
-        const start = new Date(c.startISO);
-        const end = new Date(c.endISO);
-        const style = CLASS_TYPE_STYLES[c.type];
+    <div className="max-w-3xl mx-auto space-y-8">
+      {daysWithClasses.map((d) => {
+        const dayClasses = classesByDay.get(dayKey(d)) || [];
+        const isToday = sameYMD(d, today);
         return (
-          <li key={c.id}>
-            <button
-              type="button"
-              onClick={() => onSelect(c)}
-              className="w-full text-left flex gap-5 p-5 rounded-sm transition-shadow hover:shadow-md"
-              style={{
-                background: style.bgSoft,
-                borderLeft: `4px solid ${style.border}`,
-              }}
-            >
-              <div className="shrink-0 w-24">
-                <p
-                  className="text-sm tracking-widest uppercase font-semibold leading-tight"
-                  style={{ color: style.text }}
-                >
-                  {fmtTime(start)}
-                </p>
-                <p className="text-[11px] tracking-widest uppercase text-muted mt-1">
-                  to {fmtTime(end)}
-                </p>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p
-                  className="text-[10px] tracking-[0.25em] uppercase mb-1.5"
-                  style={{ color: style.text }}
-                >
-                  {style.label}
-                </p>
-                <p className="font-serif text-lg text-charcoal leading-snug">
-                  {c.title}
-                </p>
-                <p className="text-xs text-charcoal/60 leading-snug mt-1.5 italic">
-                  {displayLocation(c.location)}
-                </p>
-                {c.residentsOnly && (
-                  <span className="inline-block mt-3 text-[10px] tracking-[0.25em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2 py-0.5">
-                    Residents Only
-                  </span>
-                )}
-              </div>
-            </button>
-          </li>
+          <div key={d.toISOString()}>
+            <div className="flex items-baseline justify-between mb-3 pb-2 border-b border-charcoal/10">
+              <h3
+                className={`font-serif text-xl font-light ${
+                  isToday ? "text-accent" : "text-charcoal"
+                }`}
+              >
+                {fmtWeekday(d, "long")}
+              </h3>
+              <p
+                className={`text-[11px] tracking-[0.25em] uppercase ${
+                  isToday ? "text-accent" : "text-muted"
+                }`}
+              >
+                {fmtMonthDay(d)}
+                {isToday ? " · Today" : ""}
+              </p>
+            </div>
+            <ul className="space-y-2.5">
+              {dayClasses.map((c) => {
+                const start = new Date(c.startISO);
+                const end = new Date(c.endISO);
+                const style = CLASS_TYPE_STYLES[c.type];
+                return (
+                  <li key={c.id}>
+                    <button
+                      type="button"
+                      onClick={() => onSelect(c)}
+                      className="w-full text-left flex gap-4 p-4 rounded-sm transition-shadow hover:shadow-md"
+                      style={{
+                        background: style.bgSoft,
+                        borderLeft: `4px solid ${style.border}`,
+                      }}
+                    >
+                      <div className="shrink-0 w-24">
+                        <p
+                          className="text-sm tracking-widest uppercase font-semibold leading-tight"
+                          style={{ color: style.text }}
+                        >
+                          {fmtTime(start)}
+                        </p>
+                        <p className="text-[11px] tracking-widest uppercase text-muted mt-1">
+                          to {fmtTime(end)}
+                        </p>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p
+                          className="text-[10px] tracking-[0.25em] uppercase mb-1"
+                          style={{ color: style.text }}
+                        >
+                          {style.label}
+                        </p>
+                        <p className="font-serif text-base text-charcoal leading-tight">
+                          {c.title}
+                        </p>
+                        <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
+                          {displayLocation(c.location)}
+                        </p>
+                        {c.residentsOnly && (
+                          <span className="inline-block mt-2 text-[10px] tracking-[0.25em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2 py-0.5">
+                            Residents Only
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         );
       })}
-    </ul>
+    </div>
   );
 }
 
