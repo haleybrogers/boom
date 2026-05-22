@@ -67,127 +67,31 @@ export default async function Packs() {
         </div>
       </div>
 
-      {/* 1. Founding Member. Only renders when SHOW_FOUNDING is on AND
-          there's at least one founding tier in Momence */}
+      {/* 1. Founding Member teaser. Slim promotional callout — pricing
+          + booking happen exclusively on /founding. (Previously this
+          section duplicated the founding pricing grid; we ripped that
+          out so there's only one place to read the details and book.) */}
       {SHOW_FOUNDING && tiers.some((t) => t.founding) && (
-        <div className="bg-accent/5 border-y border-accent/15 py-20 lg:py-24">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <span className="inline-block bg-white border border-accent/30 text-accent text-[11px] tracking-[0.3em] uppercase px-3 py-1 rounded-full mb-5">
-                Limited Time
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-                Founding Member.
-              </h2>
-              <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-                25% off membership for life, as long as it stays active. 15
-                spots per tier. Plus opening night, the welcome kit, intro
-                privates bundle, and a bring-a-friend pass.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-              {tiers
-                .filter((t) => t.founding)
-                .map((t) => {
-                  const founding = t.founding!;
-                  const regular = t.regular;
-                  const classes = classesPerMonth(t.key);
-                  const savings = regular && founding.price !== undefined && regular.price !== undefined
-                    ? regular.price - founding.price
-                    : null;
-                  const foundingPerClass =
-                    classes && founding.price !== undefined ? Math.ceil(founding.price / classes) : null;
-                  const regularPerClass =
-                    classes && regular?.price !== undefined ? Math.ceil(regular.price / classes) : null;
-                  const isFeatured = t.key === featuredKey;
-                  return (
-                    <a
-                      key={t.key}
-                      href={founding.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
-                        isFeatured
-                          ? "border-2 border-accent/50 shadow-sm"
-                          : "border border-charcoal/10 hover:border-accent/30"
-                      }`}
-                    >
-                      {isFeatured && (
-                        <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-3">
-                          Most popular
-                        </p>
-                      )}
-                      <h3 className="font-serif text-xl font-light text-charcoal mb-1">
-                        {tierDisplayName(t)}
-                      </h3>
-                      {tierTagline(t.key) && (
-                        <p className="text-sm text-muted mb-1">{tierTagline(t.key)}</p>
-                      )}
-                      <p className="text-[11px] tracking-widest uppercase text-muted mb-5">
-                        Monthly Membership
-                      </p>
-
-                      <div className="border-t border-charcoal/5 pt-4 mb-2">
-                        <p className="text-[11px] tracking-widest uppercase text-accent mb-1">
-                          Founding
-                        </p>
-                        <p className="font-serif text-3xl font-light text-charcoal">
-                          ${founding.price}
-                          <span className="text-sm text-muted font-sans">/month</span>
-                        </p>
-                        {foundingPerClass !== null && (
-                          <p className="text-sm text-muted mt-0.5">
-                            ~${foundingPerClass}/class
-                          </p>
-                        )}
-                        {savings !== null && savings > 0 && (
-                          <p className="text-sm text-accent font-medium mt-1">
-                            Save ${savings}/month
-                          </p>
-                        )}
-                      </div>
-
-                      {regular && (
-                        <div className="pt-3 mb-5">
-                          <p className="text-[11px] tracking-widest uppercase text-muted mb-1">
-                            Regular
-                          </p>
-                          <p className="font-serif text-lg font-light text-muted">
-                            <span className="line-through decoration-accent/50 decoration-1">
-                              ${regular.price}
-                            </span>
-                            <span className="text-sm text-muted font-sans">/month</span>
-                          </p>
-                          {regularPerClass !== null && (
-                            <p className="text-sm text-muted/80 mt-0.5">
-                              ~${regularPerClass}/class
-                            </p>
-                          )}
-                        </div>
-                      )}
-
-                      <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                        <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                          Lock in this rate
-                        </span>
-                        <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                          →
-                        </span>
-                      </div>
-                    </a>
-                  );
-                })}
-            </div>
-
-            <div className="text-center">
-              <Link
-                href="/founding"
-                className="text-sm tracking-widest uppercase text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
-              >
-                See full founding details →
-              </Link>
-            </div>
+        <div className="bg-accent/5 border-y border-accent/15 py-16 lg:py-20">
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <span className="inline-block bg-white border border-accent/30 text-accent text-[11px] tracking-[0.3em] uppercase px-3 py-1 rounded-full mb-5">
+              Limited Time
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
+              Want 25% off mat. For life?
+            </h2>
+            <p className="text-muted text-base leading-relaxed max-w-xl mx-auto mb-8">
+              Check out our founding memberships. Just 45 spots total — 15
+              per tier. Locked-in rate as long as your membership stays
+              active, plus opening night, a welcome kit, an intro privates
+              bundle, and a bring-a-friend pass for your first three months.
+            </p>
+            <Link
+              href="/founding"
+              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              See Founding Memberships →
+            </Link>
           </div>
         </div>
       )}

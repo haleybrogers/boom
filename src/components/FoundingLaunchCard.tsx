@@ -154,9 +154,11 @@ export default function FoundingLaunchCard() {
           <p className="text-center text-sm text-charcoal/80 mb-1 font-medium">
             Want first dibs?
           </p>
-          <p className="text-center text-xs text-muted mb-5">
+          <p className="text-center text-xs text-muted mb-5 max-w-md mx-auto leading-relaxed">
             Drop your info and we&apos;ll send the link the moment founding
-            opens, before we announce it anywhere else.
+            opens. <strong className="text-charcoal">People on the list get
+            a 24-hour head start</strong> before we announce it anywhere
+            else.
           </p>
           <ContactForm
             source="founding-early-access"
