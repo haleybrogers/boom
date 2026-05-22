@@ -12,7 +12,7 @@
 //   RESEND_API_KEY   API key from resend.com dashboard
 //
 // Optional env vars (with defaults):
-//   NOTIFY_TO        recipient (defaults to emilie@boomerangnc.com)
+//   NOTIFY_TO        recipient (defaults to emilie@boomerangpilatesnc.com)
 //   NOTIFY_FROM      sender (defaults to Resend's "onboarding@resend.dev"
 //                    which only works if NOTIFY_TO is verified in Resend.
 //                    Swap to a verified domain sender like
@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true, sent: false, reason: "no-api-key" });
   }
 
-  const to = process.env.NOTIFY_TO || "emilie@boomerangnc.com";
+  const to = process.env.NOTIFY_TO || "emilie@boomerangpilatesnc.com";
   const from = process.env.NOTIFY_FROM || "Boomerang Pilates <onboarding@resend.dev>";
 
   const { subject, html, text } = buildEmail(body);
