@@ -98,16 +98,11 @@ export default async function Founding() {
           <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-6">
             25% off mat. For life.
           </h2>
-          <p className="text-muted text-base leading-relaxed mb-3">
+          <p className="text-muted text-base leading-relaxed">
             Three tiers. Pick the one that matches how often you&apos;ll
             actually show up. Your founding rate locks in the moment you
             join and never goes up, as long as your membership stays
             active.
-          </p>
-          <p className="text-muted text-base leading-relaxed">
-            Three-month commitment to start. Up to four unused classes
-            roll over each month. Mat only. Apparatus, privates, and
-            duets have their own pricing.
           </p>
         </div>
       </section>
