@@ -92,7 +92,7 @@ function FaqRow({
       className="w-full text-left py-5 group"
     >
       <div className="flex items-center justify-between gap-4">
-        <h3 className="font-serif text-base font-light text-charcoal group-hover:text-accent transition-colors">
+        <h3 className="font-serif text-lg sm:text-xl font-light text-charcoal group-hover:text-accent transition-colors">
           {faq.question}
         </h3>
         <span
@@ -107,10 +107,10 @@ function FaqRow({
       </div>
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-64 opacity-100 mt-3" : "max-h-0 opacity-0"
+          isOpen ? "max-h-80 opacity-100 mt-3" : "max-h-0 opacity-0"
         }`}
       >
-        <p className="text-sm text-muted leading-relaxed pr-8">
+        <p className="text-base text-muted leading-relaxed pr-8">
           {faq.answer}
         </p>
       </div>
