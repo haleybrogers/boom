@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PackPickerModal from "@/components/PackPickerModal";
+import ContactFormModal from "@/components/ContactFormModal";
 import {
   fetchMemberships,
   groupApparatus,
@@ -86,15 +87,16 @@ export default async function Privates() {
                     Booking Opens Soon
                   </span>
                   <p className="text-sm text-muted mt-3">
-                    Privates, duets, and trios open for booking when the
-                    studio doors do. Email{" "}
-                    <a
-                      href="mailto:hello@boomerangpilatesnc.com"
-                      className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
-                    >
-                      hello@boomerangpilatesnc.com
-                    </a>{" "}
-                    if you want first dibs.
+                    <ContactFormModal
+                      buttonLabel="Sign up to be notified when privates booking opens →"
+                      buttonClassName="text-sm text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+                      heading="We'll let you know."
+                      subhead="Drop your info and we'll text or email you the moment private, duet, and trio bookings open."
+                      source="privates-waitlist"
+                      sourceId={204540}
+                      showMessage={false}
+                      showPhone={true}
+                    />
                   </p>
                 </>
               )}
