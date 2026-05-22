@@ -64,13 +64,12 @@ export default function About() {
                 Founder / Owner
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Emilie discovered classical Pilates the same way many
-                people do: in search of relief. Chronic neck and back
-                pain, and no fitness background to speak of. The method
-                rewired her connection to her own body and showed her
-                what feeling strong, supported, and connected was actually
-                like. She founded Boomerang to share that with everyone
-                else.
+                Classical Pilates rewired the way Emilie lives in her body.
+                Before she found the method, chronic neck and back pain
+                was the constant, and fitness wasn&apos;t really her thing.
+                Classical Pilates taught her what strong actually felt
+                like. Boomerang is her offer of that to anyone who walks
+                in.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 She earned her 600-hour comprehensive classical Pilates

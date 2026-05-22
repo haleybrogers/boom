@@ -275,6 +275,12 @@ export default function ScheduleView({
         </div>
       </div>
 
+      {/* How-to-book hint. Cards are tappable but not everyone reads
+          that as a signup affordance; explicit nudge above the grid. */}
+      <p className="text-sm text-muted text-center italic mb-5">
+        Tap any class to see details and book.
+      </p>
+
       {/* Desktop: respects the toggle. Week = 7-column grid, Month =
           chronological list grouped by day header. */}
       <div className="hidden md:block">
@@ -438,6 +444,12 @@ function ClassCard({
           Residents Only
         </span>
       )}
+      <span
+        className="mt-auto pt-3 text-[11px] tracking-[0.25em] uppercase font-semibold"
+        style={{ color: style.text }}
+      >
+        Book →
+      </span>
     </button>
   );
 }
@@ -548,6 +560,12 @@ function MonthList({
                           </span>
                         )}
                       </div>
+                      <span
+                        className="self-center shrink-0 text-[11px] tracking-[0.25em] uppercase font-semibold"
+                        style={{ color: style.text }}
+                      >
+                        Book →
+                      </span>
                     </button>
                   </li>
                 );
