@@ -128,51 +128,55 @@ export default function FAQ() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Logistics. Visible at the top */}
-      <div className="divide-y divide-charcoal/10">
-        {logisticsFaqs.map((faq, i) => (
-          <FaqRow
-            key={i}
-            faq={faq}
-            isOpen={openLogistics === i}
-            onToggle={() => setOpenLogistics(openLogistics === i ? null : i)}
-          />
-        ))}
-      </div>
-
-      {/* New-to-Pilates. Collapsed by default, expands into a nested accordion */}
-      <div className="mt-10 pt-10 border-t border-charcoal/10">
+      {/* New-to-Pilates. Promoted to the top of the FAQ as a featured
+          accordion — beginner-focused, so it lives above the logistics
+          questions that existing clients are looking for. Closed by
+          default; "Start here" CTA-style button as the trigger. */}
+      <div
+        className={`bg-accent/5 border border-accent/20 rounded-sm px-6 py-5 sm:px-7 sm:py-6 mb-10 transition-shadow ${
+          beginnerExpanded ? "shadow-sm" : ""
+        }`}
+      >
         <button
           onClick={() => setBeginnerExpanded((v) => !v)}
-          className="w-full text-left group"
+          className="w-full text-left group flex items-center justify-between gap-4"
         >
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-1">
-                New here?
-              </p>
-              <h3 className="font-serif text-xl font-light text-charcoal group-hover:text-accent transition-colors">
-                Never done Pilates before?
-              </h3>
-            </div>
-            <span
-              className={`shrink-0 text-accent/50 transition-transform duration-300 ${
-                beginnerExpanded ? "rotate-45" : ""
-              }`}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-              </svg>
-            </span>
+          <div>
+            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-1.5">
+              New here?
+            </p>
+            <h3 className="font-serif text-xl sm:text-2xl font-light text-charcoal group-hover:text-accent transition-colors leading-tight">
+              Never done Pilates before?
+            </h3>
           </div>
+          <span
+            className={`shrink-0 inline-flex items-center gap-2 text-[11px] tracking-[0.25em] uppercase px-4 py-2.5 rounded-full transition-colors ${
+              beginnerExpanded
+                ? "bg-charcoal text-white"
+                : "bg-accent text-white group-hover:bg-accent/90"
+            }`}
+          >
+            {beginnerExpanded ? "Close" : "Start Here"}
+            <svg
+              className={`w-3 h-3 transition-transform duration-300 ${
+                beginnerExpanded ? "rotate-180" : ""
+              }`}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
         </button>
 
         <div
           className={`overflow-hidden transition-all duration-500 ease-in-out ${
-            beginnerExpanded ? "max-h-[2000px] opacity-100 mt-2" : "max-h-0 opacity-0"
+            beginnerExpanded ? "max-h-[2000px] opacity-100 mt-3" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="divide-y divide-charcoal/10">
+          <div className="divide-y divide-charcoal/10 border-t border-charcoal/10 mt-2">
             {beginnerFaqs.map((faq, i) => (
               <FaqRow
                 key={i}
@@ -183,6 +187,19 @@ export default function FAQ() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Logistics. The day-to-day questions existing clients are scanning
+          for — booking, cancellation, perks, founding. */}
+      <div className="divide-y divide-charcoal/10">
+        {logisticsFaqs.map((faq, i) => (
+          <FaqRow
+            key={i}
+            faq={faq}
+            isOpen={openLogistics === i}
+            onToggle={() => setOpenLogistics(openLogistics === i ? null : i)}
+          />
+        ))}
       </div>
     </div>
   );

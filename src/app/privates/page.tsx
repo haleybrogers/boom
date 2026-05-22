@@ -47,12 +47,6 @@ export default async function Privates() {
                 and where you are in your practice, using the full range of
                 classical apparatus.
               </p>
-              <p className="text-muted text-base leading-relaxed mb-8">
-                Privates too pricey? Bring a friend or two for a duet or trio.
-                If you don&apos;t have anyone in mind, reach out first and
-                we&apos;ll pair you up with someone else looking.
-              </p>
-
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-8">
                 <div>
                   <p className="text-sm text-charcoal font-medium">Private</p>
