@@ -64,31 +64,29 @@ export default function About() {
                 Founder / Owner
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Emilie is the vision behind Boomerang, built on the belief
-                that everyone should get to feel the benefits of classical
-                Pilates when it&apos;s practiced with intention and patience.
-                She found her own way into the method through chronic neck
-                and back pain &mdash; and the &ldquo;ah-ha&rdquo; moment of
-                feeling strong, supported, and connected for the first time.
-                Wherever you are in your practice, she wants you to have
-                that moment too.
+                Emilie came to Pilates through chronic neck and back pain.
+                Never into fitness before &mdash; and then the method
+                rewired her relationship with her own body. The
+                &ldquo;ah-ha&rdquo; was being able to actually feel strong,
+                supported, and connected, for the first time. She founded
+                Boomerang to bring that feeling to as many people as she
+                can.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Emilie completed her 600-hour comprehensive classical Pilates
+                She completed her 600-hour comprehensive classical Pilates
                 certification at Appalachian State University in 2015,
                 training under Marianne Adams and Rebecca Quinn in the
-                direct lineage of Romana Kryzanowska. Over 10+ years of
-                teaching, she&apos;s worked with everyone from professional
-                athletes and polo players to post-partum mothers and clients
-                in rehab.
+                direct lineage of Romana Kryzanowska. In the decade since,
+                she&apos;s taught everyone from professional athletes and
+                polo players to post-partum mothers and clients rehabbing
+                injuries.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                She&apos;s also an elementary art teacher in Durham Public
-                Schools &mdash; an educator through and through, bringing
-                patience, open-mindedness, and a little playfulness to every
-                session. Building Boomerang has been a long-time dream: a
-                community-oriented classical studio where everyone is
-                welcome.
+                By day, Emilie teaches elementary art in Durham Public
+                Schools &mdash; an educator through and through. She brings
+                patience, openness, and a little playfulness to every
+                session, in the classroom or the studio. Boomerang has been
+                a long time coming. She can&apos;t wait to welcome you in.
               </p>
               <Link
                 href="/privates"
@@ -116,30 +114,31 @@ export default function About() {
                 Co-Founder / Studio Manager
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Annie grew up a dancer &mdash; pushing her body to limits
-                she didn&apos;t know were limits, because she was silently
-                navigating hypermobile Ehlers-Danlos Syndrome. Dance came
-                easily to her hypermobile body, but she felt disconnected
-                from it, and chronic pain became her version of normal.
-                Discovering classical Pilates in her early twenties at
-                Appalachian State was her &ldquo;ah-ha&rdquo; moment:
-                movement is meant to feel good.
+                Annie grew up a dancer. The flexibility came easy &mdash;
+                what she didn&apos;t know was that it came from hypermobile
+                Ehlers-Danlos Syndrome. Living with hEDS meant a body she
+                could push past its limits without realizing she&apos;d
+                pushed too far, and she came up believing chronic pain was
+                the cost of doing the thing she loved.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Pilates has given Annie strength, stability, and a new way
-                of listening to her body. It taught her that pain isn&apos;t
-                an unavoidable partner of movement, but a signal something
-                needs more attention. Her practice continues to be a
-                supportive system for living with hEDS, day to day.
+                Discovering classical Pilates in her early twenties at
+                Appalachian State changed that. The method gave her a way
+                to feel her body from the inside out, and the
+                &ldquo;ah-ha&rdquo; was simple: movement is meant to feel
+                good. Pilates has stayed with her since &mdash; through
+                hEDS days she can&apos;t predict, as a system that lets
+                her listen, trust, and rebuild.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
                 Annie earned a BA in Dance Studies and her 600-hour
                 comprehensive classical Pilates certification at Appalachian
-                State, in the same lineage as her sister &mdash; Romana
-                Kryzanowska through Marianne Adams and Rebecca Quinn.
-                She&apos;s passionate about preserving the integrity of
-                Joseph Pilates&apos; original work while integrating modern
-                biomechanics, holding the door open for every body.
+                State, trained in the same lineage as Emilie under Marianne
+                Adams and Rebecca Quinn. She&apos;s passionate about
+                keeping Joseph Pilates&apos; work intact while teaching it
+                through a modern lens &mdash; biomechanics, inclusivity,
+                and the six principles at its core: breath, control, center,
+                concentration, precision, and flow.
               </p>
               <Link
                 href="/privates"
