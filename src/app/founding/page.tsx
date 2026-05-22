@@ -84,89 +84,6 @@ export default async function Founding() {
         </div>
       </section>
 
-      {/* Launch card. Sits just under the hero pre-launch — countdown
-          to founding-drop day + early-access opt-in. Auto-disappears
-          once launch passes (component returns null). Replaced the old
-          "Founding Pricing Ends July 13" deadline band that lived here. */}
-      {!isFoundingLaunched() && (
-        <section className="bg-warm-white pt-12 pb-4 lg:pt-16">
-          <div className="max-w-5xl mx-auto px-6">
-            <FoundingLaunchCard />
-          </div>
-        </section>
-      )}
-
-      {/* The story. Intimate photo + the why */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal className="flex flex-col-reverse md:flex-row gap-10 md:gap-16 items-center">
-            <div className="relative w-full md:w-1/2 aspect-[4/5] overflow-hidden">
-              <Image
-                src="/photo-founding-intimate.jpg"
-                alt="Inside the Boomerang Pilates studio"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="w-full md:w-1/2">
-              <p className="text-sm tracking-widest uppercase text-accent mb-4">
-                Why founding
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
-                The people in the room first build the room.
-              </h2>
-              <p className="text-muted text-base leading-relaxed mb-4">
-                A studio is only as good as the regulars who keep showing up
-                for it. We&apos;re looking for the people who&apos;ll set the
-                tone. The ones who&apos;ll know each other&apos;s names by
-                week three and who&apos;ll drag a friend along.
-              </p>
-              <p className="text-muted text-base leading-relaxed">
-                Founding membership is how we say thank you for taking a
-                chance on us before there&apos;s even a sign on the door. Your
-                rate never goes up. The perks don&apos;t expire. You were
-                here first, and we won&apos;t forget it.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* The perks. 4-up grid on warm white */}
-      <section className="bg-warm-white py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6">
-          <Reveal className="text-center mb-14">
-            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
-              What&apos;s included
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-              A few things just for the first ones in.
-            </h2>
-            <div className="w-12 h-px bg-accent mx-auto mt-5" />
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {perks.map((p, i) => (
-              <Reveal
-                key={p.title}
-                delay={i * 80}
-                className="bg-white border border-charcoal/10 rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-3">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="font-serif text-xl font-light text-charcoal mb-2">
-                  {p.title}
-                </h3>
-                <p className="text-sm text-muted leading-relaxed">
-                  {p.detail}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Mat photo + pricing intro */}
       <section className="py-20 lg:py-28">
@@ -344,12 +261,96 @@ export default async function Founding() {
               <p className="text-center text-sm text-muted">
                 {launched
                   ? "15 spots per tier. Once they're gone, they're gone."
-                  : `15 spots per tier. Sign up above to be texted the moment they go live ${launchDateShort}.`}
+                  : `15 spots per tier. Sign up below to get the link the moment they go live ${launchDateShort}.`}
               </p>
             </div>
           </section>
         );
       })()}
+
+      {/* Launch card. Sits just under the hero pre-launch — countdown
+          to founding-drop day + early-access opt-in. Auto-disappears
+          once launch passes (component returns null). Replaced the old
+          "Founding Pricing Ends July 13" deadline band that lived here. */}
+      {!isFoundingLaunched() && (
+        <section className="bg-warm-white pt-12 pb-4 lg:pt-16">
+          <div className="max-w-5xl mx-auto px-6">
+            <FoundingLaunchCard />
+          </div>
+        </section>
+      )}
+
+      {/* The story. Intimate photo + the why */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <Reveal className="flex flex-col-reverse md:flex-row gap-10 md:gap-16 items-center">
+            <div className="relative w-full md:w-1/2 aspect-[4/5] overflow-hidden">
+              <Image
+                src="/photo-founding-intimate.jpg"
+                alt="Inside the Boomerang Pilates studio"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <p className="text-sm tracking-widest uppercase text-accent mb-4">
+                Why founding
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-5">
+                The people in the room first build the room.
+              </h2>
+              <p className="text-muted text-base leading-relaxed mb-4">
+                A studio is only as good as the regulars who keep showing up
+                for it. We&apos;re looking for the people who&apos;ll set the
+                tone. The ones who&apos;ll know each other&apos;s names by
+                week three and who&apos;ll drag a friend along.
+              </p>
+              <p className="text-muted text-base leading-relaxed">
+                Founding membership is how we say thank you for taking a
+                chance on us before there&apos;s even a sign on the door. Your
+                rate never goes up. The perks don&apos;t expire. You were
+                here first, and we won&apos;t forget it.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* The perks. 4-up grid on warm white */}
+      <section className="bg-warm-white py-20 lg:py-28">
+        <div className="max-w-5xl mx-auto px-6">
+          <Reveal className="text-center mb-14">
+            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
+              What&apos;s included
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
+              A few things just for the first ones in.
+            </h2>
+            <div className="w-12 h-px bg-accent mx-auto mt-5" />
+          </Reveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {perks.map((p, i) => (
+              <Reveal
+                key={p.title}
+                delay={i * 80}
+                className="bg-white border border-charcoal/10 rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+              >
+                <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-3">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="font-serif text-xl font-light text-charcoal mb-2">
+                  {p.title}
+                </h3>
+                <p className="text-sm text-muted leading-relaxed">
+                  {p.detail}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* The fine print. Small, honest, easy to scan */}
       <section className="py-20 lg:py-24">

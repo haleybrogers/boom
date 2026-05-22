@@ -445,10 +445,14 @@ function ClassCard({
         </span>
       )}
       <span
-        className="mt-auto pt-3 text-[11px] tracking-[0.25em] uppercase font-semibold"
+        className="mt-auto pt-3 text-[11px] tracking-[0.25em] uppercase font-semibold leading-tight"
         style={{ color: style.text }}
       >
-        Book →
+        {cls.isFull
+          ? cls.allowsWaitlist
+            ? "Class Full · Join Waitlist →"
+            : "Sold Out"
+          : "Book →"}
       </span>
     </button>
   );
@@ -561,10 +565,14 @@ function MonthList({
                         )}
                       </div>
                       <span
-                        className="self-center shrink-0 text-[11px] tracking-[0.25em] uppercase font-semibold"
+                        className="self-center shrink-0 text-[11px] tracking-[0.25em] uppercase font-semibold text-right leading-tight"
                         style={{ color: style.text }}
                       >
-                        Book →
+                        {c.isFull
+                          ? c.allowsWaitlist
+                            ? "Class Full · Join Waitlist →"
+                            : "Sold Out"
+                          : "Book →"}
                       </span>
                     </button>
                   </li>

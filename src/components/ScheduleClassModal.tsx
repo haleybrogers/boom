@@ -183,7 +183,25 @@ export default function ScheduleClassModal({
                   check with your front desk.
                 </p>
               )}
-              {cls.action.type === "book" && (
+              {cls.action.type === "book" && cls.isFull && !cls.allowsWaitlist && (
+                <span
+                  className="w-full block text-center bg-cream border border-accent/30 text-accent text-sm tracking-widest uppercase px-8 py-3.5 cursor-default select-none"
+                  aria-disabled="true"
+                >
+                  Sold Out
+                </span>
+              )}
+              {cls.action.type === "book" && cls.isFull && cls.allowsWaitlist && (
+                <a
+                  href={cls.action.bookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-animated w-full block text-center bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
+                >
+                  Class Full · Join the Waitlist →
+                </a>
+              )}
+              {cls.action.type === "book" && !cls.isFull && (
                 <a
                   href={cls.action.bookUrl}
                   target="_blank"

@@ -43,6 +43,13 @@ export type ScheduleClass = {
   // "Residents Only" badge on the card and a centered disclaimer in
   // the modal so non-residents don't show up to a locked gate.
   residentsOnly?: { building: string };
+  // Capacity state. When Momence reports the class as sold out, we swap
+  // the "Book →" CTA for either "Class Full · Join Waitlist" (when
+  // allowsWaitlist is true) or just "Sold Out" (when it isn't). The
+  // booking link itself is unchanged — Momence handles the waitlist
+  // signup on the same page.
+  isFull?: boolean;
+  allowsWaitlist?: boolean;
 };
 
 const HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
@@ -61,7 +68,34 @@ type MomenceEvent = {
   isCancelled: boolean;
   isDeleted: boolean;
   published: boolean;
+  // Capacity-related fields surfaced by the Momence Events API.
+  // capacity         null when uncapped, else the max attendance.
+  // spotsRemaining   null when uncapped or when the API doesn't compute
+  //                  it (some pop-ups), else the live remaining count.
+  // ticketsSold      live count of confirmed signups.
+  // allowWaitlist    studio setting — controls whether the page offers
+  //                  a waitlist when full vs. just a sold-out screen.
+  capacity?: number | null;
+  spotsRemaining?: number | null;
+  ticketsSold?: number | null;
+  allowWaitlist?: boolean;
 };
+
+// Decide whether a Momence event is "full" right now. Conservative: only
+// say full when we have a hard signal (spotsRemaining === 0, or capacity
+// is set and ticketsSold has reached it). If the API doesn't surface
+// numbers (capacity = null / spotsRemaining = null), default to NOT full
+// so we don't false-flag open pop-ups as sold out.
+function isEventFull(e: MomenceEvent): boolean {
+  if (typeof e.spotsRemaining === "number") return e.spotsRemaining <= 0;
+  if (
+    typeof e.capacity === "number" &&
+    typeof e.ticketsSold === "number"
+  ) {
+    return e.ticketsSold >= e.capacity;
+  }
+  return false;
+}
 
 import { staticEvents } from "./staticEvents";
 import { detectResidentsOnly } from "./locations";
@@ -175,6 +209,8 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
             e.fixedPrice && e.fixedPrice > 0 ? `$${e.fixedPrice}` : "Free",
           location,
           residentsOnly: detectResidentsOnly(location),
+          isFull: isEventFull(e),
+          allowsWaitlist: e.allowWaitlist === true,
         };
       });
 
