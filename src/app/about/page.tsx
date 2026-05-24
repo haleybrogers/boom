@@ -64,28 +64,44 @@ export default function About() {
                 Founder / Owner
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Classical Pilates rewired the way Emilie lives in her body.
-                Before she found the method, chronic neck and back pain
-                was the constant, and fitness wasn&apos;t really her thing.
-                Classical Pilates taught her what strong actually felt
-                like. Boomerang is her offer of that to anyone who walks
-                in.
+                Emilie founded Boomerang Pilates on the belief that
+                everyone should be able to experience the benefits of
+                classical Pilates. She experienced firsthand how Pilates
+                improved her posture and lessened the neck and back pain
+                that she had endured since childhood. Her practice rewired
+                her relationship to exercise and movement and was the
+                &ldquo;ah ha&rdquo; moment that helped her understand
+                what it meant to feel strong, supported, and connected to
+                her body. Whoever you are, wherever you are in your
+                Pilates journey, Emilie is here to meet you where
+                you&apos;re at and help you have your &ldquo;ah ha&rdquo;
+                moment with movement too.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                She earned her 600-hour comprehensive classical Pilates
-                certification at Appalachian State in 2015, training under
-                Marianne Adams and Rebecca Quinn in the direct lineage of
-                Romana Kryzanowska. In the decade since, she&apos;s worked
-                with everyone from professional athletes and polo players
-                to post-partum mothers and clients rehabbing injuries.
+                Emilie is a 3rd generation classical Pilates instructor,
+                lineaged through Romana Kryzanowska by way of her mentors,
+                Marianne Adams and Rebecca Quinn. She completed her
+                600-hour comprehensive certification at Appalachian State
+                University in 2014. Since then she has had opportunities
+                to work with a variety of clients from professional
+                athletes to polo players, post-partum mothers, and
+                clientele with physical limitations or in various stages
+                of injury rehabilitation. Also an elementary art teacher
+                in the Durham Public School system, Emilie is an educator
+                through and through.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                When she&apos;s not in the studio, Emilie teaches elementary
-                art in Durham Public Schools. She&apos;s an educator
-                through and through, and she brings the same patience and
-                playfulness to a Pilates session as she does to a classroom
-                of kids. Boomerang has been a long time coming. She
-                can&apos;t wait to welcome you in.
+                She brings the same sense of patience, open-mindedness,
+                and playfulness to the studio that she brings to the
+                classroom. She believes firmly in continual education and
+                is inspired to create a studio where teachers can learn
+                too. She strives to build relationships of trust and care
+                with her clients and feels immensely honored to carry on
+                the work of Joseph Pilates, helping her clients grow
+                stronger through the method. Emilie has long dreamed of
+                creating an inclusive, community-oriented classical
+                Pilates studio, and she can&apos;t wait to welcome you to
+                Boomerang.
               </p>
               <Link
                 href="/privates"
@@ -113,30 +129,50 @@ export default function About() {
                 Co-Founder / Studio Manager
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                For a long time Annie thought her body just hurt because
-                of dance. She was half right. The hurting was real, but
-                it wasn&apos;t dance. It was hypermobile Ehlers-Danlos
-                Syndrome, the connective-tissue condition that gave her
-                the flexibility dance loved and the joint instability
-                that made everything else hurt.
+                Annie, a co-founder of Boomerang Pilates and a dedicated
+                dancer, has always been passionate about movement. For
+                years she pushed her body to its limits, unaware that she
+                was silently battling hypermobile Ehlers-Danlos Syndrome.
+                While her joint hypermobility made it appear that dance
+                came naturally, she felt disconnected from her body,
+                unaware how to engage the right muscles. For years she
+                believed that constant pain was a normal part of movement.
+                Learning the classical Pilates method at Appalachian State
+                University brought her to her own &ldquo;ah-ha&rdquo;
+                moment. Movement is meant to feel good.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Then she found classical Pilates at Appalachian State, and
-                one realization landed quickly: movement is meant to feel
-                good. The method gave her a way to feel her body from the
-                inside out and to actually trust her own joints. It&apos;s
-                been part of her practice every day since, especially on
-                hEDS days she can&apos;t predict.
+                Pilates has become a powerful tool for Annie, helping her
+                develop newfound strength, stability, and coordination.
+                This method has taught her that pain is not an
+                unavoidable partner of movement, but rather a signal that
+                something requires more attention. Living with the
+                unpredictability of hypermobile Ehlers-Danlos Syndrome,
+                Annie&apos;s Pilates practice continues to offer a
+                supportive system, enabling her to learn how to listen,
+                trust, and nurture her body.
               </p>
               <p className="text-base text-muted leading-relaxed mb-4">
-                Annie earned a BA in Dance Studies and her 600-hour
-                comprehensive classical Pilates certification at Appalachian
-                State, trained in the same lineage as Emilie under Marianne
-                Adams and Rebecca Quinn. She teaches the work the way it
-                was written, with a modern attention to biomechanics and
-                an open door for every body, anchored in the six classical
-                principles: breath, control, center, concentration,
-                precision, and flow.
+                Annie earned a BA in Dance Studies and completed her
+                600-hour comprehensive classical Pilates certification
+                under the lineage of Romana Kryzanowska, guided by the
+                mentorship of Marianne Adams and Rebecca Quinn at
+                Appalachian State University. She is passionate about
+                preserving the integrity and essence of Joseph
+                Pilates&apos; work while evolving to meet contemporary
+                needs. By incorporating modern ethics and biomechanics
+                into her teaching, she aims to make the method as
+                inclusive and empowering as it is true to the classical
+                principles of Pilates: breath, control, center,
+                concentration, precision, and flow.
+              </p>
+              <p className="text-base text-muted leading-relaxed mb-4">
+                Her journey with Pilates stands as a testament to its
+                inclusivity and adaptability, providing a sense of
+                empowerment to individuals from all walks of life. Annie
+                believes that anyone, regardless of their personal
+                challenges, can discover strength and stability through
+                the art of Pilates.
               </p>
               <Link
                 href="/privates"
