@@ -31,7 +31,7 @@ const sections = [
           "Classical matwork, compact format. A focused 45-minute session built for people with somewhere to be.",
       },
       {
-        title: "Gentle Mat Pilates",
+        title: "Gentle Classical Pilates",
         level: "All levels · Restorative",
         length: "50 min",
         description:

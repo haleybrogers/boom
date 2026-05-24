@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
 export default function Footer() {
-  const [eggHover, setEggHover] = useState(false);
   const pathname = usePathname();
   const showFoundingCTA = SHOW_FOUNDING && pathname !== "/" && pathname !== "/founding";
   return (
@@ -71,16 +69,8 @@ export default function Footer() {
           </a>
 
           {/* Copyright */}
-          <p
-            className="text-sm text-muted/60 cursor-default transition-all duration-300"
-            onMouseEnter={() => setEggHover(true)}
-            onMouseLeave={() => setEggHover(false)}
-          >
-            {eggHover ? (
-              <span className="text-accent/80">Est. 2026. But the method? 1920.</span>
-            ) : (
-              <>&copy; {new Date().getFullYear()} Boomerang Pilates · 345 W Main St, Unit 2 (upstairs), Durham, NC</>
-            )}
+          <p className="text-sm text-muted/60 cursor-default">
+            &copy; {new Date().getFullYear()} Boomerang Pilates · 345 W Main St, Unit 2 (upstairs), Durham, NC
           </p>
         </div>
       </div>
