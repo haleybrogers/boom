@@ -41,7 +41,7 @@ export default function Home() {
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
           <p className="text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
-            Two sisters, third-generation classically trained, opening Durham&apos;s only Classical Pilates studio this summer. The full method, in the order it was written.
+            Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio this summer. The full method, in the order it was written.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
