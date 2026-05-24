@@ -138,7 +138,13 @@ export async function POST(request: NextRequest) {
     if (!res.ok) {
       const errText = await res.text();
       console.warn(`[notify] Resend ${res.status}: ${errText}`);
-      return NextResponse.json({ ok: true, sent: false, reason: "resend-error" });
+      return NextResponse.json({
+        ok: true,
+        sent: false,
+        reason: "resend-error",
+        status: res.status,
+        detail: errText.slice(0, 500),
+      });
     }
     return NextResponse.json({ ok: true, sent: true });
   } catch (err) {
