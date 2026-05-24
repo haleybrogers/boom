@@ -666,32 +666,20 @@ export default function EventsCalendarClient({
             </div>
           )}
 
-          {otherOpeningWeek.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
-              {otherOpeningWeek.map((event) => (
-                <EventCard
-                  key={event.id}
-                  event={event}
-                  onClick={() => setActiveEvent(event)}
-                />
-              ))}
-            </div>
-          )}
+          {/* "otherOpeningWeek" grid removed: Haley wanted /events to
+              only surface the curated trio (Mat Series + Craft Night +
+              Mat & Matcha) for studio events, plus the around-town
+              pop-ups below. Any extra studio-located soft-opening event
+              that lands here gets hidden so the page stays focused. */}
         </section>
       )}
 
-      {/* 2. Opening Night. Full-width hero, breaks out of the calendar's max-width
-          via negative-margin tricks so the section's accent background runs edge-to-edge. */}
-      {openingNight && (
-        <div className="mb-16 lg:mb-24 -mx-6">
-          <OpeningNightHero
-            event={openingNight}
-            onClick={() => setActiveEvent(openingNight)}
-          />
-        </div>
-      )}
+      {/* Opening Party hero removed per Haley — /events now ends with
+          just the curated studio trio above + the Around-Town pop-ups
+          below. The Opening Party still surfaces on /schedule and gets
+          its RSVP flow via the schedule modal there. */}
 
-      {/* 3. Pop-ups */}
+      {/* Pop-ups */}
       {popups.length > 0 && (
         <section>
           <SectionHeader
