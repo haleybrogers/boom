@@ -18,14 +18,16 @@ export type ClassStyle = {
 };
 
 export const CLASS_TYPE_STYLES: Record<ClassType, ClassStyle> = {
-  // Brand accent red. Mat is the most common class type — gets the
-  // brand color so it's the visual default of the calendar.
+  // Muted dusty rose. Mat is the most-common class type, so it fills
+  // most of the calendar. Brand accent red (#b02d4a) was too aggressive
+  // when repeated across that many cards — dialed back to a softer
+  // rose that still reads as the "default" type but doesn't shout.
   mat: {
     label: "Mat",
-    bgSoft: "#f8d5da",
-    border: "#b02d4a",
-    text: "#7a1d34",
-    bgChip: "rgba(176, 45, 74, 0.2)",
+    bgSoft: "#f4e1e4",
+    border: "#b3727c",
+    text: "#7a3a44",
+    bgChip: "rgba(179, 114, 124, 0.18)",
   },
   // Sage green. Clearly cool/earthy so it can't be mistaken for Mat's
   // red or Special's gold — three categories, three distinct hues.
