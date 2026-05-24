@@ -374,9 +374,11 @@ function ClassCard({
       <p className="font-serif text-[15px] text-charcoal leading-snug mt-2">
         {cls.title}
       </p>
-      <p className="text-[11px] text-charcoal/55 leading-snug mt-1.5 italic">
-        {displayLocation(cls.location)}
-      </p>
+      {displayLocation(cls.location) !== "Studio" && (
+        <p className="text-[11px] text-charcoal/55 leading-snug mt-1.5 italic">
+          {displayLocation(cls.location)}
+        </p>
+      )}
       {cls.residentsOnly && (
         <span className="self-start mt-2 text-[9px] tracking-[0.1em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2.5 py-1 leading-none">
           Residents Only
@@ -503,9 +505,11 @@ function WeekList({
                         <p className="font-serif text-base text-charcoal leading-tight">
                           {c.title}
                         </p>
-                        <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
-                          {displayLocation(c.location)}
-                        </p>
+                        {displayLocation(c.location) !== "Studio" && (
+                          <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
+                            {displayLocation(c.location)}
+                          </p>
+                        )}
                         {c.residentsOnly && (
                           <span className="inline-block mt-2 text-[10px] tracking-[0.1em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2.5 py-1 leading-none">
                             Residents Only
