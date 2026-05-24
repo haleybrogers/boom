@@ -674,10 +674,17 @@ export default function EventsCalendarClient({
         </section>
       )}
 
-      {/* Opening Party hero removed per Haley — /events now ends with
-          just the curated studio trio above + the Around-Town pop-ups
-          below. The Opening Party still surfaces on /schedule and gets
-          its RSVP flow via the schedule modal there. */}
+      {/* Opening Night. Full-width hero, breaks out of the calendar's
+          max-width via negative-margin tricks so the section's accent
+          background runs edge-to-edge. */}
+      {openingNight && (
+        <div className="mb-16 lg:mb-24 -mx-6">
+          <OpeningNightHero
+            event={openingNight}
+            onClick={() => setActiveEvent(openingNight)}
+          />
+        </div>
+      )}
 
       {/* Pop-ups */}
       {popups.length > 0 && (
