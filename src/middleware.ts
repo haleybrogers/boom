@@ -6,7 +6,7 @@ const COOKIE_NAME = "site-auth";
 // Kill-switch for the password gate. Set to false to make the site
 // fully public (e.g., temporarily, for Stripe / Momence integration
 // setup that needs to hit pages without being blocked).
-const PASSWORD_GATE_ENABLED = true;
+const PASSWORD_GATE_ENABLED = false;
 
 export function middleware(request: NextRequest) {
   // Gate fully disabled — let everything through.
