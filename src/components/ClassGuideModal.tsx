@@ -7,7 +7,7 @@ import Link from "next/link";
 const sections = [
   {
     category: "Mat Classes",
-    subtitle: "15 spots",
+    subtitle: "10 spots",
     classes: [
       {
         title: "Open Level Classical Mat",
@@ -26,9 +26,16 @@ const sections = [
       {
         title: "Lunch Power Hour",
         level: "All levels",
-        length: "35 min",
+        length: "45 min",
         description:
-          "Classical matwork, compact format. A focused 35-minute session built for people with somewhere to be.",
+          "Classical matwork, compact format. A focused 45-minute session built for people with somewhere to be.",
+      },
+      {
+        title: "Gentle Mat Pilates",
+        level: "All levels · Restorative",
+        length: "50 min",
+        description:
+          "A more restorative version of the classic mat you know and love. A little more stretching and release built into the hour with foam rollers and other props.",
       },
     ],
   },
@@ -49,27 +56,6 @@ const sections = [
         length: "50 min",
         description:
           "Rotates through the full range of apparatus with a strong focus on core strengthening and alignment.",
-      },
-      {
-        title: "Intermediate Advanced Classical Reformer",
-        level: "Intermediate/Advanced",
-        length: "50 min",
-        description:
-          "Fast-paced, precision-driven reformer work. Efficient transitions, demanding sequences, focused intensity.",
-      },
-      {
-        title: "Intermediate Advanced Classical Tower",
-        level: "Intermediate/Advanced",
-        length: "50 min",
-        description:
-          "Full tower work turned up. Roll back bar, push-thru bar, leg springs, arm springs. More core burn, more flow.",
-      },
-      {
-        title: "Lengthen & Strengthen Tower",
-        level: "All levels · Restorative",
-        length: "50 min",
-        description:
-          "A gentle class combining mat work with tower springs to release tension, decompress the spine, and restore alignment.",
       },
     ],
   },

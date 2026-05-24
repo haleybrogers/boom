@@ -6,7 +6,6 @@ import { SHOW_FOUNDING } from "@/lib/flags";
 
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
-  const [isFridayEvening, setIsFridayEvening] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -14,11 +13,6 @@ export default function StickyCTA() {
       // Show after scrolling past the hero (~50vh)
       setVisible(window.scrollY > window.innerHeight * 0.5);
     };
-
-    // Friday after 5pm easter egg
-    const now = new Date();
-    setIsFridayEvening(now.getDay() === 5 && now.getHours() >= 17);
-
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -39,13 +33,13 @@ export default function StickyCTA() {
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <a
-        href={SHOW_FOUNDING && !isFridayEvening ? "/founding" : "/schedule"}
+        href={SHOW_FOUNDING ? "/founding" : "/schedule"}
         className="btn-animated flex items-center gap-2.5 bg-accent text-white text-sm tracking-widest uppercase px-5 py-3.5 shadow-lg hover:bg-accent/90 transition-colors"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
-        {isFridayEvening ? "You survived. Come move." : SHOW_FOUNDING ? "Become a Founding Member" : "Book a Class"}
+        {SHOW_FOUNDING ? "Become a Founding Member" : "Book a Class"}
       </a>
     </div>
   );

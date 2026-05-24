@@ -123,7 +123,7 @@ export const staticEvents: EventItem[] = [
       "Come for the Mat Class! Stay for matcha and a studio tour. Sign up for one of 10 spots to try out the new Gratz apparatus the day before we officially open.",
     shortDescription: "Mat class, matcha, and a peek at the Gratz apparatus.",
     location: "345 W Main St, Durham, NC",
-    price: "Free",
+    price: "$20",
     image: "/photo-apparatus.jpg",
     iconKey: "coffee",
     action: {

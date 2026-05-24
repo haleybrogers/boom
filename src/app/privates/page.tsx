@@ -88,7 +88,7 @@ export default async function Privates() {
                   </span>
                   <p className="text-sm text-muted mt-3">
                     <ContactFormModal
-                      buttonLabel="Sign up to be notified when privates booking opens →"
+                      buttonLabel="Sign up to be notified when booking opens →"
                       buttonClassName="text-sm text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
                       heading="We'll let you know."
                       subhead="Drop your info and we'll text or email you the moment private, duet, and trio bookings open."
