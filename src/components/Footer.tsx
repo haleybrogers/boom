@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import PilatesWisdom from "./PilatesWisdom";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
 export default function Footer() {
@@ -33,10 +32,6 @@ export default function Footer() {
         </div>
       )}
 
-      {/* Weird Pilates fact of the day. Small & playful */}
-      <div className="border-b border-charcoal/5 py-6">
-        <PilatesWisdom />
-      </div>
       <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="flex flex-col items-center gap-6">
           {/* Social icons */}
