@@ -90,6 +90,13 @@ export default function ScheduleView({
     () => Array.from({ length: 7 }, (_, i) => addDays(weekStart, i)),
     [weekStart]
   );
+  // Date labels for the swipe-hint chip. Pre-computed here so the chip
+  // can read either depending on swipe direction without recomputing
+  // every touchmove frame.
+  const nextWeekStart = useMemo(() => addDays(weekStart, 7), [weekStart]);
+  const prevWeekStart = useMemo(() => addDays(weekStart, -7), [weekStart]);
+  const nextWeekLabel = `${fmtMonthDay(nextWeekStart)} – ${fmtMonthDay(addDays(nextWeekStart, 6))}`;
+  const prevWeekLabel = `${fmtMonthDay(prevWeekStart)} – ${fmtMonthDay(addDays(prevWeekStart, 6))}`;
 
   // Index classes by yyyy-mm-dd (in the studio's local timezone) so each
   // day column / day list can grab its own.
@@ -308,11 +315,44 @@ export default function ScheduleView({
                keyframe fires from the correct side, giving each week
                flip a real "carousel" feel rather than an abrupt swap. */}
       <div
-        className="md:hidden touch-pan-y overflow-x-hidden"
+        className="md:hidden touch-pan-y overflow-x-hidden relative"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
+        {/* Swipe hint chip. Fades in as you drag past ~20px, lights up
+            in accent when you cross the swipe threshold so it's obvious
+            the release will commit. Sits absolutely at the top of the
+            swipe container so it doesn't get translated with the list. */}
+        {dragging && Math.abs(dragX) > 18 && (
+          <div className="absolute top-0 left-0 right-0 flex justify-center pointer-events-none z-10">
+            <div
+              className={`mt-1 inline-flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.25em] uppercase px-3.5 py-2 rounded-full border shadow-sm transition-colors ${
+                Math.abs(dragX) >= SWIPE_MIN * 0.7
+                  ? "bg-accent text-white border-accent"
+                  : "bg-cream text-charcoal/60 border-charcoal/15"
+              }`}
+              style={{
+                opacity: Math.min(1, Math.abs(dragX) / 50),
+              }}
+            >
+              {dragX < 0 ? (
+                <>
+                  <span className="font-sans">Next week</span>
+                  <span className="font-serif">{nextWeekLabel}</span>
+                  <span>→</span>
+                </>
+              ) : (
+                <>
+                  <span>←</span>
+                  <span className="font-sans">Previous</span>
+                  <span className="font-serif">{prevWeekLabel}</span>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+
         <div
           key={weekStart.toISOString()}
           className={
