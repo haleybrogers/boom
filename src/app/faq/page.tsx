@@ -9,45 +9,45 @@ export const metadata = {
 
 export default function FaqPage() {
   return (
-    <section className="pt-24 lg:pt-36 pb-16 lg:pb-28 bg-warm-white">
+    <section className="pt-20 lg:pt-36 pb-12 lg:pb-28 bg-warm-white">
       <div className="max-w-5xl mx-auto px-6">
         {/* Heading */}
-        <div className="text-center mb-8 sm:mb-12">
-          <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4 sm:mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+        <div className="text-center mb-6 sm:mb-12">
+          <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3 sm:mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
             Common Questions
           </p>
-          <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
             FAQ
           </h1>
-          <div className="w-12 h-px bg-accent mx-auto mt-6 sm:mt-8 animate-fade-up" style={{ animationDelay: "0.3s" }} />
+          <div className="w-10 sm:w-12 h-px bg-accent mx-auto mt-4 sm:mt-8 animate-fade-up" style={{ animationDelay: "0.3s" }} />
         </div>
 
         {/* Lead with the studio. Address + arrival logistics first */}
-        <div className="max-w-2xl mx-auto mb-12 sm:mb-20">
-          <div className="text-center mb-8 pb-8 sm:mb-12 sm:pb-12 border-b border-charcoal/10">
-            <p className="text-sm tracking-widest uppercase text-accent mb-3">
+        <div className="max-w-2xl mx-auto mb-8 sm:mb-20">
+          <div className="text-center mb-6 pb-6 sm:mb-12 sm:pb-12 border-b border-charcoal/10">
+            <p className="text-sm tracking-widest uppercase text-accent mb-2 sm:mb-3">
               The Studio
             </p>
             <a
               href="https://maps.google.com/?q=345+W+Main+St+Durham+NC"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-serif text-xl md:text-2xl font-light text-charcoal hover:text-accent transition-colors leading-snug"
+              className="font-serif text-lg sm:text-xl md:text-2xl font-light text-charcoal hover:text-accent transition-colors leading-snug"
             >
               345 W Main St, Unit 2 (upstairs)
               <br />
               Durham, NC 27701
             </a>
-            <p className="text-sm text-muted mt-3">Tap the address for directions.</p>
+            <p className="text-sm text-muted mt-2 sm:mt-3">Tap the address for directions.</p>
           </div>
 
           {/* Detail blocks. Placeholders Emilie can fill in */}
-          <div className="space-y-6 sm:space-y-10">
+          <div className="space-y-4 sm:space-y-10">
             <div>
-              <h3 className="font-serif text-xl font-light text-charcoal mb-2 sm:mb-3">
+              <h3 className="font-serif text-lg sm:text-xl font-light text-charcoal mb-1.5 sm:mb-3">
                 Where to park
               </h3>
-              <p className="text-base text-muted leading-relaxed">
+              <p className="text-sm sm:text-base text-muted leading-relaxed">
                 Free street parking along Ramseur St. Paid parking in the lot
                 directly behind the studio and in the Five Points parking
                 deck. Paid spots on W. Main St too.
@@ -55,10 +55,10 @@ export default function FaqPage() {
             </div>
 
             <div>
-              <h3 className="font-serif text-xl font-light text-charcoal mb-2 sm:mb-3">
+              <h3 className="font-serif text-lg sm:text-xl font-light text-charcoal mb-1.5 sm:mb-3">
                 Getting here
               </h3>
-              <p className="text-base text-muted leading-relaxed">
+              <p className="text-sm sm:text-base text-muted leading-relaxed">
                 We&apos;re on West Main Street in the heart of downtown Durham ,
                 walkable from Brightleaf, Five Points, and the American Tobacco
                 Campus. Specific transit + bike routes coming soon.
@@ -66,10 +66,10 @@ export default function FaqPage() {
             </div>
 
             <div>
-              <h3 className="font-serif text-xl font-light text-charcoal mb-2 sm:mb-3">
+              <h3 className="font-serif text-lg sm:text-xl font-light text-charcoal mb-1.5 sm:mb-3">
                 When you arrive
               </h3>
-              <p className="text-base text-muted leading-relaxed">
+              <p className="text-sm sm:text-base text-muted leading-relaxed">
                 We&apos;re upstairs. Top of the stairs, door on the left.
                 Arrive 10–15 minutes before your first class so you have time
                 to park, get settled, get set up with props, and meet your
@@ -83,7 +83,7 @@ export default function FaqPage() {
         <FAQ />
 
         {/* Pre-opening CTA */}
-        <div className="max-w-2xl mx-auto mt-16 pt-12 border-t border-charcoal/10 text-center">
+        <div className="max-w-2xl mx-auto mt-10 pt-8 sm:mt-16 sm:pt-12 border-t border-charcoal/10 text-center">
           <p className="text-muted text-sm leading-relaxed mb-6 max-w-md mx-auto">
             Don&apos;t want to wait until July? We&apos;re running pop-up
             classes around town until then.

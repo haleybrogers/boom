@@ -89,10 +89,10 @@ function FaqRow({
   return (
     <button
       onClick={onToggle}
-      className="w-full text-left py-3.5 sm:py-5 group"
+      className="w-full text-left py-3 sm:py-5 group"
     >
-      <div className="flex items-center justify-between gap-4">
-        <h3 className="font-serif text-lg sm:text-xl font-light text-charcoal group-hover:text-accent transition-colors">
+      <div className="flex items-center justify-between gap-3 sm:gap-4">
+        <h3 className="font-serif text-base sm:text-xl font-light text-charcoal leading-snug group-hover:text-accent transition-colors">
           {faq.question}
         </h3>
         <span
@@ -107,10 +107,10 @@ function FaqRow({
       </div>
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-80 opacity-100 mt-3" : "max-h-0 opacity-0"
+          isOpen ? "max-h-80 opacity-100 mt-2 sm:mt-3" : "max-h-0 opacity-0"
         }`}
       >
-        <p className="text-base text-muted leading-relaxed pr-8">
+        <p className="text-sm sm:text-base text-muted leading-relaxed pr-6 sm:pr-8">
           {faq.answer}
         </p>
       </div>
@@ -133,7 +133,7 @@ export default function FAQ() {
           questions that existing clients are looking for. Closed by
           default; "Start here" CTA-style button as the trigger. */}
       <div
-        className={`bg-accent/5 border border-accent/20 rounded-sm px-5 py-4 sm:px-7 sm:py-6 mb-6 sm:mb-10 transition-shadow ${
+        className={`bg-accent/5 border border-accent/20 rounded-sm px-4 py-3.5 sm:px-7 sm:py-6 mb-4 sm:mb-10 transition-shadow ${
           beginnerExpanded ? "shadow-sm" : ""
         }`}
       >
@@ -142,12 +142,12 @@ export default function FAQ() {
           className="w-full text-left group flex items-center justify-between gap-4"
         >
           <div>
-            <h3 className="font-serif text-xl sm:text-2xl font-light text-charcoal group-hover:text-accent transition-colors leading-tight">
+            <h3 className="font-serif text-lg sm:text-2xl font-light text-charcoal group-hover:text-accent transition-colors leading-tight">
               New to Pilates?
             </h3>
           </div>
           <span
-            className={`shrink-0 inline-flex items-center gap-2 text-[11px] tracking-[0.25em] uppercase px-4 py-2.5 rounded-full transition-colors ${
+            className={`shrink-0 inline-flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.25em] uppercase px-3 py-2 sm:px-4 sm:py-2.5 rounded-full transition-colors ${
               beginnerExpanded
                 ? "bg-charcoal text-white"
                 : "bg-accent text-white group-hover:bg-accent/90"
