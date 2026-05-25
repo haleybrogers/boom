@@ -105,15 +105,13 @@ function FaqRow({
           </svg>
         </span>
       </div>
-      <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-80 opacity-100 mt-2 sm:mt-3" : "max-h-0 opacity-0"
-        }`}
-      >
-        <p className="text-sm sm:text-base text-muted leading-relaxed pr-6 sm:pr-8">
-          {faq.answer}
-        </p>
-      </div>
+      {isOpen && (
+        <div className="mt-2 sm:mt-3">
+          <p className="text-sm sm:text-base text-muted leading-relaxed pr-6 sm:pr-8">
+            {faq.answer}
+          </p>
+        </div>
+      )}
     </button>
   );
 }
