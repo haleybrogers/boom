@@ -327,10 +327,10 @@ export default function ScheduleView({
         {dragging && Math.abs(dragX) > 18 && (
           <div className="absolute top-0 left-0 right-0 flex justify-center pointer-events-none z-10">
             <div
-              className={`mt-1 inline-flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.25em] uppercase px-3.5 py-2 rounded-full border shadow-sm transition-colors ${
+              className={`mt-1 inline-flex items-center gap-3 px-5 py-3 rounded-full border shadow-sm transition-colors ${
                 Math.abs(dragX) >= SWIPE_MIN * 0.7
                   ? "bg-accent text-white border-accent"
-                  : "bg-cream text-charcoal/60 border-charcoal/15"
+                  : "bg-cream text-charcoal border-charcoal/15"
               }`}
               style={{
                 opacity: Math.min(1, Math.abs(dragX) / 50),
@@ -338,15 +338,27 @@ export default function ScheduleView({
             >
               {dragX < 0 ? (
                 <>
-                  <span className="font-sans">Next week</span>
-                  <span className="font-serif">{nextWeekLabel}</span>
-                  <span>→</span>
+                  <div className="flex flex-col items-end leading-tight">
+                    <span className="text-[10px] tracking-[0.25em] uppercase opacity-80">
+                      Next week
+                    </span>
+                    <span className="font-serif text-base">
+                      {nextWeekLabel}
+                    </span>
+                  </div>
+                  <span className="text-lg">→</span>
                 </>
               ) : (
                 <>
-                  <span>←</span>
-                  <span className="font-sans">Previous</span>
-                  <span className="font-serif">{prevWeekLabel}</span>
+                  <span className="text-lg">←</span>
+                  <div className="flex flex-col items-start leading-tight">
+                    <span className="text-[10px] tracking-[0.25em] uppercase opacity-80">
+                      Previous week
+                    </span>
+                    <span className="font-serif text-base">
+                      {prevWeekLabel}
+                    </span>
+                  </div>
                 </>
               )}
             </div>
