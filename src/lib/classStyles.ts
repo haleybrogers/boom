@@ -29,17 +29,18 @@ export const CLASS_TYPE_STYLES: Record<ClassType, ClassStyle> = {
     text: "#7a3a44",
     bgChip: "rgba(179, 114, 124, 0.18)",
   },
-  // Warm greige (gray-beige). Neutral counterpoint to Mat's rose and
-  // Special's gold — three categories, three distinct hues. Earlier
-  // iterations were sage green (read as Christmas next to the rose)
-  // and slate blue (too "blue"). Greige sits quietly off-cream — clearly
-  // its own bucket without competing for attention.
+  // Taupey grey. Neutral counterpoint to Mat's rose and Special's gold
+  // — three categories, three distinct hues. Earlier iterations were
+  // sage green (read as Christmas next to the rose), slate blue (too
+  // "blue"), and a lighter greige (too close to cream). Pulling toward
+  // a warm taupe-grey: a touch of brown so it has presence, still
+  // neutral enough to sit quietly.
   apparatus: {
     label: "Apparatus",
-    bgSoft: "#dfdbd2",
-    border: "#7d786e",
-    text: "#3f3b34",
-    bgChip: "rgba(125, 120, 110, 0.2)",
+    bgSoft: "#d4ccc1",
+    border: "#857b6c",
+    text: "#443c33",
+    bgChip: "rgba(133, 123, 108, 0.22)",
   },
   // Warm gold / ochre. Reserved for events, workshops, pop-ups. Feels
   // celebratory (works for the Opening Party especially) without
