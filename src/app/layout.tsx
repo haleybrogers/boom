@@ -3,7 +3,6 @@ import { Cormorant, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import EarlyBirdBanner from "@/components/EarlyBirdBanner";
 import StickyCTA from "@/components/StickyCTA";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -69,7 +68,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-white text-charcoal">
         <Navigation />
-        <EarlyBirdBanner />
         <main className="flex-1">{children}</main>
         <Footer />
         <StickyCTA />

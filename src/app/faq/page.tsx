@@ -9,22 +9,22 @@ export const metadata = {
 
 export default function FaqPage() {
   return (
-    <section className="pt-28 lg:pt-36 pb-20 lg:pb-28 bg-warm-white">
+    <section className="pt-24 lg:pt-36 pb-16 lg:pb-28 bg-warm-white">
       <div className="max-w-5xl mx-auto px-6">
         {/* Heading */}
-        <div className="text-center mb-12">
-          <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+        <div className="text-center mb-8 sm:mb-12">
+          <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4 sm:mb-5 animate-fade-up" style={{ animationDelay: "0.05s" }}>
             Common Questions
           </p>
           <h1 className="font-serif text-5xl md:text-6xl font-light text-charcoal leading-tight animate-fade-up" style={{ animationDelay: "0.15s" }}>
             FAQ
           </h1>
-          <div className="w-12 h-px bg-accent mx-auto mt-8 animate-fade-up" style={{ animationDelay: "0.3s" }} />
+          <div className="w-12 h-px bg-accent mx-auto mt-6 sm:mt-8 animate-fade-up" style={{ animationDelay: "0.3s" }} />
         </div>
 
         {/* Lead with the studio. Address + arrival logistics first */}
-        <div className="max-w-2xl mx-auto mb-20">
-          <div className="text-center mb-12 pb-12 border-b border-charcoal/10">
+        <div className="max-w-2xl mx-auto mb-12 sm:mb-20">
+          <div className="text-center mb-8 pb-8 sm:mb-12 sm:pb-12 border-b border-charcoal/10">
             <p className="text-sm tracking-widest uppercase text-accent mb-3">
               The Studio
             </p>
@@ -42,9 +42,9 @@ export default function FaqPage() {
           </div>
 
           {/* Detail blocks. Placeholders Emilie can fill in */}
-          <div className="space-y-10">
+          <div className="space-y-6 sm:space-y-10">
             <div>
-              <h3 className="font-serif text-xl font-light text-charcoal mb-3">
+              <h3 className="font-serif text-xl font-light text-charcoal mb-2 sm:mb-3">
                 Where to park
               </h3>
               <p className="text-base text-muted leading-relaxed">
@@ -55,7 +55,7 @@ export default function FaqPage() {
             </div>
 
             <div>
-              <h3 className="font-serif text-xl font-light text-charcoal mb-3">
+              <h3 className="font-serif text-xl font-light text-charcoal mb-2 sm:mb-3">
                 Getting here
               </h3>
               <p className="text-base text-muted leading-relaxed">
@@ -66,7 +66,7 @@ export default function FaqPage() {
             </div>
 
             <div>
-              <h3 className="font-serif text-xl font-light text-charcoal mb-3">
+              <h3 className="font-serif text-xl font-light text-charcoal mb-2 sm:mb-3">
                 When you arrive
               </h3>
               <p className="text-base text-muted leading-relaxed">

@@ -89,7 +89,7 @@ function FaqRow({
   return (
     <button
       onClick={onToggle}
-      className="w-full text-left py-5 group"
+      className="w-full text-left py-3.5 sm:py-5 group"
     >
       <div className="flex items-center justify-between gap-4">
         <h3 className="font-serif text-lg sm:text-xl font-light text-charcoal group-hover:text-accent transition-colors">
@@ -133,7 +133,7 @@ export default function FAQ() {
           questions that existing clients are looking for. Closed by
           default; "Start here" CTA-style button as the trigger. */}
       <div
-        className={`bg-accent/5 border border-accent/20 rounded-sm px-6 py-5 sm:px-7 sm:py-6 mb-10 transition-shadow ${
+        className={`bg-accent/5 border border-accent/20 rounded-sm px-5 py-4 sm:px-7 sm:py-6 mb-6 sm:mb-10 transition-shadow ${
           beginnerExpanded ? "shadow-sm" : ""
         }`}
       >

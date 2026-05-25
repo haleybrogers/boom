@@ -100,7 +100,7 @@ export default function Events() {
               <p className="text-sm text-muted leading-relaxed mb-4">
                 The next chapter. Picks up where Course I left off and takes you through
                 the remainder of the 34-exercise classical mat. Focus shifts to concentration,
-                fluidity, and precision. The principles that turn good movement into great movement.
+                control, and precision. The principles that turn good movement into great movement.
               </p>
               <div className="border-t border-charcoal/5 pt-3">
                 <p className="text-sm text-muted">8 weeks · 1x/week · 50 min per session</p>

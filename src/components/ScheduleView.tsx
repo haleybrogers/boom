@@ -10,7 +10,7 @@
 // the same ScheduleClassModal. Booking happens by tapping a class block
 // → modal → "Book →" anchor that opens that session's Momence page.
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { ScheduleClass } from "@/lib/scheduleData";
 import { displayLocation } from "@/lib/scheduleData";
 import { CLASS_TYPE_STYLES } from "@/lib/classStyles";
@@ -115,6 +115,29 @@ export default function ScheduleView({
   // Both views are week-scoped, so prev/next always shifts a full week.
   const shiftBy = (n: number) => {
     setSelectedDay(addDays(selectedDay, n * 7));
+  };
+
+  // Mobile swipe handling. Track the first touch's x/y so we can decide
+  // (on touchend) whether the gesture was a horizontal swipe and which
+  // way it went. We require horizontal travel to dominate vertical
+  // travel so we don't hijack ordinary vertical scrolling.
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const SWIPE_MIN = 50; // px — minimum horizontal distance to count as a swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchStart.current = { x: t.clientX, y: t.clientY };
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const start = touchStart.current;
+    touchStart.current = null;
+    if (!start) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    if (Math.abs(dx) < SWIPE_MIN) return;
+    if (Math.abs(dx) <= Math.abs(dy)) return; // vertical scroll wins
+    // Swipe left (negative dx) → next week. Swipe right → previous week.
+    shiftBy(dx < 0 ? 1 : -1);
   };
 
   const weekLabel = `${fmtMonthDay(days[0])} – ${fmtMonthDay(days[6])}`;
@@ -241,8 +264,15 @@ export default function ScheduleView({
       </div>
 
       {/* Mobile: always the list view. 7-column week grid doesn't fit
-          a phone, so we collapse to the chronological week list. */}
-      <div className="md:hidden">
+          a phone, so we collapse to the chronological week list. The
+          wrapper handles left/right swipe to flip between weeks (mirrors
+          the Prev/Next buttons above). touch-pan-y keeps native vertical
+          scrolling intact — we only react to horizontal gestures. */}
+      <div
+        className="md:hidden touch-pan-y"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         <WeekList
           days={days}
           classesByDay={classesByDay}
@@ -349,13 +379,13 @@ function ClassCard({
   const start = new Date(cls.startISO);
   const end = new Date(cls.endISO);
   const style = CLASS_TYPE_STYLES[cls.type];
-  const minHeight = Math.max(110, Math.round(cls.durationMin * 1.5));
+  const minHeight = Math.max(80, Math.round(cls.durationMin * 1.15));
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left rounded-sm px-4 py-4 transition-shadow hover:shadow-md flex flex-col"
+      className="w-full text-left rounded-sm px-3 py-3 transition-shadow hover:shadow-md flex flex-col"
       style={{
         background: style.bgSoft,
         borderLeft: `4px solid ${style.border}`,
@@ -371,11 +401,11 @@ function ClassCard({
       <p className="text-[10px] tracking-[0.2em] uppercase text-charcoal/55 mt-0.5 leading-tight">
         to {fmtTime(end)}
       </p>
-      <p className="font-serif text-[15px] text-charcoal leading-snug mt-2">
+      <p className="font-serif text-[15px] text-charcoal leading-snug mt-1.5">
         {cls.title}
       </p>
       {displayLocation(cls.location) !== "Studio" && (
-        <p className="text-[11px] text-charcoal/55 leading-snug mt-1.5 italic">
+        <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
           {displayLocation(cls.location)}
         </p>
       )}
@@ -384,25 +414,19 @@ function ClassCard({
           Residents Only
         </span>
       )}
-      <div className="mt-auto pt-3 flex flex-col leading-tight">
-        {cls.isFull && (
-          <span className="text-[9px] tracking-[0.25em] uppercase text-charcoal/50 mb-0.5">
-            Class Full
-          </span>
-        )}
+      {/* Book/RSVP labels removed for compactness. The card's
+          tap-to-open behavior + the "Tap any class to book" hint above
+          the grid cover the affordance. Class-full / Sold-Out state
+          stays visible because it's signal the user needs before
+          tapping. */}
+      {cls.isFull && (
         <span
-          className="text-[11px] tracking-[0.25em] uppercase font-semibold"
+          className="mt-auto pt-2 text-[10px] tracking-[0.25em] uppercase font-semibold leading-tight"
           style={{ color: style.text }}
         >
-          {cls.isFull
-            ? cls.allowsWaitlist
-              ? "Waitlist →"
-              : "Sold Out"
-            : cls.action.type === "rsvp"
-              ? "RSVP →"
-              : "Book →"}
+          {cls.allowsWaitlist ? "Waitlist" : "Sold Out"}
         </span>
-      </div>
+      )}
     </button>
   );
 }

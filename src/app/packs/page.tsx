@@ -78,7 +78,7 @@ export default async function Packs() {
               Limited Time
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
-              Want 25% off mat. For life?
+              Want 25% off mat for life?
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto mb-8">
               Check out our founding memberships. Just 15 spots per tier
