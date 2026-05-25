@@ -154,6 +154,26 @@ html, body {
   animation: slide-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Mobile schedule week-flip slide. Pairs with the touch swipe in
+   ScheduleView — swipe left → next week comes in from the right;
+   swipe right → previous week comes in from the left. Slightly damped
+   distance (60%) keeps it from feeling like the content is teleporting
+   off-screen, and a hint of opacity makes the change easier to read. */
+@keyframes week-in-right {
+  from { transform: translateX(60%); opacity: 0.4; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes week-in-left {
+  from { transform: translateX(-60%); opacity: 0.4; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.animate-week-in-right {
+  animation: week-in-right 260ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.animate-week-in-left {
+  animation: week-in-left 260ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
 /* iOS doesn't support background-attachment: fixed — fall back to scroll */
 @supports (-webkit-touch-callout: none) {
   .bg-fixed {

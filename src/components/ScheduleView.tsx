@@ -112,8 +112,17 @@ export default function ScheduleView({
   const dayKey = (d: Date) =>
     d.toLocaleDateString("en-CA", { timeZone: TZ });
 
+  // Tracks the direction of the last week change so the mobile list can
+  // animate the new week sliding in from the correct side. null means
+  // no animation (first render, desktop button presses we don't want to
+  // animate, etc.).
+  const [slideDir, setSlideDir] = useState<"next" | "prev" | null>(null);
+
   // Both views are week-scoped, so prev/next always shifts a full week.
+  // For mobile swipe + Prev/Next buttons we also stamp slideDir so the
+  // mobile list re-animates in from the side that matches the gesture.
   const shiftBy = (n: number) => {
+    setSlideDir(n > 0 ? "next" : "prev");
     setSelectedDay(addDays(selectedDay, n * 7));
   };
 
@@ -121,15 +130,38 @@ export default function ScheduleView({
   // (on touchend) whether the gesture was a horizontal swipe and which
   // way it went. We require horizontal travel to dominate vertical
   // travel so we don't hijack ordinary vertical scrolling.
+  //
+  // During the drag itself we mirror the finger with a translateX on the
+  // mobile list, then on release either snap back (not far enough) or
+  // let the week change + slide-in animation play.
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const SWIPE_MIN = 50; // px — minimum horizontal distance to count as a swipe
+  const [dragX, setDragX] = useState(0);
+  const [dragging, setDragging] = useState(false);
+
   const onTouchStart = (e: React.TouchEvent) => {
     const t = e.touches[0];
     touchStart.current = { x: t.clientX, y: t.clientY };
+    setDragging(true);
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    const start = touchStart.current;
+    if (!start) return;
+    const t = e.touches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    // Only follow the finger if horizontal travel is dominant — otherwise
+    // we'd hijack a vertical scroll. Damp the offset slightly so it feels
+    // more rubbery than a 1:1 drag.
+    if (Math.abs(dx) > Math.abs(dy)) {
+      setDragX(dx * 0.7);
+    }
   };
   const onTouchEnd = (e: React.TouchEvent) => {
     const start = touchStart.current;
     touchStart.current = null;
+    setDragging(false);
+    setDragX(0);
     if (!start) return;
     const t = e.changedTouches[0];
     const dx = t.clientX - start.x;
@@ -265,20 +297,43 @@ export default function ScheduleView({
 
       {/* Mobile: always the list view. 7-column week grid doesn't fit
           a phone, so we collapse to the chronological week list. The
-          wrapper handles left/right swipe to flip between weeks (mirrors
-          the Prev/Next buttons above). touch-pan-y keeps native vertical
-          scrolling intact — we only react to horizontal gestures. */}
+          outer wrapper handles left/right swipe to flip between weeks
+          (mirrors the Prev/Next buttons above). touch-pan-y keeps native
+          vertical scrolling intact — we only react to horizontal
+          gestures.
+          The inner wrapper does two things:
+            1. Translates with the finger during the drag (rubber-band
+               feel — `dragX`).
+            2. Re-keys on each weekStart change so the slide-in
+               keyframe fires from the correct side, giving each week
+               flip a real "carousel" feel rather than an abrupt swap. */}
       <div
-        className="md:hidden touch-pan-y"
+        className="md:hidden touch-pan-y overflow-x-hidden"
         onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <WeekList
-          days={days}
-          classesByDay={classesByDay}
-          today={today}
-          onSelect={setActiveClass}
-        />
+        <div
+          key={weekStart.toISOString()}
+          className={
+            slideDir === "next"
+              ? "animate-week-in-right"
+              : slideDir === "prev"
+              ? "animate-week-in-left"
+              : ""
+          }
+          style={{
+            transform: dragX ? `translateX(${dragX}px)` : undefined,
+            transition: dragging ? "none" : "transform 200ms ease-out",
+          }}
+        >
+          <WeekList
+            days={days}
+            classesByDay={classesByDay}
+            today={today}
+            onSelect={setActiveClass}
+          />
+        </div>
       </div>
 
       {activeClass && (
