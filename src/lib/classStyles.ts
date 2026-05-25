@@ -29,14 +29,16 @@ export const CLASS_TYPE_STYLES: Record<ClassType, ClassStyle> = {
     text: "#7a3a44",
     bgChip: "rgba(179, 114, 124, 0.18)",
   },
-  // Sage green. Clearly cool/earthy so it can't be mistaken for Mat's
-  // red or Special's gold — three categories, three distinct hues.
+  // Dusty slate blue. Cool counterpoint to Mat's rose and Special's
+  // gold — three categories, three distinct hues. Was sage green
+  // originally; sat next to the rose Mat color and read as Christmas.
+  // Slate keeps the cool-quiet feel without the seasonal baggage.
   apparatus: {
     label: "Apparatus",
-    bgSoft: "#dbe5cf",
-    border: "#5e7a3e",
-    text: "#324523",
-    bgChip: "rgba(94, 122, 62, 0.2)",
+    bgSoft: "#dde2ec",
+    border: "#5e6f87",
+    text: "#2e3a4f",
+    bgChip: "rgba(94, 111, 135, 0.2)",
   },
   // Warm gold / ochre. Reserved for events, workshops, pop-ups. Feels
   // celebratory (works for the Opening Party especially) without
