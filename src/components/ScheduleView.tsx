@@ -360,14 +360,6 @@ export default function ScheduleView({
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        {/* Swipe affordance. A small, quiet arrow that gently nudges to
-            the right to hint you can swipe between weeks — no color-change
-            drag feedback, just a subtle "there's more this way." */}
-        <div className="flex items-center justify-end gap-1.5 text-[10px] tracking-[0.25em] uppercase text-muted mb-3 pr-1 pointer-events-none">
-          Swipe for weeks
-          <span className="icon-wave inline-block text-sm">→</span>
-        </div>
-
         <div
           key={weekStart.toISOString()}
           className={
