@@ -202,7 +202,7 @@ function MatSeriesCard({
           href={MAT_SERIES_BUNDLE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
+          className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
         >
           Book entire series →
         </a>
