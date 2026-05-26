@@ -302,8 +302,9 @@ export default function ScheduleView({
 
       {/* Color key. Lives on its own line under the nav row, right-
           aligned; still inside the sticky bar so it stays visible while
-          scrolling. */}
-      <div className="flex flex-wrap items-center justify-end gap-4 px-4 sm:px-5">
+          scrolling. Desktop only — on mobile the cards are already
+          color-coded + named, so the legend is just extra clutter. */}
+      <div className="hidden md:flex flex-wrap items-center justify-end gap-4 px-4 sm:px-5">
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] tracking-[0.2em] uppercase text-muted">
           {(Object.keys(CLASS_TYPE_STYLES) as Array<keyof typeof CLASS_TYPE_STYLES>).map(
             (key) => {
