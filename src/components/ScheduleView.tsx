@@ -18,18 +18,6 @@ import ScheduleClassModal from "./ScheduleClassModal";
 
 const TZ = "America/New_York";
 
-// Desktop Calendar view is a Google-Calendar-style time grid: hour
-// labels down the left, classes positioned vertically by their start
-// time and sized by duration. HOUR_HEIGHT is the pixel height of one
-// hour row. The visible hour range auto-tightens to just the hours that
-// actually have classes (plus a touch of padding) so the grid never
-// shows an empty 6am-to-9pm marathon when classes only run 9-12.
-//
-// Sized so a typical ~50-minute class block has enough vertical room for
-// its time label + a two-line title without clipping. (At 56px/hr a
-// 50-min class was only ~47px tall and the title got cut off.)
-const HOUR_HEIGHT = 84;
-
 // ----------------------- date helpers -----------------------
 
 // Start-of-week = Monday. We anchor everything off this since most
@@ -74,28 +62,6 @@ function fmtTime(d: Date) {
     })
     .toLowerCase()
     .replace(" ", "");
-}
-
-// Decimal hour-of-day for an ISO timestamp, in the studio's timezone.
-// e.g. 10:30 AM → 10.5. Used to position time blocks on the grid.
-function hourInTZ(iso: string): number {
-  const parts = new Date(iso).toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    timeZone: TZ,
-  });
-  const [h, m] = parts.split(":").map((n) => parseInt(n, 10));
-  return h + m / 60;
-}
-
-// Hour-gutter label. 13 → "1 PM", 0 → "12 AM", etc.
-function fmtHourLabel(hour: number): string {
-  const h = ((hour % 24) + 24) % 24;
-  if (h === 0) return "12 AM";
-  if (h === 12) return "12 PM";
-  if (h < 12) return `${h} AM`;
-  return `${h - 12} PM`;
 }
 
 // ----------------------- main view -----------------------
@@ -450,141 +416,78 @@ function WeekGrid({
   const dayKey = (d: Date) =>
     d.toLocaleDateString("en-CA", { timeZone: TZ });
 
-  // Visible hour range, tightened to the week's actual classes. 1-hour
-  // pad above the earliest start + below the latest end so blocks aren't
-  // flush against the grid edges. Empty week falls back to 8am–6pm.
-  let minH = 24;
-  let maxH = 0;
-  for (const d of days) {
-    for (const c of classesByDay.get(dayKey(d)) || []) {
-      minH = Math.min(minH, hourInTZ(c.startISO));
-      maxH = Math.max(maxH, hourInTZ(c.endISO));
-    }
-  }
-  const rangeStart = minH === 24 ? 8 : Math.max(0, Math.floor(minH) - 1);
-  const rangeEnd = maxH === 0 ? 18 : Math.min(24, Math.ceil(maxH) + 1);
-  const totalHours = Math.max(1, rangeEnd - rangeStart);
-  const gridHeight = totalHours * HOUR_HEIGHT;
-  const hourLabels = Array.from(
-    { length: totalHours },
-    (_, i) => rangeStart + i
-  );
-
+  // Compact 7-column overview. Each column is a day: a header (weekday +
+  // date) on top, then that day's classes stacked as small color-coded
+  // cards. Cards are NOT sized by duration — they're uniform and tight so
+  // the whole week fits on one screen without scrolling. The start time
+  // is printed on every card, so two classes an hour apart read clearly
+  // even though they sit right below each other.
   return (
-    <div className="border border-charcoal/10 rounded-sm overflow-hidden bg-warm-white">
-      {/* Header row: empty gutter corner + 7 day headers */}
-      <div className="grid grid-cols-[56px_repeat(7,1fr)] border-b border-charcoal/10">
-        <div className="bg-cream/40 border-r border-charcoal/10" />
-        {days.map((d) => {
-          const isToday = sameYMD(d, today);
-          return (
+    <div className="grid grid-cols-7 gap-px bg-charcoal/10 border border-charcoal/10 rounded-sm overflow-hidden">
+      {days.map((d) => {
+        const dayClasses = classesByDay.get(dayKey(d)) || [];
+        const isToday = sameYMD(d, today);
+        return (
+          <div key={d.toISOString()} className="bg-warm-white flex flex-col">
+            {/* Day header */}
             <div
-              key={d.toISOString()}
-              className={`text-center py-3 border-r last:border-r-0 border-charcoal/10 ${
+              className={`text-center py-2.5 border-b border-charcoal/10 ${
                 isToday ? "bg-accent/5" : "bg-cream/40"
               }`}
             >
               <p
-                className={`text-[11px] tracking-[0.25em] uppercase font-medium ${
-                  isToday ? "text-accent" : "text-charcoal/70"
+                className={`text-[10px] tracking-[0.2em] uppercase font-medium ${
+                  isToday ? "text-accent" : "text-charcoal/60"
                 }`}
               >
                 {fmtWeekday(d)}
               </p>
               <p
-                className={`font-serif text-xl font-light leading-tight mt-0.5 ${
+                className={`font-serif text-lg font-light leading-none mt-1 ${
                   isToday ? "text-accent" : "text-charcoal"
                 }`}
               >
                 {d.getDate()}
               </p>
             </div>
-          );
-        })}
-      </div>
 
-      {/* Body: hour gutter + 7 day columns, all the same pixel height */}
-      <div className="grid grid-cols-[56px_repeat(7,1fr)]">
-        {/* Hour labels gutter */}
-        <div
-          className="relative bg-cream/40 border-r border-charcoal/10"
-          style={{ height: gridHeight }}
-        >
-          {hourLabels.map((h) => (
-            <div
-              key={h}
-              className="absolute right-2 -translate-y-1/2 text-[10px] tracking-[0.1em] uppercase text-muted whitespace-nowrap"
-              style={{ top: (h - rangeStart) * HOUR_HEIGHT }}
-            >
-              {fmtHourLabel(h)}
+            {/* Day's classes, stacked compactly */}
+            <div className="flex flex-col gap-1.5 p-1.5 flex-1">
+              {dayClasses.length === 0 ? (
+                <span className="text-charcoal/20 text-center text-xs mt-2">
+                  —
+                </span>
+              ) : (
+                dayClasses.map((c) => (
+                  <WeekCard key={c.id} cls={c} onClick={() => onSelect(c)} />
+                ))
+              )}
             </div>
-          ))}
-        </div>
-
-        {/* Day columns */}
-        {days.map((d) => {
-          const dayClasses = classesByDay.get(dayKey(d)) || [];
-          const isToday = sameYMD(d, today);
-          return (
-            <div
-              key={d.toISOString()}
-              className={`relative border-r last:border-r-0 border-charcoal/10 ${
-                isToday ? "bg-accent/[0.03]" : ""
-              }`}
-              style={{ height: gridHeight }}
-            >
-              {/* Hour gridlines */}
-              {hourLabels.map((h) => (
-                <div
-                  key={h}
-                  className="absolute inset-x-0 border-t border-charcoal/5"
-                  style={{ top: (h - rangeStart) * HOUR_HEIGHT }}
-                />
-              ))}
-              {/* Class blocks, positioned by start time */}
-              {dayClasses.map((c) => (
-                <TimeBlock
-                  key={c.id}
-                  cls={c}
-                  rangeStart={rangeStart}
-                  onClick={() => onSelect(c)}
-                />
-              ))}
-            </div>
-          );
-        })}
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-// A single class rendered as an absolutely-positioned block on the time
-// grid. Top = offset from the grid's start hour; height = duration. The
-// type color is a soft fill + a heavier left bar.
-function TimeBlock({
+// A single compact class card inside a day column. Uniform height (not
+// proportional to duration) so the week stays scannable on one screen.
+// Color-coded by type with a soft fill + heavier left bar; shows the
+// start time and title, plus a Waitlist / Sold Out note when full.
+function WeekCard({
   cls,
-  rangeStart,
   onClick,
 }: {
   cls: ScheduleClass;
-  rangeStart: number;
   onClick: () => void;
 }) {
-  const startH = hourInTZ(cls.startISO);
-  const top = (startH - rangeStart) * HOUR_HEIGHT;
-  // Floor the height so very short / zero-duration blocks stay tappable
-  // and legible.
-  const height = Math.max(30, (cls.durationMin / 60) * HOUR_HEIGHT);
   const style = CLASS_TYPE_STYLES[cls.type];
-
   return (
     <button
       type="button"
       onClick={onClick}
-      className="absolute left-0.5 right-0.5 rounded-sm overflow-hidden text-left px-2 py-1 transition-shadow hover:shadow-md hover:z-10"
+      className="text-left rounded-sm px-2 py-1.5 transition-shadow hover:shadow-md"
       style={{
-        top,
-        height,
         background: style.bgSoft,
         borderLeft: `3px solid ${style.border}`,
       }}
@@ -595,12 +498,12 @@ function TimeBlock({
       >
         {fmtTime(new Date(cls.startISO))}
       </p>
-      <p className="font-serif text-[13px] text-charcoal leading-snug line-clamp-2 mt-0.5">
+      <p className="font-serif text-[13px] text-charcoal leading-snug mt-0.5">
         {cls.title}
       </p>
       {cls.isFull && (
         <span
-          className="text-[8px] tracking-[0.2em] uppercase font-semibold leading-none"
+          className="block text-[8px] tracking-[0.2em] uppercase font-semibold leading-none mt-1"
           style={{ color: style.text }}
         >
           {cls.allowsWaitlist ? "Waitlist" : "Sold Out"}
