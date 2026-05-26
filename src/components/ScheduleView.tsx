@@ -232,9 +232,10 @@ export default function ScheduleView({
         ref={stickyRef}
         className="sticky top-20 z-30 bg-cream/95 backdrop-blur-sm pb-3"
       >
-      {/* Navigation. Prev / label / Next, with a Today shortcut on the
-          right when we've drifted off today's date. */}
-      <div className="flex items-center justify-between gap-3 flex-wrap py-4 px-4 sm:px-5">
+      {/* Navigation row. Prev / label / Next on the left; Calendar/List
+          toggle + Today on the right — all consolidated into this one
+          top line to keep the pinned bar compact. */}
+      <div className="flex items-center justify-between gap-3 flex-wrap py-3 px-4 sm:px-5">
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -257,10 +258,10 @@ export default function ScheduleView({
             </svg>
           </button>
           <div className="ml-3">
-            <p className="font-serif text-2xl md:text-3xl font-light text-charcoal leading-tight">
+            <p className="font-serif text-xl md:text-2xl font-light text-charcoal leading-tight">
               {weekLabel}
             </p>
-            <p className="text-xs tracking-[0.25em] uppercase text-muted mt-1">
+            <p className="text-[11px] tracking-[0.25em] uppercase text-muted mt-0.5">
               {isThisWeek ? "This week" : "Week of " + fmtMonthDay(days[0])}
               {" · "}
               {totalClassesThisWeek}{" "}
@@ -268,40 +269,41 @@ export default function ScheduleView({
             </p>
           </div>
         </div>
-        {!isThisWeek && (
-          <button
-            type="button"
-            onClick={() => setSelectedDay(today)}
-            className="text-[11px] tracking-[0.25em] uppercase text-accent border border-accent/30 px-4 py-2 rounded-full hover:bg-accent hover:text-white transition-colors"
-          >
-            Today
-          </button>
-        )}
+
+        {/* Right controls: Calendar/List toggle (desktop) + Today */}
+        <div className="flex items-center gap-3">
+          <div className="hidden md:inline-flex bg-cream border border-charcoal/10 rounded-full p-0.5">
+            {(["week", "list"] as const).map((mode) => (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => setViewMode(mode)}
+                className={`px-4 py-1.5 text-[11px] tracking-[0.25em] uppercase rounded-full transition-colors ${
+                  viewMode === mode
+                    ? "bg-charcoal text-white"
+                    : "text-charcoal/60 hover:text-charcoal"
+                }`}
+                aria-pressed={viewMode === mode}
+              >
+                {mode === "week" ? "Calendar" : "List"}
+              </button>
+            ))}
+          </div>
+          {!isThisWeek && (
+            <button
+              type="button"
+              onClick={() => setSelectedDay(today)}
+              className="text-[11px] tracking-[0.25em] uppercase text-accent border border-accent/30 px-4 py-2 rounded-full hover:bg-accent hover:text-white transition-colors"
+            >
+              Today
+            </button>
+          )}
+        </div>
       </div>
 
-      {/* View toggle + legend. Toggle is desktop-only — mobile is always
-          a single-day-at-a-time view since the 7-column week grid is
-          too cramped for a phone. On desktop: Week = overview grid,
-          Day = one day at a time with a day picker. */}
-      <div className="flex flex-wrap items-center justify-between gap-4 px-4 sm:px-5">
-        <div className="hidden md:inline-flex bg-cream border border-charcoal/10 rounded-full p-0.5">
-          {(["week", "list"] as const).map((mode) => (
-            <button
-              key={mode}
-              type="button"
-              onClick={() => setViewMode(mode)}
-              className={`px-4 py-1.5 text-[11px] tracking-[0.25em] uppercase rounded-full transition-colors ${
-                viewMode === mode
-                  ? "bg-charcoal text-white"
-                  : "text-charcoal/60 hover:text-charcoal"
-              }`}
-              aria-pressed={viewMode === mode}
-            >
-              {mode === "week" ? "Calendar" : "List"}
-            </button>
-          ))}
-        </div>
-
+      {/* Color key. Lives on its own line under the nav row; still inside
+          the sticky bar so it stays visible while scrolling. */}
+      <div className="flex flex-wrap items-center gap-4 px-4 sm:px-5">
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] tracking-[0.2em] uppercase text-muted">
           {(Object.keys(CLASS_TYPE_STYLES) as Array<keyof typeof CLASS_TYPE_STYLES>).map(
             (key) => {
