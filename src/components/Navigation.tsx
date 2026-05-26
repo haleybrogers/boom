@@ -370,28 +370,9 @@ export default function Navigation() {
                       </button>
                       {expanded && (
                         <div className="flex flex-col gap-3 pl-4 border-l border-charcoal/10">
-                          {/* Overview link. Only when the parent itself has an href (e.g. /booking) */}
-                          {link.href && (
-                            <Link
-                              href={link.href}
-                              className="flex flex-col"
-                              onClick={() => {
-                                setIsOpen(false);
-                                setMobileExpanded(null);
-                              }}
-                            >
-                              <p className={`text-sm tracking-[0.15em] uppercase ${
-                                isTransparent ? "text-white/80" : "text-charcoal/70"
-                              }`}>
-                                Overview
-                              </p>
-                              <p className={`text-sm mt-0.5 ${
-                                isTransparent ? "text-white/40" : "text-muted"
-                              }`}>
-                                See all booking options
-                              </p>
-                            </Link>
-                          )}
+                          {/* Overview link intentionally omitted on mobile —
+                              it's redundant clutter here; the desktop
+                              dropdown keeps its Overview entry. */}
                           {link.children.map((child) => {
                             const inner = (
                               <>
