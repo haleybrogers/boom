@@ -676,21 +676,18 @@ export default function EventsCalendarClient({
               + Lunch Power Hour classes run all through the soft opening
               on a sliding scale; rather than list every instance here,
               point people to the full schedule. */}
-          <div className="bg-warm-white border border-charcoal/15 rounded-sm p-7 md:p-9 text-center">
-            <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-2">
-              Sliding-Scale Drop-Ins
+          <div className="bg-warm-white border border-charcoal/15 rounded-sm px-6 py-5 text-center">
+            <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-1.5">
+              Pre-Opening Sliding-Scale Drop-Ins
             </p>
-            <h3 className="font-serif text-xl font-light text-charcoal mb-2">
-              Pay what&apos;s comfortable.
-            </h3>
-            <p className="text-sm text-muted max-w-md mx-auto mb-5 leading-relaxed">
+            <p className="text-sm text-muted max-w-lg mx-auto mb-4 leading-relaxed">
               Open Level Classical Mat and Lunch Power Hour run all through
-              our soft opening on a sliding scale, $10 to $25. Pay full price
-              or whatever feels right for you.
+              our pre-opening on a sliding scale, $10 to $25. Pay what&apos;s
+              comfortable.
             </p>
             <Link
               href="/schedule"
-              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
             >
               See the schedule →
             </Link>
