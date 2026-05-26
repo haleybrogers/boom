@@ -29,8 +29,16 @@ export const SHOW_FOUNDING = isFoundingActive();
 // Wednesday May 27, 2026 at 9 AM ET — set per Haley on 2026-05-21.
 export const FOUNDING_LAUNCH = new Date("2026-05-27T09:00:00-04:00");
 
+// ⚡️ founding-live BRANCH OVERRIDE ⚡️
+// This branch represents the POST-LAUNCH state: founding memberships
+// are purchasable, the countdown + "get early access" signup are gone,
+// and the pricing tier cards link straight to Momence checkout.
+// Hardcoded to true here so we don't have to wait for the launch date.
+// To go live for real: merge this branch into main (or just copy this
+// one-line change). To revert to the countdown state: delete this
+// branch / don't merge.
 export function isFoundingLaunched(): boolean {
-  return Date.now() >= FOUNDING_LAUNCH.getTime();
+  return true;
 }
 
 // PRIVATES_BOOKABLE: gates direct-link bookings for privates, duets,
