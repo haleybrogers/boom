@@ -64,6 +64,26 @@ function fmtTime(d: Date) {
     .replace(" ", "");
 }
 
+// Decimal hour-of-day for an ISO timestamp, in the studio's timezone.
+// e.g. 10:30 AM → 10.5. Used to position class blocks on the shared time
+// axis so classes at different times sit at different heights (and the
+// same time aligns across days).
+function hourInTZ(iso: string): number {
+  const parts = new Date(iso).toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: TZ,
+  });
+  const [h, m] = parts.split(":").map((n) => parseInt(n, 10));
+  return h + m / 60;
+}
+
+// Pixels per hour on the week grid. Deliberately compact so a typical
+// studio day (≈9am–7pm) fits on one screen, while still giving real
+// vertical separation between classes at different times.
+const HOUR_HEIGHT = 50;
+
 // ----------------------- main view -----------------------
 
 type ViewMode = "week" | "list";
@@ -185,8 +205,10 @@ export default function ScheduleView({
   return (
     <div>
       {/* Navigation. Prev / label / Next, with a Today shortcut on the
-          right when we've drifted off today's date. */}
-      <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
+          right when we've drifted off today's date. Sticks just below the
+          site nav (h-20 = 80px) so the week you're looking at stays
+          visible the whole time you scroll the grid. */}
+      <div className="sticky top-20 z-30 bg-cream/95 backdrop-blur-sm flex items-center justify-between mb-6 gap-3 flex-wrap py-3">
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -396,12 +418,16 @@ export default function ScheduleView({
 
 // ----------------------- week grid (desktop) -----------------------
 
-// 7-column week layout. Each column is its own day — header on top
-// (weekday + date), then a vertical stack of cards for that day's
-// classes. No time gutter on the left, no hour gridlines — cards
-// just sort themselves chronologically inside each column. Each
-// card grows to fit its full title (no truncation) so reading what's
-// on never requires opening the modal.
+// 7-column week layout on a SHARED time axis. Each column is its own day
+// (header on top), and every class is positioned vertically by its real
+// start time. That gives two things the plain stacked-card version
+// couldn't: classes at different times get a real vertical GAP between
+// them (a 10am and an 11am are visibly an hour apart, not stacked flush),
+// and the same time aligns across days (a Mon 10am and a Wed 10am sit on
+// the same line). No hour gutter or gridlines — the printed start time on
+// each block carries the absolute time, and we keep the scale compact
+// (HOUR_HEIGHT) + auto-tighten the visible range to the week's actual
+// classes so the whole thing still fits on one screen.
 function WeekGrid({
   days,
   classesByDay,
@@ -416,12 +442,21 @@ function WeekGrid({
   const dayKey = (d: Date) =>
     d.toLocaleDateString("en-CA", { timeZone: TZ });
 
-  // Compact 7-column overview. Each column is a day: a header (weekday +
-  // date) on top, then that day's classes stacked as small color-coded
-  // cards. Cards are NOT sized by duration — they're uniform and tight so
-  // the whole week fits on one screen without scrolling. The start time
-  // is printed on every card, so two classes an hour apart read clearly
-  // even though they sit right below each other.
+  // Shared visible range, tightened to the week's actual classes with a
+  // small pad so blocks aren't flush against the edges. Empty week falls
+  // back to a sensible 8am–6pm.
+  let minH = 24;
+  let maxH = 0;
+  for (const d of days) {
+    for (const c of classesByDay.get(dayKey(d)) || []) {
+      minH = Math.min(minH, hourInTZ(c.startISO));
+      maxH = Math.max(maxH, hourInTZ(c.endISO));
+    }
+  }
+  const rangeStart = minH === 24 ? 8 : Math.max(0, Math.floor(minH - 0.25));
+  const rangeEnd = maxH === 0 ? 18 : Math.min(24, Math.ceil(maxH + 0.25));
+  const gridHeight = Math.max(1, rangeEnd - rangeStart) * HOUR_HEIGHT;
+
   return (
     <div className="grid grid-cols-7 gap-px bg-charcoal/10 border border-charcoal/10 rounded-sm overflow-hidden">
       {days.map((d) => {
@@ -451,17 +486,16 @@ function WeekGrid({
               </p>
             </div>
 
-            {/* Day's classes, stacked compactly */}
-            <div className="flex flex-col gap-1.5 p-1.5 flex-1">
-              {dayClasses.length === 0 ? (
-                <span className="text-charcoal/20 text-center text-xs mt-2">
-                  —
-                </span>
-              ) : (
-                dayClasses.map((c) => (
-                  <WeekCard key={c.id} cls={c} onClick={() => onSelect(c)} />
-                ))
-              )}
+            {/* Day's classes, positioned on the shared time axis */}
+            <div className="relative" style={{ height: gridHeight }}>
+              {dayClasses.map((c) => (
+                <WeekCard
+                  key={c.id}
+                  cls={c}
+                  rangeStart={rangeStart}
+                  onClick={() => onSelect(c)}
+                />
+              ))}
             </div>
           </div>
         );
@@ -470,24 +504,31 @@ function WeekGrid({
   );
 }
 
-// A single compact class card inside a day column. Uniform height (not
-// proportional to duration) so the week stays scannable on one screen.
-// Color-coded by type with a soft fill + heavier left bar; shows the
-// start time and title, plus a Waitlist / Sold Out note when full.
+// A single class block, absolutely positioned within its day column by
+// start time. Top = offset from the grid's start hour; height grows with
+// duration but never drops below a legible floor (so short classes don't
+// clip the title). Color-coded by type with a soft fill + heavier left
+// bar; shows the start time + title, plus Waitlist / Sold Out when full.
 function WeekCard({
   cls,
+  rangeStart,
   onClick,
 }: {
   cls: ScheduleClass;
+  rangeStart: number;
   onClick: () => void;
 }) {
   const style = CLASS_TYPE_STYLES[cls.type];
+  const top = (hourInTZ(cls.startISO) - rangeStart) * HOUR_HEIGHT;
+  const height = Math.max(46, (cls.durationMin / 60) * HOUR_HEIGHT);
   return (
     <button
       type="button"
       onClick={onClick}
-      className="text-left rounded-sm px-2 py-1.5 transition-shadow hover:shadow-md"
+      className="absolute left-1 right-1 text-left rounded-sm overflow-hidden px-2 py-1 transition-shadow hover:shadow-md hover:z-10"
       style={{
+        top,
+        height,
         background: style.bgSoft,
         borderLeft: `3px solid ${style.border}`,
       }}
@@ -498,12 +539,12 @@ function WeekCard({
       >
         {fmtTime(new Date(cls.startISO))}
       </p>
-      <p className="font-serif text-[13px] text-charcoal leading-snug mt-0.5">
+      <p className="font-serif text-[13px] text-charcoal leading-snug line-clamp-2 mt-0.5">
         {cls.title}
       </p>
       {cls.isFull && (
         <span
-          className="block text-[8px] tracking-[0.2em] uppercase font-semibold leading-none mt-1"
+          className="block text-[8px] tracking-[0.2em] uppercase font-semibold leading-none mt-0.5"
           style={{ color: style.text }}
         >
           {cls.allowsWaitlist ? "Waitlist" : "Sold Out"}
