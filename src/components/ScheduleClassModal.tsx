@@ -273,7 +273,7 @@ export default function ScheduleClassModal({
                   rel="noopener noreferrer"
                   className="btn-animated w-full block text-center mt-3 border border-accent text-accent text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent hover:text-white transition-colors"
                 >
-                  Book all 3 →
+                  Book entire series →
                 </a>
               )}
 
