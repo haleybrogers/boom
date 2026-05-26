@@ -18,9 +18,13 @@ import ScheduleClassModal from "./ScheduleClassModal";
 
 const TZ = "America/New_York";
 
-// (No time-axis constants — desktop week view is now a stacked-card
-// layout per day column, not a Google-Calendar-style time grid. Time
-// information lives on each card directly.)
+// Desktop Calendar view is a Google-Calendar-style time grid: hour
+// labels down the left, classes positioned vertically by their start
+// time and sized by duration. HOUR_HEIGHT is the pixel height of one
+// hour row. The visible hour range auto-tightens to just the hours that
+// actually have classes (plus a touch of padding) so the grid never
+// shows an empty 6am-to-9pm marathon when classes only run 9-12.
+const HOUR_HEIGHT = 56;
 
 // ----------------------- date helpers -----------------------
 
@@ -66,6 +70,28 @@ function fmtTime(d: Date) {
     })
     .toLowerCase()
     .replace(" ", "");
+}
+
+// Decimal hour-of-day for an ISO timestamp, in the studio's timezone.
+// e.g. 10:30 AM → 10.5. Used to position time blocks on the grid.
+function hourInTZ(iso: string): number {
+  const parts = new Date(iso).toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: TZ,
+  });
+  const [h, m] = parts.split(":").map((n) => parseInt(n, 10));
+  return h + m / 60;
+}
+
+// Hour-gutter label. 13 → "1 PM", 0 → "12 AM", etc.
+function fmtHourLabel(hour: number): string {
+  const h = ((hour % 24) + 24) % 24;
+  if (h === 0) return "12 AM";
+  if (h === 12) return "12 PM";
+  if (h < 12) return `${h} AM`;
+  return `${h - 12} PM`;
 }
 
 // ----------------------- main view -----------------------
@@ -420,115 +446,157 @@ function WeekGrid({
   const dayKey = (d: Date) =>
     d.toLocaleDateString("en-CA", { timeZone: TZ });
 
+  // Visible hour range, tightened to the week's actual classes. 1-hour
+  // pad above the earliest start + below the latest end so blocks aren't
+  // flush against the grid edges. Empty week falls back to 8am–6pm.
+  let minH = 24;
+  let maxH = 0;
+  for (const d of days) {
+    for (const c of classesByDay.get(dayKey(d)) || []) {
+      minH = Math.min(minH, hourInTZ(c.startISO));
+      maxH = Math.max(maxH, hourInTZ(c.endISO));
+    }
+  }
+  const rangeStart = minH === 24 ? 8 : Math.max(0, Math.floor(minH) - 1);
+  const rangeEnd = maxH === 0 ? 18 : Math.min(24, Math.ceil(maxH) + 1);
+  const totalHours = Math.max(1, rangeEnd - rangeStart);
+  const gridHeight = totalHours * HOUR_HEIGHT;
+  const hourLabels = Array.from(
+    { length: totalHours },
+    (_, i) => rangeStart + i
+  );
+
   return (
-    <div className="grid grid-cols-7 gap-3">
-      {days.map((d) => {
-        const dayClasses = classesByDay.get(dayKey(d)) || [];
-        const isToday = sameYMD(d, today);
-        return (
-          <div key={d.toISOString()} className="flex flex-col">
+    <div className="border border-charcoal/10 rounded-sm overflow-hidden bg-warm-white">
+      {/* Header row: empty gutter corner + 7 day headers */}
+      <div className="grid grid-cols-[56px_repeat(7,1fr)] border-b border-charcoal/10">
+        <div className="bg-cream/40 border-r border-charcoal/10" />
+        {days.map((d) => {
+          const isToday = sameYMD(d, today);
+          return (
             <div
-              className={`text-center pb-3 mb-3 border-b ${
-                isToday ? "border-accent" : "border-charcoal/10"
+              key={d.toISOString()}
+              className={`text-center py-3 border-r last:border-r-0 border-charcoal/10 ${
+                isToday ? "bg-accent/5" : "bg-cream/40"
               }`}
             >
               <p
-                className={`text-xs tracking-[0.3em] uppercase font-medium ${
+                className={`text-[11px] tracking-[0.25em] uppercase font-medium ${
                   isToday ? "text-accent" : "text-charcoal/70"
                 }`}
               >
                 {fmtWeekday(d)}
               </p>
               <p
-                className={`font-serif text-3xl font-light leading-tight mt-1 ${
+                className={`font-serif text-xl font-light leading-tight mt-0.5 ${
                   isToday ? "text-accent" : "text-charcoal"
                 }`}
               >
                 {d.getDate()}
               </p>
             </div>
-            {dayClasses.length === 0 ? (
-              <div className="text-center text-xs text-muted/60 italic mt-2">—</div>
-            ) : (
-              <div className="space-y-2.5">
-                {dayClasses.map((c) => (
-                  <ClassCard
-                    key={c.id}
-                    cls={c}
-                    onClick={() => onSelect(c)}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+
+      {/* Body: hour gutter + 7 day columns, all the same pixel height */}
+      <div className="grid grid-cols-[56px_repeat(7,1fr)]">
+        {/* Hour labels gutter */}
+        <div
+          className="relative bg-cream/40 border-r border-charcoal/10"
+          style={{ height: gridHeight }}
+        >
+          {hourLabels.map((h) => (
+            <div
+              key={h}
+              className="absolute right-2 -translate-y-1/2 text-[10px] tracking-[0.1em] uppercase text-muted whitespace-nowrap"
+              style={{ top: (h - rangeStart) * HOUR_HEIGHT }}
+            >
+              {fmtHourLabel(h)}
+            </div>
+          ))}
+        </div>
+
+        {/* Day columns */}
+        {days.map((d) => {
+          const dayClasses = classesByDay.get(dayKey(d)) || [];
+          const isToday = sameYMD(d, today);
+          return (
+            <div
+              key={d.toISOString()}
+              className={`relative border-r last:border-r-0 border-charcoal/10 ${
+                isToday ? "bg-accent/[0.03]" : ""
+              }`}
+              style={{ height: gridHeight }}
+            >
+              {/* Hour gridlines */}
+              {hourLabels.map((h) => (
+                <div
+                  key={h}
+                  className="absolute inset-x-0 border-t border-charcoal/5"
+                  style={{ top: (h - rangeStart) * HOUR_HEIGHT }}
+                />
+              ))}
+              {/* Class blocks, positioned by start time */}
+              {dayClasses.map((c) => (
+                <TimeBlock
+                  key={c.id}
+                  cls={c}
+                  rangeStart={rangeStart}
+                  onClick={() => onSelect(c)}
+                />
+              ))}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
-// Stacked card used inside each day column. Heavy left bar in the type
-// color is the at-a-glance category cue.
-//
-// Card height scales with class duration so a 3-hour event reads as
-// visually heavier than a 50-minute class — even without the time grid,
-// you can see at a glance that an evening is committed vs. a quick
-// drop-in. min-height floor keeps short classes substantial; multiplier
-// keeps long events visually weighted. Current: 110px floor, 1.5×
-// multiplier → 50 min → 110px, 90 min → 135px, 180 min → 270px.
-function ClassCard({
+// A single class rendered as an absolutely-positioned block on the time
+// grid. Top = offset from the grid's start hour; height = duration. The
+// type color is a soft fill + a heavier left bar.
+function TimeBlock({
   cls,
+  rangeStart,
   onClick,
 }: {
   cls: ScheduleClass;
+  rangeStart: number;
   onClick: () => void;
 }) {
-  const start = new Date(cls.startISO);
-  const end = new Date(cls.endISO);
+  const startH = hourInTZ(cls.startISO);
+  const top = (startH - rangeStart) * HOUR_HEIGHT;
+  // Floor the height so very short / zero-duration blocks stay tappable
+  // and legible.
+  const height = Math.max(30, (cls.durationMin / 60) * HOUR_HEIGHT);
   const style = CLASS_TYPE_STYLES[cls.type];
-  const minHeight = Math.max(80, Math.round(cls.durationMin * 1.15));
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left rounded-sm px-3 py-3 transition-shadow hover:shadow-md flex flex-col"
+      className="absolute left-0.5 right-0.5 rounded-sm overflow-hidden text-left px-2 py-1 transition-shadow hover:shadow-md hover:z-10"
       style={{
+        top,
+        height,
         background: style.bgSoft,
-        borderLeft: `4px solid ${style.border}`,
-        minHeight,
+        borderLeft: `3px solid ${style.border}`,
       }}
     >
       <p
-        className="text-xs tracking-[0.2em] uppercase font-semibold leading-tight"
+        className="text-[10px] tracking-[0.1em] uppercase font-semibold leading-tight"
         style={{ color: style.text }}
       >
-        {fmtTime(start)}
+        {fmtTime(new Date(cls.startISO))}
       </p>
-      <p className="text-[10px] tracking-[0.2em] uppercase text-charcoal/55 mt-0.5 leading-tight">
-        to {fmtTime(end)}
-      </p>
-      <p className="font-serif text-[15px] text-charcoal leading-snug mt-1.5">
+      <p className="font-serif text-[12px] text-charcoal leading-tight line-clamp-2 mt-0.5">
         {cls.title}
       </p>
-      {displayLocation(cls.location) !== "Studio" && (
-        <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
-          {displayLocation(cls.location)}
-        </p>
-      )}
-      {cls.residentsOnly && (
-        <span className="self-start mt-2 text-[9px] tracking-[0.1em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2.5 py-1 leading-none">
-          Residents Only
-        </span>
-      )}
-      {/* Book/RSVP labels removed for compactness. The card's
-          tap-to-open behavior + the "Tap any class to book" hint above
-          the grid cover the affordance. Class-full / Sold-Out state
-          stays visible because it's signal the user needs before
-          tapping. */}
       {cls.isFull && (
         <span
-          className="mt-auto pt-2 text-[10px] tracking-[0.25em] uppercase font-semibold leading-tight"
+          className="text-[8px] tracking-[0.2em] uppercase font-semibold leading-none"
           style={{ color: style.text }}
         >
           {cls.allowsWaitlist ? "Waitlist" : "Sold Out"}
