@@ -289,15 +289,18 @@ export default function ScheduleView({
               </button>
             ))}
           </div>
-          {!isThisWeek && (
-            <button
-              type="button"
-              onClick={() => setSelectedDay(today)}
-              className="text-[11px] tracking-[0.25em] uppercase text-accent border border-accent/30 px-4 py-2 rounded-full hover:bg-accent hover:text-white transition-colors"
-            >
-              Today
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => setSelectedDay(today)}
+            disabled={isThisWeek}
+            className={`text-[11px] tracking-[0.25em] uppercase px-4 py-2 rounded-full border transition-colors ${
+              isThisWeek
+                ? "border-charcoal/15 text-charcoal/30 cursor-default"
+                : "border-accent/30 text-accent hover:bg-accent hover:text-white"
+            }`}
+          >
+            Today
+          </button>
         </div>
       </div>
 
