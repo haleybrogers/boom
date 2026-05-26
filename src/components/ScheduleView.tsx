@@ -84,7 +84,7 @@ function hourInTZ(iso: string): number {
 // vertical separation between classes at different times. Enough room
 // that an hourly-spaced pair of class blocks (time + title + a "Book"
 // line) sit clear of each other without overlapping.
-const HOUR_HEIGHT = 60;
+const HOUR_HEIGHT = 72;
 
 // ----------------------- main view -----------------------
 
@@ -511,7 +511,9 @@ function WeekCard({
 }) {
   const style = CLASS_TYPE_STYLES[cls.type];
   const top = (hourInTZ(cls.startISO) - rangeStart) * HOUR_HEIGHT;
-  const height = Math.max(56, (cls.durationMin / 60) * HOUR_HEIGHT);
+  // minHeight (not a fixed height) so a block can grow to fit a two-line
+  // title + the Book line rather than cramming them against the bottom.
+  const minHeight = Math.max(62, (cls.durationMin / 60) * HOUR_HEIGHT);
   // Bottom-line call to action. Full classes show their status instead.
   const cta = cls.isFull
     ? cls.allowsWaitlist
@@ -524,10 +526,10 @@ function WeekCard({
     <button
       type="button"
       onClick={onClick}
-      className="absolute left-1 right-1 text-left rounded-sm overflow-hidden px-2 py-1 transition-shadow hover:shadow-md hover:z-10"
+      className="absolute left-1 right-1 text-left rounded-sm overflow-hidden px-2.5 py-2 transition-shadow hover:shadow-md hover:z-10"
       style={{
         top,
-        height,
+        minHeight,
         background: style.bgSoft,
         borderLeft: `3px solid ${style.border}`,
       }}
@@ -538,11 +540,11 @@ function WeekCard({
       >
         {fmtTime(new Date(cls.startISO))}
       </p>
-      <p className="font-sans text-[11px] font-medium text-charcoal leading-[1.15] line-clamp-2 mt-0.5">
+      <p className="font-sans text-[11px] font-medium text-charcoal leading-[1.2] line-clamp-2 mt-1">
         {cls.title}
       </p>
       <span
-        className="block text-[9px] tracking-[0.2em] uppercase font-semibold leading-none mt-1"
+        className="block text-[9px] tracking-[0.2em] uppercase font-semibold leading-none mt-1.5"
         style={{ color: style.text }}
       >
         {cta}
