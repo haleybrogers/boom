@@ -250,7 +250,7 @@ export default function ScheduleClassModal({
                   rel="noopener noreferrer"
                   className="btn-animated w-full block text-center bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
                 >
-                  Book →
+                  {isMatSeries ? "Book just this date →" : "Book →"}
                 </a>
               )}
               {cls.action.type === "rsvp" && (
