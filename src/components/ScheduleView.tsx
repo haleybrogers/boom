@@ -216,7 +216,12 @@ export default function ScheduleView({
   );
 
   return (
-    <div>
+    <div
+      className="touch-pan-y"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       {/* Sticky header. Everything that should stay visible while you
           scroll the grid lives here: the week nav (prev / label / next /
           today), the Calendar/List toggle, and the color key. It pins
@@ -354,12 +359,7 @@ export default function ScheduleView({
             2. Re-keys on each weekStart change so the slide-in
                keyframe fires from the correct side, giving each week
                flip a real "carousel" feel rather than an abrupt swap. */}
-      <div
-        className="md:hidden touch-pan-y overflow-x-hidden relative"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
+      <div className="md:hidden overflow-x-hidden relative">
         <div
           key={weekStart.toISOString()}
           className={
