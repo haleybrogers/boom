@@ -24,7 +24,11 @@ const TZ = "America/New_York";
 // hour row. The visible hour range auto-tightens to just the hours that
 // actually have classes (plus a touch of padding) so the grid never
 // shows an empty 6am-to-9pm marathon when classes only run 9-12.
-const HOUR_HEIGHT = 56;
+//
+// Sized so a typical ~50-minute class block has enough vertical room for
+// its time label + a two-line title without clipping. (At 56px/hr a
+// 50-min class was only ~47px tall and the title got cut off.)
+const HOUR_HEIGHT = 84;
 
 // ----------------------- date helpers -----------------------
 
@@ -591,7 +595,7 @@ function TimeBlock({
       >
         {fmtTime(new Date(cls.startISO))}
       </p>
-      <p className="font-serif text-[12px] text-charcoal leading-tight line-clamp-2 mt-0.5">
+      <p className="font-serif text-[13px] text-charcoal leading-snug line-clamp-2 mt-0.5">
         {cls.title}
       </p>
       {cls.isFull && (
