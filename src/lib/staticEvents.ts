@@ -66,7 +66,7 @@ export const staticEvents: EventItem[] = [
     durationMin: 50,
     category: "soft-opening",
     description:
-      "The original 34-exercise mat sequence — breath, center, and flow, exactly as written. First class in the 3-Part Mat Series: no straps, no springs, no limits.",
+      "The original 34-exercise mat sequence, done just as Joseph Pilates designed it. All breath, control, and flow. First class in the 3-Part Mat Series.",
     shortDescription: "No straps. No springs. No limits.",
     location: "345 W Main St, Durham, NC",
     price: "",
@@ -84,7 +84,7 @@ export const staticEvents: EventItem[] = [
     durationMin: 50,
     category: "soft-opening",
     description:
-      "Classical mat with the Magic Circle — a small ring that turns every cue into a felt sensation. Second class in the 3-Part Mat Series.",
+      "Classical mat work using the Magic Circle, a small ring that adds light resistance so you actually feel every movement working. Second class in the 3-Part Mat Series.",
     shortDescription: "The Magic Circle entry point.",
     location: "345 W Main St, Durham, NC",
     price: "",
@@ -102,7 +102,7 @@ export const staticEvents: EventItem[] = [
     durationMin: 50,
     category: "soft-opening",
     description:
-      "Reformer exercises adapted to the mat — a preview of the apparatus work, no equipment required. Final class in the 3-Part Mat Series.",
+      "Reformer exercises reworked for the mat. A taste of the apparatus work, no equipment needed. Final class in the 3-Part Mat Series.",
     shortDescription: "Reformer work, no equipment required.",
     location: "345 W Main St, Durham, NC",
     price: "",

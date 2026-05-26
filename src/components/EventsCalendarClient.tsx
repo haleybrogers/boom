@@ -189,8 +189,13 @@ function MatSeriesCard({
         <h3 className="font-serif text-xl font-light text-charcoal mb-1">
           3-Part Mat Series.
         </h3>
-        <p className="font-serif italic text-sm text-charcoal/70 mb-5">
+        <p className="font-serif italic text-sm text-charcoal/70 mb-3">
           No straps. No springs. No limits.
+        </p>
+        <p className="text-sm text-muted max-w-md mx-auto mb-5 leading-relaxed">
+          Three Saturday mornings, 10:30 to 11:20 AM. Each class stands on
+          its own, so take one or take all three. $20 per class, or $55 for
+          the full series.
         </p>
         <a
           href={MAT_SERIES_BUNDLE_URL}
@@ -198,7 +203,7 @@ function MatSeriesCard({
           rel="noopener noreferrer"
           className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
         >
-          Book all three →
+          Book entire series →
         </a>
       </div>
     </div>
