@@ -648,7 +648,7 @@ function WeekList({
                           </p>
                         )}
                         {c.residentsOnly && (
-                          <span className="inline-block mt-2 text-[10px] tracking-[0.1em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2.5 py-1 leading-none">
+                          <span className="inline-block whitespace-nowrap mt-2 text-[10px] tracking-[0.1em] uppercase border border-accent/40 text-accent bg-accent/5 rounded-full px-2.5 py-1 leading-none">
                             Residents Only
                           </span>
                         )}
