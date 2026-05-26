@@ -592,13 +592,13 @@ function WeekList({
           <div key={d.toISOString()}>
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10">
               <h3
-                className={`font-serif text-xl font-light flex items-center gap-2.5 ${
+                className={`font-serif text-xl font-light flex items-center gap-2 ${
                   isToday ? "text-accent" : "text-charcoal"
                 }`}
               >
                 {fmtWeekday(d, "long")}
                 {isToday && (
-                  <span className="font-sans text-[9px] tracking-[0.2em] uppercase bg-accent text-white rounded-full px-2 py-0.5 leading-none">
+                  <span className="relative -top-px font-sans text-[9px] font-medium tracking-[0.15em] uppercase bg-accent text-white rounded-full px-2 py-1 leading-none">
                     Today
                   </span>
                 )}
