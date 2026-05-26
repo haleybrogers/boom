@@ -10,7 +10,7 @@
 // the same ScheduleClassModal. Booking happens by tapping a class block
 // → modal → "Book →" anchor that opens that session's Momence page.
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ScheduleClass } from "@/lib/scheduleData";
 import { displayLocation } from "@/lib/scheduleData";
 import { CLASS_TYPE_STYLES } from "@/lib/classStyles";
@@ -100,6 +100,25 @@ export default function ScheduleView({
   const [selectedDay, setSelectedDay] = useState(today);
   const [activeClass, setActiveClass] = useState<ScheduleClass | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("week");
+
+  // The whole top section (week nav + toggle + legend) is one sticky bar
+  // pinned just below the 80px site nav. We measure its live height so
+  // the grid's day-of-week header row can stick *right below* it — that
+  // way the week label, Calendar/List toggle, the color key, AND the
+  // weekday/date row all stay visible together while you scroll.
+  const SITE_NAV_H = 80;
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const [stickyH, setStickyH] = useState(0);
+  useEffect(() => {
+    const el = stickyRef.current;
+    if (!el) return;
+    const measure = () => setStickyH(el.offsetHeight);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const dayHeaderTop = SITE_NAV_H + stickyH;
 
   const weekStart = useMemo(() => startOfWeek(selectedDay), [selectedDay]);
   const days = useMemo(
@@ -204,11 +223,18 @@ export default function ScheduleView({
 
   return (
     <div>
+      {/* Sticky header. Everything that should stay visible while you
+          scroll the grid lives here: the week nav (prev / label / next /
+          today), the Calendar/List toggle, and the color key. It pins
+          just below the 80px site nav; the grid's weekday/date row sticks
+          right below this bar (offset measured via stickyRef). */}
+      <div
+        ref={stickyRef}
+        className="sticky top-20 z-30 bg-cream/95 backdrop-blur-sm pb-3"
+      >
       {/* Navigation. Prev / label / Next, with a Today shortcut on the
-          right when we've drifted off today's date. Sticks just below the
-          site nav (h-20 = 80px) so the week you're looking at stays
-          visible the whole time you scroll the grid. */}
-      <div className="sticky top-20 z-30 bg-cream/95 backdrop-blur-sm flex items-center justify-between mb-6 gap-3 flex-wrap py-4 px-4 sm:px-5">
+          right when we've drifted off today's date. */}
+      <div className="flex items-center justify-between gap-3 flex-wrap py-4 px-4 sm:px-5">
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -257,7 +283,7 @@ export default function ScheduleView({
           a single-day-at-a-time view since the 7-column week grid is
           too cramped for a phone. On desktop: Week = overview grid,
           Day = one day at a time with a day picker. */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-4 px-4 sm:px-5">
         <div className="hidden md:inline-flex bg-cream border border-charcoal/10 rounded-full p-0.5">
           {(["week", "list"] as const).map((mode) => (
             <button
@@ -293,10 +319,12 @@ export default function ScheduleView({
           )}
         </div>
       </div>
+      </div>
+      {/* end sticky header */}
 
       {/* How-to-book hint. Cards are tappable but not everyone reads
           that as a signup affordance; explicit nudge above the grid. */}
-      <p className="text-sm text-muted text-center italic mb-5">
+      <p className="text-sm text-muted text-center italic mb-5 mt-5">
         Tap any class to see details and book.
       </p>
 
@@ -308,6 +336,7 @@ export default function ScheduleView({
             days={days}
             classesByDay={classesByDay}
             today={today}
+            stickyTop={dayHeaderTop}
             onSelect={setActiveClass}
           />
         ) : (
@@ -432,11 +461,13 @@ function WeekGrid({
   days,
   classesByDay,
   today,
+  stickyTop,
   onSelect,
 }: {
   days: Date[];
   classesByDay: Map<string, ScheduleClass[]>;
   today: Date;
+  stickyTop: number;
   onSelect: (c: ScheduleClass) => void;
 }) {
   const dayKey = (d: Date) =>
@@ -458,17 +489,22 @@ function WeekGrid({
   const gridHeight = Math.max(1, rangeEnd - rangeStart) * HOUR_HEIGHT;
 
   return (
-    <div className="grid grid-cols-7 gap-px bg-charcoal/10 border border-charcoal/10 rounded-sm overflow-hidden">
+    // NOTE: no `overflow-hidden` here — it would break the sticky day
+    // headers below (a clipping ancestor cancels position: sticky).
+    <div className="grid grid-cols-7 gap-px bg-charcoal/10 border border-charcoal/10 rounded-sm">
       {days.map((d) => {
         const dayClasses = classesByDay.get(dayKey(d)) || [];
         const isToday = sameYMD(d, today);
         return (
           <div key={d.toISOString()} className="bg-warm-white flex flex-col">
-            {/* Day header */}
+            {/* Day header — sticks right below the week/legend bar so the
+                weekday + date stay visible while the class blocks scroll.
+                Background must be opaque so blocks don't show through. */}
             <div
-              className={`text-center py-2.5 border-b border-charcoal/10 ${
-                isToday ? "bg-accent/5" : "bg-cream/40"
+              className={`sticky z-20 text-center py-2.5 border-b border-charcoal/10 ${
+                isToday ? "bg-[#f6e7ea]" : "bg-cream"
               }`}
+              style={{ top: stickyTop }}
             >
               <p
                 className={`text-[10px] tracking-[0.2em] uppercase font-medium ${
