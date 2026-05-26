@@ -10,6 +10,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import Link from "next/link";
 import type { EventItem, EventCategory } from "@/lib/eventTypes";
 import { CATEGORY_LABELS } from "@/lib/eventTypes";
 import { MAT_SERIES_BUNDLE_URL } from "@/lib/staticEvents";
@@ -670,6 +671,30 @@ export default function EventsCalendarClient({
               ))}
             </div>
           )}
+
+          {/* Sliding-scale drop-in callout. The recurring Open Level Mat
+              + Lunch Power Hour classes run all through the soft opening
+              on a sliding scale; rather than list every instance here,
+              point people to the full schedule. */}
+          <div className="bg-warm-white border border-charcoal/15 rounded-sm p-7 md:p-9 text-center">
+            <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-2">
+              Sliding-Scale Drop-Ins
+            </p>
+            <h3 className="font-serif text-xl font-light text-charcoal mb-2">
+              Pay what&apos;s comfortable.
+            </h3>
+            <p className="text-sm text-muted max-w-md mx-auto mb-5 leading-relaxed">
+              Open Level Classical Mat and Lunch Power Hour run all through
+              our soft opening on a sliding scale, $10 to $25. Pay full price
+              or whatever feels right for you.
+            </p>
+            <Link
+              href="/schedule"
+              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              See the schedule →
+            </Link>
+          </div>
 
           {/* "otherOpeningWeek" grid removed: Haley wanted /events to
               only surface the curated trio (Mat Series + Craft Night +
