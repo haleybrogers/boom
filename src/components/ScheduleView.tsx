@@ -208,7 +208,7 @@ export default function ScheduleView({
           right when we've drifted off today's date. Sticks just below the
           site nav (h-20 = 80px) so the week you're looking at stays
           visible the whole time you scroll the grid. */}
-      <div className="sticky top-20 z-30 bg-cream/95 backdrop-blur-sm flex items-center justify-between mb-6 gap-3 flex-wrap py-3">
+      <div className="sticky top-20 z-30 bg-cream/95 backdrop-blur-sm flex items-center justify-between mb-6 gap-3 flex-wrap py-4 px-4 sm:px-5">
         <div className="flex items-center gap-2">
           <button
             type="button"
