@@ -635,12 +635,6 @@ function WeekList({
                         </p>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p
-                          className="text-[10px] tracking-[0.25em] uppercase mb-1"
-                          style={{ color: style.text }}
-                        >
-                          {style.label}
-                        </p>
                         <p className="font-serif text-base text-charcoal leading-tight">
                           {c.title}
                         </p>
