@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import type { ScheduleClass } from "@/lib/scheduleData";
 import { CLASS_TYPE_STYLES } from "@/lib/classStyles";
+import { MAT_SERIES_BUNDLE_URL } from "@/lib/staticEvents";
 import ContactForm from "./ContactForm";
+
+// The 3-part Mat Series sessions all share the tagline title "No straps.
+// No springs. No limits." in Momence. When one of those is open we also
+// surface a "Book all 3" CTA linking to the series bundle.
+const MAT_SERIES_TITLE_RE = /^no straps\.?\s+no springs\.?\s+no limits\.?$/i;
 
 // Detail modal for a single class block. Two action shapes:
 //   - cls.action.type === "book"  → external Book button that opens
@@ -66,6 +72,7 @@ export default function ScheduleClassModal({
 
   const style = CLASS_TYPE_STYLES[cls.type];
   const isRsvp = cls.action.type === "rsvp";
+  const isMatSeries = MAT_SERIES_TITLE_RE.test(cls.title.trim());
 
   // "Send this to a friend" — on phones this opens the native share
   // sheet (Messages, etc.); on desktop it falls back to copying the link
@@ -254,6 +261,20 @@ export default function ScheduleClassModal({
                 >
                   RSVP →
                 </button>
+              )}
+
+              {/* 3-part Mat Series — book the whole bundle in one go. Sits
+                  below the single-session CTA as a secondary (outline)
+                  action. */}
+              {isMatSeries && (
+                <a
+                  href={MAT_SERIES_BUNDLE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-animated w-full block text-center mt-3 border border-accent text-accent text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent hover:text-white transition-colors"
+                >
+                  Book all 3 →
+                </a>
               )}
 
               {/* Share with a friend — native share sheet on mobile,
