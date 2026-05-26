@@ -127,14 +127,6 @@ export default function ScheduleView({
     () => Array.from({ length: 7 }, (_, i) => addDays(weekStart, i)),
     [weekStart]
   );
-  // Date labels for the swipe-hint chip. Pre-computed here so the chip
-  // can read either depending on swipe direction without recomputing
-  // every touchmove frame.
-  const nextWeekStart = useMemo(() => addDays(weekStart, 7), [weekStart]);
-  const prevWeekStart = useMemo(() => addDays(weekStart, -7), [weekStart]);
-  const nextWeekLabel = `${fmtMonthDay(nextWeekStart)} – ${fmtMonthDay(addDays(nextWeekStart, 6))}`;
-  const prevWeekLabel = `${fmtMonthDay(prevWeekStart)} – ${fmtMonthDay(addDays(prevWeekStart, 6))}`;
-
   // Index classes by yyyy-mm-dd (in the studio's local timezone) so each
   // day column / day list can grab its own.
   const classesByDay = useMemo(() => {
@@ -291,15 +283,18 @@ export default function ScheduleView({
               </button>
             ))}
           </div>
-          {!isThisWeek && (
-            <button
-              type="button"
-              onClick={() => setSelectedDay(today)}
-              className="text-[11px] tracking-[0.25em] uppercase text-accent border border-accent/30 px-4 py-2 rounded-full hover:bg-accent hover:text-white transition-colors"
-            >
-              Today
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => setSelectedDay(today)}
+            disabled={isThisWeek}
+            className={`text-[11px] tracking-[0.25em] uppercase px-4 py-2 rounded-full border transition-colors ${
+              isThisWeek
+                ? "border-charcoal/15 text-charcoal/30 cursor-default"
+                : "border-accent/30 text-accent hover:bg-accent hover:text-white"
+            }`}
+          >
+            Today
+          </button>
         </div>
       </div>
 
@@ -367,50 +362,13 @@ export default function ScheduleView({
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        {/* Swipe hint chip. Fades in as you drag past ~20px, lights up
-            in accent when you cross the swipe threshold so it's obvious
-            the release will commit. Sits absolutely at the top of the
-            swipe container so it doesn't get translated with the list. */}
-        {dragging && Math.abs(dragX) > 18 && (
-          <div className="absolute top-0 left-0 right-0 flex justify-center pointer-events-none z-10">
-            <div
-              className={`mt-1 inline-flex items-center gap-3 px-5 py-3 rounded-full border shadow-sm transition-colors ${
-                Math.abs(dragX) >= SWIPE_MIN * 0.7
-                  ? "bg-accent text-white border-accent"
-                  : "bg-cream text-charcoal border-charcoal/15"
-              }`}
-              style={{
-                opacity: Math.min(1, Math.abs(dragX) / 50),
-              }}
-            >
-              {dragX < 0 ? (
-                <>
-                  <div className="flex flex-col items-end leading-tight">
-                    <span className="text-[10px] tracking-[0.25em] uppercase opacity-80">
-                      Next week
-                    </span>
-                    <span className="font-serif text-base">
-                      {nextWeekLabel}
-                    </span>
-                  </div>
-                  <span className="text-lg">→</span>
-                </>
-              ) : (
-                <>
-                  <span className="text-lg">←</span>
-                  <div className="flex flex-col items-start leading-tight">
-                    <span className="text-[10px] tracking-[0.25em] uppercase opacity-80">
-                      Previous week
-                    </span>
-                    <span className="font-serif text-base">
-                      {prevWeekLabel}
-                    </span>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        )}
+        {/* Swipe affordance. A small, quiet arrow that gently nudges to
+            the right to hint you can swipe between weeks — no color-change
+            drag feedback, just a subtle "there's more this way." */}
+        <div className="flex items-center justify-end gap-1.5 text-[10px] tracking-[0.25em] uppercase text-muted mb-3 pr-1 pointer-events-none">
+          Swipe for weeks
+          <span className="icon-wave inline-block text-sm">→</span>
+        </div>
 
         <div
           key={weekStart.toISOString()}
