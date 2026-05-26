@@ -590,13 +590,18 @@ function WeekList({
         const isToday = sameYMD(d, today);
         return (
           <div key={d.toISOString()}>
-            <div className="flex items-baseline justify-between mb-3 pb-2 border-b border-charcoal/10">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10">
               <h3
-                className={`font-serif text-xl font-light ${
+                className={`font-serif text-xl font-light flex items-center gap-2.5 ${
                   isToday ? "text-accent" : "text-charcoal"
                 }`}
               >
                 {fmtWeekday(d, "long")}
+                {isToday && (
+                  <span className="font-sans text-[9px] tracking-[0.2em] uppercase bg-accent text-white rounded-full px-2 py-0.5 leading-none">
+                    Today
+                  </span>
+                )}
               </h3>
               <p
                 className={`text-[11px] tracking-[0.25em] uppercase ${
@@ -604,7 +609,6 @@ function WeekList({
                 }`}
               >
                 {fmtMonthDay(d)}
-                {isToday ? " · Today" : ""}
               </p>
             </div>
             <ul className="space-y-2.5">
