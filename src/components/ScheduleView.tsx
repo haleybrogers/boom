@@ -520,7 +520,7 @@ function WeekCard({
 }) {
   const style = CLASS_TYPE_STYLES[cls.type];
   const top = (hourInTZ(cls.startISO) - rangeStart) * HOUR_HEIGHT;
-  const height = Math.max(46, (cls.durationMin / 60) * HOUR_HEIGHT);
+  const height = Math.max(52, (cls.durationMin / 60) * HOUR_HEIGHT);
   return (
     <button
       type="button"
@@ -539,7 +539,7 @@ function WeekCard({
       >
         {fmtTime(new Date(cls.startISO))}
       </p>
-      <p className="font-serif text-[13px] text-charcoal leading-snug line-clamp-2 mt-0.5">
+      <p className="font-sans text-[11px] font-medium text-charcoal leading-[1.15] line-clamp-2 mt-0.5">
         {cls.title}
       </p>
       {cls.isFull && (
