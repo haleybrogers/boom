@@ -81,8 +81,10 @@ function hourInTZ(iso: string): number {
 
 // Pixels per hour on the week grid. Deliberately compact so a typical
 // studio day (≈9am–7pm) fits on one screen, while still giving real
-// vertical separation between classes at different times.
-const HOUR_HEIGHT = 50;
+// vertical separation between classes at different times. Enough room
+// that an hourly-spaced pair of class blocks (time + title + a "Book"
+// line) sit clear of each other without overlapping.
+const HOUR_HEIGHT = 60;
 
 // ----------------------- main view -----------------------
 
@@ -289,18 +291,15 @@ export default function ScheduleView({
               </button>
             ))}
           </div>
-          <button
-            type="button"
-            onClick={() => setSelectedDay(today)}
-            disabled={isThisWeek}
-            className={`text-[11px] tracking-[0.25em] uppercase px-4 py-2 rounded-full border transition-colors ${
-              isThisWeek
-                ? "border-charcoal/15 text-charcoal/30 cursor-default"
-                : "border-accent/30 text-accent hover:bg-accent hover:text-white"
-            }`}
-          >
-            Today
-          </button>
+          {!isThisWeek && (
+            <button
+              type="button"
+              onClick={() => setSelectedDay(today)}
+              className="text-[11px] tracking-[0.25em] uppercase text-accent border border-accent/30 px-4 py-2 rounded-full hover:bg-accent hover:text-white transition-colors"
+            >
+              Today
+            </button>
+          )}
         </div>
       </div>
 
@@ -327,11 +326,7 @@ export default function ScheduleView({
       </div>
       {/* end sticky header */}
 
-      {/* How-to-book hint. Cards are tappable but not everyone reads
-          that as a signup affordance; explicit nudge above the grid. */}
-      <p className="text-sm text-muted text-center italic mb-5 mt-5">
-        Tap any class to see details and book.
-      </p>
+      <div className="mt-5" />
 
       {/* Desktop: respects the toggle. Week = 7-column grid, List =
           chronological list of the same week grouped by day header. */}
@@ -561,7 +556,15 @@ function WeekCard({
 }) {
   const style = CLASS_TYPE_STYLES[cls.type];
   const top = (hourInTZ(cls.startISO) - rangeStart) * HOUR_HEIGHT;
-  const height = Math.max(52, (cls.durationMin / 60) * HOUR_HEIGHT);
+  const height = Math.max(56, (cls.durationMin / 60) * HOUR_HEIGHT);
+  // Bottom-line call to action. Full classes show their status instead.
+  const cta = cls.isFull
+    ? cls.allowsWaitlist
+      ? "Waitlist"
+      : "Sold Out"
+    : cls.action.type === "rsvp"
+    ? "RSVP →"
+    : "Book →";
   return (
     <button
       type="button"
@@ -583,14 +586,12 @@ function WeekCard({
       <p className="font-sans text-[11px] font-medium text-charcoal leading-[1.15] line-clamp-2 mt-0.5">
         {cls.title}
       </p>
-      {cls.isFull && (
-        <span
-          className="block text-[8px] tracking-[0.2em] uppercase font-semibold leading-none mt-0.5"
-          style={{ color: style.text }}
-        >
-          {cls.allowsWaitlist ? "Waitlist" : "Sold Out"}
-        </span>
-      )}
+      <span
+        className="block text-[9px] tracking-[0.2em] uppercase font-semibold leading-none mt-1"
+        style={{ color: style.text }}
+      >
+        {cta}
+      </span>
     </button>
   );
 }
