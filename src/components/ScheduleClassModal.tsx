@@ -48,6 +48,7 @@ export default function ScheduleClassModal({
 }) {
   const [mounted, setMounted] = useState(false);
   const [showRsvp, setShowRsvp] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -65,6 +66,41 @@ export default function ScheduleClassModal({
 
   const style = CLASS_TYPE_STYLES[cls.type];
   const isRsvp = cls.action.type === "rsvp";
+
+  // "Send this to a friend" — on phones this opens the native share
+  // sheet (Messages, etc.); on desktop it falls back to copying the link
+  // with a brief "Link copied!" confirmation. For bookable classes we
+  // share the direct Momence booking link so the friend lands right on
+  // checkout; for RSVP-only events (Opening Party) we share the schedule
+  // page since there's no external booking flow.
+  const shareUrl =
+    cls.action.type === "book"
+      ? cls.action.bookUrl
+      : typeof window !== "undefined"
+      ? `${window.location.origin}/schedule`
+      : "";
+
+  const handleShare = async () => {
+    const shareText = `Book this with me! ${cls.title} at Boomerang Pilates — ${formatDate(
+      cls.startISO
+    )}, ${formatTimeRange(cls.startISO, cls.endISO)}.`;
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share({ title: cls.title, text: shareText, url: shareUrl });
+      } catch {
+        // user dismissed the share sheet — nothing to do
+      }
+      return;
+    }
+    // Desktop fallback: copy the link (+ blurb) to the clipboard.
+    try {
+      await navigator.clipboard.writeText(`${shareText} ${shareUrl}`.trim());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch {
+      // clipboard blocked — silently ignore
+    }
+  };
 
   return createPortal(
     <div
@@ -219,6 +255,29 @@ export default function ScheduleClassModal({
                   RSVP →
                 </button>
               )}
+
+              {/* Share with a friend — native share sheet on mobile,
+                  copy-link fallback on desktop. */}
+              <button
+                type="button"
+                onClick={handleShare}
+                className="mt-4 w-full flex items-center justify-center gap-2 text-[11px] tracking-[0.25em] uppercase text-charcoal/60 hover:text-accent transition-colors"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                  />
+                </svg>
+                {copied ? "Link copied!" : "Share with a friend"}
+              </button>
             </>
           )}
         </div>
