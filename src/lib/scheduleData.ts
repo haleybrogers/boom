@@ -173,6 +173,41 @@ function staticScheduleExtras(now: number): ScheduleClass[] {
   return extras;
 }
 
+// Work out the price string to show.
+//
+// The Momence Events API only carries `fixedPrice` (a single number), and
+// for a lot of our classes that's null — including sliding-scale classes
+// AND genuinely free pop-ups. So `fixedPrice` alone can't tell those
+// apart, and defaulting null → "Free" mislabels paid sliding-scale
+// classes. The real price for those lives only in the free-text
+// description (e.g. "sliding scale price ($10-25)"), so we parse it from
+// there as a fallback. When we can't determine a price with confidence we
+// return "" so the modal simply hides the Price row (better than a wrong
+// "Free").
+function derivePrice(e: MomenceEvent): string {
+  if (typeof e.fixedPrice === "number" && e.fixedPrice > 0) {
+    return `$${e.fixedPrice}`;
+  }
+  const desc = e.description || "";
+
+  // Price range, e.g. "$10-25" / "$10 – $25" / "$10 to 25" → sliding scale.
+  const range = desc.match(/\$\s?(\d+)\s*(?:-|–|—|to)\s*\$?\s?(\d+)/i);
+  if (range) {
+    const label = `$${range[1]}-${range[2]}`;
+    return /sliding scale/i.test(desc) ? `${label} sliding scale` : label;
+  }
+
+  // Explicitly free.
+  if (/\bfree\b/i.test(desc)) return "Free";
+
+  // Single dollar amount mentioned, e.g. "$25".
+  const single = desc.match(/\$\s?(\d+)/);
+  if (single) return `$${single[1]}`;
+
+  // Nothing reliable — let the modal omit the Price row.
+  return "";
+}
+
 export async function fetchSchedule(): Promise<ScheduleClass[]> {
   const now = Date.now();
   try {
@@ -205,8 +240,7 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
           type: classifyClass(e.title),
           action: { type: "book", bookUrl: e.link },
           description: e.description?.trim() || "",
-          price:
-            e.fixedPrice && e.fixedPrice > 0 ? `$${e.fixedPrice}` : "Free",
+          price: derivePrice(e),
           location,
           residentsOnly: detectResidentsOnly(location),
           isFull: isEventFull(e),
