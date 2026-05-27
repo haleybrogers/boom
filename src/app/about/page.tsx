@@ -205,20 +205,12 @@ export default function About() {
             Durham spots, right up until the doors officially open July 13.
             Bring a mat. Bring a friend.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link
-              href="/schedule"
-              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-            >
-              See the schedule →
-            </Link>
-            <Link
-              href="/events"
-              className="text-sm tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
-            >
-              Pop-up classes →
-            </Link>
-          </div>
+          <Link
+            href="/schedule"
+            className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+          >
+            See the schedule →
+          </Link>
         </div>
       </section>
 
