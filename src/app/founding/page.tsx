@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import FoundingLaunchCard from "@/components/FoundingLaunchCard";
+import FoundingCountdown from "@/components/FoundingCountdown";
 import Reveal from "@/components/Reveal";
 import {
   SHOW_FOUNDING,
@@ -133,12 +134,13 @@ export default async function Founding() {
           <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-6">
             25% off mat. For life.
           </h2>
-          <p className="text-muted text-base leading-relaxed">
+          <p className="text-muted text-base leading-relaxed mb-7">
             Only 15 spots per tier, and they&apos;ll go fast. Pick the
             membership that matches how often you&apos;ll show up. Your
             rate locks in the moment you join and never moves as long as
             it stays active.
           </p>
+          {isFoundingLaunched() && <FoundingCountdown />}
         </div>
       </section>
 
