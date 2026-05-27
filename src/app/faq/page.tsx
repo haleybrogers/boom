@@ -29,12 +29,12 @@ export default function FaqPage() {
               The Studio
             </p>
             <a
-              href="https://maps.google.com/?q=345+W+Main+St+Durham+NC"
+              href="https://maps.google.com/?q=343+W+Main+St+Durham+NC"
               target="_blank"
               rel="noopener noreferrer"
               className="font-serif text-lg sm:text-xl md:text-2xl font-light text-charcoal hover:text-accent transition-colors leading-snug"
             >
-              345 W Main St, Unit 2 (upstairs)
+              343 W Main St, Unit 2 (upstairs)
               <br />
               Durham, NC 27701
             </a>

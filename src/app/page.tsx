@@ -46,10 +46,10 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
             <Link
-              href="/events"
+              href="/schedule"
               className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
             >
-              Pre-opening Classes →
+              Book a Class →
             </Link>
 
             {SHOW_FOUNDING && (

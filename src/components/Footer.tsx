@@ -70,7 +70,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-sm text-muted/60 cursor-default">
-            &copy; {new Date().getFullYear()} Boomerang Pilates · 345 W Main St, Unit 2 (upstairs), Durham, NC
+            &copy; {new Date().getFullYear()} Boomerang Pilates · 343 W Main St, Unit 2 (upstairs), Durham, NC
           </p>
         </div>
       </div>

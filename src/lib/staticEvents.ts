@@ -24,7 +24,7 @@ export const staticEvents: EventItem[] = [
     description:
       "We're throwing a party. Studio tours, equipment demos, and a chance to meet the Boomerang community before the schedule fills up. $10 cover — free for founding members. Limited tote bags printed on site by Inkfinity Printing — first come, first served. Plus a raffle with items from local vendors — one raffle entry included with every ticket.",
     shortDescription: "Studio tours, demos, and the first time you meet the room.",
-    location: "345 W Main St, Unit 2 (upstairs), Durham, NC",
+    location: "343 W Main St, Unit 2 (upstairs), Durham, NC",
     price: "$10 cover · Free for founding members",
     action: { type: "rsvp-party" },
     featured: true,
@@ -45,7 +45,7 @@ export const staticEvents: EventItem[] = [
     description:
       "Like wine & design, but make it Pilates. We'll kick off with a 30-minute mat class — then settle in to paint your own hand-shaped Baltic birch boomerang, primed and ready by NC artist Kirk Fry. Paint, brushes, light refreshments, and the boomerang itself — all included.",
     shortDescription: "Wine & design, but make it Pilates.",
-    location: "345 W Main St, Durham, NC",
+    location: "343 W Main St, Durham, NC",
     price: "$40",
     action: {
       type: "external",
@@ -68,7 +68,7 @@ export const staticEvents: EventItem[] = [
     description:
       "The original 34-exercise mat sequence, done just as Joseph Pilates designed it. All breath, control, and flow. First class in the 3-Part Mat Series.",
     shortDescription: "No straps. No springs. No limits.",
-    location: "345 W Main St, Durham, NC",
+    location: "343 W Main St, Durham, NC",
     price: "",
     partLabel: "Part 1 of 3 · Mat Series",
     image: "/photo-mat-2.jpg",
@@ -86,7 +86,7 @@ export const staticEvents: EventItem[] = [
     description:
       "Classical mat work using the Magic Circle, a small ring that adds light resistance so you actually feel every movement working. Second class in the 3-Part Mat Series.",
     shortDescription: "The Magic Circle entry point.",
-    location: "345 W Main St, Durham, NC",
+    location: "343 W Main St, Durham, NC",
     price: "",
     partLabel: "Part 2 of 3 · Mat Series",
     image: "/photo-mat-2.jpg",
@@ -104,7 +104,7 @@ export const staticEvents: EventItem[] = [
     description:
       "Reformer exercises reworked for the mat. A taste of the apparatus work, no equipment needed. Final class in the 3-Part Mat Series.",
     shortDescription: "Reformer work, no equipment required.",
-    location: "345 W Main St, Durham, NC",
+    location: "343 W Main St, Durham, NC",
     price: "",
     partLabel: "Part 3 of 3 · Mat Series",
     image: "/photo-reformer.jpg",
@@ -122,7 +122,7 @@ export const staticEvents: EventItem[] = [
     description:
       "Come for the Mat Class! Stay for matcha and a studio tour. Sign up for one of 10 spots to try out the new Gratz apparatus the day before we officially open.",
     shortDescription: "Mat class, matcha, and a peek at the Gratz apparatus.",
-    location: "345 W Main St, Durham, NC",
+    location: "343 W Main St, Durham, NC",
     price: "$20",
     image: "/photo-apparatus.jpg",
     iconKey: "coffee",

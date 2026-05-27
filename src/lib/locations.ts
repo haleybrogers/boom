@@ -3,7 +3,7 @@
 // Three concerns:
 //   1. Detect whether a location string is the studio (so cards collapse
 //      the address to just "Studio" instead of dominating with the full
-//      "345 W Main St, Durham, NC").
+//      "343 W Main St, Durham, NC").
 //   2. Detect residents-only pop-up locations (apartment buildings that
 //      gate entry). Critical — if we surface a class at one of these
 //      without a badge, non-residents will show up to a locked gate.
@@ -11,7 +11,9 @@
 //
 // Add new residents-only buildings here as they come online.
 
-const STUDIO_LOCATION_KEYWORDS = ["345 w main", "boomerang pilates"];
+// Both 343 and 345 match — keep 345 so detection still works if a Momence
+// location string hasn't been updated to the new 343 address yet.
+const STUDIO_LOCATION_KEYWORDS = ["343 w main", "345 w main", "boomerang pilates"];
 
 const RESIDENTS_ONLY_BUILDINGS: Array<{ keyword: string; building: string }> = [
   { keyword: "cortland", building: "Cortland Bull City" },

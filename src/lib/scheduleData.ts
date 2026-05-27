@@ -231,7 +231,7 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
       .map((e): ScheduleClass => {
         const start = new Date(e.dateTime);
         const end = new Date(start.getTime() + (e.duration || 50) * 60_000);
-        const location = e.location?.trim() || "345 W Main St, Durham, NC";
+        const location = e.location?.trim() || "343 W Main St, Durham, NC";
         return {
           id: `momence-${e.id}`,
           title: e.title.trim(),

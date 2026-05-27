@@ -51,7 +51,7 @@ function isMomenceEventFull(e: MomenceEvent): boolean {
 // these, the event auto-categorizes as soft-opening (lives in the
 // "Soft Opening" section). Otherwise it's a pop-up around town.
 // Add more variants here if Emilie ever types the address differently.
-const STUDIO_LOCATION_KEYWORDS = ["345 w main", "boomerang pilates"];
+const STUDIO_LOCATION_KEYWORDS = ["343 w main", "345 w main", "boomerang pilates"];
 
 function categorizeByLocation(location: string): EventCategory {
   const lower = location.toLowerCase();
