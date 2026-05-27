@@ -45,7 +45,7 @@ export default function Home() {
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
           <p className="text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
-            Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio. The full method, in the order it was written. Our soft opening is underway now, sliding-scale mat classes, all levels welcome, leading up to opening day July 13.
+            Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio. The full method, in the order it was written. Our soft opening is underway now with sliding-scale mat classes at the studio, plus free pop-up classes around Durham, all leading up to opening day July 13.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>

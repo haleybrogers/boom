@@ -200,15 +200,25 @@ export default function About() {
             Come meet us in person.
           </h2>
           <p className="text-muted text-base leading-relaxed mb-8 max-w-md mx-auto">
-            We&apos;re hosting free pop-up classes at favorite Durham spots
-            until the doors open July 13. Bring a mat. Bring a friend.
+            Our soft opening is underway, sliding-scale mat classes at the
+            studio, all levels welcome. Plus free pop-up classes at favorite
+            Durham spots, right up until the doors officially open July 13.
+            Bring a mat. Bring a friend.
           </p>
-          <Link
-            href="/events"
-            className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-          >
-            See where we&apos;re popping up →
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              href="/schedule"
+              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
+            >
+              See the schedule →
+            </Link>
+            <Link
+              href="/events"
+              className="text-sm tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
+            >
+              Pop-up classes →
+            </Link>
+          </div>
         </div>
       </section>
 
