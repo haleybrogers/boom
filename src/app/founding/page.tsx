@@ -271,7 +271,7 @@ export default async function Founding() {
                           {soldOut
                             ? "Full"
                             : launched
-                            ? "Lock in this rate"
+                            ? "Become a member"
                             : `Launches ${launchDateShort}`}
                         </span>
                         <span className="text-accent group-hover:translate-x-0.5 transition-transform">
