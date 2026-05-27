@@ -108,7 +108,7 @@ export default function About() {
               </ExpandableBio>
               <Link
                 href="/privates"
-                className="inline-flex items-center gap-1 text-sm tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
+                className="btn-animated inline-block mt-2 bg-accent text-white text-sm tracking-widest uppercase px-7 py-3.5 hover:bg-accent/90 transition-colors"
               >
                 Book a Session with Emilie →
               </Link>
@@ -181,7 +181,7 @@ export default function About() {
               </ExpandableBio>
               <Link
                 href="/privates"
-                className="inline-flex items-center gap-1 text-sm tracking-widest uppercase text-accent hover:text-accent/70 transition-colors"
+                className="btn-animated inline-block mt-2 bg-accent text-white text-sm tracking-widest uppercase px-7 py-3.5 hover:bg-accent/90 transition-colors"
               >
                 Book a Session with Annie →
               </Link>
