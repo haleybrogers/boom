@@ -49,7 +49,7 @@ export function isFoundingLaunched(): boolean {
 export const FOUNDING_SPOTS_TOTAL = 15;
 export const FOUNDING_SPOTS_LEFT: Record<string, number> = {
   "4x": 0, // sold out (15 of 15)
-  "8x": 14, // 1 of 15 sold
+  "8x": 13, // 2 of 15 sold
   unlimited: 12, // 3 of 15 sold
 };
 
