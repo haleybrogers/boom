@@ -573,7 +573,7 @@ function WeekCard({
     <button
       type="button"
       onClick={onClick}
-      className="absolute left-1 right-1 text-left rounded-sm overflow-hidden px-2.5 py-2 transition-shadow hover:shadow-md hover:z-10"
+      className="absolute left-1 right-1 flex flex-col items-start text-left rounded-sm overflow-hidden px-2.5 py-2 transition-shadow hover:shadow-md hover:z-10"
       style={{
         top,
         minHeight,
