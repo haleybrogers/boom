@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PackPickerModal from "@/components/PackPickerModal";
-import { SHOW_FOUNDING, FOUNDING_DEADLINE } from "@/lib/flags";
+import { SHOW_FOUNDING } from "@/lib/flags";
 import {
   fetchMemberships,
   pairMatTiers,
@@ -32,14 +32,8 @@ export default async function Packs() {
   const featuredKey = tiers.length >= 2 ? tiers[1].key : tiers[0]?.key;
 
   // While founding is live, the full-price mat memberships aren't bookable
-  // yet — we steer people to the better founding deal instead. They open
-  // the day founding closes (FOUNDING_DEADLINE).
+  // yet — we steer people to the better founding deal instead.
   const matLocked = SHOW_FOUNDING;
-  const fullPriceDate = FOUNDING_DEADLINE.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    timeZone: "America/New_York",
-  });
 
   return (
     <section className="pt-28 lg:pt-36 pb-20 lg:pb-28">
@@ -124,11 +118,11 @@ export default async function Packs() {
               </p>
               {matLocked && (
                 <p className="text-sm text-accent leading-relaxed max-w-xl mx-auto mt-4 border border-accent/20 bg-accent/5 rounded-sm px-5 py-3">
-                  Full-price memberships open {fullPriceDate}. Until then,{" "}
+                  These open once founding memberships are full. Until then,{" "}
                   <Link href="/founding" className="underline underline-offset-4 decoration-accent/50 hover:decoration-accent font-medium">
                     become a founding member
                   </Link>{" "}
-                  and lock in 25% off for life.
+                  and lock in 25% off these rates for life.
                 </p>
               )}
             </div>
@@ -142,6 +136,12 @@ export default async function Packs() {
                   const perClass =
                     classes && regular.price !== undefined ? Math.ceil(regular.price / classes) : null;
                   const isFeatured = t.key === featuredKey;
+                  // Founding savings vs this full-price tier (shown while locked).
+                  const foundingPrice = t.founding?.price;
+                  const savings =
+                    foundingPrice !== undefined && regular.price !== undefined
+                      ? regular.price - foundingPrice
+                      : null;
 
                   const cardInner = (
                     <>
@@ -168,6 +168,17 @@ export default async function Packs() {
                         {perClass !== null && (
                           <p className="text-sm text-muted mt-0.5">
                             ~${perClass}/class
+                          </p>
+                        )}
+                        {matLocked && foundingPrice !== undefined && (
+                          <p className="text-sm text-accent font-medium mt-2">
+                            Founding: ${foundingPrice}/mo
+                            {savings !== null && savings > 0 && (
+                              <span className="text-accent/80 font-normal">
+                                {" · save $"}
+                                {savings}/mo
+                              </span>
+                            )}
                           </p>
                         )}
                       </div>
