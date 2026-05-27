@@ -2,29 +2,67 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import {
+  isFoundingActive,
+  isFoundingLaunched,
+  FOUNDING_DEADLINE,
+} from "@/lib/flags";
 
-// Pre-opening pop-up: nudges visitors toward /events where the free
-// community classes live. Shows once per session, ~4s after page load,
-// dismissable. Modeled on FoundingPopup so the dismissal semantics +
-// animation feel consistent.
+// Home-page pop-up. Now that founding memberships are LIVE, this announces
+// the offer with a live countdown to the deadline + a CTA to /founding.
+// (Was the pre-opening pop-up; repurposed at launch.) Shows once per
+// session, ~4s after load, dismissable. Only renders while founding is
+// both launched and still within its window.
+
+type Remaining = { days: number; hours: number; mins: number; secs: number };
+
+function calc(): Remaining {
+  const ms = Math.max(0, FOUNDING_DEADLINE.getTime() - Date.now());
+  return {
+    days: Math.floor(ms / 86_400_000),
+    hours: Math.floor((ms % 86_400_000) / 3_600_000),
+    mins: Math.floor((ms % 3_600_000) / 60_000),
+    secs: Math.floor((ms % 60_000) / 1000),
+  };
+}
 
 export default function PreOpeningPopup() {
   const [show, setShow] = useState(false);
+  const [time, setTime] = useState<Remaining | null>(null);
 
   useEffect(() => {
-    const dismissed = sessionStorage.getItem("preopening-popup-dismissed");
+    // Only surface while founding is live and still open.
+    if (!isFoundingLaunched() || !isFoundingActive()) return;
+    const dismissed = sessionStorage.getItem("founding-live-popup-dismissed");
     if (dismissed) return;
 
     const timer = setTimeout(() => setShow(true), 4000);
     return () => clearTimeout(timer);
   }, []);
 
+  // Tick the countdown once a second while visible.
+  useEffect(() => {
+    if (!show) return;
+    setTime(calc());
+    const id = setInterval(() => setTime(calc()), 1000);
+    return () => clearInterval(id);
+  }, [show]);
+
   const dismiss = () => {
     setShow(false);
-    sessionStorage.setItem("preopening-popup-dismissed", "true");
+    sessionStorage.setItem("founding-live-popup-dismissed", "true");
   };
 
   if (!show) return null;
+
+  const blocks: { value: number; label: string }[] = time
+    ? [
+        { value: time.days, label: "Days" },
+        { value: time.hours, label: "Hrs" },
+        { value: time.mins, label: "Min" },
+        { value: time.secs, label: "Sec" },
+      ]
+    : [];
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -48,24 +86,43 @@ export default function PreOpeningPopup() {
 
         <div className="text-center mb-7">
           <p className="text-sm tracking-widest uppercase text-accent mb-3">
-            Before the Doors Open
+            Limited Time
           </p>
           <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-3">
-            Move with us before opening day.
+            Founding memberships are live.
           </h2>
           <p className="text-muted text-sm max-w-sm mx-auto leading-relaxed">
-            Free and low-cost mat classes at favorite Durham spots leading up
-            to July 13. All levels welcome.
+            25% off mat, locked in for life. Only 15 spots per tier, and
+            they&apos;re going fast.
           </p>
         </div>
 
+        {/* Countdown */}
+        {blocks.length > 0 && (
+          <div className="flex justify-center gap-3 sm:gap-4 mb-7">
+            {blocks.map((b) => (
+              <div
+                key={b.label}
+                className="flex flex-col items-center bg-white border border-charcoal/10 rounded-sm px-3 py-2 min-w-[52px]"
+              >
+                <span className="font-serif text-2xl font-light text-charcoal leading-none">
+                  {String(b.value).padStart(2, "0")}
+                </span>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-muted mt-1">
+                  {b.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="text-center">
           <Link
-            href="/events"
+            href="/founding"
             onClick={dismiss}
             className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors mb-3"
           >
-            See Pop-Up Classes
+            Become a Founding Member →
           </Link>
           <div>
             <button
