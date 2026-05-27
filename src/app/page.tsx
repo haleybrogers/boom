@@ -71,16 +71,6 @@ export default function Home() {
             )}
           </div>
 
-          {/* Tertiary link for the private-instruction audience. Subtle,
-              tucked under the main CTAs so it doesn't compete. */}
-          <p className="mt-6 text-sm text-muted animate-fade-up-lux" style={{ animationDelay: "1.05s" }}>
-            <Link
-              href="/privates"
-              className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
-            >
-              Looking for private instruction? →
-            </Link>
-          </p>
 
         </div>
       </section>
