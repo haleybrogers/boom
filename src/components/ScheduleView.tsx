@@ -18,6 +18,13 @@ import ScheduleClassModal from "./ScheduleClassModal";
 
 const TZ = "America/New_York";
 
+// First official day of classes — Monday, July 13, 2026. Stored as a
+// yyyy-mm-dd key so we can match it against a day cell's TZ-local date
+// string regardless of the visitor's own timezone. Used to flag the day
+// in the grid + show a celebratory banner the week it lands in.
+const OPENING_DAY_KEY = "2026-07-13";
+const isOpeningDayKey = (key: string) => key === OPENING_DAY_KEY;
+
 // ----------------------- date helpers -----------------------
 
 // Start-of-week = Monday. We anchor everything off this since most
@@ -214,6 +221,9 @@ export default function ScheduleView({
     (acc, d) => acc + (classesByDay.get(dayKey(d))?.length || 0),
     0
   );
+  // True when the visible week contains our first official opening day —
+  // drives the celebratory banner above the grid.
+  const weekHasOpeningDay = days.some((d) => isOpeningDayKey(dayKey(d)));
 
   return (
     <div
@@ -324,7 +334,30 @@ export default function ScheduleView({
       </div>
       {/* end sticky header */}
 
-      <div className="mt-5" />
+      {/* Opening Day banner — only on the week that contains July 13.
+          Gold/"special" palette so it reads celebratory and matches the
+          gold event color in the legend. */}
+      {weekHasOpeningDay ? (
+        <div
+          className="mt-5 mb-5 rounded-sm px-6 py-5 text-center"
+          style={{ background: "#f3e5b8", border: "1px solid #b8943a" }}
+        >
+          <p
+            className="text-[11px] tracking-[0.35em] uppercase font-semibold mb-1"
+            style={{ color: "#6e5418" }}
+          >
+            Opening Day
+          </p>
+          <p className="font-serif text-xl md:text-2xl font-light text-charcoal">
+            Monday, July 13. Our doors officially open.
+          </p>
+          <p className="text-sm text-charcoal/60 mt-1">
+            The first official day of classes at Boomerang. Come move with us.
+          </p>
+        </div>
+      ) : (
+        <div className="mt-5" />
+      )}
 
       {/* Desktop: respects the toggle. Week = 7-column grid, List =
           chronological list of the same week grouped by day header. */}
@@ -443,27 +476,48 @@ function WeekGrid({
       {days.map((d) => {
         const dayClasses = classesByDay.get(dayKey(d)) || [];
         const isToday = sameYMD(d, today);
+        const isOpening = isOpeningDayKey(dayKey(d));
+        // Opening day gets the gold treatment (overrides the today tint).
+        const headerBg = isOpening
+          ? "#f3e5b8"
+          : isToday
+          ? "#f6e7ea"
+          : "#f4f0eb"; // cream
         return (
           <div key={d.toISOString()} className="bg-warm-white flex flex-col">
             {/* Day header — sticks right below the week/legend bar so the
                 weekday + date stay visible while the class blocks scroll.
                 Background must be opaque so blocks don't show through. */}
             <div
-              className={`sticky z-20 text-center py-2.5 border-b border-charcoal/10 ${
-                isToday ? "bg-[#f6e7ea]" : "bg-cream"
-              }`}
-              style={{ top: stickyTop }}
+              className="sticky z-20 text-center py-2.5 border-b border-charcoal/10"
+              style={{ top: stickyTop, background: headerBg }}
             >
+              {isOpening && (
+                <p
+                  className="text-[8px] tracking-[0.25em] uppercase font-bold leading-none mb-0.5"
+                  style={{ color: "#6e5418" }}
+                >
+                  Opening Day
+                </p>
+              )}
               <p
                 className={`text-[10px] tracking-[0.2em] uppercase font-medium ${
-                  isToday ? "text-accent" : "text-charcoal/60"
+                  isOpening
+                    ? "text-[#6e5418]"
+                    : isToday
+                    ? "text-accent"
+                    : "text-charcoal/60"
                 }`}
               >
                 {fmtWeekday(d)}
               </p>
               <p
                 className={`font-serif text-lg font-light leading-none mt-1 ${
-                  isToday ? "text-accent" : "text-charcoal"
+                  isOpening
+                    ? "text-[#6e5418]"
+                    : isToday
+                    ? "text-accent"
+                    : "text-charcoal"
                 }`}
               >
                 {d.getDate()}
@@ -588,6 +642,7 @@ function WeekList({
       {daysWithClasses.map((d) => {
         const dayClasses = classesByDay.get(dayKey(d)) || [];
         const isToday = sameYMD(d, today);
+        const isOpening = isOpeningDayKey(dayKey(d));
         return (
           <div key={d.toISOString()}>
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10">
@@ -597,7 +652,15 @@ function WeekList({
                 }`}
               >
                 {fmtWeekday(d, "long")}
-                {isToday && (
+                {isOpening && (
+                  <span
+                    className="relative -top-px font-sans text-[9px] font-bold tracking-[0.15em] uppercase rounded-full px-2 py-1 leading-none"
+                    style={{ background: "#b8943a", color: "#fff" }}
+                  >
+                    Opening Day
+                  </span>
+                )}
+                {isToday && !isOpening && (
                   <span className="relative -top-px font-sans text-[9px] font-medium tracking-[0.15em] uppercase bg-accent text-white rounded-full px-2 py-1 leading-none">
                     Today
                   </span>

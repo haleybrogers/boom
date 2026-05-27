@@ -119,15 +119,16 @@ const MAT_KEYWORDS = [
   "rtl",
   "return to life",
   "power hour",   // Lunch Power Hour is mat
-  // The 3-part Mat Series sessions live in Momence under their tagline
-  // "No straps. No springs. No limits." instead of "Mat" — so catch on
-  // the distinctive "no straps" / "no springs" substring.
-  "no straps",
-  "no springs",
 ];
+
+// The 3-part Mat Series sessions live in Momence under their tagline
+// "No straps. No springs. No limits." — it's a special limited series, so
+// it renders gold/"special" (not a regular rose Mat class).
+const SPECIAL_KEYWORDS = ["no straps", "no springs", "no limits"];
 
 export function classifyClass(title: string): ClassType {
   const t = title.toLowerCase();
+  if (SPECIAL_KEYWORDS.some((k) => t.includes(k))) return "special";
   if (APPARATUS_KEYWORDS.some((k) => t.includes(k))) return "apparatus";
   if (MAT_KEYWORDS.some((k) => t.includes(k))) return "mat";
   return "special";
