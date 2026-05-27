@@ -2,7 +2,20 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import FoundingLaunchCard from "@/components/FoundingLaunchCard";
 import Reveal from "@/components/Reveal";
-import { SHOW_FOUNDING, isFoundingLaunched, FOUNDING_LAUNCH } from "@/lib/flags";
+import {
+  SHOW_FOUNDING,
+  isFoundingLaunched,
+  FOUNDING_LAUNCH,
+  FOUNDING_SPOTS_LEFT,
+  FOUNDING_SPOTS_TOTAL,
+} from "@/lib/flags";
+
+// Display labels for the scarcity banner (keyed by tier key).
+const TIER_SHORT_LABELS: Record<string, string> = {
+  "4x": "4× Mat",
+  "8x": "8× Mat",
+  unlimited: "Unlimited Mat",
+};
 import {
   fetchMemberships,
   pairMatTiers,
@@ -48,6 +61,14 @@ export default async function Founding() {
   // After the deadline (EOD July 13, 2026), this page disappears.
   if (!SHOW_FOUNDING) notFound();
   const memberships = await fetchMemberships();
+
+  // Scarcity banner: surface the tier with the fewest spots left (most
+  // urgent). Manual counts live in FOUNDING_SPOTS_LEFT (flags.ts).
+  const scarcestTier = Object.entries(FOUNDING_SPOTS_LEFT)
+    .filter(([, n]) => n > 0)
+    .sort((a, b) => a[1] - b[1])[0];
+  const allFoundingFull = !scarcestTier;
+
   return (
     <>
       {/* Hero. Full-bleed Pilates photo with overlaid kicker, headline, countdown */}
@@ -73,6 +94,26 @@ export default async function Founding() {
               <h1 className="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-6 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
                 Be one of the first.
               </h1>
+              {/* Scarcity banner. Manual per-tier counts (FOUNDING_SPOTS_LEFT
+                  in flags.ts). Surfaces the scarcest tier; flips to "full"
+                  once every tier hits 0. */}
+              {isFoundingLaunched() && (
+                <p
+                  className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase bg-white/15 backdrop-blur-sm border border-white/40 rounded-full px-4 py-2 animate-fade-up-lux"
+                  style={{ animationDelay: "0.7s" }}
+                >
+                  {allFoundingFull ? (
+                    <>Founding memberships are full</>
+                  ) : (
+                    <>
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                      Only {scarcestTier[1]}{" "}
+                      {scarcestTier[1] === 1 ? "spot" : "spots"} left in{" "}
+                      {TIER_SHORT_LABELS[scarcestTier[0]] ?? scarcestTier[0]}
+                    </>
+                  )}
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -148,6 +189,12 @@ export default async function Founding() {
                       ? Math.ceil(regular.price / classes)
                       : null;
                   const isFeatured = t.key === featuredKey;
+                  // Manual per-tier spots-left (flags.ts). A tier at 0 is
+                  // "Full" and its card stops linking to checkout.
+                  const spotsLeft =
+                    FOUNDING_SPOTS_LEFT[t.key] ?? FOUNDING_SPOTS_TOTAL;
+                  const soldOut = spotsLeft <= 0;
+                  const clickable = launched && !soldOut;
                   // Shared inner content — same regardless of launched state.
                   const cardInner = (
                     <>
@@ -162,9 +209,22 @@ export default async function Founding() {
                       {tierTagline(t.key) && (
                         <p className="text-sm text-muted mb-1">{tierTagline(t.key)}</p>
                       )}
-                      <p className="text-[11px] tracking-widest uppercase text-muted mb-5">
+                      <p className="text-[11px] tracking-widest uppercase text-muted mb-2">
                         Monthly Membership
                       </p>
+                      {launched && (
+                        <p
+                          className={`inline-block text-[10px] tracking-[0.2em] uppercase rounded-full px-2.5 py-1 mb-4 ${
+                            soldOut
+                              ? "bg-charcoal/5 text-charcoal/50"
+                              : "bg-accent/10 text-accent font-medium"
+                          }`}
+                        >
+                          {soldOut
+                            ? "Full"
+                            : `${spotsLeft} ${spotsLeft === 1 ? "spot" : "spots"} left`}
+                        </p>
+                      )}
 
                       <div className="border-t border-charcoal/5 pt-4 mb-2">
                         <p className="text-[11px] tracking-widest uppercase text-accent mb-1">
@@ -206,11 +266,21 @@ export default async function Founding() {
                       )}
 
                       <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                        <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                          {launched ? "Lock in this rate" : `Launches ${launchDateShort}`}
+                        <span
+                          className={`text-[11px] tracking-widest uppercase transition-colors ${
+                            soldOut
+                              ? "text-charcoal/40"
+                              : "text-accent group-hover:text-accent/80"
+                          }`}
+                        >
+                          {soldOut
+                            ? "Full"
+                            : launched
+                            ? "Lock in this rate"
+                            : `Launches ${launchDateShort}`}
                         </span>
                         <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                          {launched ? "→" : ""}
+                          {clickable ? "→" : ""}
                         </span>
                       </div>
                     </>
@@ -223,12 +293,12 @@ export default async function Founding() {
                       ? "border-2 border-accent/50 shadow-sm"
                       : "border border-charcoal/10"
                   } ${
-                    launched
+                    clickable
                       ? "hover:-translate-y-1 hover:shadow-md " +
                         (isFeatured ? "" : "hover:border-accent/30")
                       : "opacity-90"
                   }`;
-                  return launched ? (
+                  return clickable ? (
                     <a
                       key={t.key}
                       href={founding.link}

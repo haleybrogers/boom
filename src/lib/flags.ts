@@ -35,6 +35,24 @@ export function isFoundingLaunched(): boolean {
   return Date.now() >= FOUNDING_LAUNCH.getTime();
 }
 
+// FOUNDING_SPOTS_LEFT: manually-maintained count of founding spots still
+// available PER TIER (4x / 8x / unlimited). Drives the "X spots left"
+// badge on each pricing card + the scarcity banner at the top of
+// /founding.
+//
+// Why manual: Momence's public API doesn't expose membership sales, so
+// there's no way to count these automatically. Update each number by hand
+// as that tier sells (you can hold a tier at 1 for urgency near the end).
+// A tier at 0 shows "Full" and its card stops linking to checkout.
+//
+// Keys must match the tier keys from pairMatTiers() in momence.ts.
+export const FOUNDING_SPOTS_TOTAL = 15;
+export const FOUNDING_SPOTS_LEFT: Record<string, number> = {
+  "4x": 1, // 14 of 15 sold
+  "8x": 14, // 1 of 15 sold
+  unlimited: 15, // none sold yet
+};
+
 // PRIVATES_BOOKABLE: gates direct-link bookings for privates, duets,
 // and trios. While false, every "Book a Session" / "Book a Private" CTA
 // renders as a disabled "Booking opens soon" state. Flip to true once
