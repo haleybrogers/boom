@@ -198,11 +198,6 @@ export default async function Founding() {
                   // Shared inner content — same regardless of launched state.
                   const cardInner = (
                     <>
-                      {isFeatured && (
-                        <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-3">
-                          Most popular
-                        </p>
-                      )}
                       <h3 className="font-serif text-xl font-light text-charcoal mb-1">
                         {tierDisplayName(t)}
                       </h3>
