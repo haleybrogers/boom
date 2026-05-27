@@ -35,12 +35,6 @@ export default function Events() {
           >
             Pop-ups around town, opening-night plans, and the things worth showing up for.
           </p>
-          <p
-            className="text-sm text-muted/80 mt-6 max-w-md mx-auto animate-fade-up"
-            style={{ animationDelay: "0.55s" }}
-          >
-            Tap any event for full details and to RSVP or book.
-          </p>
         </div>
       </section>
 
