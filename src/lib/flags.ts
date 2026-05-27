@@ -26,8 +26,10 @@ export const SHOW_FOUNDING = isFoundingActive();
 // live. After this moment, the pricing cards link to Momence checkout
 // like normal.
 //
-// Wednesday May 27, 2026 at 9 AM ET — set per Haley on 2026-05-21.
-export const FOUNDING_LAUNCH = new Date("2026-05-27T09:00:00-04:00");
+// Founding memberships went LIVE Wednesday May 27, 2026. Haley gave the
+// go-ahead the morning of launch day, so this was moved to start-of-day
+// to flip it live immediately rather than waiting for the 9 AM mark.
+export const FOUNDING_LAUNCH = new Date("2026-05-27T00:00:00-04:00");
 
 export function isFoundingLaunched(): boolean {
   return Date.now() >= FOUNDING_LAUNCH.getTime();
