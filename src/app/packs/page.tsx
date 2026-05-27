@@ -118,7 +118,8 @@ export default async function Packs() {
               </p>
               {matLocked && (
                 <p className="text-sm text-accent leading-relaxed max-w-xl mx-auto mt-4 border border-accent/20 bg-accent/5 rounded-sm px-5 py-3">
-                  These open once founding memberships are full. Until then,{" "}
+                  Booking opens here once founding memberships sell out. Until
+                  then,{" "}
                   <Link href="/founding" className="underline underline-offset-4 decoration-accent/50 hover:decoration-accent font-medium">
                     become a founding member
                   </Link>{" "}
@@ -136,12 +137,6 @@ export default async function Packs() {
                   const perClass =
                     classes && regular.price !== undefined ? Math.ceil(regular.price / classes) : null;
                   const isFeatured = t.key === featuredKey;
-                  // Founding savings vs this full-price tier (shown while locked).
-                  const foundingPrice = t.founding?.price;
-                  const savings =
-                    foundingPrice !== undefined && regular.price !== undefined
-                      ? regular.price - foundingPrice
-                      : null;
 
                   const cardInner = (
                     <>
@@ -160,7 +155,7 @@ export default async function Packs() {
                         Monthly Membership
                       </p>
 
-                      <div className="border-t border-charcoal/5 pt-4 mb-5">
+                      <div className="border-t border-charcoal/5 pt-4">
                         <p className="font-serif text-3xl font-light text-charcoal">
                           ${regular.price}
                           <span className="text-sm text-muted font-sans">/month</span>
@@ -170,42 +165,41 @@ export default async function Packs() {
                             ~${perClass}/class
                           </p>
                         )}
-                        {matLocked && foundingPrice !== undefined && (
-                          <p className="text-sm text-accent font-medium mt-2">
-                            Founding: ${foundingPrice}/mo
-                            {savings !== null && savings > 0 && (
-                              <span className="text-accent/80 font-normal">
-                                {" · save $"}
-                                {savings}/mo
-                              </span>
-                            )}
-                          </p>
-                        )}
                       </div>
 
-                      <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                        <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                          {matLocked ? "Founding deal" : "Buy"}
-                        </span>
-                        <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                          →
-                        </span>
-                      </div>
+                      {/* CTA only when bookable. While locked, the section's
+                          red note carries the "opens once founding sells out"
+                          message — the cards are just info, not clickable. */}
+                      {!matLocked && (
+                        <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
+                          <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                            Buy
+                          </span>
+                          <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                            →
+                          </span>
+                        </div>
+                      )}
                     </>
                   );
 
-                  const baseClasses = `group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+                  const baseClasses = `flex flex-col bg-white rounded-sm p-7 transition-all duration-300 ${
                     isFeatured
                       ? "border-2 border-charcoal/20"
-                      : "border border-charcoal/10 hover:border-accent/30"
-                  } ${matLocked ? "opacity-80" : ""}`;
+                      : "border border-charcoal/10"
+                  } ${
+                    matLocked
+                      ? "opacity-75 cursor-default select-none"
+                      : "group hover:-translate-y-1 hover:shadow-md" +
+                        (isFeatured ? "" : " hover:border-accent/30")
+                  }`;
 
-                  // While founding is live: not bookable — the card links to
-                  // /founding (the better deal) instead of the Momence buy.
+                  // While founding is live: not bookable at all — plain,
+                  // non-clickable card. Becomes a real buy link after founding.
                   return matLocked ? (
-                    <Link key={t.key} href="/founding" className={baseClasses}>
+                    <div key={t.key} className={baseClasses} aria-disabled="true">
                       {cardInner}
-                    </Link>
+                    </div>
                   ) : (
                     <a
                       key={t.key}
