@@ -216,7 +216,7 @@ export default async function Founding() {
                           }`}
                         >
                           {soldOut
-                            ? "Full"
+                            ? "Sold Out"
                             : `${spotsLeft} ${spotsLeft === 1 ? "spot" : "spots"} left`}
                         </p>
                       )}
@@ -269,7 +269,7 @@ export default async function Founding() {
                           }`}
                         >
                           {soldOut
-                            ? "Full"
+                            ? "Sold Out"
                             : launched
                             ? "Become a founding member"
                             : `Launches ${launchDateShort}`}
