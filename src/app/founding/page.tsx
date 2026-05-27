@@ -161,7 +161,6 @@ export default async function Founding() {
       {(() => {
         const tiers = pairMatTiers(memberships).filter((t) => t.founding);
         if (tiers.length === 0) return null;
-        const featuredKey = tiers.length >= 2 ? tiers[1].key : tiers[0].key;
         const launched = isFoundingLaunched();
         const launchDateShort = FOUNDING_LAUNCH.toLocaleDateString("en-US", {
           month: "short",
@@ -188,7 +187,6 @@ export default async function Founding() {
                     classes && regular?.price !== undefined
                       ? Math.ceil(regular.price / classes)
                       : null;
-                  const isFeatured = t.key === featuredKey;
                   // Manual per-tier spots-left (flags.ts). A tier at 0 is
                   // "Full" and its card stops linking to checkout.
                   const spotsLeft =
@@ -283,14 +281,9 @@ export default async function Founding() {
                   // Launched: clickable card linking to Momence checkout.
                   // Pre-launch: same content rendered as a div with a
                   // subtle disabled treatment — no link, slightly muted.
-                  const baseClasses = `group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 ${
-                    isFeatured
-                      ? "border-2 border-accent/50 shadow-sm"
-                      : "border border-charcoal/10"
-                  } ${
+                  const baseClasses = `group flex flex-col bg-white rounded-sm p-7 border border-charcoal/10 transition-all duration-300 ${
                     clickable
-                      ? "hover:-translate-y-1 hover:shadow-md " +
-                        (isFeatured ? "" : "hover:border-accent/30")
+                      ? "hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
                       : "opacity-90"
                   }`;
                   return clickable ? (
