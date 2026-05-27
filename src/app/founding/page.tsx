@@ -198,6 +198,19 @@ export default async function Founding() {
                   // Shared inner content — same regardless of launched state.
                   const cardInner = (
                     <>
+                      {/* Tasteful sold-out X — thin accent diagonals across
+                          the whole card, clipped to its rounded corners. */}
+                      {soldOut && (
+                        <svg
+                          aria-hidden
+                          className="absolute inset-0 w-full h-full pointer-events-none"
+                          preserveAspectRatio="none"
+                          viewBox="0 0 100 100"
+                        >
+                          <line x1="3" y1="3" x2="97" y2="97" stroke="#b02d4a" strokeOpacity="0.3" strokeWidth="1.25" vectorEffect="non-scaling-stroke" />
+                          <line x1="97" y1="3" x2="3" y2="97" stroke="#b02d4a" strokeOpacity="0.3" strokeWidth="1.25" vectorEffect="non-scaling-stroke" />
+                        </svg>
+                      )}
                       <h3 className="font-serif text-xl font-light text-charcoal mb-1">
                         {tierDisplayName(t)}
                       </h3>
@@ -283,7 +296,7 @@ export default async function Founding() {
                   // Launched: clickable card linking to Momence checkout.
                   // Pre-launch: same content rendered as a div with a
                   // subtle disabled treatment — no link, slightly muted.
-                  const baseClasses = `group flex flex-col bg-white rounded-sm p-7 border border-charcoal/10 transition-all duration-300 ${
+                  const baseClasses = `group relative overflow-hidden flex flex-col bg-white rounded-sm p-7 border border-charcoal/10 transition-all duration-300 ${
                     clickable
                       ? "hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
                       : "opacity-90"
