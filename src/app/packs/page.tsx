@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PackPickerModal from "@/components/PackPickerModal";
-import { SHOW_FOUNDING } from "@/lib/flags";
+import { SHOW_FOUNDING, FOUNDING_SPOTS_LEFT, FOUNDING_SPOTS_TOTAL } from "@/lib/flags";
 import {
   fetchMemberships,
   pairMatTiers,
@@ -137,6 +137,12 @@ export default async function Packs() {
                   const perClass =
                     classes && regular.price !== undefined ? Math.ceil(regular.price / classes) : null;
                   const isFeatured = t.key === featuredKey;
+                  // A regular tier unlocks (becomes purchasable) as soon as
+                  // its founding tier sells out — even while founding is
+                  // still live for the other tiers.
+                  const tierLocked =
+                    matLocked &&
+                    (FOUNDING_SPOTS_LEFT[t.key] ?? FOUNDING_SPOTS_TOTAL) > 0;
 
                   const cardInner = (
                     <>
@@ -170,7 +176,7 @@ export default async function Packs() {
                       {/* CTA only when bookable. While locked, the section's
                           red note carries the "opens once founding sells out"
                           message — the cards are just info, not clickable. */}
-                      {!matLocked && (
+                      {!tierLocked && (
                         <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
                           <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
                             Buy
@@ -188,15 +194,15 @@ export default async function Packs() {
                       ? "border-2 border-charcoal/20"
                       : "border border-charcoal/10"
                   } ${
-                    matLocked
+                    tierLocked
                       ? "opacity-75 cursor-default select-none"
                       : "group hover:-translate-y-1 hover:shadow-md" +
                         (isFeatured ? "" : " hover:border-accent/30")
                   }`;
 
-                  // While founding is live: not bookable at all — plain,
-                  // non-clickable card. Becomes a real buy link after founding.
-                  return matLocked ? (
+                  // Locked (founding still has this tier): plain, non-clickable
+                  // card. Unlocked (founding sold out / over): real buy link.
+                  return tierLocked ? (
                     <div key={t.key} className={baseClasses} aria-disabled="true">
                       {cardInner}
                     </div>
