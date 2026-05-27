@@ -12,7 +12,7 @@ export default function NewToPilates() {
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
             You belong here.
           </h2>
-          <p className="text-muted text-base leading-relaxed max-w-lg mx-auto">
+          <p className="text-muted text-base leading-relaxed max-w-lg mx-auto balance-text">
             Classical Pilates was designed for every body. Not just flexible ones.
             No experience required. Our instructors meet you exactly where you are.
           </p>
