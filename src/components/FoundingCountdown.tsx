@@ -24,12 +24,14 @@ export default function FoundingCountdown({ showLabel = true }: { showLabel?: bo
 
   if (!time) return null;
 
+  // Small, sans-serif units — deliberately not the serif display style, so
+  // it reads as a quiet "limited time" signal rather than a hero countdown.
   const Unit = ({ value, label }: { value: number; label: string }) => (
-    <span className="inline-flex items-baseline gap-1">
-      <span className="font-serif text-base text-accent tabular-nums font-medium">
+    <span className="inline-flex items-baseline gap-1 font-sans">
+      <span className="text-sm font-semibold text-charcoal tabular-nums">
         {value.toString().padStart(2, "0")}
       </span>
-      <span className="text-[10px] tracking-widest uppercase text-accent/70">
+      <span className="text-[10px] tracking-widest uppercase text-muted">
         {label}
       </span>
     </span>
@@ -38,17 +40,17 @@ export default function FoundingCountdown({ showLabel = true }: { showLabel?: bo
   return (
     <div className="flex flex-col items-center mb-4">
       {showLabel && (
-        <p className="text-[11px] tracking-widest uppercase text-accent mb-2">
-          Founding Member Pricing Ends July 13
+        <p className="text-[10px] tracking-[0.25em] uppercase text-accent/80 mb-2">
+          Available before we open · ends in
         </p>
       )}
       <div className="flex items-baseline gap-2.5">
         <Unit value={time.days} label="d" />
-        <span className="text-accent/30 text-sm">·</span>
+        <span className="text-charcoal/20 text-sm">·</span>
         <Unit value={time.hours} label="h" />
-        <span className="text-accent/30 text-sm">·</span>
+        <span className="text-charcoal/20 text-sm">·</span>
         <Unit value={time.minutes} label="m" />
-        <span className="text-accent/30 text-sm">·</span>
+        <span className="text-charcoal/20 text-sm">·</span>
         <Unit value={time.seconds} label="s" />
       </div>
     </div>

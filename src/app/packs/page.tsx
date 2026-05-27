@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PackPickerModal from "@/components/PackPickerModal";
+import FoundingCountdown from "@/components/FoundingCountdown";
 import { SHOW_FOUNDING } from "@/lib/flags";
 import {
   fetchMemberships,
@@ -91,6 +92,7 @@ export default async function Packs() {
               an intro privates bundle, and a bring-a-friend pass for your
               first three months.
             </p>
+            <FoundingCountdown />
             <Link
               href="/founding"
               className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
