@@ -654,6 +654,28 @@ export default function EventsCalendarClient({
         <section className="mb-16 lg:mb-24">
           <SectionHeader kicker="Soft Opening" title="Help us work out the kinks." />
 
+          {/* Sliding-scale drop-in callout. The recurring Open Level Mat
+              + Lunch Power Hour classes run all through the soft opening
+              on a sliding scale; rather than list every instance here,
+              point people to the full schedule. Sits up top, above the
+              Mat Series, since it's the everyday pre-opening offering. */}
+          <div className="bg-warm-white border border-charcoal/15 rounded-sm px-6 py-5 text-center mb-5">
+            <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-1.5">
+              Pre-Opening Sliding-Scale Drop-Ins
+            </p>
+            <p className="text-sm text-muted max-w-lg mx-auto mb-4 leading-relaxed">
+              Open Level Classical Mat and Lunch Power Hour run all through
+              our pre-opening on a sliding scale, $10 to $25. Pay what&apos;s
+              comfortable.
+            </p>
+            <Link
+              href="/schedule"
+              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
+            >
+              See the schedule →
+            </Link>
+          </div>
+
           {matSeries.length > 0 && (
             <div className="mb-5">
               <MatSeriesCard events={matSeries} onSelect={setActiveEvent} />
@@ -671,27 +693,6 @@ export default function EventsCalendarClient({
               ))}
             </div>
           )}
-
-          {/* Sliding-scale drop-in callout. The recurring Open Level Mat
-              + Lunch Power Hour classes run all through the soft opening
-              on a sliding scale; rather than list every instance here,
-              point people to the full schedule. */}
-          <div className="bg-warm-white border border-charcoal/15 rounded-sm px-6 py-5 text-center">
-            <p className="text-[11px] tracking-[0.25em] uppercase text-accent mb-1.5">
-              Pre-Opening Sliding-Scale Drop-Ins
-            </p>
-            <p className="text-sm text-muted max-w-lg mx-auto mb-4 leading-relaxed">
-              Open Level Classical Mat and Lunch Power Hour run all through
-              our pre-opening on a sliding scale, $10 to $25. Pay what&apos;s
-              comfortable.
-            </p>
-            <Link
-              href="/schedule"
-              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3 hover:bg-accent/90 transition-colors"
-            >
-              See the schedule →
-            </Link>
-          </div>
 
           {/* "otherOpeningWeek" grid removed: Haley wanted /events to
               only surface the curated trio (Mat Series + Craft Night +
