@@ -50,7 +50,7 @@ export const FOUNDING_SPOTS_TOTAL = 15;
 export const FOUNDING_SPOTS_LEFT: Record<string, number> = {
   "4x": 1, // 14 of 15 sold
   "8x": 14, // 1 of 15 sold
-  unlimited: 15, // none sold yet
+  unlimited: 12, // 3 of 15 sold
 };
 
 // PRIVATES_BOOKABLE: gates direct-link bookings for privates, duets,
