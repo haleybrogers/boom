@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PackPickerModal from "@/components/PackPickerModal";
-import { SHOW_FOUNDING } from "@/lib/flags";
+import { SHOW_FOUNDING, FOUNDING_DEADLINE } from "@/lib/flags";
 import {
   fetchMemberships,
   pairMatTiers,
@@ -30,6 +30,16 @@ export default async function Packs() {
 
   // Featured tier. Middle-position by convention (8x), falls back to first.
   const featuredKey = tiers.length >= 2 ? tiers[1].key : tiers[0]?.key;
+
+  // While founding is live, the full-price mat memberships aren't bookable
+  // yet — we steer people to the better founding deal instead. They open
+  // the day founding closes (FOUNDING_DEADLINE).
+  const matLocked = SHOW_FOUNDING;
+  const fullPriceDate = FOUNDING_DEADLINE.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    timeZone: "America/New_York",
+  });
 
   return (
     <section className="pt-28 lg:pt-36 pb-20 lg:pb-28">
@@ -112,6 +122,15 @@ export default async function Packs() {
                 Three-month commitment. Up to four unused classes roll over each
                 month. Pause anytime after the first three.
               </p>
+              {matLocked && (
+                <p className="text-sm text-accent leading-relaxed max-w-xl mx-auto mt-4 border border-accent/20 bg-accent/5 rounded-sm px-5 py-3">
+                  Full-price memberships open {fullPriceDate}. Until then,{" "}
+                  <Link href="/founding" className="underline underline-offset-4 decoration-accent/50 hover:decoration-accent font-medium">
+                    become a founding member
+                  </Link>{" "}
+                  and lock in 25% off for life.
+                </p>
+              )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
@@ -123,18 +142,9 @@ export default async function Packs() {
                   const perClass =
                     classes && regular.price !== undefined ? Math.ceil(regular.price / classes) : null;
                   const isFeatured = t.key === featuredKey;
-                  return (
-                    <a
-                      key={t.key}
-                      href={regular.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
-                        isFeatured
-                          ? "border-2 border-charcoal/20"
-                          : "border border-charcoal/10 hover:border-accent/30"
-                      }`}
-                    >
+
+                  const cardInner = (
+                    <>
                       {isFeatured && (
                         <p className="text-[11px] tracking-[0.25em] uppercase text-charcoal/60 mb-3">
                           Most popular
@@ -164,12 +174,36 @@ export default async function Packs() {
 
                       <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
                         <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                          Buy
+                          {matLocked ? "Founding deal" : "Buy"}
                         </span>
                         <span className="text-accent group-hover:translate-x-0.5 transition-transform">
                           →
                         </span>
                       </div>
+                    </>
+                  );
+
+                  const baseClasses = `group flex flex-col bg-white rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+                    isFeatured
+                      ? "border-2 border-charcoal/20"
+                      : "border border-charcoal/10 hover:border-accent/30"
+                  } ${matLocked ? "opacity-80" : ""}`;
+
+                  // While founding is live: not bookable — the card links to
+                  // /founding (the better deal) instead of the Momence buy.
+                  return matLocked ? (
+                    <Link key={t.key} href="/founding" className={baseClasses}>
+                      {cardInner}
+                    </Link>
+                  ) : (
+                    <a
+                      key={t.key}
+                      href={regular.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={baseClasses}
+                    >
+                      {cardInner}
                     </a>
                   );
                 })}
