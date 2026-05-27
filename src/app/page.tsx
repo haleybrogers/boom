@@ -5,6 +5,7 @@ import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import Reveal from "@/components/Reveal";
 import PreOpeningPopup from "@/components/PreOpeningPopup";
+import OpeningCountdown from "@/components/OpeningCountdown";
 import SplashScreen from "@/components/SplashScreen";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
@@ -37,11 +38,14 @@ export default function Home() {
           <p className="text-sm tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
             Opening Soon
           </p>
+          <div className="animate-fade-up-lux" style={{ animationDelay: "0.6s" }}>
+            <OpeningCountdown />
+          </div>
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-5 animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
           <p className="text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
-            Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio this summer. The full method, in the order it was written.
+            Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio. The full method, in the order it was written. Our soft opening is underway now, sliding-scale mat classes, all levels welcome, leading up to opening day July 13.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
@@ -49,7 +53,7 @@ export default function Home() {
               href="/schedule"
               className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
             >
-              Book a Class →
+              See Our Schedule →
             </Link>
 
             {SHOW_FOUNDING && (
