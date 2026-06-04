@@ -37,29 +37,6 @@ export const staticEvents: EventItem[] = [
     ],
   },
   {
-    id: "craft-night",
-    title: "Boomerang Craft Night",
-    dateTime: "2026-06-24T17:30:00-04:00",
-    durationMin: 120,
-    category: "soft-opening",
-    description:
-      "Like wine & design, but make it Pilates. We'll kick off with a 30-minute mat class — then settle in to paint your own hand-shaped Baltic birch boomerang, primed and ready by NC artist Kirk Fry. Paint, brushes, light refreshments, and the boomerang itself — all included.",
-    shortDescription: "Wine & design, but make it Pilates.",
-    location: "343 W Main St, Durham, NC",
-    price: "$40",
-    action: {
-      type: "external",
-      href: "https://momence.com/Boomerang-Pilates/Boomerang-Craft-Night/136915236",
-    },
-    heroNote: "Workshop · Pop-up event.",
-    image: "/photo-mat-2.jpg",
-    iconKey: "boomerang",
-    details: [
-      { label: "The mat", value: "30-minute open-level class to start" },
-      { label: "The craft", value: "Hand-shaped, gesso-primed Baltic birch boomerang to paint & take home" },
-    ],
-  },
-  {
     id: "mat-series-classic",
     title: "Classic Mat",
     dateTime: "2026-06-13T10:30:00-04:00",

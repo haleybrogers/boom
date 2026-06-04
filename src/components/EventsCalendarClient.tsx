@@ -609,17 +609,14 @@ export default function EventsCalendarClient({
     [events]
   );
   // Sub-buckets inside Opening Week so the section can render the 3-part
-  // Mat Series as one grouped card and Craft Night / Mat & Matcha as
-  // featured photo cards. Anything else falls into a regular grid.
+  // Mat Series as one grouped card and Mat & Matcha as a featured photo
+  // card. Anything else falls into a regular grid.
   const matSeries = useMemo(
     () => openingWeek.filter((e) => e.id.startsWith("mat-series-")),
     [openingWeek]
   );
   const featuredOpeningWeek = useMemo(
-    () =>
-      openingWeek.filter(
-        (e) => e.id === "craft-night" || e.id === "mat-matcha"
-      ),
+    () => openingWeek.filter((e) => e.id === "mat-matcha"),
     [openingWeek]
   );
   const otherOpeningWeek = useMemo(
@@ -627,7 +624,6 @@ export default function EventsCalendarClient({
       openingWeek.filter(
         (e) =>
           !e.id.startsWith("mat-series-") &&
-          e.id !== "craft-night" &&
           e.id !== "mat-matcha"
       ),
     [openingWeek]
@@ -647,8 +643,8 @@ export default function EventsCalendarClient({
 
   return (
     <>
-      {/* 1. Opening Week. Mat Series (grouped trio card) up top → featured
-          pair (Craft Night + Mat & Matcha) as compact horizontal cards →
+      {/* 1. Opening Week. Mat Series (grouped trio card) up top →
+          featured event (Mat & Matcha) as a compact horizontal card →
           any other soft-opening event. */}
       {openingWeek.length > 0 && (
         <section className="mb-16 lg:mb-24">
@@ -683,7 +679,13 @@ export default function EventsCalendarClient({
           )}
 
           {featuredOpeningWeek.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5 stagger-children">
+            <div
+              className={`mb-5 stagger-children ${
+                featuredOpeningWeek.length === 1
+                  ? "max-w-xl mx-auto"
+                  : "grid grid-cols-1 md:grid-cols-2 gap-5"
+              }`}
+            >
               {featuredOpeningWeek.map((event) => (
                 <FeaturedEventCard
                   key={event.id}
@@ -695,10 +697,10 @@ export default function EventsCalendarClient({
           )}
 
           {/* "otherOpeningWeek" grid removed: Haley wanted /events to
-              only surface the curated trio (Mat Series + Craft Night +
-              Mat & Matcha) for studio events, plus the around-town
-              pop-ups below. Any extra studio-located soft-opening event
-              that lands here gets hidden so the page stays focused. */}
+              only surface the curated set (Mat Series + Mat & Matcha)
+              for studio events, plus the around-town pop-ups below.
+              Any extra studio-located soft-opening event that lands
+              here gets hidden so the page stays focused. */}
         </section>
       )}
 
