@@ -35,20 +35,8 @@ export default async function Schedule() {
             Book a class.
           </h1>
           <div className="w-12 h-px bg-accent mx-auto mt-8 mb-8" />
-          {/* Header CTAs. ClassGuideModal explains the class types
-              (Open Level Mat, Intermediate Reformer, etc.); the privates
-              link is for anyone who landed here looking for one-on-one
-              availability — privates don't show up in the group grid
-              below, so we surface them as a sibling action. */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <div className="flex items-center justify-center">
             <ClassGuideModal />
-            <Link
-              href="/privates"
-              className="btn-animated inline-flex items-center gap-2 bg-accent text-white text-xs tracking-widest uppercase px-5 py-3 hover:bg-accent/90 transition-colors"
-            >
-              Book a Private
-              <span aria-hidden="true">→</span>
-            </Link>
           </div>
         </div>
       </section>
@@ -59,6 +47,19 @@ export default async function Schedule() {
           inside a 7-column split). */}
       <section className="bg-warm-white pb-20 lg:pb-28">
         <div className="max-w-7xl mx-auto px-6">
+          {/* Subtle nudge for anyone looking for one-on-one
+              availability — privates aren't in the group-class grid
+              below, so we surface them as a quiet inline link right
+              above the calendar (not a loud button). */}
+          <p className="text-center text-sm text-muted mb-6">
+            Looking for private instruction?{" "}
+            <Link
+              href="/privates"
+              className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+            >
+              Click here →
+            </Link>
+          </p>
           {classes.length === 0 ? (
             <div className="text-center py-16 text-muted border border-dashed border-charcoal/15 rounded-sm max-w-lg mx-auto">
               <p className="font-serif text-lg text-charcoal mb-2">
