@@ -101,9 +101,10 @@ const EVENT_ICONS: Record<NonNullable<EventItem["iconKey"]>, React.ReactNode> = 
   ),
 };
 
-// Compact horizontal card for the "destination" events (Craft Night,
-// Mat & Matcha). Icon-circle on the left, content stacked on the right.
-// Much smaller than the Mat Series card above so it doesn't dominate.
+// Featured "destination" event card. Photo on the left (or on top on
+// mobile), content on the right with date eyebrow, title, short
+// description, time/price, and the book CTA. Used for events that need
+// to feel like the centerpiece of their section (e.g. Mat & Matcha).
 function FeaturedEventCard({
   event,
   onClick,
@@ -112,28 +113,57 @@ function FeaturedEventCard({
   onClick: () => void;
 }) {
   const date = formatDateBadge(event.dateTime);
+  const description = event.shortDescription || event.description;
   return (
     <button
       type="button"
       onClick={onClick}
-      className="group text-left flex items-center gap-4 bg-white border border-charcoal/10 rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
+      className="group block w-full text-left bg-white border border-charcoal/10 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
     >
-      {event.iconKey && (
-        <div className="shrink-0 w-12 h-12 rounded-full bg-cream flex items-center justify-center text-accent">
-          {EVENT_ICONS[event.iconKey]}
+      <div className="flex flex-col sm:flex-row">
+        {/* Image — square-ish on mobile, ~40% width on desktop. Falls
+            back to the icon circle when an event has no image set. */}
+        {event.image ? (
+          <div className="relative w-full sm:w-2/5 aspect-[4/3] sm:aspect-auto sm:min-h-[220px] overflow-hidden shrink-0">
+            <Image
+              src={event.image}
+              alt={event.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, 320px"
+            />
+          </div>
+        ) : event.iconKey ? (
+          <div className="shrink-0 bg-cream sm:w-2/5 flex items-center justify-center py-10 sm:py-0">
+            <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-accent">
+              {EVENT_ICONS[event.iconKey]}
+            </div>
+          </div>
+        ) : null}
+
+        {/* Content. Date eyebrow → title → description → time/price → CTA. */}
+        <div className="flex-1 flex flex-col p-6 sm:p-7">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-2">
+            {date.weekday} · {date.month} {date.day}
+          </p>
+          <h3 className="font-serif text-2xl sm:text-3xl font-light text-charcoal leading-tight mb-2 group-hover:text-accent transition-colors">
+            {event.title}
+          </h3>
+          {description && (
+            <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
+              {description}
+            </p>
+          )}
+          <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
+            <p className="text-sm text-muted">
+              {formatTimeRange(event.dateTime, event.durationMin)}
+              {event.price && ` · ${event.price}`}
+            </p>
+            <span className="text-[11px] tracking-widest uppercase text-accent shrink-0 group-hover:translate-x-0.5 transition-transform">
+              Details →
+            </span>
+          </div>
         </div>
-      )}
-      <div className="flex-1 min-w-0">
-        <p className="text-[11px] tracking-[0.25em] text-accent uppercase mb-1">
-          {date.weekday} · {date.month} {date.day}
-        </p>
-        <h3 className="font-serif text-base font-light text-charcoal leading-snug mb-1 group-hover:text-accent transition-colors">
-          {event.title}
-        </h3>
-        <p className="text-sm text-muted">
-          {formatTimeRange(event.dateTime, event.durationMin)}
-          {event.price && ` · ${event.price}`}
-        </p>
       </div>
     </button>
   );
@@ -682,7 +712,7 @@ export default function EventsCalendarClient({
             <div
               className={`mb-5 stagger-children ${
                 featuredOpeningWeek.length === 1
-                  ? "max-w-xl mx-auto"
+                  ? ""
                   : "grid grid-cols-1 md:grid-cols-2 gap-5"
               }`}
             >
