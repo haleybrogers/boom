@@ -243,6 +243,24 @@ export function findRtlCourses(memberships: Membership[]): RtlCourse[] {
   return Array.from(seen.values()).sort((a, b) => a.membership.name.localeCompare(b.membership.name));
 }
 
+// ---------- Free Apparatus Demo ----------
+
+/** The free apparatus preview / demo SKU in Momence. Surfaced as its own
+ *  CTA on /, /privates, and /packs; explicitly EXCLUDED from
+ *  findOtherOfferings() so it doesn't show up as a $0 "Apparatus
+ *  Preview · BUY" card in the catch-all bucket. Detected by name match
+ *  + a $0 price so we don't accidentally swallow real paid offerings. */
+export function findApparatusDemo(memberships: Membership[]): Membership | undefined {
+  return memberships.find((m) => {
+    const n = m.name.toLowerCase();
+    return (
+      m.type === "package-events" &&
+      (n.includes("demo") || n.includes("preview")) &&
+      (m.price === 0 || n.includes("free"))
+    );
+  });
+}
+
 // ---------- Intro Privates Bundle ----------
 
 /** The introductory privates pack — typically a 3-session bundle for
@@ -282,6 +300,7 @@ export function findOtherOfferings(memberships: Membership[]): Membership[] {
   );
   const dropIn = findDropIn(memberships);
   const intro = findIntroPrivates(memberships);
+  const demo = findApparatusDemo(memberships);
   const rtlIds = new Set(findRtlCourses(memberships).map((c) => c.membership.id));
 
   return memberships.filter(
@@ -290,6 +309,7 @@ export function findOtherOfferings(memberships: Membership[]): Membership[] {
       !apparatusIds.has(m.id) &&
       m.id !== dropIn?.id &&
       m.id !== intro?.id &&
+      m.id !== demo?.id &&
       !rtlIds.has(m.id)
   );
 }
