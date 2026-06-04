@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ScheduleView from "@/components/ScheduleView";
 import ClassGuideModal from "@/components/ClassGuideModal";
 import { fetchSchedule } from "@/lib/scheduleData";
@@ -34,8 +35,20 @@ export default async function Schedule() {
             Book a class.
           </h1>
           <div className="w-12 h-px bg-accent mx-auto mt-8 mb-8" />
-          <div className="flex items-center justify-center">
+          {/* Header CTAs. ClassGuideModal explains the class types
+              (Open Level Mat, Intermediate Reformer, etc.); the privates
+              link is for anyone who landed here looking for one-on-one
+              availability — privates don't show up in the group grid
+              below, so we surface them as a sibling action. */}
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <ClassGuideModal />
+            <Link
+              href="/privates"
+              className="btn-animated inline-flex items-center gap-2 bg-accent text-white text-xs tracking-widest uppercase px-5 py-3 hover:bg-accent/90 transition-colors"
+            >
+              Book a Private
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </section>

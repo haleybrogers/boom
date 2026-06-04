@@ -15,6 +15,11 @@ export const MOMENCE_API_TOKEN = process.env.MOMENCE_API_TOKEN || "da1030e20e";
 // page). If the studio slug changes in Momence, update both halves below.
 export const MOMENCE_APPOINTMENTS_URL = `https://momence.com/Boomerang-Pilates/appointment-reservation/${MOMENCE_HOST_ID}`;
 
+// Direct Momence short link for the FREE apparatus demo session.
+// Surfaced on the home page, /privates, and /packs as the low-friction
+// first touchpoint for anyone curious about the apparatus.
+export const MOMENCE_DEMO_URL = "https://momence.com/m/783283";
+
 export type Membership = {
   id: number;
   name: string;
@@ -238,6 +243,28 @@ export function findRtlCourses(memberships: Membership[]): RtlCourse[] {
   return Array.from(seen.values()).sort((a, b) => a.membership.name.localeCompare(b.membership.name));
 }
 
+// ---------- Intro Privates Bundle ----------
+
+/** The introductory privates pack — typically a 3-session bundle for
+ *  brand-new clients to try the apparatus before committing. Surfaces
+ *  separately on /packs (with the founding-member price callout) so it
+ *  doesn't disappear into the catch-all bucket. */
+export function findIntroPrivates(memberships: Membership[]): Membership | undefined {
+  return memberships.find((m) => {
+    const n = m.name.toLowerCase();
+    return (
+      m.type === "package-events" &&
+      n.includes("intro") &&
+      n.includes("private")
+    );
+  });
+}
+
+/** Hardcoded founding-member price for the intro privates bundle. Keep
+ *  in sync with the perk copy on /founding ($220). When Momence gets a
+ *  dedicated founding intro SKU we can swap this for a live lookup. */
+export const INTRO_PRIVATES_FOUNDING_PRICE = 220;
+
 // ---------- Unknown / catch-all ----------
 
 /** Returns anything that didn't fit into the known buckets, so the page can
@@ -254,6 +281,7 @@ export function findOtherOfferings(memberships: Membership[]): Membership[] {
       .map((m) => m.id)
   );
   const dropIn = findDropIn(memberships);
+  const intro = findIntroPrivates(memberships);
   const rtlIds = new Set(findRtlCourses(memberships).map((c) => c.membership.id));
 
   return memberships.filter(
@@ -261,6 +289,7 @@ export function findOtherOfferings(memberships: Membership[]): Membership[] {
       !matTierIds.has(m.id) &&
       !apparatusIds.has(m.id) &&
       m.id !== dropIn?.id &&
+      m.id !== intro?.id &&
       !rtlIds.has(m.id)
   );
 }

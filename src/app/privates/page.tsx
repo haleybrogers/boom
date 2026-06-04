@@ -1,12 +1,16 @@
 import Image from "next/image";
+import Link from "next/link";
 import PackPickerModal from "@/components/PackPickerModal";
 import ContactFormModal from "@/components/ContactFormModal";
 import {
   fetchMemberships,
   groupApparatus,
+  findIntroPrivates,
+  INTRO_PRIVATES_FOUNDING_PRICE,
   MOMENCE_APPOINTMENTS_URL,
+  MOMENCE_DEMO_URL,
 } from "@/lib/momence";
-import { PRIVATES_BOOKABLE } from "@/lib/flags";
+import { PRIVATES_BOOKABLE, SHOW_FOUNDING } from "@/lib/flags";
 
 export const metadata = {
   title: "Privates, Duets & Trios",
@@ -17,6 +21,7 @@ export const metadata = {
 export default async function Privates() {
   const memberships = await fetchMemberships();
   const apparatus = groupApparatus(memberships);
+  const intro = findIntroPrivates(memberships);
 
   return (
     <>
@@ -101,6 +106,108 @@ export default async function Privates() {
                 </>
               )}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* "New here?" — two-card entry block. Free demo (low commitment)
+          + the Intro 3-Pack (the recommended first paid step). Sits
+          between the hero and the regular pack pricing so first-time
+          visitors have an obvious starting point. */}
+      <section className="py-16 lg:py-20 bg-warm-white border-t border-charcoal/5">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">
+              New Here?
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-3">
+              Two ways to start.
+            </h2>
+            <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
+              Get on the apparatus before you commit to a pack. Either step
+              works — start where you feel comfortable.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Free demo card */}
+            <a
+              href={MOMENCE_DEMO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col bg-white border border-charcoal/15 rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/40"
+            >
+              <p className="text-[11px] tracking-[0.3em] uppercase text-accent/80 mb-3">
+                No commitment
+              </p>
+              <h3 className="font-serif text-2xl font-light text-charcoal mb-2 leading-snug">
+                Free apparatus demo.
+              </h3>
+              <p className="text-sm text-muted leading-relaxed mb-6 flex-1">
+                A short, complimentary intro session on the apparatus with
+                one of us. See how it feels, ask anything, decide nothing.
+              </p>
+              <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
+                <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                  Book a free demo
+                </span>
+                <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                  →
+                </span>
+              </div>
+            </a>
+
+            {/* Intro 3-Pack card — featured treatment so it visually
+                leads the pair. Renders even without Momence data so the
+                offer doesn't disappear; the link falls back to the
+                appointment-reservation page. */}
+            <a
+              href={intro?.link ?? MOMENCE_APPOINTMENTS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex flex-col bg-cream border-2 border-accent rounded-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+            >
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-[10px] tracking-[0.3em] uppercase px-3 py-1 rounded-full whitespace-nowrap">
+                Most popular
+              </span>
+              <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-3">
+                3 private sessions
+              </p>
+              <h3 className="font-serif text-2xl font-light text-charcoal mb-2 leading-snug">
+                {intro?.name ?? "Intro Privates Bundle"}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
+                Three private sessions with Emilie or Annie to learn the
+                reformer, cadillac, chair, and barrels. The fastest way
+                onto the apparatus.
+              </p>
+              <div className="flex items-baseline gap-2 mb-1">
+                <p className="font-serif text-3xl font-light text-charcoal leading-none">
+                  ${intro?.price ?? 275}
+                </p>
+                <p className="text-xs text-muted">for the bundle</p>
+              </div>
+              {SHOW_FOUNDING && (
+                <p className="text-xs text-accent mb-3">
+                  <span className="font-medium">${INTRO_PRIVATES_FOUNDING_PRICE}</span>{" "}
+                  with founding membership ·{" "}
+                  <Link
+                    href="/founding"
+                    className="underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+                  >
+                    see details
+                  </Link>
+                </p>
+              )}
+              <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
+                <span className="text-[11px] tracking-widest uppercase text-accent">
+                  Buy the bundle
+                </span>
+                <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                  →
+                </span>
+              </div>
+            </a>
           </div>
         </div>
       </section>

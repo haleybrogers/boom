@@ -12,6 +12,9 @@ import {
   findDropIn,
   findRtlCourses,
   findOtherOfferings,
+  findIntroPrivates,
+  INTRO_PRIVATES_FOUNDING_PRICE,
+  MOMENCE_DEMO_URL,
 } from "@/lib/momence";
 
 export const metadata = {
@@ -26,6 +29,7 @@ export default async function Packs() {
   const apparatus = groupApparatus(memberships);
   const dropIn = findDropIn(memberships);
   const rtl = findRtlCourses(memberships);
+  const intro = findIntroPrivates(memberships);
   const others = findOtherOfferings(memberships);
 
   // Featured tier. Middle-position by convention (8x), falls back to first.
@@ -241,7 +245,11 @@ export default async function Packs() {
         </div>
       )}
 
-      {/* 3. Privates, Duets & Trios. Opens the modal */}
+      {/* 3. Privates, Duets & Trios. Opens with the featured Intro 3-Pack
+          callout (the canonical first step into private sessions), then
+          the regular Private/Duet/Trio pack cards below. Free apparatus
+          demo gets a small footer line — it's the lower-commitment door
+          for anyone not ready to buy a pack. */}
       {apparatus.some((g) => g.single || g.five || g.ten) && (
         <div className="bg-warm-white py-20 lg:py-24 border-t border-charcoal/5">
           <div className="max-w-5xl mx-auto px-6">
@@ -258,6 +266,70 @@ export default async function Packs() {
               </p>
             </div>
 
+            {/* Intro 3-Pack featured callout. Sits ABOVE the regular pack
+                cards because it's the recommended entry point. Two-tone
+                visual treatment (cream bg, accent border, accent CTA) so
+                it reads as "the special offer" rather than another card.
+                Gated on Momence actually having an intro pack — if it's
+                missing, callout doesn't render. */}
+            {intro && intro.price !== undefined && (
+              <div className="relative max-w-3xl mx-auto mb-12 bg-cream border-2 border-accent rounded-sm p-7 sm:p-9 shadow-md">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-[10px] tracking-[0.3em] uppercase px-3 py-1 rounded-full whitespace-nowrap">
+                  Start Here
+                </span>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                  <div className="flex-1">
+                    <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-2">
+                      New to the apparatus?
+                    </p>
+                    <h3 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-2 leading-snug">
+                      {intro.name}
+                    </h3>
+                    <p className="text-sm text-muted leading-relaxed mb-3">
+                      Three private sessions with Emilie or Annie to learn
+                      the reformer, cadillac, chair, and barrels before you
+                      step into a group apparatus class.
+                    </p>
+                    {SHOW_FOUNDING && (
+                      <p className="text-sm text-accent leading-relaxed">
+                        <span className="font-medium">Founding members:</span>{" "}
+                        get it for ${INTRO_PRIVATES_FOUNDING_PRICE} —{" "}
+                        <Link
+                          href="/founding"
+                          className="underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+                        >
+                          see founding →
+                        </Link>
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-col items-start sm:items-end shrink-0">
+                    <div className="flex items-baseline gap-2">
+                      <p className="font-serif text-4xl font-light text-charcoal leading-none">
+                        ${intro.price}
+                      </p>
+                      <p className="text-xs text-muted">·  3 sessions</p>
+                    </div>
+                    {SHOW_FOUNDING && (
+                      <p className="text-xs text-muted mt-1.5">
+                        <span className="text-accent font-medium">${INTRO_PRIVATES_FOUNDING_PRICE}</span>{" "}
+                        with founding
+                      </p>
+                    )}
+                    <a
+                      href={intro.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-animated mt-4 inline-block bg-accent text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors"
+                    >
+                      Buy Intro 3-Pack →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Regular pack cards (Private / Duet / Trio · single / 5 / 10). */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
               {apparatus.map((g) => {
                 const allPrices = [g.single?.price, g.five?.price, g.ten?.price].filter(
@@ -300,9 +372,23 @@ export default async function Packs() {
               })}
             </div>
 
-            <div className="text-center">
+            <div className="text-center mb-6">
               <PackPickerModal buttonLabel="Buy a Pack" groups={apparatus} />
             </div>
+
+            {/* Free demo footer line. Subtle on purpose — it's the
+                lower-commitment door, not the main CTA. */}
+            <p className="text-center text-sm text-muted">
+              Not sure yet?{" "}
+              <a
+                href={MOMENCE_DEMO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+              >
+                Book a free apparatus demo →
+              </a>
+            </p>
           </div>
         </div>
       )}

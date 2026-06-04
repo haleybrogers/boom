@@ -11,12 +11,6 @@ import {
   FOUNDING_SPOTS_TOTAL,
 } from "@/lib/flags";
 
-// Display labels for the scarcity banner (keyed by tier key).
-const TIER_SHORT_LABELS: Record<string, string> = {
-  "4x": "4× Mat",
-  "8x": "8× Mat",
-  unlimited: "Unlimited Mat",
-};
 import {
   fetchMemberships,
   pairMatTiers,
@@ -49,7 +43,7 @@ const perks = [
   {
     title: "Intro Privates Bundle",
     detail:
-      "Three introductory privates for $220. Meet the apparatus with one of us before you bring it into class.",
+      "Three introductory privates for $220 (normally $275). Meet the apparatus with one of us before you bring it into class.",
   },
   {
     title: "Bring-a-Friend Pass",
@@ -62,13 +56,6 @@ export default async function Founding() {
   // After the deadline (EOD July 13, 2026), this page disappears.
   if (!SHOW_FOUNDING) notFound();
   const memberships = await fetchMemberships();
-
-  // Scarcity banner: surface the tier with the fewest spots left (most
-  // urgent). Manual counts live in FOUNDING_SPOTS_LEFT (flags.ts).
-  const scarcestTier = Object.entries(FOUNDING_SPOTS_LEFT)
-    .filter(([, n]) => n > 0)
-    .sort((a, b) => a[1] - b[1])[0];
-  const allFoundingFull = !scarcestTier;
 
   return (
     <>
@@ -95,26 +82,10 @@ export default async function Founding() {
               <h1 className="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-6 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
                 Be one of the first.
               </h1>
-              {/* Scarcity banner. Manual per-tier counts (FOUNDING_SPOTS_LEFT
-                  in flags.ts). Surfaces the scarcest tier; flips to "full"
-                  once every tier hits 0. */}
-              {isFoundingLaunched() && (
-                <p
-                  className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase bg-white/15 backdrop-blur-sm border border-white/40 rounded-full px-4 py-2 animate-fade-up-lux"
-                  style={{ animationDelay: "0.7s" }}
-                >
-                  {allFoundingFull ? (
-                    <>Founding memberships are full</>
-                  ) : (
-                    <>
-                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                      Only {scarcestTier[1]}{" "}
-                      {scarcestTier[1] === 1 ? "spot" : "spots"} left in{" "}
-                      {TIER_SHORT_LABELS[scarcestTier[0]] ?? scarcestTier[0]}
-                    </>
-                  )}
-                </p>
-              )}
+              {/* Scarcity banner pulled out of the hero — on mobile it
+                  crowded the headline straight into the faces in the
+                  photo. The spots-left messaging still surfaces on the
+                  pricing cards further down the page. */}
             </div>
           </div>
         </div>
