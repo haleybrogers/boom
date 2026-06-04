@@ -109,62 +109,86 @@ export default async function Privates() {
         </div>
       </section>
 
-      {/* "New here?" — compact two-pill entry block. Sits between the
-          hero and the regular pack pricing as a tight on-ramp: free
-          demo (low commitment) + the Intro 3-Pack (the recommended
-          first paid step). Intentionally small visual footprint so it
-          doesn't compete with the hero or the pack pricing below. */}
-      <section className="py-8 lg:py-10 bg-warm-white border-t border-charcoal/5">
-        <div className="max-w-3xl mx-auto px-6">
-          <p className="text-[10px] tracking-[0.3em] uppercase text-accent text-center mb-4">
-            New here? Two ways to start.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {/* Free demo pill */}
+      {/* "New here?" — two-card entry block. Free demo (low commitment)
+          + the Intro 3-Pack (the recommended first paid step). Sits
+          between the hero and the regular pack pricing as the on-ramp
+          for first-time visitors. Body copy is intentionally short —
+          one-line descriptions — so the cards don't dominate the page. */}
+      <section className="py-12 lg:py-16 bg-warm-white border-t border-charcoal/5">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-2">
+              New Here?
+            </p>
+            <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
+              Two ways to start.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Free demo card */}
             <a
               href={MOMENCE_DEMO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-3 bg-white border border-charcoal/15 rounded-sm px-4 py-3 transition-colors hover:border-accent/40 hover:bg-accent/5"
+              className="group flex flex-col bg-white border border-charcoal/15 rounded-sm p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-accent/40"
             >
-              <div className="min-w-0">
-                <p className="font-serif text-base font-light text-charcoal leading-snug">
-                  Free apparatus demo
-                </p>
-                <p className="text-xs text-muted">No commitment · ~20 min</p>
+              <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-2">
+                No commitment
+              </p>
+              <h3 className="font-serif text-xl font-light text-charcoal mb-1.5 leading-snug">
+                Free apparatus demo.
+              </h3>
+              <p className="text-sm text-muted leading-snug mb-4 flex-1">
+                A short intro on the apparatus — see how it feels.
+              </p>
+              <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
+                <span className="text-[10px] tracking-widest uppercase text-accent">
+                  Book a free demo
+                </span>
+                <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                  →
+                </span>
               </div>
-              <span className="text-[10px] tracking-widest uppercase text-accent shrink-0 group-hover:translate-x-0.5 transition-transform">
-                Book →
-              </span>
             </a>
 
-            {/* Intro 3-Pack pill — accent border so it visually leads
-                even at this compact size. */}
+            {/* Intro 3-Pack card */}
             <a
               href={intro?.link ?? MOMENCE_APPOINTMENTS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-3 bg-cream border-2 border-accent rounded-sm px-4 py-3 transition-colors hover:bg-accent/5"
+              className="group relative flex flex-col bg-cream border-2 border-accent rounded-sm p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
             >
-              <div className="min-w-0">
-                <p className="font-serif text-base font-light text-charcoal leading-snug">
-                  Intro 3-Pack
-                </p>
-                <p className="text-xs text-muted">
-                  ${intro?.price ?? 275}
-                  {SHOW_FOUNDING && (
-                    <>
-                      {" · "}
-                      <span className="text-accent">
-                        ${INTRO_PRIVATES_FOUNDING_PRICE} founding
-                      </span>
-                    </>
-                  )}
-                </p>
-              </div>
-              <span className="text-[10px] tracking-widest uppercase text-accent shrink-0 group-hover:translate-x-0.5 transition-transform">
-                Buy →
+              <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-accent text-white text-[9px] tracking-[0.3em] uppercase px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                Most popular
               </span>
+              <p className="text-[10px] tracking-[0.3em] uppercase text-accent mb-2">
+                3 private sessions
+              </p>
+              <h3 className="font-serif text-xl font-light text-charcoal mb-1.5 leading-snug">
+                {intro?.name ?? "Intro Privates Bundle"}
+              </h3>
+              <p className="text-sm text-muted leading-snug mb-3 flex-1">
+                Three private sessions — the fastest way onto the apparatus.
+              </p>
+              <div className="flex items-baseline gap-2 mb-1">
+                <p className="font-serif text-2xl font-light text-charcoal leading-none">
+                  ${intro?.price ?? 275}
+                </p>
+                {SHOW_FOUNDING && (
+                  <p className="text-xs text-accent">
+                    · <span className="font-medium">${INTRO_PRIVATES_FOUNDING_PRICE}</span> founding
+                  </p>
+                )}
+              </div>
+              <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-3">
+                <span className="text-[10px] tracking-widest uppercase text-accent">
+                  Buy the bundle
+                </span>
+                <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                  →
+                </span>
+              </div>
             </a>
           </div>
         </div>
