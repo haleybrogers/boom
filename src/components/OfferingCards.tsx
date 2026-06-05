@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
@@ -152,8 +151,8 @@ export default async function OfferingCards() {
         const reversed = i % 2 !== 0;
 
         return (
-          <Fragment key={offering.title}>
           <div
+            key={offering.title}
             className={`flex flex-col ${reversed ? "md:flex-row-reverse" : "md:flex-row"} gap-8 md:gap-12 items-center`}
           >
             {/* Photo */}
@@ -273,37 +272,24 @@ export default async function OfferingCards() {
                   {offering.linkLabel}
                 </Link>
               )}
-            </Reveal>
-          </div>
 
-          {/* Free apparatus demo nudge. Slotted in directly below the
-              Apparatus offering — it's the lowest-friction door into the
-              apparatus, so it sits next to that offering rather than at
-              the bottom of the whole list. Mat / Privates iterations
-              render no extra block. */}
-          {offering.title === "Apparatus" && (
-            <Reveal className="max-w-3xl mx-auto w-full">
-              <div className="bg-cream border border-accent/20 rounded-sm px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div className="flex-1">
-                  <p className="text-[10px] tracking-[0.3em] uppercase text-accent mb-1">
-                    Curious about the apparatus?
-                  </p>
-                  <p className="font-serif text-lg sm:text-xl font-light text-charcoal leading-snug">
-                    Book a free demo on the apparatus.
-                  </p>
-                </div>
+              {/* Free apparatus demo — tucked under the Apparatus
+                  card's primary CTA so it lives inside the text column
+                  (preserving the alternating photo/text zigzag) rather
+                  than as a full-width band that breaks the rhythm. */}
+              {offering.title === "Apparatus" && (
                 <a
                   href={MOMENCE_DEMO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-animated inline-block text-center bg-accent text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors shrink-0"
+                  className="block mt-3 text-sm text-muted hover:text-accent transition-colors"
                 >
-                  Book Free Demo →
+                  Or book a free apparatus demo{" "}
+                  <span className="text-accent">→</span>
                 </a>
-              </div>
+              )}
             </Reveal>
-          )}
-          </Fragment>
+          </div>
         );
       })}
     </div>
