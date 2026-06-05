@@ -266,67 +266,40 @@ export default async function Packs() {
               </p>
             </div>
 
-            {/* Intro 3-Pack featured callout. Sits ABOVE the regular pack
-                cards because it's the recommended entry point. Two-tone
-                visual treatment (cream bg, accent border, accent CTA) so
-                it reads as "the special offer" rather than another card.
-                Gated on Momence actually having an intro pack — if it's
-                missing, callout doesn't render. */}
+            {/* Intro 3-Pack callout. Intentionally subtle — only
+                relevant to people new to the apparatus, so we don't
+                want it competing for attention with the main pack
+                cards below. Thin accent border, one-line copy, inline
+                price + small CTA. */}
             {intro && intro.price !== undefined && (
-              <div className="relative max-w-3xl mx-auto mb-12 bg-cream border-2 border-accent rounded-sm p-7 sm:p-9 shadow-md">
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-[10px] tracking-[0.3em] uppercase px-3 py-1 rounded-full whitespace-nowrap">
-                  Start Here
-                </span>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-                  <div className="flex-1">
-                    <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-2">
-                      New to the apparatus?
-                    </p>
-                    <h3 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-2 leading-snug">
-                      {intro.name}
-                    </h3>
-                    <p className="text-sm text-muted leading-relaxed mb-3">
-                      Three private sessions with Emilie or Annie to learn
-                      the reformer, cadillac, chair, and barrels before you
-                      step into a group apparatus class.
-                    </p>
+              <a
+                href={intro.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group max-w-2xl mx-auto mb-10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 bg-cream border border-accent/40 rounded-sm px-5 py-4 sm:px-6 sm:py-4 transition-colors hover:border-accent hover:bg-accent/5"
+              >
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-0.5">
+                    First-timers · Intro 3-Pack
+                  </p>
+                  <p className="text-sm text-charcoal/80 leading-snug">
+                    Three private sessions to start on the apparatus —
+                    <span className="text-charcoal font-medium"> ${intro.price}</span>
                     {SHOW_FOUNDING && (
-                      <p className="text-sm text-accent leading-relaxed">
-                        <span className="font-medium">Founding members:</span>{" "}
-                        get it for ${INTRO_PRIVATES_FOUNDING_PRICE} —{" "}
-                        <Link
-                          href="/founding"
-                          className="underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
-                        >
-                          see founding →
-                        </Link>
-                      </p>
+                      <>
+                        {" "}
+                        <span className="text-muted">
+                          (${INTRO_PRIVATES_FOUNDING_PRICE} with founding)
+                        </span>
+                      </>
                     )}
-                  </div>
-                  <div className="flex flex-col items-start sm:items-end shrink-0">
-                    <div className="flex items-baseline gap-2">
-                      <p className="font-serif text-4xl font-light text-charcoal leading-none">
-                        ${intro.price}
-                      </p>
-                      <p className="text-xs text-muted">·  3 sessions</p>
-                    </div>
-                    {SHOW_FOUNDING && (
-                      <p className="text-xs text-muted mt-1.5">
-                        <span className="text-accent font-medium">${INTRO_PRIVATES_FOUNDING_PRICE}</span>{" "}
-                        with founding
-                      </p>
-                    )}
-                    <a
-                      href={intro.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-animated mt-4 inline-block bg-accent text-white text-xs tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors"
-                    >
-                      Buy Intro 3-Pack →
-                    </a>
-                  </div>
+                    .
+                  </p>
                 </div>
-              </div>
+                <span className="text-[10px] tracking-widest uppercase text-accent shrink-0 group-hover:translate-x-0.5 transition-transform">
+                  Buy the pack →
+                </span>
+              </a>
             )}
 
             {/* Regular pack cards (Private / Duet / Trio · single / 5 / 10). */}
