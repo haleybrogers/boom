@@ -121,7 +121,7 @@ export default async function Privates() {
               Get Started
             </p>
             <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
-              New to the apparatus?
+              New to the studio?
             </h2>
           </div>
 
@@ -169,7 +169,7 @@ export default async function Privates() {
                 {intro?.name ?? "Intro 3-Pack"}
               </h3>
               <p className="text-sm text-muted leading-snug mb-3 flex-1">
-                Three private sessions to get you started on the apparatus.
+                Three private sessions to get you started.
               </p>
               <div className="flex items-baseline gap-2 mb-1">
                 <p className="font-serif text-2xl font-light text-charcoal leading-none">

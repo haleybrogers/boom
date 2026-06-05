@@ -280,10 +280,10 @@ export default async function Packs() {
               >
                 <div className="flex-1 min-w-0">
                   <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-0.5">
-                    First-timers · Intro 3-Pack
+                    New to the studio · Intro 3-Pack
                   </p>
                   <p className="text-sm text-charcoal/80 leading-snug">
-                    Three private sessions to start on the apparatus —
+                    Three private sessions to get you started —
                     <span className="text-charcoal font-medium"> ${intro.price}</span>
                     {SHOW_FOUNDING && (
                       <>
