@@ -92,7 +92,7 @@ export default async function Packs() {
               Check out our founding memberships. Just 15 spots per tier
               and they&apos;ll go fast. Locked-in rate as long as your
               membership stays active, plus opening night, a welcome kit,
-              an intro privates bundle, and a bring-a-friend pass for your
+              an intro privates pack, and a bring-a-friend pass for your
               first three months.
             </p>
             <Link

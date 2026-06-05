@@ -263,7 +263,7 @@ export function findApparatusDemo(memberships: Membership[]): Membership | undef
 
 // ---------- Intro Privates Bundle ----------
 
-/** The introductory privates pack — typically a 3-session bundle for
+/** The introductory privates pack — typically a 3-session offer for
  *  brand-new clients to try the apparatus before committing. Surfaces
  *  separately on /packs (with the founding-member price callout) so it
  *  doesn't disappear into the catch-all bucket. */
@@ -278,7 +278,7 @@ export function findIntroPrivates(memberships: Membership[]): Membership | undef
   });
 }
 
-/** Hardcoded founding-member price for the intro privates bundle. Keep
+/** Hardcoded founding-member price for the intro privates pack. Keep
  *  in sync with the perk copy on /founding ($220). When Momence gets a
  *  dedicated founding intro SKU we can swap this for a live lookup. */
 export const INTRO_PRIVATES_FOUNDING_PRICE = 220;

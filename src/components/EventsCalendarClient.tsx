@@ -101,10 +101,12 @@ const EVENT_ICONS: Record<NonNullable<EventItem["iconKey"]>, React.ReactNode> = 
   ),
 };
 
-// Featured "destination" event card. Photo on the left (or on top on
-// mobile), content on the right with date eyebrow, title, short
-// description, time/price, and the book CTA. Used for events that need
-// to feel like the centerpiece of their section (e.g. Mat & Matcha).
+// Featured "destination" event card. Vertical hero treatment — full-
+// width image on top (wide cinematic aspect), content stacked
+// underneath with generous padding, big serif title, description, and
+// a prominent accent CTA button. Used for events that need to feel
+// like the centerpiece of their section (e.g. Mat & Matcha — the last
+// big event before opening).
 function FeaturedEventCard({
   event,
   onClick,
@@ -120,50 +122,54 @@ function FeaturedEventCard({
       onClick={onClick}
       className="group block w-full text-left bg-white border border-charcoal/10 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
     >
-      <div className="flex flex-col sm:flex-row">
-        {/* Image — square-ish on mobile, ~40% width on desktop. Falls
-            back to the icon circle when an event has no image set. */}
-        {event.image ? (
-          <div className="relative w-full sm:w-2/5 aspect-[4/3] sm:aspect-auto sm:min-h-[220px] overflow-hidden shrink-0">
-            <Image
-              src={event.image}
-              alt={event.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, 320px"
-            />
-          </div>
-        ) : event.iconKey ? (
-          <div className="shrink-0 bg-cream sm:w-2/5 flex items-center justify-center py-10 sm:py-0">
-            <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-accent">
-              {EVENT_ICONS[event.iconKey]}
-            </div>
-          </div>
-        ) : null}
-
-        {/* Content. Date eyebrow → title → description → time/price → CTA. */}
-        <div className="flex-1 flex flex-col p-6 sm:p-7">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-2">
-            {date.weekday} · {date.month} {date.day}
-          </p>
-          <h3 className="font-serif text-2xl sm:text-3xl font-light text-charcoal leading-tight mb-2 group-hover:text-accent transition-colors">
-            {event.title}
-          </h3>
-          {description && (
-            <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
-              {description}
-            </p>
-          )}
-          <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
-            <p className="text-sm text-muted">
-              {formatTimeRange(event.dateTime, event.durationMin)}
-              {event.price && ` · ${event.price}`}
-            </p>
-            <span className="text-[11px] tracking-widest uppercase text-accent shrink-0 group-hover:translate-x-0.5 transition-transform">
-              Details →
-            </span>
+      {/* Image — wide cinematic aspect, full width across the card. */}
+      {event.image ? (
+        <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] overflow-hidden">
+          <Image
+            src={event.image}
+            alt={event.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 1024px"
+          />
+          {/* Soft bottom fade so the date eyebrow has air to breathe
+              into when overlaid in the next block (if we ever want to). */}
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/15 to-transparent pointer-events-none" />
+        </div>
+      ) : event.iconKey ? (
+        <div className="bg-cream flex items-center justify-center py-14">
+          <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center text-accent">
+            {EVENT_ICONS[event.iconKey]}
           </div>
         </div>
+      ) : null}
+
+      {/* Content block. Date eyebrow → big title → description →
+          meta row → accent CTA button. */}
+      <div className="flex flex-col p-8 sm:p-10 lg:p-12 text-center">
+        <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">
+          {date.weekday} · {date.month} {date.day}
+        </p>
+        <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal leading-[1.1] mb-4 group-hover:text-accent transition-colors">
+          {event.title}
+        </h3>
+        {description && (
+          <p className="text-base sm:text-lg text-muted leading-relaxed mb-6 max-w-xl mx-auto">
+            {description}
+          </p>
+        )}
+        <div className="flex items-center justify-center gap-3 text-sm text-muted mb-6">
+          <span>{formatTimeRange(event.dateTime, event.durationMin)}</span>
+          {event.price && (
+            <>
+              <span className="text-charcoal/20">·</span>
+              <span>{event.price}</span>
+            </>
+          )}
+        </div>
+        <span className="btn-animated mx-auto inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 group-hover:bg-accent/90 transition-colors">
+          See Details →
+        </span>
       </div>
     </button>
   );

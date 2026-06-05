@@ -118,10 +118,10 @@ export default async function Privates() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-8">
             <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-2">
-              New Here?
+              Get Started
             </p>
             <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal">
-              Two ways to start.
+              New to the apparatus?
             </h2>
           </div>
 
@@ -134,17 +134,17 @@ export default async function Privates() {
               className="group flex flex-col bg-white border border-charcoal/15 rounded-sm p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-accent/40"
             >
               <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-2">
-                No commitment
+                Free demo
               </p>
               <h3 className="font-serif text-xl font-light text-charcoal mb-1.5 leading-snug">
-                Free apparatus demo.
+                Try the apparatus.
               </h3>
               <p className="text-sm text-muted leading-snug mb-4 flex-1">
-                A short intro on the apparatus — see how it feels.
+                Come in, get on the equipment, see how it feels — on us.
               </p>
               <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
                 <span className="text-[10px] tracking-widest uppercase text-accent">
-                  Book a free demo
+                  Book a demo
                 </span>
                 <span className="text-accent group-hover:translate-x-0.5 transition-transform">
                   →
@@ -160,16 +160,16 @@ export default async function Privates() {
               className="group relative flex flex-col bg-cream border-2 border-accent rounded-sm p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
             >
               <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-accent text-white text-[9px] tracking-[0.3em] uppercase px-2.5 py-0.5 rounded-full whitespace-nowrap">
-                Most popular
+                Limited Time
               </span>
               <p className="text-[10px] tracking-[0.3em] uppercase text-accent mb-2">
-                3 private sessions
+                Intro Offer
               </p>
               <h3 className="font-serif text-xl font-light text-charcoal mb-1.5 leading-snug">
-                {intro?.name ?? "Intro Privates Bundle"}
+                {intro?.name ?? "Intro 3-Pack"}
               </h3>
               <p className="text-sm text-muted leading-snug mb-3 flex-1">
-                Three private sessions — the fastest way onto the apparatus.
+                Three private sessions to get you started on the apparatus.
               </p>
               <div className="flex items-baseline gap-2 mb-1">
                 <p className="font-serif text-2xl font-light text-charcoal leading-none">
@@ -183,7 +183,7 @@ export default async function Privates() {
               </div>
               <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-3">
                 <span className="text-[10px] tracking-widest uppercase text-accent">
-                  Buy the bundle
+                  Buy the pack
                 </span>
                 <span className="text-accent group-hover:translate-x-0.5 transition-transform">
                   →

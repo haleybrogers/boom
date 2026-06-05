@@ -41,7 +41,7 @@ const perks = [
     detail: "A cute tee, grip socks, and a sticker. Yours when you join.",
   },
   {
-    title: "Intro Privates Bundle",
+    title: "Intro Privates Pack",
     detail:
       "Three introductory privates for $220 (normally $275). Meet the apparatus with one of us before you bring it into class.",
   },
