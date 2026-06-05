@@ -160,7 +160,7 @@ export default async function Privates() {
               className="group relative flex flex-col bg-cream border-2 border-accent rounded-sm p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
             >
               <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-accent text-white text-[9px] tracking-[0.3em] uppercase px-2.5 py-0.5 rounded-full whitespace-nowrap">
-                Limited Time
+                First-Timers
               </span>
               <p className="text-[10px] tracking-[0.3em] uppercase text-accent mb-2">
                 Intro Offer
