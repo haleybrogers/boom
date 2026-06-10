@@ -58,9 +58,14 @@ export default function About() {
                   className="object-cover object-[center_22%] scale-[1.4] transition-transform duration-700 sm:hover:scale-[1.45]"
                 />
               </div>
-              <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
-                Emilie Young
-              </h3>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                <h3 className="font-serif text-2xl font-light text-charcoal">
+                  Emilie Young
+                </h3>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-accent/80 border border-accent/30 rounded-full px-2 py-0.5 leading-none">
+                  She/Her
+                </span>
+              </div>
               <p className="text-sm tracking-widest uppercase text-accent mb-4">
                 Founder / Owner
               </p>
@@ -125,9 +130,14 @@ export default function About() {
                   className="object-cover object-[center_22%] scale-[1.55] transition-transform duration-700 sm:hover:scale-[1.6]"
                 />
               </div>
-              <h3 className="font-serif text-2xl font-light text-charcoal mb-1">
-                Annie Young
-              </h3>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                <h3 className="font-serif text-2xl font-light text-charcoal">
+                  Annie Young
+                </h3>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-accent/80 border border-accent/30 rounded-full px-2 py-0.5 leading-none">
+                  She/Her
+                </span>
+              </div>
               <p className="text-sm tracking-widest uppercase text-accent mb-4">
                 Co-Founder / Studio Manager
               </p>
