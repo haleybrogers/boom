@@ -111,12 +111,6 @@ export default function About() {
                   Boomerang.
                 </p>
               </ExpandableBio>
-              <Link
-                href="/privates"
-                className="btn-animated inline-block mt-2 bg-accent text-white text-sm tracking-widest uppercase px-7 py-3.5 hover:bg-accent/90 transition-colors"
-              >
-                Book a Session with Emilie →
-              </Link>
             </div>
 
             {/* Annie */}
@@ -189,12 +183,6 @@ export default function About() {
                   the art of Pilates.
                 </p>
               </ExpandableBio>
-              <Link
-                href="/privates"
-                className="btn-animated inline-block mt-2 bg-accent text-white text-sm tracking-widest uppercase px-7 py-3.5 hover:bg-accent/90 transition-colors"
-              >
-                Book a Session with Annie →
-              </Link>
             </div>
 
             {/* Emma Rose */}
@@ -250,12 +238,6 @@ export default function About() {
                   fostering strength, balance, and lasting well-being.
                 </p>
               </ExpandableBio>
-              <Link
-                href="/privates"
-                className="btn-animated inline-block mt-2 bg-accent text-white text-sm tracking-widest uppercase px-7 py-3.5 hover:bg-accent/90 transition-colors"
-              >
-                Book a Session with Emma →
-              </Link>
             </div>
           </div>
         </div>
