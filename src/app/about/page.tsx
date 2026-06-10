@@ -35,15 +35,10 @@ export default function About() {
       <section className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-sm tracking-widest uppercase text-accent mb-4">Meet the Team</p>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal mb-5">
-              Classically trained. Patient with the journey.
+            <p className="text-sm tracking-widest uppercase text-accent mb-4">Our Team</p>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal">
+              Meet your instructors.
             </h2>
-            <p className="text-base text-muted leading-relaxed max-w-xl mx-auto">
-              Three instructors, third-generation lineage, all taught the way
-              they were taught by teachers who still believe in the original
-              work.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 max-w-5xl mx-auto items-start">
