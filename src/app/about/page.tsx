@@ -184,7 +184,7 @@ export default function About() {
             <div>
               <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
                 <Image
-                  src="/emma-rose-farmer.jpg"
+                  src="/emma-rose-farmer.png"
                   alt="Emma Rose Farmer"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
