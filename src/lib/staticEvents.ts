@@ -101,7 +101,6 @@ export const staticEvents: EventItem[] = [
     shortDescription: "Mat class, matcha, and a peek at the Gratz apparatus.",
     location: "343 W Main St, Durham, NC",
     price: "$20",
-    image: "/photo-apparatus.jpg",
     iconKey: "coffee",
     action: {
       type: "external",
