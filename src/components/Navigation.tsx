@@ -28,24 +28,7 @@ type NavItem = {
 };
 
 const navLinks: NavItem[] = [
-  {
-    label: "About",
-    href: "/about",
-    children: [
-      {
-        href: "/about",
-        label: "Our Story",
-        description: "How Boomerang began, and what we believe",
-        image: "/photo-sisters.jpg",
-      },
-      {
-        href: "/instructors",
-        label: "Instructors",
-        description: "Meet the team teaching at Boomerang",
-        image: "/emilie-young.jpg",
-      },
-    ],
-  },
+  { href: "/about", label: "About" },
   {
     label: "Booking",
     href: "/booking",

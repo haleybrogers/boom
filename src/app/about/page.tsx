@@ -31,22 +31,22 @@ export default function About() {
         </div>
       </section>
 
-      {/* Meet the Sisters */}
+      {/* Meet the team */}
       <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-sm tracking-widest uppercase text-accent mb-4">Meet the Founders</p>
+            <p className="text-sm tracking-widest uppercase text-accent mb-4">Meet the Team</p>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal mb-5">
-              Built by Two Sisters
+              Classically trained. Patient with the journey.
             </h2>
             <p className="text-base text-muted leading-relaxed max-w-xl mx-auto">
-              Emilie and Annie grew up in this method. They opened Boomerang
-              to bring it home to Durham. Taught the way they were taught,
-              by teachers who still believe in the original work.
+              Three instructors, third-generation lineage, all taught the way
+              they were taught by teachers who still believe in the original
+              work.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-3xl mx-auto items-start">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 max-w-5xl mx-auto items-start">
             {/* Emilie */}
             <div>
               <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
@@ -194,6 +194,67 @@ export default function About() {
                 className="btn-animated inline-block mt-2 bg-accent text-white text-sm tracking-widest uppercase px-7 py-3.5 hover:bg-accent/90 transition-colors"
               >
                 Book a Session with Annie →
+              </Link>
+            </div>
+
+            {/* Emma Rose */}
+            <div>
+              <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
+                <Image
+                  src="/emma-rose-farmer.jpg"
+                  alt="Emma Rose Farmer"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover object-[center_25%] scale-[1.1] transition-transform duration-700 sm:hover:scale-[1.15]"
+                />
+              </div>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                <h3 className="font-serif text-2xl font-light text-charcoal">
+                  Emma Rose Farmer
+                </h3>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-accent/80 border border-accent/30 rounded-full px-2 py-0.5 leading-none">
+                  She/They
+                </span>
+              </div>
+              <p className="text-sm tracking-widest uppercase text-accent mb-4">
+                Instructor
+              </p>
+              <ExpandableBio>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  Born and raised in Durham, North Carolina, Emma Rose spent
+                  her formative years immersed in the vibrant dance community
+                  of the Triangle. She later attended Appalachian State
+                  University, where she earned degrees in Communications and
+                  Dance Studies. In the summer of 2025, she completed the
+                  Appalachian State Pilates Teacher Training Program, becoming
+                  a certified third-generation Classical Pilates instructor.
+                </p>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  Emma has long been passionate about using movement as a
+                  pathway to physical and mental well-being. Her introduction
+                  to Pilates came through dance during college, and the
+                  practice has had a profound impact on her life. Through
+                  consistent Pilates training, she has experienced significant
+                  relief from asthma, scoliosis, early arthritic symptoms, and
+                  previous dance-related injuries, supporting her ongoing
+                  rehabilitation and overall health.
+                </p>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  Dedicated to making Pilates accessible to all, Emma believes
+                  the method is for everyone, regardless of age, ability, or
+                  physical condition. Having personally experienced its
+                  restorative benefits, she is committed to sharing those
+                  benefits with her community. Emma strives to create a
+                  welcoming and supportive environment where clients can
+                  pursue their individual goals through mindful movement,
+                  fostering strength, balance, and lasting well-being.
+                </p>
+              </ExpandableBio>
+              <Link
+                href="/privates"
+                className="btn-animated inline-block mt-2 bg-accent text-white text-sm tracking-widest uppercase px-7 py-3.5 hover:bg-accent/90 transition-colors"
+              >
+                Book a Session with Emma →
               </Link>
             </div>
           </div>
