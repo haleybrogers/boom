@@ -143,7 +143,14 @@ export default async function EventsCalendar() {
   // eslint-disable-next-line react-hooks/purity
   const now = Date.now();
   const allEvents = [...filteredMomence, ...staticEvents]
-    .filter((e) => new Date(e.dateTime).getTime() > now)
+    .filter((e) => {
+      // Mat Series past sessions stay in the list — they get rendered
+      // as greyed-out cards inside MatSeriesCard so the trio always
+      // shows all three parts regardless of how far through the
+      // series we are. All other past events drop off as usual.
+      if (e.id.startsWith("mat-series-")) return true;
+      return new Date(e.dateTime).getTime() > now;
+    })
     .sort(
       (a, b) =>
         new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()

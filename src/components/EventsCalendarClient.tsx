@@ -13,7 +13,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { EventItem, EventCategory } from "@/lib/eventTypes";
 import { CATEGORY_LABELS } from "@/lib/eventTypes";
-import { MAT_SERIES_BUNDLE_URL } from "@/lib/staticEvents";
 import ContactForm from "./ContactForm";
 
 const TZ = "America/New_York";
@@ -189,34 +188,80 @@ function MatSeriesCard({
   events: EventItem[];
   onSelect: (e: EventItem) => void;
 }) {
+  // "Now" snapshot for the past-class greying logic. Sampling at render
+  // time is fine — events that flipped from future to past within
+  // milliseconds of each other read identically on server + client.
+  const now = Date.now();
   return (
     <div className="bg-accent/5 border border-accent/30 rounded-sm p-7 md:p-9">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {events.map((event, i) => {
           const date = formatDateBadge(event.dateTime);
-          return (
+          // Past classes stay visible (so the trio always shows three
+          // parts) but render greyed out, non-clickable, with "Class
+          // happened" as the footer label.
+          const isPast = new Date(event.dateTime).getTime() < now;
+          const inner = (
+            <>
+              <div
+                className={`flex items-center justify-center w-9 h-9 rounded-full border font-serif text-base mb-4 transition-colors ${
+                  isPast
+                    ? "border-charcoal/20 text-charcoal/40"
+                    : "border-accent/40 text-accent group-hover:bg-accent group-hover:text-white"
+                }`}
+              >
+                {i + 1}
+              </div>
+              <p
+                className={`text-[11px] tracking-[0.25em] uppercase mb-2 ${
+                  isPast ? "text-charcoal/40" : "text-accent"
+                }`}
+              >
+                {date.weekday} · {date.month} {date.day}
+              </p>
+              <h4
+                className={`font-serif text-lg font-light leading-snug mb-4 transition-colors ${
+                  isPast
+                    ? "text-charcoal/40"
+                    : "text-charcoal group-hover:text-accent"
+                }`}
+              >
+                {event.title}
+              </h4>
+              <span
+                className={`mt-auto text-[11px] tracking-widest uppercase transition-colors ${
+                  isPast ? "text-charcoal/40" : "text-accent group-hover:text-accent/70"
+                }`}
+              >
+                {isPast
+                  ? "Class happened"
+                  : event.isFull
+                    ? event.allowsWaitlist
+                      ? "Waitlist →"
+                      : "Sold Out"
+                    : "Book →"}
+              </span>
+            </>
+          );
+          // Past sessions are still presented in card form but as a
+          // div (no click affordance, no hover lift). Future sessions
+          // remain interactive buttons.
+          return isPast ? (
+            <div
+              key={event.id}
+              aria-disabled="true"
+              className="text-center flex flex-col items-center bg-white/70 border border-charcoal/10 rounded-sm p-6 opacity-60 cursor-default select-none"
+            >
+              {inner}
+            </div>
+          ) : (
             <button
               key={event.id}
               type="button"
               onClick={() => onSelect(event)}
               className="group text-center flex flex-col items-center bg-white border border-accent/20 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/50"
             >
-              <div className="flex items-center justify-center w-9 h-9 rounded-full border border-accent/40 text-accent font-serif text-base mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
-                {i + 1}
-              </div>
-              <p className="text-[11px] tracking-[0.25em] text-accent uppercase mb-2">
-                {date.weekday} · {date.month} {date.day}
-              </p>
-              <h4 className="font-serif text-lg font-light text-charcoal leading-snug mb-4 group-hover:text-accent transition-colors">
-                {event.title}
-              </h4>
-              <span className="mt-auto text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/70 transition-colors">
-                {event.isFull
-                  ? event.allowsWaitlist
-                    ? "Waitlist →"
-                    : "Sold Out"
-                  : "Book →"}
-              </span>
+              {inner}
             </button>
           );
         })}
@@ -229,19 +274,11 @@ function MatSeriesCard({
         <p className="font-serif italic text-sm text-charcoal/70 mb-3">
           No straps. No springs. No limits.
         </p>
-        <p className="text-sm text-muted max-w-md mx-auto mb-5 leading-relaxed">
+        <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
           Three Saturday mornings, 10:30 to 11:20 AM. Each class stands on
-          its own, so take one or take all three. $20 per class, or $55 for
-          the full series.
+          its own, so take one or take all three. $20 per class — book
+          individually on the card above.
         </p>
-        <a
-          href={MAT_SERIES_BUNDLE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-        >
-          Book entire series →
-        </a>
       </div>
     </div>
   );
