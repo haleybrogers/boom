@@ -101,7 +101,6 @@ export const staticEvents: EventItem[] = [
     shortDescription: "Mat class, matcha, and a peek at the Gratz apparatus.",
     location: "343 W Main St, Durham, NC",
     price: "$20",
-    iconKey: "coffee",
     action: {
       type: "external",
       href: "https://momence.com/Boomerang-Pilates/Mat-and-Matcha-%2B-Apparatus-Demos/136916030",
