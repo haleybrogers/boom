@@ -10,6 +10,7 @@ import {
   classesPerMonth,
   groupApparatus,
   findDropIn,
+  findMatPacks,
   findRtlCourses,
   findOtherOfferings,
   findIntroPrivates,
@@ -28,9 +29,13 @@ export default async function Packs() {
   const tiers = pairMatTiers(memberships);
   const apparatus = groupApparatus(memberships);
   const dropIn = findDropIn(memberships);
+  const matPacks = findMatPacks(memberships);
   const rtl = findRtlCourses(memberships);
   const intro = findIntroPrivates(memberships);
   const others = findOtherOfferings(memberships);
+
+  const matPackLabel = (size: "five" | "ten" | "single") =>
+    size === "ten" ? "10-Class Pack" : size === "five" ? "5-Class Pack" : "Single Drop-In";
 
   // Featured tier. Middle-position by convention (8x), falls back to first.
   const featuredKey = tiers.length >= 2 ? tiers[1].key : tiers[0]?.key;
@@ -105,20 +110,26 @@ export default async function Packs() {
         </div>
       )}
 
-      {/* 2. Mat Classes. Regular pricing */}
+      {/* 2. Mat Classes. Memberships + class packs + drop-in, all in
+          one section. Memberships are the primary entry (tier cards
+          first), packs follow as the no-commitment alternative, and
+          drop-in stays as the footer link. */}
       {tiers.some((t) => t.regular) && (
         <div className="py-20 lg:py-24">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-12">
               <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
-                By Membership or Drop-in
+                Memberships, Packs &amp; Drop-In
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
                 Mat Classes.
               </h2>
               <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-                Three-month commitment. Up to four unused classes roll over each
-                month. Pause anytime after the first three.
+                Monthly memberships if you&apos;re committed to a regular
+                practice, class packs if you&apos;d rather pay as you go, or a
+                single drop-in to test the water. Memberships are a three-month
+                commitment; up to four unused classes roll over each month and
+                you can pause anytime after the first three.
               </p>
               {matLocked && (
                 <p className="text-sm text-accent leading-relaxed max-w-xl mx-auto mt-4 border border-accent/20 bg-accent/5 rounded-sm px-5 py-3">
@@ -223,6 +234,66 @@ export default async function Packs() {
                   );
                 })}
             </div>
+
+            {/* Mat class packs — non-recurring alternative to a
+                membership. Same Momence "package-events" SKUs that
+                used to live in the "More options" catch-all at the
+                bottom of the page; surfaced here so they're seen
+                alongside the membership tiers they complement. Hidden
+                when Momence has no mat packs configured. */}
+            {matPacks.length > 0 && (
+              <div className="max-w-3xl mx-auto mb-10">
+                <p className="text-[11px] tracking-[0.3em] uppercase text-accent/80 text-center mb-4">
+                  No-commitment class packs
+                </p>
+                <div
+                  className={`grid gap-4 ${
+                    matPacks.length === 1
+                      ? "grid-cols-1 max-w-sm mx-auto"
+                      : "grid-cols-1 sm:grid-cols-2"
+                  }`}
+                >
+                  {matPacks.map((p) => {
+                    const m = p.membership;
+                    const count = p.size === "ten" ? 10 : 5;
+                    const perClass =
+                      m.price !== undefined ? Math.ceil(m.price / count) : null;
+                    return (
+                      <a
+                        key={m.id}
+                        href={m.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
+                      >
+                        <h3 className="font-serif text-lg font-light text-charcoal mb-1">
+                          {matPackLabel(p.size)}
+                        </h3>
+                        <p className="text-sm text-muted mb-4">
+                          {count} mat classes · 6 months to use them
+                        </p>
+                        <div className="border-t border-charcoal/5 pt-3 flex items-baseline gap-3">
+                          <p className="font-serif text-2xl font-light text-charcoal leading-none">
+                            ${m.price}
+                          </p>
+                          {perClass !== null && (
+                            <p className="text-sm text-muted">~${perClass}/class</p>
+                          )}
+                        </div>
+                        <div className="mt-auto pt-4 flex items-center justify-between">
+                          <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                            Buy
+                          </span>
+                          <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                            →
+                          </span>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             <p className="text-center text-sm text-muted">
               Prefer to drop in?{" "}

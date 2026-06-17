@@ -215,6 +215,43 @@ export function findDropIn(memberships: Membership[]): Membership | undefined {
   });
 }
 
+// ---------- Mat class packs (5-pack / 10-pack) ----------
+
+/** Multi-class mat packs (5-pack, 10-pack). Single mat drop-ins are
+ *  handled separately by findDropIn() and excluded here so the same
+ *  membership doesn't get rendered twice. Apparatus packs are excluded
+ *  by the private/duet/trio name filter. */
+export type MatPack = {
+  size: PackSize;
+  membership: Membership;
+};
+
+export function findMatPacks(memberships: Membership[]): MatPack[] {
+  const order: Record<PackSize, number> = { single: 0, five: 1, ten: 2 };
+  const out: MatPack[] = [];
+  for (const m of memberships) {
+    if (m.type !== "package-events") continue;
+    const n = m.name.toLowerCase();
+    if (!n.includes("mat")) continue;
+    // Apparatus categories live in their own bucket on /privates.
+    if (
+      n.includes("private") ||
+      n.includes("duet") ||
+      n.includes("trio") ||
+      n.includes("small group")
+    ) {
+      continue;
+    }
+    const size = detectPackSize(m.name);
+    if (!size) continue;
+    // Singles are the drop-in pack — surfaced via findDropIn(), don't
+    // double-render here.
+    if (size === "single") continue;
+    out.push({ size, membership: m });
+  }
+  return out.sort((a, b) => order[a.size] - order[b.size]);
+}
+
 // ---------- Return to Life courses ----------
 
 export type RtlCourse = {
@@ -301,6 +338,9 @@ export function findOtherOfferings(memberships: Membership[]): Membership[] {
   const dropIn = findDropIn(memberships);
   const intro = findIntroPrivates(memberships);
   const demo = findApparatusDemo(memberships);
+  const matPackIds = new Set(
+    findMatPacks(memberships).map((p) => p.membership.id)
+  );
   const rtlIds = new Set(findRtlCourses(memberships).map((c) => c.membership.id));
 
   return memberships.filter(
@@ -310,6 +350,7 @@ export function findOtherOfferings(memberships: Membership[]): Membership[] {
       m.id !== dropIn?.id &&
       m.id !== intro?.id &&
       m.id !== demo?.id &&
+      !matPackIds.has(m.id) &&
       !rtlIds.has(m.id)
   );
 }
