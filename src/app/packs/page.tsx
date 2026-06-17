@@ -140,6 +140,56 @@ export default async function Packs() {
                 inline rather than going blank — that's the "why can't
                 I book this?" answer. */}
             <div className="flex flex-wrap justify-center gap-4 mb-8">
+              {/* Mat class packs first — 5-pack on the left, then
+                  10-pack, then memberships in ascending commitment.
+                  Reads left-to-right as a "smallest commitment to
+                  biggest commitment" progression. */}
+              {matPacks.map((p) => {
+                const m = p.membership;
+                const count = p.size === "ten" ? 10 : 5;
+                const perClass =
+                  m.price !== undefined ? Math.ceil(m.price / count) : null;
+                return (
+                  <a
+                    key={m.id}
+                    href={m.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30 basis-full sm:basis-[calc((100%-1rem)/2)] lg:basis-[220px] lg:max-w-[220px]"
+                  >
+                    <h3 className="font-serif text-lg font-light text-charcoal mb-1">
+                      {matPackLabel(p.size)}
+                    </h3>
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-2">
+                      Class Pack
+                    </p>
+                    <p className="text-xs text-muted mb-4 leading-snug">
+                      {count} classes · 6 months to use
+                    </p>
+
+                    <div className="border-t border-charcoal/5 pt-3">
+                      <p className="font-serif text-2xl font-light text-charcoal leading-none">
+                        ${m.price}
+                      </p>
+                      {perClass !== null && (
+                        <p className="text-xs text-muted mt-1">
+                          ~${perClass}/class
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="mt-auto pt-3 border-t border-charcoal/5 flex items-center justify-between">
+                      <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                        Buy
+                      </span>
+                      <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                        →
+                      </span>
+                    </div>
+                  </a>
+                );
+              })}
+
               {/* Mat tier memberships */}
               {tiers
                 .filter((t) => t.regular)
@@ -257,54 +307,6 @@ export default async function Packs() {
                     </a>
                   );
                 })}
-
-              {/* Mat class packs — same card shape so they sit
-                  beside the memberships in the same grid. */}
-              {matPacks.map((p) => {
-                const m = p.membership;
-                const count = p.size === "ten" ? 10 : 5;
-                const perClass =
-                  m.price !== undefined ? Math.ceil(m.price / count) : null;
-                return (
-                  <a
-                    key={m.id}
-                    href={m.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30 basis-full sm:basis-[calc((100%-1rem)/2)] lg:basis-[220px] lg:max-w-[220px]"
-                  >
-                    <h3 className="font-serif text-lg font-light text-charcoal mb-1">
-                      {matPackLabel(p.size)}
-                    </h3>
-                    <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-2">
-                      Class Pack
-                    </p>
-                    <p className="text-xs text-muted mb-4 leading-snug">
-                      {count} classes · 6 months to use
-                    </p>
-
-                    <div className="border-t border-charcoal/5 pt-3">
-                      <p className="font-serif text-2xl font-light text-charcoal leading-none">
-                        ${m.price}
-                      </p>
-                      {perClass !== null && (
-                        <p className="text-xs text-muted mt-1">
-                          ~${perClass}/class
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="mt-auto pt-3 border-t border-charcoal/5 flex items-center justify-between">
-                      <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                        Buy
-                      </span>
-                      <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                        →
-                      </span>
-                    </div>
-                  </a>
-                );
-              })}
             </div>
 
             <p className="text-center text-sm text-muted">
