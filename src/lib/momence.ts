@@ -15,10 +15,15 @@ export const MOMENCE_API_TOKEN = process.env.MOMENCE_API_TOKEN || "da1030e20e";
 // page). If the studio slug changes in Momence, update both halves below.
 export const MOMENCE_APPOINTMENTS_URL = `https://momence.com/Boomerang-Pilates/appointment-reservation/${MOMENCE_HOST_ID}`;
 
-// Direct Momence short link for the FREE apparatus demo session.
+// Direct Momence appointment-booking URL for the FREE apparatus demo.
 // Surfaced on the home page, /privates, and /packs as the low-friction
 // first touchpoint for anyone curious about the apparatus.
-export const MOMENCE_DEMO_URL = "https://momence.com/m/783283";
+// Previously pointed at momence.com/m/783283, a "membership" SKU
+// purchase page that asked the user to "buy" a $0 pack before
+// scheduling — friction-heavy. The appointment board below opens
+// straight into time-slot selection.
+export const MOMENCE_DEMO_URL =
+  "https://momence.com/appointments/270195?boardId=202850";
 
 export type Membership = {
   id: number;
