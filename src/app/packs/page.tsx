@@ -110,13 +110,12 @@ export default async function Packs() {
         </div>
       )}
 
-      {/* 2. Mat Classes. Memberships + class packs + drop-in, all in
-          one section. Memberships are the primary entry (tier cards
-          first), packs follow as the no-commitment alternative, and
-          drop-in stays as the footer link. */}
+      {/* 2. Mat Classes. Memberships + class packs in a unified row
+          so users can compare every option side-by-side. Drop-in
+          stays as the footer link below the grid. */}
       {tiers.some((t) => t.regular) && (
         <div className="py-20 lg:py-24">
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
               <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
                 Memberships, Packs &amp; Drop-In
@@ -125,36 +124,34 @@ export default async function Packs() {
                 Mat Classes.
               </h2>
               <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
-                Monthly memberships if you&apos;re committed to a regular
-                practice, class packs if you&apos;d rather pay as you go, or a
-                single drop-in to test the water. Memberships are a three-month
-                commitment; up to four unused classes roll over each month and
-                you can pause anytime after the first three.
+                Memberships if you&apos;re committed, class packs if you&apos;d
+                rather pay as you go, or a single drop-in. Memberships are a
+                three-month commitment — up to four unused classes roll over
+                each month, pause anytime after the first three.
               </p>
-              {matLocked && (
-                <p className="text-sm text-accent leading-relaxed max-w-xl mx-auto mt-4 border border-accent/20 bg-accent/5 rounded-sm px-5 py-3">
-                  Booking opens here once founding memberships sell out. Until
-                  then,{" "}
-                  <Link href="/founding" className="underline underline-offset-4 decoration-accent/50 hover:decoration-accent font-medium">
-                    become a founding member
-                  </Link>{" "}
-                  and lock in 25% off these rates for life.
-                </p>
-              )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+            {/* Unified card grid. 3 mat tiers + up to 2 packs all share
+                the same shape: title, sub-label, tagline, price block,
+                CTA row. Cards that are locked behind founding render
+                with the founding-redirect inline rather than going
+                blank — that's the "why can't I book this?" answer. */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+              {/* Mat tier memberships */}
               {tiers
                 .filter((t) => t.regular)
                 .map((t) => {
                   const regular = t.regular!;
+                  const founding = t.founding;
                   const classes = classesPerMonth(t.key);
                   const perClass =
-                    classes && regular.price !== undefined ? Math.ceil(regular.price / classes) : null;
+                    classes && regular.price !== undefined
+                      ? Math.ceil(regular.price / classes)
+                      : null;
                   const isFeatured = t.key === featuredKey;
-                  // A regular tier unlocks (becomes purchasable) as soon as
-                  // its founding tier sells out — even while founding is
-                  // still live for the other tiers.
+                  // A tier is locked while its founding pair is still
+                  // available — we want people on the founding deal,
+                  // not paying full price.
                   const tierLocked =
                     matLocked &&
                     (FOUNDING_SPOTS_LEFT[t.key] ?? FOUNDING_SPOTS_TOTAL) > 0;
@@ -162,38 +159,58 @@ export default async function Packs() {
                   const cardInner = (
                     <>
                       {isFeatured && (
-                        <p className="text-[11px] tracking-[0.25em] uppercase text-charcoal/60 mb-3">
+                        <p className="text-[11px] tracking-[0.25em] uppercase text-charcoal/60 mb-2">
                           Most popular
                         </p>
                       )}
-                      <h3 className="font-serif text-xl font-light text-charcoal mb-1">
+                      <h3 className="font-serif text-lg font-light text-charcoal mb-1">
                         {tierDisplayName(t)}
                       </h3>
-                      {tierTagline(t.key) && (
-                        <p className="text-sm text-muted mb-1">{tierTagline(t.key)}</p>
-                      )}
-                      <p className="text-[11px] tracking-widest uppercase text-muted mb-5">
+                      <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-2">
                         Monthly Membership
                       </p>
+                      {tierTagline(t.key) && (
+                        <p className="text-xs text-muted mb-4 leading-snug">
+                          {tierTagline(t.key)}
+                        </p>
+                      )}
 
-                      <div className="border-t border-charcoal/5 pt-4">
-                        <p className="font-serif text-3xl font-light text-charcoal">
+                      <div className="border-t border-charcoal/5 pt-3">
+                        <p className="font-serif text-2xl font-light text-charcoal leading-none">
                           ${regular.price}
-                          <span className="text-sm text-muted font-sans">/month</span>
+                          <span className="text-xs text-muted font-sans">
+                            /mo
+                          </span>
                         </p>
                         {perClass !== null && (
-                          <p className="text-sm text-muted mt-0.5">
+                          <p className="text-xs text-muted mt-1">
                             ~${perClass}/class
                           </p>
                         )}
                       </div>
 
-                      {/* CTA only when bookable. While locked, the section's
-                          red note carries the "opens once founding sells out"
-                          message — the cards are just info, not clickable. */}
-                      {!tierLocked && (
-                        <div className="mt-auto pt-4 border-t border-charcoal/5 flex items-center justify-between">
-                          <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                      {/* CTA / locked-reason row. When locked, we tell
+                          the user EXPLICITLY why — point them at the
+                          founding deal instead of leaving an empty
+                          card. When unlocked, regular Buy link. */}
+                      {tierLocked ? (
+                        <div className="mt-auto pt-3 border-t border-charcoal/5">
+                          <p className="text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">
+                            Bookable when founding closes
+                          </p>
+                          {founding?.price !== undefined && (
+                            <p className="text-xs text-accent leading-snug">
+                              Founding members pay{" "}
+                              <span className="font-medium">
+                                ${founding.price}/mo
+                              </span>{" "}
+                              for life →
+                            </p>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="mt-auto pt-3 border-t border-charcoal/5 flex items-center justify-between">
+                          <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
                             Buy
                           </span>
                           <span className="text-accent group-hover:translate-x-0.5 transition-transform">
@@ -204,23 +221,29 @@ export default async function Packs() {
                     </>
                   );
 
-                  const baseClasses = `flex flex-col bg-white rounded-sm p-7 transition-all duration-300 ${
+                  const baseClasses = `flex flex-col bg-white rounded-sm p-5 transition-all duration-300 ${
                     isFeatured
                       ? "border-2 border-charcoal/20"
                       : "border border-charcoal/10"
                   } ${
                     tierLocked
-                      ? "opacity-75 cursor-default select-none"
+                      ? "group cursor-pointer hover:-translate-y-0.5 hover:shadow-md hover:border-accent/40"
                       : "group hover:-translate-y-1 hover:shadow-md" +
                         (isFeatured ? "" : " hover:border-accent/30")
                   }`;
 
-                  // Locked (founding still has this tier): plain, non-clickable
-                  // card. Unlocked (founding sold out / over): real buy link.
+                  // Locked tiers now link to /founding (where the
+                  // user CAN do something), not /packs/checkout (where
+                  // they can't). Unlocked tiers link to Momence as
+                  // usual.
                   return tierLocked ? (
-                    <div key={t.key} className={baseClasses} aria-disabled="true">
+                    <Link
+                      key={t.key}
+                      href="/founding"
+                      className={baseClasses}
+                    >
                       {cardInner}
-                    </div>
+                    </Link>
                   ) : (
                     <a
                       key={t.key}
@@ -233,67 +256,55 @@ export default async function Packs() {
                     </a>
                   );
                 })}
-            </div>
 
-            {/* Mat class packs — non-recurring alternative to a
-                membership. Same Momence "package-events" SKUs that
-                used to live in the "More options" catch-all at the
-                bottom of the page; surfaced here so they're seen
-                alongside the membership tiers they complement. Hidden
-                when Momence has no mat packs configured. */}
-            {matPacks.length > 0 && (
-              <div className="max-w-3xl mx-auto mb-10">
-                <p className="text-[11px] tracking-[0.3em] uppercase text-accent/80 text-center mb-4">
-                  No-commitment class packs
-                </p>
-                <div
-                  className={`grid gap-4 ${
-                    matPacks.length === 1
-                      ? "grid-cols-1 max-w-sm mx-auto"
-                      : "grid-cols-1 sm:grid-cols-2"
-                  }`}
-                >
-                  {matPacks.map((p) => {
-                    const m = p.membership;
-                    const count = p.size === "ten" ? 10 : 5;
-                    const perClass =
-                      m.price !== undefined ? Math.ceil(m.price / count) : null;
-                    return (
-                      <a
-                        key={m.id}
-                        href={m.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
-                      >
-                        <h3 className="font-serif text-lg font-light text-charcoal mb-1">
-                          {matPackLabel(p.size)}
-                        </h3>
-                        <p className="text-sm text-muted mb-4">
-                          {count} mat classes · 6 months to use them
+              {/* Mat class packs — same card shape so they sit
+                  beside the memberships in the same grid. */}
+              {matPacks.map((p) => {
+                const m = p.membership;
+                const count = p.size === "ten" ? 10 : 5;
+                const perClass =
+                  m.price !== undefined ? Math.ceil(m.price / count) : null;
+                return (
+                  <a
+                    key={m.id}
+                    href={m.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
+                  >
+                    <h3 className="font-serif text-lg font-light text-charcoal mb-1">
+                      {matPackLabel(p.size)}
+                    </h3>
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-2">
+                      Class Pack
+                    </p>
+                    <p className="text-xs text-muted mb-4 leading-snug">
+                      {count} classes · 6 months to use
+                    </p>
+
+                    <div className="border-t border-charcoal/5 pt-3">
+                      <p className="font-serif text-2xl font-light text-charcoal leading-none">
+                        ${m.price}
+                      </p>
+                      {perClass !== null && (
+                        <p className="text-xs text-muted mt-1">
+                          ~${perClass}/class
                         </p>
-                        <div className="border-t border-charcoal/5 pt-3 flex items-baseline gap-3">
-                          <p className="font-serif text-2xl font-light text-charcoal leading-none">
-                            ${m.price}
-                          </p>
-                          {perClass !== null && (
-                            <p className="text-sm text-muted">~${perClass}/class</p>
-                          )}
-                        </div>
-                        <div className="mt-auto pt-4 flex items-center justify-between">
-                          <span className="text-[11px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
-                            Buy
-                          </span>
-                          <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                            →
-                          </span>
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
+                      )}
+                    </div>
+
+                    <div className="mt-auto pt-3 border-t border-charcoal/5 flex items-center justify-between">
+                      <span className="text-[10px] tracking-widest uppercase text-accent group-hover:text-accent/80 transition-colors">
+                        Buy
+                      </span>
+                      <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                        →
+                      </span>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
 
             <p className="text-center text-sm text-muted">
               Prefer to drop in?{" "}
