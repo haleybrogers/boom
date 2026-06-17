@@ -143,21 +143,39 @@ function FeaturedEventCard({
         </div>
       ) : null}
 
-      {/* Content block. Date eyebrow → big title → description →
-          meta row → accent CTA button. */}
-      <div className="flex flex-col p-8 sm:p-10 lg:p-12 text-center">
+      {/* Content block. Sizing scales with whether there's an image:
+          image cards get the larger "hero" treatment, text-only
+          cards (no image, no icon) get a tighter feature-card look
+          so they don't dominate the page on their own. */}
+      <div
+        className={`flex flex-col text-center ${
+          event.image || event.iconKey
+            ? "p-8 sm:p-10 lg:p-12"
+            : "p-6 sm:p-8"
+        }`}
+      >
         <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">
           {date.weekday} · {date.month} {date.day}
         </p>
-        <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-charcoal leading-[1.1] mb-4 group-hover:text-accent transition-colors">
+        <h3
+          className={`font-serif font-light text-charcoal leading-[1.1] mb-3 group-hover:text-accent transition-colors ${
+            event.image || event.iconKey
+              ? "text-3xl sm:text-4xl md:text-5xl mb-4"
+              : "text-2xl sm:text-3xl"
+          }`}
+        >
           {event.title}
         </h3>
         {description && (
-          <p className="text-base sm:text-lg text-muted leading-relaxed mb-6 max-w-xl mx-auto">
+          <p
+            className={`text-muted leading-relaxed mb-5 max-w-xl mx-auto ${
+              event.image || event.iconKey ? "text-base sm:text-lg" : "text-sm"
+            }`}
+          >
             {description}
           </p>
         )}
-        <div className="flex items-center justify-center gap-3 text-sm text-muted mb-6">
+        <div className="flex items-center justify-center gap-3 text-sm text-muted mb-5">
           <span>{formatTimeRange(event.dateTime, event.durationMin)}</span>
           {event.price && (
             <>
@@ -166,7 +184,7 @@ function FeaturedEventCard({
             </>
           )}
         </div>
-        <span className="btn-animated mx-auto inline-block bg-accent text-white text-xs tracking-widest uppercase px-8 py-3.5 group-hover:bg-accent/90 transition-colors">
+        <span className="btn-animated mx-auto inline-block bg-accent text-white text-xs tracking-widest uppercase px-7 py-3 group-hover:bg-accent/90 transition-colors">
           See Details →
         </span>
       </div>
@@ -755,7 +773,7 @@ export default function EventsCalendarClient({
             <div
               className={`mb-5 stagger-children ${
                 featuredOpeningWeek.length === 1
-                  ? ""
+                  ? "max-w-2xl mx-auto"
                   : "grid grid-cols-1 md:grid-cols-2 gap-5"
               }`}
             >
