@@ -77,10 +77,10 @@ export default async function Privates() {
                     rel="noopener noreferrer"
                     className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
                   >
-                    Book a Session
+                    Request a Session
                   </a>
                   <p className="text-sm text-muted mt-3">
-                    Privates, duets, and trios all bookable here. Opens in a new tab.
+                    Privates, duets, and trios — pick a time and we&apos;ll confirm. Opens in a new tab.
                   </p>
                 </>
               ) : (

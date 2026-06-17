@@ -12,8 +12,12 @@ export const MOMENCE_API_TOKEN = process.env.MOMENCE_API_TOKEN || "da1030e20e";
 
 // Per-host appointment-reservation URL — direct slug form (vs the
 // `/appointments/{id}` 302-redirect, which lands on a less-functional
-// page). If the studio slug changes in Momence, update both halves below.
-export const MOMENCE_APPOINTMENTS_URL = `https://momence.com/Boomerang-Pilates/appointment-reservation/${MOMENCE_HOST_ID}`;
+// page). boardId=196813 scopes the page to the Private/Duet/Trio
+// booking board specifically. NOTE: this flow is request-only — users
+// submit a session request that Emilie confirms manually; it's not a
+// direct booking. CTAs across the site say "Request a Session" rather
+// than "Book" to keep that honest.
+export const MOMENCE_APPOINTMENTS_URL = `https://momence.com/Boomerang-Pilates/appointment-reservation/${MOMENCE_HOST_ID}?boardId=196813`;
 
 // Direct Momence appointment-booking URL for the FREE apparatus demo.
 // Surfaced on the home page, /privates, and /packs as the low-friction

@@ -87,7 +87,7 @@ const offerings: Offering[] = [
     // opens soon" treatment in context with the pricing + duet/trio
     // explanation. Post-launch: switch to direct Momence link.
     link: PRIVATES_BOOKABLE ? MOMENCE_APPOINTMENTS_URL : "/privates",
-    linkLabel: PRIVATES_BOOKABLE ? "Book a Session" : "Booking Opens Soon",
+    linkLabel: PRIVATES_BOOKABLE ? "Request a Session" : "Booking Opens Soon",
     external: PRIVATES_BOOKABLE,
   },
 ];
@@ -110,7 +110,7 @@ export default async function OfferingCards() {
   const trioSingle = apparatus.find((g) => g.category === "trio")?.single?.price;
 
   // Build the live-priced offerings array. Apparatus card intentionally
-  // hides pricing. Its CTA is generic "Book a Session" → /privates.
+  // hides pricing. Its CTA is generic "Request a Session" → /privates.
   const live = offerings.map((o) => {
     if (o.title === "Mat Classes" && dropIn?.price !== undefined) {
       return {

@@ -53,9 +53,10 @@ export const FOUNDING_SPOTS_LEFT: Record<string, number> = {
   unlimited: 12, // 3 of 15 sold
 };
 
-// PRIVATES_BOOKABLE: gates direct-link bookings for privates, duets,
-// and trios. While false, every "Book a Session" / "Book a Private" CTA
-// renders as a disabled "Booking opens soon" state. Flip to true once
-// Emilie has appointment-reservation set up cleanly in Momence — every
-// CTA goes live in the same beat.
-export const PRIVATES_BOOKABLE = false;
+// PRIVATES_BOOKABLE: gates the direct request flow for privates,
+// duets, and trios. When true, every "Request a Session" CTA links
+// out to Momence's appointment-reservation board (request-only —
+// Emilie confirms each request manually). When false, the same CTAs
+// render as a disabled "Booking Opens Soon" state with a waitlist
+// signup form on /privates as the fallback.
+export const PRIVATES_BOOKABLE = true;

@@ -2,13 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import { PRIVATES_BOOKABLE } from "@/lib/flags";
+import { MOMENCE_APPOINTMENTS_URL } from "@/lib/momence";
 
 export const metadata = {
   title: "Contact",
   description: "Get in touch with Boomerang Pilates. Durham, NC. Questions, ideas, or just want to say hi.",
 };
-
-const MOMENCE_APPOINTMENTS_URL = `https://momence.com/appointments/${process.env.NEXT_PUBLIC_MOMENCE_HOST_ID || "270195"}`;
 
 export default function Contact() {
   return (
@@ -28,7 +27,7 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Tiny redirect for people who really just want to book a session */}
+        {/* Tiny redirect for people who really just want a session */}
         <div className="text-center mb-14">
           {PRIVATES_BOOKABLE ? (
             <p className="text-sm text-muted">
@@ -38,7 +37,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="text-accent hover:text-accent/70 transition-colors underline underline-offset-4 decoration-accent/40 hover:decoration-accent"
               >
-                Book a session →
+                Request a session →
               </a>
             </p>
           ) : (
