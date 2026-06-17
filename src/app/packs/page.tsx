@@ -267,39 +267,46 @@ export default async function Packs() {
             </div>
 
             {/* Intro 3-Pack callout. Intentionally subtle — only
-                relevant to people new to the apparatus, so we don't
-                want it competing for attention with the main pack
-                cards below. Thin accent border, one-line copy, inline
-                price + small CTA. */}
+                relevant to people new to the studio. Thin accent
+                border, one-line copy, founding price is its own
+                /founding link so the limited-time framing is clear
+                and clickable. */}
             {intro && intro.price !== undefined && (
-              <a
-                href={intro.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group max-w-2xl mx-auto mb-10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 bg-cream border border-accent/40 rounded-sm px-5 py-4 sm:px-6 sm:py-4 transition-colors hover:border-accent hover:bg-accent/5"
-              >
-                <div className="flex-1 min-w-0">
-                  <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-0.5">
-                    New to the studio · Intro 3-Pack
-                  </p>
-                  <p className="text-sm text-charcoal/80 leading-snug">
-                    Three private sessions to get you started —
-                    <span className="text-charcoal font-medium"> ${intro.price}</span>
+              <div className="max-w-2xl mx-auto mb-10 bg-cream border border-accent/40 rounded-sm px-5 py-4 sm:px-6 sm:py-4">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-0.5">
+                      New to the studio · Intro 3-Pack
+                    </p>
+                    <p className="text-sm text-charcoal/80 leading-snug">
+                      Three private sessions to get you started —
+                      <span className="text-charcoal font-medium"> ${intro.price}</span>
+                      .
+                    </p>
                     {SHOW_FOUNDING && (
-                      <>
-                        {" "}
-                        <span className="text-muted">
-                          (${INTRO_PRIVATES_FOUNDING_PRICE} with founding)
-                        </span>
-                      </>
+                      <p className="text-xs text-accent mt-1.5 leading-snug">
+                        <Link
+                          href="/founding"
+                          className="underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+                        >
+                          Founding members: ${INTRO_PRIVATES_FOUNDING_PRICE} — limited time →
+                        </Link>
+                      </p>
                     )}
-                    .
-                  </p>
+                  </div>
+                  <a
+                    href={intro.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center justify-center text-[10px] tracking-widest uppercase text-accent shrink-0 hover:text-accent/80 transition-colors"
+                  >
+                    Buy the pack{" "}
+                    <span className="ml-1 group-hover:translate-x-0.5 transition-transform">
+                      →
+                    </span>
+                  </a>
                 </div>
-                <span className="text-[10px] tracking-widest uppercase text-accent shrink-0 group-hover:translate-x-0.5 transition-transform">
-                  Buy the pack →
-                </span>
-              </a>
+              </div>
             )}
 
             {/* Regular pack cards (Private / Duet / Trio · single / 5 / 10). */}

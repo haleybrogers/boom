@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import PackPickerModal from "@/components/PackPickerModal";
 import ContactFormModal from "@/components/ContactFormModal";
 import {
@@ -152,13 +153,11 @@ export default async function Privates() {
               </div>
             </a>
 
-            {/* Intro 3-Pack card */}
-            <a
-              href={intro?.link ?? MOMENCE_APPOINTMENTS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex flex-col bg-cream border-2 border-accent rounded-sm p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
-            >
+            {/* Intro 3-Pack card. Wrapped in a div (not <a>) so the
+                founding-price line can be its own /founding link
+                without nesting anchors. The main "Buy the pack" CTA
+                at the bottom is the primary click target. */}
+            <div className="relative flex flex-col bg-cream border-2 border-accent rounded-sm p-5">
               <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-accent text-white text-[9px] tracking-[0.3em] uppercase px-2.5 py-0.5 rounded-full whitespace-nowrap">
                 First-Timers
               </span>
@@ -175,21 +174,31 @@ export default async function Privates() {
                 <p className="font-serif text-2xl font-light text-charcoal leading-none">
                   ${intro?.price ?? 275}
                 </p>
-                {SHOW_FOUNDING && (
-                  <p className="text-xs text-accent">
-                    · <span className="font-medium">${INTRO_PRIVATES_FOUNDING_PRICE}</span> founding
-                  </p>
-                )}
               </div>
-              <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-3">
+              {SHOW_FOUNDING && (
+                <p className="text-xs text-accent mt-1.5 leading-snug">
+                  <Link
+                    href="/founding"
+                    className="underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+                  >
+                    Founding members: ${INTRO_PRIVATES_FOUNDING_PRICE} — limited time →
+                  </Link>
+                </p>
+              )}
+              <a
+                href={intro?.link ?? MOMENCE_APPOINTMENTS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between border-t border-charcoal/5 pt-3 mt-3 transition-colors hover:text-accent/80"
+              >
                 <span className="text-[10px] tracking-widest uppercase text-accent">
                   Buy the pack
                 </span>
                 <span className="text-accent group-hover:translate-x-0.5 transition-transform">
                   →
                 </span>
-              </div>
-            </a>
+              </a>
+            </div>
           </div>
         </div>
       </section>
