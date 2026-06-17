@@ -101,7 +101,9 @@ export const staticEvents: EventItem[] = [
     shortDescription: "Mat class, matcha, and a peek at the Gratz apparatus.",
     location: "343 W Main St, Durham, NC",
     price: "$20",
-    image: "/photo-founding-mat.jpg",
+    // Intentionally no image or iconKey — Haley wanted the card to
+    // read as a pure copy block (date / title / description / CTA)
+    // without a photo or decorative glyph.
     action: {
       type: "external",
       href: "https://momence.com/Boomerang-Pilates/Mat-and-Matcha-%2B-Apparatus-Demos/136916030",
