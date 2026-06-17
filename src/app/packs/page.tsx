@@ -118,7 +118,7 @@ export default async function Packs() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
               <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
-                Memberships, Packs &amp; Drop-In
+                Memberships, Class Packs &amp; Drop-In
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
                 Mat Classes.
