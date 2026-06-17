@@ -131,12 +131,15 @@ export default async function Packs() {
               </p>
             </div>
 
-            {/* Unified card grid. 3 mat tiers + up to 2 packs all share
+            {/* Unified card row. 3 mat tiers + any number of packs share
                 the same shape: title, sub-label, tagline, price block,
-                CTA row. Cards that are locked behind founding render
-                with the founding-redirect inline rather than going
-                blank — that's the "why can't I book this?" answer. */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+                CTA row. flex-wrap + justify-center so the orphan card
+                in a half-wrapped row (3+2 at md, 2+2+1 at sm) sits
+                centered rather than aligning left. Cards that are
+                locked behind founding render with the founding-redirect
+                inline rather than going blank — that's the "why can't
+                I book this?" answer. */}
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
               {/* Mat tier memberships */}
               {tiers
                 .filter((t) => t.regular)
@@ -189,24 +192,19 @@ export default async function Packs() {
                         )}
                       </div>
 
-                      {/* CTA / locked-reason row. When locked, we tell
-                          the user EXPLICITLY why — point them at the
-                          founding deal instead of leaving an empty
-                          card. When unlocked, regular Buy link. */}
+                      {/* CTA / locked-reason row. Locked cards link to
+                          /founding with a single accent line — the
+                          "why" is implied by the message itself
+                          (founding is still running and cheaper). */}
                       {tierLocked ? (
                         <div className="mt-auto pt-3 border-t border-charcoal/5">
-                          <p className="text-[10px] tracking-[0.15em] uppercase text-muted mb-1.5">
-                            Bookable when founding closes
+                          <p className="text-xs text-accent leading-snug group-hover:text-accent/80 transition-colors">
+                            Founding membership still available!{" "}
+                            {founding?.price !== undefined && (
+                              <>${founding.price}/mo for life </>
+                            )}
+                            →
                           </p>
-                          {founding?.price !== undefined && (
-                            <p className="text-xs text-accent leading-snug">
-                              Founding members pay{" "}
-                              <span className="font-medium">
-                                ${founding.price}/mo
-                              </span>{" "}
-                              for life →
-                            </p>
-                          )}
                         </div>
                       ) : (
                         <div className="mt-auto pt-3 border-t border-charcoal/5 flex items-center justify-between">
@@ -221,7 +219,10 @@ export default async function Packs() {
                     </>
                   );
 
-                  const baseClasses = `flex flex-col bg-white rounded-sm p-5 transition-all duration-300 ${
+                  // basis-* values target ~220px per card on lg
+                  // (5-up), ~50% width on sm (2-up), full width on
+                  // mobile (1-up). Gap-4 = 1rem accounted for in math.
+                  const baseClasses = `flex flex-col bg-white rounded-sm p-5 transition-all duration-300 basis-full sm:basis-[calc((100%-1rem)/2)] lg:basis-[220px] lg:max-w-[220px] ${
                     isFeatured
                       ? "border-2 border-charcoal/20"
                       : "border border-charcoal/10"
@@ -270,7 +271,7 @@ export default async function Packs() {
                     href={m.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30"
+                    className="group flex flex-col bg-white border border-charcoal/10 rounded-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-accent/30 basis-full sm:basis-[calc((100%-1rem)/2)] lg:basis-[220px] lg:max-w-[220px]"
                   >
                     <h3 className="font-serif text-lg font-light text-charcoal mb-1">
                       {matPackLabel(p.size)}
