@@ -234,7 +234,7 @@ function MatSeriesCard({
                 }`}
               >
                 {isPast
-                  ? "Class happened"
+                  ? "Past class"
                   : event.isFull
                     ? event.allowsWaitlist
                       ? "Waitlist →"
