@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
@@ -72,6 +73,7 @@ export default function RootLayout({
         <Footer />
         <StickyCTA />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
