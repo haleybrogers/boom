@@ -4,7 +4,6 @@ import ContactFormModal from "@/components/ContactFormModal";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import Reveal from "@/components/Reveal";
-import OpeningWeekPopup from "@/components/OpeningWeekPopup";
 import OpeningCountdown from "@/components/OpeningCountdown";
 import FoundingCountdown from "@/components/FoundingCountdown";
 import SplashScreen from "@/components/SplashScreen";
@@ -151,9 +150,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Popups. Pre-opening only. FoundingPopup retired in favor of the
-          inline founding callout + the sitewide sticky CTA. */}
-      <OpeningWeekPopup />
     </>
   );
 }
