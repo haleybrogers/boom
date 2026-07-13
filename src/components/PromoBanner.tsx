@@ -6,9 +6,6 @@ import { isOpeningWeekPromoActive } from "@/lib/flags";
 // the spacer in layout.tsx both check the same flag so everything
 // collapses back to normal together when the promo ends.
 
-const MESSAGE =
-  "Use code OPENINGWEEK for 10% off all Privates, Duets, Trios & Group Apparatus class packs";
-
 export default function PromoBanner() {
   if (!isOpeningWeekPromoActive()) return null;
 
@@ -17,20 +14,23 @@ export default function PromoBanner() {
   const items = Array.from({ length: 8 });
 
   return (
-    <div className="fixed top-0 inset-x-0 z-[60] h-9 bg-accent overflow-hidden flex items-center">
+    <div className="fixed top-0 inset-x-0 z-[60] h-9 bg-[#7a1f34] overflow-hidden flex items-center">
       <div className="promo-marquee-track flex whitespace-nowrap">
         {items.map((_, i) => (
           <span
             key={i}
             className="text-[11px] tracking-[0.15em] uppercase text-cream px-8 shrink-0"
           >
-            {MESSAGE}
+            Use code{" "}
+            <span className="font-bold tracking-[0.2em] mx-1.5">OPENINGWEEK</span>{" "}
+            for 10% off all Privates, Duets, Trios &amp; Group Apparatus class
+            packs
           </span>
         ))}
       </div>
       <style>{`
         .promo-marquee-track {
-          animation: promo-marquee-scroll 65s linear infinite;
+          animation: promo-marquee-scroll 90s linear infinite;
         }
         @keyframes promo-marquee-scroll {
           from { transform: translateX(0); }

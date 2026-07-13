@@ -36,8 +36,8 @@ export default function Home() {
       {/* Intro. One tight paragraph, then the two ways in */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-sm tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
-            Grand Opening Week
+          <p className="text-base sm:text-lg font-semibold tracking-[0.15em] uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
+            🎉 Grand Opening Week 🎉
           </p>
           <div className="animate-fade-up-lux" style={{ animationDelay: "0.6s" }}>
             <OpeningCountdown />
@@ -49,17 +49,8 @@ export default function Home() {
             Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio. Today&apos;s the day — doors are open. Come see the space and get on the schedule.
           </p>
 
-          <div className="flex justify-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
-            <Link
-              href="/schedule"
-              className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
-            >
-              See Our Schedule →
-            </Link>
-          </div>
-
           {SHOW_FOUNDING && (
-            <div className="flex flex-col items-center animate-fade-up-lux mt-8" style={{ animationDelay: "1.05s" }}>
+            <div className="flex flex-col items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
               <p className="text-sm text-accent mb-2">
                 Today&apos;s the last day to lock in 25% off — for life.
               </p>
@@ -146,12 +137,12 @@ export default function Home() {
             Be the first to know.
           </h2>
           <p className="text-muted text-base mb-10">
-            Grand opening details, new class drops, events, and the stuff we only share with our people.
+            Sign up for our email list — event details, first access to new class drops, and the stuff we only share with our people.
           </p>
           <ContactFormModal
             buttonLabel="Get the Scoop"
             heading="Get the scoop."
-            subhead="Grand opening details, new class drops, events, and the stuff we only share with our people."
+            subhead="Sign up for our email list — event details, first access to new class drops, and the stuff we only share with our people."
             source="waitlist"
             sourceId={204540}
             showMessage={false}
