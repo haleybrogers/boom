@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { SHOW_FOUNDING } from "@/lib/flags";
 
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
@@ -33,13 +32,13 @@ export default function StickyCTA() {
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <a
-        href={SHOW_FOUNDING ? "/founding" : "/schedule"}
+        href="/schedule"
         className="btn-animated flex items-center gap-2.5 bg-accent text-white text-sm tracking-widest uppercase px-5 py-3.5 shadow-lg hover:bg-accent/90 transition-colors"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
-        {SHOW_FOUNDING ? "Become a Founding Member" : "Book a Class"}
+        Book a Class
       </a>
     </div>
   );
