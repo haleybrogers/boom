@@ -19,9 +19,9 @@ export default function PromoBanner() {
         {items.map((_, i) => (
           <span
             key={i}
-            className="flex items-center text-[11px] tracking-[0.15em] uppercase text-cream px-8 shrink-0"
+            className="flex items-center text-[11px] tracking-[0.15em] uppercase text-cream px-10 shrink-0"
           >
-            <span className="mr-8">🎉 Grand Opening Week 🎉</span>
+            <span className="mx-10">🎉 Grand Opening Week 🎉</span>
             <span>
               Use code <span className="font-bold tracking-[0.2em] mx-1.5">OPENINGWEEK</span>{" "}
               for 10% off all Privates, Duets, Trios &amp; Group Apparatus

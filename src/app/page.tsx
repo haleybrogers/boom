@@ -37,7 +37,7 @@ export default function Home() {
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-base sm:text-lg font-semibold tracking-[0.15em] uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
-            Grand Opening Week
+            Now Open
           </p>
           <div className="animate-fade-up-lux" style={{ animationDelay: "0.6s" }}>
             <OpeningCountdown />
@@ -46,7 +46,7 @@ export default function Home() {
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
           <p className="text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
-            Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio. Today&apos;s the day — doors are open. Come see the space and get on the schedule.
+            Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio. Come see the space and get on the schedule.
           </p>
 
           {SHOW_FOUNDING && (
