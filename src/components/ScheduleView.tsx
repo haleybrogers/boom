@@ -14,6 +14,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { ScheduleClass } from "@/lib/scheduleData";
 import { displayLocation } from "@/lib/scheduleData";
 import { CLASS_TYPE_STYLES } from "@/lib/classStyles";
+import { isOpeningWeekPromoActive } from "@/lib/flags";
 import ScheduleClassModal from "./ScheduleClassModal";
 
 const TZ = "America/New_York";
@@ -115,11 +116,14 @@ export default function ScheduleView({
   const [viewMode, setViewMode] = useState<ViewMode>("week");
 
   // The whole top section (week nav + toggle + legend) is one sticky bar
-  // pinned just below the 80px site nav. We measure its live height so
-  // the grid's day-of-week header row can stick *right below* it — that
-  // way the week label, Calendar/List toggle, the color key, AND the
-  // weekday/date row all stay visible together while you scroll.
-  const SITE_NAV_H = 80;
+  // pinned just below the site nav (80px, plus the 36px promo banner
+  // above it while that's showing — see PromoBanner + Navigation's
+  // matching top offset, both gated on the same flag). We measure the
+  // sticky bar's live height so the grid's day-of-week header row can
+  // stick *right below* it — that way the week label, Calendar/List
+  // toggle, the color key, AND the weekday/date row all stay visible
+  // together while you scroll.
+  const SITE_NAV_H = isOpeningWeekPromoActive() ? 80 + 36 : 80;
   const stickyRef = useRef<HTMLDivElement>(null);
   const [stickyH, setStickyH] = useState(0);
   useEffect(() => {
@@ -243,7 +247,8 @@ export default function ScheduleView({
           right below this bar (offset measured via stickyRef). */}
       <div
         ref={stickyRef}
-        className="sticky top-20 z-30 bg-cream/95 backdrop-blur-sm pb-3"
+        className="sticky z-30 bg-cream/95 backdrop-blur-sm pb-3"
+        style={{ top: SITE_NAV_H }}
       >
       {/* Navigation row. Prev / label / Next on the left; Calendar/List
           toggle + Today on the right — all consolidated into this one
