@@ -180,61 +180,6 @@ export default function About() {
               </ExpandableBio>
             </div>
 
-            {/* Emma Rose */}
-            <div>
-              <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
-                <Image
-                  src="/emma-rose-farmer.png"
-                  alt="Emma Rose Farmer"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-[center_25%] scale-[1.1] transition-transform duration-700 sm:hover:scale-[1.15]"
-                />
-              </div>
-              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
-                <h3 className="font-serif text-2xl font-light text-charcoal">
-                  Emma Rose Farmer
-                </h3>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-accent/80 border border-accent/30 rounded-full px-2 py-0.5 leading-none">
-                  She/They
-                </span>
-              </div>
-              <p className="text-sm tracking-widest uppercase text-accent mb-4">
-                Instructor
-              </p>
-              <ExpandableBio>
-                <p className="text-base text-muted leading-relaxed mb-4">
-                  Born and raised in Durham, North Carolina, Emma Rose spent
-                  her formative years immersed in the vibrant dance community
-                  of the Triangle. She later attended Appalachian State
-                  University, where she earned degrees in Communications and
-                  Dance Studies. In the summer of 2025, she completed the
-                  Appalachian State Pilates Teacher Training Program, becoming
-                  a certified third-generation Classical Pilates instructor.
-                </p>
-                <p className="text-base text-muted leading-relaxed mb-4">
-                  Emma has long been passionate about using movement as a
-                  pathway to physical and mental well-being. Her introduction
-                  to Pilates came through dance during college, and the
-                  practice has had a profound impact on her life. Through
-                  consistent Pilates training, she has experienced significant
-                  relief from asthma, scoliosis, early arthritic symptoms, and
-                  previous dance-related injuries, supporting her ongoing
-                  rehabilitation and overall health.
-                </p>
-                <p className="text-base text-muted leading-relaxed mb-4">
-                  Dedicated to making Pilates accessible to all, Emma believes
-                  the method is for everyone, regardless of age, ability, or
-                  physical condition. Having personally experienced its
-                  restorative benefits, she is committed to sharing those
-                  benefits with her community. Emma strives to create a
-                  welcoming and supportive environment where clients can
-                  pursue their individual goals through mindful movement,
-                  fostering strength, balance, and lasting well-being.
-                </p>
-              </ExpandableBio>
-            </div>
-
             {/* Sarah Janae */}
             <div>
               <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
@@ -243,7 +188,7 @@ export default function About() {
                   alt="Sarah Janae"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-center transition-transform duration-700 sm:hover:scale-[1.05]"
+                  className="object-cover object-[center_25%] scale-[1.1] transition-transform duration-700 sm:hover:scale-[1.15]"
                 />
               </div>
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
@@ -301,6 +246,61 @@ export default function About() {
                   hopes every client leaves her class feeling stronger,
                   standing taller, and reminded that every body is worthy
                   of movement, exactly as they are.
+                </p>
+              </ExpandableBio>
+            </div>
+
+            {/* Emma Rose */}
+            <div>
+              <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
+                <Image
+                  src="/emma-rose-farmer.png"
+                  alt="Emma Rose Farmer"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-[center_25%] scale-[1.1] transition-transform duration-700 sm:hover:scale-[1.15]"
+                />
+              </div>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                <h3 className="font-serif text-2xl font-light text-charcoal">
+                  Emma Rose Farmer
+                </h3>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-accent/80 border border-accent/30 rounded-full px-2 py-0.5 leading-none">
+                  She/They
+                </span>
+              </div>
+              <p className="text-sm tracking-widest uppercase text-accent mb-4">
+                Instructor
+              </p>
+              <ExpandableBio>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  Born and raised in Durham, North Carolina, Emma Rose spent
+                  her formative years immersed in the vibrant dance community
+                  of the Triangle. She later attended Appalachian State
+                  University, where she earned degrees in Communications and
+                  Dance Studies. In the summer of 2025, she completed the
+                  Appalachian State Pilates Teacher Training Program, becoming
+                  a certified third-generation Classical Pilates instructor.
+                </p>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  Emma has long been passionate about using movement as a
+                  pathway to physical and mental well-being. Her introduction
+                  to Pilates came through dance during college, and the
+                  practice has had a profound impact on her life. Through
+                  consistent Pilates training, she has experienced significant
+                  relief from asthma, scoliosis, early arthritic symptoms, and
+                  previous dance-related injuries, supporting her ongoing
+                  rehabilitation and overall health.
+                </p>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  Dedicated to making Pilates accessible to all, Emma believes
+                  the method is for everyone, regardless of age, ability, or
+                  physical condition. Having personally experienced its
+                  restorative benefits, she is committed to sharing those
+                  benefits with her community. Emma strives to create a
+                  welcoming and supportive environment where clients can
+                  pursue their individual goals through mindful movement,
+                  fostering strength, balance, and lasting well-being.
                 </p>
               </ExpandableBio>
             </div>

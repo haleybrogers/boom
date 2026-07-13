@@ -402,14 +402,26 @@ export default async function Packs() {
                 );
                 const fromPrice = allPrices.length ? Math.min(...allPrices) : null;
                 if (!fromPrice) return null;
+                // Opening week promo: 10% off trio 5- and 10-packs with
+                // code OPENINGWEEK. Manually set (not a straight 10% calc)
+                // to land on the exact prices Emilie wants — update/remove
+                // once the promo ends.
+                const isTrio = g.category === "trio";
                 return (
                   <div
                     key={g.category}
                     className="flex flex-col bg-white border border-charcoal/10 rounded-sm p-7"
                   >
-                    <h3 className="font-serif text-xl font-light text-charcoal mb-1">
-                      {g.label}
-                    </h3>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-serif text-xl font-light text-charcoal">
+                        {g.label}
+                      </h3>
+                      {isTrio && (
+                        <span className="text-[9px] tracking-[0.2em] uppercase text-accent border border-accent/30 bg-accent/5 rounded-full px-2 py-0.5 leading-none">
+                          Opening Week
+                        </span>
+                      )}
+                    </div>
                     <p className="text-sm text-muted mb-5">{g.note}</p>
 
                     <div className="space-y-2 border-t border-charcoal/5 pt-4 mb-5">
@@ -422,16 +434,37 @@ export default async function Packs() {
                       {g.five?.price !== undefined && (
                         <div className="flex justify-between text-sm">
                           <span className="text-muted">5-pack</span>
-                          <span className="text-charcoal font-medium">${g.five.price}</span>
+                          <span className="text-charcoal font-medium">
+                            {isTrio && (
+                              <span className="line-through text-muted/50 mr-1.5">
+                                ${g.five.price}
+                              </span>
+                            )}
+                            ${isTrio ? 179 : g.five.price}
+                          </span>
                         </div>
                       )}
                       {g.ten?.price !== undefined && (
                         <div className="flex justify-between text-sm">
                           <span className="text-muted">10-pack</span>
-                          <span className="text-charcoal font-medium">${g.ten.price}</span>
+                          <span className="text-charcoal font-medium">
+                            {isTrio && (
+                              <span className="line-through text-muted/50 mr-1.5">
+                                ${g.ten.price}
+                              </span>
+                            )}
+                            ${isTrio ? 335 : g.ten.price}
+                          </span>
                         </div>
                       )}
                     </div>
+
+                    {isTrio && (
+                      <p className="text-xs text-accent leading-snug">
+                        10% off 5- &amp; 10-packs this week — code{" "}
+                        <span className="font-medium">OPENINGWEEK</span> at checkout.
+                      </p>
+                    )}
                   </div>
                 );
               })}
