@@ -77,7 +77,7 @@ export default async function Founding() {
           <div className="max-w-6xl mx-auto px-6 pt-28 pb-8 md:pt-0 md:pb-24 w-full">
             <div className="max-w-2xl text-white">
               <p className="text-[11px] tracking-[0.4em] uppercase text-white/90 mb-5 animate-fade-up-lux" style={{ animationDelay: "0.3s" }}>
-                Founding Member · Ends July 13, 2026
+                Founding Member · Last Day, Ends Tonight
               </p>
               <h1 className="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-6 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
                 Be one of the first.
@@ -100,16 +100,16 @@ export default async function Founding() {
       <section className="pt-20 lg:pt-28 pb-8 lg:pb-10">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-sm tracking-widest uppercase text-accent mb-4">
-            Limited Time
+            Last Chance
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-6">
             25% off mat. For life.
           </h2>
           <p className="text-muted text-base leading-relaxed mb-7">
-            Only 15 spots per tier, and they&apos;ll go fast. Pick the
-            membership that matches how often you&apos;ll show up. Your
-            rate locks in the moment you join and never moves as long as
-            it stays active.
+            4× and 8× Month Mat are sold out — a handful of Unlimited Mat
+            spots are still up for grabs, and founding pricing disappears
+            for good tonight. Your rate locks in the moment you join and
+            never moves as long as it stays active.
           </p>
           {isFoundingLaunched() && <FoundingCountdown />}
         </div>

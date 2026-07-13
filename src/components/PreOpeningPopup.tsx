@@ -86,14 +86,14 @@ export default function PreOpeningPopup() {
 
         <div className="text-center mb-7">
           <p className="text-sm tracking-widest uppercase text-accent mb-3">
-            Limited Time
+            Last Chance
           </p>
           <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-3">
-            Founding memberships are live.
+            Founding pricing ends tonight.
           </h2>
           <p className="text-muted text-sm max-w-sm mx-auto leading-relaxed">
-            25% off mat, locked in for life. Only 15 spots per tier, and
-            they&apos;re going fast.
+            25% off mat, locked in for life. 4&times; and 8&times; Month
+            Mat are sold out — a few Unlimited Mat spots are still open.
           </p>
         </div>
 

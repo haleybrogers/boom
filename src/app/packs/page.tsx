@@ -88,17 +88,18 @@ export default async function Packs() {
         <div className="bg-accent/5 border-y border-accent/15 py-16 lg:py-20">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <span className="inline-block bg-white border border-accent/30 text-accent text-[11px] tracking-[0.3em] uppercase px-3 py-1 rounded-full mb-5">
-              Limited Time
+              Last Chance
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
               Want 25% off mat for life?
             </h2>
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto mb-8">
-              Check out our founding memberships. Just 15 spots per tier
-              and they&apos;ll go fast. Locked-in rate as long as your
-              membership stays active, plus opening night, a welcome kit,
-              an intro privates pack, and a bring-a-friend pass for your
-              first three months.
+              4&times; and 8&times; Month Mat are sold out, and founding
+              pricing ends tonight. A few Unlimited Mat spots are still
+              open — locked-in rate as long as your membership stays
+              active, plus opening night, a welcome kit, an intro
+              privates pack, and a bring-a-friend pass for your first
+              three months.
             </p>
             <Link
               href="/founding"

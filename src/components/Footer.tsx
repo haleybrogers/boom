@@ -13,12 +13,12 @@ export default function Footer() {
       {showFoundingCTA && (
         <div className="border-b border-charcoal/5 bg-cream/60">
           <div className="max-w-xl mx-auto px-6 py-14 text-center">
-            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">Limited Time</p>
+            <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-3">Last Chance</p>
             <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal mb-3">
               Be a founding member.
             </h2>
             <p className="text-sm text-muted leading-relaxed mb-6 max-w-md mx-auto">
-              Lock in your rate before we open. It never goes up. Plus invites to the soft opening and celebratory events.
+              Lock in your rate before it&apos;s gone tonight. It never goes up. Plus an invite to the opening party and more.
             </p>
             <Link
               href="/founding"

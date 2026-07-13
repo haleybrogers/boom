@@ -36,7 +36,7 @@ export default function Home() {
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-sm tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
-            Opening Soon
+            Grand Opening Today
           </p>
           <div className="animate-fade-up-lux" style={{ animationDelay: "0.6s" }}>
             <OpeningCountdown />
@@ -45,7 +45,7 @@ export default function Home() {
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
           <p className="text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
-            Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio. Our soft opening is underway now with sliding-scale mat classes at the studio, plus free pop-up classes around Durham, all leading up to opening day July 13.
+            Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio. Today&apos;s the day — doors are open. Come see the space and get on the schedule.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
@@ -59,7 +59,7 @@ export default function Home() {
             {SHOW_FOUNDING && (
               <div className="relative inline-block">
                 <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-cream text-accent text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 border border-accent/30 rounded-full whitespace-nowrap z-10 shadow-sm">
-                  Limited Time
+                  Last Chance
                 </span>
                 <Link
                   href="/founding"

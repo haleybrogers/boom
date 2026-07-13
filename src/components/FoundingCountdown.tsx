@@ -41,7 +41,7 @@ export default function FoundingCountdown({ showLabel = true }: { showLabel?: bo
     <div className="flex flex-col items-center mb-4">
       {showLabel && (
         <p className="text-[10px] tracking-[0.25em] uppercase text-accent/80 mb-2">
-          Available before we open · ends in
+          Last chance · ends tonight
         </p>
       )}
       <div className="flex items-baseline gap-2.5">

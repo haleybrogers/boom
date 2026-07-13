@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Boomerang Pilates",
   },
   description:
-    "Classical Pilates mat and apparatus instruction in Durham, NC. Founded by sisters Emilie and Annie Young. Opening soon. Join the waitlist.",
+    "Classical Pilates mat and apparatus instruction in Durham, NC. Founded by sisters Emilie and Annie Young. Now open in downtown Durham.",
   keywords: ["Pilates", "Classical Pilates", "Durham NC", "Pilates studio", "mat Pilates", "reformer", "Boomerang Pilates"],
   authors: [{ name: "Boomerang Pilates" }],
   openGraph: {
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Boomerang Pilates",
     title: "Boomerang Pilates | Classical Pilates in Durham, NC",
-    description: "Put in the work. Feel it come back. Classical Pilates opening soon in Durham, NC.",
+    description: "Put in the work. Feel it come back. Classical Pilates studio now open in Durham, NC.",
     url: "https://www.boomerangpilatesnc.com",
   },
   twitter: {
     card: "summary_large_image",
     title: "Boomerang Pilates | Classical Pilates in Durham, NC",
-    description: "Put in the work. Feel it come back. Classical Pilates opening soon in Durham, NC.",
+    description: "Put in the work. Feel it come back. Classical Pilates studio now open in Durham, NC.",
   },
   metadataBase: new URL("https://www.boomerangpilatesnc.com"),
   // Favicon comes from src/app/icon.{svg,png} + apple-icon.png via the
