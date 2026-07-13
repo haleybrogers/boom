@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import type { ScheduleClass } from "@/lib/scheduleData";
 import { CLASS_TYPE_STYLES } from "@/lib/classStyles";
 import { MAT_SERIES_BUNDLE_URL } from "@/lib/staticEvents";
+import { instructorPhoto } from "@/lib/instructors";
 
 // The 3-part Mat Series sessions all share the tagline title "No straps.
 // No springs. No limits." in Momence. When one of those is open we also
@@ -162,14 +164,33 @@ export default function ScheduleClassModal({
             </p>
           )}
 
-          {/* Meta */}
-          <div className="space-y-2 text-sm text-muted border-t border-charcoal/10 pt-5 mb-7">
-            {cls.instructor && (
-              <p>
-                <span className="text-charcoal/50 inline-block w-20">Instructor</span>
+          {/* Instructor. Small headshot when we have one on file;
+              falls back to name-only for instructors without a photo. */}
+          {cls.instructor && (
+            <div className="flex items-center gap-3 mb-6">
+              {(() => {
+                const photo = instructorPhoto(cls.instructor);
+                return photo ? (
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 bg-warm-white">
+                    <Image
+                      src={photo.src}
+                      alt={cls.instructor}
+                      fill
+                      sizes="40px"
+                      className={photo.className}
+                    />
+                  </div>
+                ) : null;
+              })()}
+              <p className="text-sm text-charcoal/80">
+                <span className="text-charcoal/50">Instructor</span>{" "}
                 {cls.instructor}
               </p>
-            )}
+            </div>
+          )}
+
+          {/* Meta */}
+          <div className="space-y-2 text-sm text-muted border-t border-charcoal/10 pt-5 mb-7">
             <p>
               <span className="text-charcoal/50 inline-block w-20">Time</span>
               {formatTimeRange(cls.startISO, cls.endISO)}

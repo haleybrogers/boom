@@ -562,9 +562,9 @@ function WeekCard({
 }) {
   const style = CLASS_TYPE_STYLES[cls.type];
   const top = (hourInTZ(cls.startISO) - rangeStart) * HOUR_HEIGHT;
-  // minHeight (not a fixed height) so a block can grow to fit a two-line
-  // title + the Book line rather than cramming them against the bottom.
-  const minHeight = Math.max(62, (cls.durationMin / 60) * HOUR_HEIGHT);
+  // minHeight (not a fixed height) so a block can grow to fit the title,
+  // instructor, and Book lines rather than cramming them against the bottom.
+  const minHeight = Math.max(76, (cls.durationMin / 60) * HOUR_HEIGHT);
   // Bottom-line call to action. Full classes show their status instead.
   const cta = cls.isFull
     ? cls.allowsWaitlist
@@ -591,9 +591,14 @@ function WeekCard({
       >
         {fmtTime(new Date(cls.startISO))}
       </p>
-      <p className="font-sans text-[11px] font-medium text-charcoal leading-[1.2] line-clamp-2 mt-1">
+      <p className="font-sans text-[11px] font-medium text-charcoal leading-[1.2] line-clamp-1 mt-1">
         {cls.title}
       </p>
+      {cls.instructor && (
+        <p className="text-[9px] text-charcoal/55 leading-tight line-clamp-1 mt-0.5">
+          {cls.instructor}
+        </p>
+      )}
       <span
         className="block text-[9px] tracking-[0.2em] uppercase font-semibold leading-none mt-1.5"
         style={{ color: style.text }}
