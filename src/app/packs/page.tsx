@@ -408,7 +408,7 @@ export default async function Packs() {
             {openingWeekPromo && (
               <div className="max-w-2xl mx-auto mb-8 bg-accent/5 border border-accent/30 rounded-sm px-5 py-4 sm:px-6 sm:py-4 text-center">
                 <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-1">
-                  Opening Week Only
+                  Grand Opening Week Only
                 </p>
                 <p className="text-sm text-charcoal/80 leading-snug">
                   10% off every Private, Duet &amp; Trio (group) 5- and

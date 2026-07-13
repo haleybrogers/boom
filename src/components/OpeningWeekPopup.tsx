@@ -94,10 +94,10 @@ export default function OpeningWeekPopup() {
 
         <div className="text-center mb-6">
           <p className="text-sm tracking-widest uppercase text-accent mb-3">
-            Opening Week
+            Grand Opening Week
           </p>
           <h2 className="font-serif text-2xl sm:text-3xl font-light text-charcoal mb-3">
-            It&apos;s opening week!
+            It&apos;s grand opening week!
           </h2>
           <p className="text-muted text-sm max-w-sm mx-auto leading-relaxed">
             {foundingLive

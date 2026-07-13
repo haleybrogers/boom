@@ -350,7 +350,7 @@ export default function ScheduleView({
             className="text-[11px] tracking-[0.35em] uppercase font-semibold mb-1"
             style={{ color: "#6e5418" }}
           >
-            Opening Day
+            Grand Opening Week
           </p>
           <p className="font-serif text-xl md:text-2xl font-light text-charcoal">
             Monday, July 13. Our doors are officially open!

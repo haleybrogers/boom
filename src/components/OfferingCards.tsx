@@ -240,8 +240,8 @@ export default async function OfferingCards() {
                   )}
                   {offering.title === "Privates, Duets & Trios" && openingWeekPromo && (
                     <p className="inline-block text-xs text-accent bg-accent/5 border border-accent/20 rounded-full px-3 py-1.5 mt-3">
-                      Opening week: 10% off all Private, Duet &amp; Trio 5- &amp;
-                      10-packs — code{" "}
+                      Grand opening week: 10% off all Private, Duet &amp; Trio
+                      5- &amp; 10-packs — code{" "}
                       <span className="font-medium">OPENINGWEEK</span> at checkout.
                     </p>
                   )}
