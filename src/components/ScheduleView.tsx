@@ -18,6 +18,10 @@ import ScheduleClassModal from "./ScheduleClassModal";
 
 const TZ = "America/New_York";
 
+// The Grand Opening Party is a Momence-hosted event (no ticketed
+// checkout), so its CTA reads "RSVP" instead of "Book".
+const OPENING_PARTY_TITLE_RE = /grand opening party/i;
+
 // First official day of classes — Monday, July 13, 2026. Stored as a
 // yyyy-mm-dd key so we can match it against a day cell's TZ-local date
 // string regardless of the visitor's own timezone. Used to flag the day
@@ -566,7 +570,9 @@ function WeekCard({
     ? cls.allowsWaitlist
       ? "Waitlist"
       : "Sold Out"
-    : "Book →";
+    : OPENING_PARTY_TITLE_RE.test(cls.title.trim())
+      ? "RSVP →"
+      : "Book →";
   return (
     <button
       type="button"
@@ -728,7 +734,9 @@ function WeekList({
                             ? c.allowsWaitlist
                               ? "Waitlist →"
                               : "Sold Out"
-                            : "Book →"}
+                            : OPENING_PARTY_TITLE_RE.test(c.title.trim())
+                              ? "RSVP →"
+                              : "Book →"}
                         </span>
                       </div>
                     </button>

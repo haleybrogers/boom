@@ -41,7 +41,7 @@ export default function About() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 max-w-5xl mx-auto items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-10 max-w-3xl mx-auto items-start">
             {/* Emilie */}
             <div>
               <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
@@ -187,7 +187,7 @@ export default function About() {
                   src="/emma-rose-farmer.png"
                   alt="Emma Rose Farmer"
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-[center_25%] scale-[1.1] transition-transform duration-700 sm:hover:scale-[1.15]"
                 />
               </div>
@@ -242,7 +242,7 @@ export default function About() {
                   src="/sarah-janae.jpg"
                   alt="Sarah Janae"
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-center transition-transform duration-700 sm:hover:scale-[1.05]"
                 />
               </div>

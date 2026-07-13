@@ -11,6 +11,10 @@ import { MAT_SERIES_BUNDLE_URL } from "@/lib/staticEvents";
 // surface a "Book all 3" CTA linking to the series bundle.
 const MAT_SERIES_TITLE_RE = /^no straps\.?\s+no springs\.?\s+no limits\.?$/i;
 
+// The Grand Opening Party is a Momence-hosted event (no ticketed
+// checkout), so its CTA reads "RSVP" instead of "Book".
+const OPENING_PARTY_TITLE_RE = /grand opening party/i;
+
 // Detail modal for a single class block. cls.action.type === "book" →
 // external Book button that opens Momence in a new tab. Auth + payment
 // happen there.
@@ -65,6 +69,7 @@ export default function ScheduleClassModal({
 
   const style = CLASS_TYPE_STYLES[cls.type];
   const isMatSeries = MAT_SERIES_TITLE_RE.test(cls.title.trim());
+  const isOpeningParty = OPENING_PARTY_TITLE_RE.test(cls.title.trim());
 
   // "Send this to a friend" — on phones this opens the native share
   // sheet (Messages, etc.); on desktop it falls back to copying the link
@@ -208,7 +213,11 @@ export default function ScheduleClassModal({
               rel="noopener noreferrer"
               className="btn-animated w-full block text-center bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
             >
-              {isMatSeries ? "Book just this date →" : "Book →"}
+              {isOpeningParty
+                ? "RSVP →"
+                : isMatSeries
+                  ? "Book just this date →"
+                  : "Book →"}
             </a>
           )}
           {/* 3-part Mat Series — book the whole bundle in one go. Sits
