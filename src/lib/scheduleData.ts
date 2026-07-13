@@ -14,13 +14,8 @@
 
 export type ClassType = "mat" | "apparatus" | "special";
 
-// "book" = standard Momence-hosted booking (default). "rsvp" = inline
-// ContactForm RSVP flow — used for the Opening Party, which has no
-// Momence checkout but does collect names + guest counts via Momence
-// lead form 204606.
-export type ScheduleAction =
-  | { type: "book"; bookUrl: string }
-  | { type: "rsvp"; sourceId: number; rsvpHeading?: string; rsvpSubhead?: string };
+// "book" = standard Momence-hosted booking (default).
+export type ScheduleAction = { type: "book"; bookUrl: string };
 
 export type ScheduleClass = {
   id: string;              // string so we can mix Momence (numeric) + static (slug) ids
@@ -97,7 +92,6 @@ function isEventFull(e: MomenceEvent): boolean {
   return false;
 }
 
-import { staticEvents } from "./staticEvents";
 import { detectResidentsOnly } from "./locations";
 
 // Re-export so existing imports of `displayLocation` from this module
@@ -136,43 +130,6 @@ export function classifyClass(title: string): ClassType {
 
 // (Location helpers moved to ./locations.ts so /events and /schedule
 // share the same studio + residents-only detection.)
-
-// Custom non-Momence entries to fold into the schedule. Right now this
-// is just the Opening Party (RSVP, not a Momence booking). Anything
-// else with the same dual-source pattern would slot in here.
-function staticScheduleExtras(now: number): ScheduleClass[] {
-  const extras: ScheduleClass[] = [];
-
-  // Opening Party — pulled from staticEvents so a copy/date change
-  // there flows here too.
-  const party = staticEvents.find((e) => e.id === "opening-party");
-  if (party) {
-    const start = new Date(party.dateTime);
-    const end = new Date(start.getTime() + (party.durationMin || 180) * 60_000);
-    if (start.getTime() > now) {
-      extras.push({
-        id: "opening-party",
-        title: party.title,
-        startISO: start.toISOString(),
-        endISO: end.toISOString(),
-        durationMin: party.durationMin || 180,
-        type: "special",
-        action: {
-          type: "rsvp",
-          sourceId: 204606, // Momence lead form id, matches /events RSVP
-          rsvpHeading: "See you July 18.",
-          rsvpSubhead:
-            "Drop your info so we know to expect you. We'll send a reminder + the address as the party gets closer.",
-        },
-        description: party.description,
-        price: party.price,
-        location: party.location,
-        heroNote: party.heroNote,
-      });
-    }
-  }
-  return extras;
-}
 
 // Work out the price string to show.
 //
@@ -216,9 +173,9 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
       `https://api.withribbon.com/api/v1/Events?hostId=${HOST_ID}&token=${TOKEN}`,
       { next: { revalidate: 60 } }
     );
-    if (!res.ok) return staticScheduleExtras(now);
+    if (!res.ok) return [];
     const data = (await res.json()) as unknown;
-    if (!Array.isArray(data)) return staticScheduleExtras(now);
+    if (!Array.isArray(data)) return [];
 
     const momence = (data as MomenceEvent[])
       .filter((e) => !e.isCancelled && !e.isDeleted && e.published)
@@ -249,11 +206,11 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
         };
       });
 
-    return [...momence, ...staticScheduleExtras(now)].sort(
+    return momence.sort(
       (a, b) =>
         new Date(a.startISO).getTime() - new Date(b.startISO).getTime()
     );
   } catch {
-    return staticScheduleExtras(now);
+    return [];
   }
 }

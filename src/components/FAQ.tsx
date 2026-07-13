@@ -21,9 +21,9 @@ const logisticsFaqs = [
       "Yes. And if you're a founding member, your first three months come with a bring-a-friend pass: bring a friend to any mat class, free.",
   },
   {
-    question: "What's a founding membership?",
+    question: "What's included in my Founding Membership?",
     answer:
-      "Three tiers: 4× Month Mat, 8× Month Mat, and Unlimited Mat, with 15 spots per tier. Founding rate is 25% off the regular membership and applies to mat classes only (can't be subbed into apparatus). Lock it in before we open and your rate never goes up as long as your membership stays active. Cancel or pause and you lose it.",
+      "Founding rate is 25% off the regular membership and applies to mat classes only (can't be subbed into apparatus). Lock it in before we open and your rate never goes up as long as your membership stays active. Cancel or pause and you lose it.",
   },
   {
     question: "Do you offer discounts?",

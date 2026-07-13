@@ -62,7 +62,7 @@ export default function About() {
                 </span>
               </div>
               <p className="text-sm tracking-widest uppercase text-accent mb-4">
-                Founder / Owner
+                Owner + Instructor
               </p>
               <ExpandableBio>
                 <p className="text-base text-muted leading-relaxed mb-4">
@@ -128,7 +128,7 @@ export default function About() {
                 </span>
               </div>
               <p className="text-sm tracking-widest uppercase text-accent mb-4">
-                Co-Founder / Studio Manager
+                Co-owner + Instructor
               </p>
               <ExpandableBio>
                 <p className="text-base text-muted leading-relaxed mb-4">
@@ -234,6 +234,76 @@ export default function About() {
                 </p>
               </ExpandableBio>
             </div>
+
+            {/* Sarah Janae */}
+            <div>
+              <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-warm-white">
+                <Image
+                  src="/sarah-janae.jpg"
+                  alt="Sarah Janae"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover object-center transition-transform duration-700 sm:hover:scale-[1.05]"
+                />
+              </div>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                <h3 className="font-serif text-2xl font-light text-charcoal">
+                  Sarah Janae
+                </h3>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-accent/80 border border-accent/30 rounded-full px-2 py-0.5 leading-none">
+                  She/Her
+                </span>
+              </div>
+              <p className="text-sm tracking-widest uppercase text-accent mb-4">
+                Instructor
+              </p>
+              <ExpandableBio>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  Originally from Durham, North Carolina, Sarah Janae
+                  discovered Classical Pilates while searching for a
+                  movement practice she could truly stay consistent with.
+                  What began as exercise quickly became so much more. Not
+                  only did Sarah&apos;s Pilates practice help her develop
+                  coordination and better posture, Pilates also helped her
+                  find confidence, discipline, and a deeper connection to
+                  her body.
+                </p>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  That experience inspired Sarah to take a leap of faith
+                  and move to Atlanta, Georgia to complete her
+                  comprehensive Classical Pilates training through
+                  Classical Kulture Pilates. Immersing herself in the work
+                  and studying within both the Jay Grimes and Romana
+                  Kryzanowska lineages transformed the way she understands
+                  movement. As a fourth-generation Classical Pilates
+                  teacher, she is passionate about preserving the
+                  integrity of Joseph Pilates&apos; original method while
+                  making it approachable and welcoming for people of all
+                  movement backgrounds.
+                </p>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  Sarah believes Pilates is about far more than learning
+                  exercises. It&apos;s about discovering what your body is
+                  capable of, moving with intention, and developing
+                  strength that carries into everyday life. Her classes
+                  emphasize breath, precision, posture, and the mind-body
+                  connection, creating an encouraging environment where
+                  clients feel supported, challenged, and empowered
+                  regardless of their experience level.
+                </p>
+                <p className="text-base text-muted leading-relaxed mb-4">
+                  Outside of the studio, Sarah enjoys strength training,
+                  the arts, continuing education, and spending time in her
+                  community. She believes one of the greatest lessons
+                  Pilates teaches is simply to move, even when it feels
+                  uncomfortable, unfamiliar, or a little silly at first.
+                  Pilates has brought so much joy into her life, and she
+                  hopes every client leaves her class feeling stronger,
+                  standing taller, and reminded that every body is worthy
+                  of movement, exactly as they are.
+                </p>
+              </ExpandableBio>
+            </div>
           </div>
         </div>
       </section>
@@ -248,10 +318,9 @@ export default function About() {
             Come meet us in person.
           </h2>
           <p className="text-muted text-base leading-relaxed mb-8 max-w-md mx-auto">
-            Our soft opening is underway, sliding-scale mat classes at the
-            studio, all levels welcome. Plus free pop-up classes at favorite
-            Durham spots, right up until the doors officially open July 13.
-            Bring a mat. Bring a friend.
+            Free pop-up classes at favorite Durham spots, right up until
+            the doors officially open July 13. Bring a mat. Bring a
+            friend.
           </p>
           <Link
             href="/schedule"

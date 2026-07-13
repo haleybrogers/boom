@@ -566,8 +566,6 @@ function WeekCard({
     ? cls.allowsWaitlist
       ? "Waitlist"
       : "Sold Out"
-    : cls.action.type === "rsvp"
-    ? "RSVP →"
     : "Book →";
   return (
     <button
@@ -730,9 +728,7 @@ function WeekList({
                             ? c.allowsWaitlist
                               ? "Waitlist →"
                               : "Sold Out"
-                            : c.action.type === "rsvp"
-                              ? "RSVP →"
-                              : "Book →"}
+                            : "Book →"}
                         </span>
                       </div>
                     </button>
