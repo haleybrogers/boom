@@ -37,7 +37,7 @@ export default function Home() {
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-base sm:text-lg font-semibold tracking-[0.15em] uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
-            🎉 Grand Opening Week 🎉
+            Grand Opening Week
           </p>
           <div className="animate-fade-up-lux" style={{ animationDelay: "0.6s" }}>
             <OpeningCountdown />
