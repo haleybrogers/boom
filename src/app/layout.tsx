@@ -4,7 +4,9 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import PromoBanner from "@/components/PromoBanner";
 import { Analytics } from "@vercel/analytics/next";
+import { isOpeningWeekPromoActive } from "@/lib/flags";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
@@ -67,6 +69,10 @@ export default function RootLayout({
       className={`${cormorant.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-charcoal">
+        <PromoBanner />
+        {/* Spacer for the fixed PromoBanner above — same flag, so it
+            collapses back to 0 the moment the banner hides itself. */}
+        {isOpeningWeekPromoActive() && <div className="h-9" />}
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />

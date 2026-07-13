@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { isOpeningWeekPromoActive } from "@/lib/flags";
 
 type NavChild = {
   href: string;
@@ -123,12 +124,18 @@ export default function Navigation() {
   // On other pages: always solid
   const isTransparent = isHome && !scrolled;
 
+  // Shift down to clear the fixed promo banner while it's showing (see
+  // PromoBanner + the matching spacer in layout.tsx). Both read the same
+  // flag so they appear/disappear together.
+  const promoBannerActive = isOpeningWeekPromoActive();
+  const topOffset = promoBannerActive ? "top-9" : "top-0";
+
   return (
     <header
       className={`z-50 transition-all duration-300 ${
         isHome
-          ? "fixed top-0 left-0 right-0"
-          : "sticky top-0"
+          ? `fixed ${topOffset} left-0 right-0`
+          : `sticky ${topOffset}`
       } ${
         isTransparent && !isOpen
           ? "bg-transparent"
