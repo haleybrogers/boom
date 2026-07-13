@@ -45,6 +45,9 @@ export type ScheduleClass = {
   // signup on the same page.
   isFull?: boolean;
   allowsWaitlist?: boolean;
+  // Instructor teaching the session, straight from Momence's `teacher`
+  // field. Undefined for static entries that don't carry one.
+  instructor?: string;
 };
 
 const HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
@@ -74,6 +77,8 @@ type MomenceEvent = {
   spotsRemaining?: number | null;
   ticketsSold?: number | null;
   allowWaitlist?: boolean;
+  // Instructor name as entered in Momence.
+  teacher?: string | null;
 };
 
 // Decide whether a Momence event is "full" right now. Conservative: only
@@ -203,6 +208,7 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
           residentsOnly: detectResidentsOnly(location),
           isFull: isEventFull(e),
           allowsWaitlist: e.allowWaitlist === true,
+          instructor: e.teacher?.trim() || undefined,
         };
       });
 

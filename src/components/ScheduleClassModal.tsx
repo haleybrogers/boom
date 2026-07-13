@@ -164,6 +164,12 @@ export default function ScheduleClassModal({
 
           {/* Meta */}
           <div className="space-y-2 text-sm text-muted border-t border-charcoal/10 pt-5 mb-7">
+            {cls.instructor && (
+              <p>
+                <span className="text-charcoal/50 inline-block w-20">Instructor</span>
+                {cls.instructor}
+              </p>
+            )}
             <p>
               <span className="text-charcoal/50 inline-block w-20">Time</span>
               {formatTimeRange(cls.startISO, cls.endISO)}

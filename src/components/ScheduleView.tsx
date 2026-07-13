@@ -709,6 +709,11 @@ function WeekList({
                         <p className="font-serif text-base text-charcoal leading-tight">
                           {c.title}
                         </p>
+                        {c.instructor && (
+                          <p className="text-[11px] text-charcoal/55 leading-snug mt-1">
+                            with {c.instructor}
+                          </p>
+                        )}
                         {displayLocation(c.location) !== "Studio" && (
                           <p className="text-[11px] text-charcoal/55 leading-snug mt-1 italic">
                             {displayLocation(c.location)}

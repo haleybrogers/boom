@@ -60,3 +60,13 @@ export const FOUNDING_SPOTS_LEFT: Record<string, number> = {
 // render as a disabled "Booking Opens Soon" state with a waitlist
 // signup form on /privates as the fallback.
 export const PRIVATES_BOOKABLE = true;
+
+// OPENING_WEEK_PROMO: 10% off Private/Duet/Trio (group) apparatus 5- and
+// 10-packs, code OPENINGWEEK. Gates the pricing display on /packs, the
+// homepage offering-card note, and the homepage pop-up. Opening week runs
+// Mon July 13 - Sun July 19, 2026; auto-flips off end of day Sunday.
+export const OPENING_WEEK_PROMO_DEADLINE = new Date("2026-07-20T00:00:00-04:00");
+
+export function isOpeningWeekPromoActive(): boolean {
+  return Date.now() < OPENING_WEEK_PROMO_DEADLINE.getTime();
+}

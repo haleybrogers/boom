@@ -5,6 +5,7 @@ import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import Reveal from "@/components/Reveal";
 import PreOpeningPopup from "@/components/PreOpeningPopup";
+import OpeningWeekPromoPopup from "@/components/OpeningWeekPromoPopup";
 import OpeningCountdown from "@/components/OpeningCountdown";
 import SplashScreen from "@/components/SplashScreen";
 import { SHOW_FOUNDING } from "@/lib/flags";
@@ -157,6 +158,7 @@ export default function Home() {
       {/* Popups. Pre-opening only. FoundingPopup retired in favor of the
           inline founding callout + the sitewide sticky CTA. */}
       <PreOpeningPopup />
+      <OpeningWeekPromoPopup />
     </>
   );
 }

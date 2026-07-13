@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import PackPickerModal from "@/components/PackPickerModal";
-import { SHOW_FOUNDING, FOUNDING_SPOTS_LEFT, FOUNDING_SPOTS_TOTAL } from "@/lib/flags";
+import {
+  SHOW_FOUNDING,
+  FOUNDING_SPOTS_LEFT,
+  FOUNDING_SPOTS_TOTAL,
+  isOpeningWeekPromoActive,
+} from "@/lib/flags";
 import {
   fetchMemberships,
   pairMatTiers,
@@ -43,6 +48,8 @@ export default async function Packs() {
   // While founding is live, the full-price mat memberships aren't bookable
   // yet — we steer people to the better founding deal instead.
   const matLocked = SHOW_FOUNDING;
+
+  const openingWeekPromo = isOpeningWeekPromoActive();
 
   return (
     <section className="pt-28 lg:pt-36 pb-20 lg:pb-28">
@@ -395,6 +402,23 @@ export default async function Packs() {
               </div>
             )}
 
+            {/* Opening week promo banner. 10% off every Private/Duet/Trio
+                5- and 10-pack, code OPENINGWEEK. Auto-hides after the
+                promo window (see OPENING_WEEK_PROMO_DEADLINE in flags.ts). */}
+            {openingWeekPromo && (
+              <div className="max-w-2xl mx-auto mb-8 bg-accent/5 border border-accent/30 rounded-sm px-5 py-4 sm:px-6 sm:py-4 text-center">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-1">
+                  Opening Week Only
+                </p>
+                <p className="text-sm text-charcoal/80 leading-snug">
+                  10% off every Private, Duet &amp; Trio (group) 5- and
+                  10-pack — code{" "}
+                  <span className="text-charcoal font-medium">OPENINGWEEK</span> at
+                  checkout.
+                </p>
+              </div>
+            )}
+
             {/* Regular pack cards (Private / Duet / Trio · single / 5 / 10). */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
               {apparatus.map((g) => {
@@ -403,11 +427,21 @@ export default async function Packs() {
                 );
                 const fromPrice = allPrices.length ? Math.min(...allPrices) : null;
                 if (!fromPrice) return null;
-                // Opening week promo: 10% off trio 5- and 10-packs with
-                // code OPENINGWEEK. Manually set (not a straight 10% calc)
-                // to land on the exact prices Emilie wants — update/remove
-                // once the promo ends.
-                const isTrio = g.category === "trio";
+                // Opening week promo prices. Trio's are the exact figures
+                // Emilie wants (not a straight 10% calc); Private/Duet are
+                // computed at a flat 10% off, rounded down to the dollar.
+                const promoFive =
+                  g.category === "trio"
+                    ? 179
+                    : g.five?.price !== undefined
+                      ? Math.floor(g.five.price * 0.9)
+                      : undefined;
+                const promoTen =
+                  g.category === "trio"
+                    ? 335
+                    : g.ten?.price !== undefined
+                      ? Math.floor(g.ten.price * 0.9)
+                      : undefined;
                 return (
                   <div
                     key={g.category}
@@ -417,7 +451,7 @@ export default async function Packs() {
                       <h3 className="font-serif text-xl font-light text-charcoal">
                         {g.label}
                       </h3>
-                      {isTrio && (
+                      {openingWeekPromo && (
                         <span className="text-[9px] tracking-[0.2em] uppercase text-accent border border-accent/30 bg-accent/5 rounded-full px-2 py-0.5 leading-none">
                           Opening Week
                         </span>
@@ -436,12 +470,12 @@ export default async function Packs() {
                         <div className="flex justify-between text-sm">
                           <span className="text-muted">5-pack</span>
                           <span className="text-charcoal font-medium">
-                            {isTrio && (
+                            {openingWeekPromo && (
                               <span className="line-through text-muted/50 mr-1.5">
                                 ${g.five.price}
                               </span>
                             )}
-                            ${isTrio ? 179 : g.five.price}
+                            ${openingWeekPromo ? promoFive : g.five.price}
                           </span>
                         </div>
                       )}
@@ -449,23 +483,16 @@ export default async function Packs() {
                         <div className="flex justify-between text-sm">
                           <span className="text-muted">10-pack</span>
                           <span className="text-charcoal font-medium">
-                            {isTrio && (
+                            {openingWeekPromo && (
                               <span className="line-through text-muted/50 mr-1.5">
                                 ${g.ten.price}
                               </span>
                             )}
-                            ${isTrio ? 335 : g.ten.price}
+                            ${openingWeekPromo ? promoTen : g.ten.price}
                           </span>
                         </div>
                       )}
                     </div>
-
-                    {isTrio && (
-                      <p className="text-xs text-accent leading-snug">
-                        10% off 5- &amp; 10-packs this week — code{" "}
-                        <span className="font-medium">OPENINGWEEK</span> at checkout.
-                      </p>
-                    )}
                   </div>
                 );
               })}
