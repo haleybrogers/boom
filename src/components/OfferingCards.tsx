@@ -162,7 +162,7 @@ export default async function OfferingCards() {
                 alt={offering.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className={`object-cover grayscale hover:grayscale-0 ${offering.photoScale || "scale-[1.15]"} ${offering.photoPosition || ""} transition-all duration-700 ease-in-out`}
+                className={`object-cover ${offering.photoScale || "scale-[1.15]"} ${offering.photoPosition || ""} transition-all duration-700 ease-in-out`}
               />
             </Reveal>
 

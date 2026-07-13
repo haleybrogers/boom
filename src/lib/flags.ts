@@ -50,7 +50,7 @@ export const FOUNDING_SPOTS_TOTAL = 15;
 export const FOUNDING_SPOTS_LEFT: Record<string, number> = {
   "4x": 0, // sold out (15 of 15)
   "8x": 0, // sold out (15 of 15)
-  unlimited: 12, // 3 of 15 sold
+  unlimited: 10, // 5 of 15 sold
 };
 
 // PRIVATES_BOOKABLE: gates the direct request flow for privates,
