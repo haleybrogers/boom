@@ -566,28 +566,35 @@ function WeekCard({
   // instructor, and Book lines rather than cramming them against the bottom.
   const minHeight = Math.max(76, (cls.durationMin / 60) * HOUR_HEIGHT);
   // Bottom-line call to action. Full classes show their status instead.
-  const cta = cls.isFull
-    ? cls.allowsWaitlist
-      ? "Waitlist"
-      : "Sold Out"
-    : OPENING_PARTY_TITLE_RE.test(cls.title.trim())
-      ? "RSVP →"
-      : "Book →";
+  const cta = cls.isPast
+    ? "Class happened"
+    : cls.isFull
+      ? cls.allowsWaitlist
+        ? "Waitlist"
+        : "Sold Out"
+      : OPENING_PARTY_TITLE_RE.test(cls.title.trim())
+        ? "RSVP →"
+        : "Book →";
   return (
     <button
       type="button"
-      onClick={onClick}
-      className="absolute left-1 right-1 flex flex-col items-start text-left rounded-sm overflow-hidden px-2.5 py-2 transition-shadow hover:shadow-md hover:z-10"
+      onClick={cls.isPast ? undefined : onClick}
+      aria-disabled={cls.isPast}
+      className={`absolute left-1 right-1 flex flex-col items-start text-left rounded-sm overflow-hidden px-2.5 py-2 transition-shadow ${
+        cls.isPast
+          ? "opacity-50 cursor-default select-none"
+          : "hover:shadow-md hover:z-10"
+      }`}
       style={{
         top,
         minHeight,
-        background: style.bgSoft,
-        borderLeft: `3px solid ${style.border}`,
+        background: cls.isPast ? "#eeece7" : style.bgSoft,
+        borderLeft: `3px solid ${cls.isPast ? "#a8a196" : style.border}`,
       }}
     >
       <p
         className="text-[10px] tracking-[0.1em] uppercase font-semibold leading-tight"
-        style={{ color: style.text }}
+        style={{ color: cls.isPast ? "#6b6558" : style.text }}
       >
         {fmtTime(new Date(cls.startISO))}
       </p>
@@ -601,7 +608,7 @@ function WeekCard({
       )}
       <span
         className="block text-[9px] tracking-[0.2em] uppercase font-semibold leading-none mt-1.5"
-        style={{ color: style.text }}
+        style={{ color: cls.isPast ? "#6b6558" : style.text }}
       >
         {cta}
       </span>
@@ -692,17 +699,20 @@ function WeekList({
                   <li key={c.id}>
                     <button
                       type="button"
-                      onClick={() => onSelect(c)}
-                      className="w-full text-left flex gap-4 p-4 rounded-sm transition-shadow hover:shadow-md"
+                      onClick={c.isPast ? undefined : () => onSelect(c)}
+                      aria-disabled={c.isPast}
+                      className={`w-full text-left flex gap-4 p-4 rounded-sm transition-shadow ${
+                        c.isPast ? "opacity-50 cursor-default select-none" : "hover:shadow-md"
+                      }`}
                       style={{
-                        background: style.bgSoft,
-                        borderLeft: `4px solid ${style.border}`,
+                        background: c.isPast ? "#eeece7" : style.bgSoft,
+                        borderLeft: `4px solid ${c.isPast ? "#a8a196" : style.border}`,
                       }}
                     >
                       <div className="shrink-0 w-24">
                         <p
                           className="text-sm tracking-widest uppercase font-semibold leading-tight"
-                          style={{ color: style.text }}
+                          style={{ color: c.isPast ? "#6b6558" : style.text }}
                         >
                           {fmtTime(start)}
                         </p>
@@ -731,22 +741,24 @@ function WeekList({
                         )}
                       </div>
                       <div className="self-center shrink-0 flex flex-col items-end leading-tight">
-                        {c.isFull && (
+                        {c.isFull && !c.isPast && (
                           <span className="text-[9px] tracking-[0.25em] uppercase text-charcoal/50 mb-0.5">
                             Class Full
                           </span>
                         )}
                         <span
                           className="text-[11px] tracking-[0.25em] uppercase font-semibold"
-                          style={{ color: style.text }}
+                          style={{ color: c.isPast ? "#6b6558" : style.text }}
                         >
-                          {c.isFull
-                            ? c.allowsWaitlist
-                              ? "Waitlist →"
-                              : "Sold Out"
-                            : OPENING_PARTY_TITLE_RE.test(c.title.trim())
-                              ? "RSVP →"
-                              : "Book →"}
+                          {c.isPast
+                            ? "Class happened"
+                            : c.isFull
+                              ? c.allowsWaitlist
+                                ? "Waitlist →"
+                                : "Sold Out"
+                              : OPENING_PARTY_TITLE_RE.test(c.title.trim())
+                                ? "RSVP →"
+                                : "Book →"}
                         </span>
                       </div>
                     </button>

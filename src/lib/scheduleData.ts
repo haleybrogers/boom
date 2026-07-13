@@ -48,6 +48,9 @@ export type ScheduleClass = {
   // Instructor teaching the session, straight from Momence's `teacher`
   // field. Undefined for static entries that don't carry one.
   instructor?: string;
+  // Session already happened. Kept in the list (not booked) — grid/list
+  // cards render it greyed out and non-clickable instead of dropping it.
+  isPast?: boolean;
 };
 
 const HOST_ID = process.env.MOMENCE_HOST_ID || "270195";
@@ -188,8 +191,6 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
       // have midnight placeholder times and aren't real sessions to
       // render on the grid.
       .filter((e) => e.type !== "semester")
-      // Future only — past sessions clog the grid and aren't bookable.
-      .filter((e) => new Date(e.dateTime).getTime() > now)
       .map((e): ScheduleClass => {
         const start = new Date(e.dateTime);
         const end = new Date(start.getTime() + (e.duration || 50) * 60_000);
@@ -209,6 +210,7 @@ export async function fetchSchedule(): Promise<ScheduleClass[]> {
           isFull: isEventFull(e),
           allowsWaitlist: e.allowWaitlist === true,
           instructor: e.teacher?.trim() || undefined,
+          isPast: start.getTime() <= now,
         };
       });
 
