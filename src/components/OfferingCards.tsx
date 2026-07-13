@@ -9,7 +9,7 @@ import {
   groupApparatus,
   findDropIn,
 } from "@/lib/momence";
-import { PRIVATES_BOOKABLE, isOpeningWeekPromoActive } from "@/lib/flags";
+import { PRIVATES_BOOKABLE } from "@/lib/flags";
 
 type Offering = {
   title: string;
@@ -99,7 +99,6 @@ export default async function OfferingCards() {
   const dropIn = findDropIn(memberships);
   const tiers = pairMatTiers(memberships);
   const apparatus = groupApparatus(memberships);
-  const openingWeekPromo = isOpeningWeekPromoActive();
 
   const lowestMatTier = tiers
     .map((t) => t.regular?.price)
@@ -236,13 +235,6 @@ export default async function OfferingCards() {
                   {offering.priceUnitsNote && (
                     <p className="text-xs text-muted mt-1.5">
                       {offering.priceUnitsNote}
-                    </p>
-                  )}
-                  {offering.title === "Privates, Duets & Trios" && openingWeekPromo && (
-                    <p className="inline-block text-xs text-accent bg-accent/5 border border-accent/20 rounded-full px-3 py-1.5 mt-3">
-                      Grand opening week: 10% off all Private, Duet &amp; Trio
-                      5- &amp; 10-packs — code{" "}
-                      <span className="font-medium">OPENINGWEEK</span> at checkout.
                     </p>
                   )}
                 </div>

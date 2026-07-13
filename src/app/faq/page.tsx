@@ -1,4 +1,3 @@
-import Link from "next/link";
 import FAQ from "@/components/FAQ";
 
 export const metadata = {
@@ -81,20 +80,6 @@ export default function FaqPage() {
 
         {/* FAQs. Logistics visible at the top; beginner Qs nested in a "Never done Pilates before?" dropdown */}
         <FAQ />
-
-        {/* Pre-opening CTA */}
-        <div className="max-w-2xl mx-auto mt-10 pt-8 sm:mt-16 sm:pt-12 border-t border-charcoal/10 text-center">
-          <p className="text-muted text-sm leading-relaxed mb-6 max-w-md mx-auto">
-            Don&apos;t want to wait until July? We&apos;re running pop-up
-            classes around town until then.
-          </p>
-          <Link
-            href="/events"
-            className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-accent/90 transition-colors"
-          >
-            Find a pop-up class →
-          </Link>
-        </div>
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ export default function PromoBanner() {
   const items = Array.from({ length: 8 });
 
   return (
-    <div className="fixed top-0 inset-x-0 z-[60] h-9 bg-charcoal overflow-hidden flex items-center">
+    <div className="fixed top-0 inset-x-0 z-[60] h-9 bg-accent overflow-hidden flex items-center">
       <div className="promo-marquee-track flex whitespace-nowrap">
         {items.map((_, i) => (
           <span
@@ -30,7 +30,7 @@ export default function PromoBanner() {
       </div>
       <style>{`
         .promo-marquee-track {
-          animation: promo-marquee-scroll 32s linear infinite;
+          animation: promo-marquee-scroll 65s linear infinite;
         }
         @keyframes promo-marquee-scroll {
           from { transform: translateX(0); }
