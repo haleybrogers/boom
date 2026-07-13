@@ -6,6 +6,7 @@ import NewToPilates from "@/components/NewToPilates";
 import Reveal from "@/components/Reveal";
 import OpeningWeekPopup from "@/components/OpeningWeekPopup";
 import OpeningCountdown from "@/components/OpeningCountdown";
+import FoundingCountdown from "@/components/FoundingCountdown";
 import SplashScreen from "@/components/SplashScreen";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
@@ -36,7 +37,7 @@ export default function Home() {
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-sm tracking-widest uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
-            Grand Opening Today
+            Grand Opening Week
           </p>
           <div className="animate-fade-up-lux" style={{ animationDelay: "0.6s" }}>
             <OpeningCountdown />
@@ -48,16 +49,22 @@ export default function Home() {
             Two sisters, third-generation classically trained, opening Downtown Durham&apos;s only Classical Pilates studio. Today&apos;s the day — doors are open. Come see the space and get on the schedule.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
+          <div className="flex justify-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
             <Link
               href="/schedule"
               className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
             >
               See Our Schedule →
             </Link>
+          </div>
 
-            {SHOW_FOUNDING && (
-              <div className="relative inline-block">
+          {SHOW_FOUNDING && (
+            <div className="flex flex-col items-center animate-fade-up-lux mt-8" style={{ animationDelay: "1.05s" }}>
+              <p className="text-sm text-accent mb-2">
+                Today&apos;s the last day to lock in 25% off — for life.
+              </p>
+              <FoundingCountdown showLabel={false} />
+              <div className="relative inline-block mt-1">
                 <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-cream text-accent text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 border border-accent/30 rounded-full whitespace-nowrap z-10 shadow-sm">
                   Last Chance
                 </span>
@@ -68,9 +75,8 @@ export default function Home() {
                   Become a Founding Member →
                 </Link>
               </div>
-            )}
-          </div>
-
+            </div>
+          )}
 
         </div>
       </section>
