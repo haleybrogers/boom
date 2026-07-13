@@ -16,11 +16,12 @@ export default function StickyCTA() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Hide the sticky CTA on /founding itself — the page already has the
-  // slim early-access strip + the tier cards, so a "Lock in Founding
-  // Rate" overlay was just clutter.
+  // Hide the sticky CTA on /founding (the page already has its own
+  // pricing cards + CTAs) and on /schedule (a floating "Book a Class"
+  // is redundant when you're already looking at the booking calendar).
   const onFoundingPage = pathname === "/founding";
-  if (onFoundingPage) return null;
+  const onSchedulePage = pathname === "/schedule";
+  if (onFoundingPage || onSchedulePage) return null;
 
   return (
     <div

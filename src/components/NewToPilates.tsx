@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { MOMENCE_APPOINTMENTS_URL } from "@/lib/momence";
+import { PRIVATES_BOOKABLE } from "@/lib/flags";
 
 export default function NewToPilates() {
   return (
@@ -82,12 +84,23 @@ export default function NewToPilates() {
               <span className="font-serif text-2xl font-light text-charcoal">$110</span>
               <span className="text-sm text-muted">50 min · full apparatus</span>
             </div>
-            <Link
-              href="/privates"
-              className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors"
-            >
-              Request a Session
-            </Link>
+            {PRIVATES_BOOKABLE ? (
+              <a
+                href={MOMENCE_APPOINTMENTS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors"
+              >
+                Request a Session
+              </a>
+            ) : (
+              <Link
+                href="/privates"
+                className="btn-animated inline-block bg-accent text-white text-sm tracking-widest uppercase px-6 py-3 hover:bg-accent/90 transition-colors"
+              >
+                Booking Opens Soon
+              </Link>
+            )}
           </div>
         </div>
 
