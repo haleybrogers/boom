@@ -570,9 +570,10 @@ function WeekCard({
   // minHeight (not a fixed height) so a block can grow to fit the title,
   // instructor, and Book lines rather than cramming them against the bottom.
   const minHeight = Math.max(76, (cls.durationMin / 60) * HOUR_HEIGHT);
-  // Bottom-line call to action. Full classes show their status instead.
+  // Bottom-line call to action. Full classes show their status instead;
+  // past classes show nothing down here (just greyed out above).
   const cta = cls.isPast
-    ? "Class happened"
+    ? ""
     : cls.isFull
       ? cls.allowsWaitlist
         ? "Waitlist"
@@ -611,12 +612,14 @@ function WeekCard({
           {cls.instructor}
         </p>
       )}
-      <span
-        className="block text-[9px] tracking-[0.2em] uppercase font-semibold leading-none mt-1.5"
-        style={{ color: cls.isPast ? "#6b6558" : style.text }}
-      >
-        {cta}
-      </span>
+      {cta && (
+        <span
+          className="block text-[9px] tracking-[0.2em] uppercase font-semibold leading-none mt-1.5"
+          style={{ color: style.text }}
+        >
+          {cta}
+        </span>
+      )}
     </button>
   );
 }
@@ -751,20 +754,20 @@ function WeekList({
                             Class Full
                           </span>
                         )}
+                        {!c.isPast && (
                         <span
                           className="text-[11px] tracking-[0.25em] uppercase font-semibold"
-                          style={{ color: c.isPast ? "#6b6558" : style.text }}
+                          style={{ color: style.text }}
                         >
-                          {c.isPast
-                            ? "Class happened"
-                            : c.isFull
-                              ? c.allowsWaitlist
-                                ? "Waitlist →"
-                                : "Sold Out"
-                              : OPENING_PARTY_TITLE_RE.test(c.title.trim())
-                                ? "RSVP →"
-                                : "Book →"}
+                          {c.isFull
+                            ? c.allowsWaitlist
+                              ? "Waitlist →"
+                              : "Sold Out"
+                            : OPENING_PARTY_TITLE_RE.test(c.title.trim())
+                              ? "RSVP →"
+                              : "Book →"}
                         </span>
+                        )}
                       </div>
                     </button>
                   </li>
