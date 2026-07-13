@@ -23,10 +23,7 @@ export default function PromoBanner() {
           >
             <span className="mr-8">• Grand Opening Week •</span>
             <span>
-              Use code{" "}
-              <span className="inline-block font-bold tracking-[0.2em] mx-2 px-2.5 py-1 border border-cream/50 rounded-sm">
-                OPENINGWEEK
-              </span>{" "}
+              Use code <span className="font-bold tracking-[0.2em] mx-1.5">OPENINGWEEK</span>{" "}
               for 10% off all Privates, Duets, Trios &amp; Group Apparatus
               class packs
             </span>
