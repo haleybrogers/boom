@@ -10,18 +10,19 @@ export default function PromoBanner() {
   if (!isOpeningWeekPromoActive()) return null;
 
   // Repeated copies of the identical message so a -50% translate loops
-  // seamlessly regardless of viewport width.
-  const items = Array.from({ length: 8 });
+  // seamlessly regardless of viewport width. Each repeat is two flat
+  // chunks (not nested spans), so the single `gap-10` on the flex row
+  // is the *only* thing controlling spacing — that's what keeps the gap
+  // before and after "Grand Opening Week" equal instead of stacking a
+  // wrapper's padding on one side and a span's margin on the other.
+  const repeats = Array.from({ length: 8 });
 
   return (
     <div className="fixed top-0 inset-x-0 z-[60] h-9 bg-[#7a1f34] overflow-hidden flex items-center">
-      <div className="promo-marquee-track flex whitespace-nowrap">
-        {items.map((_, i) => (
-          <span
-            key={i}
-            className="flex items-center text-[11px] tracking-[0.15em] uppercase text-cream px-10 shrink-0"
-          >
-            <span className="mx-10">🎉 Grand Opening Week 🎉</span>
+      <div className="promo-marquee-track flex items-center gap-10 whitespace-nowrap px-10">
+        {repeats.map((_, i) => (
+          <span key={i} className="flex items-center gap-10 shrink-0 text-[11px] tracking-[0.15em] uppercase text-cream">
+            <span>🎉 Grand Opening Week 🎉</span>
             <span>
               Use code <span className="font-bold tracking-[0.2em] mx-1.5">OPENINGWEEK</span>{" "}
               for 10% off all Privates, Duets, Trios &amp; Group Apparatus
