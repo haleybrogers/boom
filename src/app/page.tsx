@@ -131,7 +131,7 @@ export default function Home() {
       {/* Waitlist. Button opens a modal with the contact form */}
       <section id="waitlist" className="py-24 lg:py-32 bg-warm-white">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-sm tracking-widest uppercase text-accent mb-4">Stay in the Loop</p>
+          <p className="text-sm tracking-widest uppercase text-accent mb-4">Join the List</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal mb-4">
             Be the first to know.
           </h2>
