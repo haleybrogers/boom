@@ -358,10 +358,10 @@ export default function ScheduleView({
             Grand Opening Week
           </p>
           <p className="font-serif text-xl md:text-2xl font-light text-charcoal">
-            Monday, July 13. Our doors are officially open!
+            Our doors are officially open!
           </p>
           <p className="text-sm text-charcoal/60 mt-1">
-            The first official day of classes at Boomerang. Come move with us.
+            Come move with us.
           </p>
         </div>
       ) : (
