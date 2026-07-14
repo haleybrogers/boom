@@ -41,12 +41,26 @@ export default function Home() {
           <div className="animate-fade-up-lux" style={{ animationDelay: "0.6s" }}>
             <OpeningCountdown />
           </div>
-          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-10 animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
+          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-5 animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
+          <p className="text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up-lux" style={{ animationDelay: "0.9s" }}>
+            Hi, we&apos;re Emilie and Annie. We believe classical Pilates is
+            for every body, and we opened this studio to teach it that way.
+            Welcome, we can&apos;t wait to meet you.
+          </p>
+
+          <div className="flex justify-center animate-fade-up-lux" style={{ animationDelay: "0.95s" }}>
+            <Link
+              href="/schedule"
+              className="btn-animated inline-block bg-charcoal text-white text-sm tracking-widest uppercase px-8 py-3.5 hover:bg-charcoal/90 transition-colors"
+            >
+              Check Out the Schedule →
+            </Link>
+          </div>
 
           {SHOW_FOUNDING && (
-            <div className="flex flex-col items-center animate-fade-up-lux pt-4" style={{ animationDelay: "0.95s" }}>
+            <div className="flex flex-col items-center animate-fade-up-lux pt-8" style={{ animationDelay: "1.05s" }}>
               <p className="text-sm text-accent mb-2">
                 Today&apos;s the last day to lock in 25% off — for life.
               </p>
