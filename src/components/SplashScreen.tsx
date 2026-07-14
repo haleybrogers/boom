@@ -41,11 +41,6 @@ export default function SplashScreen() {
             transition: "opacity 1.2s ease-in-out",
           }}
         >
-          {/* Opening day banner */}
-          <p className="mb-6 text-[11px] md:text-xs tracking-[0.35em] uppercase text-accent">
-            Grand Opening Day
-          </p>
-
           {/* Logo. Soft inhale/exhale breath pulse */}
           <div className="splash-breathe">
             <Image
