@@ -165,8 +165,10 @@ export default function ScheduleClassModal({
           )}
 
           {/* Instructor. Small headshot when we have one on file;
-              falls back to name-only for instructors without a photo. */}
-          {cls.instructor && (
+              falls back to name-only for instructors without a photo.
+              Skipped for the Grand Opening Party — it's a whole-team
+              event, not a single instructor's class. */}
+          {cls.instructor && !isOpeningParty && (
             <div className="flex items-center gap-3 mb-6">
               {(() => {
                 const photo = instructorPhoto(cls.instructor);

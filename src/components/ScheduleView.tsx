@@ -607,7 +607,7 @@ function WeekCard({
       <p className="font-sans text-[11px] font-medium text-charcoal leading-[1.2] line-clamp-1 mt-1">
         {cls.title}
       </p>
-      {cls.instructor && (
+      {cls.instructor && !OPENING_PARTY_TITLE_RE.test(cls.title.trim()) && (
         <p className="text-[9px] text-charcoal/55 leading-tight line-clamp-1 mt-0.5">
           {cls.instructor}
         </p>
@@ -732,7 +732,7 @@ function WeekList({
                         <p className="font-serif text-base text-charcoal leading-tight">
                           {c.title}
                         </p>
-                        {c.instructor && (
+                        {c.instructor && !OPENING_PARTY_TITLE_RE.test(c.title.trim()) && (
                           <p className="text-[11px] text-charcoal/55 leading-snug mt-1">
                             with {c.instructor}
                           </p>
