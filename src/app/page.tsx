@@ -4,7 +4,6 @@ import ContactFormModal from "@/components/ContactFormModal";
 import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import Reveal from "@/components/Reveal";
-import OpeningCountdown from "@/components/OpeningCountdown";
 import FoundingCountdown from "@/components/FoundingCountdown";
 import SplashScreen from "@/components/SplashScreen";
 import { SHOW_FOUNDING } from "@/lib/flags";
@@ -35,12 +34,6 @@ export default function Home() {
       {/* Intro. One tight paragraph, then the two ways in */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-base sm:text-lg font-semibold tracking-[0.15em] uppercase text-accent mb-5 animate-fade-up-lux" style={{ animationDelay: "0.5s" }}>
-            Grand Opening Week
-          </p>
-          <div className="animate-fade-up-lux" style={{ animationDelay: "0.6s" }}>
-            <OpeningCountdown />
-          </div>
           <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-charcoal leading-snug mb-5 animate-fade-up-lux" style={{ animationDelay: "0.7s" }}>
             Downtown Durham&apos;s only Classical Pilates studio.
           </p>
