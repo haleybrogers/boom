@@ -421,6 +421,7 @@ export default function ScheduleView({
             classesByDay={classesByDay}
             today={today}
             onSelect={setActiveClass}
+            hidePast
           />
         </div>
       </div>
@@ -636,17 +637,23 @@ function WeekList({
   classesByDay,
   today,
   onSelect,
+  hidePast = false,
 }: {
   days: Date[];
   classesByDay: Map<string, ScheduleClass[]>;
   today: Date;
   onSelect: (c: ScheduleClass) => void;
+  // Mobile hides past classes entirely (just the next class up top)
+  // instead of showing them greyed out like the desktop grid/list do.
+  hidePast?: boolean;
 }) {
   const dayKey = (d: Date) =>
     d.toLocaleDateString("en-CA", { timeZone: TZ });
-  const daysWithClasses = days.filter(
-    (d) => (classesByDay.get(dayKey(d)) || []).length > 0
-  );
+  const dayClassesFor = (d: Date) => {
+    const all = classesByDay.get(dayKey(d)) || [];
+    return hidePast ? all.filter((c) => !c.isPast) : all;
+  };
+  const daysWithClasses = days.filter((d) => dayClassesFor(d).length > 0);
 
   if (daysWithClasses.length === 0) {
     return (
@@ -664,7 +671,7 @@ function WeekList({
   return (
     <div className="max-w-3xl mx-auto space-y-8">
       {daysWithClasses.map((d) => {
-        const dayClasses = classesByDay.get(dayKey(d)) || [];
+        const dayClasses = dayClassesFor(d);
         const isToday = sameYMD(d, today);
         const isOpening = isOpeningDayKey(dayKey(d));
         return (
