@@ -71,8 +71,6 @@ const offerings: Offering[] = [
     // which is gated on PRIVATES_BOOKABLE.
     link: "/schedule",
     linkLabel: "View Schedule",
-    photoScale: "scale-[2.4]",
-    photoPosition: "object-right",
   },
   {
     title: "Privates, Duets & Trios",
