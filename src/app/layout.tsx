@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import PromoBanner from "@/components/PromoBanner";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { isOpeningWeekPromoActive } from "@/lib/flags";
 
 const cormorant = Cormorant({
@@ -78,6 +79,7 @@ export default function RootLayout({
         <Footer />
         <StickyCTA />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
