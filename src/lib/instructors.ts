@@ -15,19 +15,19 @@ export type InstructorPhoto = {
 export const INSTRUCTOR_PHOTOS: Record<string, InstructorPhoto> = {
   "Emilie Young": {
     src: "/emilie-young.jpg",
-    className: "object-cover object-[center_16%] scale-[2.2]",
+    className: "object-cover",
   },
   "Annie Young": {
     src: "/annie-young.jpg",
-    className: "object-cover object-[center_16%] scale-[2.4]",
+    className: "object-cover",
   },
   "Emma Rose Farmer": {
     src: "/emma-rose-farmer.png",
-    className: "object-cover object-[center_18%] scale-[1.8]",
+    className: "object-cover",
   },
   "Sarah Janae": {
     src: "/sarah-janae.jpg",
-    className: "object-cover object-[center_18%] scale-[1.8]",
+    className: "object-cover",
   },
 };
 

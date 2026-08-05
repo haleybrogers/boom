@@ -50,7 +50,7 @@ export default function About() {
                   alt="Emilie Young"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-[center_22%] scale-[1.4] transition-transform duration-700 sm:hover:scale-[1.45]"
+                  className="object-cover transition-transform duration-700 sm:hover:scale-[1.05]"
                 />
               </div>
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
@@ -116,7 +116,7 @@ export default function About() {
                   alt="Annie Young"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-[center_22%] scale-[1.55] transition-transform duration-700 sm:hover:scale-[1.6]"
+                  className="object-cover transition-transform duration-700 sm:hover:scale-[1.05]"
                 />
               </div>
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
@@ -188,7 +188,7 @@ export default function About() {
                   alt="Sarah Janae"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-[center_25%] scale-[1.1] transition-transform duration-700 sm:hover:scale-[1.15]"
+                  className="object-cover transition-transform duration-700 sm:hover:scale-[1.05]"
                 />
               </div>
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
@@ -258,7 +258,7 @@ export default function About() {
                   alt="Emma Rose Farmer"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-[center_25%] scale-[1.1] transition-transform duration-700 sm:hover:scale-[1.15]"
+                  className="object-cover transition-transform duration-700 sm:hover:scale-[1.05]"
                 />
               </div>
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
