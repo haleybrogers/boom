@@ -25,9 +25,9 @@ export default function SplashScreen() {
       window.history.scrollRestoration = "manual";
     }
     window.scrollTo({ top: 0, behavior: "instant" });
-    const t1 = setTimeout(() => setFading(true), 2400);
-    const t2 = setTimeout(() => setVisible(false), 3600);
-    const t3 = setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 3650);
+    const t1 = setTimeout(() => setFading(true), 4200);
+    const t2 = setTimeout(() => setVisible(false), 5400);
+    const t3 = setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 5450);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
@@ -55,11 +55,11 @@ export default function SplashScreen() {
           {/* Logo. Soft inhale/exhale breath pulse */}
           <div className="splash-breathe relative">
             <Image
-              src="/logo-word.svg"
+              src="/logo-pilat.svg"
               alt="Boomerang Pilates"
-              width={500}
-              height={116}
-              className="w-72 md:w-[26rem] h-auto brightness-0 invert"
+              width={560}
+              height={119}
+              className="w-80 md:w-[30rem] h-auto brightness-0 invert"
               priority
             />
           </div>
