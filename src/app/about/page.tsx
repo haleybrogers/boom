@@ -333,13 +333,20 @@ export default function About() {
         </div>
       </section>
 
-      {/* Sisters photo. Header re-added once we have a third instructor */}
+      {/* Team photo. Swapped from the two-founder photo to the full
+          four-instructor group shot now that the team's grown. */}
       <section className="pb-20 lg:pb-28 bg-warm-white">
         <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <p className="text-sm tracking-widest uppercase text-accent mb-4">Our Team</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal">
+              The people behind Boomerang.
+            </h2>
+          </div>
           <div className="relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/2] max-w-3xl mx-auto overflow-hidden">
             <Image
-              src="/photo-sisters.jpg"
-              alt="Emilie and Annie Young, co-founders of Boomerang Pilates"
+              src="/photo-team-group.jpg"
+              alt="The Boomerang Pilates instructor team"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 768px"
