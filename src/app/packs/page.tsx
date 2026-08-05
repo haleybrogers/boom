@@ -6,7 +6,11 @@ import {
   FOUNDING_SPOTS_LEFT,
   FOUNDING_SPOTS_TOTAL,
   isOpeningWeekPromoActive,
+  isBackToSchoolPromoActive,
+  BACK_TO_SCHOOL_BOGO_DUET_URL,
 } from "@/lib/flags";
+
+const TRIAL_MEMBERSHIP_URL = "https://momence.com/m/853344";
 import {
   fetchMemberships,
   pairMatTiers,
@@ -49,6 +53,7 @@ export default async function Packs() {
   const matLocked = SHOW_FOUNDING;
 
   const openingWeekPromo = isOpeningWeekPromoActive();
+  const backToSchoolPromo = isBackToSchoolPromoActive();
 
   return (
     <section className="pt-28 lg:pt-36 pb-20 lg:pb-28">
@@ -337,6 +342,41 @@ export default async function Packs() {
         </div>
       )}
 
+      {/* 2.5 Trial Membership. New-clients-only, 7 days of unlimited mat
+          for $45. Static single-SKU link (not pulled through
+          groupApparatus/pairMatTiers) since there's only ever one of
+          these — sits directly under mat memberships per the promo
+          doc, styled like the Intro 3-Pack callout on the Privates
+          section below. */}
+      <div className="py-4 lg:py-6">
+        <div className="max-w-2xl mx-auto px-6">
+          <div className="bg-cream border border-accent/40 rounded-sm px-5 py-4 sm:px-6 sm:py-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-0.5">
+                  New Clients Only · Trial Membership
+                </p>
+                <p className="text-sm text-charcoal/80 leading-snug">
+                  7 days of unlimited mat classes —
+                  <span className="text-charcoal font-medium"> $45</span>.
+                </p>
+              </div>
+              <a
+                href={TRIAL_MEMBERSHIP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center text-[10px] tracking-widest uppercase text-accent shrink-0 hover:text-accent/80 transition-colors"
+              >
+                Start the trial{" "}
+                <span className="ml-1 group-hover:translate-x-0.5 transition-transform">
+                  →
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* 3. Privates, Duets & Trios. Opens with the featured Intro 3-Pack
           callout (the canonical first step into private sessions), then
           the regular Private/Duet/Trio pack cards below. Free apparatus
@@ -418,6 +458,33 @@ export default async function Packs() {
               </div>
             )}
 
+            {/* Back to School promo banner. 15% off Private/Duet 5- and
+                10-packs, code APPARATUS15, plus a BOGO Duets link.
+                Auto-hides after BACK_TO_SCHOOL_PROMO_DEADLINE (flags.ts). */}
+            {backToSchoolPromo && (
+              <div className="max-w-2xl mx-auto mb-8 bg-accent/5 border border-accent/30 rounded-sm px-5 py-4 sm:px-6 sm:py-4 text-center">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-1">
+                  Back to School
+                </p>
+                <p className="text-sm text-charcoal/80 leading-snug">
+                  15% off every Private &amp; Duet 5- and 10-pack — code{" "}
+                  <span className="text-charcoal font-medium">APPARATUS15</span> at
+                  checkout.
+                </p>
+                <p className="text-sm text-charcoal/80 leading-snug mt-1.5">
+                  Or grab a{" "}
+                  <a
+                    href={BACK_TO_SCHOOL_BOGO_DUET_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
+                  >
+                    Buy One, Get One Duet Session →
+                  </a>
+                </p>
+              </div>
+            )}
+
             {/* Regular pack cards (Private / Duet / Trio · single / 5 / 10). */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
               {apparatus.map((g) => {
@@ -429,17 +496,23 @@ export default async function Packs() {
                 // Opening week promo prices. Trio's are the exact figures
                 // Emilie wants (not a straight 10% calc); Private/Duet are
                 // computed at a flat 10% off, rounded down to the dollar.
+                // Back to School (code APPARATUS15) only covers Private &
+                // Duet, at 15% off — Trio isn't part of that offer, so it
+                // falls through to the regular price whenever Opening Week
+                // isn't also running.
+                const applyBackToSchool = backToSchoolPromo && g.category !== "trio";
+                const activePromo = openingWeekPromo || applyBackToSchool;
                 const promoFive =
                   g.category === "trio"
                     ? 179
                     : g.five?.price !== undefined
-                      ? Math.floor(g.five.price * 0.9)
+                      ? Math.floor(g.five.price * (applyBackToSchool && !openingWeekPromo ? 0.85 : 0.9))
                       : undefined;
                 const promoTen =
                   g.category === "trio"
                     ? 335
                     : g.ten?.price !== undefined
-                      ? Math.floor(g.ten.price * 0.9)
+                      ? Math.floor(g.ten.price * (applyBackToSchool && !openingWeekPromo ? 0.85 : 0.9))
                       : undefined;
                 return (
                   <div
@@ -453,6 +526,11 @@ export default async function Packs() {
                       {openingWeekPromo && (
                         <span className="text-[9px] tracking-[0.2em] uppercase text-accent border border-accent/30 bg-accent/5 rounded-full px-2 py-0.5 leading-none">
                           Opening Week
+                        </span>
+                      )}
+                      {!openingWeekPromo && applyBackToSchool && (
+                        <span className="text-[9px] tracking-[0.2em] uppercase text-accent border border-accent/30 bg-accent/5 rounded-full px-2 py-0.5 leading-none">
+                          Back to School
                         </span>
                       )}
                     </div>
@@ -469,12 +547,12 @@ export default async function Packs() {
                         <div className="flex justify-between text-sm">
                           <span className="text-muted">5-pack</span>
                           <span className="text-charcoal font-medium">
-                            {openingWeekPromo && (
+                            {activePromo && (
                               <span className="line-through text-muted/50 mr-1.5">
                                 ${g.five.price}
                               </span>
                             )}
-                            ${openingWeekPromo ? promoFive : g.five.price}
+                            ${activePromo ? promoFive : g.five.price}
                           </span>
                         </div>
                       )}
@@ -482,12 +560,12 @@ export default async function Packs() {
                         <div className="flex justify-between text-sm">
                           <span className="text-muted">10-pack</span>
                           <span className="text-charcoal font-medium">
-                            {openingWeekPromo && (
+                            {activePromo && (
                               <span className="line-through text-muted/50 mr-1.5">
                                 ${g.ten.price}
                               </span>
                             )}
-                            ${openingWeekPromo ? promoTen : g.ten.price}
+                            ${activePromo ? promoTen : g.ten.price}
                           </span>
                         </div>
                       )}

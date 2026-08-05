@@ -70,3 +70,17 @@ export const OPENING_WEEK_PROMO_DEADLINE = new Date("2026-07-20T00:00:00-04:00")
 export function isOpeningWeekPromoActive(): boolean {
   return Date.now() < OPENING_WEEK_PROMO_DEADLINE.getTime();
 }
+
+// BACK_TO_SCHOOL_PROMO: two offers running together —
+//   1. 15% off Private/Duet 5- and 10-packs, code APPARATUS15
+//   2. BOGO Duets (linked directly to the Momence membership page)
+// Both expire the evening of Monday August 18, 2026; auto-flips off at
+// the start of the 19th.
+export const BACK_TO_SCHOOL_PROMO_DEADLINE = new Date("2026-08-19T00:00:00-04:00");
+
+export function isBackToSchoolPromoActive(): boolean {
+  return Date.now() < BACK_TO_SCHOOL_PROMO_DEADLINE.getTime();
+}
+
+export const BACK_TO_SCHOOL_BOGO_DUET_URL =
+  "https://momence.com/Boomerang-Pilates/membership/BOGO-Duet-Session/848916";

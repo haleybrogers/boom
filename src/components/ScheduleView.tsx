@@ -14,7 +14,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { ScheduleClass } from "@/lib/scheduleData";
 import { displayLocation } from "@/lib/scheduleData";
 import { CLASS_TYPE_STYLES } from "@/lib/classStyles";
-import { isOpeningWeekPromoActive } from "@/lib/flags";
+import { isOpeningWeekPromoActive, isBackToSchoolPromoActive } from "@/lib/flags";
 import ScheduleClassModal from "./ScheduleClassModal";
 
 const TZ = "America/New_York";
@@ -123,7 +123,7 @@ export default function ScheduleView({
   // stick *right below* it — that way the week label, Calendar/List
   // toggle, the color key, AND the weekday/date row all stay visible
   // together while you scroll.
-  const SITE_NAV_H = isOpeningWeekPromoActive() ? 80 + 36 : 80;
+  const SITE_NAV_H = (isOpeningWeekPromoActive() || isBackToSchoolPromoActive()) ? 80 + 36 : 80;
   const stickyRef = useRef<HTMLDivElement>(null);
   const [stickyH, setStickyH] = useState(0);
   useEffect(() => {

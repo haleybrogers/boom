@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import PromoBanner from "@/components/PromoBanner";
 import { Analytics } from "@vercel/analytics/next";
-import { isOpeningWeekPromoActive } from "@/lib/flags";
+import { isOpeningWeekPromoActive, isBackToSchoolPromoActive } from "@/lib/flags";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
@@ -70,9 +70,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-white text-charcoal">
         <PromoBanner />
-        {/* Spacer for the fixed PromoBanner above — same flag, so it
+        {/* Spacer for the fixed PromoBanner above — same flags, so it
             collapses back to 0 the moment the banner hides itself. */}
-        {isOpeningWeekPromoActive() && <div className="h-9" />}
+        {(isOpeningWeekPromoActive() || isBackToSchoolPromoActive()) && <div className="h-9" />}
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />
