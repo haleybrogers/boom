@@ -8,7 +8,6 @@ import {
   findIntroPrivates,
   INTRO_PRIVATES_FOUNDING_PRICE,
   MOMENCE_APPOINTMENTS_URL,
-  MOMENCE_DEMO_URL,
 } from "@/lib/momence";
 import { PRIVATES_BOOKABLE, SHOW_FOUNDING } from "@/lib/flags";
 
@@ -126,33 +125,7 @@ export default async function Privates() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Free demo card */}
-            <a
-              href={MOMENCE_DEMO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col bg-white border border-charcoal/15 rounded-sm p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-accent/40"
-            >
-              <p className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-2">
-                Free demo
-              </p>
-              <h3 className="font-serif text-xl font-light text-charcoal mb-1.5 leading-snug">
-                Try the apparatus.
-              </h3>
-              <p className="text-sm text-muted leading-snug mb-4 flex-1">
-                Come in, get on the equipment, see how it feels — on us.
-              </p>
-              <div className="flex items-center justify-between border-t border-charcoal/5 pt-3 mt-auto">
-                <span className="text-[10px] tracking-widest uppercase text-accent">
-                  Book a demo
-                </span>
-                <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                  →
-                </span>
-              </div>
-            </a>
-
+          <div className="max-w-sm mx-auto">
             {/* Intro 3-Pack card. Wrapped in a div (not <a>) so the
                 founding-price line can be its own /founding link
                 without nesting anchors. The main "Buy the pack" CTA

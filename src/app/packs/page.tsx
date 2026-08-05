@@ -20,7 +20,6 @@ import {
   findOtherOfferings,
   findIntroPrivates,
   INTRO_PRIVATES_FOUNDING_PRICE,
-  MOMENCE_DEMO_URL,
 } from "@/lib/momence";
 
 export const metadata = {
@@ -501,20 +500,6 @@ export default async function Packs() {
             <div className="text-center mb-6">
               <PackPickerModal buttonLabel="Buy a Pack" groups={apparatus} />
             </div>
-
-            {/* Free demo footer line. Subtle on purpose — it's the
-                lower-commitment door, not the main CTA. */}
-            <p className="text-center text-sm text-muted">
-              Not sure yet?{" "}
-              <a
-                href={MOMENCE_DEMO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
-              >
-                Book a free apparatus demo →
-              </a>
-            </p>
           </div>
         </div>
       )}

@@ -3,7 +3,6 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import {
   MOMENCE_APPOINTMENTS_URL,
-  MOMENCE_DEMO_URL,
   fetchMemberships,
   pairMatTiers,
   groupApparatus,
@@ -269,22 +268,6 @@ export default async function OfferingCards() {
                 >
                   {offering.linkLabel}
                 </Link>
-              )}
-
-              {/* Free apparatus demo — tucked under the Apparatus
-                  card's primary CTA so it lives inside the text column
-                  (preserving the alternating photo/text zigzag) rather
-                  than as a full-width band that breaks the rhythm. */}
-              {offering.title === "Apparatus" && (
-                <a
-                  href={MOMENCE_DEMO_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block mt-3 text-sm text-muted hover:text-accent transition-colors"
-                >
-                  Or book a free apparatus demo{" "}
-                  <span className="text-accent">→</span>
-                </a>
               )}
             </Reveal>
           </div>
