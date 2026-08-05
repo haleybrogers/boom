@@ -35,41 +35,34 @@ export default function SplashScreen() {
 
   return (
     <div
-          className="fixed inset-0 z-[100] bg-cream flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[100] bg-charcoal flex flex-col items-center justify-center overflow-hidden"
           style={{
             opacity: fading ? 0 : 1,
             transition: "opacity 1.2s ease-in-out",
           }}
         >
+          {/* Video backdrop */}
+          <video
+            src="/splash-bg.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-charcoal/50" />
+
           {/* Logo. Soft inhale/exhale breath pulse */}
-          <div className="splash-breathe">
+          <div className="splash-breathe relative">
             <Image
-              src="/logo-full.svg"
+              src="/logo-word.svg"
               alt="Boomerang Pilates"
               width={500}
-              height={400}
-              className="w-80 md:w-[28rem] h-auto"
+              height={116}
+              className="w-72 md:w-[26rem] h-auto brightness-0 invert"
               priority
             />
           </div>
-
-          {/* Larger, softer spinning boomerang ring */}
-          <div className="mt-10">
-            <Image
-              src="/loading-icon.svg"
-              alt=""
-              width={72}
-              height={72}
-              className="w-16 h-16 md:w-20 md:h-20 animate-spin opacity-25"
-              style={{ animationDuration: "2.4s" }}
-              aria-hidden="true"
-            />
-          </div>
-
-          {/* Breath-paced tagline */}
-          <p className="mt-8 font-serif italic text-sm md:text-base text-charcoal/50 splash-breath-text">
-            breathe in…
-          </p>
 
           <style jsx>{`
             .splash-breathe {
@@ -79,13 +72,6 @@ export default function SplashScreen() {
             @keyframes splashBreathe {
               0%, 100% { transform: scale(1); }
               50% { transform: scale(1.03); }
-            }
-            .splash-breath-text {
-              animation: splashBreathText 4s ease-in-out infinite;
-            }
-            @keyframes splashBreathText {
-              0%, 100% { opacity: 0.3; }
-              50% { opacity: 0.7; }
             }
       `}</style>
     </div>
