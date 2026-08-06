@@ -176,6 +176,40 @@ export default async function Privates() {
         </div>
       </section>
 
+      {/* Hands-on coaching photo. Sits between the intro offer and
+          pricing as a visual pause that backs up the "personalized"
+          promise with a real coaching moment. */}
+      <section className="py-12 lg:py-16 bg-warm-white border-t border-charcoal/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
+            <div className="relative w-full aspect-[3/4] overflow-hidden order-2 md:order-1">
+              <Image
+                src="/photo-privates-coaching.jpg"
+                alt="Hands-on coaching during a private Pilates session at Boomerang"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="order-1 md:order-2">
+              <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-5">
+                Hands-On
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-light text-charcoal leading-tight mb-6">
+                Real corrections, in real time.
+              </h2>
+              <div className="w-12 h-px bg-accent mb-6" />
+              <p className="text-muted text-base leading-relaxed">
+                No cueing from across the room. Your instructor is right
+                there — adjusting, spotting, and fine-tuning every rep so
+                you feel the difference immediately, not three sessions
+                from now.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Apparatus pricing. Single / 5-pack / 10-pack, pulled live from Momence */}
       <section className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
