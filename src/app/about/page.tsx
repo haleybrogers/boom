@@ -318,7 +318,7 @@ export default function About() {
             We&apos;re so happy you&apos;re here.
           </h2>
           <p className="text-muted text-base leading-relaxed mb-8 max-w-md mx-auto">
-            Classical Pilates has a reputation for being exclusive — for
+            Classical Pilates has a reputation for being exclusive, for
             looking a certain way, moving a certain way. We don&apos;t buy
             it. This studio is for every body, every background, every
             level of experience. However you got here, we&apos;re glad you

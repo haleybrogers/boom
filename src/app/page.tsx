@@ -55,7 +55,7 @@ export default function Home() {
           {SHOW_FOUNDING && (
             <div className="flex flex-col items-center animate-fade-up-lux pt-8" style={{ animationDelay: "1.05s" }}>
               <p className="text-sm text-accent mb-2">
-                Today&apos;s the last day to lock in 25% off — for life.
+                Today&apos;s the last day to lock in 25% off, for life.
               </p>
               <FoundingCountdown showLabel={false} />
               <div className="relative inline-block mt-1">
@@ -140,12 +140,12 @@ export default function Home() {
             Be the first to know.
           </h2>
           <p className="text-muted text-base mb-10">
-            Sign up for our email list — event details, first access to new class drops, and the stuff we only share with our people.
+            Sign up for our email list: event details, first access to new class drops, and the stuff we only share with our people.
           </p>
           <ContactFormModal
             buttonLabel="Get the Scoop"
             heading="Get the scoop."
-            subhead="Sign up for our email list — event details, first access to new class drops, and the stuff we only share with our people."
+            subhead="Sign up for our email list: event details, first access to new class drops, and the stuff we only share with our people."
             source="waitlist"
             sourceId={204540}
             showMessage={false}

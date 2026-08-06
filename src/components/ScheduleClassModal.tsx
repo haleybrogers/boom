@@ -80,7 +80,7 @@ export default function ScheduleClassModal({
   const shareUrl = cls.action.bookUrl;
 
   const handleShare = async () => {
-    const shareText = `Book this with me! ${cls.title} at Boomerang Pilates — ${formatDate(
+    const shareText = `Book this with me! ${cls.title} at Boomerang Pilates, ${formatDate(
       cls.startISO
     )}, ${formatTimeRange(cls.startISO, cls.endISO)}.`;
     if (typeof navigator !== "undefined" && navigator.share) {

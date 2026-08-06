@@ -79,7 +79,7 @@ export default async function Privates() {
                     Request a Session
                   </a>
                   <p className="text-sm text-muted mt-3">
-                    Privates, duets, and trios — pick a time and we&apos;ll confirm. Opens in a new tab.
+                    Privates, duets, and trios: pick a time and we&apos;ll confirm. Opens in a new tab.
                   </p>
                 </>
               ) : (
@@ -154,7 +154,7 @@ export default async function Privates() {
                     href="/founding"
                     className="underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
                   >
-                    Founding members: ${INTRO_PRIVATES_FOUNDING_PRICE} — limited time →
+                    Founding members: ${INTRO_PRIVATES_FOUNDING_PRICE} · limited time →
                   </Link>
                 </p>
               )}
@@ -201,7 +201,7 @@ export default async function Privates() {
               <div className="w-12 h-px bg-accent mb-6" />
               <p className="text-muted text-base leading-relaxed">
                 No cueing from across the room. Your instructor is right
-                there — adjusting, spotting, and fine-tuning every rep so
+                there, adjusting, spotting, and fine-tuning every rep so
                 you feel the difference immediately, not three sessions
                 from now.
               </p>

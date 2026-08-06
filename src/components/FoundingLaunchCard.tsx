@@ -108,7 +108,7 @@ export default function FoundingLaunchCard() {
               className="bg-white border border-accent/20 rounded-sm py-2"
             >
               <p className="font-serif text-2xl font-light text-charcoal leading-none tabular-nums">
-                {remaining ? String(remaining[key]).padStart(2, "0") : "——"}
+                {remaining ? String(remaining[key]).padStart(2, "0") : "00"}
               </p>
               <p className="text-[9px] tracking-[0.2em] uppercase text-muted mt-1">
                 {label}

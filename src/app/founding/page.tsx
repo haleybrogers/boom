@@ -106,7 +106,7 @@ export default async function Founding() {
             25% off mat. For life.
           </h2>
           <p className="text-muted text-base leading-relaxed mb-7">
-            4× and 8× Month Mat are sold out — a handful of Unlimited Mat
+            4× and 8× Month Mat are sold out. A handful of Unlimited Mat
             spots are still up for grabs, and founding pricing disappears
             for good tonight. Your rate locks in the moment you join and
             never moves as long as it stays active.

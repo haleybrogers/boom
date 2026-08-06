@@ -293,7 +293,7 @@ function MatSeriesCard({
         </p>
         <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
           Three Saturday mornings, 10:30 to 11:20 AM. Each class stands on
-          its own, so take one or take all three. $20 per class — book
+          its own, so take one or take all three. $20 per class, book
           individually on the card above.
         </p>
       </div>
