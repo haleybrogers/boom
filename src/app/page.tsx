@@ -5,7 +5,6 @@ import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import Reveal from "@/components/Reveal";
 import FoundingCountdown from "@/components/FoundingCountdown";
-import SplashScreen from "@/components/SplashScreen";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
 // Re-render hourly so SHOW_FOUNDING auto-flips off shortly after the
@@ -15,8 +14,6 @@ export const revalidate = 3600;
 export default function Home() {
   return (
     <>
-      <SplashScreen />
-
       {/* Hero. Source is 21:9 ultra-wide. Mobile: aspect-[3/2] container
           with object-cover. Taller crop so the sisters fill the frame —
           short of the full h-[70vh] treatment, which lost feet/hands.
