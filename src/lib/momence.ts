@@ -307,6 +307,20 @@ export function findApparatusDemo(memberships: Membership[]): Membership | undef
   });
 }
 
+// ---------- BOGO Duet Session ----------
+
+/** The Back to School "BOGO Duet Session" SKU. Surfaced via its own
+ *  banner link (BACK_TO_SCHOOL_BOGO_DUET_URL in flags.ts) at the top of
+ *  the Privates/Duets/Trios section on /packs, so it's explicitly
+ *  EXCLUDED from findOtherOfferings() to avoid a duplicate card in the
+ *  catch-all "More options" bucket. */
+export function findBogoDuet(memberships: Membership[]): Membership | undefined {
+  return memberships.find((m) => {
+    const n = m.name.toLowerCase();
+    return n.includes("bogo") && n.includes("duet");
+  });
+}
+
 // ---------- Intro Privates Bundle ----------
 
 /** The introductory privates pack — typically a 3-session offer for
@@ -347,6 +361,7 @@ export function findOtherOfferings(memberships: Membership[]): Membership[] {
   const dropIn = findDropIn(memberships);
   const intro = findIntroPrivates(memberships);
   const demo = findApparatusDemo(memberships);
+  const bogoDuet = findBogoDuet(memberships);
   const matPackIds = new Set(
     findMatPacks(memberships).map((p) => p.membership.id)
   );
@@ -359,6 +374,7 @@ export function findOtherOfferings(memberships: Membership[]): Membership[] {
       m.id !== dropIn?.id &&
       m.id !== intro?.id &&
       m.id !== demo?.id &&
+      m.id !== bogoDuet?.id &&
       !matPackIds.has(m.id) &&
       !rtlIds.has(m.id)
   );
