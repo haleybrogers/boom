@@ -128,6 +128,15 @@ export default async function Packs() {
       {tiers.some((t) => t.regular) && (
         <div className="py-20 lg:py-24">
           <div className="max-w-6xl mx-auto px-6">
+            <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm mb-12">
+              <Image
+                src="/photo-mat-class-group.jpg"
+                alt="Mat class at Boomerang Pilates"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1152px) 100vw, 1152px"
+              />
+            </div>
             <div className="text-center mb-12">
               <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
                 Memberships, Class Packs &amp; Drop-In
@@ -467,12 +476,7 @@ export default async function Packs() {
                   Back to School
                 </p>
                 <p className="text-sm text-charcoal/80 leading-snug">
-                  15% off every Private &amp; Duet 5- and 10-pack — code{" "}
-                  <span className="text-charcoal font-medium">APPARATUS15</span> at
-                  checkout.
-                </p>
-                <p className="text-sm text-charcoal/80 leading-snug mt-1.5">
-                  Or grab a{" "}
+                  Grab a{" "}
                   <a
                     href={BACK_TO_SCHOOL_BOGO_DUET_URL}
                     target="_blank"
@@ -481,6 +485,11 @@ export default async function Packs() {
                   >
                     Buy One, Get One Duet Session →
                   </a>
+                </p>
+                <p className="text-sm text-charcoal/80 leading-snug mt-1.5">
+                  15% off every Private &amp; Duet 5- and 10-pack — code{" "}
+                  <span className="text-charcoal font-medium">APPARATUS15</span> at
+                  checkout.
                 </p>
               </div>
             )}
