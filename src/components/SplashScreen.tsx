@@ -25,9 +25,9 @@ export default function SplashScreen() {
       window.history.scrollRestoration = "manual";
     }
     window.scrollTo({ top: 0, behavior: "instant" });
-    const t1 = setTimeout(() => setFading(true), 6800);
-    const t2 = setTimeout(() => setVisible(false), 8000);
-    const t3 = setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 8050);
+    const t1 = setTimeout(() => setFading(true), 5300);
+    const t2 = setTimeout(() => setVisible(false), 6500);
+    const t3 = setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 6550);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
