@@ -74,6 +74,9 @@ const offerings: Offering[] = [
   {
     title: "Privates, Duets & Trios",
     image: "/photo-private.jpg",
+    // Source photo is already framed to the card's aspect ratio; the
+    // default scale-[1.15] zoom crops it in too tight.
+    photoScale: "scale-100",
     tagline: "Fully customized. Your body, your goals, your pace.",
     description:
       "One-on-one, with a partner, or as a trio. Full apparatus access tailored entirely to you. Whether you're rehabbing, training for something specific, or just prefer individual attention, this is the fastest path to results.",
