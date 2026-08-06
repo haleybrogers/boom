@@ -5,6 +5,7 @@ import OfferingCards from "@/components/OfferingCards";
 import NewToPilates from "@/components/NewToPilates";
 import Reveal from "@/components/Reveal";
 import FoundingCountdown from "@/components/FoundingCountdown";
+import HeroVideo from "@/components/HeroVideo";
 import { SHOW_FOUNDING } from "@/lib/flags";
 
 // Re-render hourly so SHOW_FOUNDING auto-flips off shortly after the
@@ -14,18 +15,12 @@ export const revalidate = 3600;
 export default function Home() {
   return (
     <>
-      {/* Hero. Source is 21:9 ultra-wide. Mobile: aspect-[3/2] container
-          with object-cover. Taller crop so the sisters fill the frame —
-          short of the full h-[70vh] treatment, which lost feet/hands.
-          Desktop: full-bleed at 70vh. */}
+      {/* Hero. Mobile: aspect-[3/2] container with object-cover.
+          Desktop: full-bleed at 70vh. Same framing/sizing the still
+          hero image used, now a looping studio B-roll video with a
+          light parallax drift (see HeroVideo.tsx). */}
       <section className="relative aspect-[3/2] md:aspect-auto md:h-[70vh] overflow-hidden">
-        <Image
-          src="/hero-image.jpg"
-          alt="Two figures in the Boomerang Pilates pose"
-          fill
-          className="object-cover object-bottom"
-          priority
-        />
+        <HeroVideo />
       </section>
 
       {/* Intro. One tight paragraph, then the two ways in */}
