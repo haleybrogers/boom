@@ -107,7 +107,7 @@ export default async function Packs() {
             <p className="text-muted text-base leading-relaxed max-w-xl mx-auto mb-8">
               4&times; and 8&times; Month Mat are sold out, and founding
               pricing ends tonight. A few Unlimited Mat spots are still
-              open — locked-in rate as long as your membership stays
+              open, locked-in rate as long as your membership stays
               active, plus opening night, a welcome kit, an intro
               privates pack, and a bring-a-friend pass for your first
               three months.
@@ -147,7 +147,7 @@ export default async function Packs() {
               <p className="text-muted text-base leading-relaxed max-w-xl mx-auto">
                 Memberships if you&apos;re committed, class packs if you&apos;d
                 rather pay as you go, or a single drop-in. Memberships are a
-                three-month commitment — up to four unused classes roll over
+                three-month commitment; up to four unused classes roll over
                 each month, pause anytime after the first three.
               </p>
             </div>
@@ -366,7 +366,7 @@ export default async function Packs() {
                   New Clients Only · Trial Membership
                 </p>
                 <p className="text-sm text-charcoal/80 leading-snug">
-                  7 days of unlimited mat classes —
+                  7 days of unlimited mat classes for
                   <span className="text-charcoal font-medium"> $45</span>.
                 </p>
               </div>
@@ -394,6 +394,15 @@ export default async function Packs() {
       {apparatus.some((g) => g.single || g.five || g.ten) && (
         <div className="bg-warm-white py-20 lg:py-24 border-t border-charcoal/5">
           <div className="max-w-5xl mx-auto px-6">
+            <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm mb-12">
+              <Image
+                src="/photo-privates-banner.jpg"
+                alt="Private apparatus class at Boomerang Pilates"
+                fill
+                className="object-cover"
+                sizes="(max-width: 960px) 100vw, 960px"
+              />
+            </div>
             <div className="text-center mb-12">
               <p className="text-[11px] tracking-[0.4em] uppercase text-accent mb-4">
                 By Appointment
@@ -420,7 +429,7 @@ export default async function Packs() {
                       New to the studio · Intro 3-Pack
                     </p>
                     <p className="text-sm text-charcoal/80 leading-snug">
-                      Three private sessions to get you started —
+                      Three private sessions to get you started for
                       <span className="text-charcoal font-medium"> ${intro.price}</span>
                       .
                     </p>
@@ -430,7 +439,7 @@ export default async function Packs() {
                           href="/founding"
                           className="underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors"
                         >
-                          Founding members: ${INTRO_PRIVATES_FOUNDING_PRICE} — limited time →
+                          Founding members: ${INTRO_PRIVATES_FOUNDING_PRICE} · limited time →
                         </Link>
                       </p>
                     )}
@@ -460,7 +469,7 @@ export default async function Packs() {
                 </p>
                 <p className="text-sm text-charcoal/80 leading-snug">
                   10% off every Private, Duet &amp; Trio (group) 5- and
-                  10-pack — code{" "}
+                  10-pack, code{" "}
                   <span className="text-charcoal font-medium">OPENINGWEEK</span> at
                   checkout.
                 </p>
@@ -487,7 +496,7 @@ export default async function Packs() {
                   </a>
                 </p>
                 <p className="text-sm text-charcoal/80 leading-snug mt-1.5">
-                  15% off every Private &amp; Duet 5- and 10-pack — code{" "}
+                  15% off every Private &amp; Duet 5- and 10-pack, code{" "}
                   <span className="text-charcoal font-medium">APPARATUS15</span> at
                   checkout.
                 </p>
